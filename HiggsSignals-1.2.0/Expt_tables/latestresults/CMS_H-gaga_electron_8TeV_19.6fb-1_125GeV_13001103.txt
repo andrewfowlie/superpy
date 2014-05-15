@@ -1,0 +1,15 @@
+# Presented at Moriond 2013.
+# Electron category.
+# The mu values are taken from the MVA analysis.
+13001103	1300103		1
+CMS-PAS-HIG-13-001
+LHC, CMS, CMS
+(pp)->h->gammagamma(e)
+8	19.6	 0.044
+1	0
+2.0	CMSgagacat
+125.0 125.0 1.0
+5	125.0
+11 21 31 41 51
+1	4.47	1321.35 	1321.35 	2765.05	
+125.0	-2.62	-0.67	2.11

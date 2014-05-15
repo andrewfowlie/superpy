@@ -1,0 +1,37 @@
+.TH FHRETRIEVERECORD 1 "1-May-2011"
+.SH NAME
+.PP
+FHRetrieveRecord \- fill a FeynHiggs Record from the FeynHiggs 
+parameters currently set
+.SH SYNOPSIS (Fortran version)
+.PP
+#include "FHRecord.h"
+.sp
+integer error, iX
+.br
+RecordDecl(record)
+.sp
+subroutine FHRetrieveRecord(error, record, iX)
+.SH SYNOPSIS (Mathematica version)
+.PP
+record = FHRetrieveRecord[record, iX]
+.SH DESCRIPTION
+FHRetrieveRecord retrieves the currently set FeynHiggs parameters and 
+stores them in a FeynHiggs Record, in the field iX (iX = iVar, iLower,
+iUpper).  This subroutine works like a combination of FHRetrieveSMPara,
+FHRetrievePara, and FHRetrieveNMFV except that the input parameters are
+taken from the FeynHiggs Record.
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in RetrieveRecord.F from
+which the error message was emitted.
+.TP
+.B record (input/output)
+the FeynHiggs Record.
+.TP
+.B iX (input)
+the slot into which to fill the data: iVar, iLower, or iUpper.
+.SH SEE ALSO
+.PP
+libFH(1)

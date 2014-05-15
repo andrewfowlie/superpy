@@ -1,0 +1,10 @@
+#D0 Note 5489 Sep 6, 2007
+#D0_ppH_WW_emu_0.6fb
+#no interpolation
+#columns: Mh, obs, exp (as ratio to SM cross sections)
+
+120	38.2	37.3
+140	11.8	11.2
+160	3.5	5.5
+180	5.1	8.4
+200	10.4	18.2

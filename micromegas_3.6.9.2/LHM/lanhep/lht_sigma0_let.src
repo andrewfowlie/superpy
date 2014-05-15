@@ -1,0 +1,83 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%% SIGMA DEFINITION   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+let phi ={
+          {'p++',	'p+'/Sqrt2},
+	  {'p+'/Sqrt2,	 p0	  }
+	  }.
+	  
+let phid={
+	  {'p--','p-'/Sqrt2},
+	  {'p-'/Sqrt2,anti(p0)}
+	  }.
+
+let h   ={'h+',h0},  
+    hd={'h-',h0}, 
+    ht={'h+',h0},
+    hs={'h-',h0}.
+
+
+
+
+let sigma0={
+	    {0,		0,	0,	vev(1),	0	},
+            {0,		0,	0,	0,	vev(1)	},
+            {0,		0,	vev(1),	0,	0	},
+            {vev(1),	0,	0,	0,	0	},
+            {0,		vev(1),	0,	0,	0	}
+	    }.
+	    
+let sigma0_3={
+             {vev(1),    0,      0 },
+	     {0,	 vev(1), 0 }
+	    }.
+
+let sigma0_2={
+             {vev(1),    0    },
+	     {0,	 vev(1)}
+	     }.
+
+let sigma0_1={0,    0    }.
+ 
+let tsigma0=sigma0.    
+let tsigma0_3=sigma0_3.
+let tsigma0_2=sigma0_2.
+let tsigma0_1=sigma0_1.
+
+let csigma0     =sigma0.  
+let csigma0_3   =sigma0_3.  
+  
+let ctsigma0=sigma0.
+let ctsigma0_3=sigma0_3.
+let ctsigma0_2=sigma0_2.
+let ctsigma0_1=sigma0_1.
+
+%let PI11=vev(0), 	PI12=vev(0), 	PI13='h-'/Sqrt2, PI14='p--',	 	PI15='p-'/Sqrt2,
+%let PI21=vev(0), 	PI22=vev(0), 	PI23=h0/Sqrt2,   PI24='p-'/Sqrt2,	 PI25=	anti(p0),
+%let PI31='h+'/Sqrt2,	PI32=h0/Sqrt2,  PI33= 	0,       PI34='h-'/Sqrt2,	         h0/Sqrt2
+
+let PIS={{vev(0), 	vev(0), 	'h-'/Sqrt2, 	'p--', 			'p-'/Sqrt2},
+        {vev(0),	vev(0),  	h0/Sqrt2,  	'p-'/Sqrt2,	 	anti(p0) },
+	{'h+'/Sqrt2,	h0/Sqrt2,   	0,      	'h-'/Sqrt2,	         h0/Sqrt2 },
+	{'p++',         'p+'/Sqrt2, 	'h+'/Sqrt2,      vev(0),                vev(0)},
+	{ 'p+'/Sqrt2,    p0,             h0/Sqrt2 ,       vev(0),                vev(0)}}.  
+
+let PIT={{vev(0), 	vev(0), 	'h-'/Sqrt2, 	'p--', 			'p-'/Sqrt2},
+         {vev(0),	vev(0),  	h0/Sqrt2,  	'p-'/Sqrt2,	 	anti(p0) },
+	 {'h+'/Sqrt2,	h0/Sqrt2,   	0,      	'h-'/Sqrt2,	         h0/Sqrt2 },
+	 {'p++',         'p+'/Sqrt2, 	'h+'/Sqrt2,      vev(0),                vev(0)},
+	 { 'p+'/Sqrt2,    p0,             h0/Sqrt2 ,       vev(0),                vev(0)}}.  
+
+
+
+
+
+let ONE={
+	{vev(1), 	vev(0), vev(0), 	vev(0), vev(0)},
+	{vev(0), 	vev(1), vev(0), 	vev(0), vev(0)},
+	{vev(0), 	vev(0), vev(1), 	vev(0), vev(0)},
+	{vev(0), 	vev(0), vev(0), 	vev(1), vev(0)},
+	{vev(0), 	vev(0), vev(0), 	vev(0), vev(1)}}.
+
+

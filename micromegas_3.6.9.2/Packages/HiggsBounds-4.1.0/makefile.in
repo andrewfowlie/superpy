@@ -1,0 +1,118 @@
+CHISQMODS = extra_bits_for_chisquared.MOD
+
+MODS = usefulbits.mod store_pathname.mod \
+ S95tables_type1.MOD S95tables_type2.MOD\
+ S95tables_type3.MOD \
+ interpolate.mod \
+ theory_colliderSfunctions.MOD theory_XS_SM_functions.MOD theory_BRfunctions.MOD \
+ S95tables.mod \
+ PDGnumbering.mod string_manip.mod SLHA_manip.mod \
+ extra_bits_for_SLHA.mod \
+ extra_bits_for_web.MOD\
+ $(USECHISQMODS) \
+ input.MOD output.MOD channels.MOD theo_manip.mod \
+
+tempMODS = $(MODS:.mod=.o)
+
+OBJSbasic = $(tempMODS:.MOD=.o)
+
+OBJScommandline = $(OBJSbasic) \
+ HiggsBounds.o 
+
+OBJSsubroutines =  $(OBJSbasic) \
+ HiggsBounds_subroutines.o access_SM.o
+
+.SUFFIXES: .exe .o .mod .f90 .F .F90 .MOD
+
+#as advised in http://gcc.gnu.org/wiki/GfortranFAQ
+%.o : %.mod
+
+default: HiggsBounds
+
+.f90.mod:
+	$(F90C) $(F90FLAGS) $(ADDITIONALDEFINE) -c $< -o $*.o 
+
+.f90.o:
+	$(F90C) $(F90FLAGS) $(ADDITIONALDEFINE) -c $< -o $*.o 
+
+.F90.MOD:
+	$(F90C) $(F90FLAGS) $(ADDITIONALDEFINE) -c $< -o $*.o 
+
+.F90.o:
+	$(F90C) $(F90FLAGS) $(ADDITIONALDEFINE) -c $< -o $*.o 
+
+.F.o:
+	$(F77C) -c $< -o $*.o	
+
+.mod.o:
+	$(F90C) $(F90FLAGS) -c $*.f90 -o $*.o 
+
+.MOD.o:
+	$(F90C) $(F90FLAGS) -c $*.F90 -o $*.o 
+
+HiggsBounds: HBwithSLHA libHB.a $(MODS) $(OBJScommandline) $(OBJSsubroutines)
+	$(F90C) $(F90FLAGS) $(OBJScommandline) -o $(EXE) $(HBLIBS)
+	$(F90C) $(F90FLAGS) AllAnalyses.F90 -o AllAnalyses $(HBLIBS)
+	rm -f Expt_tables/S95_t1.binary 
+	rm -f Expt_tables/S95_t2.binary 
+	rm -f Theory_tables/BRSM.binary 
+	touch Expt_tables/S95_t1.binary 
+	touch Expt_tables/S95_t2.binary 
+	touch Theory_tables/BRSM.binary 
+
+libHB:  $(MODS) $(OBJSsubroutines)
+	ar -rv libHB.a $(OBJSsubroutines)
+	ranlib libHB.a	
+	rm -f Expt_tables/S95_t1.binary 
+	rm -f Expt_tables/S95_t2.binary 
+	rm -f Theory_tables/BRSM.binary 	
+	touch Expt_tables/S95_t1.binary 
+	touch Expt_tables/S95_t2.binary 
+	touch Theory_tables/BRSM.binary 
+
+libHB.a: libHB
+
+HBwithFH:  libHB.a
+	$(F90C) $(F90FLAGS) $(FHINCLUDE) example_programs/HBwithFH.F -o example_programs/HBwithFH $(FHLIBS) $(HBLIBS)
+	$(F90C) $(F90FLAGS) $(FHINCLUDE) example_programs/HBwithFH_dm.F -o example_programs/HBwithFH_dm $(FHLIBS) $(HBLIBS)	
+	$(F90C) $(F90FLAGS) $(FHINCLUDE) example_programs/HBSLHAinputblocksfromFH_extras.F example_programs/HBSLHAinputblocksfromFH.F90 -o example_programs/HBSLHAinputblocksfromFH $(FHLIBS) $(HBLIBS)
+
+HBwithCPsuperH:  libHB.a
+	$(F77C) example_programs/HBwithCPsuperH.f -o example_programs/HBwithCPsuperH $(CPSUPERHLIBS) $(HBLIBS)
+	@echo 'now run ./HBwithCPsuperH < HBwithCPsuperH.input in the folder example_programs'
+
+HBweb: libHB.a HiggsBounds
+	@echo 'check that WEBVERSION is defined'
+	$(F90C) $(F90FLAGS) extract_SM_results_for_web.f90 -o extract_SM_results_for_web $(HBLIBS) 
+
+HBwithSLHA: libHB.a
+	$(F90C) $(F90FLAGS) example_programs/HBwithSLHA.F90 -o example_programs/HBwithSLHA $(HBLIBS)
+
+HBchisq: libHB.a
+	$(F90C) $(F90FLAGS) example_programs/HBchisq.F90 -o example_programs/HBchisq $(HBLIBS)
+	$(F90C) $(F90FLAGS) example_programs/HBchisqwithSLHA.F90 -o example_programs/HBchisqwithSLHA $(HBLIBS)
+
+clean:
+	rm -f *.o *.mod *.MOD *.a
+	rm -f store_pathname.f90
+
+	rm -f *.o *.mod *.MOD *.a *~ 
+	rm -f example_programs/*~ 
+	rm -f store_pathname.f90
+	rm -f example_programs/HBwithFH
+	rm -f example_programs/HBwithCPsuperH
+	rm -f example_programs/example-SM_vs_4thGen
+	rm -f extract_SM_results_for_web
+	rm -f HiggsBounds
+#	rm -f example_data/*results.dat
+#	rm -f example_data/*Key.dat
+	rm -f cs-ratios_sigma-bg-Hb/Tevatron*~
+	rm -f example_programs/example-4thGen-results.dat
+	rm -f example_programs/example-SM-results.dat
+	rm -f example_programs/Key.dat
+	rm -f example_programs/HBwithCPsuperH_effC.f
+	rm -f example_programs/HBwithFH_effC.F
+	rm -f example_programs/debug_channels.txt
+	rm -f example_programs/debug_predratio.txt
+	rm -f README_old
+

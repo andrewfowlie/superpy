@@ -1,0 +1,45 @@
+-Alfa/(6*Pi) - (5*Alfa*B0i[bb0, 0, MW2, MW2])/(4*Pi) - 
+ (2*SW*((-((Alfa*CW)/(Pi*SW)) + (Alfa*(-CW2 + SW2))/(4*CW*Pi*SW))*A0[MW2] + 
+    (Alfa*MW2*(CW/SW + SW/CW)*B0i[bb0, 0, MW2, MW2])/(2*Pi) + 
+    ((2*Alfa*CW)/(Pi*SW) - (Alfa*(-CW2 + SW2))/(2*CW*Pi*SW))*
+     B0i[bb00, 0, MW2, MW2]))/(CW*MZ2) + 
+ (-(Alfa*MW2*(-1 + SW2^(-1) - CW2/SW2))/(2*Pi) + (Alfa*A0[MH2])/(16*Pi*SW2) + 
+   (7*Alfa*(-4/7 + SW2^(-1) - (4*CW2)/(7*SW2))*A0[MW2])/(8*Pi) + 
+   (Alfa*(1 + 12*CW2)*A0[MZ2])/(16*Pi*SW2) + (Alfa*MW2*B0i[bb0, 0, 0, MW2])/
+    (4*Pi) + (Alfa*MW2*B0i[bb0, 0, MH2, MW2])/(4*Pi*SW2) + 
+   (Alfa*((-2*CW2*MZ2)/SW2 + (MW2*SW2)/CW2)*B0i[bb0, 0, MW2, MZ2])/(4*Pi) - 
+   (2*Alfa*B0i[bb00, 0, MW2, 0])/Pi - (Alfa*B0i[bb00, 0, MW2, MH2])/
+    (4*Pi*SW2) - (Alfa*(1 + 8*CW2)*B0i[bb00, 0, MW2, MZ2])/(4*Pi*SW2))/MW2 - 
+ (Alfa*B0i[bb1, 0, MW2, MW2])/(2*Pi) - 
+ (-(Alfa*MW2*(-1 + SW2^(-1) - CW2/SW2))/(2*Pi) - 
+   (Alfa*MW2*(1 + CW2/SW2))/(6*Pi) + (Alfa*A0[MH2])/(16*Pi*SW2) + 
+   (7*Alfa*(-4/7 + SW2^(-1) - (4*CW2)/(7*SW2))*A0[MW2])/(8*Pi) + 
+   (Alfa*(1 + 12*CW2)*A0[MZ2])/(16*Pi*SW2) - (Alfa*MW2*B0i[bb0, MW2, 0, MW2])/
+    (2*Pi) + (Alfa*MW2*B0i[bb0, MW2, MH2, MW2])/(4*Pi*SW2) + 
+   ((-3*Alfa*CW2*MW2)/(4*Pi*SW2) + (Alfa*((-2*CW2*MZ2)/SW2 + (MW2*SW2)/CW2))/
+      (4*Pi))*B0i[bb0, MW2, MW2, MZ2] - (2*Alfa*B0i[bb00, MW2, MW2, 0])/Pi - 
+   (Alfa*B0i[bb00, MW2, MW2, MH2])/(4*Pi*SW2) - 
+   (Alfa*(1 + 8*CW2)*B0i[bb00, MW2, MW2, MZ2])/(4*Pi*SW2) + 
+   (Alfa*MW2*B0i[bb1, MW2, MW2, 0])/(2*Pi) + 
+   (Alfa*CW2*MW2*B0i[bb1, MW2, MW2, MZ2])/(2*Pi*SW2))/MW2 - 
+ (CW2*(-((-(Alfa*MW2*(-1 + SW2^(-1) - CW2/SW2))/(2*Pi) - 
+       (Alfa*MW2*(1 + CW2/SW2))/(6*Pi) + (Alfa*A0[MH2])/(16*Pi*SW2) + 
+       (7*Alfa*(-4/7 + SW2^(-1) - (4*CW2)/(7*SW2))*A0[MW2])/(8*Pi) + 
+       (Alfa*(1 + 12*CW2)*A0[MZ2])/(16*Pi*SW2) - 
+       (Alfa*MW2*B0i[bb0, MW2, 0, MW2])/(2*Pi) + 
+       (Alfa*MW2*B0i[bb0, MW2, MH2, MW2])/(4*Pi*SW2) + 
+       ((-3*Alfa*CW2*MW2)/(4*Pi*SW2) + (Alfa*((-2*CW2*MZ2)/SW2 + 
+            (MW2*SW2)/CW2))/(4*Pi))*B0i[bb0, MW2, MW2, MZ2] - 
+       (2*Alfa*B0i[bb00, MW2, MW2, 0])/Pi - (Alfa*B0i[bb00, MW2, MW2, MH2])/
+        (4*Pi*SW2) - (Alfa*(1 + 8*CW2)*B0i[bb00, MW2, MW2, MZ2])/(4*Pi*SW2) + 
+       (Alfa*MW2*B0i[bb1, MW2, MW2, 0])/(2*Pi) + 
+       (Alfa*CW2*MW2*B0i[bb1, MW2, MW2, MZ2])/(2*Pi*SW2))/MW2) + 
+    (-(Alfa*CW2*MZ2)/(6*Pi*SW2) + (Alfa*(-2 + (9*CW2)/SW2 + SW2/CW2)*A0[MW2])/
+       (8*Pi) + (Alfa*(A0[MH2] + A0[MZ2]))/(16*CW2*Pi*SW2) + 
+      (Alfa*MW2*B0i[bb0, MZ2, MH2, MZ2])/(4*CW2^2*Pi*SW2) + 
+      ((-5*Alfa*CW2*MZ2)/(4*Pi*SW2) + (Alfa*MW2*(-(CW2/SW2) + SW2/CW2))/
+         (2*Pi))*B0i[bb0, MZ2, MW2, MW2] - (Alfa*B0i[bb00, MZ2, MH2, MZ2])/
+       (4*CW2*Pi*SW2) - (Alfa*(-2 + (9*CW2)/SW2 + SW2/CW2)*
+        B0i[bb00, MZ2, MW2, MW2])/(4*Pi) - 
+      (Alfa*CW2*MZ2*B0i[bb1, MZ2, MW2, MW2])/(2*Pi*SW2))/MZ2))/SW2 - 
+ (3*Alfa*B0i[dbb00, 0, MW2, MW2])/Pi

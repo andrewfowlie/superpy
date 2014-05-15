@@ -1,0 +1,5 @@
+1 12 51 3
+ After random search of maximum CalcHEP implies 
+the simplex  method. You have to specify the 
+number of steps for this algorithm. Zero is a 
+permitted input.

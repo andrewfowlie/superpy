@@ -1,0 +1,18 @@
+#! /bin/sh -x
+
+script="
+/hdd-END RES_INI/i\
+\\\n\
+\       Ctree(1) = 0\n\
+\n\
+\       tno = 4\n\
+\       call hdd_v0
+"
+
+cat << _EOF_ | sed "$script"
+* hdd-BEGIN RES_INI
+        result(1) = 0
+        result(2) = 0
+* hdd-END RES_INI
+_EOF_
+

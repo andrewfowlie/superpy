@@ -1,0 +1,13 @@
+#CMS PAS HIG-11-020 Dec 13, 2011
+#11029_CMS_H-tautau_4.6fb-1_SM
+#read from Tab.5
+#columns: Mh, obs, exp (normalised to the SM)
+
+110	 3.5   2.6	 
+115	 2.9   2.2	 
+120	 3.2   2.3	 
+125	 3.6   2.3	 
+130	 4.0   2.6	 
+135	 4.6   3.3	 
+140	 4.9   3.6	 
+145	 6.3   4.8	 

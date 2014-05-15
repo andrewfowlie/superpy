@@ -1,0 +1,15 @@
+# Data read in from Tab. 5.
+# N.b: The measurement was restricted to positive mu values, therefore
+# truncated at zero. Here, we use symmetric errors!
+1301666814	130166684	1
+arXiv:1301.6668
+TEV, CDF, CDF
+(ppbar)->h->tautau
+1.96	9.7		0.060
+1	0
+25.0
+125.0 125.0 1.0
+4 -1
+14 24 34 44
+
+125.0	-8.44	0.00	8.44

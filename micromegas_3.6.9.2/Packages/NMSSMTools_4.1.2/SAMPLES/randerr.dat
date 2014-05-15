@@ -1,0 +1,28 @@
+
+Number of points:                       
+
+  scanned                                      100
+  l, tan(beta) or mu=0                           0
+  with mh1^2 or ma1^2 or mhc^2 < 0              47
+  with m_sfermion^2 < 0                          0
+  violating phenomenological constraints        52
+  RGE integration problem                        0
+  convergence problem                            0
+
+Remaining good points                            1
+
+Parameter ranges for good points:       
+
+         TANB:      0.9885E+01     0.9885E+01
+           M1:      0.6600E+02     0.6600E+02
+           M2:      0.1330E+03     0.1330E+03
+           M3:      0.5000E+03     0.5000E+03
+       LAMBDA:      0.1340E+00     0.1340E+00
+        KAPPA:      0.4350E+00     0.4350E+00
+        MUEFF:      0.4094E+03     0.4094E+03
+      ALAMBDA:     -0.4583E+03    -0.4583E+03
+           MA:      0.1885E+04     0.1885E+04
+          (MA is not an input parameter)
+       AKAPPA:     -0.4772E+03    -0.4772E+03
+           MP:      0.1380E+04     0.1380E+04
+          (MP is not an input parameter)

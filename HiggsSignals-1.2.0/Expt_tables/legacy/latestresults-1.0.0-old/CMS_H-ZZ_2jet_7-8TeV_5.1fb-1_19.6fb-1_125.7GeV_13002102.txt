@@ -1,0 +1,17 @@
+# Published at Moriond 2013.
+# Mass resolution set to 2GeV. Mass measurement does not
+# enter the mass chi^2 (but implemented in the inclusive result).
+# 0/1-jet tagged result also enters as mass observable.
+# Efficiencies are chosen such that we have about 20% VBF.
+13002102	1300202		1
+CMS-PAS-HIG-13-002
+LHC, CMS, CMS
+(pp)->h->ZZ->4l (2jet)
+8 	24.7	0.044
+1	0
+2.0	CMSZZ
+125.7 125.7 0.1
+4	125.7
+13 23 33 43
+1.0 3.38 1.17 1.17
+125.7	0.652	1.235	2.087

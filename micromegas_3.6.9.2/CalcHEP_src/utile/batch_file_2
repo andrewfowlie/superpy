@@ -1,0 +1,37 @@
+Model:         Standard Model
+Model changed: False
+Gauge:         Feynman
+Process:       e,E->m,M,h
+Decay:         h-> b,B
+Remove:        A,e,m
+
+pdf1:      ISR & Beamstrahlung
+pdf2:      ISR & Beamstrahlung
+Bunch x+y sizes (nm)	  : 560
+Bunch length (mm)	  : 0.4
+Number of particles	  : 2E+10
+
+p1:        500
+p2:        500
+
+Parameter: Mh=125
+
+Regularization momentum: 34
+Regularization mass:     MZ
+Regularization width:    wZ
+Regularization power:    2
+
+Dist parameter:    M(m,M)
+Dist min:	   0
+Dist max:	   120
+Dist n bins:	   100
+Dist title:	   e,E->m,M,h
+Dist x-title:	   M(m,M) (GeV)
+
+Number of events (per run step): 10000
+Filename:                        ee_mmZ_mmbb
+
+nSess_1:   5
+nCalls_1:  100000
+nSess_2:   5
+nCalls_2:  100000 

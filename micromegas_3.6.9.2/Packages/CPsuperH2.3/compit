@@ -1,0 +1,4 @@
+f77 -O -c cpsuperh2.f
+f77 -O -c aurun.f
+f77 cpsuperh2.o aurun.o -o cpsuperh2.exe -L. -lcpsuperh2
+rm -f cpsuperh2.o aurun.o  

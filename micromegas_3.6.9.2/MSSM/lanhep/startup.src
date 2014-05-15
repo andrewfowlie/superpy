@@ -1,0 +1,67 @@
+
+keys scenario=micro.  % EWSB  SUGRA slha micro
+
+
+do_if scenario==micro.
+   keys mix2g=on.
+   keys gi_Nmass=on.
+   model 'MSSM(micro)'/1.
+end_if.
+
+do_if scenario==EWSB.
+   keys mix2g=off.
+   keys gi_Nmass=on.
+   model 'MSSM(EWSB)'/1.
+end_if.
+
+do_if scenario==SUGRA.
+   keys mix2g=off.
+   keys gi_Nmass=on.
+   model 'MSSM(EWSB)'/2.
+end_if.
+
+do_if scenario==SLHA.
+   keys mix2g=off.
+   keys gi_Nmass=on.
+   model 'MSSM(../slha.in)'/3.
+end_if.
+
+
+/*   Gauge fixing  ('unitary' or 'Feynman') */ 
+keys gauge_fixing=Feynman.
+
+
+keys SLHA=On.
+keys  LambdaTH=Off.
+keys  Zhij=On.
+
+% =============== Model name and number setup.
+
+option chepCFWidth=50.
+option chepLPWidth=1000.
+option chepPDWidth=750.
+
+let g5=gamma5.
+let eps2 = {{0,1},{-1,0}}.
+special sigma:(spinor2, spinor2, vector).
+
+read 'var.src'.         %  independent and constrained variables 
+read "2genDDmix.src".   %  mixing for light squarks 
+read 'prtcls.src'.      %  list of particles
+read 'Let.src'.         %  'let' substitutions
+read 'improve_squarks.src'.
+read 'ggi.src'.         % gauge fields interaction
+read 'gmi.src'.         % gauge-matter interaction
+read 'DD.src'.          % DD terms
+read 'higgsPot.src'.    % improved Higgs potential
+read 'W.src'.           % Terms going from super-potential (FF & Yukawa)
+read 'Yukawa.src'.      % Correction of mass terms
+read "gi_Nmass.src".    % neutralino mass matrix is reproduced by Lagrangian.
+read 'softsbt.src'.     % Soft SUSY-breaking terms
+read 'fgauge.src'.      % Faddeev-Popov ghosts
+
+read 'gg+.src'.
+SetEM(A,EE).
+CheckHerm.
+CheckMasses.
+

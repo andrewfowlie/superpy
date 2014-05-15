@@ -1,0 +1,15 @@
+#CDF Note 8958 Aug 17, 2007
+#CDF_ggH_WW_1.9fb
+#no interpolation
+#columns: Mh, obs, exp (as ratio to SM cross sections)
+
+110	83.0	69.0
+120	20.9	21.7
+130	7.0	10.7
+140	4.7	6.9
+150	3.2	5.2
+160	2.0	3.1
+170	2.4	3.2		
+180	3.0	4.6
+190	7.0	7.1
+200	11.6	9.7

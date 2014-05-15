@@ -1,0 +1,43 @@
+MSSM(EWSB)
+ Variables 
+ Name  | Value       |>  Comment                                     <|
+alfSMZ |0.1184       |alpha_QCD(MZ)
+MZ     |91.3         |Z-boson mass.  PDG value   91.1876 +/- 0.0021
+MW     |80.2         |W-boson mass.  PDG valeu   80.385  +/- 0.015
+Mtp    |173.07       |top quark pole mass
+MbMb   |4.23         |Mb(Mb) running mass
+McMc   |1.27         |Mc(Mc) running mass
+GG     |1.117        |Drived by CalcHEP
+Q      |100          |QCD scale
+EE     |0.3123       |PDG value 4*pi/EE^2=128 corresponds to EE=0.3134
+Ml     |1.777        |mass of tau-lepton
+Mq     |0.05         |mass for light quarks
+Au     |0            |
+Ad     |0            |
+tb     |10           |Tangent beta
+wt     |1.442        |width of top quark
+MH3    |1000         |Odd Higgs Mass
+mu     |350          |mu
+MG1    |200          |  
+MG2    |400          |  
+MG3    |800          |  
+Ml1    |500          |ML1
+Ml2    |500          |ML2
+Ml3    |500          |ML3
+Mr1    |200          |MR1
+Mr2    |200          |MR2
+Mr3    |200          |MR3
+Mq1    |1000         |
+Mq2    |1000         |
+Mq3    |1000         |
+Mu1    |300          |
+Mu2    |300          |
+Mu3    |300          |
+Md1    |300          |
+Md2    |300          |
+Md3    |300          |
+At     |-1000        | 
+Ab     |0            | 
+Al     |0            | 
+Am     |0            |
+Maux   |1            |mass of aux particles

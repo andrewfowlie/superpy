@@ -1,0 +1,17 @@
+# Presented at Moriond 2013.
+# This measurement was performed at 125.7GeV, however, we implement it here
+# at the best-fit mass of 125.4GeV +- 0.5(stat) +- 0.6(syst) GeV.
+# Data taken from CMS-PAS-HIG-13-005, Fig. 3b.
+13005103	1300503		1
+CMS-PAS-HIG-13-005
+LHC, CMS, CMS
+(pp)->h->gamma gamma
+8	24.7	 0.044
+1	1
+1.1
+125.4 125.4 1.0
+5	-1
+11 21 31 41 51
+
+125.4      0.50		0.77	1.07
+

@@ -1,0 +1,16 @@
+SM(CKM=1 with hGG/AA)
+ Parameters 
+  Name   <| Value       <|> Comment                                        <|
+alphaSMZ  |0.1184        |Srtong alpha(MZ) for running mass calculation
+EE        |0.3123        | PDG value 4*pi/EE^2=128 corresponds to EE=0.3134
+ Mm       |0.1057        |muon mass
+ Ml       |1.777         |tau-lepton mass
+ Q        |100           | QCD scale
+ McMc     |1.23          | Mc(Mc)  MS-BAR
+ MbMb     |4.25          | Mb(Mb)  MS-BAR
+ Mtp      |172.5         |t-quark pole mass
+ Mh       |125           |higgs mass
+ wt       |1.59          |t-quark width        (tree level 1->2x)
+ MZ       |91.3          |Z-boson mass.  PDG value   91.1876 \pm 0.0021
+ MW       |80.2          |W-boson mass.  PDG value   80.385  \pm 0.015
+=============================================================================

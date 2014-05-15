@@ -1,0 +1,549 @@
+! this code has been generated with the perl script generatefortran.pl
+
+  nargs=                                   & ! no. of arguments HB webversion expects
+ &        7                                & ! no. of options
+ &     + 60*np(Hneut)                          & ! singP
+ &     + 7*np(Hplus)                          & ! singP
+ &     + 1*np(Chineut)                          & ! singP
+ &     + 2*np(Chiplus)                          & ! singP
+ &     + 2*(np(Hneut)*(np(Hneut)-1)/2+np(Hneut))      & ! doubPTri
+ &     + 0*(np(Hplus)*(np(Hplus)-1)/2+np(Hplus))      & ! doubPTri
+ &     + 1*(np(Chineut)*(np(Chineut)-1)/2+np(Chineut))      & ! doubPTri
+ &     + 0*(np(Chiplus)*(np(Chiplus)-1)/2+np(Chiplus))      & ! doubPTri
+ &     + 1*np(Hneut)*(np(Hneut)-1)               & ! doubPNoDiag
+ &     + 0*np(Hplus)*(np(Hplus)-1)               & ! doubPNoDiag
+ &     + 2*np(Chineut)*(np(Chineut)-1)               & ! doubPNoDiag
+ &     + 0*np(Chiplus)*(np(Chiplus)-1)               & ! doubPNoDiag
+ &     + 0*np(Hneut)*np(Hneut)               & ! doubPRect
+ &     + 0*np(Hneut)*np(Hplus)               & ! doubPRect
+ &     + 0*np(Hneut)*np(Chineut)               & ! doubPRect
+ &     + 0*np(Hneut)*np(Chiplus)               & ! doubPRect
+ &     + 0*np(Hplus)*np(Hneut)               & ! doubPRect
+ &     + 0*np(Hplus)*np(Hplus)               & ! doubPRect
+ &     + 0*np(Hplus)*np(Chineut)               & ! doubPRect
+ &     + 0*np(Hplus)*np(Chiplus)               & ! doubPRect
+ &     + 0*np(Chineut)*np(Hneut)               & ! doubPRect
+ &     + 0*np(Chineut)*np(Hplus)               & ! doubPRect
+ &     + 0*np(Chineut)*np(Chineut)               & ! doubPRect
+ &     + 0*np(Chineut)*np(Chiplus)               & ! doubPRect
+ &     + 0*np(Chiplus)*np(Hneut)               & ! doubPRect
+ &     + 0*np(Chiplus)*np(Hplus)               & ! doubPRect
+ &     + 3*np(Chiplus)*np(Chineut)               & ! doubPRect
+ &     + 0*np(Chiplus)*np(Chiplus)               & ! doubPRect
+ &     + 1*1                               & ! other
+ &     + 0
+
+  if( n_iargc .ne. nargs  )then   
+     call nargs_errormsg          
+  endif                           
+
+  k=7      ! (no. of options read in before reading in debugmode)+1 
+
+  temp=""                         
+  call GETARG(k,temp)             
+  read(temp,*)debugmode           
+  k=k+1                           
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%particle(Hneut)%M(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%particle(Hneut)%GammaTot(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( CP_value_dble(i) ,k)
+   enddo
+  endif
+
+  if(np(Hplus)>0)then
+   do i=1,np(Hplus)
+    call read_arg( d%particle(Hplus)%M(i) ,k)
+   enddo
+  endif
+
+  if(np(Hplus)>0)then
+   do i=1,np(Hplus)
+    call read_arg( d%particle(Hplus)%GammaTot(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( gsq%hjss_s(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( gsq%hjss_p(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( gsq%hjcc_s(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( gsq%hjcc_p(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( gsq%hjbb_s(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( gsq%hjbb_p(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( gsq%hjtoptop_s(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( gsq%hjtoptop_p(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( gsq%hjmumu_s(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( gsq%hjmumu_p(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( gsq%hjtautau_s(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( gsq%hjtautau_p(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( gsq%hjWW(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( gsq%hjZZ(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( gsq%hjZga(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( gsq%hjgaga(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( gsq%hjgg(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( gsq%hjggZ(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do j=1,np(Hneut)
+    do i=1,j
+     call read_arg( gsq%hjhiZ(j,i) ,k)
+    enddo
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%lep%XS_hjZ_ratio(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%lep%XS_bbhj_ratio(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%lep%XS_tautauhj_ratio(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do j=1,np(Hneut)
+    do i=1,j
+     call read_arg( d%lep%XS_hjhi_ratio(j,i) ,k)
+    enddo
+   enddo
+  endif
+
+  if(np(Hplus)>0)then
+   do i=1,np(Hplus)
+    call read_arg( d%lep%XS_HpjHmj_ratio(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( partonicR%bg_hjb(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( partonicR%qq_hjWp(1,i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( partonicR%qq_hjWp(2,i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( partonicR%qq_hjWm(1,i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( partonicR%qq_hjWm(2,i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( partonicR%gg_hj(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( partonicR%qq_hj(5,i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( partonicR%qq_hjZ(1,i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( partonicR%qq_hjZ(2,i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( partonicR%qq_hjZ(3,i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( partonicR%qq_hjZ(4,i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( partonicR%qq_hjZ(5,i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( partonicR%gg_hjZ(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%tev%XS_hj_ratio(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%tev%XS_hjb_ratio(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%tev%XS_hjW_ratio(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%tev%XS_hjZ_ratio(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%tev%XS_vbf_ratio(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%tev%XS_tthj_ratio(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%lhc7%XS_hj_ratio(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%lhc7%XS_hjb_ratio(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%lhc7%XS_hjW_ratio(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%lhc7%XS_hjZ_ratio(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%lhc7%XS_vbf_ratio(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%lhc7%XS_tthj_ratio(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%BR_hjss(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%BR_hjcc(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%BR_hjbb(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%BR_hjmumu(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%BR_hjtautau(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%BR_hjWW(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%BR_hjZZ(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%BR_hjZga(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%BR_hjgaga(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%BR_hjgg(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>0)then
+   do i=1,np(Hneut)
+    call read_arg( d%BR_hjinvisible(i) ,k)
+   enddo
+  endif
+
+  if(np(Hneut)>1)then
+   do j=1,np(Hneut)
+    do i=1,np(Hneut)
+     d%BR_hjhihi(j,i)=0.0D0
+    enddo
+   enddo
+   do j=1,np(Hneut)
+    do i=1,np(Hneut)
+     if(i.ne.j) call read_arg( d%BR_hjhihi(j,i) ,k)
+    enddo
+   enddo
+  endif
+
+  if(np(Hplus)>0)then
+   do i=1,np(Hplus)
+    call read_arg( d%BR_tHpjb(i) ,k)
+   enddo
+  endif
+
+  call read_arg( d%BR_tWpb ,k)
+
+  if(np(Hplus)>0)then
+   do i=1,np(Hplus)
+    call read_arg( d%BR_Hpjcs(i) ,k)
+   enddo
+  endif
+
+  if(np(Hplus)>0)then
+   do i=1,np(Hplus)
+    call read_arg( d%BR_Hpjcb(i) ,k)
+   enddo
+  endif
+
+  if(np(Hplus)>0)then
+   do i=1,np(Hplus)
+    call read_arg( d%BR_Hpjtaunu(i) ,k)
+   enddo
+  endif
+
+  if(np(Chineut)>0)then
+   do i=1,np(Chineut)
+    call read_arg( d%particle(Chineut)%M(i) ,k)
+   enddo
+  endif
+
+  if(np(Chiplus)>0)then
+   do i=1,np(Chiplus)
+    call read_arg( d%particle(Chiplus)%M(i) ,k)
+   enddo
+  endif
+
+  if(np(Chiplus)>0)then
+   do i=1,np(Chiplus)
+    call read_arg( d%lep%XS_CpjCmj(i) ,k)
+   enddo
+  endif
+
+  if(np(Chineut)>0)then
+   do j=1,np(Chineut)
+    do i=1,j
+     call read_arg( d%lep%XS_NjNi(j,i) ,k)
+    enddo
+   enddo
+  endif
+
+  if(np(Chineut)>1)then
+   do j=1,np(Chineut)
+    do i=1,np(Chineut)
+     d%BR_NjqqNi(j,i)=0.0D0
+    enddo
+   enddo
+   do j=1,np(Chineut)
+    do i=1,np(Chineut)
+     if(i.ne.j) call read_arg( d%BR_NjqqNi(j,i) ,k)
+    enddo
+   enddo
+  endif
+
+  if(np(Chineut)>1)then
+   do j=1,np(Chineut)
+    do i=1,np(Chineut)
+     d%BR_NjZNi(j,i)=0.0D0
+    enddo
+   enddo
+   do j=1,np(Chineut)
+    do i=1,np(Chineut)
+     if(i.ne.j) call read_arg( d%BR_NjZNi(j,i) ,k)
+    enddo
+   enddo
+  endif
+
+  do j=1,np(Chiplus)
+   do i=1,np(Chineut)
+    call read_arg( d%BR_CjqqNi(j,i) ,k)
+   enddo
+  enddo
+
+  do j=1,np(Chiplus)
+   do i=1,np(Chineut)
+    call read_arg( d%BR_CjlnuNi(j,i) ,k)
+   enddo
+  enddo
+
+  do j=1,np(Chiplus)
+   do i=1,np(Chineut)
+    call read_arg( d%BR_CjWNi(j,i) ,k)
+   enddo
+  enddo
+

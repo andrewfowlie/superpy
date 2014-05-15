@@ -1,0 +1,40 @@
+.TH FHSLHARECORD 1 "10-May-2011"
+.SH NAME
+.PP
+FHSLHARecord \- initialize a FeynHiggs Record from SLHA data.
+Possible pre-existing values are overwritten.
+.SH SYNOPSIS (Fortran version)
+.PP
+#include "FHRecord.h"
+.br
+#include "SLHA.h"
+.sp
+integer error
+.br
+RecordDecl(record)
+.br
+double complex slhadata(nslhadata)
+.sp
+subroutine FHSLHARecord(error, record, slhadata)
+.SH SYNOPSIS (Mathematica version)
+.PP
+record = FHSLHARecord[slhafile]
+.SH DESCRIPTION
+FHSLHARecord initializes a FeynHiggs Record from SLHA data.
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in SLHARecord.F from
+which the error message was emitted.
+.TP
+.B record (output)
+the FeynHiggs Record.
+.TP
+.B slhadata (input)
+the data in SLHA format.
+.TP
+.B slhafile (input)
+the file contaning the SLHA data.
+.SH SEE ALSO
+.PP
+libFH(1)

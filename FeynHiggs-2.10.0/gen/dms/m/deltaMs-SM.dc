@@ -1,0 +1,16 @@
+((6*GF^2*MW2^2*CKM[3, 3]^2*CKMC[3, 2]^2*D00z[0, 0, MW2, MW2])/Pi^2 - 
+   (12*GF^2*MW2^2*CKM[3, 3]^2*CKMC[3, 2]^2*D00z[0, MW2, MW2, Mf2[tT, 3]])/
+    Pi^2 + (2*GF^2*MW2^2*CKM[3, 3]^2*CKMC[3, 2]^2*
+     D0z[0, MW2, MW2, Mf2[tT, 3]]*Mf2[tT, 3])/Pi^2 - 
+   (GF^2*MW2^2*CKM[3, 3]^2*CKMC[3, 2]^2*D00z[MW2, MW2, Mf2[tT, 3], 
+      Mf2[tT, 3]]*(-12 + Mf2[tT, 3]^2/MW2^2))/(2*Pi^2) + 
+   (GF^2*MW2^2*CKM[3, 3]^2*CKMC[3, 2]^2*D0z[MW2, MW2, Mf2[tT, 3], Mf2[tT, 3]]*
+     (-2*Mf2[tT, 3] + Mf2[tT, 3]^2/MW2))/Pi^2)*Op[{6, Lor[1]}, {6, Lor[1]}] - 
+ (2*GF^2*MW2^2*(CKM[3, 3]^2*CKMC[3, 2]^2*(C0z[0, 0, MW2] - 
+      3*D00z[0, 0, MW2, MW2] + MW2*D0z[0, 0, MW2, MW2]) - 
+    CKM[3, 3]^2*CKMC[3, 2]^2*(-6*D00z[0, MW2, MW2, Mf2[tT, 3]] + 
+      2*(C0z[0, MW2, Mf2[tT, 3]] + MW2*D0z[0, MW2, MW2, Mf2[tT, 3]])) + 
+    CKM[3, 3]^2*CKMC[3, 2]^2*(C0z[MW2, Mf2[tT, 3], Mf2[tT, 3]] + 
+      (D00z[MW2, MW2, Mf2[tT, 3], Mf2[tT, 3]]*(-12 + Mf2[tT, 3]^2/MW2^2))/4 + 
+      (D0z[MW2, MW2, Mf2[tT, 3], Mf2[tT, 3]]*(2*MW2 - Mf2[tT, 3]^2/MW2))/2))*
+   Op[{6, Lor[1]}, {6, Lor[1]}])/Pi^2

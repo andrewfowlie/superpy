@@ -1,0 +1,34 @@
+#! /bin/sh
+
+# converts FeynHiggs input files (default: `dirname $0`/*.in)
+# to SLHA format
+#
+# set env variable FH to location of FeynHiggs executable if in 
+# nonstandard location
+
+
+d=`dirname "$0"`
+
+test $# -eq 0 && set -- "$d"/*.in
+
+test $# -eq 0 && {
+  echo "No files to process"
+  exit 1
+}
+
+fh=$FH
+test -z "$fh" && for fh in "$d"/../*/FeynHiggs* "$d"/../../*/FeynHiggs* ; do
+  break
+done
+test -x "$fh" || {
+  echo "Cannot find FeynHiggs executable" 1>&2
+  exit 1
+}
+
+for f in "$@" ; do
+  echo $f
+  b=`dirname $f`/`basename $f .in`
+  $fh "$f"#SLHA >> $0.log
+  mv $f.fh-001 $b.slha
+done
+

@@ -1,0 +1,11 @@
+#arXiv:0803.3493v1 Mar 25, 2008
+#CDF_WH_lnubb_1fb
+#interpolation needes
+#columns: Mh, obs, exp (as ratio to SM cross sections)
+	
+110	24.375	13.75	
+115	26.15	16.92
+120	25.00	20.00
+130	26.67	30.00
+140	46.67	56.67
+150	118.18	136.36

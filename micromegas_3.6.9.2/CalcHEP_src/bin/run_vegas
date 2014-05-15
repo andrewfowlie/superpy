@@ -1,0 +1,72 @@
+:
+
+err=0
+if(test ! -r session.dat) then 
+  ./n_calchep -blind  "[[[[[[[[[{0" 1>/dev/null 2>/dev/null
+  err=$?
+  if(test $err!=0) then 
+    exit $err
+  fi 
+  grid=0
+else 
+  vegas=`grep  Vegas_integral session.dat`
+  grid=`echo  $vegas |cut -f8 -d " "` 
+fi 
+
+
+line=`grep Vegas_calls session.dat`
+ll=`echo $line |sed s/\#// | sed s/x/" "/g`
+
+nc1=`echo $ll |cut -f2 -d " "`
+ n1=`echo $ll |cut -f3 -d " "`
+nc2=`echo $ll |cut -f4 -d " "`
+ n2=`echo $ll |cut -f5 -d " "`
+
+if(test $nc1 -ne 0 -a $n1 -ne 0 ) then
+  if(test $grid -ne 0 ) then 
+    ./n_calchep -blind  "[[[[[[[[[{[[[[[[{0" 1>/dev/null 2>/dev/null
+  fi
+ 
+  if(test $nc2 -ne 0  -a  $n2 -ne  0 ) then 
+    ./n_calchep -blind  "[[[[[[[[[{[[[{[[{[{]]]]]]{$n2{[{$nc2{[[{]]]{$n1{[{$nc1{0" 1>/dev/null 2>/dev/null
+    err=$?
+  else 
+    ./n_calchep -blind  "[[[[[[[[[{[[[{0" 1>/dev/null 2>/dev/null
+  fi
+else 
+  if(test $nc2 -ne 0  -a  $n2 -ne  0 ) then
+    if(test $grid -eq 0 ) then 
+     ./n_calchep -blind  "[[[[[[[[[{[[[[[[{0" 1>/dev/null 2>/dev/null
+    fi
+     ./n_calchep -blind  "[[[[[[[[[{{$n2{[{$nc2{[[{[[[{]]]]]]{$n1{[{$nc1{0" 1>/dev/null 2>/dev/null
+     err=$?
+  else
+     echo ' Zero number of Vecas call'
+     exit 1
+  fi
+fi
+
+res="0.0E+0"
+
+if(test $err -eq 0) then 
+  n=`grep Session_number session.dat`
+  n=`echo $n|cut -f2 -d" "`
+  if(test -r prt_$n) then 
+    res=`grep "< >"  prt_$n |tail -1`
+    res=`echo $res| cut -f3 -d" "`
+  else 
+    exit 87
+  fi
+fi 
+
+if(test $err -eq 123) then   #energy too small 
+  err=0
+fi
+
+nan= `echo $res| grep -i nan`
+if(test  "$nan") then 
+  err= 88
+fi
+
+echo $res
+exit $err

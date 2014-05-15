@@ -1,0 +1,117 @@
+(0) 14/Dec/2007: The second version CPsuperH2.0 released
+
+(1) 29/Apr/2008: b to s gamma calculation improved
+
+(2) 13/Aug/2008: EDMs included, see arXiv:0808.1819
+
+    *Dear Users: If you don't need EDMs, commenting out the 
+                 subroutine FILLEDMS in "cpsuperh2.f" may 
+                 significantly decrease computer running time
+
+(3) 03/Oct/2008: The 2-loop Higgs-mediated contribution to 
+                 the quark CEDMs corrected
+
+(4) 28/Apr/2009: 
+
+    (4)-1 : The signs of the fermionic 2-loop Higgs-mediated 
+            contributions to EDMs and CEDMs have been corrected
+
+    (4)-2 : The array SSPARA_H has been extended to include 
+            the A terms of first two generations
+
+    (4)-3 : The subroutine FILLMUON (fillmuon.f) has been added 
+            for the calculations of the electric and anomalous 
+            magnetic dipole moments of the muon, see arXiv:0904.4352
+
+    (4)-4 : The obsolete subroutine HiggsEDM (higgsedm.f) has 
+            been removed
+
+(5) 10/Jun/2009: cpsuperh2.f, fillcoupl2.f and fillgambr2.f improved
+
+     (5)-1 : The arguments of the subrourine FILLGAMBR2 is extended
+             to included SMPARA_H and SSPARA_H arrays
+
+     (5)-2 : IFLAG_H(56)=2 for tachyonic third-generation squarks
+             IFLAG_H(56)=3 for tachyonic first two-generation squarks
+
+     (5)-3 : When the tan_beta-enhanced threshold corrections are 
+             encoded in the down-type quark Yukawa coulings in a
+             form of h_q = (h_q)^0 / (1 + Delta_q tan_beta)
+
+             CAUX_H(10): complex Delta_b
+             CAUX_H(11): complex Delta_s
+             CAUX_H(12): complex h_s(mt^pole) 
+   
+     (5)-4 : Top-quark decays are calculated including the leading-order
+             QCD corrections and the threshold corrections. The results 
+             are stored as follows
+
+             RAUX_H(50): Gamma(t -> W  b)
+             RAUX_H(51): Gamma(t -> H+ b)
+             RAUX_H(52): Br(t -> W  b)
+             RAUX_H(53): Br(t -> H+ b)
+ 
+     (5)-5 : RAUX_H(101) is moved in to the subroutine FILLDPHG 
+
+(6) 29/Sep/2009: The version 2.1 released, fillhiggs2.f improved
+
+(7) 17/Jun/2010: The version 2.2 released  
+
+     (7)-1 : New structure introduced
+
+             The main program CPsuperH in the file "cpsuperh2.f" now consists 
+             of the following three new subroutines
+
+             FILLINIT2     provided by fillinit2.f
+             FILLCPsuperH2 provided by fillcpsuperh2.f
+             AURUN         provided by aurun.f
+
+     (7)-2 : More two-loop EDMS involving charginos and neutralinos included
+             (see arXiv:1006.3087 by Ellis, Lee, Pilaftsis)
+
+             RAUX_H(205): electron EDM by the gamma-W-H coupling
+             RAUX_H(206): electron EDM by the gamma-W-W coupling
+
+             RAUX_H(225): down-quark EDM by the gamma-W-H coupling
+             RAUX_H(226): down-quark EDM by the gamma-W-W coupling
+
+             RAUX_H(235): strange-quark EDM by the gamma-W-H coupling
+             RAUX_H(236): strange-quark EDM by the gamma-W-W coupling
+
+             *the new contributions are to be printed by taking IFLAG_H(18)=2
+
+     (7)-3 : strange-quark CEDM (d^C_s) added
+
+             RAUX_H(400): total
+             RAUX_H(401): one-loop chargino
+             RAUX_H(402): one-loop neutralino
+             RAUX_H(403): one-loop gluino
+             RAUX_H(404): two-loop Higgs
+
+             *the strange-quark CEDM is to be printed by taking IFLAG_H(18)=2
+
+(8) 13/Aug/2012: The version 2.3 released  
+
+    (8)-1 From the version 2.2, the following changes are needed:
+
+     - In the run file: the entries SMPARA H(20) and IFLAG H(30) added
+    
+     - In the cpsuperh2.f file:
+       
+       REAL*8 SMPARA H(19),SSPARA H(38) -> REAL*8 SMPARA H(20),SSPARA H(38)
+
+       and
+
+       DATA NSMIN/19/ -> DATA NSMIN/20/
+  
+
+    (8)-2 For other updates, see the paper arXiv:1208.2212
+
+(9) 23/Oct/2012: The version 2.3 extended
+
+    (9)-1 H -> Z gamma included
+
+    (9)-2 GAMBRN(IM,IWB=2,IH)} now includes the corresponding SM branching    
+          ratios of the neutral Higgs bosons
+
+

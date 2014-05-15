@@ -1,0 +1,7 @@
+2 2 51 4  Force Unitary gauge.
+   If this option is set "ON" then massive 
+vector gauge bosons will be treated in the 
+Unitary Gauge even they initially were presented 
+in t'Hooft-Feynman one.
+   This switch has not influence on models 
+presented in the utitary gauge.

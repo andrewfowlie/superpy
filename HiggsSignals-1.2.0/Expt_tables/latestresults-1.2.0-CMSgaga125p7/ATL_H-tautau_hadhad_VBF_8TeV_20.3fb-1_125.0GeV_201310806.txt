@@ -1,0 +1,15 @@
+# Data read in from Fig.9 in ATL-CONF-2013-108.
+# VBF had-had category.
+# Assume 25% ggH, 75% VBF
+2013108106	201310806	1
+ATLAS-CONF-2013-108
+LHC, ATL, ATL
+(pp)->h->tautau (VBF, hadhad)
+8 	20.3	0.028
+1	0
+20
+125.0 125.0 1.0
+2	125.0
+14 24
+1.0 36.85
+125.0	0.30	1.03	1.95

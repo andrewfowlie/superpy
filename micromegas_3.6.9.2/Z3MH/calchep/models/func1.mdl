@@ -1,0 +1,88 @@
+Z3 Inert Dublet
+ Constraints 
+ Name     <|> Expression                                                                                                                                                                                      <|
+CW         |sqrt(1-SW^2) % cos of the Weinberg angle
+MW         |MZ*CW
+Mb         |MbEff(Q)
+V          |2*MW/EE*SW
+cosDm      |sqrt(1-sinDm^2)
+muSq       |Mdm2^2*cosDm^2+Mdm1^2*sinDm^2-V^2*laS1/2
+mupsh      |-4*(Mdm2^2-Mdm1^2)*sinDm*cosDm/V/Sqrt2
+mu2q       |-V^2*(la4+la3)/2+cosDm^2*Mdm1^2+sinDm^2*Mdm2^2
+MHC        |sqrt(mu2q+V^2*la3/2)
+B00000     |1-2*SW^2
+B00001     |-1+2*SW^2
+B00002     |2*MW*SW*Sqrt2*cosDm*la4+sinDm*EE*mupsh
+B00003     |2*MW*SW*sinDm*Sqrt2*la4-EE*cosDm*mupsh
+B00004     |4*MW*SW*la3-4*MW*SW*sinDm^2*la3+4*MW*SW*la4-4*MW*SW*sinDm^2*la4+4*MW*SW*sinDm^2*laS1
+B00005     |B00004+sinDm*EE*Sqrt2*cosDm*mupsh
+B00006     |8*MW*SW*sinDm*cosDm*la3+8*MW*SW*sinDm*cosDm*la4-8*MW*SW*sinDm*cosDm*laS1+2*sinDm^2*EE*Sqrt2*mupsh-EE*Sqrt2*mupsh
+B00007     |4*MW*SW*sinDm^2*la3+4*MW*SW*sinDm^2*la4+4*MW*SW*laS1-4*MW*SW*sinDm^2*laS1-sinDm*EE*Sqrt2*cosDm*mupsh
+B00008     |sinDm*EE*muppS+MW*SW*Sqrt2*cosDm*laS21
+B00009     |3*sinDm*EE*cosDm*muppS+2*MW*SW*Sqrt2*laS21-3*MW*SW*sinDm^2*Sqrt2*laS21
+B00010     |3*sinDm*EE*cosDm*muppS+MW*SW*Sqrt2*laS21-3*MW*SW*sinDm^2*Sqrt2*laS21
+B00011     |EE*cosDm*muppS-MW*SW*sinDm*Sqrt2*laS21
+B00012     |1-4*SW^2+4*SW^4
+B00013     |la3+la4
+B00014     |cosDm^2*la3+sinDm^2*laS1
+B00015     |la3-laS1
+B00016     |sinDm^2*la3+cosDm^2*laS1
+B00017     |cosDm^2*la3+cosDm^2*la4+sinDm^2*laS1
+B00018     |la3+la4-laS1
+B00019     |sinDm^2*la3+sinDm^2*la4+cosDm^2*laS1
+B00020     |2-3*sinDm^2
+B00021     |1-3*sinDm^2
+B00022     |2*cosDm^2*la2+sinDm^2*laS2
+B00023     |2*la2-laS2
+B00024     |2*sinDm^2*la2+cosDm^2*laS2
+B00025     |la2-2*sinDm^2*la2+sinDm^4*la2+sinDm^4*laS+sinDm^2*laS2
+B00026     |B00025-sinDm^4*laS2
+B00027     |2*cosDm^2*la2-2*sinDm^2*laS+2*sinDm^2*laS2-laS2
+B00028     |la2+laS-laS2
+B00029     |4*sinDm^2*la2-4*sinDm^4*la2+4*sinDm^2*laS-4*sinDm^4*laS+laS2
+B00030     |B00029-4*sinDm^2*laS2+4*sinDm^4*laS2
+B00031     |2*sinDm^2*la2-2*cosDm^2*laS-2*sinDm^2*laS2+laS2
+B00032     |sinDm^4*la2+laS-2*sinDm^2*laS+sinDm^4*laS+sinDm^2*laS2
+B00033     |B00032-sinDm^4*laS2
+PI         |3.1415926536
+alphaE0    |1/137.036   % electromagnetic constant at zero energy
+Mbp        |Mbp()
+aQCDh      |alphaQCD(Mh)/PI
+  rhF_c    | creal(HggF((Q/2/Mcp)^2))
+  ihF_c    | cimag(HggF((Q/2/Mcp)^2))
+  rhF_b    | creal(HggF((Q/2/Mbp)^2))
+  ihF_b    | cimag(HggF((Q/2/Mbp)^2))
+  rhF_t    | creal(HggF((Q/2/Mtop)^2))
+  ihF_t    | cimag(HggF((Q/2/Mtop)^2))
+  rhF_l    | creal(HggF((Q/2/Ml)^2))
+  ihF_l    | cimag(HggF((Q/2/Ml)^2))
+  rhV_W    | creal(HggV((Q/2/MW)^2))
+  ihV_W    | cimag(HggV((Q/2/MW)^2))
+ rhS_Hc    | creal(HggS((Q/2/MHC)^2))
+ ihS_Hc    | cimag(HggS((Q/2/MHC)^2))
+ rhF_c_A   | creal(HggF((Q/2/McRun(Q/2))^2)*(1+aQCDh*Hgam1F((Q/2/McRun(Q/2))^2)))
+ ihF_c_A   | cimag(HggF((Q/2/McRun(Q/2))^2)*(1+aQCDh*Hgam1F((Q/2/McRun(Q/2))^2)))
+ rhF_b_A   | creal(HggF((Q/2/MbRun(Q/2))^2) *(1+aQCDh*Hgam1F((Q/2/MbRun(Q/2))^2)))
+ ihF_b_A   | cimag(HggF((Q/2/MbRun(Q/2))^2) *(1+aQCDh*Hgam1F((Q/2/MbRun(Q/2))^2)))
+  QtTau    |(Q/2/(MtRun(Q/2)*Mtop/MtRun(Mtop)))^2
+ rhF_t_A   | creal(HggF(QtTau)*(1+aQCDh*Hgam1F(QtTau)))
+ ihF_t_A   | cimag(HggF(QtTau)*(1+aQCDh*Hgam1F(QtTau)))
+%       |   original vertex             mass coff
+  AhF_c    |-EE*Mc/(2*MW*SW)               /Mc        %   C    |c    |h
+  AhF_b    |-EE*Mb/(2*MW*SW)              /Mb         %   B    |b    |h
+  AhF_t    |-EE*Mtop/(2*MW*SW)            /Mtop        %   T    |t    |h
+  AhF_l    |-EE*Ml/(2*MW*SW)             /Ml        %   L    |l    |h
+  AhS_Hc   |-2*MW*SW*la3/EE            /MHC^2/2   %   H+   |H-   |h
+  AhV_W    |EE*MW/SW                   /MW^2/2    %   W+   |W-   |h
+ Qu        | 2/3
+ Qd        |-1/3
+nfh        |5
+  Rqcd     |sqrt(1+149/12*aQCDh+68.6482*aQCDh^2-212.447*aQCDh^3)
+  lnTop    |log( Mtop^2/Q^2)
+  Ctop     |1+11/4*aQCDh+ (6.1537-2.8542*lnTop)*aQCDh^2+(10.999-17.93*lnTop+5.47*lnTop^2)*aQCDh^3
+  Cq       |1+11/4*aQCDh
+    LGGh   |aQCDh/(8)*1/2*Rqcd*cabs((rhF_c+i*ihF_c)*AhF_c*Cq  +(rhF_t+i*ihF_t)*AhF_t*Ctop  +(rhF_b+i*ihF_b)*AhF_b*Cq)
+    LAAh   |alphaE0/(8*PI)*cabs(3*Qu^2*((rhF_c_A+i*ihF_c_A)*AhF_c+(rhF_t_A+i*ihF_t_A)*AhF_t)+3*Qd^2*(rhF_b_A+i*ihF_b_A)*AhF_b+ (rhF_l+i*ihF_l)*AhF_l-(rhV_W+i*ihV_W)*AhV_W +(rhS_Hc+i*ihS_Hc)*AhS_Hc) 
+LAAhSM     |alphaE0/(8*PI)*cabs(3*Qu^2*((rhF_c_A+i*ihF_c_A)*AhF_c+(rhF_t_A+i*ihF_t_A)*AhF_t)+3*Qd^2*(rhF_b_A+i*ihF_b_A)*AhF_b+ (rhF_l+i*ihF_l)*AhF_l-(rhV_W+i*ihV_W)*AhV_W) 
+%Local! |
+================================================================================================================================================================================================================

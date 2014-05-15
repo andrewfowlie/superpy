@@ -1,0 +1,17 @@
+# combined CDF/D0 limits
+# D0 Note 5980, CDF Note 9888
+# CDF_D0_combinedH-tautau_2.2fb, for each mass hypothesis the results were chosen from the limit setting
+ method (Bayes or CLs) which gave the most conservative expected limit
+# Mh(in GeV),obs,exp (fb)
+
+100	17.1E+3	12.9E+3
+110	10.0E+3	6.17E+3
+120	4.38E+3	3.38E+3
+130	1.98E+3	2.18E+3
+140	1.43E+3	1.52E+3
+150	1.09E+3	1.14E+3
+160	0.901E+3	0.909E+3
+170	0.786E+3	0.749E+3
+180	0.658E+3	0.616E+3
+190	0.641E+3	0.536E+3
+200	0.642E+3	0.476E+3

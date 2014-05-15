@@ -1,0 +1,6 @@
+3 5 55 
+  This menu function writes a plot in format of
+Mathematical package. Use command 
+         Get["fileName"]
+to display the plot. CalcHEP will inform you about
+name of output file when you activate this function. 

@@ -1,0 +1,15 @@
+# Published at Moriond 2013.
+# Data is taken from the VBF mu-plot at 125GeV.
+2013030102	201303002	1
+ATL-CONF-2013-030
+LHC, ATL, ATL
+(pp)->VBF->WW->lnulnu
+8 	25.3	0.036
+1	0
+8.0
+125.0 125.0 0.1
+1	-1
+22
+
+       125.0          0.9313           1.650           2.487    
+ 

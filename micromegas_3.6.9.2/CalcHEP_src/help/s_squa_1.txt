@@ -1,0 +1,7 @@
+1 10 50  View diagrams
+  This function allows you: 
+1. to view a set of amplitude diagrams;
+2. to edit this set by removing unwanted diagrams
+   in order to simplify the calculation;
+3. to create a LaTeX file with graphical diagram 
+   pictures.

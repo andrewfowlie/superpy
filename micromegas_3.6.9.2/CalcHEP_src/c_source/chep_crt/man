@@ -1,0 +1,38 @@
+
+gotoxy: positions cursor in  text window
+clreol: clears to end of line in text window
+clrscr: clears text mode window
+wherex: gives horizontal cursor position within the current text  window
+wherey: gives vertical cursor position within the current text  window
+
+puttext: copies text from memory to screen
+gettext: copies text from text-mode screen to memory
+textcolor: selects new character color in text mode
+textbackground :selects new text background color
+================
+
+bar:   draws a bar
+getx:  returns the current position's x coordinate. The value is
+      viewport-relative.
+getmaxx: returns maximum x screen coordinate
+gety:  returns the current position's y coordinate. The value is
+      viewport-relative.
+
+getmaxy: returns maximum y screen coordinate
+
+line: draws a line from (x1,y1) to (x2,y2) using the current color,
+      line style and thickness
+linerel: draws a line a relative distance from the current positon.
+	Uses the current color,  line style and thickness
+lineto:   draws the line from the current position to (x,y)
+
+outtext: displays the string in the viewport.
+outtextxy: sends a srting to the specified location.
+
+
+rectangle: draws a rectangle. Uses the current color,  line style and thickness
+setlinestyle: sets the current line style and width or pattern.
+
+setviewport: sets the current vieport for  graphics output.
+textheight: returns the height of a string, in pixels.
+textwidth:  returns the width of a string, in pixels.

@@ -1,0 +1,132 @@
+%%%%%%%%%%%%%%%%%%%%%
+let
+sigma1_11 = 	'p--',	 
+sigma1_12 = 	'p-'/Sqrt2,	  
+sigma1_13 = 	'h-'/Sqrt2,		 
+sigma1_14 =	0,		 
+sigma1_15 =	0,
+
+sigma1_21 =     sigma1_12,
+sigma1_22 =     anti(p0),	   
+sigma1_23 =     h0/Sqrt2,	 
+sigma1_24 =     0,		 
+sigma1_25 =     0,
+
+sigma1_31 =     sigma1_13,
+sigma1_32 =     sigma1_23,
+sigma1_33 =	0,
+sigma1_34 =     'h+'/Sqrt2,	  
+sigma1_35 =     h0/Sqrt2,
+
+sigma1_41 =	sigma1_14,
+sigma1_42 =	sigma1_24,
+sigma1_43 =	sigma1_34,
+sigma1_44 =	'p++',
+sigma1_45 =	'p+'/Sqrt2,
+
+sigma1_51 =	sigma1_15,
+sigma1_52 =	sigma1_25,
+sigma1_53 =	sigma1_35,
+sigma1_54 =	sigma1_45,
+sigma1_55 =  	p0.
+
+
+let sigma1=2*i*{
+                {  'p--',	 'p-'/Sqrt2,	  'h-'/Sqrt2,		 0,		 0	      	},
+                {  'p-'/Sqrt2,    anti(p0),	   h0/Sqrt2,	 0,		 0	      		},
+                {  'h-'/Sqrt2,    h0/Sqrt2,  0,			'h+'/Sqrt2,	  h0/Sqrt2    		},
+                {  0,		 0,		  'h+'/Sqrt2,		'p++',  	 'p+'/Sqrt2   	},
+                {  0,		 0,		   h0/Sqrt2,		'p+'/Sqrt2,	  p0	      	}
+		}.
+		
+let sigma1_3=2*i*{
+		 {  0,		 0,		  'h+'/Sqrt2},
+		 {  0,		 0,		   h0/Sqrt2 }
+ 		 }.
+		 
+let sigma1_2=2*i*{
+		 {  0,		 0},
+		 {  0,		 0}
+ 		 }.
+		 
+let sigma1_1=2*i*{'h-'/Sqrt2,h0/Sqrt2}.
+		 
+
+let csigma1_11=anti(sigma1_11).
+let csigma1_12=anti(sigma1_12).
+let csigma1_13=anti(sigma1_13).
+let csigma1_14=anti(sigma1_14).
+let csigma1_15=anti(sigma1_15).
+
+let csigma1_21=anti(sigma1_21).
+let csigma1_22=anti(sigma1_22).
+let csigma1_23=anti(sigma1_23).
+let csigma1_24=anti(sigma1_24).
+let csigma1_25=anti(sigma1_25).
+
+let csigma1_31=anti(sigma1_31).
+let csigma1_32=anti(sigma1_32).
+let csigma1_33=anti(sigma1_33).
+let csigma1_34=anti(sigma1_34).
+let csigma1_35=anti(sigma1_35).
+
+let csigma1_41=anti(sigma1_41).
+let csigma1_42=anti(sigma1_42).
+let csigma1_43=anti(sigma1_43).
+let csigma1_44=anti(sigma1_44).
+let csigma1_45=anti(sigma1_45).
+
+let csigma1_51=anti(sigma1_51).
+let csigma1_52=anti(sigma1_52).
+let csigma1_53=anti(sigma1_53).
+let csigma1_54=anti(sigma1_54).
+let csigma1_55=anti(sigma1_55).
+
+let csigma1= -2*i*
+              { 
+	       {csigma1_11,csigma1_12,csigma1_13,csigma1_14,csigma1_15},
+               {csigma1_21,csigma1_22,csigma1_23,csigma1_24,csigma1_25},
+               {csigma1_31,csigma1_32,csigma1_33,csigma1_34,csigma1_35},
+               {csigma1_41,csigma1_42,csigma1_43,csigma1_44,csigma1_45},
+               {csigma1_51,csigma1_52,csigma1_53,csigma1_54,csigma1_55}
+	      }.
+
+let csigma1_3= -2*i*
+              { 
+		{csigma1_41,csigma1_42,csigma1_43},
+                {csigma1_51,csigma1_52,csigma1_53}
+	       }.
+
+%%%%%%%%%%%%%%%%%%%%%
+
+let tsigma1= -2*i*
+              { 
+	       { csigma1_44, csigma1_45,-csigma1_43, csigma1_41, csigma1_42},
+               { csigma1_54, csigma1_55,-csigma1_53, csigma1_51, csigma1_52},
+               {-csigma1_34,-csigma1_35, csigma1_33,-csigma1_31,-csigma1_32},
+               { csigma1_14, csigma1_15,-csigma1_13, csigma1_11, csigma1_12},
+               { csigma1_24, csigma1_25,-csigma1_23, csigma1_21, csigma1_22}
+	      }.
+	       
+let tsigma1_3=-2*i*
+              { 
+		{ csigma1_14, csigma1_15,-csigma1_13},
+                { csigma1_24, csigma1_25,-csigma1_23}
+	       }.
+	       
+let ctsigma1_3=anti(tsigma1_3).  
+
+
+
+let tsigma1_2=-2*i*
+              { 
+		{ csigma1_14, csigma1_15},
+                { csigma1_24, csigma1_25}
+	       }.
+let ctsigma1_2=anti(tsigma1_2).
+
+let  tsigma1_1=-2*i*{-csigma1_43,-csigma1_53}.	       
+let ctsigma1_1=anti(tsigma1_1).
+  
+   
+%%%%%%%%%%%%%%%%%%%%%%%%%%

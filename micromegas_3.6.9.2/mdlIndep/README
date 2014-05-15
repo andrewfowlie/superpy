@@ -1,0 +1,23 @@
+
+Model-free calculation of DM  observables:
+
+The input parameters are
+
+    Mcdm[GeV]      -  DM mass;   
+csSIp,csSIn,
+csSDp,csSDn[pb]    -  cross sections for DM  spin dependent and  spin independent scattering 
+                      on proton and neutron. A negative value for one of these
+                      cross sections is interpreted as a destructive interference 
+                      between the neutron/proton amplitudes in calculating the DM-nucleus cross section.  
+
+   vsc [pb]        -  DM annihilation cross section times velocity for collision at rest.
+                      
+   pdgCH           -  array of PDG codes for different annihilation channels 
+
+   fracCH          -  array of relative  contribution of the channels in pdgCH
+                      to the total annihilation cross section. 
+
+The file main.c/F  contains an example of the calculation of the direct detection,  indirect detection
+and neutrino telescope signals for a self conjugated DM particle (like the neutralino). 
+The numerical input data in this sample file corresponds to 'MSSM/mssmh.dat'.  
+

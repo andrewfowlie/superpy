@@ -1,0 +1,31 @@
+:
+
+CALCHEP=`cd ../../CalcHEP_src; pwd`
+export CALCHEP
+. $CALCHEP/FlagsForSh
+
+PATH=$PATH:$CALCHEP:`cd ../lib; pwd`
+
+while :
+do 
+  $CALCHEP/bin/s_calchep $*
+  err=$?
+  case $err in 
+     0) exit;; 
+    20) ;;
+    22)  
+         $CALCHEP/bin/s_calchep -blind "[{{0" 
+         cd results 
+         . EXTLIB
+         $CALCHEP/nCompil 1>/dev/null 2>/dev/null; $CALCHEP/ld_n
+         err=$?
+         if(test $err -eq 0) then
+           echo n_calchep is created
+         else 
+           echo n_calchep is not created. 
+         fi 
+         break;;
+     *) echo CalcHEP has finished with error code $err
+      break 
+  esac 
+done 

@@ -1,0 +1,34 @@
+.TH FHLOADTABLE 1 "25-Jul-2007"
+.SH NAME
+.PP
+FHLoadTable \- load a data file into the internal table
+.SH SYNOPSIS (Fortran version)
+.PP
+integer error, unit
+.br
+character*(*) file
+.sp
+subroutine FHLoadTable(error, file, unit)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHLoadTable[file]
+.SH DESCRIPTION
+FHLoadTable loads a parameter table from a data file into internal 
+storage.  The first line of the file contains the column names, 
+separated by whitespace, all following lines are then the corresponding 
+data, similarly whitespace-separated.
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in LoadTable.F from
+which the error message was emitted.
+.TP
+.B file (input)
+the name of the data file.
+.TP
+.B unit (input)
+the Fortran unit from which to read, if file is "-".
+.SH SEE ALSO
+.PP
+FHClearRecord(1), FHReadRecord(1), FHLoopRecord(1), FHTableRecord(1),
+FHSetRecord(1), FHRecordIndex(1)

@@ -1,0 +1,11 @@
+#CDF Note 10010 
+#CDF_hadr_4fb
+#no interpolation
+#columns: Mh, obs, exp (as ratio to SM cross sections)
+
+100	10.2	  18.7
+110	10.3	  16.7
+120	10.4	  19.9 
+130	17.3	  34.8 
+140	34.0	  60.2 
+150	111.2	  161.7

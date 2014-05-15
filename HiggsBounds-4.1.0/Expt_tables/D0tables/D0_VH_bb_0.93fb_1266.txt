@@ -1,0 +1,9 @@
+#arXiv: 0808.1266 Aug 8, 2008
+#D0_VH_bb_0.93fb
+#no interpolation
+#columns: Mh, obs, exp (as ratio to SM cross sections)
+
+105	8.7	9.1
+115	13	12
+125	20	18
+135	34	30		

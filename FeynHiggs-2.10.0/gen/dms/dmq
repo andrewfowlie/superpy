@@ -1,0 +1,187 @@
+#! /bin/sh -x
+
+me=`basename $0`
+name=m/$me-$1
+
+echo "$name" | grep -E '^m/(deltaMs|deltaMd)-(Hp|Cha|Neu|Glu|SM|All)$' || {
+  echo "invoke me as deltaMs|deltaMd Hp|Cha|Neu|Glu|SM|All" ;
+  exit 1
+}
+
+test -d m || mkdir m
+
+mma="math -run me=\"$me\" -run tag=\"$1\" -run name=\"$name\""
+
+rm -f $name.*
+#trap "rm -f $name.fc*" 0
+
+
+$mma << \_EOF_
+AppendTo[$Echo, "stdout"];
+
+<< FeynArts`
+
+<< FormCalc`
+
+NClear[];
+N[sqrt2] = Sqrt[2.];
+sqrt2/: sqrt2/2 = 1/sqrt2;
+sqrt2/: sqrt2^2 = 2;
+sqrt2/: sqrt2^-2 = 1/2;
+
+MU = MU2 = 0;
+MC = MC2 = 0;
+MD = MD2 = Mdy[1] = 0;
+MS = MS2 = Mdy[2] = 0;
+MB = MB2 = Mdy[3] = 0;
+MT = Mf[tT,3];
+MT2 = Mf2[tT,3];
+
+Mdy[g_] := 0 (* Mfy[4, g] *);
+(*
+Sq[Mfy[a__]] = Mfy2[a];
+RealQ[_Mfy] = RealQ[_Mfy2] = True;
+*)
+
+Sq[Alfas] =.;
+Alfas = asMT;
+
+(*_USf = VCha = UCha = IndexDelta;*)
+
+fs = 2;
+fd["deltaMd"] = 1;
+fd["deltaMs"] = 3;
+
+proc = {-F[4, {fs}], F[4, {fd[me]}]} -> {-F[4, {fd[me]}], F[4, {fs}]};
+
+opt["All"] = Sequence[];
+opt["Hp"] = LastSelections -> S[5];
+opt["Cha"] = LastSelections -> F[12];
+opt["Neu"] = Sequence[ExcludeParticles -> F[15], LastSelections -> F[11]];
+opt["Glu"] = LastSelections -> F[15];
+opt["SM"] = ExcludeParticles -> {F[11|12|15], S[5]};
+
+Attributes[C0z] = Attributes[C00z] =
+Attributes[D0z] = Attributes[D00z] = {Orderless};
+
+C0i[LoopTools`cc0, 0, 0, 0, m__] := C0z[m];
+C0i[LoopTools`cc00, 0, 0, 0, m__] := C00z[m];
+D0i[LoopTools`dd0, 0, 0, 0, 0, 0, 0, m__] := D0z[m];
+D0i[LoopTools`dd00, 0, 0, 0, 0, 0, 0, m__] := D00z[m];
+
+
+simp[ins_, opt___] :=
+Block[ {amp},
+  Paint[ins,
+    ColumnsXRows -> {4, 5},
+    (*PaintLevel -> {Classes},*)
+    DisplayFunction -> (Export[name <> ".ps", #, ImageSize -> 72 2 {4, 5}]&)];
+
+  amp = CreateFeynAmp[ins];
+
+  amp = CalcFeynAmp[ amp, opt,
+    FermionChains -> Chiral,
+    FermionOrder -> Colour[1, 4, 2, 3] ];
+
+(*
+  Put[amp, name <> ".rawamp"];
+  Put[Join[Abbr[], Subexpr[]], name <> ".rawabbr"];
+*)
+
+  amp = amp //. Subexpr[] /.
+    D0i[id_, __] :> 0 /; !MemberQ[{LoopTools`dd0, LoopTools`dd00}, id] /.
+    (#1 -> 0 &)@@@ Select[Abbr[], !FreeQ[#, DiracChain[__, _k, __]] &] /.
+    S|T|U -> 0;
+
+  amp = ApplyUnitarity[amp, CKM, 3];
+
+  Put[amp, name <> ".amp"];
+  Put[Join[Abbr[], Subexpr[]], name <> ".abbr"];
+
+  Plus@@ amp //. Abbr[]
+];
+
+tops = CreateTopologies[1, 2 -> 2, BoxesOnly];
+
+ins = InsertFields[tops,
+  proc, opt[tag],
+  InsertionLevel -> {Particles},
+  Model -> (*SM*) myMSSMQCD];
+
+amp = simp[ins];
+
+
+Alfa2 = (Alfa = Sqrt[2]/Pi GF MW2 SW2)^2;
+
+Attributes[ColorDelta] = Attributes[Op] = {Orderless};
+
+dc = amp /.
+  {Col1 -> 1, Col3 -> 3,
+   Col2 -> 2, Col4 -> 4,
+   Spinor[_[i:1 | 4], __] -> s[i],
+   Spinor[_[i:2 | 3], __] -> b[i]} /.
+  SUNT[i_, j_] -> ColorDelta[i, j] /.
+  Mat[ DiracChain[s[i_], g1__, b[j_]] ColorDelta[i_, j_] *
+       DiracChain[s[k_], g2__, b[l_]] ColorDelta[k_, l_] ] :>
+    -Signature[{i, j, k, l}] Op[{g1}, {g2}] /.
+  {Sqrt[2] -> sqrt2, 1/Sqrt[2] -> 1/sqrt2};
+
+Put[dc, name <> ".dc"];
+
+dc = Simplify[dc /. S|T|U -> 0];
+
+OpName[{6, mu_Lor}, {6, mu_}] = "cVLL";
+OpName[{7, mu_Lor}, {7, mu_}] = "cVRR";
+
+OpName[{6, mu_Lor}, {7, mu_}] = "cLR1";
+OpName[{6}, {7}] = "cLR2";
+
+OpName[{6}, {6}] = "cSLL1";
+OpName[{7}, {7}] = "cSRR1";
+OpName[{-6, mu_Lor, nu_Lor}, {-6, mu_, nu_}] = "cSLL2";
+OpName[{-7, mu_Lor, nu_Lor}, {-7, mu_, nu_}] = "cSRR2";
+
+ops = Union[Cases[dc, _Op, Infinity]];
+
+coeff = ((OpName@@ #) <> tag -> Coefficient[dc, #])&/@ ops;
+
+(*Put[coeff, name <> ".coeff.raw"];*)
+
+chk = dc /. Thread[ops -> 0];
+If[ chk =!= 0,
+  Print["WARNING: REMAINDER NOT ZERO"];
+  Put[chk, name <> ".ZERO"] ];
+
+
+fin[var_ -> expr_] := (Print[var]; var -> fin[expr]);
+
+fin[expr_] := Simplify @
+  Collect[expr, {_SumOver, _Log}, FullSimplify];
+
+coeff = fin/@ coeff /. S|T|U -> 0;
+
+Put[coeff, name <> ".coeff"];
+
+
+Mino3 = "M_3";
+Mino3C = "M_3C";
+
+hh = OpenFortran[name <> ".F"];
+
+$DebugCmd = {"#ifdef DETAILED_DEBUG\n", "#endif\n", "DCONST ", " ENDL"};
+
+WriteExpr[hh, coeff,
+  (*HornerStyle -> False,*)
+  TmpType -> False,
+  Expensive -> {_C0z, _C00z, _D0z, _D00z},
+  RealArgs -> {C0z, C00z, D0z, D00z},
+  Optimize -> True,
+  DebugLines -> True,
+  FinalCollect -> True];
+
+Close[hh];
+_EOF_
+
+gzip -f $name*.ps
+
+

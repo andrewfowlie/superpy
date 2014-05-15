@@ -1,0 +1,18 @@
+# hep-ex/0501033
+# read from fig 6c using EasyNData (P. Uwer, arXiv:0710.2896)
+# LEP Higgstrahlung production cross section as ratio to SM cross section x Br(h->invisible) 
+# columns: Mh (GeV), obs, exp 
+
+   50       0.925E-01       0.104    
+   55       0.959E-01       0.111    
+   60       0.976E-01       0.116    
+   65       0.130           0.130    
+   70       0.135           0.146    
+   75       0.151           0.158    
+   80       0.192           0.180    
+   85       0.211           0.217    
+   90       0.243           0.269    
+   95       0.259           0.339    
+  100       0.317           0.392    
+  105       0.529           0.502    
+  110       0.752           0.774    

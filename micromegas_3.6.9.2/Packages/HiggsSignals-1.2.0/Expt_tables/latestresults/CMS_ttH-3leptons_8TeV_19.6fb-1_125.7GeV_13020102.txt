@@ -1,0 +1,15 @@
+# Values are taken from
+# https://twiki.cern.ch/twiki/bin/view/CMSPublic/ttHCombinationTWiki
+# Efficiencies are estimated from the signal yield given in Tab.1 of CMS-PAS-13-020
+13020102	1302002		1
+CMS-PAS-HIG-13-020
+LHC, CMS, CMS
+(pp)->tth->3 leptons
+8	19.6	 0.044
+1	0
+25.0
+125.7 125.7 1.0
+3	125.7
+52 53 54
+1	0.5	1.14
+125.7	0.9		2.7		4.9

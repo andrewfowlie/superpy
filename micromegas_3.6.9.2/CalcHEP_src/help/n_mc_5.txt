@@ -1,0 +1,13 @@
+1 3 52
+This  menu function provides the user by 
+the following possibilities:
+ 1. to swicth ON/OFF the  QCD coupling defined in 
+    particle distribution table;
+ 2. to define parameters of QCD coupling evolution 
+    in case when the distribution table doesn't 
+    contain  the corresponding information, or the 
+    user refuses this opportunity;
+ 3. to define the QCD scale as function of phase 
+    space point;
+ 4. to display the alpha(Q) plot in the region 
+    specified  by the user.

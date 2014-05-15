@@ -1,0 +1,3 @@
+ 1 12 55 5
+ It sets the number of calls of integrand in one Vegas
+ session.

@@ -1,0 +1,13 @@
+ 2 10 76  
+
+The search path can be started from 
+    $<environment variable>, for instant $CALCHEP, $WORK;
+     ~<user name> ;
+    ~/  which is equivalent $HOME/.
+If the end of string  is finished by "/*" then after pressing 
+the Enter key user  gets menu of directory contents where 
+subdirectory are marked by "D:". Choose any  menu line to add it 
+to  search path. If the line corresponds to directory, the "/*"
+will be added automatically to simplify subsequent search. 
+Remove  "/*"  in the end of path and press Enter if you have found
+the required directory. 

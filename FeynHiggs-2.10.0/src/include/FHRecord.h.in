@@ -1,0 +1,42 @@
+* FHRecord.h.in
+* the data structures for a FH record
+* this file is part of FeynHiggs
+* last modified 11 Jul 11 th
+
+
+#ifndef FHRangeR
+#define FHRangeR FHRecordR, FHRecordC - 1
+#define FHRangeC FHRecordC, FHRecordN, 4
+#define FHRangeA FHRecordR, FHRecordN
+
+#define iRe(i) i
+#define iIm(i) i+1
+#define iAbs(i) i+2
+#define iArg(i) i+3
+
+#define iMSS(n,g) iM1SL+(n-1)*(iM1SE-iM1SL)+(g-1)*(iM2SL-iM1SL)
+#define iMf(t,g) iMU+(t-3)*(iMD-iMU)+(g-1)*(iMC-iMU)
+#define iAf(t,g) iAu+(t-3)*(iAd-iAu)+(g-1)*(iAc-iAu)
+#define iQSf(t) iQt+(t-3)*(iQb-iQt)
+
+#define FHNameR(i) FHName(i)(1:len_trim(FHName(i)))
+#define FHNameC(i) FHName(i)(4:index(FHName(i),")")-1)
+
+#define RecordDecl(rec) double precision rec(FHRecordN,4)
+#endif
+
+	double precision unset, default, bytable
+	parameter (unset = -999)
+	parameter (default = -888)
+	parameter (bytable = 777)
+
+	character*16 FHName(FHRecordR:FHRecordN)
+	common /fhrecnames/ FHName
+
+	integer maxcols, maxrows
+	parameter (maxcols = FHRecordN, maxrows = 2400)
+
+	double precision tabledata(maxcols,maxrows)
+	integer tableflag(0:maxcols), tablerows
+	common /fhtable/ tabledata, tableflag, tablerows
+

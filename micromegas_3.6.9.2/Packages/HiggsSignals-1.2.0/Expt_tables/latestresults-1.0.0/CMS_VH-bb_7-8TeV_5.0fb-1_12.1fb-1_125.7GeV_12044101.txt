@@ -1,0 +1,14 @@
+# Data taken from
+# https://twiki.cern.ch/twiki/bin/view/CMSPublic/Hig13005TWiki
+12044101	1204401		1
+CMS-PAS-HIG-12-044
+LHC, CMS, CMS
+(pp)->Vh->Vbb
+8	17.1   0.044
+1	0
+12.5
+125.7 125.7 1.0
+2	-1
+35 45
+
+125.7	0.698  1.306  1.988

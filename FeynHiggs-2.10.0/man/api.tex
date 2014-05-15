@@ -1,0 +1,2768 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage{amsmath,amssymb,multicol}
+\usepackage[colorlinks]{hyperref}
+
+\renewcommand{\rmdefault}{ppl}
+\DeclareSymbolFont{operators}{OT1}{pplcm}{m}{n}
+\DeclareSymbolFont{letters}{OML}{pplcm}{m}{it}
+%\DeclareSymbolFont{symbols}{OMS}{pzccm}{m}{n}
+\DeclareSymbolFont{largesymbols}{OMX}{psycm}{m}{n}
+\DeclareSymbolFont{bold}{OT1}{ppl}{bx}{n}
+\DeclareSymbolFont{italic}{OT1}{ppl}{m}{it}
+\DeclareMathAlphabet{\mathrm}{OT1}{ppl}{m}{n}
+\DeclareMathAlphabet{\mathbf}{OT1}{ppl}{bx}{n}
+\DeclareMathAlphabet{\mathit}{OT1}{ppl}{m}{it}
+
+\newenvironment{LList}%
+  {\left.\begin{array}{r}}%
+  {\end{array}\right\}}
+\newenvironment{RList}%
+  {\left\{\begin{array}{l}}%
+  {\end{array}\right.}
+
+\parindent=0pt
+\parskip=5pt
+\advance\oddsidemargin -1.5cm
+\advance\evensidemargin -1.5cm
+\advance\textwidth 3cm
+\sloppy
+\raggedbottom
+
+\newcommand{\overbar}[1]{\ensuremath{\overline{\mathrm{#1}}}}
+\newcommand{\limfunc}[1]{\mathop{\mathrm{#1}}}
+\renewcommand{\Re}{\limfunc{Re}}
+\renewcommand{\Im}{\limfunc{Im}}
+
+\newcommand{\CODE}[1]{\texttt{#1}}
+\newcommand{\IN}{\textit{$\langle$in\/$\rangle$}}
+\newcommand{\OUT}{\textit{$\langle$out\/$\rangle$}}
+\newcommand{\FLAGIN}[3]{%
+  \item[\fbox{\scriptsize\textsc{in}}]
+  \CODE{#1} = $#2\dots#3$ \par}
+\newcommand{\FLAGOUT}[3]{%
+  \item[\fbox{\scriptsize\textsc{out}}]
+  \CODE{#1} = $#2\dots#3$ \par}
+\newcommand{\VARIN}[1]{%
+  \item[\fbox{\scriptsize\textsc{in}}]
+  \CODE{#1}\par}
+\newcommand{\VAROUT}[1]{%
+  \item[\fbox{\scriptsize\textsc{out}}]
+  \CODE{#1}\par}
+\newcommand{\VARINOUT}[1]{%
+  \item[\fbox{\scriptsize\textsc{i/o}}]
+  \CODE{#1}\par}
+\newcommand{\MACRO}[1]{\item
+  \CODE{#1}\par}
+
+\newcommand{\ROUTINE}[1]{\pagebreak
+  \section*{#1}%
+  \addcontentsline{toc}{section}{#1}}
+\newcommand{\DESCRIPTION}{\subsection*{Description}}
+\newcommand{\FSYNOPSIS}{\subsection*{Synopsis -- Fortran version}}
+\newcommand{\MSYNOPSIS}{\subsection*{Synopsis -- Mathematica version}}
+\newcommand{\ARGUMENTS}{\subsection*{Arguments}\begin{itemize}}
+\newcommand{\ENDARGUMENTS}{\end{itemize}}
+\newcommand{\DETAILS}[1]{\subsection*{#1}}
+\newcommand{\BEGINDETAILS}{\begin{itemize}}
+\newcommand{\ENDDETAILS}{\end{itemize}}
+
+\newcommand\ie{i.e.\ }
+\newcommand\eg{e.g.\ }
+\newcommand\uscore{\symbol{95}}
+\newcommand\re{\mathrm{e}}
+\newcommand\ri{\mathrm{i}}
+\newcommand\ct[1]{c_{#1}}
+\newcommand\st[1]{s_{#1}}
+\newcommand\rL{\mathrm{L}}
+\newcommand\rR{\mathrm{R}}
+\newcommand\ML[1]{M_{\rL,q_#1}}
+\newcommand\MR[1]{M_{\rR,q_#1}}
+
+\begin{document}
+
+\chapter*{FeynHiggs 2.9.5\\[2ex] Application Programming Interface}
+
+\makeatletter
+\begin{multicols}{2}
+\@starttoc{toc}
+\end{multicols}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHSetFlags}
+
+\DESCRIPTION
+
+\CODE{FHSetFlags} sets the flags for FeynHiggs.  It must be called
+before any other FeynHiggs function.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error
+integer mssmpart, fieldren, tanbren, higgsmix, p2approx
+integer looplevel, runningMT, botResum, tlCplxApprox
+
+subroutine FHSetFlags(error,
+  mssmpart, fieldren, tanbren, higgsmix, p2approx,
+  looplevel, runningMT, botResum, tlCplxApprox)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHSetFlags[mssmpart, fieldren, tanbren, higgsmix, p2approx,
+  looplevel, runningMT, botResum, tlCplxApprox]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{SetFlags.F} 
+from which the error message was emitted.
+
+\FLAGIN{integer mssmpart}{0}{4}
+specifies the scope of the calculation:
+\begin{itemize}
+\item[0:] $m_t^4$-approximation,
+\item[1:] top/stop-sector,
+\item[2:] top/stop- + bottom/sbottom-sector,
+\item[3:] full (s)quark/(s)lepton-sector,
+\item[4:] full MSSM \textit{(recommended)}.
+\end{itemize}
+
+\FLAGIN{integer fieldren}{0}{4}
+determines the one-loop field-renormalization constants:
+\begin{itemize}
+\item[0:] \overbar{DR}\ \textit{(strongly recommended)},
+\item[1:] on-shell, Dabelstein's convention,
+\item[2:] on-shell, `Goldstone-pole' version,
+\item[3:] on-shell, MF I,
+\item[4:] on-shell, MF II.
+\end{itemize}
+
+\FLAGIN{integer tanbren}{0}{2}
+determines the one-loop $\tan\beta$ counter term:
+\begin{itemize}
+\item[0:] \overbar{DR}\ \textit{(strongly recommended)},
+\item[1:] field renormalization part only (Dabelstein),
+\item[2:] mixed field/on-shell-renormalization.
+\end{itemize}
+
+\FLAGIN{integer higgsmix}{1}{3}
+determines the mixing in the Higgs sector:
+\begin{itemize}
+\item[1:] all non-diagonal self-energies ($\Sigma_{hH}, \Sigma_{hA}, 
+          \Sigma_{HA}$) are set to zero,
+\item[2:] the CP-violating non-diagonal self-energies ($\Sigma_{hA}, 
+          \Sigma_{HA}$) are set to zero, \ie $2\times 2$ mixing among 
+          CP-even states = evaluation in the rMSSM,
+\item[3:] full $3\times 3$ mixing in the neutral sector
+          = evaluation in the cMSSM.
+\end{itemize}
+
+\FLAGIN{integer p2approx}{0}{4}
+determines the approximation for the one-loop result:
+\begin{itemize}
+\item[0:] none, \ie full determination of the propagator matrices's poles, \\
+  \CODE{UHiggs} is evaluated at $p^2 = m^2$,
+\item[1:] $p^2 = 0$ approximation,
+\item[2:] all self-energies are calculated at $p^2 = m_{\text{tree}}^2$,
+\item[3:] imaginary parts of self-energies are discarded,
+\item[4:] as 0, but with \CODE{UHiggs} evaluated at $p^2 = 0$
+  \textit{(recommended)}.
+\end{itemize}
+
+\FLAGIN{integer looplevel}{0}{2}
+determines the inclusion of higher-order corrections:
+\begin{itemize}
+\item[0:] tree level,
+\item[1:] one-loop contributions only,
+\item[2:] include various two-loop contributions \textit{(recommended)}.
+\end{itemize}
+
+\FLAGIN{integer runningMT}{0}{1}
+determines which top mass shall be used in the 1-/2-loop corrections 
+\begin{itemize}
+\item[0:] use $m_t^{\text{pole}}$,
+\item[1:] use $m_t^{\text{run}}$ \textit{(recommended)}.
+\end{itemize}
+
+\FLAGIN{integer botResum}{0}{1}
+determines whether the $O(\tan^n\beta)$ corrections 
+shall be resummed:
+\begin{itemize}
+\item[0:] no resummation,
+\item[1:] resummation \textit{(recommended)}.
+\end{itemize}
+
+\FLAGIN{integer tlCplxApprox}{0}{6}
+determines how the two-loop corrections are treated in the presence of
+complex parameters (cMSSM):
+\begin{itemize}
+\item[0:] all corrections ($\alpha_s\alpha_t$, $\alpha_s\alpha_b$,
+  $\alpha_t\alpha_t$, $\alpha_t\alpha_b$) are computed in the rMSSM
+  \textit{(recommended for evaluation in the rMSSM)},
+\item[1:] only the cMSSM $\alpha_s\alpha_t$ corrections are used,
+\item[2:] the cMSSM $\alpha_s\alpha_t$ corrections are combined with
+  the remaining corrections in the rMSSM,
+\item[3:] the cMSSM $\alpha_s\alpha_t$ corrections are combined with
+  the remaining corrections, whose complex phases are interpolated in
+  $A_t$, $A_b$, $M_3$, $\mu$,
+\item[4:] ditto, with interpolation in $X_t$, $A_b$, $M_3$, $\mu$,
+\item[5:] ditto, with interpolation in $A_t$, $X_b$, $M_3$, $\mu$,
+\item[6:] ditto, with interpolation in $X_t$, $X_b$, $M_3$, $\mu$.
+\end{itemize}
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHSetFlagsString}
+
+\DESCRIPTION
+
+\CODE{FHSetFlagsString} sets the flags for FeynHiggs.  It works just like
+\CODE{FHSetFlags} except that it takes a 9-character string as argument
+rather than 9 integers.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error
+character*9 flags
+
+subroutine FHSetFlagsString(error, flags)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHSetFlagsString[flags]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{SetFlags.F} 
+from which the error message was emitted.
+
+\VARIN{character*9 flags}
+the flags in the same order and with the same values as in
+\CODE{FHSetFlags}.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHRetrieveFlags}
+
+\DESCRIPTION
+
+\CODE{FHRetrieveFlags} retrieves the flags from FeynHiggs.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error
+integer mssmpart, fieldren, tanbren, higgsmix, p2approx
+integer looplevel, runningMT, botResum, tlCplxApprox
+
+subroutine FHRetrieveFlags(error,
+  mssmpart, fieldren, tanbren, higgsmix, p2approx,
+  looplevel, runningMT, botResum, tlCplxApprox)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHRetrieveFlags[]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{RetrieveFlags.F} 
+from which the error message was emitted.
+
+\FLAGOUT{integer mssmpart}{0}{4}
+specifies the scope of the calculation:
+\begin{itemize}
+\item[0:] $m_t^4$-approximation,
+\item[1:] top/stop-sector,
+\item[2:] top/stop- + bottom/sbottom-sector,
+\item[3:] full (s)quark/(s)lepton-sector,
+\item[4:] full MSSM.
+\end{itemize}
+
+\FLAGOUT{integer fieldren}{0}{4}
+determines the one-loop field-renormalization constants:
+\begin{itemize}
+\item[0:] \overbar{DR},
+\item[1:] on-shell, Dabelstein's convention,
+\item[2:] on-shell, `Goldstone-pole' version,
+\item[3:] on-shell, MF I,
+\item[4:] on-shell, MF II.
+\end{itemize}
+
+\FLAGOUT{integer tanbren}{0}{2}
+determines the one-loop $\tan\beta$ counter term:
+\begin{itemize}
+\item[0:] \overbar{DR},
+\item[1:] field renormalization part only (Dabelstein),
+\item[2:] mixed field/on-shell-renormalization.
+\end{itemize}
+
+\FLAGOUT{integer higgsmix}{1}{3}
+determines the mixing in the Higgs sector:
+\begin{itemize}
+\item[1:] all non-diagonal self-energies ($\Sigma_{hH}, \Sigma_{hA}, 
+          \Sigma_{HA}$) are set to zero,
+\item[2:] the CP-violating non-diagonal self-energies ($\Sigma_{hA}, 
+          \Sigma_{HA}$) are set to zero, \ie $2\times 2$ mixing among 
+          CP-even states = evaluation in the rMSSM,
+\item[3:] full $3\times 3$ mixing in the neutral sector
+          = evaluation in the cMSSM.
+\end{itemize}
+
+\FLAGOUT{integer p2approx}{0}{2}
+determines the approximation for the one-loop result:
+\begin{itemize}
+\item[0:] none, \ie full determination of the propagator matrices's
+  poles,
+\item[1:] $p^2 = 0$ approximation,
+\item[2:] all self-energies are calculated at $p^2 = m_{\text{tree}}^2$,
+\item[3:] imaginary parts of self-energies are discarded,
+\item[4:] \CODE{UHiggs} is evaluated at $p^2 = 0$.
+\end{itemize}
+
+\FLAGOUT{integer looplevel}{0}{2}
+determines the inclusion of higher-order corrections:
+\begin{itemize}
+\item[0:] tree level,
+\item[1:] one-loop contributions only,
+\item[2:] include various two-loop contributions.
+\end{itemize}
+
+\FLAGOUT{integer runningMT}{0}{1}
+determines which top mass shall be used in the 1-/2-loop corrections
+\begin{itemize}
+\item[0:] use $m_t^{\text{pole}}$,
+\item[1:] use $m_t^{\text{run}}$.
+\end{itemize}
+
+\FLAGOUT{integer botResum}{0}{1}
+determines whether the $O(\tan^n\beta)$ corrections 
+shall be resummed:
+\begin{itemize}
+\item[0:] no resummation,
+\item[1:] resummation.
+\end{itemize}
+
+\FLAGOUT{integer tlCplxApprox}{0}{6}
+determines how the two-loop corrections are treated in the presence of
+complex parameters (cMSSM):
+\begin{itemize}
+\item[0:] all corrections ($\alpha_s\alpha_t$, $\alpha_s\alpha_b$,
+  $\alpha_t\alpha_t$, $\alpha_t\alpha_b$) are computed in the rMSSM,
+\item[1:] only the cMSSM $\alpha_s\alpha_t$ corrections are used,
+\item[2:] the cMSSM $\alpha_s\alpha_t$ corrections are combined with
+  the remaining corrections in the rMSSM,
+\item[3:] the cMSSM $\alpha_s\alpha_t$ corrections are combined with
+  the remaining corrections, whose complex phases are interpolated in
+  $A_t$, $A_b$, $M_3$, $\mu$,
+\item[4:] ditto, with interpolation in $X_t$, $A_b$, $M_3$, $\mu$,
+\item[5:] ditto, with interpolation in $A_t$, $X_b$, $M_3$, $\mu$,
+\item[6:] ditto, with interpolation in $X_t$, $X_b$, $M_3$, $\mu$.
+\end{itemize}
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHRetrieveFlagsString}
+
+\DESCRIPTION
+
+\CODE{FHRetrieveFlagsString} retrieves the flags from FeynHiggs.  It 
+works just like \CODE{FHRetrieveFlags} except that it takes a 
+9-character string as argument rather than 9 integers.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error
+character*9 flags
+
+subroutine FHRetrieveFlagsString(error, flags)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHRetrieveFlagsString[]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{RetrieveFlags.F} 
+from which the error message was emitted.
+
+\VAROUT{character*9 flags}
+the flags in the same order and with the same values as in
+\CODE{FHRetrieveFlags}.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHSetDebug}
+
+\DESCRIPTION
+
+\CODE{FHSetDebug} sets the debugging level for FeynHiggs.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer debuglevel
+
+subroutine FHSetDebug(debuglevel)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHSetDebug[debuglevel]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VARIN{integer debuglevel}
+the new debugging level, where
+\begin{itemize}
+\item[0:] no debugging messages,
+\item[1:] dump \CODE{FHSetFlags} and \CODE{FHSetPara} values,
+\item[2:] echo input parameters in detail, display the Higgs mass
+          matrix at $p^2 = 0$ and the counter-terms,
+\item[3:] display the search for zeros of the Higgs propagator matrix.
+\end{itemize}
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHSetSMPara}
+
+\DESCRIPTION
+
+\CODE{FHSetSMPara} sets up the SM inputs for FeynHiggs.  All of these
+parameters have default values so it is optional to call
+\CODE{FHSetSMPara}.  If \CODE{FHSetSMPara} is called, it must be called
+before \CODE{FHSetPara}.
+
+Substituting $-1$ for any argument uses its default value.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error
+double precision invAlfa, AlfasMZ, GF
+double precision ME, MU, MD, MM, MC, MS, ML, MB
+double precision MW, MZ
+double precision CKMlambda, CKMA, CKMrhobar, CKMetabar
+
+subroutine FHSetSMPara(error,
+  invAlfa, AlfasMZ, GF,
+  ME, MU, MD, MM, MC, MS, ML, MB,
+  MW, MZ,
+  CKMlambda, CKMA, CKMrhobar, CKMetabar)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHSetSMPara[invAlfa, AlfasMZ, GF,
+  ME, MU, MD, MM, MC, MS, ML, MB,
+  MW, MZ,
+  CKMlambda, CKMA, CKMrhobar, CKMetabar]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{SetSMPara.F}
+from which the error message was emitted.
+
+\VARIN{double precision invAlfa}
+the value of electromagnetic coupling constant $\alpha^{-1}$, or $-1$ 
+for the default value.
+
+\VARIN{double precision AlfasMZ}
+the value of the strong coupling constant $\alpha_s(M_Z)$, or $-1$ for 
+the default value.
+
+\VARIN{double precision GF}
+the value of the Fermi constant $G_F$, or $-1$ for the default value.
+
+\VARIN{double precision ME, MM, ML}
+the on-shell electron, muon, tauon mass, or $-1$ for the default values.
+
+\VARIN{double precision MU, MD, MS}
+the up, down, and strange quark masses at 2 GeV, or $-1$ for the 
+default values.
+
+\VARIN{double precision MC, MB}
+the charm mass at $m_c$ and bottom mass at $m_b$, or $-1$ for the 
+default values.
+
+\VARIN{MW, MZ}
+the W and Z masses, or $-1$ for the default values.
+
+\VARIN{double precision CKMlambda, CKMA, CKMrhobar, CKMetabar}
+the CKM input parameters $\lambda$, $A$, $\bar\rho$, and $\bar\eta$ in 
+Wolfenstein parameterization, or $-1$ for the default values.  The CKM 
+matrix is computed as
+$$
+\text{CKM} = \begin{pmatrix}
+\ct{12}\ct{13} &
+	\st{12}\ct{13} &
+		\st{13}^* \\
+-\st{12}\ct{23} - \ct{12}\st{23}\st{13} &
+	\ct{12}\ct{23} - \st{12}\st{23}\st{13} &
+		\st{23}\ct{13} \\
+\st{12}\st{23} - \ct{12}\st{23}\st{13} &
+	-\ct{12}\st{23} - \st{12}\ct{23}\st{13} &
+		\ct{23}\ct{13}
+\end{pmatrix}
+$$
+where $\st{12} = \lambda$, $\st{23} = A\lambda^2$,
+$\st{13} = \dfrac
+  {A\lambda^3 (\bar\rho + \ri\bar\eta) \sqrt{1 - A^2\lambda^4}}
+  {\sqrt{1 - \lambda^2} (1 - A^2\lambda^4 (\bar\rho + \ri\bar\eta)}$
+and $\ct{ij} = \sqrt{1 - |s_{ij}|^2}$.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHRetrieveSMPara}
+
+\DESCRIPTION
+
+\CODE{FHRetrieveSMPara} retrieves the SM input parameters from 
+FeynHiggs.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error
+double precision invAlfa, AlfasMZ, GF
+double precision ME, MU, MD, MM, MC, MS, ML, MB
+double precision MW, MZ
+double precision CKMlambda, CKMA, CKMrhobar, CKMetabar
+
+subroutine FHRetrieveSMPara(error,
+  invAlfa, AlfasMZ, GF,
+  ME, MU, MD, MM, MC, MS, ML, MB,
+  MW, MZ,
+  CKMlambda, CKMA, CKMrhobar, CKMetabar)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHRetrieveSMPara[]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{RetrieveSMPara.F}
+from which the error message was emitted.
+
+\VAROUT{double precision invAlfa}
+the value of electromagnetic coupling constant $\alpha^{-1}$.
+
+\VAROUT{double precision AlfasMZ}
+the value of the strong coupling constant $\alpha_s(M_Z)$.
+
+\VAROUT{double precision GF}
+the value of the Fermi constant $G_F$.
+
+\VAROUT{double precision ME, MM, ML}
+the on-shell electron, muon, tauon mass.
+
+\VAROUT{double precision MU, MD, MS}
+the up, down, and strange quark masses at 2 GeV.
+
+\VAROUT{double precision MC, MB}
+the charm mass at $m_c$ and bottom mass at $m_b$.
+
+\VAROUT{double precision MW, MZ}
+the W and Z masses.
+
+\VAROUT{double precision CKMlambda, CKMA, CKMrhobar, CKMetabar}
+the CKM input parameters $\lambda$, $A$, $\bar\rho$, $\bar\eta$ in
+Wolfenstein parameterization.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHGetSMPara}
+
+\DESCRIPTION
+
+\CODE{FHGetSMPara} returns the SM parameters computed from the input
+values by \CODE{FHSetSMPara}.  The flags and SM parameters must have
+been set before with \CODE{FHSetFlags} and \CODE{FHSetSMPara}.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error
+double complex CKM(3,3)
+
+subroutine FHGetSMPara(error, CKM)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHGetSMPara[]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{GetSMPara.F}
+from which the error message was emitted.
+
+\VAROUT{double complex CKM($g_1$,$g_2$)}
+the CKM matrix.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHSetPara}
+
+\DESCRIPTION
+
+\CODE{FHSetPara} sets up the parameters for FeynHiggs.  From the given
+input values it computes the remaining MSSM parameters (masses and
+mixing matrices).  The flags must have been set before with
+\CODE{FHSetFlags}.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error
+double precision scalefactor
+double precision MT, TB, MA0, MHp
+double precision M3SL, M3SE, M3SQ, M3SU, M3SD
+double precision M2SL, M2SE, M2SQ, M2SU, M2SD
+double precision M1SL, M1SE, M1SQ, M1SU, M1SD
+double complex MUE, M_1, M_2, M_3
+double complex At, Ab, Atau, Ac, As, Amu, Au, Ad, Ae
+double precision Qtau, Qt, Qb
+
+subroutine FHSetPara(error, scalefactor,
+  MT, TB, MA0, MHp,
+  M3SL, M3SE, M3SQ, M3SU, M3SD,
+  M2SL, M2SE, M2SQ, M2SU, M2SD,
+  M1SL, M1SE, M1SQ, M1SU, M1SD,
+  MUE,
+  Atau, At, Ab, Amu, Ac, As, Ae, Au, Ad,
+  M_1, M_2, M_3,
+  Qtau, Qt, Qb)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHSetPara[scalefactor,
+  MT, TB, MA0, MHp,
+  M3SL, M3SE, M3SQ, M3SU, M3SD,
+  M2SL, M2SE, M2SQ, M2SU, M2SD,
+  M1SL, M1SE, M1SQ, M1SU, M1SD,
+  MUE,
+  Atau, At, Ab, Amu, Ac, As, Ae, Au, Ad,
+  M_1, M_2, M_3,
+  Qtau, Qt, Qb]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{SetPara.F}
+from which the error message was emitted.
+
+\VARIN{double precision scalefactor}
+the renormalization scale is $m_t$ times the \CODE{scalefactor}.
+
+\VARIN{double precision MT}
+the top-quark mass.
+
+\VARIN{double precision TB}
+the ratio of the Higgs vacuum expectation values, $\tan\beta$.
+
+\VARIN{double precision MA0, MHp}
+the masses of the CP-odd and charged Higgs, respectively.  Only one 
+should be given: if $\mathtt{MA0} \geqslant 0$, \CODE{MA0} is taken 
+as input, otherwise \CODE{MHp} is used.
+
+\VARIN{double precision M$g$SL, M$g$SE, M$g$SQ, M$g$SU, M$g$SD, $g = 1\dots 3$}
+the soft-SUSY breaking parameters for the $g$-th generation in the
+sfermion sector, specifically: M$g$SL for the slepton doublet, M$g$SE
+for the slepton singlet, M$g$SQ for the squark doublet, M$g$SU for the
+up-type squark singlet, and M$g$SD for the down-type squark singlet.
+
+\VARIN{double complex MUE}
+the Higgs mixing parameter $\mu$.
+
+\VARIN{double complex Ae, Amu, Atau, Au, Ac, At, Ad, As, Ab}
+the soft-SUSY breaking parameters.  To give an example (and thus fix 
+the notation) the stop mass matrix is given by ($D_t^{1,2}$ are the 
+D-terms):
+$$
+\begin{pmatrix}
+\mathtt{M3SQ}^2 + \mathtt{MT}^2 + D_t^1 &
+	\mathtt{MT}\,(\mathtt{At}^* - \mathtt{MUE}/\mathtt{TB}) \\
+\mathtt{MT}\,(\mathtt{At} - \mathtt{MUE}^*/\mathtt{TB}) &
+	\mathtt{M3SU}^2 + \mathtt{MT}^2 + D_t^2
+\end{pmatrix}
+$$
+
+\VARIN{double complex M\uscore 1, M\uscore 2, M\uscore 3}
+the gaugino mass parameters.  If zero is passed for \CODE{M\uscore 1}, 
+the GUT relation is used.
+
+\VARIN{double precision Qtau, Qt, Qb}
+the scales at which the sfermion input parameters 
+\CODE{M3S\{L,E,Q,U,D\}} are given.  There are two special cases:
+\begin{itemize}
+\item The value $0$ indicates on-shell parameters.
+
+\item The value $-1$ selects the scale $\sqrt{\tilde m_t^1\tilde m_t^2}$.
+      The procedure is: compute the sfermion masses from the given input 
+      parameter, run them to the on-shell scale, and extract the 
+      on-shell input parameters from the latter.
+\end{itemize}
+\CODE{Qtau} is presently not used.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHRetrievePara}
+
+\DESCRIPTION
+
+\CODE{FHRetrievePara} retrieves the input parameters from FeynHiggs.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error
+double precision scalefactor
+double precision MT, TB, MA0, MHp
+double precision M3SL, M3SE, M3SQ, M3SU, M3SD
+double precision M2SL, M2SE, M2SQ, M2SU, M2SD
+double precision M1SL, M1SE, M1SQ, M1SU, M1SD
+double complex MUE, M_1, M_2, M_3
+double complex At, Ab, Atau, Ac, As, Amu, Au, Ad, Ae
+double precision Qtau, Qt, Qb
+
+subroutine FHRetrievePara(error, scalefactor,
+  MT, TB, MA0, MHp,
+  M3SL, M3SE, M3SQ, M3SU, M3SD,
+  M2SL, M2SE, M2SQ, M2SU, M2SD,
+  M1SL, M1SE, M1SQ, M1SU, M1SD,
+  MUE,
+  Atau, At, Ab, Amu, Ac, As, Ae, Au, Ad,
+  M_1, M_2, M_3,
+  Qtau, Qt, Qb)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHRetrievePara[]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{RetrievePara.F}
+from which the error message was emitted.
+
+\VAROUT{double precision scalefactor}
+the renormalization scale is $m_t$ times the \CODE{scalefactor}.
+
+\VAROUT{double precision MT}
+the top-quark mass.
+
+\VAROUT{double precision TB}
+the ratio of the Higgs vacuum expectation values, $\tan\beta$.
+
+\VAROUT{double precision MA0, MHp}
+the masses of the CP-odd and charged Higgs, respectively.
+
+\VAROUT{double precision M$g$SL, M$g$SE, M$g$SQ, M$g$SU, M$g$SD, $g = 1\dots 3$}
+the soft-SUSY breaking parameters for the $g$-th generation in the
+sfermion sector, specifically: M$g$SL for the slepton doublet, M$g$SE
+for the slepton singlet, M$g$SQ for the squark doublet, M$g$SU for the
+up-type squark singlet, and M$g$SD for the down-type squark singlet.
+
+\VAROUT{double complex MUE}
+the Higgs mixing parameter $\mu$.
+
+\VAROUT{double complex Ae, Amu, Atau, Au, Ac, At, Ad, As, Ab}
+the soft-SUSY breaking parameters.
+
+\VAROUT{double complex M\uscore 1, M\uscore 2, M\uscore 3}
+the gaugino mass parameters.
+
+\VAROUT{double precision Qtau, Qt, Qb}
+the scales at which the sfermion input parameters 
+\CODE{M3S\{L,E,Q,U,D\}} are given.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHRetrieveOSPara}
+
+\DESCRIPTION
+
+\CODE{FHRetrieveOSPara} retrieves the on-shell input parameters from 
+FeynHiggs.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error
+double precision scalefactor
+double precision MT, TB, MA0, MHp
+double precision M3SL, M3SE, M3SQ, M3SU, M3SD
+double precision M2SL, M2SE, M2SQ, M2SU, M2SD
+double precision M1SL, M1SE, M1SQ, M1SU, M1SD
+double complex MUE, M_1, M_2, M_3
+double complex At, Ab, Atau, Ac, As, Amu, Au, Ad, Ae
+
+subroutine FHRetrieveOSPara(error, scalefactor,
+  MT, TB, MA0, MHp,
+  M3SL, M3SE, M3SQ, M3SU, M3SD,
+  M2SL, M2SE, M2SQ, M2SU, M2SD,
+  M1SL, M1SE, M1SQ, M1SU, M1SD,
+  MUE,
+  Atau, At, Ab, Amu, Ac, As, Ae, Au, Ad,
+  M_1, M_2, M_3)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHRetrieveOSPara[]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{RetrieveOSPara.F}
+from which the error message was emitted.
+
+\VAROUT{double precision scalefactor}
+the renormalization scale is $m_t$ times the \CODE{scalefactor}.
+
+\VAROUT{double precision MT}
+the top-quark mass.
+
+\VAROUT{double precision TB}
+the ratio of the Higgs vacuum expectation values, $\tan\beta$.
+
+\VAROUT{double precision MA0, MHp}
+the masses of the CP-odd and charged Higgs, respectively.
+
+\VAROUT{double precision M$g$SL, M$g$SE, M$g$SQ, M$g$SU, M$g$SD, $g = 1\dots 3$}
+the soft-SUSY breaking parameters for the $g$-th generation in the
+sfermion sector, specifically: M$g$SL for the slepton doublet, M$g$SE
+for the slepton singlet, M$g$SQ for the squark doublet, M$g$SU for the
+up-type squark singlet, and M$g$SD for the down-type squark singlet.
+
+\VAROUT{double complex MUE}
+the Higgs mixing parameter $\mu$.
+
+\VAROUT{double complex Ae, Amu, Atau, Au, Ac, At, Ad, As, Ab}
+the soft-SUSY breaking parameters.
+
+\VAROUT{double complex M\uscore 1, M\uscore 2, M\uscore 3}
+the gaugino mass parameters.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHSetSLHA}
+
+\DESCRIPTION
+
+\CODE{FHSetSLHA} is the companion routine to \CODE{FHSetPara}.  It
+extracts the parameters for FeynHiggs from SUSY Les Houches Accord
+(SLHA) data.  In Fortran, it reads the data from the slhadata array used
+by the SLHA library, in Mathematica it reads the data from the SLHA file
+directly.  As with \CODE{FHSetPara}, the flags must have been set
+before with \CODE{FHSetFlags}.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+#include "SLHA.h"
+
+integer error
+double complex slhadata(nslhadata)
+
+subroutine FHSetSLHA(error, slhadata)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHSetSLHA[slhafile]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{SetSLHA.F} 
+from which the error message was emitted.
+
+\VARIN{double complex slhadata($i$)}
+the SLHA data structure.  The \CODE{slhadata} array should never be
+accessed directly, but only through the preprocessor macros defined in 
+\CODE{SLHADefs.h}.
+
+\VARIN{String slhafile}
+the name of the file from which to read the SLHA data.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHSetNMFV}
+
+\DESCRIPTION
+
+\CODE{FHSetNMFV} sets the non-minimal flavour-violating parameters,
+\ie the off-diagonal entries of the SUSY-breaking parameters 
+$M_{\tilde Q}$, $M_{\tilde U}$ and $M_{\tilde D}$, and $A_{u,d}$.
+
+The $6\times 6$ sfermion mass matrices are
+\begin{align*}
+M_{\tilde u}^2 &= \begin{pmatrix}
+V M^2_{\tilde Q} V^\dagger & K_u \\
+K_u^* & M^2_{\tilde U}
+\end{pmatrix} +
+\begin{pmatrix}
+(\frac 12 - \frac 23 s_W^2) m_Z^2\cos 2\beta + m_{u_i}^2 &
+  -m_{u_i}\mu^* \cot\beta \\
+-m_{u_i}\mu \cot\beta &
+  \frac 23 s_W^2 m_Z^2\cos 2\beta + m_{u_i}^2
+\end{pmatrix}, \\
+M_{\tilde d}^2 &= \begin{pmatrix}
+M^2_{\tilde Q} & K_d \\
+K_d^* & M^2_{\tilde D}
+\end{pmatrix} +
+\begin{pmatrix}
+(-\frac 12 + \frac 13 s_W^2) m_Z^2\cos 2\beta + m_{d_i}^2 &
+  -m_{d_i}\mu^* \tan\beta \\
+-m_{d_i}\mu \tan\beta &
+  -\frac 13 s_W^2 m_Z^2\cos 2\beta + m_{d_i}^2
+\end{pmatrix},
+\end{align*}
+where $V$ is the CKM matrix and $(K_q)_{ij} = m_{q_i} (A_q)_{ij}$.
+
+The NMFV parameters are given as dimensionless quantities 
+$\delta^{XY}_{ij}$ which are scaled by diagonal entries of 
+the SUSY-breaking masses $M_{\tilde Q,\tilde U,\tilde D}$:
+\begin{align*}
+(M_{\tilde Q}^2)_{ij} &=
+  \sqrt{(M_{\tilde Q}^2)_{ii} (M_{\tilde Q}^2)_{jj}}\,
+  \delta_{ij}^{\rL\rL}\,, \qquad i\neq j \\
+(M_{\tilde R}^2)_{ij} &=
+  \sqrt{(M_{\tilde R}^2)_{ii} (M_{\tilde R}^2)_{jj}}\,
+  \delta_{q_i q_j}^{\rR\rR}\,, \qquad R = U, D \\
+(K_q)_{ij} &=
+  \sqrt{(M_{\tilde Q}^2)_{ii} (M_{\tilde R}^2)_{jj}}\,
+  \delta_{q_i q_j}^{\rL\rR}\,.
+\end{align*}
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error
+double complex deltaQLL12, deltaQLL23, deltaQLL13
+double complex deltaULR12, deltaULR23, deltaULR13
+double complex deltaURL12, deltaURL23, deltaURL13
+double complex deltaURR12, deltaURR23, deltaURR13
+double complex deltaDLR12, deltaDLR23, deltaDLR13
+double complex deltaDRL12, deltaDRL23, deltaDRL13
+double complex deltaDRR12, deltaDRR23, deltaDRR13
+
+subroutine FHSetNMFV(error,
+  deltaQLL12, deltaQLL23, deltaQLL13,
+  deltaULR12, deltaULR23, deltaULR13,
+  deltaURL12, deltaURL23, deltaURL13,
+  deltaURR12, deltaURR23, deltaURR13,
+  deltaDLR12, deltaDLR23, deltaDLR13,
+  deltaDRL12, deltaDRL23, deltaDRL13,
+  deltaDRR12, deltaDRR23, deltaDRR13)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHSetNMFV[
+  deltaQLL12, deltaQLL23, deltaQLL13,
+  deltaULR12, deltaULR23, deltaULR13,
+  deltaURL12, deltaURL23, deltaURL13,
+  deltaURR12, deltaURR23, deltaURR13,
+  deltaDLR12, deltaDLR23, deltaDLR13,
+  deltaDRL12, deltaDRL23, deltaDRL13,
+  deltaDRR12, deltaDRR23, deltaDRR13]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{SetFV.F} 
+from which the error message was emitted.
+
+\VARIN{double complex delta$F$$XY$$ij$, $F$ = Q,U,D, $XY$ = LR,RL,RR,
+$ij$ = 12,23,13}
+
+the dimensionless off-diagonal NMFV parameters $(\delta^F)^{XY}_{ij}$.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHRetrieveNMFV}
+
+\DESCRIPTION
+
+\CODE{FHRetrieveNMFV} retrieves the non-minimal flavour-violating
+parameters, defined as in \CODE{FHSetNMFV}.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error
+double complex deltaQLL12, deltaQLL23, deltaQLL13
+double complex deltaULR12, deltaULR23, deltaULR13
+double complex deltaURL12, deltaURL23, deltaURL13
+double complex deltaURR12, deltaURR23, deltaURR13
+double complex deltaDLR12, deltaDLR23, deltaDLR13
+double complex deltaDRL12, deltaDRL23, deltaDRL13
+double complex deltaDRR12, deltaDRR23, deltaDRR13
+
+subroutine FHRetrieveNMFV(error,
+  deltaQLL12, deltaQLL23, deltaQLL13,
+  deltaULR12, deltaULR23, deltaULR13,
+  deltaURL12, deltaURL23, deltaURL13,
+  deltaURR12, deltaURR23, deltaURR13,
+  deltaDLR12, deltaDLR23, deltaDLR13,
+  deltaDRL12, deltaDRL23, deltaDRL13,
+  deltaDRR12, deltaDRR23, deltaDRR13)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHRetrieveNMFV[]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{RetrieveFV.F}
+from which the error message was emitted.
+
+\VAROUT{double complex delta$F$$XY$$ij$, $F$ = Q,U,D, $XY$ = LR,RL,RR,
+$ij$ = 12,23,13}
+
+the dimensionless off-diagonal NMFV parameters $(\delta^F)^{XY}_{ij}$.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHSetLFV}
+
+\DESCRIPTION
+
+\CODE{FHSetLFV} sets the lepton-flavour-violating parameters,
+\ie the off-diagonal entries of the SUSY-breaking parameters 
+$M_{\tilde L}$, $M_{\tilde E}$, and $A_e$.  These are defined
+analogously to the NMFV parameters (see \CODE{FHSetNMFV}).
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error
+double complex deltaLLL12, deltaLLL23, deltaLLL13
+double complex deltaELR12, deltaELR23, deltaELR13
+double complex deltaERL12, deltaERL23, deltaERL13
+double complex deltaERR12, deltaERR23, deltaERR13
+
+subroutine FHSetLFV(error,
+  deltaLLL12, deltaLLL23, deltaLLL13,
+  deltaELR12, deltaELR23, deltaELR13,
+  deltaERL12, deltaERL23, deltaERL13,
+  deltaERR12, deltaERR23, deltaERR13)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHSetLFV[
+  deltaLLL12, deltaLLL23, deltaLLL13,
+  deltaELR12, deltaELR23, deltaELR13,
+  deltaERL12, deltaERL23, deltaERL13,
+  deltaERR12, deltaERR23, deltaERR13]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{SetFV.F} 
+from which the error message was emitted.
+
+\VARIN{double complex delta$F$$XY$$ij$, $F$ = L,E, $XY$ = LR,RL,RR,
+$ij$ = 12,23,13}
+
+the dimensionless off-diagonal LFV parameters $(\delta^F)^{XY}_{ij}$.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHRetrieveLFV}
+
+\DESCRIPTION
+
+\CODE{FHRetrieveLFV} retrieves the lepton-flavour-violating parameters,
+defined as in \CODE{FHSetLFV}.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error
+double complex deltaLLL12, deltaLLL23, deltaLLL13
+double complex deltaELR12, deltaELR23, deltaELR13
+double complex deltaERL12, deltaERL23, deltaERL13
+double complex deltaERR12, deltaERR23, deltaERR13
+
+subroutine FHRetrieveLFV(error,
+  deltaLLL12, deltaLLL23, deltaLLL13,
+  deltaELR12, deltaELR23, deltaELR13,
+  deltaERL12, deltaERL23, deltaERL13,
+  deltaERR12, deltaERR23, deltaERR13)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHRetrieveLFV[]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{RetrieveFV.F} 
+from which the error message was emitted.
+
+\VAROUT{double complex delta$F$$XY$$ij$, $F$ = L,E, $XY$ = LR,RL,RR,
+$ij$ = 12,23,13}
+
+the dimensionless off-diagonal LFV parameters $(\delta^F)^{XY}_{ij}$.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHGetPara}
+
+\DESCRIPTION
+
+\CODE{FHGetPara} returns the sfermion, chargino, and neutralino masses
+and mixing matrices, and the correction to $m_b$ which were computed
+from the input parameters by \CODE{FHSetPara}.  The flags and
+parameters must have been set before with \CODE{FHSetFlags} and
+\CODE{FHSetPara}.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error, nmfv
+double precision MSf(2,4,3), MASf(6,4), MCha(2), MNeu(4)
+double complex USf(2,2,4,3), UASf(6,6,4)
+double complex UCha(2,2), VCha(2,2), ZNeu(4,4)
+double complex Deltab
+double precision MGl
+double precision MHtree(4), SAtree
+
+subroutine FHGetPara(error, nmfv, MSf, USf, MASf, UASf,
+  MCha, UCha, VCha, MNeu, ZNeu, Deltab, MGl,
+  MHtree, SAtree)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHGetPara[]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{GetPara.F}
+from which the error message was emitted.
+
+\VAROUT{integer nmfv}
+bit $t = 1\dots 4$ indicates whether non-minimal flavour violation is
+active for sfermion type $t$: $\nu$, e, u, d.
+
+\VAROUT{double precision MSf($s$,$t$,$g$)}
+the MFV squark masses, with indices \\
+\begin{tabular}{rcl}
+  $s = 1\dots 2$ && sfermion index, \\
+  $t = 1\dots 4$ && sfermion type: $\nu$, e, u, d, \\
+  $g = 1\dots 3$ && generation index.
+\end{tabular}
+
+\VAROUT{double complex USf($s_1$,$s_2$,$t$,$g$)}
+the MFV squark mixing matrices, with indices \\
+\begin{tabular}{rcl}
+  $s_1 = 1\dots 2$ && sfermion index (enumerates mass eigenstates), \\
+  $s_2 = 1\dots 2$ && sfermion index (enumerates gauge eigenstates, L/R), \\
+  $t = 1\dots 4$   && sfermion type: $\nu$, e, u, d, \\
+  $g = 1\dots 3$   && generation index.
+\end{tabular}
+
+\VAROUT{double precision MASf($a$,$t$)}
+the NMFV squark masses, with indices \\
+\begin{tabular}{rcl}
+  $a = 1\dots 6$ && extended sfermion index, \\
+  $t = 1\dots 4$ && sfermion type: $\nu$, e, u, d.
+\end{tabular}
+
+\VAROUT{double complex UASf($a_1$,$a_2$,$t$)}
+the NMFV squark mixing matrices, with indices \\
+\begin{tabular}{rcl}
+  $a_1 = 1\dots 6$ && extended sfermion index (enumerates mass eigenstates), \\
+  $a_2 = 1\dots 6$ && extended sfermion index (enumerates gauge eigenstates), \\
+  $t = 1\dots 4$   && sfermion type: $\nu$, e, u, d.
+\end{tabular}
+
+\VAROUT{double precision MCha($c$)}
+the chargino masses, with index \\
+\begin{tabular}{rcl}
+  $c = 1\dots 2$ && chargino index.
+\end{tabular}
+
+\VAROUT{double complex UCha($c_1$,$c_2$), VCha($c_1$,$c_2$)}
+the chargino mixing matrices, with indices \\
+\begin{tabular}{rcl}
+  $c_1 = 1\dots 2$ && chargino index (enumerates mass eigenstates), \\
+  $c_2 = 1\dots 2$ && chargino index (enumerates gauge eigenstates).
+\end{tabular}
+
+\VAROUT{double precision MNeu($n$)}
+the neutralino masses, with index \\
+\begin{tabular}{rcl}
+  $n = 1\dots 4$ && neutralino index.
+\end{tabular}
+
+\VAROUT{double complex ZNeu($n_1$,$n_2$)}
+the neutralino mixing matrix, with indices \\
+\begin{tabular}{rcl}
+  $n_1 = 1\dots 4$ && neutralino index (enumerates mass eigenstates), \\
+  $n_2 = 1\dots 4$ && neutralino index (enumerates gauge eigenstates).
+\end{tabular}
+
+\VAROUT{double complex Deltab}
+the correction to the bottom Yukawa coupling, $\Delta_b$.
+
+\VAROUT{double precision MGl}
+the gluino mass.
+
+\VAROUT{double precision MHtree($h$)}
+the tree-level Higgs masses, in the order $m_h$, $m_H$, $m_A$, 
+$m_{H^\pm}$.
+
+\VAROUT{double precision SAtree}
+the tree-level Higgs mixing parameter $\sin\alpha$.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHGetTLPara}
+
+\DESCRIPTION
+
+\CODE{FHGetTLPara} returns the sfermion parameters used in the one-loop 
+computation of the neutral Higgs masses to be consistent with the two-loop
+parts.
+
+\emph{Do not use this function unless you know precisely what you are 
+doing.}
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error
+double precision MSb(2), MbSL2
+double complex USb(2,2), Deltab
+
+subroutine FHGetTLPara(error, MSb, USb, MbSL2, Deltab)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHGetTLPara[]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{error}
+zero if successful, otherwise the line number in \CODE{GetTLPara.F}
+from which the error message was emitted.
+
+\VAROUT{MSb}
+the sbottom masses.
+
+\VAROUT{USb}
+the sbottom mixing matrix.
+
+\VAROUT{MbSL2}
+the doublet squark soft-breaking mass squared for the sbottom
+including corrections.
+
+\VAROUT{Deltab}
+the correction to the bottom Yukawa coupling, $\Delta_b$.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHGetNMFV}
+
+\DESCRIPTION
+
+\CODE{FHGetNMFV} returns the NMFV SUSY breaking parameters computed from the
+deltas set by \CODE{FHSetNMFV} and \CODE{FHSetLFV}.  In the MFV case, the
+matrices are returned in the same way only that they are diagonal.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error
+double complex MSS2(3,3,5), Kf(3,3,2:4)
+
+subroutine FHGetNMFV(error, MSS2, Kf)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHGetNMFV[]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{GetNMFV.F}
+from which the error message was emitted.
+
+\VAROUT{double complex MSS2($g_1$,$g_2$,$n$)}
+the $3\times 3$ sfermion mass parameter matrices, where the last index $n$
+runs over 1 = slepton doublet, 2 = slepton singlet, 3 = squark doublet,
+4 = up-type squark singlet, 5 = down-type squark singlet.
+
+\VAROUT{double complex Kf($g_1$,$g_2$,$t$)}
+the $3\times 3$ trilinear coupling matrices multiplied by the corresponding
+fermion mass, \ie $K_f = m_f A_f$, where the last index $t$ runs over
+2 = slepton, 3 = up-type squark, 4 = down-type squark.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHGetSelf}
+
+\DESCRIPTION
+
+\CODE{FHGetSelf} returns the renormalized Higgs self-energies at a given
+$k^2$.  The flags and parameters must have been set before with
+\CODE{FHSetFlags} and \CODE{FHSetPara}.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error
+double precision k2
+integer key, dkey
+double complex sig(13), dsig(13)
+integer h0h0, HHHH, A0A0, HmHp
+integer h0HH, h0A0, HHA0
+integer G0G0, h0G0, HHG0, A0G0
+integer GmGp, HmGp
+parameter (h0h0 = 1, HHHH = 2, A0A0 = 3, HmHp = 4)
+parameter (h0HH = 5, h0A0 = 6, HHA0 = 7)
+parameter (G0G0 = 8, h0G0 = 9, HHG0 = 10, A0G0 = 11)
+parameter (GmGp = 12, HmGp = 13)
+
+#define Key(se) 2**(se-1)
+
+subroutine FHGetSelf(error, k2, key, sig, dkey, dsig)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHGetSelf[k2, key, dkey]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{GetSelf.F}
+from which the error message was emitted.
+
+\VARIN{k2}
+the $k^2$ at which the self-energies are evaluated.
+
+\VARIN{key}
+a flag determining which of the self-energies are actually evaluated,
+\eg to evaluate the $h^0$ self-energy, add \CODE{Key(h0h0)} to
+\CODE{key}.
+
+\VAROUT{sig(h0h0), sig(HHHH), sig(A0A0), sig(HmHp)}
+the $h^0$, $H^0$, $A^0$, and $H^+$ self-energies at $k^2$ = k2.
+
+\VAROUT{sig(h0HH), sig(h0A0), sig(HHA0)}
+the $h^0$-$H^0$, $h^0$-$A^0$, and $H^0$-$A^0$ mixing self-energies at 
+$k^2$ = k2.
+
+\VAROUT{sig(G0G0), sig(h0G0), sig(HHG0), sig(A0G0)}
+the neutral Goldstone self-energies at $k^2$ = k2.
+
+\VAROUT{sig(GmGp), sig(HmGp)}
+the charged Goldstone self-energies at $k^2$ = k2.
+
+\VARIN{dkey}
+a flag determining which of the derivatives of the self-energies
+are actually evaluated, \eg to evaluate the derivative of the 
+$h^0$ self-energy, add \CODE{Key(h0h0)} to \CODE{dkey}.
+
+\VAROUT{dsig(i)}
+the derivatives of the self-energies with respect to $k^2$ at
+$k^2$ = k2, where the index \CODE{i} runs as for the \CODE{sig(i)}.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHAddSelf}
+
+\DESCRIPTION
+
+\CODE{FHAddSelf} allows the user to register shifts in the Higgs
+self-energies, to be used in the computation of the Higgs masses and
+mixings in \CODE{FHHiggsCorr}.  The flags and parameters must have been
+set before with \CODE{FHSetFlags} and \CODE{FHSetPara}.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error, rotate
+double complex sig(13)
+integer h0h0, HHHH, A0A0, HmHp
+integer h0HH, h0A0, HHA0
+integer G0G0, h0G0, HHG0, A0G0
+integer GmGp, HmGp
+parameter (h0h0 = 1, HHHH = 2, A0A0 = 3, HmHp = 4)
+parameter (h0HH = 5, h0A0 = 6, HHA0 = 7)
+parameter (G0G0 = 8, h0G0 = 9, HHG0 = 10, A0G0 = 11)
+parameter (GmGp = 12, HmGp = 13)
+
+subroutine FHAddSelf(error, sig, rotate)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHAddSelf[{sig[h0h0], ...}, rotate]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{AddSelf.F}
+from which the error message was emitted.
+
+\VARIN{sig(h0h0), sig(HHHH), sig(A0A0), sig(HmHp)}
+the $h^0$, $H^0$, $A^0$, and $H^+$ self-energy shifts.
+
+\VARIN{sig(h0HH), sig(h0A0), sig(HHA0)}
+the $h^0$-$H^0$, $h^0$-$A^0$, and $H^0$-$A^0$ mixing self-energy shifts.
+
+\VARIN{sig(G0G0), sig(h0G0), sig(HHG0), sig(A0G0)}
+the neutral Goldstone self-energy shifts.
+
+\VARIN{sig(GmGp), sig(HmGp)}
+the charged Goldstone self-energy shifts.
+
+\VARIN{rotate}
+a flag determining whether to rotate the CP-even self-energies with
+the (tree-level) angle $\alpha$, \ie if \CODE{rotate} $\neq 0$, the 
+\CODE{h0h0}, \CODE{HHHH}, and \CODE{h0HH} elements of the input array 
+\CODE{sig} are respectively assumed to contain the $\Phi_1$-$\Phi_1$, 
+$\Phi_2$-$\Phi_2$, and $\Phi_1$-$\Phi_2$ shifts.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHHiggsCorr}
+
+\DESCRIPTION
+
+\CODE{FHHiggsCorr} computes the values of the MSSM Higgs masses 
+according to the given parameters and flags.  These must have been set 
+before with \CODE{FHSetFlags} and \CODE{FHSetPara}.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error
+double precision MHiggs(4)
+double complex SAeff, UHiggs(3,3), ZHiggs(3,3)
+
+subroutine FHHiggsCorr(error, MHiggs, SAeff, UHiggs, ZHiggs)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHHiggsCorr[]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{HiggsCorr.F}
+from which the error message was emitted.
+
+\VAROUT{double precision MHiggs($i$)}
+the Higgs masses, where \\
+  \CODE{MHiggs(1)} = $m_1$ (= $m_h$ in the rMSSM), \\
+  \CODE{MHiggs(2)} = $m_2$ (= $m_H$ in the rMSSM), \\
+  \CODE{MHiggs(3)} = $m_3$ (= $m_A$ in the rMSSM), \\
+  \CODE{MHiggs(4)} = $m_{H^\pm}$,
+
+\VAROUT{double complex SAeff}
+the sine of the effective Higgs mixing angle, $\alpha_{\text{eff}}$.
+With the knowledge of the full mixing matrix \CODE{UHiggs}, this 
+is of course a somewhat redundant output.
+
+\VAROUT{double complex UHiggs}
+the matrix needed to rotate the Higgs mass matrix to its diagonal form.
+
+\VAROUT{double complex ZHiggs}
+the matrix of Z-factors needed to combine amplitudes involving on-shell
+Higgs bosons.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHUncertainties}
+
+\DESCRIPTION
+
+\CODE{FHUncertainties} computes estimates for the Higgs masses and
+mixings.  Currently three effects are taken into account:
+\begin{enumerate}
+\item
+the variation of the renormalization scale from $m_t/2$ to $2 m_t$,
+
+\item
+the use of $m_t^{\text{pole}}$ instead of $m_t^{\text{run}}$ in the 
+two-loop corrections (only if the \CODE{tl\uscore running\uscore mt} 
+flag is set, of course), and
+
+\item
+the exclusion of higher-order resummation effects in $m_b$.
+\end{enumerate}
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error
+double precision DeltaMHiggs(4)
+double complex DeltaSAeff, DeltaUHiggs(3,3), DeltaZHiggs(3,3)
+
+subroutine FHUncertainties(error,
+  DeltaMHiggs, DeltaSAeff, DeltaUHiggs, DeltaZHiggs)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHUncertainties[]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{.F}
+from which the error message was emitted.
+
+\VAROUT{double precision DeltaMHiggs($i$)}
+the uncertainties of the Higgs masses, where \\
+  \CODE{DeltaMHiggs(1)} = $\Delta m_1$ (= $\Delta m_h$ in the rMSSM), \\
+  \CODE{DeltaMHiggs(2)} = $\Delta m_2$ (= $\Delta m_H$ in the rMSSM), \\
+  \CODE{DeltaMHiggs(3)} = $\Delta m_3$ (= $\Delta m_A$ in the rMSSM), \\
+  \CODE{DeltaMHiggs(4)} = $\Delta m_{H^\pm}$,
+
+\VAROUT{double complex DeltaSAeff}
+the uncertainty of the sine of the effective Higgs mixing angle,
+
+\VAROUT{double complex DeltaUHiggs, DeltaZHiggs}
+the (component-wise) uncertainties of the Higgs mixing matrices
+\CODE{UHiggs} and \CODE{ZHiggs}.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHCouplings}
+
+\DESCRIPTION
+
+\CODE{FHCouplings} computes the Higgs couplings, decay widths, and
+branching ratios.  It uses the Higgs masses and mixings computed during
+the last invocation of \CODE{FHHiggsCorr}.  The flags and parameters
+must have been set before with \CODE{FHSetFlags} and \CODE{FHSetPara} or 
+\CODE{FHSetSLHA}.
+
+The arrays passed to FHCouplings should never be accessed directly, but
+only through the preprocessor macros defined in \CODE{FHCouplings.h},
+which needs to be included once per file.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+#include "FHCouplings.h"
+
+integer error
+double complex couplings(ncouplings), couplingsms(ncouplingsms)
+double precision gammas(ngammas), gammasms(ngammasms)
+integer fast
+
+subroutine FHCouplings(error,
+  couplings, couplingsms,
+  gammas, gammasms, fast)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHCouplings[fast:1]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{Couplings.F} from 
+which the error message was emitted.
+
+\VAROUT{double complex couplings($i$)}
+the MSSM Higgs couplings.  This array is indexed with preprocessor 
+macros (see below).
+
+\VAROUT{double complex couplingsms($i$)}
+the couplings of a Standard Model Higgs with the same mass as the 
+respective MSSM Higgs.  This array is indexed with preprocessor macros 
+(see below).
+
+\VAROUT{double precision gammas($i$)}
+the Higgs decay widths and branching ratios.  This array is indexed with
+preprocessor macros (see below).
+
+\VAROUT{double precision gammasms($i$)}
+the decay widths and branching ratios of a Standard Model Higgs with the
+same mass as the respective MSSM Higgs.  This array is indexed with
+preprocessor macros (see below).
+
+\VAROUT{integer fast}
+a flag indicating whether the off-diagonal fermion decays shall be
+computed.  Unless the decays $h_i\to f_j f_k$ ($j \neq k$) are explicitly
+needed, they may safely be ignored, as they hardly contribute to the
+total cross-section.
+
+\ENDARGUMENTS
+
+\DETAILS{Total Decay Widths}
+
+The following quantities are implemented as preprocessor macros and map
+onto the \CODE{gammas} and \CODE{gammasms} arrays.  The latter arrays
+should never be used directly.  The macros are defined in
+\CODE{FHCouplings.h}.
+
+\BEGINDETAILS
+
+\MACRO{double precision GammaTot($h$), $h = 1\dots 4$}
+The total width of the MSSM Higgs boson, where $h$ enumerates
+$h_1$ ($h_0$ in the rMSSM), $h_2$ ($H_0$ in the rMSSM), $h_3$ ($A_0$ in 
+the rMSSM), and $H^\pm$.
+
+\MACRO{double precision GammaSMTot($h$), $h = 1\dots 3$}
+The total width of a Standard Model Higgs boson with the same mass as
+the respective MSSM Higgs boson, where $h$ enumerates $h_1$ ($h_0$ in
+the rMSSM), $h_2$ ($H_0$ in the rMSSM), and $h_3$ ($A_0$ in the rMSSM).
+
+\ENDDETAILS
+
+\DETAILS{Couplings, Partial Decay Widths, and Branching Ratios}
+
+The following quantities are implemented as preprocessor macros and map
+onto the \CODE{couplings}, \CODE{couplingsms}, \CODE{gammas}, and
+\CODE{gammasms} arrays.  The latter arrays should never be used
+directly.  The macros are defined in \CODE{FHCouplings.h}.
+
+\BEGINDETAILS
+
+\MACRO{double complex Coupling($c$)}
+The coupling for the scalar or vector channel $c$.
+
+\MACRO{double complex LCoupling($c$), RCoupling($c$)}
+The left- and right-handed couplings for the fermionic channel $c$, 
+\ie the coupling is
+$$
+\CODE{LCoupling($c$)} \frac{1 - \gamma_5}{2} +
+\CODE{RCoupling($c$)} \frac{1 + \gamma_5}{2}\,.
+$$
+Equating this to $S + \mathrm{i}\gamma_5 P$, the scalar and pseudo-scalar 
+coefficients are trivially obtained as
+\begin{align*}
+S &= \frac 12\left(\CODE{RCoupling($c$)} +
+                   \CODE{LCoupling($c$)}\right), \\
+P &= \frac 1{2\mathrm{i}}\left(\CODE{RCoupling($c$)} -
+                   \CODE{LCoupling($c$)}\right).
+\end{align*}
+
+The couplings are given in the conventions of the MSSM model file of
+FeynArts.  For couplings where the order is essential, the following
+rules apply:   
+\begin{itemize}
+\item A charged Higgs at position 1 is always the particle, \ie $H^-$,
+  this fixes all other particles by charge conservation.
+\item For the \CODE{H0ChaCha} coupling, the first Chargino is the
+  particle, $\chi^-$, and the second one the antiparticle, $\chi^+$.
+\end{itemize}
+
+\MACRO{double complex CouplingSM($c$), LCouplingSM($c$), RCouplingSM($c$)}
+The coupling for the corresponding SM channel.
+
+\MACRO{double precision Gamma($c$), BR($c$)}
+The width and branching ratio for channel $c$.
+
+\MACRO{double precision GammaSM($c$), BRSM($c$)}
+The width and branching ratio of the corresponding SM channel.
+
+\ENDDETAILS
+
+\DETAILS{Channels}
+
+The following quantities are implemented as preprocessor macros and
+evaluate to an integer which indexes the appropriate arrays.  The macros
+are defined in \CODE{FHCouplings.h}. For example, \CODE{BR(H0FF(1,3,3,3))}
+extracts the $h_0\to t\bar t$ branching ratio.
+
+\BEGINDETAILS
+
+\MACRO{H0VV($h$,$\mathit{vv}$)}
+Neutral Higgs to Vector + Vector, where \\[.5ex]
+\begin{tabular}{rcl}
+  $h = 1\dots 3$ && Higgs:
+                    $h_1$ ($h_0$), $h_2$ ($H_0$), $h_3$ ($A_0$), \\
+  $vv = 1\dots 5$ && vector-boson pair:
+                    $\gamma\gamma$, $\gamma Z$, $ZZ$, $WW$, $gg$.
+\end{tabular}
+
+\MACRO{H0FF($h$,$t$,$g_1$,$g_2$)}
+Neutral Higgs to Fermion + Fermion, where \\[.5ex]
+\begin{tabular}{rcl}
+  $h = 1\dots 3$ && Higgs:
+                    $h_1$ ($h_0$), $h_2$ ($H_0$), $h_3$ ($A_0$), \\
+  $t = 1\dots 4$ && fermion type: $\nu$, e, u, d, \\
+  $g_1 = 1\dots 3$ && generation of fermion 1. \\
+  $g_2 = 1\dots 3$ && generation of fermion 2.
+\end{tabular}
+
+\MACRO{HpFF($p$,$g_1$,$g_2$)}
+Charged Higgs to Fermion + Fermion, where \\[.5ex]
+\begin{tabular}{rcl}
+  $p = 1\dots 2$ && decay products: leptons ($\nu$/e), quarks (u/d), \\
+  $g_1 = 1\dots 3$ && up-type fermion 1 generation, \\
+  $g_2 = 1\dots 3$ && down-type fermion 2 generation.
+\end{tabular}
+
+\MACRO{H0ChaCha($h$,$c_1$,$c_2$)}
+Neutral Higgs to Chargino + Chargino, where \\[.5ex]
+\begin{tabular}{rcl}
+  $h = 1\dots 3$ && Higgs:
+                    $h_1$ ($h_0$), $h_2$ ($H_0$), $h_3$ ($A_0$), \\
+  $c_1 = 1\dots 2$ && chargino 1, \\
+  $c_2 = 1\dots 2$ && chargino 2.
+\end{tabular}
+
+\MACRO{H0NeuNeu($h$,$n_1$,$n_2$)}
+Neutral Higgs to Neutralino + Neutralino, where \\[.5ex]
+\begin{tabular}{rcl}
+  $h = 1\dots 3$ && Higgs:
+                    $h_1$ ($h_0$), $h_2$ ($H_0$), $h_3$ ($A_0$), \\
+  $n_1 = 1\dots 4$ && neutralino 1, \\
+  $n_2 = 1\dots 4$ && neutralino 2.
+\end{tabular}
+
+\MACRO{HpNeuCha($n_1$,$c_2$)}
+Charged Higgs to Neutralino + Chargino, where \\[.5ex]
+\begin{tabular}{rcl}
+  $n_1 = 1\dots 4$ && neutralino, \\
+  $c_2 = 1\dots 2$ && chargino.
+\end{tabular}
+
+\MACRO{H0HV($h$,$\mathit{hv}$)}
+Neutral Higgs to Higgs + Vector, where \\[.5ex]
+\begin{tabular}{rcl}
+  $h = 1\dots 3$ && decaying Higgs:
+                    $h_1$ ($h_0$), $h_2$ ($H_0$), $h_3$ ($A_0$), \\
+  $\mathit{hv} = 1\dots 3$ && produced pair:
+                    $h_1$--Z ($h_0$--Z),
+                    $h_2$--Z ($H_0$--Z),
+                    $h_3$--Z ($A_0$--Z).
+\end{tabular}
+
+\MACRO{HpHV($\mathit{hv}$)}
+Charged Higgs to Higgs + Vector, where \\[.5ex]
+\begin{tabular}{rcl}
+  $\mathit{hv} = 1\dots 3$ && produced pair:
+                    $h_1$--W ($h_0$--W),
+                    $h_2$--W ($H_0$--W),
+                    $h_3$--W ($A_0$--W).
+\end{tabular}
+
+\MACRO{H0HH($h$,$h_1$,$h_2$)}
+Neutral Higgs to Higgs + Higgs, where \\[.5ex]
+\begin{tabular}{rcl}
+  $h = 1\dots 3$ && decaying Higgs:
+                    $h_1$ ($h_0$), $h_2$ ($H_0$), $h_3$ ($A_0$), \\
+  $h_1 = 1\dots 4$ && produced Higgs 1:
+                    $h_1$ ($h_0$), $h_2$ ($H_0$), $h_3$ ($A_0$), $H_\pm$, \\
+  $h_2 = 1\dots 4$ && produced Higgs 1:
+                    $h_1$ ($h_0$), $h_2$ ($H_0$), $h_3$ ($A_0$), $H_\pm$.
+\end{tabular}
+
+\MACRO{H0SfSf($h$,$s_1$,$s_2$,$t$,$g$)}
+Neutral Higgs to Sfermion + Sfermion, where \\[.5ex]
+\begin{tabular}{rcl}
+  $h = 1\dots 3$ && Higgs:
+                    $h_1$ ($h_0$), $h_2$ ($H_0$), $h_3$ ($A_0$), \\
+  $s_1 = 1\dots 2$ && sfermion 1, \\
+  $s_2 = 1\dots 2$ && sfermion 2, \\
+  $t = 1\dots 4$ && sfermion type: $\nu$, e, u, d, \\
+  $g = 1\dots 3$ && common sfermion generation.
+\end{tabular}
+
+\MACRO{HpSfSf($s_1$,$s_2$,$p$,$g_1$,$g_2$)}
+Charged Higgs to Sfermion + Sfermion, where \\[.5ex]
+\begin{tabular}{rcl}
+  $s_1 = 1\dots 2$ && sfermion 1, \\
+  $s_2 = 1\dots 2$ && sfermion 2, \\
+  $p = 1\dots 2$ && decay products:
+                    sleptons ($\tilde\nu$/$\mathrm{\tilde e}$),
+                    squarks ($\mathrm{\tilde u}$/$\mathrm{\tilde d}$), \\
+  $g_1 = 1\dots 3$ && up-type sfermion 1 generation, \\
+  $g_2 = 1\dots 3$ && up-type sfermion 2 generation.
+\end{tabular}
+
+\MACRO{tBF($i$)}
+Top quark to boson + fermion, where \\[.5ex]
+\begin{tabular}{rcl}
+  $i = 1\dots 2$ && W + bottom, charged Higgs + bottom
+\end{tabular}
+
+\ENDDETAILS
+
+\DETAILS{Mathematica Usage}
+
+Mathematica and Fortran share the same names for the channels, but due
+to the structure of the Mathematica output, the results have to be
+accessed in a slightly different way.
+
+To access the $h_0 \to t\bar t$ decay, for example, one would in 
+Mathematica use
+\begin{verbatim}
+  couplings = FHCouplings[];
+  h0ff = Gamma[H0FF] /. couplings;
+  h0toptop = h0ff[[1,3,3]]
+\end{verbatim}
+while in Fortran the same is done with
+\begin{verbatim}
+  call FHCouplings(couplings, gammas, gammasms)
+  h0toptop = Gamma(H0FF(1,3,3))
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHSelectUZ}
+
+\DESCRIPTION
+
+\CODE{FHSelectUZ} chooses which Higgs mixing to use for internal and
+external Higgs bosons, \ie in the couplings and the decay rates,
+and whether resummed masses should be used in the couplings.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error, uzint, uzext, mfeff
+
+subroutine FHSelectUZ(error, uzint, uzext, mfeff)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHSelectUZ[uzint, uzext, mfeff]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{SelectUZ.F} from 
+which the error message was emitted.
+
+\VARIN{integer uzint}
+whether to use no mixing (0), UHiggs (1), or ZHiggs (2) for internal
+Higgs bosons, \ie in the couplings.  Default: 1.
+
+\VARIN{integer uzext}
+whether to use no mixing (0), UHiggs (1), or ZHiggs (2) for external
+Higgs bosons, \ie in the decay rates.  Default: 2.
+
+\VARIN{integer mfeff}
+which effective bottom mass to use in the \CODE{H0FF}, \CODE{HpFF}, 
+\CODE{H0SfSf}, \CODE{HpSfSf} couplings:
+
+0: $m_b(m_b)$, \qquad
+1: $\dfrac{m_b(m_b)}{|1 + \Delta_b|}$ \quad (default), \qquad
+2: $\dfrac{m_b(m_H)}{|1 + \Delta_b|}$.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHHiggsProd}
+
+\DESCRIPTION
+
+\CODE{FHHiggsProd} computes approximate Higgs production cross-sections. 
+
+For neutral-Higgs production it uses the SM data from Fabio Maltoni's Web
+page \CODE{http://maltoni.home.cern.ch/maltoni/TeV4LHC}, fitted to
+a function, and multiplies them with the appropriate MSSM/SM ratio of the
+couplings involved.  Specifically,
+\begin{align*}
+\begin{LList}
+\CODE{bbh} \\
+\CODE{btagbh}
+\end{LList}
+&= \frac{\Gamma^{\text{MSSM}}(h\to \bar b b)}
+        {\Gamma^{\text{SM}}(h\to \bar b b)}
+\begin{RList}
+\CODE{bbhSM} \\
+\CODE{btagbhSM}
+\end{RList} \\
+%
+\CODE{tth} &= \frac{|c_L|^2 + |c_R|^2}{2} \CODE{tthSM}
+\quad \text{where} &
+c_{L,R} &= \frac{C_{L,R}^{\text{MSSM}}(h,t,t)}
+                {C_{L,R}^{\text{SM}}(h,t,t)}\,, \\
+%
+\CODE{ggh} &= \frac{|A^{\text{MSSM}}|^2}{|A_{\text{SM}}|^2} \CODE{gghSM}
+\qquad \text{where} &
+A^{\text{MSSM}}
+&= c_t^{\text{NLO}} c_t^{\text{NNLO}} A_t^{\text{MSSM,LO}} + \\[-1ex]
+&&& c_{b,r}^{\text{NLO}} \Re A_b^{\text{MSSM,LO}} +
+    c_{b,i}^{\text{NLO}} \Im A_b^{\text{MSSM,LO}} + \\
+&&& c_{\tilde f}^{\text{NLO}} A_{\tilde f}^{\text{MSSM,LO}} +
+      A_{\text{rest}}^{\text{MSSM,LO}}, \\
+&& A^{\text{SM}} &= c_t^{\text{NLO}} A_t^{\text{SM,LO}} + \\
+&&& c_{b,r}^{\text{NLO}} \Re A_b^{\text{SM,LO}} +
+    c_{b,i}^{\text{NLO}} \Im A_b^{\text{SM,LO}} + \\
+&&& A_{\text{rest}}^{\text{SM,LO}}, \\
+%
+\CODE{ggh2} &= \frac{|A^{\text{MSSM}}|^2}{|A_{\text{SM}}|^2} \CODE{gghSM}
+\qquad \text{where} &
+|A^{\text{MSSM}}|^2
+&= (k_t^{\text{NLO}} k_t^{\text{NNLO}} - k_{tb}^{\text{NLO}})
+      |A_t^{\text{MSSM,LO}}|^2 + \\[-1ex]
+&&& (k_b^{\text{NLO}} - k_{tb}^{\text{NLO}})
+      |A_b^{\text{MSSM,LO}}|^2 + \\
+&&& (k_{tb}^{\text{NLO}} - 1)
+      |A_t^{\text{MSSM,LO}} + A_b^{\text{MSSM,LO}}|^2 + \\
+&&& |A^{\text{MSSM,LO}}|^2, \\
+&& |A^{\text{SM}}|^2
+&= (k_t^{\text{NLO}} - k_{tb}^{\text{NLO}})
+      |A_t^{\text{SM,LO}}|^2 + \\
+&&& (k_b^{\text{NLO}} - k_{tb}^{\text{NLO}})
+      |A_b^{\text{SM,LO}}|^2 + \\
+&&& k_{tb}^{\text{NLO}}
+      |A_t^{\text{SM,LO}} + A_b^{\text{SM,LO}}|^2, \\
+%
+\begin{LList}
+\CODE{qqh} \\
+\CODE{Wh}
+\end{LList}
+&= \frac{|C^{\text{MSSM}}(h,W,W)|^2}
+        {|C^{\text{SM}}(h,W,W)|^2}
+\begin{RList}
+\CODE{qqhSM} \\
+\CODE{WhSM}
+\end{RList} \\
+%
+\CODE{Zh}
+&= \frac{|C^{\text{MSSM}}(h,Z,Z)|^2}
+        {|C^{\text{SM}}(h,Z,Z)|^2}
+\CODE{ZhSM}
+\end{align*}
+
+All production cross-sections are $4\pi$ cross-sections, with
+\CODE{btagbhTeV} and \CODE{btagbhLHC} being the only exceptions.  Here
+$p_T(\text{jet}) > 15$ GeV and $|\eta(\text{jet})| < 2.5$ has been used. 
+(The PDF for these two processes are CTEQ6M.)
+
+For charged-Higgs production, a fit to Tilman Plehn's data, available at 
+the Web site \CODE{http://www.ph.ed.ac.uk/$\sim$tplehn/charged\uscore 
+higgs}, is used to approximate the cross-section.
+
+\CODE{FHHiggsProd} uses the Higgs masses and couplings computed during
+the last invocation of \CODE{FHHiggsCorr} and \CODE{FHCouplings}.  The
+flags and parameters must have been set before with \CODE{FHSetFlags} and
+\CODE{FHSetPara}/\CODE{FHSetSLHA}.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+#include "FHCouplings.h"
+
+integer error
+double precision sqrts, prodxs(nprodxs)
+
+subroutine FHHiggsProd(error, sqrts, prodxs)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHHiggsProd[sqrts]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{HiggsProd.F} from
+which the error message was emitted.
+
+\VARIN{double precision sqrts}
+the collider energy at which the cross-sections are to be computed.
+Note that not all cross-sections are currently implemented for
+energies other than 2 TeV (Tevatron) and 14 TeV (LHC).
+
+\VAROUT{double precision prodxs(i)}
+the Higgs production cross-sections.  This array is indexed with
+preprocessor macros (see below).
+
+\ENDARGUMENTS
+
+\DETAILS{Cross-Sections}
+
+All cross-sections are fully inclusive and given in fb.  They are
+available for the three neutral Higgs bosons:
+$h_1$ ($h_0$), $h_2$ ($H_0$), $h_3$ ($A_0$) correspond to
+$h = 1\dots 3$ in the following macros which index the \CODE{prodxs} 
+array.
+
+\BEGINDETAILS
+
+\MACRO{bbh($h$), bbhSM($h$)}
+The MSSM and SM bottom-fusion cross-sections, $bb \to h + X$.
+
+\MACRO{btagbh($h$), btagbhSM($h$)}
+The MSSM and SM bottom-fusion cross-sections with one tagged b,
+$b_{\text{tagged}} b \to h + X$.
+
+\MACRO{ggh($h$), gghSM($h$)}
+The MSSM and SM gluon-fusion cross-sections, $gg \to h + X$,
+using the $c$-factor (amplitude) method.
+
+\MACRO{ggh2($h$), ggh2SM($h$)}
+The MSSM and SM gluon-fusion cross-sections, $gg \to h + X$,
+using the $k$-factor (squared-amplitude) method.
+
+\MACRO{qqh($h$), qqhSM($h$)}
+The MSSM and SM vector-boson-fusion cross-sections, $qq \to qqh + X$.
+
+\MACRO{tth($h$), tthSM($h$)}
+The MSSM and SM associated top-pair production cross-sections,
+$qq,gg \to tth + X$.
+
+\MACRO{Wh($h$), WhSM($h$)}
+The MSSM and SM associated W production cross-sections,
+$qq \to Wh + X$.
+
+\MACRO{Zh($h$), ZhSM($h$)}
+The MSSM and SM associated Z production cross-sections,
+$qq \to Zh + X$.
+
+\MACRO{StSth($h$)}
+The MSSM production cross-section $pp\to\tilde t_1\tilde t_1 h$
+(only $h = 1$).
+
+\MACRO{tHm}
+The MSSM production cross-section $g b\to t H^-$.
+
+\ENDDETAILS
+
+\DETAILS{Mathematica Usage}
+
+Mathematica and Fortran share the same names for the cross-sections, but
+due to the structure of the Mathematica output, the results have to be
+accessed in a slightly different way.
+
+To access the \CODE{qqhLHC} mode, for example, one would use
+\begin{verbatim}
+  {qqh0, qqHH, qqA0} = qqh /. FHHiggsProd[sqrts]
+\end{verbatim}
+in Mathematica, while in Fortran the same is done with
+\begin{verbatim}
+  call FHHiggsProd(error, prodxs, sqrts)
+  qqh0 = qqh(1)
+  qqHH = qqh(2)
+  qqA0 = qqh(3)
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHConstraints}
+
+\DESCRIPTION
+
+\CODE{FHConstraints} evaluates electroweak precision observables,
+currently $(g_\mu - 2)$ and $\Delta\rho$, which are used as further
+constraints on the MSSM parameter space.  Furthermore, the electric
+dipole moments (EDMs) of the electron (\ie thorium), the neutron, and
+mercury are evaluated to constrain the complex parameter space.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error
+double precision gm2
+double precision Deltarho, MWMSSM, MWSM, SW2MSSM, SW2SM
+double precision edmeTh, edmn, edmHg
+
+subroutine FHConstraints(error, gm2,
+  Deltarho, MWMSSM, MWSM, SW2MSSM, SW2SM,
+  edmeTh, edmn, edmHg)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHConstraints[]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{Constraints.F}
+from which the error message was emitted.
+
+\VAROUT{double precision gm2}
+the anomalous magnetic moment of the muon, $(g_\mu - 2)$.
+
+\VAROUT{double precision Deltarho}
+the electroweak precision observable $\Delta\rho$.
+
+\VAROUT{double precision MWMSSM, MWSM, SW2MSSM, SW2SM}
+the W mass and effective weak mixing angle in the MSSM and SM,
+
+\VAROUT{double precision edmeTh, edmn, edmHg}
+electric dipole moments of the electron (derived from Thorium),
+the neutron, and mercury.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHFlavour}
+
+\DESCRIPTION
+
+
+\CODE{FHFlavour} evaluates flavour observables, currently $B\to 
+X_s\gamma$, $\Delta M_s$, and soon $B_s\to\mu^+\mu^-$, which are used as 
+further constraints on the MSSM parameter space.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error
+double precision bsgMSSM, bsgSM
+double precision deltaMsMSSM, deltaMsSM
+double precision bsmumuMSSM, bsmumuSM
+
+subroutine FHFlavour(error,
+  bsgMSSM, bsgSM,
+  deltaMsMSSM, deltaMsSM,
+  bsmumuMSSM, bsmumuSM)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHFlavour[]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{Constraints.F}
+from which the error message was emitted.
+
+\VAROUT{double precision bsgammaMSSM, bsgammaSM}
+the value of $B\to X_s\gamma$ in the MSSM and SM.
+
+\VAROUT{double precision deltaMsMSSM, deltaMsSM}
+the value of $\Delta M_s$ in the MSSM and SM.
+
+\VAROUT{double precision bsmumuMSSM, bsmumuSM}
+the value of $B_s\to \mu^+\mu^-$ in the MSSM and SM.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHOutput}
+
+\DESCRIPTION
+
+\CODE{FHOutput} writes user-specified FeynHiggs inputs and outputs to 
+a file.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error, key
+character*(*) filename
+double precision sqrts
+
+subroutine FHOutput(error, filename, key, sqrts)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHOutput[filename, key, sqrts]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{Output.F} 
+from which the error message was emitted.
+
+\VARIN{character*(*) filename}
+the name of the file to which to write the output.  \CODE{"stdout"} and 
+\CODE{"stderr"} are recognized as special filenames.
+
+\VARIN{integer key}
+a bit-wise encoding of which output to produce: \\
+bit 0 (1) = input parameters (\CODE{FHRetrievePara}), \\
+bit 1 (2) = derived parameters (\CODE{FHGetPara}), \\
+bit 2 (4) = Higgs masses and mixings (\CODE{FHHiggsCorr}), \\
+bit 3 (8) = uncertainties (\CODE{FHUncertainties}), \\
+bit 4 (16) = decay widths and branching ratios (\CODE{FHCouplings}), \\
+bit 5 (32) = the 'fast' flag of \CODE{FHCouplings}, \\
+bit 6 (64) = electroweak constraints (\CODE{FHConstraints}), \\
+bit 7 (128) = flavour observables (\CODE{FHFlavour}).
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHOutputSLHA}
+
+\DESCRIPTION
+
+\CODE{FHOutputSLHA} adds user-specified FeynHiggs inputs and outputs to 
+an SLHA data structure.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+#include "SLHA.h"
+
+integer error, key
+double complex slhadata(nslhadata)
+
+subroutine FHOutputSLHA(error, slhadata, key)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHOutputSLHA[slhafile, key]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{OutputSLHA.F} 
+from which the error message was emitted.
+
+\VARIN{double complex slhadata($i$)}
+the SLHA data structure.  The \CODE{slhadata} array should never be
+accessed directly, but only through the preprocessor macros defined in 
+\CODE{SLHADefs.h}.
+
+\VARIN{String slhafile}
+the name of the file from which to read the SLHA data.
+
+\VARIN{integer key}
+a bit-wise encoding of which parts to fill: \\
+bit 0 (1) = input parameters (\CODE{FHRetrievePara}), \\
+bit 1 (2) = derived parameters (\CODE{FHGetPara}), \\
+bit 2 (4) = Higgs masses and mixings (\CODE{FHHiggsCorr}), \\
+bit 3 (8) = uncertainties (\CODE{FHUncertainties}), \\
+bit 4 (16) = decay widths and branching ratios (\CODE{FHCouplings}), \\
+bit 5 (32) = the 'fast' flag of \CODE{FHCouplings}, \\
+bit 6 (64) = electroweak constraints (\CODE{FHConstraints}), \\
+bit 7 (128) = flavour observables (\CODE{FHFlavour}).
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHRecordIndex}
+
+\DESCRIPTION
+
+\CODE{FHRecordIndex} converts a parameter name into the corresponding
+index in a FeynHiggs Record, or returns zero if no such name is known. 
+The record has four fields for every index $i$: \CODE{record($i$,iVar)},
+\CODE{record($i$,iLower)}, \CODE{record($i$,iUpper)}, and
+\CODE{record($i$,iStep)}.  These respectively denote a quantity's
+current, lower, upper, and step-size value, \ie define a possible loop
+over the quantity.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer ind
+character*(*) para
+
+subroutine FHRecordIndex(ind, para)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+ind = FHRecordIndex[para]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer ind}
+the index into the FeynHiggs Record, or zero if the record contains no
+parameter of the given name.
+
+\VARIN{character*(*) para}
+the parameter name.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHClearRecord}
+
+\DESCRIPTION
+
+\CODE{FHClearRecord} sets the fields of a FeynHiggs Record to initial
+values.  Possible pre-existing values are overwritten.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+#include "FHRecord.h"
+
+RecordDecl(record)
+
+subroutine FHClearRecord(record)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+record = FHClearRecord[]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{double precision record($i$,$\ell$)}
+the initialized FeynHiggs Record.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHReadRecord}
+
+\DESCRIPTION
+
+\CODE{FHReadRecord} reads a parameter file in FeynHiggs' native format
+into a FeynHiggs Record.  Possible pre-existing values are overwritten.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+#include "FHRecord.h"
+#include "SLHA.h"
+
+integer error
+RecordDecl(record)
+double complex slhadata(nslhadata)
+character*(*) file
+
+subroutine FHReadRecord(error, record, slhadata, file)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+record = FHReadRecord[file]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+0 if successful (SLHA file, \CODE{slhadata} filled),
+2 if successful (FH file, \CODE{slhadata} not filled),
+otherwise the line number in \CODE{ReadRecord.F} from which the error
+message was emitted.
+
+\VAROUT{double precision record($i$,$\ell$)}
+the FeynHiggs Record.
+
+\VAROUT{double complex slhadata($i$)}
+the SLHA data,
+
+\VARIN{character*(*) file}
+the parameter file name.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHSLHARecord}
+
+\DESCRIPTION
+
+\CODE{FHSLHARecord} initializes a FeynHiggs record from SLHA data.
+Possible pre-existing values are overwritten.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+#include "FHRecord.h"
+#include "SLHA.h"
+
+integer error
+RecordDecl(record)
+double complex slhadata(nslhadata)
+
+subroutine FHSLHARecord(error, record, slhadata)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+record = FHSLHARecord[file]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{SLHARecord.F}
+from which the error message was emitted.
+
+\VAROUT{double precision record($i$,$\ell$)}
+the FeynHiggs Record.
+
+\VARIN{double complex slhadata($i$)}
+the SLHA data structure.
+
+\VARIN{String file}
+the file containing the SLHA data.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHLoopRecord}
+
+\DESCRIPTION
+
+\CODE{FHLoopRecord} advances the loops implied by a FeynHiggs Record or else
+signals that all loops have been done.  This subroutine is meant to be
+called in a loop where it updates the record according to its internally
+defined loops.
+
+To signal the end of the loop, the Fortran version returns a negative 
+error code (positive codes correspond to true errors) and the
+Mathematica version returns a negative value instead of the record.
+
+Looping over a record would thus look like
+\begin{verbatim}
+   call FHLoopRecord(error, record)
+   do while( error .eq. 0 )
+     ...
+     call FHLoopRecord(error, record)
+   enddo
+   if( error .gt. 0 ) stop
+\end{verbatim}
+or in Mathematica
+\begin{verbatim}
+   While[ Head[record = FHLoopRecord[record]] =!= FHRecord,
+     ...
+   ]
+\end{verbatim}
+
+\FSYNOPSIS
+
+\begin{verbatim}
+#include "FHRecord.h"
+
+integer error
+RecordDecl(record)
+
+subroutine FHLoopRecord(error, record)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+record = FHLoopRecord[record]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, a negative number if all loops have been done,
+otherwise the line number in \CODE{LoopRecord.F} from which the error
+message was emitted.
+
+\VARINOUT{double precision record($i$,$\ell$)}
+the (updated) FeynHiggs record.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHSetRecord}
+
+\DESCRIPTION
+
+\CODE{FHSetRecord} sets the FeynHiggs parameters from a FeynHiggs
+Record.  This subroutine works like a combination of \CODE{FHSetPara},
+\CODE{FHSetCKM}, and \CODE{FHSetNMFV} except that the input parameters
+are taken from the FeynHiggs Record.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+#include "FHRecord.h"
+
+integer error
+RecordDecl(record)
+
+subroutine FHSetRecord(error, record)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHSetRecord[record]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{SetRecord.F} 
+from which the error message was emitted.
+
+\VARINOUT{double precision record($i$,$\ell$)}
+the FeynHiggs Record.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHRetrieveRecord}
+
+\DESCRIPTION
+
+\CODE{FHRetrieveRecord} fills a FeynHiggs Record from the FeynHiggs
+parameters currently set.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+#include "FHRecord.h"
+
+integer error, iX
+RecordDecl(record)
+
+subroutine FHRetrieveRecord(error, record, iX)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+record = FHRetrieveRecord[record, iX]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{RetrieveRecord.F}
+from which the error message was emitted.
+
+\VARINOUT{double precision record($i$,$\ell$)}
+the FeynHiggs Record.
+
+\VARIN{integer iX}
+the slot into which to fill the data: \CODE{iVar}, \CODE{iLower}, or
+\CODE{iUpper}.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHLoadTable}
+
+\DESCRIPTION
+
+\CODE{FHLoadTable} loads a parameter table from a data file into
+internal storage.  The first line of the file contains the column names,
+separated by whitespace, all following lines are then the corresponding
+data, similarly whitespace-separated.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error, unit
+character*(*) file
+
+subroutine FHLoadTable(error, file, unit)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHLoadTable[file]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{LoadTable.F} 
+from which the error message was emitted.
+
+\VARIN{character*(*) file}
+the name of the data file.
+
+\VARIN{integer unit}
+the Fortran unit to read from, if the file is ``\CODE{-}''.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHTableRecord}
+
+\DESCRIPTION
+
+\CODE{FHTableRecord} associates a FeynHiggs Record with the internal
+table, \ie the two given parameters (\eg \CODE{iTB} and \CODE{iMA0}) are 
+used as inputs for interpolating table data in the next 
+\CODE{FHLoopRecord} cycle.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+#include "FHRecord.h"
+
+integer error, i1, i2
+RecordDecl(record)
+
+subroutine FHTableRecord(error, record, i1, i2)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+record = FHTableRecord[record, i1, i2]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{TableRecord.F} 
+from which the error message was emitted.
+
+\VARINOUT{double precision record($i$,$\ell$)}
+the FeynHiggs Record.
+
+\VARIN{integer i1, i2}
+the record entries used as inputs for interpolating the internal table,
+\eg \CODE{i1} = \CODE{iTB} and \CODE{i2} = \CODE{iMA0}.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+

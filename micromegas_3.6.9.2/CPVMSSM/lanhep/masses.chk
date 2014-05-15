@@ -1,0 +1,316 @@
+
+----------------------------------------------------------------
+Particles without kinetic term:
+[e, ne, m, nm, l, nl, u, d, s, c, b, t, h1, h2, h3, 'H+', '~1+', '~2+', '~o1', '~o2', '~o3', '~o4', '~g', '~eL', '~eR', '~mL', '~mR', '~l1', '~l2', '~ne', '~nm', '~nl', '~dL', '~dR', '~uL', '~uR', '~sL', '~sR', '~cL', '~cR', '~b1', '~b2', '~t1', '~t2']
+
+----------------------------------------------------------------
+Linear term with particle h3
+Expression: (+8/EE**3*MW**3*SW**3*Zh31*cb**3*la1+8/EE**3*MW**3*SW**3*Zh32*la2*sb**3+4/EE**3*MW**3*SW**3*Zh32*cb**2*la3*sb+4/EE**3*MW**3*SW**3*Zh31*cb*la3*sb**2+4/EE**3*MW**3*SW**3*Zh32*cb**2*la4*sb+4/EE**3*MW**3*SW**3*Zh31*cb*la4*sb**2+8/EE**3*MW**3*SW**3*Zh32*cb**2*la5r*sb+8/EE**3*MW**3*SW**3*Zh31*cb*la5r*sb**2-4/EE**3*MW**3*SW**3*Zh33*la5i*s2b+4/EE**3*MW**3*SW**3*Zh32*cb**3*la6r+12/EE**3*MW**3*SW**3*Zh31*cb**2*la6r*sb-4/EE**3*MW**3*SW**3*Zh33*cb**2*la6i+12/EE**3*MW**3*SW**3*Zh32*cb*la7r*sb**2+4/EE**3*MW**3*SW**3*Zh31*la7r*sb**3-4/EE**3*MW**3*SW**3*Zh33*la7i*sb**2-2/EE*MW*SW*Zh32*mur**2*sb-2/EE*MW*SW*Zh32*mui**2*sb-2/EE*MW*SW*Zh31*cb*mur**2-2/EE*MW*SW*Zh31*cb*mui**2)
+Numeric value: +1059107.113192
+
+Linear term with particle h1
+Expression: (+8/EE**3*MW**3*SW**3*Zh11*cb**3*la1+8/EE**3*MW**3*SW**3*Zh12*la2*sb**3+4/EE**3*MW**3*SW**3*Zh12*cb**2*la3*sb+4/EE**3*MW**3*SW**3*Zh11*cb*la3*sb**2+4/EE**3*MW**3*SW**3*Zh12*cb**2*la4*sb+4/EE**3*MW**3*SW**3*Zh11*cb*la4*sb**2+8/EE**3*MW**3*SW**3*Zh12*cb**2*la5r*sb+8/EE**3*MW**3*SW**3*Zh11*cb*la5r*sb**2-4/EE**3*MW**3*SW**3*Zh13*la5i*s2b+4/EE**3*MW**3*SW**3*Zh12*cb**3*la6r+12/EE**3*MW**3*SW**3*Zh11*cb**2*la6r*sb-4/EE**3*MW**3*SW**3*Zh13*cb**2*la6i+12/EE**3*MW**3*SW**3*Zh12*cb*la7r*sb**2+4/EE**3*MW**3*SW**3*Zh11*la7r*sb**3-4/EE**3*MW**3*SW**3*Zh13*la7i*sb**2-2/EE*MW*SW*Zh12*mur**2*sb-2/EE*MW*SW*Zh12*mui**2*sb-2/EE*MW*SW*Zh11*cb*mur**2-2/EE*MW*SW*Zh11*cb*mui**2)
+Numeric value: +4056397.082299
+
+Linear term with particle h2
+Expression: (+8/EE**3*MW**3*SW**3*Zh21*cb**3*la1+8/EE**3*MW**3*SW**3*Zh22*la2*sb**3+4/EE**3*MW**3*SW**3*Zh22*cb**2*la3*sb+4/EE**3*MW**3*SW**3*Zh21*cb*la3*sb**2+4/EE**3*MW**3*SW**3*Zh22*cb**2*la4*sb+4/EE**3*MW**3*SW**3*Zh21*cb*la4*sb**2+8/EE**3*MW**3*SW**3*Zh22*cb**2*la5r*sb+8/EE**3*MW**3*SW**3*Zh21*cb*la5r*sb**2-4/EE**3*MW**3*SW**3*Zh23*la5i*s2b+4/EE**3*MW**3*SW**3*Zh22*cb**3*la6r+12/EE**3*MW**3*SW**3*Zh21*cb**2*la6r*sb-4/EE**3*MW**3*SW**3*Zh23*cb**2*la6i+12/EE**3*MW**3*SW**3*Zh22*cb*la7r*sb**2+4/EE**3*MW**3*SW**3*Zh21*la7r*sb**3-4/EE**3*MW**3*SW**3*Zh23*la7i*sb**2-2/EE*MW*SW*Zh22*mur**2*sb-2/EE*MW*SW*Zh22*mui**2*sb-2/EE*MW*SW*Zh21*cb*mur**2-2/EE*MW*SW*Zh21*cb*mui**2)
+Numeric value: +14430.097555
+
+
+---------------------------------------------------------------
+Mass term for particle Z :
+(+1/CW**2*MW**2) = +91.187000**2
+This particles was declared with mass MZ = 91.187000
+
+---------------------------------------------------------------
+Mass term for particle '~cL' :
+(+1/2/CW**2*MW**2*c2b-2/3/CW**2*MW**2*SW**2*c2b+1*Mq2**2) = +697.958161**2
+This particles was declared with mass MScL = 697.958161
+
+---------------------------------------------------------------
+Mass term for particle '~cR' :
+(+2/3/CW**2*MW**2*SW**2*c2b+1*Mu2**2) = +799.236635**2
+This particles was declared with mass MScR = 799.236635
+
+---------------------------------------------------------------
+Mass term for particle '~dL' :
+(-1/2/CW**2*MW**2*c2b+1/3/CW**2*MW**2*SW**2*c2b+1*Mq1**2) = +802.162581**2
+This particles was declared with mass MSdL = 802.162581
+
+---------------------------------------------------------------
+Mass term for particle '~dR' :
+(-1/3/CW**2*MW**2*SW**2*c2b+1*Md1**2) = +800.381410**2
+This particles was declared with mass MSdR = 800.381410
+
+---------------------------------------------------------------
+Mass term for particle '~eL' :
+(-1/2*C2W/CW**2*MW**2*c2b+1*Ml1**2) = +801.401276**2
+This particles was declared with mass MSeL = 801.401276
+
+---------------------------------------------------------------
+Mass term for particle '~eR' :
+(-1/CW**2*MW**2*SW**2*c2b+1*Mr1**2) = +801.143684**2
+This particles was declared with mass MSeR = 801.143684
+
+---------------------------------------------------------------
+Mass term for particle '~mL' :
+(-1/2*C2W/CW**2*MW**2*c2b+1*Ml2**2) = +801.401276**2
+This particles was declared with mass MSmL = 801.401276
+
+---------------------------------------------------------------
+Mass term for particle '~mR' :
+(-1/CW**2*MW**2*SW**2*c2b+1*Mr2**2) = +801.143684**2
+This particles was declared with mass MSmR = 801.143684
+
+---------------------------------------------------------------
+Mass term for particle '~ne' :
+(+1/2/CW**2*MW**2*c2b+1*Ml1**2) = +797.448928**2
+This particles was declared with mass MSne = 797.448928
+
+---------------------------------------------------------------
+Mass term for particle '~nl' :
+(+1/2/CW**2*MW**2*c2b+1*Ml3**2) = +800.107377**2
+This particles was declared with mass MSnl = 800.107377
+
+---------------------------------------------------------------
+Mass term for particle '~nm' :
+(+1/2/CW**2*MW**2*c2b+1*Ml2**2) = +797.448928**2
+This particles was declared with mass MSnm = 797.448928
+
+---------------------------------------------------------------
+Mass term for particle '~sL' :
+(-1/2/CW**2*MW**2*c2b+1/3/CW**2*MW**2*SW**2*c2b+1*Mq2**2) = +702.470502**2
+This particles was declared with mass MSsL = 702.470502
+
+---------------------------------------------------------------
+Mass term for particle '~sR' :
+(-1/3/CW**2*MW**2*SW**2*c2b+1*Md2**2) = +800.381410**2
+This particles was declared with mass MSsR = 800.381410
+
+---------------------------------------------------------------
+Mass term for particle '~uL' :
+(+1/2/CW**2*MW**2*c2b-2/3/CW**2*MW**2*SW**2*c2b+1*Mq1**2) = +798.214003**2
+This particles was declared with mass MSuL = 798.214003
+
+---------------------------------------------------------------
+Mass term for particle '~uR' :
+(+2/3/CW**2*MW**2*SW**2*c2b+1*Mu1**2) = +799.236635**2
+This particles was declared with mass MSuR = 799.236635
+
+---------------------------------------------------------------
+Mixing of particles ['H+', 'W+.f']
+
+M11 (H+/H-) = (-4/EE**2*MW**2*SW**2*cb**2*la1*sb**2-4/EE**2*MW**2*SW**2*cb**2*la2*sb**2-2/EE**2*MW**2*SW**2*la3+4/EE**2*MW**2*SW**2*cb**2*la3*sb**2+4/EE**2*MW**2*SW**2*cb**2*la4*sb**2+8/EE**2*MW**2*SW**2*cb**2*la5r*sb**2+2/EE**2*MW**2*SW**2*c2b*la6r*s2b-2/EE**2*MW**2*SW**2*c2b*la7r*s2b+1*mur**2+1*mui**2)
+    = +111.411249**2
+    Declared mass MHc=200.000000
+
+
+M12 (H-/W+.f) = (+4/EE**2*MW**2*SW**2*cb**3*la1*sb-4/EE**2*MW**2*SW**2*cb*la2*sb**3-1/EE**2*MW**2*SW**2*c2b*la3*s2b-1/EE**2*MW**2*SW**2*c2b*la4*s2b-2/EE**2*MW**2*SW**2*c2b*la5r*s2b+2*i/EE**2*MW**2*SW**2*la5i*s2b+8/EE**2*MW**2*SW**2*cb**2*la6r*sb**2-2/EE**2*MW**2*SW**2*cb**2*la6r+2*i/EE**2*MW**2*SW**2*cb**2*la6i+8/EE**2*MW**2*SW**2*la7r*sb**4-6/EE**2*MW**2*SW**2*la7r*sb**2+2*i/EE**2*MW**2*SW**2*la7i*sb**2)
+    = (+33.352955**2+8.690418**2*i)
+
+
+M21 (H+/W-.f) = (+4/EE**2*MW**2*SW**2*cb**3*la1*sb-4/EE**2*MW**2*SW**2*cb*la2*sb**3-1/EE**2*MW**2*SW**2*c2b*la3*s2b-1/EE**2*MW**2*SW**2*c2b*la4*s2b-2/EE**2*MW**2*SW**2*c2b*la5r*s2b-2*i/EE**2*MW**2*SW**2*la5i*s2b+8/EE**2*MW**2*SW**2*cb**2*la6r*sb**2-2/EE**2*MW**2*SW**2*cb**2*la6r-2*i/EE**2*MW**2*SW**2*cb**2*la6i+8/EE**2*MW**2*SW**2*la7r*sb**4-6/EE**2*MW**2*SW**2*la7r*sb**2-2*i/EE**2*MW**2*SW**2*la7i*sb**2)
+    = (+33.352955**2-8.690418**2*i)
+
+
+M22 (W+.f/W-.f) = (-4/EE**2*MW**2*SW**2*cb**4*la1-4/EE**2*MW**2*SW**2*la2*sb**4-4/EE**2*MW**2*SW**2*cb**2*la3*sb**2-4/EE**2*MW**2*SW**2*cb**2*la4*sb**2-8/EE**2*MW**2*SW**2*cb**2*la5r*sb**2-8/EE**2*MW**2*SW**2*cb**3*la6r*sb-8/EE**2*MW**2*SW**2*cb*la7r*sb**3+1*mur**2+1*mui**2+1*MW**2)
+    = +153.845707**2
+
+
+Looking for the mixing matrix...
+No mixing matrices found.
+
+---------------------------------------------------------------
+Mixing of particles ['~1+', '~2+']
+
+M11 (~1-/~1+) = (+1*cb*MW*Sqrt2*Zu12r*Zv11r+1*cb*MW*Sqrt2*Zu12i*Zv11i+1*sb*MW*Sqrt2*Zu11r*Zv12r+1*sb*MW*Sqrt2*Zu11i*Zv12i+1*Zu12r*Zv12r*mur+1*Zu12i*Zv12i*mur-1*Zu12r*Zv12i*mui+1*Zu12i*Zv12r*mui+1*MG2*Zu11r*Zv11r+1*MG2*Zu11i*Zv11i)+(-1*cb*i*MW*Sqrt2*Zu12r*Zv11i+1*cb*i*MW*Sqrt2*Zu12i*Zv11r+1*sb*i*MW*Sqrt2*Zu11i*Zv12r-1*sb*i*MW*Sqrt2*Zu11r*Zv12i-1*i*Zu12r*Zv12i*mur+1*i*Zu12i*Zv12r*mur-1*i*Zu12r*Zv12r*mui-1*i*Zu12i*Zv12i*mui+1*i*MG2*Zu11i*Zv11r-1*i*MG2*Zu11r*Zv11i)*gamma5
+    = -57.011229-64.734368*i*gamma5
+    Declared mass MC1=108.548389
+
+
+M12 (~1-/~2+) = (+1/2*cb*MW*Sqrt2*Zu12r*Zv21r+1/2*cb*i*MW*Sqrt2*Zu12r*Zv21i-1/2*cb*i*MW*Sqrt2*Zu12i*Zv21r+1/2*cb*MW*Sqrt2*Zu12i*Zv21i+1/2*sb*MW*Sqrt2*Zu11r*Zv22r-1/2*sb*i*MW*Sqrt2*Zu11i*Zv22r+1/2*sb*i*MW*Sqrt2*Zu11r*Zv22i+1/2*sb*MW*Sqrt2*Zu11i*Zv22i+1/2*Zu12r*Zv22r*mur+1/2*i*Zu12r*Zv22i*mur-1/2*i*Zu12i*Zv22r*mur+1/2*Zu12i*Zv22i*mur+1/2*i*Zu12r*Zv22r*mui-1/2*Zu12r*Zv22i*mui+1/2*Zu12i*Zv22r*mui+1/2*i*Zu12i*Zv22i*mui+1/2*MG2*Zu11r*Zv21r-1/2*i*MG2*Zu11i*Zv21r+1/2*i*MG2*Zu11r*Zv21i+1/2*MG2*Zu11i*Zv21i)*(1-gamma5)/2+(+1/2*cb*MW*Sqrt2*Zu22r*Zv11r-1/2*cb*i*MW*Sqrt2*Zu22r*Zv11i+1/2*cb*i*MW*Sqrt2*Zu22i*Zv11r+1/2*cb*MW*Sqrt2*Zu22i*Zv11i+1/2*sb*MW*Sqrt2*Zu21r*Zv12r+1/2*sb*i*MW*Sqrt2*Zu21i*Zv12r-1/2*sb*i*MW*Sqrt2*Zu21r*Zv12i+1/2*sb*MW*Sqrt2*Zu21i*Zv12i+1/2*Zu22r*Zv12r*mur-1/2*i*Zu22r*Zv12i*mur+1/2*i*Zu22i*Zv12r*mur+1/2*Zu22i*Zv12i*mur-1/2*i*Zu22r*Zv12r*mui-1/2*Zu22r*Zv12i*mui+1/2*Zu22i*Zv12r*mui-1/2*i*Zu22i*Zv12i*mui+1/2*MG2*Zu21r*Zv11r+1/2*i*MG2*Zu21i*Zv11r-1/2*i*MG2*Zu21r*Zv11i+1/2*MG2*Zu21i*Zv11i)*(1+gamma5)/2
+    = (+19.011345-29.245801*i)*(1-gamma5)/2(-32.389932+16.946758*i)*(1+gamma5)/2
+
+
+M21 (~2-/~1+) = (+1/2*cb*MW*Sqrt2*Zu22r*Zv11r+1/2*cb*i*MW*Sqrt2*Zu22r*Zv11i-1/2*cb*i*MW*Sqrt2*Zu22i*Zv11r+1/2*cb*MW*Sqrt2*Zu22i*Zv11i+1/2*sb*MW*Sqrt2*Zu21r*Zv12r-1/2*sb*i*MW*Sqrt2*Zu21i*Zv12r+1/2*sb*i*MW*Sqrt2*Zu21r*Zv12i+1/2*sb*MW*Sqrt2*Zu21i*Zv12i+1/2*Zu22r*Zv12r*mur+1/2*i*Zu22r*Zv12i*mur-1/2*i*Zu22i*Zv12r*mur+1/2*Zu22i*Zv12i*mur+1/2*i*Zu22r*Zv12r*mui-1/2*Zu22r*Zv12i*mui+1/2*Zu22i*Zv12r*mui+1/2*i*Zu22i*Zv12i*mui+1/2*MG2*Zu21r*Zv11r-1/2*i*MG2*Zu21i*Zv11r+1/2*i*MG2*Zu21r*Zv11i+1/2*MG2*Zu21i*Zv11i)*(1-gamma5)/2+(+1/2*cb*MW*Sqrt2*Zu12r*Zv21r-1/2*cb*i*MW*Sqrt2*Zu12r*Zv21i+1/2*cb*i*MW*Sqrt2*Zu12i*Zv21r+1/2*cb*MW*Sqrt2*Zu12i*Zv21i+1/2*sb*MW*Sqrt2*Zu11r*Zv22r+1/2*sb*i*MW*Sqrt2*Zu11i*Zv22r-1/2*sb*i*MW*Sqrt2*Zu11r*Zv22i+1/2*sb*MW*Sqrt2*Zu11i*Zv22i+1/2*Zu12r*Zv22r*mur-1/2*i*Zu12r*Zv22i*mur+1/2*i*Zu12i*Zv22r*mur+1/2*Zu12i*Zv22i*mur-1/2*i*Zu12r*Zv22r*mui-1/2*Zu12r*Zv22i*mui+1/2*Zu12i*Zv22r*mui-1/2*i*Zu12i*Zv22i*mui+1/2*MG2*Zu11r*Zv21r+1/2*i*MG2*Zu11i*Zv21r-1/2*i*MG2*Zu11r*Zv21i+1/2*MG2*Zu11i*Zv21i)*(1+gamma5)/2
+    = (-32.389932-16.946758*i)*(1-gamma5)/2(+19.011345+29.245801*i)*(1+gamma5)/2
+
+
+M22 (~2-/~2+) = (+1*cb*MW*Sqrt2*Zu22r*Zv21r+1*cb*MW*Sqrt2*Zu22i*Zv21i+1*sb*MW*Sqrt2*Zu21r*Zv22r+1*sb*MW*Sqrt2*Zu21i*Zv22i+1*Zu22r*Zv22r*mur+1*Zu22i*Zv22i*mur-1*Zu22r*Zv22i*mui+1*Zu22i*Zv22r*mui+1*MG2*Zu21r*Zv21r+1*MG2*Zu21i*Zv21i)+(-1*cb*i*MW*Sqrt2*Zu22r*Zv21i+1*cb*i*MW*Sqrt2*Zu22i*Zv21r+1*sb*i*MW*Sqrt2*Zu21i*Zv22r-1*sb*i*MW*Sqrt2*Zu21r*Zv22i-1*i*Zu22r*Zv22i*mur+1*i*Zu22i*Zv22r*mur-1*i*Zu22r*Zv22r*mui-1*i*Zu22i*Zv22i*mui+1*i*MG2*Zu21i*Zv21r-1*i*MG2*Zu21r*Zv21i)*gamma5
+    = +65.596080-30.624938*i*gamma5
+    Declared mass MC2=252.908430
+
+
+Looking for the mixing matrix...
+More than 2 mixing matrices found, vertex '~1-'/'~2+'
+
+---------------------------------------------------------------
+Mixing of particles ['~b1', '~b2']
+
+M11 (~B1/~b1) = (-1/3/CW**2*MW**2*SW**2*Zb21r**2*c2b-1/2/CW**2*MW**2*Zb11r**2*c2b+1/3/CW**2*MW**2*SW**2*Zb11r**2*c2b-1/3/CW**2*MW**2*SW**2*Zb21i**2*c2b+2*Mb*Zb11r*Zb21r/cb*mur*sb-2*Mb*Zb11r*Zb21i/cb*mui*sb+1*Mb**2+1*Mq3**2*Zb11r**2+1/CW**2*Md3**2*Zb21i**2+1/CW**2*Md3**2*Zb21r**2-1/CW**2*Md3**2*SW**2*Zb21i**2-1/CW**2*Md3**2*SW**2*Zb21r**2-2*Abr*Mb*Zb11r*Zb21r-2*Abi*Mb*Zb11r*Zb21i)
+    = +745.837953**2
+    Declared mass MSb1=498.562209
+
+
+M12 (~B1/~b2) = (+2/3/CW**2*MW**2*SW**2*Zb11r*Zb21r*c2b-1/2/CW**2*MW**2*Zb11r*Zb21r*c2b-2/3*i/CW**2*MW**2*SW**2*Zb11r*Zb21i*c2b+1/2*i/CW**2*MW**2*Zb11r*Zb21i*c2b-1/CW**2*Mb*Zb11r**2/cb*mur*sb-1/CW**2*Mb*Zb21i**2/cb*mur*sb+1/CW**2*Mb*Zb21r**2/cb*mur*sb+1/CW**2*Mb*SW**2*Zb11r**2/cb*mur*sb+1/CW**2*Mb*SW**2*Zb21i**2/cb*mur*sb-1/CW**2*Mb*SW**2*Zb21r**2/cb*mur*sb-1*i/CW**2*Mb*Zb11r**2/cb*mui*sb+1*i/CW**2*Mb*Zb21i**2/cb*mui*sb-1*i/CW**2*Mb*Zb21r**2/cb*mui*sb+1*i/CW**2*Mb*SW**2*Zb11r**2/cb*mui*sb-1*i/CW**2*Mb*SW**2*Zb21i**2/cb*mui*sb+1*i/CW**2*Mb*SW**2*Zb21r**2/cb*mui*sb-2*i*Mb*Zb21i*Zb21r/cb*mur*sb-2*Mb*Zb21i*Zb21r/cb*mui*sb+1*Mq3**2*Zb11r*Zb21r-1*i*Mq3**2*Zb11r*Zb21i-1*Md3**2*Zb11r*Zb21r+1*i*Md3**2*Zb11r*Zb21i+1*Abr/CW**2*Mb*Zb11r**2+1*Abr/CW**2*Mb*Zb21i**2-1*Abr/CW**2*Mb*Zb21r**2-1*Abr/CW**2*Mb*SW**2*Zb11r**2-1*Abr/CW**2*Mb*SW**2*Zb21i**2+1*Abr/CW**2*Mb*SW**2*Zb21r**2+2*i*Abr*Mb*Zb21i*Zb21r-1*i*Abi/CW**2*Mb*Zb11r**2+1*i*Abi/CW**2*Mb*Zb21i**2-1*i*Abi/CW**2*Mb*Zb21r**2+1*i*Abi/CW**2*Mb*SW**2*Zb11r**2-1*i*Abi/CW**2*Mb*SW**2*Zb21i**2+1*i*Abi/CW**2*Mb*SW**2*Zb21r**2-2*Abi*Mb*Zb21i*Zb21r)
+    = (+285.191159**2+313.486192**2*i)
+
+
+M21 (~B2/~b1) = (+2/3/CW**2*MW**2*SW**2*Zb11r*Zb21r*c2b-1/2/CW**2*MW**2*Zb11r*Zb21r*c2b+2/3*i/CW**2*MW**2*SW**2*Zb11r*Zb21i*c2b-1/2*i/CW**2*MW**2*Zb11r*Zb21i*c2b-1/CW**2*Mb*Zb11r**2/cb*mur*sb-1/CW**2*Mb*Zb21i**2/cb*mur*sb+1/CW**2*Mb*Zb21r**2/cb*mur*sb+1/CW**2*Mb*SW**2*Zb11r**2/cb*mur*sb+1/CW**2*Mb*SW**2*Zb21i**2/cb*mur*sb-1/CW**2*Mb*SW**2*Zb21r**2/cb*mur*sb+2*i*Mb*Zb21i*Zb21r/cb*mur*sb+1*i/CW**2*Mb*Zb11r**2/cb*mui*sb-1*i/CW**2*Mb*Zb21i**2/cb*mui*sb+1*i/CW**2*Mb*Zb21r**2/cb*mui*sb-1*i/CW**2*Mb*SW**2*Zb11r**2/cb*mui*sb+1*i/CW**2*Mb*SW**2*Zb21i**2/cb*mui*sb-1*i/CW**2*Mb*SW**2*Zb21r**2/cb*mui*sb-2*Mb*Zb21i*Zb21r/cb*mui*sb+1*Mq3**2*Zb11r*Zb21r+1*i*Mq3**2*Zb11r*Zb21i-1*Md3**2*Zb11r*Zb21r-1*i*Md3**2*Zb11r*Zb21i+1*Abr/CW**2*Mb*Zb11r**2+1*Abr/CW**2*Mb*Zb21i**2-1*Abr/CW**2*Mb*Zb21r**2-1*Abr/CW**2*Mb*SW**2*Zb11r**2-1*Abr/CW**2*Mb*SW**2*Zb21i**2+1*Abr/CW**2*Mb*SW**2*Zb21r**2+1*i*Abi/CW**2*Mb*Zb11r**2-1*i*Abi/CW**2*Mb*Zb21i**2+1*i*Abi/CW**2*Mb*Zb21r**2-1*i*Abi/CW**2*Mb*SW**2*Zb11r**2+1*i*Abi/CW**2*Mb*SW**2*Zb21i**2-1*i*Abi/CW**2*Mb*SW**2*Zb21r**2-2*i*Abr*Mb*Zb21i*Zb21r-2*Abi*Mb*Zb21i*Zb21r)
+    = (+285.191159**2-313.486192**2*i)
+
+
+M22 (~B2/~b2) = (-1/2/CW**2*MW**2*Zb21i**2*c2b+1/3/CW**2*MW**2*SW**2*Zb21r**2*c2b+1/3/CW**2*MW**2*SW**2*Zb21i**2*c2b-1/3/CW**2*MW**2*SW**2*Zb11r**2*c2b-1/2/CW**2*MW**2*Zb21r**2*c2b-2*Mb*Zb11r*Zb21r/cb*mur*sb+2*Mb*Zb11r*Zb21i/cb*mui*sb+1*Mb**2+1/CW**2*Mq3**2*Zb21i**2+1/CW**2*Mq3**2*Zb21r**2-1/CW**2*Mq3**2*SW**2*Zb21i**2-1/CW**2*Mq3**2*SW**2*Zb21r**2+1*Md3**2*Zb11r**2+2*Abr*Mb*Zb11r*Zb21r+2*Abi*Mb*Zb11r*Zb21i)
+    = +669.195015**2
+    Declared mass MSb2=505.300188
+
+
+Looking for the mixing matrix...
+No mixing matrices found.
+
+---------------------------------------------------------------
+Mixing of particles ['~l1', '~l2']
+
+M11 (~L1/~l1) = (-1/CW**2*MW**2*SW**2*Zl21r**2*c2b-1/2/CW**2*MW**2*Zl11r**2*c2b+1/CW**2*MW**2*SW**2*Zl11r**2*c2b-1/CW**2*MW**2*SW**2*Zl21i**2*c2b+2*Ml*Zl11r*Zl21r/cb*mur*sb-2*Ml*Zl11r*Zl21i/cb*mui*sb+1*Ml**2+1*Ml3**2*Zl11r**2+1/CW**2*Mr3**2*Zl21i**2+1/CW**2*Mr3**2*Zl21r**2-1/CW**2*Mr3**2*SW**2*Zl21i**2-1/CW**2*Mr3**2*SW**2*Zl21r**2-2*Alr*Ml*Zl11r*Zl21r-2*Ali*Ml*Zl11r*Zl21i)
+    = +804.072905**2
+    Declared mass MSl1=499.692412
+
+
+M12 (~L1/~l2) = (-1/2/CW**2*MW**2*Zl11r*Zl21r*c2b+2/CW**2*MW**2*SW**2*Zl11r*Zl21r*c2b+1/2*i/CW**2*MW**2*Zl11r*Zl21i*c2b-2*i/CW**2*MW**2*SW**2*Zl11r*Zl21i*c2b-1/CW**2*Ml*Zl11r**2/cb*mur*sb-1/CW**2*Ml*Zl21i**2/cb*mur*sb+1/CW**2*Ml*Zl21r**2/cb*mur*sb+1/CW**2*Ml*SW**2*Zl11r**2/cb*mur*sb+1/CW**2*Ml*SW**2*Zl21i**2/cb*mur*sb-1/CW**2*Ml*SW**2*Zl21r**2/cb*mur*sb-1*i/CW**2*Ml*Zl11r**2/cb*mui*sb+1*i/CW**2*Ml*Zl21i**2/cb*mui*sb-1*i/CW**2*Ml*Zl21r**2/cb*mui*sb+1*i/CW**2*Ml*SW**2*Zl11r**2/cb*mui*sb-1*i/CW**2*Ml*SW**2*Zl21i**2/cb*mui*sb+1*i/CW**2*Ml*SW**2*Zl21r**2/cb*mui*sb-2*i*Ml*Zl21i*Zl21r/cb*mur*sb-2*Ml*Zl21i*Zl21r/cb*mui*sb+1*Ml3**2*Zl11r*Zl21r-1*i*Ml3**2*Zl11r*Zl21i-1*Mr3**2*Zl11r*Zl21r+1*i*Mr3**2*Zl11r*Zl21i+1*Alr/CW**2*Ml*Zl11r**2+1*Alr/CW**2*Ml*Zl21i**2-1*Alr/CW**2*Ml*Zl21r**2-1*Alr/CW**2*Ml*SW**2*Zl11r**2-1*Alr/CW**2*Ml*SW**2*Zl21i**2+1*Alr/CW**2*Ml*SW**2*Zl21r**2+2*i*Alr*Ml*Zl21i*Zl21r-1*i*Ali/CW**2*Ml*Zl11r**2+1*i*Ali/CW**2*Ml*Zl21i**2-1*i*Ali/CW**2*Ml*Zl21r**2+1*i*Ali/CW**2*Ml*SW**2*Zl11r**2-1*i*Ali/CW**2*Ml*SW**2*Zl21i**2+1*i*Ali/CW**2*Ml*SW**2*Zl21r**2-2*Ali*Ml*Zl21i*Zl21r)
+    = (+42.856589**2+9.165897**2*i)
+
+
+M21 (~L2/~l1) = (-1/2/CW**2*MW**2*Zl11r*Zl21r*c2b+2/CW**2*MW**2*SW**2*Zl11r*Zl21r*c2b-1/2*i/CW**2*MW**2*Zl11r*Zl21i*c2b+2*i/CW**2*MW**2*SW**2*Zl11r*Zl21i*c2b-1/CW**2*Ml*Zl11r**2/cb*mur*sb-1/CW**2*Ml*Zl21i**2/cb*mur*sb+1/CW**2*Ml*Zl21r**2/cb*mur*sb+1/CW**2*Ml*SW**2*Zl11r**2/cb*mur*sb+1/CW**2*Ml*SW**2*Zl21i**2/cb*mur*sb-1/CW**2*Ml*SW**2*Zl21r**2/cb*mur*sb+2*i*Ml*Zl21i*Zl21r/cb*mur*sb+1*i/CW**2*Ml*Zl11r**2/cb*mui*sb-1*i/CW**2*Ml*Zl21i**2/cb*mui*sb+1*i/CW**2*Ml*Zl21r**2/cb*mui*sb-1*i/CW**2*Ml*SW**2*Zl11r**2/cb*mui*sb+1*i/CW**2*Ml*SW**2*Zl21i**2/cb*mui*sb-1*i/CW**2*Ml*SW**2*Zl21r**2/cb*mui*sb-2*Ml*Zl21i*Zl21r/cb*mui*sb+1*Ml3**2*Zl11r*Zl21r+1*i*Ml3**2*Zl11r*Zl21i-1*Mr3**2*Zl11r*Zl21r-1*i*Mr3**2*Zl11r*Zl21i+1*Alr/CW**2*Ml*Zl11r**2+1*Alr/CW**2*Ml*Zl21i**2-1*Alr/CW**2*Ml*Zl21r**2-1*Alr/CW**2*Ml*SW**2*Zl11r**2-1*Alr/CW**2*Ml*SW**2*Zl21i**2+1*Alr/CW**2*Ml*SW**2*Zl21r**2+1*i*Ali/CW**2*Ml*Zl11r**2-1*i*Ali/CW**2*Ml*Zl21i**2+1*i*Ali/CW**2*Ml*Zl21r**2-1*i*Ali/CW**2*Ml*SW**2*Zl11r**2+1*i*Ali/CW**2*Ml*SW**2*Zl21i**2-1*i*Ali/CW**2*Ml*SW**2*Zl21r**2-2*i*Alr*Ml*Zl21i*Zl21r-2*Ali*Ml*Zl21i*Zl21r)
+    = (+42.856589**2-9.165897**2*i)
+
+
+M22 (~L2/~l2) = (+1/CW**2*MW**2*SW**2*Zl21r**2*c2b-1/2/CW**2*MW**2*Zl21i**2*c2b-1/2/CW**2*MW**2*Zl21r**2*c2b-1/CW**2*MW**2*SW**2*Zl11r**2*c2b+1/CW**2*MW**2*SW**2*Zl21i**2*c2b-2*Ml*Zl11r*Zl21r/cb*mur*sb+2*Ml*Zl11r*Zl21i/cb*mui*sb+1*Ml**2+1/CW**2*Ml3**2*Zl21i**2+1/CW**2*Ml3**2*Zl21r**2-1/CW**2*Ml3**2*SW**2*Zl21i**2-1/CW**2*Ml3**2*SW**2*Zl21r**2+1*Mr3**2*Zl11r**2+2*Alr*Ml*Zl11r*Zl21r+2*Ali*Ml*Zl11r*Zl21i)
+    = +805.345390**2
+    Declared mass MSl2=504.123062
+
+
+Looking for the mixing matrix...
+No mixing matrices found.
+
+---------------------------------------------------------------
+Mixing of particles ['~t1', '~t2']
+
+M11 (~T1/~t1) = (+1/2/CW**2*MW**2*Zt11r**2-1/CW**2*MW**2*Zt11r**2*sb**2-2/3/CW**2*MW**2*SW**2*Zt11r**2+4/3/CW**2*MW**2*SW**2*Zt11r**2*sb**2+2/3/CW**2*MW**2*SW**2*Zt21i**2-4/3/CW**2*MW**2*SW**2*Zt21i**2*sb**2+2/3/CW**2*MW**2*SW**2*Zt21r**2-4/3/CW**2*MW**2*SW**2*Zt21r**2*sb**2+2*Mt*Zt11r*Zt21r*cb*mur/sb-2*Mt*Zt11r*Zt21i*cb*mui/sb+1*Mt**2+1*Mq3**2*Zt11r**2+1/CW**2*Mu3**2*Zt21i**2+1/CW**2*Mu3**2*Zt21r**2-1/CW**2*Mu3**2*SW**2*Zt21i**2-1/CW**2*Mu3**2*SW**2*Zt21r**2-2*Atr*Mt*Zt11r*Zt21r-2*Ati*Mt*Zt11r*Zt21i)
+    = +705.124401**2
+    Declared mass MSt1=344.691807
+
+
+M12 (~T1/~t2) = (+1/2/CW**2*MW**2*Zt11r*Zt21r*c2b-4/3/CW**2*MW**2*SW**2*Zt11r*Zt21r*c2b-1/2*i/CW**2*MW**2*Zt11r*Zt21i*c2b+4/3*i/CW**2*MW**2*SW**2*Zt11r*Zt21i*c2b-1/CW**2*Mt*Zt11r**2*cb*mur/sb-1/CW**2*Mt*Zt21i**2*cb*mur/sb+1/CW**2*Mt*Zt21r**2*cb*mur/sb+1/CW**2*Mt*SW**2*Zt11r**2*cb*mur/sb+1/CW**2*Mt*SW**2*Zt21i**2*cb*mur/sb-1/CW**2*Mt*SW**2*Zt21r**2*cb*mur/sb-1*i/CW**2*Mt*Zt11r**2*cb*mui/sb+1*i/CW**2*Mt*Zt21i**2*cb*mui/sb-1*i/CW**2*Mt*Zt21r**2*cb*mui/sb+1*i/CW**2*Mt*SW**2*Zt11r**2*cb*mui/sb-1*i/CW**2*Mt*SW**2*Zt21i**2*cb*mui/sb+1*i/CW**2*Mt*SW**2*Zt21r**2*cb*mui/sb-2*i*Mt*Zt21i*Zt21r*cb*mur/sb-2*Mt*Zt21i*Zt21r*cb*mui/sb+1*Mq3**2*Zt11r*Zt21r-1*i*Mq3**2*Zt11r*Zt21i-1*Mu3**2*Zt11r*Zt21r+1*i*Mu3**2*Zt11r*Zt21i+1*Atr/CW**2*Mt*Zt11r**2+1*Atr/CW**2*Mt*Zt21i**2-1*Atr/CW**2*Mt*Zt21r**2-1*Atr/CW**2*Mt*SW**2*Zt11r**2-1*Atr/CW**2*Mt*SW**2*Zt21i**2+1*Atr/CW**2*Mt*SW**2*Zt21r**2+2*i*Atr*Mt*Zt21i*Zt21r-1*i*Ati/CW**2*Mt*Zt11r**2+1*i*Ati/CW**2*Mt*Zt21i**2-1*i*Ati/CW**2*Mt*Zt21r**2+1*i*Ati/CW**2*Mt*SW**2*Zt11r**2-1*i*Ati/CW**2*Mt*SW**2*Zt21i**2+1*i*Ati/CW**2*Mt*SW**2*Zt21r**2-2*Ati*Mt*Zt21i*Zt21r)
+    = (+88.459945**2+374.963305**2*i)
+
+
+M21 (~T2/~t1) = (+1/2/CW**2*MW**2*Zt11r*Zt21r*c2b-4/3/CW**2*MW**2*SW**2*Zt11r*Zt21r*c2b+1/2*i/CW**2*MW**2*Zt11r*Zt21i*c2b-4/3*i/CW**2*MW**2*SW**2*Zt11r*Zt21i*c2b-1/CW**2*Mt*Zt11r**2*cb*mur/sb-1/CW**2*Mt*Zt21i**2*cb*mur/sb+1/CW**2*Mt*Zt21r**2*cb*mur/sb+1/CW**2*Mt*SW**2*Zt11r**2*cb*mur/sb+1/CW**2*Mt*SW**2*Zt21i**2*cb*mur/sb-1/CW**2*Mt*SW**2*Zt21r**2*cb*mur/sb+2*i*Mt*Zt21i*Zt21r*cb*mur/sb+1*i/CW**2*Mt*Zt11r**2*cb*mui/sb-1*i/CW**2*Mt*Zt21i**2*cb*mui/sb+1*i/CW**2*Mt*Zt21r**2*cb*mui/sb-1*i/CW**2*Mt*SW**2*Zt11r**2*cb*mui/sb+1*i/CW**2*Mt*SW**2*Zt21i**2*cb*mui/sb-1*i/CW**2*Mt*SW**2*Zt21r**2*cb*mui/sb-2*Mt*Zt21i*Zt21r*cb*mui/sb+1*Mq3**2*Zt11r*Zt21r+1*i*Mq3**2*Zt11r*Zt21i-1*Mu3**2*Zt11r*Zt21r-1*i*Mu3**2*Zt11r*Zt21i+1*Atr/CW**2*Mt*Zt11r**2+1*Atr/CW**2*Mt*Zt21i**2-1*Atr/CW**2*Mt*Zt21r**2-1*Atr/CW**2*Mt*SW**2*Zt11r**2-1*Atr/CW**2*Mt*SW**2*Zt21i**2+1*Atr/CW**2*Mt*SW**2*Zt21r**2+1*i*Ati/CW**2*Mt*Zt11r**2-1*i*Ati/CW**2*Mt*Zt21i**2+1*i*Ati/CW**2*Mt*Zt21r**2-1*i*Ati/CW**2*Mt*SW**2*Zt11r**2+1*i*Ati/CW**2*Mt*SW**2*Zt21i**2-1*i*Ati/CW**2*Mt*SW**2*Zt21r**2-2*i*Atr*Mt*Zt21i*Zt21r-2*Ati*Mt*Zt21i*Zt21r)
+    = (+88.459945**2-374.963305**2*i)
+
+
+M22 (~T2/~t2) = (+1/2/CW**2*MW**2*Zt21i**2-1/CW**2*MW**2*Zt21i**2*sb**2+1/2/CW**2*MW**2*Zt21r**2-1/CW**2*MW**2*Zt21r**2*sb**2+2/3/CW**2*MW**2*SW**2*Zt11r**2-4/3/CW**2*MW**2*SW**2*Zt11r**2*sb**2-2/3/CW**2*MW**2*SW**2*Zt21i**2+4/3/CW**2*MW**2*SW**2*Zt21i**2*sb**2-2/3/CW**2*MW**2*SW**2*Zt21r**2+4/3/CW**2*MW**2*SW**2*Zt21r**2*sb**2-2*Mt*Zt11r*Zt21r*cb*mur/sb+2*Mt*Zt11r*Zt21i*cb*mui/sb+1*Mt**2+1/CW**2*Mq3**2*Zt21i**2+1/CW**2*Mq3**2*Zt21r**2-1/CW**2*Mq3**2*SW**2*Zt21i**2-1/CW**2*Mq3**2*SW**2*Zt21r**2+1*Mu3**2*Zt11r**2+2*Atr*Mt*Zt11r*Zt21r+2*Ati*Mt*Zt11r*Zt21i)
+    = +706.219070**2
+    Declared mass MSt2=650.908629
+
+
+Looking for the mixing matrix...
+No mixing matrices found.
+
+---------------------------------------------------------------
+Mixing of particles ['Z.f', h1, h2, h3]
+
+M11 (Z.f/Z.f) = (-4/EE**2*MW**2*SW**2*cb**4*la1-4/EE**2*MW**2*SW**2*la2*sb**4-4/EE**2*MW**2*SW**2*cb**2*la3*sb**2-4/EE**2*MW**2*SW**2*cb**2*la4*sb**2-8/EE**2*MW**2*SW**2*cb**2*la5r*sb**2-8/EE**2*MW**2*SW**2*cb**3*la6r*sb-8/EE**2*MW**2*SW**2*cb*la7r*sb**3+1*mur**2+1*mui**2+1/CW**2*MW**2)
+    = +159.802059**2
+
+
+M12 (Z.f/h1) = (+4/EE**2*MW**2*SW**2*Zh13*cb**3*la1*sb-4/EE**2*MW**2*SW**2*Zh13*cb*la2*sb**3-1/EE**2*MW**2*SW**2*Zh13*c2b*la3*s2b-1/EE**2*MW**2*SW**2*Zh13*c2b*la4*s2b-2/EE**2*MW**2*SW**2*Zh13*c2b*la5r*s2b+4/EE**2*MW**2*SW**2*Zh11*cb*la5i*sb**2-4/EE**2*MW**2*SW**2*Zh12*cb**2*la5i*sb+8/EE**2*MW**2*SW**2*Zh13*cb**2*la6r*sb**2-2/EE**2*MW**2*SW**2*Zh13*cb**2*la6r+2/EE**2*MW**2*SW**2*Zh11*cb**2*la6i*sb-2/EE**2*MW**2*SW**2*Zh12*cb**3*la6i+8/EE**2*MW**2*SW**2*Zh13*la7r*sb**4-6/EE**2*MW**2*SW**2*Zh13*la7r*sb**2-2/EE**2*MW**2*SW**2*Zh12*cb*la7i*sb**2+2/EE**2*MW**2*SW**2*Zh11*la7i*sb**3)
+    = -3.399917**2
+
+
+M13 (Z.f/h2) = (+4/EE**2*MW**2*SW**2*Zh23*cb**3*la1*sb-4/EE**2*MW**2*SW**2*Zh23*cb*la2*sb**3-1/EE**2*MW**2*SW**2*Zh23*c2b*la3*s2b-1/EE**2*MW**2*SW**2*Zh23*c2b*la4*s2b-2/EE**2*MW**2*SW**2*Zh23*c2b*la5r*s2b+4/EE**2*MW**2*SW**2*Zh21*cb*la5i*sb**2-4/EE**2*MW**2*SW**2*Zh22*cb**2*la5i*sb+8/EE**2*MW**2*SW**2*Zh23*cb**2*la6r*sb**2-2/EE**2*MW**2*SW**2*Zh23*cb**2*la6r+2/EE**2*MW**2*SW**2*Zh21*cb**2*la6i*sb-2/EE**2*MW**2*SW**2*Zh22*cb**3*la6i+8/EE**2*MW**2*SW**2*Zh23*la7r*sb**4-6/EE**2*MW**2*SW**2*Zh23*la7r*sb**2-2/EE**2*MW**2*SW**2*Zh22*cb*la7i*sb**2+2/EE**2*MW**2*SW**2*Zh21*la7i*sb**3)
+    = -33.287013**2
+
+
+M14 (Z.f/h3) = (+4/EE**2*MW**2*SW**2*Zh33*cb**3*la1*sb-4/EE**2*MW**2*SW**2*Zh33*cb*la2*sb**3-1/EE**2*MW**2*SW**2*Zh33*c2b*la3*s2b-1/EE**2*MW**2*SW**2*Zh33*c2b*la4*s2b-2/EE**2*MW**2*SW**2*Zh33*c2b*la5r*s2b+4/EE**2*MW**2*SW**2*Zh31*cb*la5i*sb**2-4/EE**2*MW**2*SW**2*Zh32*cb**2*la5i*sb+8/EE**2*MW**2*SW**2*Zh33*cb**2*la6r*sb**2-2/EE**2*MW**2*SW**2*Zh33*cb**2*la6r+2/EE**2*MW**2*SW**2*Zh31*cb**2*la6i*sb-2/EE**2*MW**2*SW**2*Zh32*cb**3*la6i+8/EE**2*MW**2*SW**2*Zh33*la7r*sb**4-6/EE**2*MW**2*SW**2*Zh33*la7r*sb**2-2/EE**2*MW**2*SW**2*Zh32*cb*la7i*sb**2+2/EE**2*MW**2*SW**2*Zh31*la7i*sb**3)
+    = +7.717050**2
+
+
+M22 (h1/h1) = (-12/EE**2*MW**2*SW**2*Zh11**2*cb**2*la1-4/EE**2*MW**2*SW**2*Zh13**2*cb**2*la1*sb**2-12/EE**2*MW**2*SW**2*Zh12**2*la2*sb**2-4/EE**2*MW**2*SW**2*Zh13**2*cb**2*la2*sb**2-2/EE**2*MW**2*SW**2*Zh12**2*cb**2*la3-2/EE**2*MW**2*SW**2*Zh13**2*la3+4/EE**2*MW**2*SW**2*Zh13**2*cb**2*la3*sb**2-4/EE**2*MW**2*SW**2*Zh11*Zh12*la3*s2b-2/EE**2*MW**2*SW**2*Zh11**2*la3*sb**2-4/EE**2*MW**2*SW**2*Zh11*Zh12*la4*s2b-2/EE**2*MW**2*SW**2*Zh12**2*cb**2*la4-2/EE**2*MW**2*SW**2*Zh13**2*la4+4/EE**2*MW**2*SW**2*Zh13**2*cb**2*la4*sb**2-2/EE**2*MW**2*SW**2*Zh11**2*la4*sb**2-8/EE**2*MW**2*SW**2*Zh11*Zh12*la5r*s2b+8/EE**2*MW**2*SW**2*Zh13**2*cb**2*la5r*sb**2+4/EE**2*MW**2*SW**2*Zh13**2*la5r-4/EE**2*MW**2*SW**2*Zh12**2*cb**2*la5r-4/EE**2*MW**2*SW**2*Zh11**2*la5r*sb**2+16/EE**2*MW**2*SW**2*Zh11*Zh13*la5i*sb-8/EE**2*MW**2*SW**2*Zh11*Zh13*la5i*sb**3+8/EE**2*MW**2*SW**2*Zh12*Zh13*cb*la5i+8/EE**2*MW**2*SW**2*Zh12*Zh13*cb*la5i*sb**2-12/EE**2*MW**2*SW**2*Zh11*Zh12*cb**2*la6r-6/EE**2*MW**2*SW**2*Zh11**2*la6r*s2b+2/EE**2*MW**2*SW**2*Zh13**2*c2b*la6r*s2b-4/EE**2*MW**2*SW**2*Zh11*Zh13*cb*la6i*sb**2+12/EE**2*MW**2*SW**2*Zh11*Zh13*cb*la6i+4/EE**2*MW**2*SW**2*Zh12*Zh13*cb**2*la6i*sb-12/EE**2*MW**2*SW**2*Zh11*Zh12*la7r*sb**2-6/EE**2*MW**2*SW**2*Zh12**2*la7r*s2b-2/EE**2*MW**2*SW**2*Zh13**2*c2b*la7r*s2b+4/EE**2*MW**2*SW**2*Zh12*Zh13*la7i*sb**3+8/EE**2*MW**2*SW**2*Zh12*Zh13*la7i*sb+4/EE**2*MW**2*SW**2*Zh11*Zh13*cb*la7i*sb**2+1*Zh12**2*mur**2+1*Zh13**2*mur**2+1*Zh12**2*mui**2+1*Zh13**2*mui**2+1*Zh11**2*mur**2+1*Zh11**2*mui**2)
+    = +171.810305**2
+    Declared mass Mh1=115.170396
+
+
+M23 (h1/h2) = (-12/EE**2*MW**2*SW**2*Zh11*Zh21*cb**2*la1-4/EE**2*MW**2*SW**2*Zh13*Zh23*cb**2*la1*sb**2-12/EE**2*MW**2*SW**2*Zh12*Zh22*la2*sb**2-4/EE**2*MW**2*SW**2*Zh13*Zh23*cb**2*la2*sb**2-2/EE**2*MW**2*SW**2*Zh12*Zh22*cb**2*la3-2/EE**2*MW**2*SW**2*Zh13*Zh23*la3+4/EE**2*MW**2*SW**2*Zh13*Zh23*cb**2*la3*sb**2-2/EE**2*MW**2*SW**2*Zh11*Zh22*la3*s2b-2/EE**2*MW**2*SW**2*Zh12*Zh21*la3*s2b-2/EE**2*MW**2*SW**2*Zh11*Zh21*la3*sb**2-2/EE**2*MW**2*SW**2*Zh11*Zh22*la4*s2b-2/EE**2*MW**2*SW**2*Zh12*Zh21*la4*s2b-2/EE**2*MW**2*SW**2*Zh12*Zh22*cb**2*la4-2/EE**2*MW**2*SW**2*Zh13*Zh23*la4+4/EE**2*MW**2*SW**2*Zh13*Zh23*cb**2*la4*sb**2-2/EE**2*MW**2*SW**2*Zh11*Zh21*la4*sb**2-4/EE**2*MW**2*SW**2*Zh11*Zh22*la5r*s2b-4/EE**2*MW**2*SW**2*Zh12*Zh21*la5r*s2b+8/EE**2*MW**2*SW**2*Zh13*Zh23*cb**2*la5r*sb**2+4/EE**2*MW**2*SW**2*Zh13*Zh23*la5r-4/EE**2*MW**2*SW**2*Zh12*Zh22*cb**2*la5r-4/EE**2*MW**2*SW**2*Zh11*Zh21*la5r*sb**2+8/EE**2*MW**2*SW**2*Zh11*Zh23*la5i*sb-4/EE**2*MW**2*SW**2*Zh11*Zh23*la5i*sb**3+8/EE**2*MW**2*SW**2*Zh13*Zh21*la5i*sb-4/EE**2*MW**2*SW**2*Zh13*Zh21*la5i*sb**3+4/EE**2*MW**2*SW**2*Zh13*Zh22*cb*la5i+4/EE**2*MW**2*SW**2*Zh13*Zh22*cb*la5i*sb**2+4/EE**2*MW**2*SW**2*Zh12*Zh23*cb*la5i+4/EE**2*MW**2*SW**2*Zh12*Zh23*cb*la5i*sb**2-6/EE**2*MW**2*SW**2*Zh11*Zh22*cb**2*la6r-6/EE**2*MW**2*SW**2*Zh12*Zh21*cb**2*la6r-6/EE**2*MW**2*SW**2*Zh11*Zh21*la6r*s2b+2/EE**2*MW**2*SW**2*Zh13*Zh23*c2b*la6r*s2b-2/EE**2*MW**2*SW**2*Zh11*Zh23*cb*la6i*sb**2+6/EE**2*MW**2*SW**2*Zh11*Zh23*cb*la6i-2/EE**2*MW**2*SW**2*Zh13*Zh21*cb*la6i*sb**2+6/EE**2*MW**2*SW**2*Zh13*Zh21*cb*la6i+2/EE**2*MW**2*SW**2*Zh13*Zh22*cb**2*la6i*sb+2/EE**2*MW**2*SW**2*Zh12*Zh23*cb**2*la6i*sb-6/EE**2*MW**2*SW**2*Zh11*Zh22*la7r*sb**2-6/EE**2*MW**2*SW**2*Zh12*Zh21*la7r*sb**2-6/EE**2*MW**2*SW**2*Zh12*Zh22*la7r*s2b-2/EE**2*MW**2*SW**2*Zh13*Zh23*c2b*la7r*s2b+2/EE**2*MW**2*SW**2*Zh13*Zh22*la7i*sb**3+4/EE**2*MW**2*SW**2*Zh13*Zh22*la7i*sb+2/EE**2*MW**2*SW**2*Zh12*Zh23*la7i*sb**3+4/EE**2*MW**2*SW**2*Zh12*Zh23*la7i*sb+2/EE**2*MW**2*SW**2*Zh13*Zh21*cb*la7i*sb**2+2/EE**2*MW**2*SW**2*Zh11*Zh23*cb*la7i*sb**2+1*Zh12*Zh22*mur**2+1*Zh13*Zh23*mur**2+1*Zh12*Zh22*mui**2+1*Zh13*Zh23*mui**2+1*Zh11*Zh21*mur**2+1*Zh11*Zh21*mui**2)
+    = +13.209760**2
+
+
+M24 (h1/h3) = (-12/EE**2*MW**2*SW**2*Zh11*Zh31*cb**2*la1-4/EE**2*MW**2*SW**2*Zh13*Zh33*cb**2*la1*sb**2-12/EE**2*MW**2*SW**2*Zh12*Zh32*la2*sb**2-4/EE**2*MW**2*SW**2*Zh13*Zh33*cb**2*la2*sb**2-2/EE**2*MW**2*SW**2*Zh12*Zh32*cb**2*la3-2/EE**2*MW**2*SW**2*Zh13*Zh33*la3+4/EE**2*MW**2*SW**2*Zh13*Zh33*cb**2*la3*sb**2-2/EE**2*MW**2*SW**2*Zh11*Zh32*la3*s2b-2/EE**2*MW**2*SW**2*Zh12*Zh31*la3*s2b-2/EE**2*MW**2*SW**2*Zh11*Zh31*la3*sb**2-2/EE**2*MW**2*SW**2*Zh11*Zh32*la4*s2b-2/EE**2*MW**2*SW**2*Zh12*Zh31*la4*s2b-2/EE**2*MW**2*SW**2*Zh12*Zh32*cb**2*la4-2/EE**2*MW**2*SW**2*Zh13*Zh33*la4+4/EE**2*MW**2*SW**2*Zh13*Zh33*cb**2*la4*sb**2-2/EE**2*MW**2*SW**2*Zh11*Zh31*la4*sb**2-4/EE**2*MW**2*SW**2*Zh11*Zh32*la5r*s2b-4/EE**2*MW**2*SW**2*Zh12*Zh31*la5r*s2b+8/EE**2*MW**2*SW**2*Zh13*Zh33*cb**2*la5r*sb**2+4/EE**2*MW**2*SW**2*Zh13*Zh33*la5r-4/EE**2*MW**2*SW**2*Zh12*Zh32*cb**2*la5r-4/EE**2*MW**2*SW**2*Zh11*Zh31*la5r*sb**2+8/EE**2*MW**2*SW**2*Zh11*Zh33*la5i*sb-4/EE**2*MW**2*SW**2*Zh11*Zh33*la5i*sb**3+8/EE**2*MW**2*SW**2*Zh13*Zh31*la5i*sb-4/EE**2*MW**2*SW**2*Zh13*Zh31*la5i*sb**3+4/EE**2*MW**2*SW**2*Zh13*Zh32*cb*la5i+4/EE**2*MW**2*SW**2*Zh13*Zh32*cb*la5i*sb**2+4/EE**2*MW**2*SW**2*Zh12*Zh33*cb*la5i+4/EE**2*MW**2*SW**2*Zh12*Zh33*cb*la5i*sb**2-6/EE**2*MW**2*SW**2*Zh11*Zh32*cb**2*la6r-6/EE**2*MW**2*SW**2*Zh12*Zh31*cb**2*la6r-6/EE**2*MW**2*SW**2*Zh11*Zh31*la6r*s2b+2/EE**2*MW**2*SW**2*Zh13*Zh33*c2b*la6r*s2b-2/EE**2*MW**2*SW**2*Zh11*Zh33*cb*la6i*sb**2+6/EE**2*MW**2*SW**2*Zh11*Zh33*cb*la6i-2/EE**2*MW**2*SW**2*Zh13*Zh31*cb*la6i*sb**2+6/EE**2*MW**2*SW**2*Zh13*Zh31*cb*la6i+2/EE**2*MW**2*SW**2*Zh13*Zh32*cb**2*la6i*sb+2/EE**2*MW**2*SW**2*Zh12*Zh33*cb**2*la6i*sb-6/EE**2*MW**2*SW**2*Zh11*Zh32*la7r*sb**2-6/EE**2*MW**2*SW**2*Zh12*Zh31*la7r*sb**2-6/EE**2*MW**2*SW**2*Zh12*Zh32*la7r*s2b-2/EE**2*MW**2*SW**2*Zh13*Zh33*c2b*la7r*s2b+2/EE**2*MW**2*SW**2*Zh13*Zh32*la7i*sb**3+4/EE**2*MW**2*SW**2*Zh13*Zh32*la7i*sb+2/EE**2*MW**2*SW**2*Zh12*Zh33*la7i*sb**3+4/EE**2*MW**2*SW**2*Zh12*Zh33*la7i*sb+2/EE**2*MW**2*SW**2*Zh13*Zh31*cb*la7i*sb**2+2/EE**2*MW**2*SW**2*Zh11*Zh33*cb*la7i*sb**2+1*Zh12*Zh32*mur**2+1*Zh13*Zh33*mur**2+1*Zh12*Zh32*mui**2+1*Zh13*Zh33*mui**2+1*Zh11*Zh31*mur**2+1*Zh11*Zh31*mui**2)
+    = +88.142103**2
+
+
+M33 (h2/h2) = (-12/EE**2*MW**2*SW**2*Zh21**2*cb**2*la1-4/EE**2*MW**2*SW**2*Zh23**2*cb**2*la1*sb**2-12/EE**2*MW**2*SW**2*Zh22**2*la2*sb**2-4/EE**2*MW**2*SW**2*Zh23**2*cb**2*la2*sb**2-2/EE**2*MW**2*SW**2*Zh22**2*cb**2*la3-2/EE**2*MW**2*SW**2*Zh23**2*la3+4/EE**2*MW**2*SW**2*Zh23**2*cb**2*la3*sb**2-4/EE**2*MW**2*SW**2*Zh21*Zh22*la3*s2b-2/EE**2*MW**2*SW**2*Zh21**2*la3*sb**2-4/EE**2*MW**2*SW**2*Zh21*Zh22*la4*s2b-2/EE**2*MW**2*SW**2*Zh22**2*cb**2*la4-2/EE**2*MW**2*SW**2*Zh23**2*la4+4/EE**2*MW**2*SW**2*Zh23**2*cb**2*la4*sb**2-2/EE**2*MW**2*SW**2*Zh21**2*la4*sb**2-8/EE**2*MW**2*SW**2*Zh21*Zh22*la5r*s2b+8/EE**2*MW**2*SW**2*Zh23**2*cb**2*la5r*sb**2+4/EE**2*MW**2*SW**2*Zh23**2*la5r-4/EE**2*MW**2*SW**2*Zh22**2*cb**2*la5r-4/EE**2*MW**2*SW**2*Zh21**2*la5r*sb**2+16/EE**2*MW**2*SW**2*Zh21*Zh23*la5i*sb-8/EE**2*MW**2*SW**2*Zh21*Zh23*la5i*sb**3+8/EE**2*MW**2*SW**2*Zh22*Zh23*cb*la5i+8/EE**2*MW**2*SW**2*Zh22*Zh23*cb*la5i*sb**2-12/EE**2*MW**2*SW**2*Zh21*Zh22*cb**2*la6r-6/EE**2*MW**2*SW**2*Zh21**2*la6r*s2b+2/EE**2*MW**2*SW**2*Zh23**2*c2b*la6r*s2b-4/EE**2*MW**2*SW**2*Zh21*Zh23*cb*la6i*sb**2+12/EE**2*MW**2*SW**2*Zh21*Zh23*cb*la6i+4/EE**2*MW**2*SW**2*Zh22*Zh23*cb**2*la6i*sb-12/EE**2*MW**2*SW**2*Zh21*Zh22*la7r*sb**2-6/EE**2*MW**2*SW**2*Zh22**2*la7r*s2b-2/EE**2*MW**2*SW**2*Zh23**2*c2b*la7r*s2b+4/EE**2*MW**2*SW**2*Zh22*Zh23*la7i*sb**3+8/EE**2*MW**2*SW**2*Zh22*Zh23*la7i*sb+4/EE**2*MW**2*SW**2*Zh21*Zh23*cb*la7i*sb**2+1*Zh22**2*mur**2+1*Zh23**2*mur**2+1*Zh22**2*mui**2+1*Zh23**2*mui**2+1*Zh21**2*mur**2+1*Zh21**2*mui**2)
+    = +78.180279**2
+    Declared mass Mh2=237.044126
+
+
+M34 (h2/h3) = (-12/EE**2*MW**2*SW**2*Zh21*Zh31*cb**2*la1-4/EE**2*MW**2*SW**2*Zh23*Zh33*cb**2*la1*sb**2-12/EE**2*MW**2*SW**2*Zh22*Zh32*la2*sb**2-4/EE**2*MW**2*SW**2*Zh23*Zh33*cb**2*la2*sb**2-2/EE**2*MW**2*SW**2*Zh22*Zh32*cb**2*la3-2/EE**2*MW**2*SW**2*Zh23*Zh33*la3+4/EE**2*MW**2*SW**2*Zh23*Zh33*cb**2*la3*sb**2-2/EE**2*MW**2*SW**2*Zh21*Zh32*la3*s2b-2/EE**2*MW**2*SW**2*Zh22*Zh31*la3*s2b-2/EE**2*MW**2*SW**2*Zh21*Zh31*la3*sb**2-2/EE**2*MW**2*SW**2*Zh21*Zh32*la4*s2b-2/EE**2*MW**2*SW**2*Zh22*Zh31*la4*s2b-2/EE**2*MW**2*SW**2*Zh22*Zh32*cb**2*la4-2/EE**2*MW**2*SW**2*Zh23*Zh33*la4+4/EE**2*MW**2*SW**2*Zh23*Zh33*cb**2*la4*sb**2-2/EE**2*MW**2*SW**2*Zh21*Zh31*la4*sb**2-4/EE**2*MW**2*SW**2*Zh21*Zh32*la5r*s2b-4/EE**2*MW**2*SW**2*Zh22*Zh31*la5r*s2b+8/EE**2*MW**2*SW**2*Zh23*Zh33*cb**2*la5r*sb**2+4/EE**2*MW**2*SW**2*Zh23*Zh33*la5r-4/EE**2*MW**2*SW**2*Zh22*Zh32*cb**2*la5r-4/EE**2*MW**2*SW**2*Zh21*Zh31*la5r*sb**2+8/EE**2*MW**2*SW**2*Zh21*Zh33*la5i*sb-4/EE**2*MW**2*SW**2*Zh21*Zh33*la5i*sb**3+8/EE**2*MW**2*SW**2*Zh23*Zh31*la5i*sb-4/EE**2*MW**2*SW**2*Zh23*Zh31*la5i*sb**3+4/EE**2*MW**2*SW**2*Zh23*Zh32*cb*la5i+4/EE**2*MW**2*SW**2*Zh23*Zh32*cb*la5i*sb**2+4/EE**2*MW**2*SW**2*Zh22*Zh33*cb*la5i+4/EE**2*MW**2*SW**2*Zh22*Zh33*cb*la5i*sb**2-6/EE**2*MW**2*SW**2*Zh21*Zh32*cb**2*la6r-6/EE**2*MW**2*SW**2*Zh22*Zh31*cb**2*la6r-6/EE**2*MW**2*SW**2*Zh21*Zh31*la6r*s2b+2/EE**2*MW**2*SW**2*Zh23*Zh33*c2b*la6r*s2b-2/EE**2*MW**2*SW**2*Zh21*Zh33*cb*la6i*sb**2+6/EE**2*MW**2*SW**2*Zh21*Zh33*cb*la6i-2/EE**2*MW**2*SW**2*Zh23*Zh31*cb*la6i*sb**2+6/EE**2*MW**2*SW**2*Zh23*Zh31*cb*la6i+2/EE**2*MW**2*SW**2*Zh23*Zh32*cb**2*la6i*sb+2/EE**2*MW**2*SW**2*Zh22*Zh33*cb**2*la6i*sb-6/EE**2*MW**2*SW**2*Zh21*Zh32*la7r*sb**2-6/EE**2*MW**2*SW**2*Zh22*Zh31*la7r*sb**2-6/EE**2*MW**2*SW**2*Zh22*Zh32*la7r*s2b-2/EE**2*MW**2*SW**2*Zh23*Zh33*c2b*la7r*s2b+2/EE**2*MW**2*SW**2*Zh23*Zh32*la7i*sb**3+4/EE**2*MW**2*SW**2*Zh23*Zh32*la7i*sb+2/EE**2*MW**2*SW**2*Zh22*Zh33*la7i*sb**3+4/EE**2*MW**2*SW**2*Zh22*Zh33*la7i*sb+2/EE**2*MW**2*SW**2*Zh23*Zh31*cb*la7i*sb**2+2/EE**2*MW**2*SW**2*Zh21*Zh33*cb*la7i*sb**2+1*Zh22*Zh32*mur**2+1*Zh23*Zh33*mur**2+1*Zh22*Zh32*mui**2+1*Zh23*Zh33*mui**2+1*Zh21*Zh31*mur**2+1*Zh21*Zh31*mui**2)
+    = +6.548165**2
+
+
+M44 (h3/h3) = (-12/EE**2*MW**2*SW**2*Zh31**2*cb**2*la1-4/EE**2*MW**2*SW**2*Zh33**2*cb**2*la1*sb**2-12/EE**2*MW**2*SW**2*Zh32**2*la2*sb**2-4/EE**2*MW**2*SW**2*Zh33**2*cb**2*la2*sb**2-2/EE**2*MW**2*SW**2*Zh32**2*cb**2*la3-2/EE**2*MW**2*SW**2*Zh33**2*la3+4/EE**2*MW**2*SW**2*Zh33**2*cb**2*la3*sb**2-4/EE**2*MW**2*SW**2*Zh31*Zh32*la3*s2b-2/EE**2*MW**2*SW**2*Zh31**2*la3*sb**2-4/EE**2*MW**2*SW**2*Zh31*Zh32*la4*s2b-2/EE**2*MW**2*SW**2*Zh32**2*cb**2*la4-2/EE**2*MW**2*SW**2*Zh33**2*la4+4/EE**2*MW**2*SW**2*Zh33**2*cb**2*la4*sb**2-2/EE**2*MW**2*SW**2*Zh31**2*la4*sb**2-8/EE**2*MW**2*SW**2*Zh31*Zh32*la5r*s2b+8/EE**2*MW**2*SW**2*Zh33**2*cb**2*la5r*sb**2+4/EE**2*MW**2*SW**2*Zh33**2*la5r-4/EE**2*MW**2*SW**2*Zh32**2*cb**2*la5r-4/EE**2*MW**2*SW**2*Zh31**2*la5r*sb**2+16/EE**2*MW**2*SW**2*Zh31*Zh33*la5i*sb-8/EE**2*MW**2*SW**2*Zh31*Zh33*la5i*sb**3+8/EE**2*MW**2*SW**2*Zh32*Zh33*cb*la5i+8/EE**2*MW**2*SW**2*Zh32*Zh33*cb*la5i*sb**2-12/EE**2*MW**2*SW**2*Zh31*Zh32*cb**2*la6r-6/EE**2*MW**2*SW**2*Zh31**2*la6r*s2b+2/EE**2*MW**2*SW**2*Zh33**2*c2b*la6r*s2b-4/EE**2*MW**2*SW**2*Zh31*Zh33*cb*la6i*sb**2+12/EE**2*MW**2*SW**2*Zh31*Zh33*cb*la6i+4/EE**2*MW**2*SW**2*Zh32*Zh33*cb**2*la6i*sb-12/EE**2*MW**2*SW**2*Zh31*Zh32*la7r*sb**2-6/EE**2*MW**2*SW**2*Zh32**2*la7r*s2b-2/EE**2*MW**2*SW**2*Zh33**2*c2b*la7r*s2b+4/EE**2*MW**2*SW**2*Zh32*Zh33*la7i*sb**3+8/EE**2*MW**2*SW**2*Zh32*Zh33*la7i*sb+4/EE**2*MW**2*SW**2*Zh31*Zh33*cb*la7i*sb**2+1*Zh32**2*mur**2+1*Zh33**2*mur**2+1*Zh32**2*mui**2+1*Zh33**2*mui**2+1*Zh31**2*mur**2+1*Zh31**2*mui**2)
+    = +93.481377**2
+    Declared mass Mh3=241.096444
+
+
+Looking for the mixing matrix...
+Expression with 1 mixing elements, vertex 'Z.f'/h2
+
+---------------------------------------------------------------
+Mixing of particles ['~o1', '~o2', '~o3', '~o4']
+
+M11 (~o1/~o1) = (+2*MW*Zn12r*Zn13r*cb-2*MW*Zn12i*Zn13i*cb-2/CW*MW*SW*Zn11r*Zn13r*cb+2/CW*MW*SW*Zn11i*Zn13i*cb-2*MW*Zn12r*Zn14r*sb+2*MW*Zn12i*Zn14i*sb+2/CW*MW*SW*Zn11r*Zn14r*sb-2/CW*MW*SW*Zn11i*Zn14i*sb-2*Zn13r*Zn14r*mur+2*Zn13i*Zn14i*mur-2*Zn13r*Zn14i*mui-2*Zn13i*Zn14r*mui+1*MG1*Zn11r**2-1*MG1*Zn11i**2+1*MG2*Zn12r**2-1*MG2*Zn12i**2)+(+2*i*MW*Zn12i*Zn13r*cb+2*i*MW*Zn12r*Zn13i*cb-2*i/CW*MW*SW*Zn11r*Zn13i*cb-2*i/CW*MW*SW*Zn11i*Zn13r*cb-2*i*MW*Zn12i*Zn14r*sb-2*i*MW*Zn12r*Zn14i*sb+2*i/CW*MW*SW*Zn11r*Zn14i*sb+2*i/CW*MW*SW*Zn11i*Zn14r*sb-2*i*Zn13r*Zn14i*mur-2*i*Zn13i*Zn14r*mur+2*i*Zn13r*Zn14r*mui-2*i*Zn13i*Zn14i*mui+2*i*MG1*Zn11i*Zn11r+2*i*MG2*Zn12i*Zn12r)*gamma5
+    = -47.301505-34.022610*i*gamma5
+    Declared mass MNE1=74.902443
+
+
+M12 (~o1/~o2) = (+1*MW*Zn13r*Zn22r*cb-1*MW*Zn13i*Zn22i*cb+1*MW*Zn12r*Zn23r*cb-1*MW*Zn12i*Zn23i*cb-1/CW*MW*SW*Zn11r*Zn23r*cb+1/CW*MW*SW*Zn11i*Zn23i*cb-1/CW*MW*SW*Zn13r*Zn21r*cb+1/CW*MW*SW*Zn13i*Zn21i*cb-1*MW*Zn14r*Zn22r*sb+1*MW*Zn14i*Zn22i*sb-1*MW*Zn12r*Zn24r*sb+1*MW*Zn12i*Zn24i*sb+1/CW*MW*SW*Zn11r*Zn24r*sb-1/CW*MW*SW*Zn11i*Zn24i*sb+1/CW*MW*SW*Zn14r*Zn21r*sb-1/CW*MW*SW*Zn14i*Zn21i*sb-1*Zn13r*Zn24r*mur+1*Zn13i*Zn24i*mur-1*Zn14r*Zn23r*mur+1*Zn14i*Zn23i*mur-1*Zn13r*Zn24i*mui-1*Zn13i*Zn24r*mui-1*Zn14i*Zn23r*mui-1*Zn14r*Zn23i*mui+1*MG1*Zn11r*Zn21r-1*MG1*Zn11i*Zn21i+1*MG2*Zn12r*Zn22r-1*MG2*Zn12i*Zn22i)+(+1*i*MW*Zn13r*Zn22i*cb+1*i*MW*Zn13i*Zn22r*cb+1*i*MW*Zn12i*Zn23r*cb+1*i*MW*Zn12r*Zn23i*cb-1*i/CW*MW*SW*Zn11r*Zn23i*cb-1*i/CW*MW*SW*Zn11i*Zn23r*cb-1*i/CW*MW*SW*Zn13i*Zn21r*cb-1*i/CW*MW*SW*Zn13r*Zn21i*cb-1*i*MW*Zn14r*Zn22i*sb-1*i*MW*Zn14i*Zn22r*sb-1*i*MW*Zn12i*Zn24r*sb-1*i*MW*Zn12r*Zn24i*sb+1*i/CW*MW*SW*Zn11r*Zn24i*sb+1*i/CW*MW*SW*Zn11i*Zn24r*sb+1*i/CW*MW*SW*Zn14i*Zn21r*sb+1*i/CW*MW*SW*Zn14r*Zn21i*sb-1*i*Zn13r*Zn24i*mur-1*i*Zn13i*Zn24r*mur-1*i*Zn14i*Zn23r*mur-1*i*Zn14r*Zn23i*mur+1*i*Zn13r*Zn24r*mui-1*i*Zn13i*Zn24i*mui+1*i*Zn14r*Zn23r*mui-1*i*Zn14i*Zn23i*mui+1*i*MG1*Zn11r*Zn21i+1*i*MG1*Zn11i*Zn21r+1*i*MG2*Zn12r*Zn22i+1*i*MG2*Zn12i*Zn22r)*gamma5
+    = -33.014317-32.543137*i*gamma5
+
+
+M13 (~o1/~o3) = (+1*MW*Zn13r*Zn32r*cb-1*MW*Zn13i*Zn32i*cb+1*MW*Zn12r*Zn33r*cb-1*MW*Zn12i*Zn33i*cb-1/CW*MW*SW*Zn11r*Zn33r*cb+1/CW*MW*SW*Zn11i*Zn33i*cb-1/CW*MW*SW*Zn13r*Zn31r*cb+1/CW*MW*SW*Zn13i*Zn31i*cb-1*MW*Zn14r*Zn32r*sb+1*MW*Zn14i*Zn32i*sb-1*MW*Zn12r*Zn34r*sb+1*MW*Zn12i*Zn34i*sb+1/CW*MW*SW*Zn11r*Zn34r*sb-1/CW*MW*SW*Zn11i*Zn34i*sb+1/CW*MW*SW*Zn14r*Zn31r*sb-1/CW*MW*SW*Zn14i*Zn31i*sb-1*Zn13r*Zn34r*mur+1*Zn13i*Zn34i*mur-1*Zn14r*Zn33r*mur+1*Zn14i*Zn33i*mur-1*Zn13r*Zn34i*mui-1*Zn13i*Zn34r*mui-1*Zn14i*Zn33r*mui-1*Zn14r*Zn33i*mui+1*MG1*Zn11r*Zn31r-1*MG1*Zn11i*Zn31i+1*MG2*Zn12r*Zn32r-1*MG2*Zn12i*Zn32i)+(+1*i*MW*Zn13r*Zn32i*cb+1*i*MW*Zn13i*Zn32r*cb+1*i*MW*Zn12i*Zn33r*cb+1*i*MW*Zn12r*Zn33i*cb-1*i/CW*MW*SW*Zn11r*Zn33i*cb-1*i/CW*MW*SW*Zn11i*Zn33r*cb-1*i/CW*MW*SW*Zn13i*Zn31r*cb-1*i/CW*MW*SW*Zn13r*Zn31i*cb-1*i*MW*Zn14r*Zn32i*sb-1*i*MW*Zn14i*Zn32r*sb-1*i*MW*Zn12i*Zn34r*sb-1*i*MW*Zn12r*Zn34i*sb+1*i/CW*MW*SW*Zn11r*Zn34i*sb+1*i/CW*MW*SW*Zn11i*Zn34r*sb+1*i/CW*MW*SW*Zn14i*Zn31r*sb+1*i/CW*MW*SW*Zn14r*Zn31i*sb-1*i*Zn13r*Zn34i*mur-1*i*Zn13i*Zn34r*mur-1*i*Zn14i*Zn33r*mur-1*i*Zn14r*Zn33i*mur+1*i*Zn13r*Zn34r*mui-1*i*Zn13i*Zn34i*mui+1*i*Zn14r*Zn33r*mui-1*i*Zn14i*Zn33i*mui+1*i*MG1*Zn11r*Zn31i+1*i*MG1*Zn11i*Zn31r+1*i*MG2*Zn12r*Zn32i+1*i*MG2*Zn12i*Zn32r)*gamma5
+    = -15.417740+43.818839*i*gamma5
+
+
+M14 (~o1/~o4) = (+1*MW*Zn13r*Zn42r*cb-1*MW*Zn13i*Zn42i*cb+1*MW*Zn12r*Zn43r*cb-1*MW*Zn12i*Zn43i*cb-1/CW*MW*SW*Zn11r*Zn43r*cb+1/CW*MW*SW*Zn11i*Zn43i*cb-1/CW*MW*SW*Zn13r*Zn41r*cb+1/CW*MW*SW*Zn13i*Zn41i*cb-1*MW*Zn14r*Zn42r*sb+1*MW*Zn14i*Zn42i*sb-1*MW*Zn12r*Zn44r*sb+1*MW*Zn12i*Zn44i*sb+1/CW*MW*SW*Zn11r*Zn44r*sb-1/CW*MW*SW*Zn11i*Zn44i*sb+1/CW*MW*SW*Zn14r*Zn41r*sb-1/CW*MW*SW*Zn14i*Zn41i*sb-1*Zn13r*Zn44r*mur+1*Zn13i*Zn44i*mur-1*Zn14r*Zn43r*mur+1*Zn14i*Zn43i*mur-1*Zn13r*Zn44i*mui-1*Zn13i*Zn44r*mui-1*Zn14i*Zn43r*mui-1*Zn14r*Zn43i*mui+1*MG1*Zn11r*Zn41r-1*MG1*Zn11i*Zn41i+1*MG2*Zn12r*Zn42r-1*MG2*Zn12i*Zn42i)+(+1*i*MW*Zn13r*Zn42i*cb+1*i*MW*Zn13i*Zn42r*cb+1*i*MW*Zn12i*Zn43r*cb+1*i*MW*Zn12r*Zn43i*cb-1*i/CW*MW*SW*Zn11r*Zn43i*cb-1*i/CW*MW*SW*Zn11i*Zn43r*cb-1*i/CW*MW*SW*Zn13i*Zn41r*cb-1*i/CW*MW*SW*Zn13r*Zn41i*cb-1*i*MW*Zn14r*Zn42i*sb-1*i*MW*Zn14i*Zn42r*sb-1*i*MW*Zn12i*Zn44r*sb-1*i*MW*Zn12r*Zn44i*sb+1*i/CW*MW*SW*Zn11r*Zn44i*sb+1*i/CW*MW*SW*Zn11i*Zn44r*sb+1*i/CW*MW*SW*Zn14i*Zn41r*sb+1*i/CW*MW*SW*Zn14r*Zn41i*sb-1*i*Zn13r*Zn44i*mur-1*i*Zn13i*Zn44r*mur-1*i*Zn14i*Zn43r*mur-1*i*Zn14r*Zn43i*mur+1*i*Zn13r*Zn44r*mui-1*i*Zn13i*Zn44i*mui+1*i*Zn14r*Zn43r*mui-1*i*Zn14i*Zn43i*mui+1*i*MG1*Zn11r*Zn41i+1*i*MG1*Zn11i*Zn41r+1*i*MG2*Zn12r*Zn42i+1*i*MG2*Zn12i*Zn42r)*gamma5
+    = +6.591961+35.293855*i*gamma5
+
+
+M22 (~o2/~o2) = (+2*MW*Zn22r*Zn23r*cb-2*MW*Zn22i*Zn23i*cb-2/CW*MW*SW*Zn21r*Zn23r*cb+2/CW*MW*SW*Zn21i*Zn23i*cb-2*MW*Zn22r*Zn24r*sb+2*MW*Zn22i*Zn24i*sb+2/CW*MW*SW*Zn21r*Zn24r*sb-2/CW*MW*SW*Zn21i*Zn24i*sb-2*Zn23r*Zn24r*mur+2*Zn23i*Zn24i*mur-2*Zn23r*Zn24i*mui-2*Zn23i*Zn24r*mui+1*MG1*Zn21r**2-1*MG1*Zn21i**2+1*MG2*Zn22r**2-1*MG2*Zn22i**2)+(+2*i*MW*Zn22i*Zn23r*cb+2*i*MW*Zn22r*Zn23i*cb-2*i/CW*MW*SW*Zn21r*Zn23i*cb-2*i/CW*MW*SW*Zn21i*Zn23r*cb-2*i*MW*Zn22i*Zn24r*sb-2*i*MW*Zn22r*Zn24i*sb+2*i/CW*MW*SW*Zn21r*Zn24i*sb+2*i/CW*MW*SW*Zn21i*Zn24r*sb-2*i*Zn23r*Zn24i*mur-2*i*Zn23i*Zn24r*mur+2*i*Zn23r*Zn24r*mui-2*i*Zn23i*Zn24i*mui+2*i*MG1*Zn21i*Zn21r+2*i*MG2*Zn22i*Zn22r)*gamma5
+    = -16.100709-30.167917*i*gamma5
+    Declared mass MNE2=129.499680
+
+
+M23 (~o2/~o3) = (+1*MW*Zn23r*Zn32r*cb-1*MW*Zn23i*Zn32i*cb+1*MW*Zn22r*Zn33r*cb-1*MW*Zn22i*Zn33i*cb-1/CW*MW*SW*Zn21r*Zn33r*cb+1/CW*MW*SW*Zn21i*Zn33i*cb-1/CW*MW*SW*Zn23r*Zn31r*cb+1/CW*MW*SW*Zn23i*Zn31i*cb-1*MW*Zn24r*Zn32r*sb+1*MW*Zn24i*Zn32i*sb-1*MW*Zn22r*Zn34r*sb+1*MW*Zn22i*Zn34i*sb+1/CW*MW*SW*Zn21r*Zn34r*sb-1/CW*MW*SW*Zn21i*Zn34i*sb+1/CW*MW*SW*Zn24r*Zn31r*sb-1/CW*MW*SW*Zn24i*Zn31i*sb-1*Zn23r*Zn34r*mur+1*Zn23i*Zn34i*mur-1*Zn24r*Zn33r*mur+1*Zn24i*Zn33i*mur-1*Zn23r*Zn34i*mui-1*Zn23i*Zn34r*mui-1*Zn24i*Zn33r*mui-1*Zn24r*Zn33i*mui+1*MG1*Zn21r*Zn31r-1*MG1*Zn21i*Zn31i+1*MG2*Zn22r*Zn32r-1*MG2*Zn22i*Zn32i)+(+1*i*MW*Zn23r*Zn32i*cb+1*i*MW*Zn23i*Zn32r*cb+1*i*MW*Zn22i*Zn33r*cb+1*i*MW*Zn22r*Zn33i*cb-1*i/CW*MW*SW*Zn21r*Zn33i*cb-1*i/CW*MW*SW*Zn21i*Zn33r*cb-1*i/CW*MW*SW*Zn23i*Zn31r*cb-1*i/CW*MW*SW*Zn23r*Zn31i*cb-1*i*MW*Zn24r*Zn32i*sb-1*i*MW*Zn24i*Zn32r*sb-1*i*MW*Zn22i*Zn34r*sb-1*i*MW*Zn22r*Zn34i*sb+1*i/CW*MW*SW*Zn21r*Zn34i*sb+1*i/CW*MW*SW*Zn21i*Zn34r*sb+1*i/CW*MW*SW*Zn24i*Zn31r*sb+1*i/CW*MW*SW*Zn24r*Zn31i*sb-1*i*Zn23r*Zn34i*mur-1*i*Zn23i*Zn34r*mur-1*i*Zn24i*Zn33r*mur-1*i*Zn24r*Zn33i*mur+1*i*Zn23r*Zn34r*mui-1*i*Zn23i*Zn34i*mui+1*i*Zn24r*Zn33r*mui-1*i*Zn24i*Zn33i*mui+1*i*MG1*Zn21r*Zn31i+1*i*MG1*Zn21i*Zn31r+1*i*MG2*Zn22r*Zn32i+1*i*MG2*Zn22i*Zn32r)*gamma5
+    = -4.826668+15.514215*i*gamma5
+
+
+M24 (~o2/~o4) = (+1*MW*Zn23r*Zn42r*cb-1*MW*Zn23i*Zn42i*cb+1*MW*Zn22r*Zn43r*cb-1*MW*Zn22i*Zn43i*cb-1/CW*MW*SW*Zn21r*Zn43r*cb+1/CW*MW*SW*Zn21i*Zn43i*cb-1/CW*MW*SW*Zn23r*Zn41r*cb+1/CW*MW*SW*Zn23i*Zn41i*cb-1*MW*Zn24r*Zn42r*sb+1*MW*Zn24i*Zn42i*sb-1*MW*Zn22r*Zn44r*sb+1*MW*Zn22i*Zn44i*sb+1/CW*MW*SW*Zn21r*Zn44r*sb-1/CW*MW*SW*Zn21i*Zn44i*sb+1/CW*MW*SW*Zn24r*Zn41r*sb-1/CW*MW*SW*Zn24i*Zn41i*sb-1*Zn23r*Zn44r*mur+1*Zn23i*Zn44i*mur-1*Zn24r*Zn43r*mur+1*Zn24i*Zn43i*mur-1*Zn23r*Zn44i*mui-1*Zn23i*Zn44r*mui-1*Zn24i*Zn43r*mui-1*Zn24r*Zn43i*mui+1*MG1*Zn21r*Zn41r-1*MG1*Zn21i*Zn41i+1*MG2*Zn22r*Zn42r-1*MG2*Zn22i*Zn42i)+(+1*i*MW*Zn23r*Zn42i*cb+1*i*MW*Zn23i*Zn42r*cb+1*i*MW*Zn22i*Zn43r*cb+1*i*MW*Zn22r*Zn43i*cb-1*i/CW*MW*SW*Zn21r*Zn43i*cb-1*i/CW*MW*SW*Zn21i*Zn43r*cb-1*i/CW*MW*SW*Zn23i*Zn41r*cb-1*i/CW*MW*SW*Zn23r*Zn41i*cb-1*i*MW*Zn24r*Zn42i*sb-1*i*MW*Zn24i*Zn42r*sb-1*i*MW*Zn22i*Zn44r*sb-1*i*MW*Zn22r*Zn44i*sb+1*i/CW*MW*SW*Zn21r*Zn44i*sb+1*i/CW*MW*SW*Zn21i*Zn44r*sb+1*i/CW*MW*SW*Zn24i*Zn41r*sb+1*i/CW*MW*SW*Zn24r*Zn41i*sb-1*i*Zn23r*Zn44i*mur-1*i*Zn23i*Zn44r*mur-1*i*Zn24i*Zn43r*mur-1*i*Zn24r*Zn43i*mur+1*i*Zn23r*Zn44r*mui-1*i*Zn23i*Zn44i*mui+1*i*Zn24r*Zn43r*mui-1*i*Zn24i*Zn43i*mui+1*i*MG1*Zn21r*Zn41i+1*i*MG1*Zn21i*Zn41r+1*i*MG2*Zn22r*Zn42i+1*i*MG2*Zn22i*Zn42r)*gamma5
+    = -16.932346+31.507860*i*gamma5
+
+
+M33 (~o3/~o3) = (+2*MW*Zn32r*Zn33r*cb-2*MW*Zn32i*Zn33i*cb-2/CW*MW*SW*Zn31r*Zn33r*cb+2/CW*MW*SW*Zn31i*Zn33i*cb-2*MW*Zn32r*Zn34r*sb+2*MW*Zn32i*Zn34i*sb+2/CW*MW*SW*Zn31r*Zn34r*sb-2/CW*MW*SW*Zn31i*Zn34i*sb-2*Zn33r*Zn34r*mur+2*Zn33i*Zn34i*mur-2*Zn33r*Zn34i*mui-2*Zn33i*Zn34r*mui+1*MG1*Zn31r**2-1*MG1*Zn31i**2+1*MG2*Zn32r**2-1*MG2*Zn32i**2)+(+2*i*MW*Zn32i*Zn33r*cb+2*i*MW*Zn32r*Zn33i*cb-2*i/CW*MW*SW*Zn31r*Zn33i*cb-2*i/CW*MW*SW*Zn31i*Zn33r*cb-2*i*MW*Zn32i*Zn34r*sb-2*i*MW*Zn32r*Zn34i*sb+2*i/CW*MW*SW*Zn31r*Zn34i*sb+2*i/CW*MW*SW*Zn31i*Zn34r*sb-2*i*Zn33r*Zn34i*mur-2*i*Zn33i*Zn34r*mur+2*i*Zn33r*Zn34r*mui-2*i*Zn33i*Zn34i*mui+2*i*MG1*Zn31i*Zn31r+2*i*MG2*Zn32i*Zn32r)*gamma5
+    = +2.520680-95.524315*i*gamma5
+    Declared mass MNE3=158.394902
+
+
+M34 (~o3/~o4) = (+1*MW*Zn33r*Zn42r*cb-1*MW*Zn33i*Zn42i*cb+1*MW*Zn32r*Zn43r*cb-1*MW*Zn32i*Zn43i*cb-1/CW*MW*SW*Zn31r*Zn43r*cb+1/CW*MW*SW*Zn31i*Zn43i*cb-1/CW*MW*SW*Zn33r*Zn41r*cb+1/CW*MW*SW*Zn33i*Zn41i*cb-1*MW*Zn34r*Zn42r*sb+1*MW*Zn34i*Zn42i*sb-1*MW*Zn32r*Zn44r*sb+1*MW*Zn32i*Zn44i*sb+1/CW*MW*SW*Zn31r*Zn44r*sb-1/CW*MW*SW*Zn31i*Zn44i*sb+1/CW*MW*SW*Zn34r*Zn41r*sb-1/CW*MW*SW*Zn34i*Zn41i*sb-1*Zn33r*Zn44r*mur+1*Zn33i*Zn44i*mur-1*Zn34r*Zn43r*mur+1*Zn34i*Zn43i*mur-1*Zn33r*Zn44i*mui-1*Zn33i*Zn44r*mui-1*Zn34i*Zn43r*mui-1*Zn34r*Zn43i*mui+1*MG1*Zn31r*Zn41r-1*MG1*Zn31i*Zn41i+1*MG2*Zn32r*Zn42r-1*MG2*Zn32i*Zn42i)+(+1*i*MW*Zn33r*Zn42i*cb+1*i*MW*Zn33i*Zn42r*cb+1*i*MW*Zn32i*Zn43r*cb+1*i*MW*Zn32r*Zn43i*cb-1*i/CW*MW*SW*Zn31r*Zn43i*cb-1*i/CW*MW*SW*Zn31i*Zn43r*cb-1*i/CW*MW*SW*Zn33i*Zn41r*cb-1*i/CW*MW*SW*Zn33r*Zn41i*cb-1*i*MW*Zn34r*Zn42i*sb-1*i*MW*Zn34i*Zn42r*sb-1*i*MW*Zn32i*Zn44r*sb-1*i*MW*Zn32r*Zn44i*sb+1*i/CW*MW*SW*Zn31r*Zn44i*sb+1*i/CW*MW*SW*Zn31i*Zn44r*sb+1*i/CW*MW*SW*Zn34i*Zn41r*sb+1*i/CW*MW*SW*Zn34r*Zn41i*sb-1*i*Zn33r*Zn44i*mur-1*i*Zn33i*Zn44r*mur-1*i*Zn34i*Zn43r*mur-1*i*Zn34r*Zn43i*mur+1*i*Zn33r*Zn44r*mui-1*i*Zn33i*Zn44i*mui+1*i*Zn34r*Zn43r*mui-1*i*Zn34i*Zn43i*mui+1*i*MG1*Zn31r*Zn41i+1*i*MG1*Zn31i*Zn41r+1*i*MG2*Zn32r*Zn42i+1*i*MG2*Zn32i*Zn42r)*gamma5
+    = -7.268521+40.140970*i*gamma5
+
+
+M44 (~o4/~o4) = (+2*MW*Zn42r*Zn43r*cb-2*MW*Zn42i*Zn43i*cb-2/CW*MW*SW*Zn41r*Zn43r*cb+2/CW*MW*SW*Zn41i*Zn43i*cb-2*MW*Zn42r*Zn44r*sb+2*MW*Zn42i*Zn44i*sb+2/CW*MW*SW*Zn41r*Zn44r*sb-2/CW*MW*SW*Zn41i*Zn44i*sb-2*Zn43r*Zn44r*mur+2*Zn43i*Zn44i*mur-2*Zn43r*Zn44i*mui-2*Zn43i*Zn44r*mui+1*MG1*Zn41r**2-1*MG1*Zn41i**2+1*MG2*Zn42r**2-1*MG2*Zn42i**2)+(+2*i*MW*Zn42i*Zn43r*cb+2*i*MW*Zn42r*Zn43i*cb-2*i/CW*MW*SW*Zn41r*Zn43i*cb-2*i/CW*MW*SW*Zn41i*Zn43r*cb-2*i*MW*Zn42i*Zn44r*sb-2*i*MW*Zn42r*Zn44i*sb+2*i/CW*MW*SW*Zn41r*Zn44i*sb+2*i/CW*MW*SW*Zn41i*Zn44r*sb-2*i*Zn43r*Zn44i*mur-2*i*Zn43i*Zn44r*mur+2*i*Zn43r*Zn44r*mui-2*i*Zn43i*Zn44i*mui+2*i*MG1*Zn41i*Zn41r+2*i*MG2*Zn42i*Zn42r)*gamma5
+    = +65.922895-31.333788*i*gamma5
+    Declared mass MNE4=253.992778
+
+
+Looking for the mixing matrix...
+No mixing matrices found.

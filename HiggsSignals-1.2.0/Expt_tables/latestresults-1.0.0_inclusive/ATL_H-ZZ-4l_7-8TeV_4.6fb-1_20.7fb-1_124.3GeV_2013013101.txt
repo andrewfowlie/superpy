@@ -1,0 +1,17 @@
+# Published at Moriond 2013.
+# Data read in from Fig. 25a.
+# No efficiencies are given (for this inclusive result)
+# Mass uncertainty contains 0.6 GeV (stat) and 0.5 GeV (syst) error. 
+#(Gauss: 0.8, linear: 1.1)
+2013013101	201301301	1
+ATL-CONF-2013-013
+LHC, ATL, ATL
+(pp)->h->ZZ->4l
+8	25.3	0.036
+1	1
+1.1
+124.3 124.3 0.1
+4	-1
+13 23 33 43
+
+       124.3           1.293           1.697           2.194    

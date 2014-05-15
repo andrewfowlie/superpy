@@ -1,0 +1,12 @@
+(asMT*GF*MW2*Den[0, MZ2]*SumOver[All5, 6]*
+  ((MGl2^2 + 2*MGl2*A0[MGl2] - MASf2[All5, bTR]^2 + 
+     A0[MASf2[All5, bTR]]*(-4*MGl2 + 2*MASf2[All5, bTR]))*
+    (-((1 + 2*CW2)*OP[V[L, 5]]*UASf[All5, 3, bTR]*UASfC[All5, 2, bTR]) + 
+     2*SW2*OP[V[R, 5]]*UASf[All5, 6, bTR]*UASfC[All5, 5, bTR]) - 
+   8*C00z[MGl2, MASf2[All5, bTR], MASf2[All6, bTR]]*
+    (MGl2 - MASf2[All5, bTR])^2*SumOver[All6, 6]*SumOver[Ind1, 3]*
+    (-((1 + 2*CW2)*UASf[All6, Ind1, bTR]*UASfC[All5, Ind1, bTR]) + 
+     2*SW2*UASf[All6, 3 + Ind1, bTR]*UASfC[All5, 3 + Ind1, bTR])*
+    (OP[V[L, 5]]*UASf[All5, 3, bTR]*UASfC[All6, 2, bTR] + 
+     OP[V[R, 5]]*UASf[All5, 6, bTR]*UASfC[All6, 5, bTR])))/
+ (18*CW2*Pi*sqrt2*(MGl2 - MASf2[All5, bTR])^2)

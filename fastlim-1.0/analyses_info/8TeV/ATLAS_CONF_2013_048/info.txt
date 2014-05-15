@@ -1,0 +1,2 @@
+2 leptons (+ jets) + Etmiss [Medium stop] at 8 TeV with $20.3fb^{-1}$.
+http://cds.cern.ch/record/1547564

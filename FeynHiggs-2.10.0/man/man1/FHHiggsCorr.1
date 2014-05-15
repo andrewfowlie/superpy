@@ -1,0 +1,51 @@
+.TH FHHIGGSCORR 1 "2-Oct-2007"
+.SH NAME
+.PP
+FHHiggsCorr \- compute the Higgs masses and mixings
+.SH SYNOPSIS (Fortran version)
+.PP
+integer error
+.br
+double precision MHiggs(4)
+.br
+double complex SAeff, UHiggs(3,3), ZHiggs(3,3)
+.sp
+subroutine FHHiggsCorr(error, MHiggs, SAeff, UHiggs, ZHiggs)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHHiggsCorr[]
+.SH DESCRIPTION
+FHHiggsCorr computes the values of the MSSM Higgs masses according to
+the given parameters and flags.  These must have been set before with
+FHSetFlags(1) and FHSetPara(1).
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in HiggsCorr.F from
+which the error message was emitted.
+.TP
+.B MHiggs (output)
+the Higgs masses, with the correspondences:
+.sp
+CP-conserving case     CP-violating case
+.br
+MHiggs(1) = Mh0        MHiggs(1) = Mh1
+.br
+MHiggs(2) = MHH        MHiggs(2) = Mh2
+.br
+MHiggs(3) = MA0        MHiggs(3) = Mh3
+.br
+MHiggs(4) = MHp        MHiggs(4) = MHp
+.TP
+.B SAeff (output)
+the sine of the effective Higgs mixing angle, alpha_eff,
+.TP
+.B UHiggs (output)
+the matrix needed to rotate the Higgs mass matrix to its diagonal form,
+.TP
+.B ZHiggs (output)
+the matrix of Z-factors needed to combine amplitudes involving on-shell 
+Higgs bosons.
+.SH SEE ALSO
+.PP
+libFH(1)

@@ -1,0 +1,134 @@
+
+let sigma3_11= 4*((Sqrt2*h0*'h-'*'p-' + p0*'p-'**2 +2*'p--'*(('h-'*'h+' + 'p-'*'p+' + 'p--'*'p++')))). 
+let sigma3_12= 2*((Sqrt2*'h-'*'h+'*'p-' + h0*((2*'h-'*anti(p0) + Sqrt2*h0*'p-')) +2*h0*'h+'*'p--' + Sqrt2*((2*p0*anti(p0)*'p-' + 'p-'**2*'p+' + 2*anti(p0)*'p--'*'p+' + 2*'p-'*'p--'*'p++')))). 
+let sigma3_13= 4*Sqrt2*h0*h0*'h-' + 4*Sqrt2*'h-'**2*'h+' + 4*h0*((p0*'p-' + 'p--'*'p+'))   + 2*Sqrt2*'h-'*(('p-'*'p+' + 2*'p--'*'p++')). 
+let sigma3_14= 2*((Sqrt2*h0*'h+'*'p-' + 2*'h+'**2*'p--' +  'h-'*((Sqrt2*h0*'p+' + 2*'h-'*'p++')))). 
+let sigma3_15= 2*((2*h0*'h-'*p0 + Sqrt2*h0**2*'p-' +  2*h0*'h+'*'p--' + Sqrt2*'h-'**2*'p+')).
+
+let sigma3_21= 2*((Sqrt2*'h-'*'h+'*'p-' + h0*((2*'h-'*anti(p0) + Sqrt2*h0*'p-')) +2*h0*'h+'*'p--' + Sqrt2*((2*p0*anti(p0)*'p-' + 'p-'**2*'p+' + 2*anti(p0)*'p--'*'p+' + 2*'p-'*'p--'*'p++')))). 
+let sigma3_22= 4*((2*h0*h0*anti(p0) + 2*p0*anti(p0)**2 + 'p-'*((Sqrt2*h0*'h+' + 2*anti(p0)*'p+' + 'p-'*'p++')))). 
+let sigma3_23= 4*Sqrt2*h0*h0**2 + 2*Sqrt2*h0*((2*'h-'*'h+' + 2*p0*anti(p0) + 'p-'*'p+')) + 4*'h-'*((anti(p0)*'p+' + 'p-'*'p++')). 
+let sigma3_24= 2*((2*h0*'h+'*anti(p0) + Sqrt2*'h+'**2*'p-' + h0*((Sqrt2*h0*'p+' + 2*'h-'*'p++')))). 
+let sigma3_25= 2*((2*h0**2*p0 + h0*((2*h0*anti(p0) + Sqrt2*'h+'*'p-')) + Sqrt2*h0*'h-'*'p+')).
+
+let sigma3_31= 4*Sqrt2*h0*h0*'h-' + 4*Sqrt2*'h-'**2*'h+' + 4*h0*((p0*'p-' + 'p--'*'p+')) +2*Sqrt2*'h-'*(('p-'*'p+' + 2*'p--'*'p++')). 
+let sigma3_32= 4*Sqrt2*h0*h0**2 + 2*Sqrt2*h0*((2*'h-'*'h+' + 2*p0*anti(p0) + 'p-'*'p+'))  +4*'h-'*((anti(p0)*'p+' + 'p-'*'p++')). 
+let sigma3_33= 4*((h0**2*p0 + h0**2*anti(p0) + Sqrt2*h0*'h+'*'p-' + 'h+'**2*'p--' + Sqrt2*h0*'h-'*'p+' + 'h-'**2*'p++')). 
+let sigma3_34= 4*h0*((Sqrt2*h0*'h+' + anti(p0)*'p+' + 'p-'*'p++')) + 2*Sqrt2*'h+'*((2*'h-'*'h+' + 'p-'*'p+' + 2*'p--'*'p++')). 
+let sigma3_35= 4*Sqrt2*h0**2*h0 + 2*Sqrt2*h0*((2*'h-'*'h+' + 2*p0*anti(p0) + 'p-'*'p+')) +  4*'h+'*((p0*'p-' + 'p--'*'p+')).
+
+let sigma3_41= 2*((Sqrt2*h0*'h+'*'p-' +2*'h+'**2*'p--' + 'h-'*((Sqrt2*h0*'p+' + 2*'h-'*'p++')))). 
+let sigma3_42= 2*((2*h0*'h+'*anti(p0) + Sqrt2*'h+'**2*'p-' +h0*((Sqrt2*h0*'p+' + 2*'h-'*'p++')))). 
+let sigma3_43= 4*h0*((Sqrt2*h0*'h+' + anti(p0)*'p+' + 'p-'*'p++')) +2*Sqrt2*'h+'*((2*'h-'*'h+' + 'p-'*'p+' + 2*'p--'*'p++')). 
+let sigma3_44= 4*((Sqrt2*h0*'h+'*'p+' + anti(p0)*'p+'**2 + 2*'p++'*(('h-'*'h+' + 'p-'*'p+' + 'p--'*'p++')))). 
+let sigma3_45= 2*((h0*((2*'h+'*p0 + Sqrt2*h0*'p+')) +  'h-'*((Sqrt2*'h+'*'p+' + 2*h0*'p++')) + Sqrt2*((2*p0*anti(p0)*'p+' +  'p-'*'p+'**2 + 2*p0*'p-'*'p++' + 2*'p--'*'p+'*'p++')))).
+
+let sigma3_51= 2*((2*h0*'h-'*p0 + Sqrt2*h0**2*'p-' + 2*h0*'h+'*'p--' + Sqrt2*'h-'**2*'p+')). 
+let sigma3_52= 2*((2*h0**2*p0 + h0*((2*h0*anti(p0) + Sqrt2*'h+'*'p-')) + Sqrt2*h0*'h-'*'p+')). 
+let sigma3_53= 4*Sqrt2*h0**2*h0 + 2*Sqrt2*h0*((2*'h-'*'h+' + 2*p0*anti(p0) + 'p-'*'p+')) + 4*'h+'*((p0*'p-' + 'p--'*'p+')). 
+let sigma3_54= 2*((h0*((2*'h+'*p0 + Sqrt2*h0*'p+')) + 'h-'*((Sqrt2*'h+'*'p+' + 2*h0*'p++')) + Sqrt2*((2*p0*anti(p0)*'p+' + 'p-'*'p+'**2 + 2*p0*'p-'*'p++' + 2*'p--'*'p+'*'p++')))). 
+let sigma3_55= 4*((2*h0*h0*p0 + 2*p0**2*anti(p0) + Sqrt2*h0*'h-'*'p+' + 2*p0*'p-'*'p+' + 'p--'*'p+'**2)).
+
+
+
+let sigma3= -i/6*
+               { 
+	       {sigma3_11,sigma3_12,sigma3_13,sigma3_14,sigma3_15},
+               {sigma3_21,sigma3_22,sigma3_23,sigma3_24,sigma3_25},
+               {sigma3_31,sigma3_32,sigma3_33,sigma3_34,sigma3_35},
+               {sigma3_41,sigma3_42,sigma3_43,sigma3_44,sigma3_45},
+               {sigma3_51,sigma3_52,sigma3_53,sigma3_54,sigma3_55}
+	      }.
+	       
+let sigma3_3= -i/6*
+              { 
+		{sigma3_41,sigma3_42,sigma3_43},
+                {sigma3_51,sigma3_52,sigma3_53}
+	       }.
+
+
+let sigma3_2= -i/6*
+              { 
+		{sigma3_41,sigma3_42},
+                {sigma3_51,sigma3_52}
+	       }.
+	       
+let csigma3_2=anti(sigma3_2).
+
+let  sigma3_1=-i/6*{sigma3_13,sigma3_23}.	       
+let csigma3_1=    anti(sigma3_1).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+let csigma3_11=anti(sigma3_11).
+let csigma3_12=anti(sigma3_12).
+let csigma3_13=anti(sigma3_13).
+let csigma3_14=anti(sigma3_14).
+let csigma3_15=anti(sigma3_15).
+
+let csigma3_21=anti(sigma3_21).
+let csigma3_22=anti(sigma3_22).
+let csigma3_23=anti(sigma3_23).
+let csigma3_24=anti(sigma3_24).
+let csigma3_25=anti(sigma3_25).
+
+let csigma3_31=anti(sigma3_31).
+let csigma3_32=anti(sigma3_32).
+let csigma3_33=anti(sigma3_33).
+let csigma3_34=anti(sigma3_34).
+let csigma3_35=anti(sigma3_35).
+
+let csigma3_41=anti(sigma3_41).
+let csigma3_42=anti(sigma3_42).
+let csigma3_43=anti(sigma3_43).
+let csigma3_44=anti(sigma3_44).
+let csigma3_45=anti(sigma3_45).
+
+let csigma3_51=anti(sigma3_51).
+let csigma3_52=anti(sigma3_52).
+let csigma3_53=anti(sigma3_53).
+let csigma3_54=anti(sigma3_54).
+let csigma3_55=anti(sigma3_55).
+
+let csigma3= i/6*
+              { 
+	       {csigma3_11,csigma3_12,csigma3_13,csigma3_14,csigma3_15},
+               {csigma3_21,csigma3_22,csigma3_23,csigma3_24,csigma3_25},
+               {csigma3_31,csigma3_32,csigma3_33,csigma3_34,csigma3_35},
+               {csigma3_41,csigma3_42,csigma3_43,csigma3_44,csigma3_45},
+               {csigma3_51,csigma3_52,csigma3_53,csigma3_54,csigma3_55}
+	      }.
+	       
+let csigma3_3= i/6*
+              { 
+		{csigma3_41,csigma3_42,csigma3_43},
+                {csigma3_51,csigma3_52,csigma3_53}
+	       }.
+	       	       
+let tsigma3= i/6*
+              { 
+	       { csigma3_44, csigma3_45,-csigma3_43, csigma3_41, csigma3_42},
+               { csigma3_54, csigma3_55,-csigma3_53, csigma3_51, csigma3_52},
+               {-csigma3_34,-csigma3_35, csigma3_33,-csigma3_31,-csigma3_32},
+               { csigma3_14, csigma3_15,-csigma3_13, csigma3_11, csigma3_12},
+               { csigma3_24, csigma3_25,-csigma3_23, csigma3_21, csigma3_22}
+	      }.
+	       
+let tsigma3_3= i/6*
+              { 
+		{ csigma3_14, csigma3_15,-csigma3_13},
+                { csigma3_24, csigma3_25,-csigma3_23}
+	       }.
+let ctsigma3_3=anti(tsigma3_3).
+
+
+
+let tsigma3_2=i/6*
+              { 
+		{csigma3_14, csigma3_15},
+                {csigma3_24, csigma3_25}
+	       }.
+	       
+let ctsigma3_2=anti(tsigma3_2).
+
+let  tsigma3_1=i/6*{-csigma3_43,-csigma3_53}.	       
+let ctsigma3_1=anti(tsigma3_1).

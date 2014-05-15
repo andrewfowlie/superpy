@@ -1,0 +1,102 @@
+# Input file for NMSSMTools
+# Based on SUSY LES HOUCHES ACCORD II
+
+BLOCK MODSEL
+	3	1		# NMSSM particle content
+	1	0		# IMOD (0=general NMSSM, 1=mSUGRA, 2=GMSB)
+	10	1		# ISCAN (0=no scan, 1=grid scan, 2=random scan, 3=MCMC)
+	9	0		# Call micrOmegas (default 0=no, 1=relic density only,
+#				  2=dir. det. rate, 3=indir. det. rate, 4=both det. rates)
+	8       0               # Precision for Higgs masses (default 0: as before,
+#                                 1: full 1 loop + full 2 loop from top/bot Yukawas
+#				  2: as 1 + pole masses - 1&2 by courtesy of P. Slavich)
+	13      0               # 1: Sparticle decays via NMSDECAY (default 0)
+	11      1               # Constraints on (g-2)_muon (1=yes, 0=no, default=1)
+
+BLOCK SMINPUTS
+	1	127.92d0	# ALPHA_EM^-1(MZ)
+	2	1.16639d-5	# GF
+	3	.1172d0		# ALPHA_S(MZ)
+	4	91.187d0	# MZ
+	5	4.214d0		# MB(MB) (running mass)
+	6	171.4D0		# MTOP (pole mass)
+	7	1.777d0		# MTAU
+
+BLOCK MINPAR
+#	0	1000.d0		# MSUSY (If =/= SQRT(2*MQ1+MU1+MD1)/2)
+	37	7d0		# TANB_min at MZ
+	38	50d0       	# TANB_max at MZ (If =/= min)
+
+BLOCK EXTPAR
+#	107	100.d0		# M1_min (If =/= M2/2)
+#	108	100.d0		# M1_max (If =/= min)
+	207	200d0		# M2_min
+#	208	200.d0		# M2_max (If =/= min)
+	307	800d0		# M3_min (If =/= 3*M2)
+#	308	800.d0		# M3_max (If =/= min)
+	11	2000.d0		# AU3
+	12	2000.d0		# AD3
+	13	2000.d0		# AE3
+#	16	2000.d0		# AE2 = AE1 (If =/= AE3)
+	33	1000.d0		# ML3
+#	32	1000.d0		# ML1 = ML2 (If =/= ML3)
+	36	1000.d0		# ME3
+#	35	1000.d0		# ME1 = ME2 (If =/= ME3)
+	43	1000.d0		# MQ3
+#	42	1000.d0		# MQ1 = MQ2 (If =/= MQ3)
+	46	1000.d0		# MU3
+#	45	1000.d0		# MU1 = MU2 (If =/= MU3)
+	49	1000.d0		# MD3
+#	48	1000.d0		# MD1 = MD2 (If =/= MD3)
+	617	1d-5		# LAMBdA_min
+#	618	1d-5		# LAMBDA_max (If =/= min)
+	627	1d-4		# KAPPA_min (If =/= 0)
+#	628	1d-4		# KAPPA_max (If =/= min)
+#	637	.d0		# ALAMBDA_min (If =/= 0 and XIF+MA are not inputs)
+#	638	.d0		# ALAMBDA_max (If =/= min and XIF+MA are not inputs)
+	647	-300d0		# AKAPPA_min (If =/= 0, KAPPA =/=0 and XIS+MP are not inputs)
+#	648	-300.d0		# AKAPPA_max (If =/= min, KAPPA =/=0 and XIS+MP are not inputs)
+#				  If KAPPA can be 0: AKAPPA = 0 (either XIS or MP is input)
+	657	200d0		# MUEFF_min
+#	658	200.d0		# MUEFF_max (If =/= min)
+#	667	0.D0		# XIF_min in GeV^2 (If =/= 0 and ALAMBDA+MA are not inputs)
+#	668	0.D0		# XIF_max in GeV^2 (If =/= min and ALAMBDA+MA are not inputs)
+#	677	0.D0	 	# XIS_min in GeV^3 (If =/= 0 and AKAPPA+MP are not inputs)
+#	678	0.D0	 	# XIS_max in GeV^3 (If =/= min and AKAPPA+MP are not inputs)
+#	687	0.D0		# MU'_min in GeV (If =/= 0)
+#	688	0.D0		# MU'_max in GeV (If =/= min)
+#	697	0.D0		# MS'^2_min in GeV^2 (If =/= 0)
+#	698	0.D0		# MS'^2_max in GeV^2 (If =/= min)
+#	727	0.D0		# M3H^2_min in GeV^2 (If =/= 0)
+#	728	0.D0		# M3H^2_max in GeV^2 (If =/= min)
+	1247	130d0		# MA_min (If ALAMBDA+XIF are not inputs)
+	1248	560d0		# MA_max (If =/= min and ALAMBDA+XIF are not inputs)
+#				  If ALAMBDA+MA+XIF are not inputs: ALAMBDA=XIF=0, MA is computed
+#				  If only XIF is input: ALAMBDA=0, MA is computed
+#				  If only MA is input: XIF=0, ALAMBDA is computed
+#				  If only ALAMBDA is input: XIF=0, MA is computed
+#	1257	0.D0		# MP_min (If AKAPPA+XIS is not an input)
+#	1258	0.D0		# MP_max (If =/= min and AKAPPA+XIS is not an input)
+#				  If AKAPPA+MP+XIS are not inputs: AKAPPA=XIS=0, MP is computed
+#				  If only XIS is input: AKAPPA=0, MP is computed
+#				  If only MP is input: XIS=0, AKAPPA is computed
+#				  If only AKAPPA is input: XIS=0, MP is computed
+
+BLOCK STEPS
+#	109	1		# NM1 (If =/= 1)
+#	209	1		# NM2 (If =/= 1)
+#	309	1		# NM3 (If =/= 1)
+	39	10		# NTB (If =/= 1)
+#	619	1		# NL (If =/= 1)
+#	629	1		# NK (If =/= 1)
+#	639	1		# NAL (If =/= 1)
+#	649	1		# NAK (If =/= 1)
+#	659	1		# NMU (If =/= 1)
+#	669	1		# NXIF (If =/= 1)
+#	679	1		# NXIS (If =/= 1)
+#	689	1		# NMUP (If =/= 1)
+#	699	1		# NMSP (If =/= 1)
+#	729	1		# NM3H (If =/= 1)
+	1249	10		# NMA (If =/= 1)
+#	1259	1		# NMP (If =/= 1)
+

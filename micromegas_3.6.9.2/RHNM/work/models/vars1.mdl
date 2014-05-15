@@ -1,0 +1,51 @@
+RH neutrino(RS-insp)
+ Parameters 
+ Name | Value       |> Comment                                                             <|
+EE    |0.31223      |Elementary charge (alpha=1/128.9, on-shell, MZ point, PDG96)
+alfSMZ|0.1184       |MS-bar Srtong coupling at MZ
+Q     |100          |QCD SCALE
+SW    |0.4730       |sine of the electroweak mixing angle (PDG96)
+s12   |0.221        |Parameter of C-K-M matrix  (PDG96)
+s23   |0.041        |Parameter of C-K-M matrix  (PDG96)
+s13   |0.0035       |Parameter of C-K-M matrix  (PDG96)
+Mm    |0.1057       |muon mass
+Ml    |1.777        |tau-lepton mass      (PDG96)
+Mu    |0.005        |
+Md    |0.007        |
+McMc  |1.25         | Mc(Mc) MS-bar  PDG-07
+Ms    |0.200        |s-quark mass  (pole mass, PDG96)
+MbMb  |4.20         | Mb(Mb) MS-bar value PDG-07
+Mtpole|173.07       |t-quark mass  (pole mass)
+MZ    |91.1884      |Z-boson mass         (PDG96)
+MH    |300          |higgs mass
+wtp   |1.59         |t-quark width        (tree level 1->2x)
+v     |246          |Higgs vev
+rc    |34.53        | Log(10^15)
+g10   |0.78         |4d  coupling
+gH    |0.           |H-lZP coupling
+gZ    |0.3          |Z-lZP coupling
+gZp   |0.           |Z'-LZP coupling
+gUp   |0.           |Z'-tau coupling
+gtl   |0.           |Z'-top_L,b_L coupling
+gll   |0.           |Z'-tau tau coupling
+gtr   |0.           |Z'-top_R coupling
+gbr   |0.           |Z'-b_R coupling
+grl   |0.           |W'-n4-taur coupling
+xWr   |0.0          |factor in W-WR mixing
+gHZ   |0.0          | factor in Z'ZH coupling
+%Mtl  |30000        |t^1_L mass
+%wtl  |1.           |t^1_L witdh
+%Mbl  |30000        |b^1_L mass
+%wbl  |1.           |b^1_L witdh
+MLZP  |100.         |n4 mass
+MZp   |30000        |Zp mass (same as MXS)
+MWp   |30000        |Wp mass (same as MXS)
+cr    |-0.5         |c-parameter of the RH top quark
+Mul   |30000.       |mass of taul
+Mur   |30000.       |mass of taur
+Mn5   |30000.       |mass of nuL
+Mtl   |30000.       |mass of tL
+Mbl   |30000.       |mass of bl
+Mbr   |30000.       |mass of br
+mixzzp|0.0          |Z-Z' mixing
+=============================================================================================

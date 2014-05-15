@@ -1,0 +1,62 @@
+% =======  Improve Lagrangian for agreement with Stop/Sbottom mass matrix
+
+_i=1-2 in _j=_i-2 in parameter StMM_i_j=
+                Zt1_i*MSt1**2*Zt1_j   
+               +Zt2_i*MSt2**2*Zt2_j.
+
+parameter MtMM=MtRun(sqrt(MSt1*MSt2)).
+parameter AT= StMM12/MtMM + Lambda*cb/sb*xvev.
+%parameter MtMM= StMM12/(-Lambda*cb/sb*xvev+At).
+EvalParameter(AT).
+
+_i=1-2 in _j=_i-2 in parameter SbMM_i_j=
+                Zb1_i*MSb1**2*Zb1_j   
+               +Zb2_i*MSb2**2*Zb2_j.
+
+external_func(MbRun,1).
+parameter MbMM=MbRun(sqrt(MSb1*MSb2)).
+parameter AB= SbMM12/MbMM +Lambda*sb/cb*xvev.
+EvalParameter(AB).
+
+do_if Check3SQmass==on.
+
+parameter  Mu3Q=sqrt(StMM22 -(2/3/CW**2*MW**2*SW**2-4/3/CW**2*MW**2*SW**2*sb**2+1*MtMM**2)).
+parameter  Md3Q=sqrt(SbMM22-(-1/3/CW**2*MW**2*SW**2+2/3/CW**2*MW**2*SW**2*sb**2+1*MbMM**2)).
+parameter  Mq3Q=sqrt(( SbMM11+StMM11 -MbMM**2-MtMM**2  -2/3/CW**2*MW**2*SW**2*sb**2 +1/3/CW**2*MW**2*SW**2    )/2).
+
+EvalParameter(Mu3).
+EvalParameter(Mu3Q).
+
+EvalParameter(Md3).
+EvalParameter(Md3Q).
+
+EvalParameter(Mq3).
+EvalParameter(Mq3Q).
+
+do_else.
+
+
+let Mu3Q=Mu3,Md3Q=Md3, Mq3Q=Mq3.
+
+end_if.
+
+%  improve SU2 DD-term  
+
+
+parameter dX3 = (StMM11-SbMM11 + MbMM**2 - MtMM**2 + 2*MW**2*sb**2-MW**2)/(MW**2*sb**2).
+
+
+lterm dX3*(EE/SW)**2*(s_H2*tau*s_h2)*(s_Q3*tau*s_q3)/4.
+
+parameter dX2 = (MScL**2  -MSsL**2 + MW**2*(- 2*sb**2*SW**3 + 2*sb**2*SW + SW**3 - SW)/(CW**2*SW))/(MW**2*sb**2).
+
+lterm dX2*(EE/SW)**2*(s_H2*tau*s_h2)*(s_Q2*tau*s_q2)/4.
+
+parameter dX1 = (MSuL**2-MSdL**2 + MW**2*(- 2*sb**2*SW**3 + 2*sb**2*SW + SW**3 - SW)/(CW**2*SW))/(MW**2*sb**2).
+
+lterm dX1*(EE/SW)**2*(s_H2*tau*s_h2)*(s_Q1*tau*s_q1)/4.
+
+EvalParameter(dX1).
+EvalParameter(dX2).
+EvalParameter(dX3).
+

@@ -1,0 +1,16 @@
+# Published at Moriond 2013.
+# No efficiencies published.
+# Data read in from the mu-plot (Fig.10).
+13003101	1300301		1
+CMS-PAS-HIG-13-003
+LHC, CMS, CMS
+(pp)->h->WW (0/1jet)
+8	25.4 0.044
+1	0
+25.0
+125.8 125.8 1.0
+4	-1
+12 22 32 42
+
+125.8	0.5305	0.7234	0.9382    
+

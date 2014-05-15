@@ -1,0 +1,47 @@
+:
+
+ss=""
+oo=""
+n=1
+nar=0
+nmax=100
+while(test -r $2$n.c )
+do
+  if( test $n -eq $nmax  ) then
+     echo  $1 -c $ss
+     $1 -c $ss
+     if(test $? -ne 0) then exit 1;fi
+     rm $ss
+     ar rl proclib_$nar.a $oo
+     if(test $? -ne 0) then
+        nar=`expr $nar + 1`
+        ar rl $proclib_$nar.a $oo 
+        if(test $? -ne 0) then exit 1; fi 
+     fi
+     rm $oo
+     ss=""
+     oo=""
+     nmax=`expr  $nmax + 100`
+  fi
+
+  ss="$ss $2$n.c"
+  oo="$oo $2$n.o"
+  n=`expr $n + 1`
+done
+
+if(test -n "$ss") then
+
+echo  $1 -c $ss
+  $1 -c $ss
+
+  if(test $? -ne 0) then exit 1;fi
+  rm $ss
+  ar rl proclib_$nar.a $oo
+  if(test $? -ne 0) then
+     nar=`expr $nar + 1`
+     ar rl proclib_$nar.a $oo 
+     if(test $? -ne 0) then exit 1; fi
+  fi
+  rm $oo
+fi
+ 

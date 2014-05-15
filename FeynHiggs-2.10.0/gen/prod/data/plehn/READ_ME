@@ -1,0 +1,81 @@
+In this directory you find different files dealing with the 
+LHC process gb->tH-. If you download any of the files/results, 
+please send me an email: tilman.plehn@cern.ch
+
+This way I can inform you if there turns out to be bug in 
+this of course entirely bug free set of numbers and notes 
+in this directory.
+
+So here is the list of the files:
+
+results_array.dat: Array including the LO and NLO cross sections
+                   for gb->tH- in pb. Note that the factor 2 for the 
+                   tbarH+ final state is not included. Running masses
+                   and couplings are consistently computed to LO 
+                   or NLO, respectively. The renormalization scale is
+                   set to (mH+mt)/2, the factorization scale is set 
+                   to (mH+mt)/5. Explicit NLO-SUSY diagrams are not 
+                   included, you can think of it as the NLO calculation 
+                   in a general 2HDM. If you want to know more about 
+                   the calculation, please consult and hep-ph/0206121
+                   hep-ph/0304034.
+
+                   One word concerning the NLO cross sections. I know 
+                   some experiments as a principle of belief to not use
+                   NLO results. However, if you are using the usual recipes 
+                   to combine 2->2 and 2->3 cross sections, you are already
+                   include part of the NLO results, so why not go all the 
+                   way? Secondly, if you for example use pole mass Yukawa
+                   couplings your LO cross section is far larger than 
+                   the NLO results, the NLO effects are then large and 
+                   negative. 
+                  
+                   Concerning the low mH end of the spectrum the NLO 
+                   2->2 process is always well defined. The intermediate 
+                   on-shell contribution from the pp->tt, t->bH channel
+                   can be subtracted consistently in the narrow width
+                   approximation. This method avoids any double counting 
+                   between the NLO bg->tH and the gg->tt process and 
+                   is what we have been using for SUSY pair production
+                   or stop-lepton production. Typically the variation of 
+                   the K factor for the bg->tH process as a function 
+                   of mH is small. A particular uncertain region is 
+                   mH=mt plus/minus a few time Gamma_t. In the new table
+                   the low mH region is covered, a detailed description
+                   can be found in hep-ph/0312286. Note that this rate 
+                   has to be added to the pp->ttbar sample with a 
+                   subsequent top decay to a charged Higgs.
+
+fix_pythia.f: Bug fix for all PYTHIA versions 6.2xxx (thanks to 
+              Dirk Zerwas for his great help digging it out during 
+              the Les Houches workshop may/June 2003). Differences
+              between the LO numbers in results_array.dat and PYTHIA 
+              output are due to leading order theoretical uncertainties.
+              Note that these differences do not give you measure of 
+              the actual size of theoretical uncertainties.
+
+versus_mh_sig.eps: Cross section plot out of hep-ph/0206121.
+versus_mh_k.eps:   K factor plot out of hep-ph/0206121. 
+                   Modulo scale choices the numbers are identical 
+                   to those in the file results_array.dat.
+
+Enjoy, good luck, cheers, bless you, gesundheit,...
+
+Tilman
+
+(last change: 1/30/04)
+
+P.S.: List of changes
+6/13/03 results_array.dat: All cross sections scaled with a 
+                           factor 10, due to a stupid historic typo 
+                           in the code. Now the numbers and the plot
+                           do agree! Sorry!
+7/14/03 results_array.dat: Small values for tan(beta) added in the array,
+                           cross section increase because of mt/tan(beta)
+                           term in the coupling. 
+
+2/01/04 results_array.dat: Consistent treatment of low mH region,
+                           new coverage down to 140 GeV
+
+8/09/05 results_array.2.dat: Now with smaller step size
+        results_array.3.dat: Now with even smaller step size

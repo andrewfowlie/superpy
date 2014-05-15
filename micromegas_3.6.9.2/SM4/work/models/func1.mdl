@@ -1,0 +1,10 @@
+SM4
+ Constraints 
+ Name  |> Expression                                                                        <|
+CW     |sqrt(1-SW^2) % cos of the Weinberg angle
+MW     |MZ*CW
+Mb     |MbEff(Q)
+B00000 |1-2*SW^2
+B00001 |-1+2*SW^2
+B00002 |1-4*SW^2+4*SW^4
+==============================================================================================

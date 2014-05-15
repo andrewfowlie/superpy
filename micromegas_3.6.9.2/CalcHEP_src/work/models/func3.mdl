@@ -1,0 +1,29 @@
+SM(CKM=1 with hGG/AA)
+ Constraints 
+ Name     <|> Expression                                                                                                                                                                           <|
+alphaE0    |1/137.036   % electromagnetic constant at zero energy
+CW         |MW/MZ
+SW         |sqrt(1-CW^2)  % PDG:  on-shell 0.472,  MS-bar 0.481
+GF         |EE^2/(2*SW*MW)^2/Sqrt2 % PDG value 1.16637E-5
+LamQCD     |initQCD5(alphaSMZ,McMc,MbMb,Mtp)
+Mb         |MbEff(Q)
+Mt         |MtEff(Q)
+Mc         |McEff(Q)
+aQCD       |alphaQCD(Mh)/pi
+Rqcd       |1+149/12*aQCD+68.6482*aQCD^2-212.447*aQCD^3
+Cq         |1+11/4*aQCD
+lnTop      |2*log(Mtp/Mh)
+Ctop       |1+11/4*aQCD+ (6.1537-2.8542*lnTop)*aQCD^2+(10.999-17.93*lnTop+5.47*lnTop^2)*aQCD^3
+Mcp        | McMc*(1+4/3*alphaQCD(McMc)/pi)  % 1 loop formula like in Hdecay
+Mbp        | MbMb*(1+4/3*alphaQCD(MbMb)/pi)  % 1 loop formula like in Hdecay
+LmbdGG     |-aQCD/16*sqrt(Rqcd)*EE/(2*SW*MW)*cabs(HggF((Mh/2/Mcp)^2)*Cq+HggF((Mh/2/Mbp)^2)*Cq + HggF((Mh/2/Mtp)^2)*Ctop)
+Qu         | 2/3
+Qd         |-1/3
+tau2c      | (Mh/2/McRun(Mh/2))^2
+tau2b      | (Mh/2/MbRun(Mh/2))^2
+tau2t      | (Mh/2/MtRun(Mh/2))^2
+tau2l      | (Mh/2/Ml)^2
+tau2W      | (Mh/2/MW)^2
+LmbdAA     |-alphaE0/(8*pi)*EE/(2*MW*SW)*cabs( 3*Qu^2*(HggF(tau2c)*(1+aQCD*Hgam1F(tau2c)) +HggF(tau2t)*(1+aQCD*Hgam1F(tau2t)))+3*Qd^2*HggF(tau2b)*(1+aQCD*Hgam1F(tau2b))+HggF(tau2l)+HggV(tau2W))
+%_Local!   |
+=====================================================================================================================================================================================================

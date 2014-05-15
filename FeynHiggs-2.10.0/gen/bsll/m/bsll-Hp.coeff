@@ -1,0 +1,6 @@
+{"CALHp" -> (Den[0, MZ2]*((-1 + 4*CW2)*MB*TB2*Mf[bTR, 3] + 3*Mf2[tT, 3])*
+    (MHp2*A0[Mf2[tT, 3]] - (MHp2 + A0[MHp2])*Mf2[tT, 3] + Mf2[tT, 3]^2))/
+   (24*CW2*TB2*(MHp2 - Mf2[tT, 3])^2), 
+ "CARHp" -> (Den[0, MZ2]*Mf[bTR, 2]*(4*MB*SW2 + 3*TB2*Mf[bTR, 3])*
+    (-(MHp2*A0[Mf2[tT, 3]]) + (MHp2 + A0[MHp2] - Mf2[tT, 3])*Mf2[tT, 3]))/
+   (24*CW2*(MHp2 - Mf2[tT, 3])^2)}

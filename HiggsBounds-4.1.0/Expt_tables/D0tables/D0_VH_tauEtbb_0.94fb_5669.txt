@@ -1,0 +1,10 @@
+#D0 Note 5669 Jul 25, 2008
+#D0_VH_tauEtbb_0.94fb
+#no interpolation
+#columns: Mh, obs, exp (as ratio to SM cross sections)
+
+105	26.8	33.3
+115	35.4	42.1
+125	59.6	61.5
+135	106.0	104.8
+145	211.2	226.4

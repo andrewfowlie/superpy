@@ -1,0 +1,7 @@
+5 5 45 8
+  This menu function allows to specify 
+the  scale Q which drives  strong coupling
+and running (effective) masses. It can be a 
+free parameter or CalcHEP sets it 
+automatically equal to the mass of decay 
+particles.

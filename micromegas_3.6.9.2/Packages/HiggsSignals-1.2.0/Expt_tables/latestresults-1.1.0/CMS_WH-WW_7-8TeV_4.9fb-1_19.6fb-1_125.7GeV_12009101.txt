@@ -1,0 +1,17 @@
+# Data taken from CMS-PAS-HIG-13-005:
+# https://twiki.cern.ch/twiki/bin/view/CMSPublic/Hig13005TWiki
+# According to CMS-PAS-HIG-13-009, the Higgs production is HW by more than 98%.
+# At 120GeV, the contribution from WH->W(tautau) is about 20%.
+# From this, we extracted the efficiencies.
+13009101	1300901		1
+CMS-PAS-HIG-13-009
+LHC, CMS, CMS
+(pp)->Wh->WWW
+8	25.4 0.044
+1	0
+25.0
+125.7 125.7 1.0
+2	120
+32 34
+1.000	0.5023
+125.7	-0.432	0.510	1.766

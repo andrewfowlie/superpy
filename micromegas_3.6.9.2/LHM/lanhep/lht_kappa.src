@@ -1,0 +1,83 @@
+%4/25/2006 CHEN
+%IMPLIMENT KAPPA TERM IN LAGRANGIAN OF
+%LITTLEST HIGGS WITH T-PARITY MODEL
+% L_k=(-kf)*[\bar{\psi_2}*\xi*\psi_c
+% +(\bar{\psi_1}*\Sigma_0)*\Omega*\xi^{\dagger}*\Omega*\psi_c]         
+
+let '~ur-' = (1+g5)/2*'~u'.
+let '~dr-' = (1+g5)/2*'~d'.
+let '~cr-' = (1+g5)/2*'~c'.
+let '~sr-' = (1+g5)/2*'~s'.
+let '~br-' = (1+g5)/2*'~b'.
+let '~tr2-' = (1+g5)/2*'~t2'.
+
+let csigma2_41=anti(sigma2_41).
+let csigma2_42=anti(sigma2_42).
+let csigma2_51=anti(sigma2_51).
+let csigma2_52=anti(sigma2_52).
+
+let ONE22={
+   	     {vev(1), vev(0)},
+	     {vev(0), vev(1)}  }.
+
+
+let  xi1= i*del/v*
+          {{sigma1_41,sigma1_42},
+              {sigma1_51,sigma1_52}
+           }.   
+
+let  xi2= -(del/v)**2/2/2*
+          {{sigma2_41,sigma2_42},
+              {sigma2_51,sigma2_52}
+           }.   
+
+let  xi3= -i*(del/v)**3/6/8*
+          {{sigma3_41,sigma3_42},
+              {sigma3_51,sigma3_52}
+           }.
+
+let  ctxi1= -i*del/v*
+          {{csigma1_41,csigma1_51},
+              {csigma1_42,csigma1_52}
+           }.   
+  
+let  ctxi2= -(del/v)**2/2/2*
+          {{csigma2_41,csigma2_51},
+              {csigma2_42,csigma2_52}
+           }.   
+
+let  ctxi3= i*(del/v)**3/6/8* 
+          {{csigma3_41,csigma3_51},
+              {csigma3_42,csigma3_52}
+           }.   
+
+lterm  
+      -kappa*f*
+     (P2*( ONE22 + xi1 + xi2 + xi3 ) *fm+        
+      P1*( ONE22 + ctxi1 + ctxi2 + ctxi3 ) *fm) + AddHermConj 
+      where
+      P1=anti({i*dl1,-i*ul1}),  P2=anti({i*dl2,-i*ul2}),   fm={i*'~dr-',-i*'~ur-'};
+      P1=anti({i*sl1,-i*cl1}),  P2=anti({i*sl2,-i*cl2}),   fm={i*'~sr-',-i*'~cr-'};
+      P1=anti({i*bl1,-i*tl1}),  P2=anti({i*bl2,-i*tl2}),   fm={i*'~br-',-i*'~tr2-'}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+let '~n1r-' =  (1+g5)/2*'~ne'.
+let '~e1r-' =  (1+g5)/2*'~e'.
+let '~n2r-' =  (1+g5)/2*'~nm'.
+let '~e2r-' =  (1+g5)/2*'~m'.
+let '~n3r-' =  (1+g5)/2*'~nl'.
+let '~e3r-' =  (1+g5)/2*'~l'.
+
+
+
+lterm  
+      -kappal*f*
+     (P2*( ONE22 + xi1 + xi2 + xi3 ) *fm+        
+      P1*( ONE22 + ctxi1 + ctxi2 + ctxi3 ) *fm) + AddHermConj 
+      where
+      P1=anti({i*e1a,-i*n1a}),  P2=anti({i*e1b,-i*n1b}),   fm={i*'~e1r-',-i*'~n1r-'};
+      P1=anti({i*e2a,-i*n2a}),  P2=anti({i*e2b,-i*n2b}),   fm={i*'~e2r-',-i*'~n2r-'};
+      P1=anti({i*e3a,-i*n3a}),  P2=anti({i*e3b,-i*n3b}),   fm={i*'~e3r-',-i*'~n3r-'}.
+   

@@ -1,0 +1,72 @@
+128.D0              ! SMPARA( 1) = 1/AEM(MZ)       
+0.1185D0            ! SMPARA( 2) = AS(MZ)       
+91.187D0            ! SMPARA( 3) = MZ in GeV
+0.23117D0           ! SMPARA( 4) = sin^2\Theta_W
+0.5D-3              ! SMPARA( 5) = m_e in GeV
+0.1065D0            ! SMPARA( 6) = m_mu in GeV
+1.777D0             ! SMPARA( 7) = m_tau in GeV
+0.004D0             ! SMPARA( 8) = m_d (m_t) in GeV
+0.090D0             ! SMPARA( 9) = m_s (m_t) in GeV
+3.155D0             ! SMPARA(10) = m_b (m_t) in GeV
+0.002D0             ! SMPARA(11) = m_u (m_t) in GeV
+0.735D0             ! SMPARA(12) = m_c (m_t) in GeV
+174.3D0             ! SMPARA(13) = m_t^POLE  in GeV
+2.118D0             ! SMPARA(14) = Gam_W in GeV
+2.4952D0            ! SMPARA(15) = Gam_Z in GeV
+0.2272D0            ! SMPARA(16) = lambda_CKM
+0.8180D0            ! SMPARA(17) = A_CKM
+0.2210D0            ! SMPARA(18) = rho^bar_CKM
+0.3400D0            ! SMPARA(19) = eta^bar_CKM
+5.0D0               ! SSPARA( 1) = tan\beta
+3.0D2               ! SSPARA( 2) = m_H^\pm^POLE in GeV
+2.0D3               ! SSPARA( 3) = |mu| in GeV
+0.0D2               ! SSPARA( 4) = Phi_mu in Degree
+0.5D2               ! SSPARA( 5) = |M_1| in GeV
+0.0D2               ! SSPARA( 6) = Phi_1 in Degree
+1.0D2               ! SSPARA( 7) = |M_2| in GeV
+0.0D2               ! SSPARA( 8) = Phi_2 in Degree
+1.0D3               ! SSPARA( 9) = |M_3| in GeV
+0.9D2               ! SSPARA(10) = Phi_3 in Degree
+0.5D3               ! SSPARA(11) = m_Q3 in GeV
+0.5D3               ! SSPARA(12) = m_U3 in GeV
+0.5D3               ! SSPARA(13) = m_D3 in GeV
+0.5D3               ! SSPARA(14) = m_L3 in GeV
+0.5D3               ! SSPARA(15) = m_E3 in GeV
+1.0D3               ! SSPARA(16) = |A_t| in GeV
+0.9D2               ! SSPARA(17) = Phi_{A_t} in Degree
+1.0D3               ! SSPARA(18) = |A_b| in GeV
+0.9D2               ! SSPARA(19) = Phi_{A_b} in Degree
+1.0D3               ! SSPARA(20) = |A_tau| in GeV
+0.9D2               ! SSPARA(21) = Phi_{A_tau} in Degree
+1.00D0              ! SSPARA(22) = Hierarchy factor between first 2 and third generations M_Q
+1.00D0              ! SSPARA(23) = Hierarchy factor between first 2 and third generations M_U
+1.00D0              ! SSPARA(24) = Hierarchy factor between first 2 and third generations M_D
+1.00D0              ! SSPARA(25) = Hierarchy factor between first 2 and third generations M_L
+1.00D0              ! SSPARA(26) = Hierarchy factor between first 2 and third generations M_E
+1.0D3               ! SSPARA(27) = |A_e| in GeV
+0.9D2               ! SSPARA(28) = Phi_{A_e} in Degree
+1.0D3               ! SSPARA(29) = |A_mu| in GeV
+0.9D2               ! SSPARA(30) = Phi_{A_mu} in Degree
+1.0D3               ! SSPARA(31) = |A_u| in GeV
+0.9D2               ! SSPARA(32) = Phi_{A_u} in Degree
+1.0D3               ! SSPARA(33) = |A_c| in GeV
+0.9D2               ! SSPARA(34) = Phi_{A_c} in Degree
+1.0D3               ! SSPARA(35) = |A_d| in GeV
+0.9D2               ! SSPARA(36) = Phi_{A_d} in Degree
+1.0D3               ! SSPARA(37) = |A_s| in GeV
+0.9D2               ! SSPARA(38) = Phi_{A_s} in Degree
+0                   ! IFLAG_H(1)  if 1, print input parameters
+1                   ! IFLAG_H(2)  if 1, print Higgs sector
+0                   ! IFLAG_H(3)  if 1, print sferimon sector
+0                   ! IFLAG_H(4)  if 1, print -ino sector
+0                   ! IFLAG_H(5)  if 6, print all couplings
+5                   ! IFLAG_H(6)  if 5, print neutral higgs decay widths and brs
+0                   ! IFLAG_H(10) if 0, Include rad. corrections to t and b Yukawa couplings
+0                   ! IFLAG_H(11) Pole mass(0) or Eff. Pot. mass(1)
+5                   ! IFLAG_H(12) 5 or 0 for full improvement
+0                   ! IFLAG_H(13) 1 Not to include the off-diagonal absorptive parts
+0                   ! IFLAG_H(14) 1 to print FILLDHPG results
+0                   ! IFLAG_H(16) 1 to print FILLBOBS results
+0                   ! IFLAG_H(17) 1 to print b -> s gamma details
+0                   ! IFLAG_H(18) 1 to print EDM results
+0                   ! IFLAG_H(19) 1 to print fllmuon results

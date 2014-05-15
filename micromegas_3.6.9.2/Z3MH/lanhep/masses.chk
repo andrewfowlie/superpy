@@ -1,0 +1,39 @@
+
+---------------------------------------------------------------
+Mass term for particle Z :
+(+1/CW**2*MW**2) = +91.187000**2
+This particles was declared with mass MZ = 91.187000
+
+---------------------------------------------------------------
+Mass term for particle 'Z.f' :
+(+1/CW**2*MW**2) = +91.187000**2
+This particles was declared with mass MZ = 91.187000
+
+---------------------------------------------------------------
+Mass term for particle '~H+' :
+(+1*mu2q+2/EE**2*MW**2*SW**2*la3) = +200.000000**2
+This particles was declared with mass MHC = 200.000000
+
+---------------------------------------------------------------
+Mixing of particles ['~x1', '~x2']
+
+M11 (~X1/~x1) = (+1*mu2q*sinDm**2+2/EE**2*MW**2*SW**2*la3*sinDm**2+2/EE**2*MW**2*SW**2*la4*sinDm**2+1*cosDm**2*muSq+2/EE**2*MW**2*SW**2*laS1-2/EE**2*MW**2*SW**2*laS1*sinDm**2+1/EE*MW*SW*Sqrt2*cosDm*mu_sh*sinDm)
+    = +50.000000**2
+    Declared mass Mdm1=50.000000
+
+
+M12 (~X1/~x2) = (+1*cosDm*mu2q*sinDm+2/EE**2*MW**2*SW**2*cosDm*la3*sinDm+2/EE**2*MW**2*SW**2*cosDm*la4*sinDm-1*cosDm*muSq*sinDm-2/EE**2*MW**2*SW**2*cosDm*laS1*sinDm+1/2/EE*MW*SW*Sqrt2*mu_sh-1/EE*MW*SW*Sqrt2*mu_sh*sinDm**2)
+    = -0.000000**2
+
+
+M21 (~X2/~x1) = (+1*cosDm*mu2q*sinDm+2/EE**2*MW**2*SW**2*cosDm*la3*sinDm+2/EE**2*MW**2*SW**2*cosDm*la4*sinDm-1*cosDm*muSq*sinDm-2/EE**2*MW**2*SW**2*cosDm*laS1*sinDm+1/2/EE*MW*SW*Sqrt2*mu_sh-1/EE*MW*SW*Sqrt2*mu_sh*sinDm**2)
+    = -0.000000**2
+
+
+M22 (~X2/~x2) = (+1*cosDm**2*mu2q+2/EE**2*MW**2*SW**2*la3-2/EE**2*MW**2*SW**2*la3*sinDm**2+2/EE**2*MW**2*SW**2*la4-2/EE**2*MW**2*SW**2*la4*sinDm**2+1*muSq*sinDm**2+2/EE**2*MW**2*SW**2*laS1*sinDm**2-1/EE*MW*SW*Sqrt2*cosDm*mu_sh*sinDm)
+    = +200.000000**2
+    Declared mass Mdm2=200.000000
+
+
+Looking for the mixing matrix...
+No mixing matrices found.

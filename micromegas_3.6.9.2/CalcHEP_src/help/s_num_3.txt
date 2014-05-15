@@ -1,0 +1,7 @@
+2 2 52 4   Particles
+ You have an option to calculate masses widths
+ and branchings. It can be done for all particles 
+ by one command, or you can get information for 
+ selected particle only. In the first case results
+ of calculations are stored in file in SLHA format.
+ Quantum numbers of particles are presented as well.

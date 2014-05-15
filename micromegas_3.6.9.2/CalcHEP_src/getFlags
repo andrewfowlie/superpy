@@ -1,0 +1,596 @@
+:
+
+findMAKE()
+{
+if(test -x "`which gmake`") then
+    MAKE=gmake
+else
+    MAKE=make
+fi
+} 
+
+
+findMakeVar()
+{  
+cat >Makefile <<EOF
+all:
+	@echo \$($1)
+EOF
+$MAKE
+}
+
+defaultFlags()
+{
+
+HXll=  
+LX11=-lX11
+SNUM=
+SO=so
+echo UNIX `uname`
+case `uname` in
+
+Linux) CC=gcc
+       CFLAGS="-g -fsigned-char -Wstrict-prototypes -Wimplicit  -Wmissing-prototypes -std=gnu99"
+#       CFLAGS="-fsigned-char -Wall"
+       lDL="-rdynamic -ldl"       
+       SHARED=-shared
+       SONAME=
+       FC=gfortran
+       FFLAGS="-fno-automatic"       
+       lFort=-lgfortran
+       CXX=g++
+       CXXFLAGS=-g
+       RANLIB=ranlib
+     ;;
+
+OSF1)  CC=cc
+       CFLAGS="-g -std1 -ieee -std=gnu99" 
+       FC=f77
+       FFLAGS="-O0 -fpe2" 
+       FFLAGSD=
+       SONAME="-soname "
+       SHARED=-shared
+       lFort=-lfor
+       lDL=
+       CXX=c++
+       CXXFLAGS=-g
+       RANLIB=ranlib
+     ;;
+SunOS) CC=cc
+       CFLAGS="-g -std=gnu99"
+       SHARED=-G
+       SONAME=
+       FC=f77
+       FFLAGS=
+       lFort="-lF77 -lM77 -lsunmath"
+       lDL=-ldl
+       CXX=c++
+       CXXFLAGS=-g
+       RANLIB=ranlib
+     ;;
+Darwin)CC=gcc
+       CFLAGS="-g -fsigned-char -std=gnu99 "
+       lDL=-ldl
+       SHARED=-dynamiclib
+       SONAME="-install_name "
+       FC=gfortran
+       FFLAGS= 
+       lFort="-L/sw/lib  -lgfortran"
+       CXX=g++
+       CXXFLAGS=-g
+       RANLIB="ranlib -c"
+     ;;
+CYGWIN*)
+       CC=gcc
+       CFLAGS="-g -fsigned-char -std=gnu99"
+       lDL=
+       SHARED=-shared
+       SONAME=
+       SO=dll
+       FC=g77
+       FFLAGS=-fno-automatic 
+       lFort=-lg2c
+       CXX=g++
+       CXXFLAGS=-g
+       RANLIB="ranlib"
+     ;;
+
+
+   *) CC=gcc
+      CFLAGS="-g -std=gnu99" 
+      FC=f77
+      lFort=
+      lDL=
+      SO=so
+      RANLIB=ranlib
+      CXX=c++ 
+      CXXFLAGS=-g
+      echo Unknown Unix  
+     ;;
+esac
+
+}
+
+writeFlags()
+{
+echo "# C compiler
+CC=\"$CC\" 
+
+# Flags for C compiler 
+# Use -D_LONG_ to implement 'long double' for numerical calculations with gcc compiler. 
+# Use '-Qoption,cpp,--extended_float_type  -D_QUAD_'  flag for icc compiler to works
+# with quadrouple precision  
+CFLAGS=\"$CFLAGS\"
+
+# Disposition of header files for X11 
+HX11=$HX11
+
+# Disposition of lX11  
+LX11=\"$LX11\"
+
+# Library which supports runtime  loading of shared libraries  
+lDL=\"$lDL\"
+
+# C Flag which forces compilation of  shared library 
+SHARED=\"$SHARED\"
+
+# FLAG to define  "shared_object_name" for shared library
+SONAME=\"$SONAME\"
+
+#Suffix for shared libraies
+SO=$SO
+
+
+# Flag which defines type of numbers used in symbolic calculations 
+# it could be -DNUM_DOUBLE ,  -DNUM_LONG_LONG  -DNUM_LONG
+SNUM=$SNUM
+
+# Fortran compiler
+FC=\"$FC\"
+
+# Flags for Fortran compiler
+FFLAGS=\"$FFLAGS\"
+
+# Special Fortran libraries one has to pass to C linker
+lFort=\"$lFort\"
+
+# C++ compiler
+CXX=\"$CXX\"
+
+CXXFLAGS=\"$CXXFLAGS\"
+
+# RANLIB 
+RANLIB=\"$RANLIB\"
+
+# MAKE 
+MAKE=$MAKE        
+
+export CC CFLAGS  lDL LX11 SHARED SONAME SO FC FFLAGS RANLIB CXX CXXFLAGS lFort MAKE
+" > ../FlagsForSh    
+}
+
+#MAKE
+writeFlagsForMake()
+{
+echo "# compiler Flags
+CC = $CC
+CFLAGS = $CFLAGS
+HX11 = $HX11
+LX11 = $LX11
+lDL = $lDL 
+SHARED = $SHARED
+SONAME = "$SONAME"
+SO = $SO
+SNUM = $SNUM
+
+FC = $FC 
+FFLAGS = $FFLAGS
+RANLIB = $RANLIB
+lFort = $lFort
+CXX=$CXX    
+CXXFLAGS = $CXXFLAGS 
+CALCHEP = `pwd`
+UNAME = `uname`
+export CC CFLAGS  lDL LX11 SHARED SONAME SO FC FFLAGS RANLIB CXX CXXFLAGS lFort
+
+" > FlagsForMake
+}
+
+
+testCC()
+{
+# Testing of C-compiler
+
+if(test ! -x "`which $CC`") then 
+  echo Can not find C compiler  $CC
+  echo  ... trying  gcc ...
+  if(test -x "`which gcc`") then
+     CC=gcc
+     CFLAGS=-fsigned-char
+  else   
+     echo gcc also is not detected ...
+     echo Write down the compile name  and its options in FlagsForSh file.
+     echo "     CC=\".....\""
+     echo "     CFLAGS=\".....\""
+     return 1
+  fi
+fi  
+
+cat >test.c <<EOF
+int main(void)
+{ char a,b;
+  a=1;
+  b=-a;
+  if(a>b) return 0;else return 1;
+}
+EOF
+
+$CC -o a.out test.c  1>/dev/null 2>/dev/null
+if(test $? -ne 0)then
+  echo  Fatal problem with C compiler.
+  return 1
+fi 
+
+
+$CC -o a.out test.c $CFLAGS 1>/dev/null 2>/dev/null
+if(test $? -ne 0)then
+  echo  Wrong compiler options for $CC
+  return 1
+fi 
+
+
+#test for character type
+./a.out
+if(test $? -ne 0) then
+  echo  C compiler uses unsigned char type. 
+  echo  Improve CFLAGS  in FlagsForSh file to have char signed.
+  return  1
+fi 
+
+echo C compiler detected
+return 0  
+
+}
+
+testX11()
+{
+cat >test.c<<EOF
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
+#include <X11/keysym.h>
+void main(void)
+{
+  static Display *display;
+  display = XOpenDisplay (NULL);
+}
+EOF
+
+$CC -c $HX11 test.c 1>/dev/null 2>/dev/null
+if(test $? -eq 0) then 
+  $CC -o a.out test.o $LX11  1>/dev/null 2>/dev/null
+  if(test $? -eq 0) then
+    writeFlags
+    echo X11 OK
+    return 0 
+  else 
+    rm -f a.out
+    return 2; 
+  fi
+else return 1
+fi
+}
+
+findX11()
+{
+  echo  search by xmkmf
+  if(test -f makefile) then mv makefile makefile.bak; fi
+  if(test -f Makefile) then mv Makefile Makefile.bak; fi
+
+cat > Imakefile <<'EOF'
+findx:
+	@echo 'im_incroot="${INCROOT}"; im_usrlibdir="${USRLIBDIR}"; im_libdir="${LIBDIR}"'
+EOF
+  if (xmkmf) >/dev/null 2>/dev/null && test -f Makefile; then 
+    eval `make findx 2>/dev/null | grep -v make`
+    HX11=-I$im_incroot
+    LX11="-L$im_usrlibdir -lX11"
+    testX11
+    err=$?
+  else err=3; fi 
+  if(test -f makefile.bak) then mv makefile.bak makefile; else rm -f makefile; fi
+  if(test -f Makefile.bak) then mv Makefile.bak Makefile; else rm -f Makefile; fi
+  rm -f Imakefile 
+
+  if (test $err -eq 0 ) then return 0; fi
+   
+  echo "      fails"
+  echo search X11 according to list of possible distinations
+
+XLIST="X11R7/Z X11R6/Z X11R5/Z X11R4/Z  Z/X11R7 Z/X11R6 Z/X11R5 Z/X11R4
+ local/X11R7/Z local/X11R6/Z local/X11R5/Z local/X11R4/Z
+ local/Z/X11R7 local/Z/X11R6 local/Z/X11R5 local/Z/X11R4
+ X11/Z Z/X11 local/X11/Z local/Z/X11 X386/Z x386/Z
+ local/Z openwin/Z openwin/share/Z"
+
+#============== search x-includes from XLIST =====================
+
+  for dir in $XLIST
+  do
+    test_dir=/usr/`echo $dir|sed s/Z/include/`
+
+    if( test -r "$test_dir/X11/Xlib.h") then
+      HX11=-I$test_dir
+      test_dir=/usr/`echo $dir|sed s/Z/lib/`
+      LX11="-L$test_dir -lX11"
+      testX11
+      if(test $? -eq 0) then 
+         writeFlags
+         echo X11 ok
+         return 0
+      fi
+    fi
+  done
+  echo "      fails"
+  return 1
+} 
+
+testFC()
+{  
+cat >test.f <<EOF
+C     TEST     
+      WRITE(*,*) 'test program'
+      END
+EOF
+
+  if(test ! -x "`which $FC`") then 
+     echo Can not find Fortran compiler  $FC
+ 
+      if(test -x "`which gfortran`") then
+         echo gfortran is detected!
+         FC=gfortran
+         FFLAGS=
+         lFort=-lgfortran
+      else   
+      if(test -x "`which g77`") then
+         echo g77 is detected! 
+         FC=g77
+         FFLAGS=-fno-automatic
+         lFort=-lg2c
+      else   
+      if(test -x "`which f77`") then
+         echo f77 is detected! 
+         FC=f77
+         echo default compiler flags are used for F77
+         FFLAGS=
+         lFort=
+      else    
+          echo Fortran compiler is not detected. 
+          FC=
+          FFLAGS=
+          return 0
+      fi
+      fi
+      fi
+  fi  
+
+  echo Fortran compiler is detected
+
+  $FC  -o a.out test.f  1>/dev/null 2>/dev/null
+  if(test $? -ne 0) then
+    echo Fatal problem in  fortran compiler
+    return 1
+  else 
+    echo $FC OK
+  fi 
+
+
+  $FC $FFLAGS -o a.out test.f  1>/dev/null 2>/dev/null
+  if(test $? -ne 0) then
+    echo Unrecognized flags of fortran compiler
+    echo improve FFLAGS in calchep/FlagsForSh 
+    return 1
+  else 
+    echo FFLAGS OK
+  fi 
+  rm -f a.out 
+  return 0
+}
+
+checklFort()
+{
+cat >test.f <<EOF
+C     TEST     
+      INTEGER FUNCTION XXXX()
+      WRITE(*,*) 'test program'
+      XXXX=5
+      RETURN
+      END
+EOF
+
+$FC $FFLAGS -c test.f  1>/dev/null 2>/dev/null
+
+cat >ctest.c <<EOF
+extern int xxxx(void);
+int main(void) {  return xxxx_(); }
+EOF
+
+$CC $CFLAGS -o a.out ctest.c test.o  $lFort 1>/dev/null 2>/dev/null
+if(test $? -ne 0) then
+   echo Problem with C-FORTRAN linking. Not fatal.
+   echo Find the name and disposition of Fortran libraries and fill
+   echo "    lFort=\" -L <disposition> -l<name> \""
+   echo in FlagsForSh
+   lFort=
+   return 1
+fi
+return 0  
+}
+
+checkNUM()
+{ 
+# check  of user defined  interger  type for symbolic calculation 
+if(test -z "$SNUM") then 
+   SNUM=OFF
+fi 
+
+
+if(test $SNUM = "-DNUM_LONG_LONG" -o $SNUM = "OFF"  ) then
+  echo "void main(void){exit(sizeof(long long ));}" >test.c
+  $CC -o a.out test.c 1>/dev/null 2>/dev/null
+  if(test $? -ne 0) then
+     echo -DNUM_LONG_LONG option is refused
+     SNUM="OFF"
+  else
+    if(test $SNUM = "OFF") then
+    ./a.out
+      if(test $? -ge 8) then 
+        SNUM=-DNUM_LONG_LONG
+      fi
+    fi
+  fi
+fi
+
+
+if(test "$SNUM" = "OFF") then
+# selection of integer type for symbolic calculation 
+ 
+  echo "void main(void){exit(sizeof(long ));}" >test.c
+
+  $CC -o a.out test.c 1>/dev/null 2>/dev/null
+  ./a.out
+  if(test $? -ne 8) then
+     SNUM="-DNUM_DOUBLE"
+     echo the type 'double' will  present whole numbers in symbolic calculations
+  else
+     SNUM="-DNUM_LONG"
+     echo the tyle 'long'  will be used for symbolic calculations
+  fi
+fi
+
+
+writeFlags
+}
+
+testSO()
+{
+cat >test.c<<EOF
+#include<stdlib.h>
+double *Q=NULL;
+void xxx(void)
+{ int i;
+  Q=(double*) realloc(Q,10*sizeof(double));
+  for(i=0;i<10;i++) Q[i]=0;
+}
+EOF
+                                                                                
+$CC $CFLAGS $SHARED -o test.$SO  test.c  1>/dev/null 2>/dev/null
+if(test $? -ne 0) then
+  echo can not generate shared  library
+#  if(test $CC = gcc) then 
+     echo tring to add -fPIC option 
+     CFLAGS="$CFLAGS -fPIC"
+     CXXFLAGS="$CXXFLAGS -fPIC"
+     $CC $CFLAGS $SHARED -o test.$SO  test.c  1>/dev/null 2>/dev/null
+     if(test $? -ne 0) then
+       echo .. it does not help
+       writeFlags 
+       return 1
+     else 
+       writeFlags
+     fi   
+#  fi
+fi   
+
+echo : shared liblary generation OK
+return 0
+}
+
+
+checkFCNTL()
+{
+cat >test.c<<EOF
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+                                                                                
+int main(void)
+{
+int fd;
+  struct flock myLock;
+  myLock.l_type= F_WRLCK;       /*  F_RDLCK ||  F_WRLCK || F_UNLCK */
+  myLock.l_whence=SEEK_SET;
+  myLock.l_start=0;
+  myLock.l_len=10; 
+                                                                                
+fd=open("myLock",O_WRONLY|O_CREAT,0666);
+if(fd<0) return fd;
+return fcntl(fd, F_GETLK, &myLock);
+                                                                              
+}
+EOF
+                                                                                
+$CC -o a.out $CFLAGS test.c
+if(test $? -eq 0) then
+   ./a.out
+    if(test $? -eq 0) then
+       echo FCNTL OK
+       return 0
+    fi
+fi
+return 1
+}
+
+#==================== Starting point ============
+rm -rf fTest
+mkdir fTest
+cd fTest
+
+
+if(test -r ../FlagsForSh) then
+  . ../FlagsForSh
+
+if(test -z "$LX11") then
+    LX11=-lX11
+fi
+
+else 
+  findMAKE
+echo MAKE= $MAKE
+  defaultFlags
+  writeFlags  
+fi
+
+testCC;  if(test $? -ne 0  ) then  exit 1; fi
+
+testSO;  if(test $? -ne 0  ) then  exit 1; fi
+
+if(test -z "$LX11") then 
+  echo You have empty LX11 paremeter that means that 
+  echo calchep will be compiled for  "Blind" job only.  
+else 
+ testX11
+ if(test $? -ne 0) then 
+    echo   Trying to detect X11 
+    findX11
+    if(test $? -ne 0) then
+       echo X11 not detected. CalcHEP will be compiled in Blind mode
+       LX11=
+       writeFlags
+    fi    
+ fi 
+fi
+
+checkNUM
+
+# FORTRAN COMPILER
+
+testFC;  if(test $? -ne 0 ) then exit 1; fi
+if(test -n "$FC" ) then checklFort; fi
+
+writeFlags
+cd ..
+rm -fr fTest
+
+writeFlagsForMake
+exit 0

@@ -1,0 +1,39 @@
+: 
+  CALCHEP=  
+#-------------------- 
+
+if(test $# -ne 1) then
+   echo This routine needs at least one parameter which replaces  suffix 
+   echo 'ext' in global names and will be  included in the name of generated 
+   echo library: proclib_\$1.so 
+   echo The second optional parameter describes the destination of the library
+   echo This routine should be launched from user\'s "results" directory after
+   echo generation of C-code 
+   exit 1
+fi
+
+. $CALCHEP/FlagsForSh
+
+cp  $CALCHEP/include/num_in.h $CALCHEP/include/num_out.h $CALCHEP/include/sqme.inc .
+
+for FILE in *.c *.h *.inc
+do
+   sed  s/_ext/_$1/g $FILE > buff
+   mv buff  $FILE
+done
+
+if(test -z "$2") then 
+   target=$1.$SO
+else 
+ if(test -z "$SONAME") then 
+   target=$2/$1.$SO
+ else 
+  if(test $CC = gcc) then 
+    target="$2/$1.$SO -Wl,$SONAME,$2/proclib_$1.$SO"
+  else
+    target="$2/$1.so $SONAME $2/$1.$SO"  
+  fi
+ fi 
+fi
+#
+$CC $SHARED -o $target  $CFLAGS *.c  

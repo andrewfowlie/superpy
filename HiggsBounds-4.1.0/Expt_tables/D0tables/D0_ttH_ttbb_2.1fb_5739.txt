@@ -1,0 +1,13 @@
+#D0 5739 14 March 2009
+#D0_ttH_bb_2.1fb
+#no interpolation
+#columns: Mh, obs, exp (as ratio to SM)
+
+105	48.2	34.3
+115	63.9	45.3
+125	84.8	64.2
+135	151	109
+145	291	221
+155	835	674
+
+

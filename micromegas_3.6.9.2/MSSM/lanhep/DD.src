@@ -1,0 +1,50 @@
+
+% DD terms
+
+%% SU(3)
+
+let _a1=GG*s_Q1*lambda*s_q1,
+    _a2=GG*s_Q2*lambda*s_q2,
+    _a3=GG*s_Q3*lambda*s_q3,
+    _a4=GG*(s_U1*lambda*s_u1 + s_U2*lambda*s_u2 + s_U3*lambda*s_u3),
+    _a5=GG*(s_D1*lambda*s_d1 + s_D2*lambda*s_d2 + s_D3*lambda*s_d3).
+
+     lterm   - ( _a1 + _a2 + _a3 + _a4 + _a5 ) ** 2 / 2.
+
+	
+clear _a1, _a2, _a3, _a4, _a5.
+
+
+%% SU(2)
+
+let _a1=g*s_Q1*tau*s_q1/2,
+    _a2=g*s_Q2*tau*s_q2/2,
+    _a3=g*s_Q3*tau*s_q3/2,
+    _a4=g*s_L1*tau*s_l1/2,
+    _a5=g*s_L2*tau*s_l2/2,
+    _a6=g*s_L3*tau*s_l3/2,
+    _a7=g*s_H1*tau*s_h1/2,
+    _a8=g*s_H2*tau*s_h2/2.
+
+   lterm   -( _a1 + _a2 + _a3 + _a4 + _a5 + _a6 + _a7 + _a8 ) ** 2 / 2  .
+
+clear _a1, _a2, _a3, _a4, _a5, _a6, _a7, _a8.
+
+%% U(1)
+
+
+let _a1=  g1/2*(s_Q1*s_q1+s_Q2*s_q2+s_Q3*s_q3)/3,
+    _a2= -g1/2*(s_L1*s_l1+s_L2*s_l2+s_L3*s_l3),
+    _a3= -g1/2*(s_U1*s_u1+s_U2*s_u2+s_U3*s_u3)*4/3,
+    _a4=  g1/2*(s_D1*s_d1+s_D2*s_d2+s_D3*s_d3)*2/3,
+    _a5=2*g1/2*(s_R1*s_r1+s_R2*s_r2+s_R3*s_r3),
+    _a6= (-g1/2*s_H1*s_h1),
+    _a7= g1/2*s_H2*s_h2.
+
+
+lterm   -( _a1 + _a2 + _a3 + _a4 + _a5  + _a6  + _a7 ) ** 2 / 2 .   
+
+clear _a1, _a2, _a3, _a4, _a5, _a6, _a7.
+
+%parameter la1=0, la2=0,la3=0,la4=0.
+

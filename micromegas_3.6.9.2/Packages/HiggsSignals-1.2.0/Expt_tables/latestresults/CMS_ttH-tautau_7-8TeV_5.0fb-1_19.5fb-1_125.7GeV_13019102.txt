@@ -1,0 +1,15 @@
+# Values are taken from
+# https://twiki.cern.ch/twiki/bin/view/CMSPublic/ttHCombinationTWiki
+# Assume pure efficiencies.
+13019102	1301902		1
+CMS-PAS-HIG-13-019
+LHC, CMS, CMS
+(pp)->tth->tt(tautau)
+8	24.5	 0.044
+1	0
+25.0
+125.7 125.7 1.0
+1	-1
+54
+
+125.7	-6.9	-1.4	4.9

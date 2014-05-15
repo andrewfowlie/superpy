@@ -1,0 +1,35 @@
+micrOMEGAs note:
+We use version slightly different from official 2.41.
+This  version was passed by Jean-Loic Kneur and contains  correction of bug 
+detected by Yanou Cui for some extreme input data.
+===========================================
+Please read carefully before running SUSPECT2:
+******* How to compile and run SuSpect version > 2.3: ******
+
+-once you uncompress suspect2.tar.gz you should have on your directory:
+suspect2.in  (input file example in original SuSpect format)
+suspect2_lha.in  (input file example in SLHA (les Houches) format)
+suspect2_call.f  (example of call with some useful comments/explanations)
+suspect2.f   (the main subroutine)
+twoloophiggs.f (subroutine for dominant 2-loop Higgs mass R.C. in DRbar)
+bsg.f (subroutine for calculation of Br(b-> s gamma))
+
+1. Compiling with f77 (i.e. with Fortran on a Sun machine or the like):
+f77 -o suspect2 suspect2_call.f suspect2.f twoloophiggs.f bsg.f
+
+1(bis). Compiling with g77 (GNU fortran for pc):
+g77 -c suspect2_call.f suspect2.f twoloophiggs.f bsg.f
+g77 -o suspect2 suspect2_call.o suspect2.o twoloophiggs.o bsg.o
+
+2. You can fix your input choice in the file suspect2.in or suspect2_lha.in
+(which contain a minimal amount on the meaning of input parameters)
+BUT this choice of input file is fixed by a parameter value: INPUT=..
+as explained in suspect2_call.f
+ 
+3. The executable code "suspect2" will generate for each input choice
+an output file "suspect2.out" or suspect2_lha.out for SLHA output format.
+Note also that some convenient warning/error comments  
+are written in output and returned as well by the subroutine suspect2. 
+NB you can also easily call suspect2 in loops (e.g. to scan input physical
+parameters etc): see explanations and example in suspect2_call.f for more
+details.  

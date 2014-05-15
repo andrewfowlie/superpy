@@ -1,0 +1,16 @@
+# Result taken from an updated version of CMS-PAS-HIG 13-004 (Dec. 2013):
+# https://twiki.cern.ch/twiki/bin/view/CMSPublic/Hig13004TWikiUpdate
+# Data taken from Fig. 27b.
+# This is the 1-jet result. Assume 76% ggH, 15% VBF, 9% VH
+13004102	1300402		1
+CMS-PAS-HIG-13-004
+LHC, CMS, CMS
+(pp)->h->tautau(1jet)
+8	24.3	 0.026
+1	0
+25
+125.0 125.0 1.0
+4	125.0
+14 24 34 44
+1.0 2.42 2.19 2.19
+125.0	0.59	1.06	1.53

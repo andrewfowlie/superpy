@@ -1,0 +1,4774 @@
+*     LanHEP output produced at Sun May 16 23:08:08 2010
+*     Model named 'MSSM&CPV'
+
+#include "DgetNEWv0.inc"
+#include "CgetNEWv0.inc"
+
+      subroutine ModelDefaults
+      implicit none
+      integer slharead
+      real*8 slhaVal0,slhaVal1,slhaVal2
+      integer slhaValExists0,slhaValExists1,slhaValExists2
+      integer err
+	  
+	  real*8 Q,MSt_1,MSt_2    
+	  
+#include "model.h"
+	  Q=0
+      MST_1=slhaVal1('MASS',Q,1000006)
+      MST_2=slhaVal1('MASS',Q,2000006)
+      Q=sqrt(MST_1*MST_2)
+
+      EE = 0.31344D0
+      SW = 0.481D0
+      MZ = slhaVal1('SMINPUTS',Q,4)
+      wtop = 0D0
+      s12 = 0.221D0
+      s23 = 0.041D0
+      s13 = 0.0035D0
+      GG = 1.238D0
+      Me = 0.000511D0
+      Mm = 0.1057D0
+      Mu = 0.046D0
+      Md = 0.046D0
+      Mc = 1.42D0
+      Ms = 0.2D0
+      Ml = 1.777D0
+	  
+      Mt = slhaVal1('SMINPUTS',Q,6)
+      Mb = 2.7D0
+	  
+	  
+      wt = 1.7524D0
+      wZ = 2.4944D0
+      wW = 2.08895D0
+      Ae = 0D0
+      Am = 0D0
+      Au = 0D0
+      Ad = 0D0
+      As = 0D0
+      Ac = 0D0
+      MG3i = 0D0
+      wHc = 0D0
+      wNE1 = 0D0
+      wNE2 = 0D0
+      wNE3 = 0D0
+      wNE4 = 0D0
+      wC1 = 0D0
+      wC2 = 0D0
+      wSG = 0D0
+      wh1 = 0D0
+      wh2 = 0D0
+      wh3 = 0D0
+      Zl33i = 0D0
+      wSe1 = 0D0
+      wSe2 = 0D0
+      wSm1 = 0D0
+      wSm2 = 0D0
+      wSl1 = 0D0
+      wSl2 = 0D0
+      wSne = 0D0
+      wSnm = 0D0
+      wSnl = 0D0
+      wSu1 = 0D0
+      wSu2 = 0D0
+      wSd1 = 0D0
+      wSd2 = 0D0
+      wSc1 = 0D0
+      wSc2 = 0D0
+      wSs1 = 0D0
+      wSs2 = 0D0
+      wSt1 = 0D0
+      wSt2 = 0D0
+      wSb1 = 0D0
+      wSb2 = 0D0
+	  
+      
+        tb= slhaVal1('EXTPAR',Q,25) 
+      
+
+      mur=slhaVal1('EXTPAR', Q,23)
+      mui=slhaVal1('IMEXTPAR', Q,23)
+
+      MG1r=slhaVal1('EXTPAR',Q,1)
+      MG2r=slhaVal1('EXTPAR',Q,2)
+      MG3 =slhaVal1('EXTPAR',Q,3)
+      MG1i=slhaVal1('IMEXTPAR',Q,1)
+      MG2i=slhaVal1('IMEXTPAR',Q,2)
+      MG3i=slhaVal1('IMEXTPAR',Q,3)
+	  
+	  
+	  
+      Ml2=slhaVal1('EXTPAR',Q,32)
+c	  Ml1=Ml2
+      Ml3=slhaVal1('EXTPAR',Q,33)  
+      Mr2=slhaVal1('EXTPAR',Q,35)
+c	  Mr1=Mr2
+      Mr3=slhaVal1('EXTPAR',Q,36)
+      Mq2=slhaVal1('EXTPAR',Q,42) 
+c	  Mq1=Mq2
+      Mq3=slhaVal1('EXTPAR',Q,43)
+      Mu2=slhaVal1('EXTPAR',Q,45)  
+c	  Mu1=Mu2
+      Mu3=slhaVal1('EXTPAR',Q,46)      
+      Md2=slhaVal1('EXTPAR',Q,48)
+c	  Md1=Md2
+      Md3=slhaVal1('EXTPAR',Q,49)
+
+      Alr= slhaVal1('EXTPAR', Q,13)
+      Am=Alr
+	  Ae=Alr
+	  Ali= slhaVal1('IMEXTPAR', Q,13)
+	  Abr= slhaVal1('EXTPAR', Q,12)
+	  Atr= slhaVal1('EXTPAR', Q,11)
+	  Abr= slhaVal1('IMEXTPAR', Q,12)
+	  Atr= slhaVal1('IMEXTPAR', Q,11)
+	  
+
+      MH3=slhaVal1('MASS', Q,36)
+      MHc = slhaVal1('MASS', Q,37)
+      
+	  aMG1=sqrt(MG1r**2+MG1i**2)
+	  aMG2=sqrt(MG2r**2+MG2i**2)
+	  amu=sqrt(mur**2+mui**2)
+	  aAt=sqrt(Atr**2+Ati**2)
+	  aAb=sqrt(Abr**2+Abi**2)
+	  aAl=sqrt(Alr**2+Ali**2)
+
+      fiMG1=atan2(MG1i,MG1r)
+      fiMG2=atan2(MG2i,MG2r)
+      fimu=atan2(mui,mur)
+      fiAt=atan2(Ati,Atr)
+      fiAb=atan2(Abi,Abr)
+      fiAl=atan2(Ali,Alr)
+
+      end
+
+
+      subroutine ModelConstIni(*)
+      implicit none
+
+#include "model.h"
+
+      double precision neutcp1,neutcp2,chacp1,chacp2,findValW
+
+      call ModelDefaults
+      
+      CW = sqrt(1D0-SW**2)
+      S2W = 2D0*SW*CW
+      C2W = CW**2-SW**2
+      MW = MZ*CW
+      c12 = sqrt(1D0-s12**2)
+      c23 = sqrt(1D0-s23**2)
+      c13 = sqrt(1D0-s13**2)
+      Vud = c12
+      Vus = s12
+      Vcs = Vud
+      Vcd = -Vus
+      
+      sb = tb/sqrt(1D0+tb**2)
+      cb = sqrt(1D0-sb**2)
+      t2b = 2D0*tb/(1D0-tb**2)
+      c2b = cb**2-sb**2
+      s2b = 4D0*sb*cb/2D0
+      
+      ls1 = Me*Ae/Sqrt2*EE/SW/MW/cb
+      ls2 = Mm*Am/Sqrt2*EE/SW/MW/cb
+      MSne = sqrt(c2b*MW**2/2D0+CW**2*Ml2**2)/CW
+      MSnm = sqrt(c2b*MW**2/2D0+CW**2*Ml2**2)/CW
+      MSnl = sqrt(c2b*MW**2/2D0+CW**2*Ml3**2)/CW
+      MSeLL = Ml2**2+Me**2-MW**2/CW**2*(1D0/2D0-SW**2)*c2b
+      MSeRR = Mr2**2+Me**2-MW**2/CW**2*SW**2*c2b
+      MSeLR = -Me*mue*tb
+      MSe1 = sqrt((MSeLL+MSeRR-sqrt((MSeLL-MSeRR)**2+4D0
+     &      *MSeLR**2))/2D0)
+      MSe2 = sqrt((MSeLL+MSeRR+sqrt((MSeLL-MSeRR)**2+4D0
+     &      *MSeLR**2))/2D0)
+      MSeth = atan2(-2D0*MSeLR, -MSeLL+MSeRR)/2D0
+      Zl11 = cos(MSeth)
+      Zl14 = -sin(MSeth)
+      Zl41 = -Zl14
+      Zl44 = Zl11
+      MSmuLL = Ml2**2+Mm**2-MW**2/CW**2*(1D0/2D0-SW**2)*c2b
+      MSmuLR = MW*SW*Sqrt2*cb*ls2/EE-Mm*mue*tb
+      MSmuRR = Mr2**2+Mm**2-MW**2/CW**2*SW**2*c2b
+      MSm1 = sqrt((MSmuLL+MSmuRR-sqrt((MSmuLL-MSmuRR)**2
+     &      +4D0*MSmuLR**2))/2D0)
+      MSm2 = sqrt((MSmuLL+MSmuRR+sqrt((MSmuLL-MSmuRR)**2
+     &      +4D0*MSmuLR**2))/2D0)
+      MSmuth = atan2(-2D0*MSmuLR, -MSmuLL+MSmuRR)/2D0
+      Zl22 = cos(MSmuth)
+      Zl25 = -sin(MSmuth)
+      Zl52 = -Zl25
+      Zl55 = Zl22
+      
+      us1 = -Mu*Au*EE/SW/MW/Sqrt2/sb
+      ds1 = Md*Ad*EE/SW/MW/Sqrt2/cb
+      ds2 = Ms*As*EE/SW/MW/Sqrt2/cb
+      us2 = -Mc*Ac*EE/SW/MW/Sqrt2/sb
+      MSuLL = Mq2**2+Mu**2+MW**2/CW**2*(1D0/2D0-2D0/3D0*SW
+     &      **2)*c2b
+      MSuLR = -MW*SW*Sqrt2*sb*us1/EE-Mu*mue/tb
+      MSuRR = Mu2**2+Mu**2+2D0/3D0*MW**2/CW**2*SW**2*c2b
+      MSu1 = sqrt((MSuLL+MSuRR-sqrt((MSuLL-MSuRR)**2+4D0
+     &      *MSuLR**2))/2D0)
+      MSu2 = sqrt((MSuLL+MSuRR+sqrt((MSuLL-MSuRR)**2+4D0
+     &      *MSuLR**2))/2D0)
+      MSuth = atan2(-2D0*MSuLR, -MSuLL+MSuRR)/2D0
+      Zu11 = cos(MSuth)
+      Zu14 = -sin(MSuth)
+      Zu41 = -Zu14
+      Zu44 = Zu11
+      MSdLL = Mq2**2+Md**2-MW**2/CW**2*(1D0/2D0-1D0/3D0*SW
+     &      **2)*c2b
+      MSdLR = MW*SW*Sqrt2*cb*ds1/EE-Md*mue*tb
+      MSdRR = Md2**2+Md**2-1D0/3D0*MW**2/CW**2*SW**2*c2b
+      MSd1 = sqrt((MSdLL+MSdRR-sqrt((MSdLL-MSdRR)**2+4D0
+     &      *MSdLR**2))/2D0)
+      MSd2 = sqrt((MSdLL+MSdRR+sqrt((MSdLL-MSdRR)**2+4D0
+     &      *MSdLR**2))/2D0)
+      MSdth = atan2(-2D0*MSdLR, -MSdLL+MSdRR)/2D0
+      Zd11 = cos(MSdth)
+      Zd14 = -sin(MSdth)
+      Zd41 = -Zd14
+      Zd44 = Zd11
+      MScLL = Mq2**2+Mc**2+MW**2/CW**2*(1D0/2D0-2D0/3D0*SW
+     &      **2)*c2b
+      MScLR = -MW*SW*Sqrt2*sb*us2/EE-Mc*mue/tb
+      MScRR = Mu2**2+Mc**2+2D0/3D0*MW**2/CW**2*SW**2*c2b
+      MSc1 = sqrt((MScLL+MScRR-sqrt((MScLL-MScRR)**2+4D0
+     &      *MScLR**2))/2D0)
+      MSc2 = sqrt((MScLL+MScRR+sqrt((MScLL-MScRR)**2+4D0
+     &      *MScLR**2))/2D0)
+      MScth = atan2(-2D0*MScLR, -MScLL+MScRR)/2D0
+      Zu22 = cos(MScth)
+      Zu25 = -sin(MScth)
+      Zu52 = -Zu25
+      Zu55 = Zu22
+      MSsLL = Mq2**2+Ms**2-MW**2/CW**2*(1D0/2D0-1D0/3D0*SW
+     &      **2)*c2b
+      MSsLR = MW*SW*Sqrt2*cb*ds2/EE-Ms*mue*tb
+      MSsRR = Md2**2+Ms**2-1D0/3D0*MW**2/CW**2*SW**2*c2b
+      MSs1 = sqrt((MSsLL+MSsRR-sqrt((MSsLL-MSsRR)**2+4D0
+     &      *MSsLR**2))/2D0)
+      MSs2 = sqrt((MSsLL+MSsRR+sqrt((MSsLL-MSsRR)**2+4D0
+     &      *MSsLR**2))/2D0)
+      MSsth = atan2(-2D0*MSsLR, -MSsLL+MSsRR)/2D0
+      Zd22 = cos(MSsth)
+      Zd25 = -sin(MSsth)
+      Zd52 = -Zd25
+      Zd55 = Zd22
+c      aMG1 = findValW('aM1')
+c      fiMG1 = findValW('fiM1')
+c      aMG2 = findValW('aM2')
+c      fiMG2 = findValW('fiM2')
+c      MG1r = aMG1*cos(fiMG1*pi/180D0)
+c      MG1i = aMG1*sin(fiMG1*pi/180D0)
+c      MG2r = aMG2*cos(fiMG2*pi/180D0)
+c      MG2i = aMG2*sin(fiMG2*pi/180D0)
+c      amu = findValW('aMu')
+c      fimu = findValW('fiMu')
+c      mur = amu*cos(fimu/180D0*pi)
+c      mui = amu*sin(fimu/180D0*pi)
+c      aAt = findValW('aAt')
+c      fiAt = findValW('fiAt')
+c      aAb = findValW('aAb')
+c      fiAb = findValW('fiAb')
+c      aAl = findValW('aAl')
+c      fiAl = findValW('fiAl')
+c      Atr = aAt*cos(fiAt/180D0*pi)
+c      Ati = aAt*sin(fiAt/180D0*pi)
+c      Abr = aAb*cos(fiAb/180D0*pi)
+c      Abi = aAb*sin(fiAb/180D0*pi)
+c      Alr = aAl*cos(fiAl/180D0*pi)
+c      Ali = aAl*sin(fiAl/180D0*pi)
+      mue = mur+cI*mui
+      MG1 = MG1r+cI*MG1i
+      MG2 = MG2r+cI*MG2i
+      fMG1 = atan2(MG1i,MG1r)
+      fMG2 = atan2(MG2i,MG2r)
+      fmu =  atan2(mui,mur)
+      neutct = neutcp1(MZ, MW, SW, aMG1, aMG2, amu, tb, fMG1
+     &      , fMG2, fmu)
+      Zn11r = neutcp2(neutct, 1D0, 1D0, 1D0)
+      Zn11i = -neutcp2(neutct, 2D0, 1D0, 1D0)
+      Zn12r = neutcp2(neutct, 1D0, 1D0, 2D0)
+      Zn12i = -neutcp2(neutct, 2D0, 1D0, 2D0)
+      Zn13r = neutcp2(neutct, 1D0, 1D0, 3D0)
+      Zn13i = -neutcp2(neutct, 2D0, 1D0, 3D0)
+      Zn14r = neutcp2(neutct, 1D0, 1D0, 4D0)
+      Zn14i = -neutcp2(neutct, 2D0, 1D0, 4D0)
+      Zn21r = neutcp2(neutct, 1D0, 2D0, 1D0)
+      Zn21i = -neutcp2(neutct, 2D0, 2D0, 1D0)
+      Zn22r = neutcp2(neutct, 1D0, 2D0, 2D0)
+      Zn22i = -neutcp2(neutct, 2D0, 2D0, 2D0)
+      Zn23r = neutcp2(neutct, 1D0, 2D0, 3D0)
+      Zn23i = -neutcp2(neutct, 2D0, 2D0, 3D0)
+      Zn24r = neutcp2(neutct, 1D0, 2D0, 4D0)
+      Zn24i = -neutcp2(neutct, 2D0, 2D0, 4D0)
+      Zn31r = neutcp2(neutct, 1D0, 3D0, 1D0)
+      Zn31i = -neutcp2(neutct, 2D0, 3D0, 1D0)
+      Zn32r = neutcp2(neutct, 1D0, 3D0, 2D0)
+      Zn32i = -neutcp2(neutct, 2D0, 3D0, 2D0)
+      Zn33r = neutcp2(neutct, 1D0, 3D0, 3D0)
+      Zn33i = -neutcp2(neutct, 2D0, 3D0, 3D0)
+      Zn34r = neutcp2(neutct, 1D0, 3D0, 4D0)
+      Zn34i = -neutcp2(neutct, 2D0, 3D0, 4D0)
+      Zn41r = neutcp2(neutct, 1D0, 4D0, 1D0)
+      Zn41i = -neutcp2(neutct, 2D0, 4D0, 1D0)
+      Zn42r = neutcp2(neutct, 1D0, 4D0, 2D0)
+      Zn42i = -neutcp2(neutct, 2D0, 4D0, 2D0)
+      Zn43r = neutcp2(neutct, 1D0, 4D0, 3D0)
+      Zn43i = -neutcp2(neutct, 2D0, 4D0, 3D0)
+      Zn44r = neutcp2(neutct, 1D0, 4D0, 4D0)
+      Zn44i = -neutcp2(neutct, 2D0, 4D0, 4D0)
+      MNE1 = neutcp2(neutct, 3D0, 1D0, 1D0)
+      MNE2 = neutcp2(neutct, 3D0, 2D0, 2D0)
+      MNE3 = neutcp2(neutct, 3D0, 3D0, 3D0)
+      MNE4 = neutcp2(neutct, 3D0, 4D0, 4D0)
+      Zn11 = Zn11r+cI*Zn11i
+      Zn12 = Zn12r+cI*Zn12i
+      Zn13 = Zn13r+cI*Zn13i
+      Zn14 = Zn14r+cI*Zn14i
+      Zn21 = Zn21r+cI*Zn21i
+      Zn22 = Zn22r+cI*Zn22i
+      Zn23 = Zn23r+cI*Zn23i
+      Zn24 = Zn24r+cI*Zn24i
+      Zn31 = Zn31r+cI*Zn31i
+      Zn32 = Zn32r+cI*Zn32i
+      Zn33 = Zn33r+cI*Zn33i
+      Zn34 = Zn34r+cI*Zn34i
+      Zn41 = Zn41r+cI*Zn41i
+      Zn42 = Zn42r+cI*Zn42i
+      Zn43 = Zn43r+cI*Zn43i
+      Zn44 = Zn44r+cI*Zn44i
+      chatkn = chacp1(MZ, MW, SW, aMG2, amu, tb, fMG2, fmu)
+      Zm11r = chacp2(chatkn, 1D0, 1D0, 1D0)
+      Zp11r = chacp2(chatkn, 3D0, 1D0, 1D0)
+      Zm11i = chacp2(chatkn, 2D0, 1D0, 1D0)
+      Zp11i = -chacp2(chatkn, 4D0, 1D0, 1D0)
+      Zm12r = chacp2(chatkn, 1D0, 1D0, 2D0)
+      Zp12r = chacp2(chatkn, 3D0, 1D0, 2D0)
+      Zm12i = chacp2(chatkn, 2D0, 1D0, 2D0)
+      Zp12i = -chacp2(chatkn, 4D0, 1D0, 2D0)
+      Zm21r = chacp2(chatkn, 1D0, 2D0, 1D0)
+      Zp21r = chacp2(chatkn, 3D0, 2D0, 1D0)
+      Zm21i = chacp2(chatkn, 2D0, 2D0, 1D0)
+      Zp21i = -chacp2(chatkn, 4D0, 2D0, 1D0)
+      Zm22r = chacp2(chatkn, 1D0, 2D0, 2D0)
+      Zp22r = chacp2(chatkn, 3D0, 2D0, 2D0)
+      Zm22i = chacp2(chatkn, 2D0, 2D0, 2D0)
+      Zp22i = -chacp2(chatkn, 4D0, 2D0, 2D0)
+      MC1 = chacp2(chatkn, 5D0, 1D0, 1D0)
+      MC2 = chacp2(chatkn, 5D0, 2D0, 2D0)
+      Zp11 = Zp11r+cI*Zp11i
+      Zm11 = Zm11r+cI*Zm11i
+      Zp12 = Zp12r+cI*Zp12i
+      Zm12 = Zm12r+cI*Zm12i
+      Zp21 = Zp21r+cI*Zp21i
+      Zm21 = Zm21r+cI*Zm21i
+      Zp22 = Zp22r+cI*Zp22i
+      Zm22 = Zm22r+cI*Zm22i
+      MSG = MG3
+      MH3 = sqrt(MHc**2-MW**2)
+      t2a1 = MH3**2*s2b+MZ**2*s2b
+      t2a2 = MH3**2*c2b-MZ**2*c2b
+      hha2 = atan2(-t2a1, -t2a2)
+      ca = cos(hha2/2D0)
+      sa = sin(hha2/2D0)
+      sapb = sa*cb+ca*sb
+      samb = sa*cb-ca*sb
+      capb = ca*cb-sa*sb
+      camb = ca*cb+sa*sb
+      s2a = 2D0*sa*ca
+      c2a = ca**2-sa**2
+      Mh2 = sqrt(MZ**2*capb**2+MH3**2*samb**2)
+      Mh1 = sqrt(MZ**2*sapb**2+MH3**2*camb**2)
+      MSbLL = Mq3**2+Mb**2-MW**2/CW**2*(1D0/2D0-1D0/3D0*SW
+     &      **2)*c2b
+      MSbLRr = Mb*(Abr-mur*tb)
+      MSbLRi = Mb*(Abi+mui*tb)
+      MSbRR = Md3**2+Mb**2-1D0/3D0*MW**2/CW**2*SW**2*c2b
+      MSb1 = sqrt((MSbLL+MSbRR-sqrt((MSbLL-MSbRR)**2+4D0
+     &      *(MSbLRr**2+MSbLRi**2)))/2D0)
+      MSb2 = sqrt((MSbLL+MSbRR+sqrt((MSbLL-MSbRR)**2+4D0
+     &      *(MSbLRr**2+MSbLRi**2)))/2D0)
+      MSbth = atan2(-2D0*sqrt(MSbLRr**2+MSbLRi**2), -MSbLL
+     &      +MSbRR)*MSbLRr/sqrt(MSbLRr**2)/2D0
+      MSbfi = atan(-MSbLRi/MSbLRr)
+      Zd33r = cos(MSbth)
+      Zd36r = -sin(MSbth)*cos(MSbfi)
+      Zd63r = -Zd36r
+      Zd66r = Zd33r
+      Zd33i = sin(0D0)
+      Zd36i = -sin(MSbth)*sin(MSbfi)
+      Zd63i = Zd36i
+      Zd66i = Zd33i
+      Ab = Abr+cI*Abi
+      ds3 = Mb*Ab*EE/SW/MW/Sqrt2/cb
+      Zd33 = Zd33r+cI*Zd33i
+      Zd36 = Zd36r+cI*Zd36i
+      Zd63 = Zd63r+cI*Zd63i
+      Zd66 = Zd66r+cI*Zd66i
+      MStLL = Mq3**2+Mt**2+MW**2/CW**2*(1D0/2D0-2D0/3D0*SW
+     &      **2)*c2b
+      MStLRr = Mt*(Atr-mur/tb)
+      MStLRi = Mt*(-Ati-mui/tb)
+      MStRR = Mu3**2+Mt**2+2D0/3D0*MW**2/CW**2*SW**2*c2b
+      MSt1 = sqrt((MStLL+MStRR-sqrt((MStLL-MStRR)**2+4D0
+     &      *(MStLRr**2+MStLRi**2)))/2D0)
+      MSt2 = sqrt((MStLL+MStRR+sqrt((MStLL-MStRR)**2+4D0
+     &      *(MStLRr**2+MStLRi**2)))/2D0)
+      MStth = atan2(-2D0*sqrt(MStLRr**2+MStLRi**2), -MStLL
+     &      +MStRR)*MStLRr/sqrt(MStLRr**2)/2D0
+      MStfi = atan(MStLRi/MStLRr)
+      Zu33r = cos(MStth)
+      Zu36r = -sin(MStth)*cos(MStfi)
+      Zu63r = -Zu36r
+      Zu66r = Zu33r
+      Zu33i = sin(0D0)
+      Zu36i = -sin(MStth)*sin(MStfi)
+      Zu63i = Zu36i
+      Zu66i = Zu33i
+      At = Atr+cI*Ati
+      us3 = -At*Mt*EE/SW/MW/Sqrt2/sb
+      Zu33 = Zu33r+cI*Zu33i
+      Zu36 = Zu36r+cI*Zu36i
+      Zu63 = Zu63r+cI*Zu63i
+      Zu66 = Zu66r+cI*Zu66i
+      MSlLL = Ml3**2+Ml**2-MW**2/CW**2*(1D0/2D0-SW**2)*c2b
+      MSlLRr = Ml*(Alr-mur*tb)
+      MSlLRi = Ml*(Ali+mui*tb)
+      MSlRR = Mr3**2+Ml**2-MW**2/CW**2*SW**2*c2b
+      MSl1 = sqrt((MSlLL+MSlRR-sqrt((MSlLL-MSlRR)**2+4D0
+     &      *(MSlLRr**2+MSlLRi**2)))/2D0)
+      MSl2 = sqrt((MSlLL+MSlRR+sqrt((MSlLL-MSlRR)**2+4D0
+     &      *(MSlLRr**2+MSlLRi**2)))/2D0)
+      MSlth = atan2(-2D0*sqrt(MSlLRr**2+MSlLRi**2), -MSlLL
+     &      +MSlRR)*MSlLRr/sqrt(MSlLRr**2)/2D0
+      MSlfi = atan(-MSlLRi/MSlLRr)
+      Zl33r = cos(MSlth)
+      Zl36r = -sin(MSlth)*cos(MSlfi)
+      Zl63r = -Zl36r
+      Zl66r = Zl33r
+      Zl36i = -sin(MSlth)*sin(MSlfi)
+      Zl63i = Zl36i
+      Zl66i = Zl33i
+      Al = Alr+cI*Ali
+      ls3 = Ml*Al/Sqrt2*EE/SW/MW/cb
+      Zl33 = Zl33r+cI*Zl33i
+      Zl36 = Zl36r+cI*Zl36i
+      Zl63 = Zl63r+cI*Zl63i
+      Zl66 = Zl66r+cI*Zl66i
+      Mesq = Me**2
+      Mmsq = Mm**2
+      Mlsq = Ml**2
+      Musq = Mu**2
+      Mdsq = Md**2
+      Mcsq = Mc**2
+      Mssq = Ms**2
+      Mbsq = Mb**2
+      Mtsq = Mt**2
+      MSe1sq = MSe1**2
+      MSm1sq = MSm1**2
+      MSl1sq = MSl1**2
+      MSu1sq = MSu1**2
+      MSd1sq = MSd1**2
+      MSc1sq = MSc1**2
+      MSs1sq = MSs1**2
+      MSb1sq = MSb1**2
+      MSt1sq = MSt1**2
+      MSe2sq = MSe2**2
+      MSm2sq = MSm2**2
+      MSl2sq = MSl2**2
+      MSu2sq = MSu2**2
+      MSd2sq = MSd2**2
+      MSc2sq = MSc2**2
+      MSs2sq = MSs2**2
+      MSb2sq = MSb2**2
+      MSt2sq = MSt2**2
+      MSnesq = MSne**2
+      MSnmsq = MSnm**2
+      MSnlsq = MSnl**2
+
+	  
+
+      call aaini01
+      call mtrini
+      end
+
+      subroutine aaini01
+      implicit none
+#include "model.h"
+
+      AAABR(1) = MW*(CW+SW**2/CW)
+      AAABR(2) = MW/CW
+      AAABR(3) = CW**2+SW**2
+      AAABR(4) = MW**2*(CW**2+2D0*SW**2+SW**4/CW**2)
+      AAABR(5) = EE*MW
+      AAABR(6) = EE*MW/SW
+      AAABR(7) = EE*MW/SW*(ca*cb+sa*sb)
+      AAABR(8) = EE*MW/SW*(ca*sb-cb*sa)
+      AAABR(9) = EE*MW*(SW/CW-CW/SW)
+      AAABR(10) = EE/CW*MW/SW
+      AAABR(11) = EE/CW**2*MW/SW*(ca*sb-cb*sa)
+      AAABR(12) = EE/CW**2*MW/SW*(ca*cb+sa*sb)
+      AAABR(13) = CW*EE/SW
+      AAABR(14) = EE*MW*(ca/SW*cb+3D0*sa/SW*sb-2D0*sa/SW
+     &      *sb**3-SW/CW**2*ca*cb+SW/CW**2*sa*sb-2D0*SW/CW
+     &      **2*sa*sb**3+2D0*ca/SW*cb*sb**2+2D0*SW/CW**2
+     &      *ca*cb*sb**2)
+      AAABR(15) = EE*MW*(3D0*ca/SW*sb-2D0*ca/SW*sb**3-cb
+     &      /SW*sa+SW/CW**2*ca*sb-2D0*SW/CW**2*ca*sb**3+SW
+     &      /CW**2*cb*sa-2D0*cb/SW*sa*sb**2-2D0*SW/CW**2
+     &      *cb*sa*sb**2)
+      AAABC(1) = 2D0*Zl41*ls1*sb+EE/MW*Me/SW*Sqrt2*Zl41*mue
+     &      -2D0*EE*MW/SW*Sqrt2*Zl11/cb*sb+2D0*EE*MW/SW*Sqrt2
+     &      *Zl11/cb*sb**3+EE/MW*Me**2/SW*Sqrt2*Zl11/cb*sb
+      AAABC(2) = 2D0*Zl52*ls2*sb+EE/MW*Mm/SW*Sqrt2*Zl52*mue
+     &      -2D0*EE*MW/SW*Sqrt2*Zl22/cb*sb+2D0*EE*MW/SW*Sqrt2
+     &      *Zl22/cb*sb**3+EE/MW*Mm**2/SW*Sqrt2*Zl22/cb*sb
+      AAABC(3) = 2D0*Zl63*dconjg(ls3)*sb+EE/MW*Ml/SW*Sqrt2
+     &      *Zl63*mue-2D0*EE*MW/SW*Sqrt2*Zl33/cb*sb+2D0*EE
+     &      *MW/SW*Sqrt2*Zl33/cb*sb**3+EE/MW*Ml**2/SW*Sqrt2
+     &      *Zl33/cb*sb
+      AAABC(4) = 2D0*Zl55*ls2*sb+EE/MW*Mm/SW*Sqrt2*Zl55*mue
+     &      -2D0*EE*MW/SW*Sqrt2*Zl25/cb*sb+2D0*EE*MW/SW*Sqrt2
+     &      *Zl25/cb*sb**3+EE/MW*Mm**2/SW*Sqrt2*Zl25/cb*sb
+      AAABC(5) = 2D0*Zl66*dconjg(ls3)*sb+EE/MW*Ml/SW*Sqrt2
+     &      *Zl66*mue-2D0*EE*MW/SW*Sqrt2*Zl36/cb*sb+2D0*EE
+     &      *MW/SW*Sqrt2*Zl36/cb*sb**3+EE/MW*Ml**2/SW*Sqrt2
+     &      *Zl36/cb*sb
+      AAABC(6) = 2D0*Zl44*ls1*sb+EE/MW*Me/SW*Sqrt2*Zl44*mue
+     &      -2D0*EE*MW/SW*Sqrt2*Zl14/cb*sb+2D0*EE*MW/SW*Sqrt2
+     &      *Zl14/cb*sb**3+EE/MW*Me**2/SW*Sqrt2*Zl14/cb*sb
+      AAABR(16) = Vud*(Zd11*Zu41*cb*us1-Zd41*Zu11*ds1*sb
+     &      +EE*MW/SW*Sqrt2*Zd11*Zu11*cb*sb)
+      AAABC(7) = Vcd*(2D0*Zd11*Zu52*cb*us2-2D0*Zd41*Zu22
+     &      *ds1*sb-EE/MW*Mc/SW*Sqrt2*Zd11*Zu52*dconjg(mue
+     &      )+2D0*EE*MW/SW*Sqrt2*Zd11*Zu22*cb*sb-EE/MW*Mc
+     &      **2/SW*Sqrt2*Zd11*Zu22*cb/sb)
+      AAABC(8) = Vus*(2D0*Zd22*Zu41/cb*us1-2D0*Zd52*Zu11
+     &      *ds2*sb-2D0*Zd22*Zu41/cb*sb**2*us1-EE/MW*Ms/SW
+     &      *Sqrt2*Zd52*Zu11*mue+2D0*EE*MW/SW*Sqrt2*Zd22
+     &      *Zu11/cb*sb-2D0*EE*MW/SW*Sqrt2*Zd22*Zu11/cb*sb
+     &      **3-EE/MW*Ms**2/SW*Sqrt2*Zd22*Zu11/cb*sb)
+      AAABC(9) = 2D0*Zd33*dconjg(Zu63)/cb*us3-2D0*Zd63*dconjg(Zu33
+     &      )*dconjg(ds3)*sb-2D0*Zd33*dconjg(Zu63)/cb*sb
+     &      **2*us3-EE/MW*Mb/SW*Sqrt2*Zd63*dconjg(Zu33)*mue
+     &      -EE/MW*Mt/SW*Sqrt2*Zd33*dconjg(Zu63)*dconjg(mue
+     &      )+2D0*EE*MW/SW*Sqrt2*Zd33*dconjg(Zu33)/cb*sb
+     &      -2D0*EE*MW/SW*Sqrt2*Zd33*dconjg(Zu33)/cb*sb**3
+     &      -EE/MW*Mb**2/SW*Sqrt2*Zd33*dconjg(Zu33)/cb*sb
+     &      -EE/MW*Mt**2/SW*Sqrt2*Zd33*dconjg(Zu33)/cb/sb
+     &      +EE/MW*Mt**2/SW*Sqrt2*Zd33*dconjg(Zu33)/cb*sb
+     &      -EE/MW*Mb*Mt/SW*Sqrt2*Zd63*dconjg(Zu63)/cb/sb
+      AAABC(10) = Vcs*(2D0*Zd22*Zu52/cb*us2-2D0*Zd52*Zu22
+     &      *ds2*sb-2D0*Zd22*Zu52/cb*sb**2*us2-EE/MW*Mc/SW
+     &      *Sqrt2*Zd22*Zu52*dconjg(mue)-EE/MW*Ms/SW*Sqrt2
+     &      *Zd52*Zu22*mue+2D0*EE*MW/SW*Sqrt2*Zd22*Zu22/cb
+     &      *sb-2D0*EE*MW/SW*Sqrt2*Zd22*Zu22/cb*sb**3-EE
+     &      /MW*Mc**2/SW*Sqrt2*Zd22*Zu22/cb/sb+EE/MW*Mc**2
+     &      /SW*Sqrt2*Zd22*Zu22/cb*sb-EE/MW*Ms**2/SW*Sqrt2
+     &      *Zd22*Zu22/cb*sb-EE/MW*Mc*Ms/SW*Sqrt2*Zd52*Zu52
+     &      /cb/sb)
+      AAABC(11) = 2D0*Zd36*dconjg(Zu63)/cb*us3-2D0*Zd66*dconjg(Zu33
+     &      )*dconjg(ds3)*sb-2D0*Zd36*dconjg(Zu63)/cb*sb
+     &      **2*us3-EE/MW*Mb/SW*Sqrt2*Zd66*dconjg(Zu33)*mue
+     &      -EE/MW*Mt/SW*Sqrt2*Zd36*dconjg(Zu63)*dconjg(mue
+     &      )+2D0*EE*MW/SW*Sqrt2*Zd36*dconjg(Zu33)/cb*sb
+     &      -2D0*EE*MW/SW*Sqrt2*Zd36*dconjg(Zu33)/cb*sb**3
+     &      -EE/MW*Mb**2/SW*Sqrt2*Zd36*dconjg(Zu33)/cb*sb
+     &      -EE/MW*Mt**2/SW*Sqrt2*Zd36*dconjg(Zu33)/cb/sb
+     &      +EE/MW*Mt**2/SW*Sqrt2*Zd36*dconjg(Zu33)/cb*sb
+     &      -EE/MW*Mb*Mt/SW*Sqrt2*Zd66*dconjg(Zu63)/cb/sb
+      AAABC(12) = Vcd*(2D0*Zd14*Zu52*cb*us2-2D0*Zd44*Zu22
+     &      *ds1*sb-EE/MW*Mc/SW*Sqrt2*Zd14*Zu52*dconjg(mue
+     &      )+2D0*EE*MW/SW*Sqrt2*Zd14*Zu22*cb*sb-EE/MW*Mc
+     &      **2/SW*Sqrt2*Zd14*Zu22*cb/sb)
+      AAABC(13) = Vcs*(2D0*Zd25*Zu52/cb*us2-2D0*Zd55*Zu22
+     &      *ds2*sb-2D0*Zd25*Zu52/cb*sb**2*us2-EE/MW*Mc/SW
+     &      *Sqrt2*Zd25*Zu52*dconjg(mue)-EE/MW*Ms/SW*Sqrt2
+     &      *Zd55*Zu22*mue+2D0*EE*MW/SW*Sqrt2*Zd25*Zu22/cb
+     &      *sb-2D0*EE*MW/SW*Sqrt2*Zd25*Zu22/cb*sb**3-EE
+     &      /MW*Mc**2/SW*Sqrt2*Zd25*Zu22/cb/sb+EE/MW*Mc**2
+     &      /SW*Sqrt2*Zd25*Zu22/cb*sb-EE/MW*Ms**2/SW*Sqrt2
+     &      *Zd25*Zu22/cb*sb-EE/MW*Mc*Ms/SW*Sqrt2*Zd55*Zu52
+     &      /cb/sb)
+      AAABR(17) = Vud*(Zd14*Zu41*cb*us1-Zd44*Zu11*ds1*sb
+     &      +EE*MW/SW*Sqrt2*Zd14*Zu11*cb*sb)
+      AAABC(14) = Vus*(2D0*Zd25*Zu41/cb*us1-2D0*Zd55*Zu11
+     &      *ds2*sb-2D0*Zd25*Zu41/cb*sb**2*us1-EE/MW*Ms/SW
+     &      *Sqrt2*Zd55*Zu11*mue+2D0*EE*MW/SW*Sqrt2*Zd25
+     &      *Zu11/cb*sb-2D0*EE*MW/SW*Sqrt2*Zd25*Zu11/cb*sb
+     &      **3-EE/MW*Ms**2/SW*Sqrt2*Zd25*Zu11/cb*sb)
+      AAABC(15) = 2D0*Zd33*dconjg(Zu66)/cb*us3-2D0*Zd63*dconjg(Zu36
+     &      )*dconjg(ds3)*sb-2D0*Zd33*dconjg(Zu66)/cb*sb
+     &      **2*us3-EE/MW*Mb/SW*Sqrt2*Zd63*dconjg(Zu36)*mue
+     &      -EE/MW*Mt/SW*Sqrt2*Zd33*dconjg(Zu66)*dconjg(mue
+     &      )+2D0*EE*MW/SW*Sqrt2*Zd33*dconjg(Zu36)/cb*sb
+     &      -2D0*EE*MW/SW*Sqrt2*Zd33*dconjg(Zu36)/cb*sb**3
+     &      -EE/MW*Mb**2/SW*Sqrt2*Zd33*dconjg(Zu36)/cb*sb
+     &      -EE/MW*Mt**2/SW*Sqrt2*Zd33*dconjg(Zu36)/cb/sb
+     &      +EE/MW*Mt**2/SW*Sqrt2*Zd33*dconjg(Zu36)/cb*sb
+     &      -EE/MW*Mb*Mt/SW*Sqrt2*Zd63*dconjg(Zu66)/cb/sb
+      AAABC(16) = Vcd*(2D0*Zd11*Zu55*cb*us2-2D0*Zd41*Zu25
+     &      *ds1*sb-EE/MW*Mc/SW*Sqrt2*Zd11*Zu55*dconjg(mue
+     &      )+2D0*EE*MW/SW*Sqrt2*Zd11*Zu25*cb*sb-EE/MW*Mc
+     &      **2/SW*Sqrt2*Zd11*Zu25*cb/sb)
+      AAABC(17) = Vcs*(2D0*Zd22*Zu55/cb*us2-2D0*Zd52*Zu25
+     &      *ds2*sb-2D0*Zd22*Zu55/cb*sb**2*us2-EE/MW*Mc/SW
+     &      *Sqrt2*Zd22*Zu55*dconjg(mue)-EE/MW*Ms/SW*Sqrt2
+     &      *Zd52*Zu25*mue+2D0*EE*MW/SW*Sqrt2*Zd22*Zu25/cb
+     &      *sb-2D0*EE*MW/SW*Sqrt2*Zd22*Zu25/cb*sb**3-EE
+     &      /MW*Mc**2/SW*Sqrt2*Zd22*Zu25/cb/sb+EE/MW*Mc**2
+     &      /SW*Sqrt2*Zd22*Zu25/cb*sb-EE/MW*Ms**2/SW*Sqrt2
+     &      *Zd22*Zu25/cb*sb-EE/MW*Mc*Ms/SW*Sqrt2*Zd52*Zu55
+     &      /cb/sb)
+      AAABR(18) = Vud*(Zd11*Zu44*cb*us1-Zd41*Zu14*ds1*sb
+     &      +EE*MW/SW*Sqrt2*Zd11*Zu14*cb*sb)
+      AAABC(18) = Vus*(2D0*Zd22*Zu44/cb*us1-2D0*Zd52*Zu14
+     &      *ds2*sb-2D0*Zd22*Zu44/cb*sb**2*us1-EE/MW*Ms/SW
+     &      *Sqrt2*Zd52*Zu14*mue+2D0*EE*MW/SW*Sqrt2*Zd22
+     &      *Zu14/cb*sb-2D0*EE*MW/SW*Sqrt2*Zd22*Zu14/cb*sb
+     &      **3-EE/MW*Ms**2/SW*Sqrt2*Zd22*Zu14/cb*sb)
+      AAABC(19) = 2D0*Zd36*dconjg(Zu66)/cb*us3-2D0*Zd66*dconjg(Zu36
+     &      )*dconjg(ds3)*sb-2D0*Zd36*dconjg(Zu66)/cb*sb
+     &      **2*us3-EE/MW*Mb/SW*Sqrt2*Zd66*dconjg(Zu36)*mue
+     &      -EE/MW*Mt/SW*Sqrt2*Zd36*dconjg(Zu66)*dconjg(mue
+     &      )+2D0*EE*MW/SW*Sqrt2*Zd36*dconjg(Zu36)/cb*sb
+     &      -2D0*EE*MW/SW*Sqrt2*Zd36*dconjg(Zu36)/cb*sb**3
+     &      -EE/MW*Mb**2/SW*Sqrt2*Zd36*dconjg(Zu36)/cb*sb
+     &      -EE/MW*Mt**2/SW*Sqrt2*Zd36*dconjg(Zu36)/cb/sb
+     &      +EE/MW*Mt**2/SW*Sqrt2*Zd36*dconjg(Zu36)/cb*sb
+     &      -EE/MW*Mb*Mt/SW*Sqrt2*Zd66*dconjg(Zu66)/cb/sb
+      AAABR(19) = Vud*(Zd14*Zu44*cb*us1-Zd44*Zu14*ds1*sb
+     &      +EE*MW/SW*Sqrt2*Zd14*Zu14*cb*sb)
+      AAABC(20) = Vus*(2D0*Zd25*Zu44/cb*us1-2D0*Zd55*Zu14
+     &      *ds2*sb-2D0*Zd25*Zu44/cb*sb**2*us1-EE/MW*Ms/SW
+     &      *Sqrt2*Zd55*Zu14*mue+2D0*EE*MW/SW*Sqrt2*Zd25
+     &      *Zu14/cb*sb-2D0*EE*MW/SW*Sqrt2*Zd25*Zu14/cb*sb
+     &      **3-EE/MW*Ms**2/SW*Sqrt2*Zd25*Zu14/cb*sb)
+      AAABC(21) = Vcd*(2D0*Zd14*Zu55*cb*us2-2D0*Zd44*Zu25
+     &      *ds1*sb-EE/MW*Mc/SW*Sqrt2*Zd14*Zu55*dconjg(mue
+     &      )+2D0*EE*MW/SW*Sqrt2*Zd14*Zu25*cb*sb-EE/MW*Mc
+     &      **2/SW*Sqrt2*Zd14*Zu25*cb/sb)
+      AAABC(22) = Vcs*(2D0*Zd25*Zu55/cb*us2-2D0*Zd55*Zu25
+     &      *ds2*sb-2D0*Zd25*Zu55/cb*sb**2*us2-EE/MW*Mc/SW
+     &      *Sqrt2*Zd25*Zu55*dconjg(mue)-EE/MW*Ms/SW*Sqrt2
+     &      *Zd55*Zu25*mue+2D0*EE*MW/SW*Sqrt2*Zd25*Zu25/cb
+     &      *sb-2D0*EE*MW/SW*Sqrt2*Zd25*Zu25/cb*sb**3-EE
+     &      /MW*Mc**2/SW*Sqrt2*Zd25*Zu25/cb/sb+EE/MW*Mc**2
+     &      /SW*Sqrt2*Zd25*Zu25/cb*sb-EE/MW*Ms**2/SW*Sqrt2
+     &      *Zd25*Zu25/cb*sb-EE/MW*Mc*Ms/SW*Sqrt2*Zd55*Zu55
+     &      /cb/sb)
+      AAABR(20) = EE*MW*(ca/SW*cb-sa/SW*sb+2D0*sa/SW*sb**3
+     &      -2D0*SW/CW**2*sa*sb+2D0*SW/CW**2*sa*sb**3-2D0
+     &      *ca/SW*cb*sb**2-2D0*SW/CW**2*ca*cb*sb**2)
+      AAABR(21) = EE*MW*(ca/SW*sb-2D0*ca/SW*sb**3+cb/SW*sa
+     &      +2D0*SW/CW**2*ca*sb-2D0*SW/CW**2*ca*sb**3-2D0
+     &      *cb/SW*sa*sb**2-2D0*SW/CW**2*cb*sa*sb**2)
+      AAABC(23) = 2D0*Zl52/cb*ls2-2D0*Zl52/cb*ls2*sb**2-EE
+     &      *MW/SW*Sqrt2*Zl22+EE/MW*Mm**2/SW*Sqrt2*Zl22+2D0
+     &      *EE*MW/SW*Sqrt2*Zl22*sb**2-EE/MW*Mm/SW*Sqrt2
+     &      *Zl52/cb*dconjg(mue)*sb
+      AAABC(24) = 2D0*Zl41/cb*ls1-2D0*Zl41/cb*ls1*sb**2-EE
+     &      *MW/SW*Sqrt2*Zl11+EE/MW*Me**2/SW*Sqrt2*Zl11+2D0
+     &      *EE*MW/SW*Sqrt2*Zl11*sb**2-EE/MW*Me/SW*Sqrt2
+     &      *Zl41/cb*dconjg(mue)*sb
+      AAABC(25) = 2D0*dconjg(Zl63)/cb*ls3-2D0*dconjg(Zl63
+     &      )/cb*ls3*sb**2-EE*MW/SW*Sqrt2*dconjg(Zl33)+EE
+     &      /MW*Ml**2/SW*Sqrt2*dconjg(Zl33)+2D0*EE*MW/SW
+     &      *Sqrt2*dconjg(Zl33)*sb**2-EE/MW*Ml/SW*Sqrt2*dconjg(Zl63
+     &      )/cb*dconjg(mue)*sb
+      AAABC(26) = EE/MW*Me/SW*Zl11*Zl41*tb*(dconjg(mue)-mue)
+      AAABC(27) = 1D0/cb*(Sqrt2*Zl33*dconjg(Zl63)*ls3-Sqrt2
+     &      *dconjg(Zl33)*Zl63*dconjg(ls3)-Sqrt2*Zl33*dconjg(Zl63
+     &      )*ls3*sb**2+Sqrt2*dconjg(Zl33)*Zl63*dconjg(ls3
+     &      )*sb**2-EE/MW*Ml/SW*Zl33*dconjg(Zl63)*dconjg(mue
+     &      )*sb+EE/MW*Ml/SW*dconjg(Zl33)*Zl63*mue*sb)
+      AAABC(28) = EE/MW*Mm/SW*Zl22*Zl52*tb*(dconjg(mue)-mue)
+      AAABC(29) = 1D0/cb*(Sqrt2*Zl22*Zl55*ls2-Sqrt2*Zl25
+     &      *Zl52*ls2-Sqrt2*Zl22*Zl55*ls2*sb**2+Sqrt2*Zl25
+     &      *Zl52*ls2*sb**2-EE/MW*Mm/SW*Zl22*Zl55*mue*sb
+     &      +EE/MW*Mm/SW*Zl25*Zl52*dconjg(mue)*sb)
+      AAABC(30) = 1D0/cb*(Sqrt2*Zl11*Zl44*ls1-Sqrt2*Zl14
+     &      *Zl41*ls1-Sqrt2*Zl11*Zl44*ls1*sb**2+Sqrt2*Zl14
+     &      *Zl41*ls1*sb**2-EE/MW*Me/SW*Zl11*Zl44*mue*sb
+     &      +EE/MW*Me/SW*Zl14*Zl41*dconjg(mue)*sb)
+      AAABC(31) = 1D0/cb*(Sqrt2*dconjg(Zl33)*Zl66*dconjg(ls3
+     &      )-Sqrt2*Zl36*dconjg(Zl63)*ls3-Sqrt2*dconjg(Zl33
+     &      )*Zl66*dconjg(ls3)*sb**2+Sqrt2*Zl36*dconjg(Zl63
+     &      )*ls3*sb**2-EE/MW*Ml/SW*dconjg(Zl33)*Zl66*mue
+     &      *sb+EE/MW*Ml/SW*Zl36*dconjg(Zl63)*dconjg(mue
+     &      )*sb)
+      AAABC(32) = 2D0*Sqrt2*Zl11*Zl41*ls1*sa+2D0*EE/MW*Me
+     &      **2/SW/cb*sa-EE*MW/SW*Zl11**2*ca*sb-EE*MW/SW
+     &      *Zl11**2/cb*sa+EE/CW**2*MW*SW*Zl11**2*ca*sb+EE
+     &      /CW**2*MW*SW*Zl11**2/cb*sa-2D0*EE/CW**2*MW*SW
+     &      *Zl41**2*ca*sb-2D0*EE/CW**2*MW*SW*Zl41**2/cb
+     &      *sa+EE*MW/SW*Zl11**2/cb*sa*sb**2-EE/CW**2*MW
+     &      *SW*Zl11**2/cb*sa*sb**2+2D0*EE/CW**2*MW*SW*Zl41
+     &      **2/cb*sa*sb**2+EE/MW*Me/SW*Zl11*Zl41*ca/cb*dconjg(mue
+     &      )+EE/MW*Me/SW*Zl11*Zl41*ca/cb*mue
+      AAABC(33) = Sqrt2*Zl33*dconjg(Zl63)*ls3*sa+Sqrt2*dconjg(Zl33
+     &      )*Zl63*dconjg(ls3)*sa-EE*MW/SW*Zl33*dconjg(Zl33
+     &      )*ca*sb-EE*MW/SW*Zl33*dconjg(Zl33)/cb*sa+EE/CW
+     &      **2*MW*SW*Zl33*dconjg(Zl33)*ca*sb+EE/CW**2*MW
+     &      *SW*Zl33*dconjg(Zl33)/cb*sa-2D0*EE/CW**2*MW*SW
+     &      *Zl63*dconjg(Zl63)*ca*sb-2D0*EE/CW**2*MW*SW*Zl63
+     &      *dconjg(Zl63)/cb*sa+2D0*EE/MW*Ml**2/SW*Zl33*dconjg(Zl33
+     &      )/cb*sa+2D0*EE/MW*Ml**2/SW*Zl63*dconjg(Zl63)/cb
+     &      *sa+EE*MW/SW*Zl33*dconjg(Zl33)/cb*sa*sb**2-EE
+     &      /CW**2*MW*SW*Zl33*dconjg(Zl33)/cb*sa*sb**2+2D0
+     &      *EE/CW**2*MW*SW*Zl63*dconjg(Zl63)/cb*sa*sb**2
+     &      +EE/MW*Ml/SW*Zl33*dconjg(Zl63)*ca/cb*dconjg(mue
+     &      )+EE/MW*Ml/SW*dconjg(Zl33)*Zl63*ca/cb*mue
+      AAABC(34) = 2D0*Sqrt2*Zl11*Zl41*ca*ls1+2D0*EE/MW*Me
+     &      **2/SW*ca/cb-EE*MW/SW*Zl11**2*ca/cb+EE*MW/SW
+     &      *Zl11**2*sa*sb+EE/CW**2*MW*SW*Zl11**2*ca/cb-EE
+     &      /CW**2*MW*SW*Zl11**2*sa*sb-2D0*EE/CW**2*MW*SW
+     &      *Zl41**2*ca/cb+2D0*EE/CW**2*MW*SW*Zl41**2*sa
+     &      *sb+EE*MW/SW*Zl11**2*ca/cb*sb**2-EE/CW**2*MW
+     &      *SW*Zl11**2*ca/cb*sb**2+2D0*EE/CW**2*MW*SW*Zl41
+     &      **2*ca/cb*sb**2-EE/MW*Me/SW*Zl11*Zl41/cb*dconjg(mue
+     &      )*sa-EE/MW*Me/SW*Zl11*Zl41/cb*mue*sa
+      AAABC(35) = Sqrt2*Zl33*dconjg(Zl63)*ca*ls3+Sqrt2*dconjg(Zl33
+     &      )*Zl63*ca*dconjg(ls3)-EE*MW/SW*Zl33*dconjg(Zl33
+     &      )*ca/cb+EE*MW/SW*Zl33*dconjg(Zl33)*sa*sb+EE/CW
+     &      **2*MW*SW*Zl33*dconjg(Zl33)*ca/cb-EE/CW**2*MW
+     &      *SW*Zl33*dconjg(Zl33)*sa*sb-2D0*EE/CW**2*MW*SW
+     &      *Zl63*dconjg(Zl63)*ca/cb+2D0*EE/CW**2*MW*SW*Zl63
+     &      *dconjg(Zl63)*sa*sb+2D0*EE/MW*Ml**2/SW*Zl33*dconjg(Zl33
+     &      )*ca/cb+2D0*EE/MW*Ml**2/SW*Zl63*dconjg(Zl63)*ca
+     &      /cb+EE*MW/SW*Zl33*dconjg(Zl33)*ca/cb*sb**2-EE
+     &      /CW**2*MW*SW*Zl33*dconjg(Zl33)*ca/cb*sb**2+2D0
+     &      *EE/CW**2*MW*SW*Zl63*dconjg(Zl63)*ca/cb*sb**2
+     &      -EE/MW*Ml/SW*Zl33*dconjg(Zl63)/cb*dconjg(mue
+     &      )*sa-EE/MW*Ml/SW*dconjg(Zl33)*Zl63/cb*mue*sa
+      AAABC(36) = 2D0*Sqrt2*Zl22*Zl52*ls2*sa+2D0*EE/MW*Mm
+     &      **2/SW/cb*sa-EE*MW/SW*Zl22**2*ca*sb-EE*MW/SW
+     &      *Zl22**2/cb*sa+EE/CW**2*MW*SW*Zl22**2*ca*sb+EE
+     &      /CW**2*MW*SW*Zl22**2/cb*sa-2D0*EE/CW**2*MW*SW
+     &      *Zl52**2*ca*sb-2D0*EE/CW**2*MW*SW*Zl52**2/cb
+     &      *sa+EE*MW/SW*Zl22**2/cb*sa*sb**2-EE/CW**2*MW
+     &      *SW*Zl22**2/cb*sa*sb**2+2D0*EE/CW**2*MW*SW*Zl52
+     &      **2/cb*sa*sb**2+EE/MW*Mm/SW*Zl22*Zl52*ca/cb*dconjg(mue
+     &      )+EE/MW*Mm/SW*Zl22*Zl52*ca/cb*mue
+      AAABC(37) = EE/MW*Mm/SW*Zl22*Zl52*(dconjg(mue)-mue)
+      AAABC(38) = EE/MW*Me/SW*Zl11*Zl41*(dconjg(mue)-mue)
+      AAABC(39) = 2D0*Sqrt2*Zl22*Zl52*ca*ls2+2D0*EE/MW*Mm
+     &      **2/SW*ca/cb-EE*MW/SW*Zl22**2*ca/cb+EE*MW/SW
+     &      *Zl22**2*sa*sb+EE/CW**2*MW*SW*Zl22**2*ca/cb-EE
+     &      /CW**2*MW*SW*Zl22**2*sa*sb-2D0*EE/CW**2*MW*SW
+     &      *Zl52**2*ca/cb+2D0*EE/CW**2*MW*SW*Zl52**2*sa
+     &      *sb+EE*MW/SW*Zl22**2*ca/cb*sb**2-EE/CW**2*MW
+     &      *SW*Zl22**2*ca/cb*sb**2+2D0*EE/CW**2*MW*SW*Zl52
+     &      **2*ca/cb*sb**2-EE/MW*Mm/SW*Zl22*Zl52/cb*dconjg(mue
+     &      )*sa-EE/MW*Mm/SW*Zl22*Zl52/cb*mue*sa
+      AAABC(40) = Sqrt2*Zl33*dconjg(Zl63)*ls3*sb-Sqrt2*dconjg(Zl33
+     &      )*Zl63*dconjg(ls3)*sb+EE/MW*Ml/SW*Zl33*dconjg(Zl63
+     &      )*dconjg(mue)-EE/MW*Ml/SW*dconjg(Zl33)*Zl63*mue
+      AAABC(41) = Sqrt2*Zl22*Zl55*ls2*sa+Sqrt2*Zl25*Zl52
+     &      *ls2*sa-EE*MW/SW*Zl22*Zl25*ca*sb-EE*MW/SW*Zl22
+     &      *Zl25/cb*sa+EE/CW**2*MW*SW*Zl22*Zl25*ca*sb+EE
+     &      /CW**2*MW*SW*Zl22*Zl25/cb*sa-2D0*EE/CW**2*MW
+     &      *SW*Zl52*Zl55*ca*sb-2D0*EE/CW**2*MW*SW*Zl52*Zl55
+     &      /cb*sa+EE*MW/SW*Zl22*Zl25/cb*sa*sb**2-EE/CW**2
+     &      *MW*SW*Zl22*Zl25/cb*sa*sb**2+2D0*EE/CW**2*MW
+     &      *SW*Zl52*Zl55/cb*sa*sb**2+EE/MW*Mm/SW*Zl22*Zl55
+     &      *ca/cb*mue+EE/MW*Mm/SW*Zl25*Zl52*ca/cb*dconjg(mue
+     &      )
+      AAABC(42) = Sqrt2*dconjg(Zl33)*Zl66*dconjg(ls3)*sa
+     &      +Sqrt2*Zl36*dconjg(Zl63)*ls3*sa-EE*MW/SW*dconjg(Zl33
+     &      )*Zl36*ca*sb-EE*MW/SW*dconjg(Zl33)*Zl36/cb*sa
+     &      +EE/CW**2*MW*SW*dconjg(Zl33)*Zl36*ca*sb+EE/CW
+     &      **2*MW*SW*dconjg(Zl33)*Zl36/cb*sa-2D0*EE/CW**2
+     &      *MW*SW*dconjg(Zl63)*Zl66*ca*sb-2D0*EE/CW**2*MW
+     &      *SW*dconjg(Zl63)*Zl66/cb*sa+2D0*EE/MW*Ml**2/SW
+     &      *dconjg(Zl33)*Zl36/cb*sa+2D0*EE/MW*Ml**2/SW*dconjg(Zl63
+     &      )*Zl66/cb*sa+EE*MW/SW*dconjg(Zl33)*Zl36/cb*sa
+     &      *sb**2-EE/CW**2*MW*SW*dconjg(Zl33)*Zl36/cb*sa
+     &      *sb**2+2D0*EE/CW**2*MW*SW*dconjg(Zl63)*Zl66/cb
+     &      *sa*sb**2+EE/MW*Ml/SW*dconjg(Zl33)*Zl66*ca/cb
+     &      *mue+EE/MW*Ml/SW*Zl36*dconjg(Zl63)*ca/cb*dconjg(mue
+     &      )
+      AAABC(43) = Sqrt2*dconjg(Zl33)*Zl66*dconjg(ls3)*sb
+     &      -Sqrt2*Zl36*dconjg(Zl63)*ls3*sb+EE/MW*Ml/SW*dconjg(Zl33
+     &      )*Zl66*mue-EE/MW*Ml/SW*Zl36*dconjg(Zl63)*dconjg(mue
+     &      )
+      AAABC(44) = Sqrt2*Zl22*Zl55*ls2*sb-Sqrt2*Zl25*Zl52
+     &      *ls2*sb+EE/MW*Mm/SW*Zl22*Zl55*mue-EE/MW*Mm/SW
+     &      *Zl25*Zl52*dconjg(mue)
+      AAABC(45) = Sqrt2*Zl11*Zl44*ls1*sb-Sqrt2*Zl14*Zl41
+     &      *ls1*sb+EE/MW*Me/SW*Zl11*Zl44*mue-EE/MW*Me/SW
+     &      *Zl14*Zl41*dconjg(mue)
+      AAABC(46) = Sqrt2*Zl11*Zl44*ls1*sa+Sqrt2*Zl14*Zl41
+     &      *ls1*sa-EE*MW/SW*Zl11*Zl14*ca*sb-EE*MW/SW*Zl11
+     &      *Zl14/cb*sa+EE/CW**2*MW*SW*Zl11*Zl14*ca*sb+EE
+     &      /CW**2*MW*SW*Zl11*Zl14/cb*sa-2D0*EE/CW**2*MW
+     &      *SW*Zl41*Zl44*ca*sb-2D0*EE/CW**2*MW*SW*Zl41*Zl44
+     &      /cb*sa+EE*MW/SW*Zl11*Zl14/cb*sa*sb**2-EE/CW**2
+     &      *MW*SW*Zl11*Zl14/cb*sa*sb**2+2D0*EE/CW**2*MW
+     &      *SW*Zl41*Zl44/cb*sa*sb**2+EE/MW*Me/SW*Zl11*Zl44
+     &      *ca/cb*mue+EE/MW*Me/SW*Zl14*Zl41*ca/cb*dconjg(mue
+     &      )
+      AAABC(47) = Sqrt2*Zl22*Zl55*ca*ls2+Sqrt2*Zl25*Zl52
+     &      *ca*ls2-EE*MW/SW*Zl22*Zl25*ca/cb+EE*MW/SW*Zl22
+     &      *Zl25*sa*sb+EE/CW**2*MW*SW*Zl22*Zl25*ca/cb-EE
+     &      /CW**2*MW*SW*Zl22*Zl25*sa*sb-2D0*EE/CW**2*MW
+     &      *SW*Zl52*Zl55*ca/cb+2D0*EE/CW**2*MW*SW*Zl52*Zl55
+     &      *sa*sb+EE*MW/SW*Zl22*Zl25*ca/cb*sb**2-EE/CW**2
+     &      *MW*SW*Zl22*Zl25*ca/cb*sb**2+2D0*EE/CW**2*MW
+     &      *SW*Zl52*Zl55*ca/cb*sb**2-EE/MW*Mm/SW*Zl22*Zl55
+     &      /cb*mue*sa-EE/MW*Mm/SW*Zl25*Zl52/cb*dconjg(mue
+     &      )*sa
+      AAABC(48) = Sqrt2*Zl11*Zl44*ca*ls1+Sqrt2*Zl14*Zl41
+     &      *ca*ls1-EE*MW/SW*Zl11*Zl14*ca/cb+EE*MW/SW*Zl11
+     &      *Zl14*sa*sb+EE/CW**2*MW*SW*Zl11*Zl14*ca/cb-EE
+     &      /CW**2*MW*SW*Zl11*Zl14*sa*sb-2D0*EE/CW**2*MW
+     &      *SW*Zl41*Zl44*ca/cb+2D0*EE/CW**2*MW*SW*Zl41*Zl44
+     &      *sa*sb+EE*MW/SW*Zl11*Zl14*ca/cb*sb**2-EE/CW**2
+     &      *MW*SW*Zl11*Zl14*ca/cb*sb**2+2D0*EE/CW**2*MW
+     &      *SW*Zl41*Zl44*ca/cb*sb**2-EE/MW*Me/SW*Zl11*Zl44
+     &      /cb*mue*sa-EE/MW*Me/SW*Zl14*Zl41/cb*dconjg(mue
+     &      )*sa
+      AAABC(49) = Sqrt2*dconjg(Zl33)*Zl66*ca*dconjg(ls3)+Sqrt2
+     &      *Zl36*dconjg(Zl63)*ca*ls3-EE*MW/SW*dconjg(Zl33
+     &      )*Zl36*ca/cb+EE*MW/SW*dconjg(Zl33)*Zl36*sa*sb
+     &      +EE/CW**2*MW*SW*dconjg(Zl33)*Zl36*ca/cb-EE/CW
+     &      **2*MW*SW*dconjg(Zl33)*Zl36*sa*sb-2D0*EE/CW**2
+     &      *MW*SW*dconjg(Zl63)*Zl66*ca/cb+2D0*EE/CW**2*MW
+     &      *SW*dconjg(Zl63)*Zl66*sa*sb+2D0*EE/MW*Ml**2/SW
+     &      *dconjg(Zl33)*Zl36*ca/cb+2D0*EE/MW*Ml**2/SW*dconjg(Zl63
+     &      )*Zl66*ca/cb+EE*MW/SW*dconjg(Zl33)*Zl36*ca/cb
+     &      *sb**2-EE/CW**2*MW*SW*dconjg(Zl33)*Zl36*ca/cb
+     &      *sb**2+2D0*EE/CW**2*MW*SW*dconjg(Zl63)*Zl66*ca
+     &      /cb*sb**2-EE/MW*Ml/SW*dconjg(Zl33)*Zl66/cb*mue
+     &      *sa-EE/MW*Ml/SW*Zl36*dconjg(Zl63)/cb*dconjg(mue
+     &      )*sa
+      AAABC(50) = 2D0*Zl44/cb*ls1-2D0*Zl44/cb*ls1*sb**2-EE
+     &      *MW/SW*Sqrt2*Zl14+EE/MW*Me**2/SW*Sqrt2*Zl14+2D0
+     &      *EE*MW/SW*Sqrt2*Zl14*sb**2-EE/MW*Me/SW*Sqrt2
+     &      *Zl44/cb*dconjg(mue)*sb
+      AAABC(51) = 2D0*Zl55/cb*ls2-2D0*Zl55/cb*ls2*sb**2-EE
+     &      *MW/SW*Sqrt2*Zl25+EE/MW*Mm**2/SW*Sqrt2*Zl25+2D0
+     &      *EE*MW/SW*Sqrt2*Zl25*sb**2-EE/MW*Mm/SW*Sqrt2
+     &      *Zl55/cb*dconjg(mue)*sb
+      AAABC(52) = 2D0*dconjg(Zl66)/cb*ls3-2D0*dconjg(Zl66
+     &      )/cb*ls3*sb**2-EE*MW/SW*Sqrt2*dconjg(Zl36)+EE
+     &      /MW*Ml**2/SW*Sqrt2*dconjg(Zl36)+2D0*EE*MW/SW
+     &      *Sqrt2*dconjg(Zl36)*sb**2-EE/MW*Ml/SW*Sqrt2*dconjg(Zl66
+     &      )/cb*dconjg(mue)*sb
+      AAABC(53) = EE/MW*Me/SW*Zl14*Zl44*tb*(dconjg(mue)-mue)
+      AAABC(54) = 1D0/cb*(Sqrt2*Zl36*dconjg(Zl66)*ls3-Sqrt2
+     &      *dconjg(Zl36)*Zl66*dconjg(ls3)-Sqrt2*Zl36*dconjg(Zl66
+     &      )*ls3*sb**2+Sqrt2*dconjg(Zl36)*Zl66*dconjg(ls3
+     &      )*sb**2-EE/MW*Ml/SW*Zl36*dconjg(Zl66)*dconjg(mue
+     &      )*sb+EE/MW*Ml/SW*dconjg(Zl36)*Zl66*mue*sb)
+      AAABC(55) = EE/MW*Mm/SW*Zl25*Zl55*tb*(dconjg(mue)-mue)
+      AAABC(56) = Sqrt2*Zl36*dconjg(Zl66)*ca*ls3+Sqrt2*dconjg(Zl36
+     &      )*Zl66*ca*dconjg(ls3)-EE*MW/SW*Zl36*dconjg(Zl36
+     &      )*ca/cb+EE*MW/SW*Zl36*dconjg(Zl36)*sa*sb+EE/CW
+     &      **2*MW*SW*Zl36*dconjg(Zl36)*ca/cb-EE/CW**2*MW
+     &      *SW*Zl36*dconjg(Zl36)*sa*sb-2D0*EE/CW**2*MW*SW
+     &      *Zl66*dconjg(Zl66)*ca/cb+2D0*EE/CW**2*MW*SW*Zl66
+     &      *dconjg(Zl66)*sa*sb+2D0*EE/MW*Ml**2/SW*Zl36*dconjg(Zl36
+     &      )*ca/cb+2D0*EE/MW*Ml**2/SW*Zl66*dconjg(Zl66)*ca
+     &      /cb+EE*MW/SW*Zl36*dconjg(Zl36)*ca/cb*sb**2-EE
+     &      /CW**2*MW*SW*Zl36*dconjg(Zl36)*ca/cb*sb**2+2D0
+     &      *EE/CW**2*MW*SW*Zl66*dconjg(Zl66)*ca/cb*sb**2
+     &      -EE/MW*Ml/SW*Zl36*dconjg(Zl66)/cb*dconjg(mue
+     &      )*sa-EE/MW*Ml/SW*dconjg(Zl36)*Zl66/cb*mue*sa
+      AAABC(57) = 2D0*Sqrt2*Zl25*Zl55*ls2*sa+2D0*EE/MW*Mm
+     &      **2/SW/cb*sa-EE*MW/SW*Zl25**2*ca*sb-EE*MW/SW
+     &      *Zl25**2/cb*sa+EE/CW**2*MW*SW*Zl25**2*ca*sb+EE
+     &      /CW**2*MW*SW*Zl25**2/cb*sa-2D0*EE/CW**2*MW*SW
+     &      *Zl55**2*ca*sb-2D0*EE/CW**2*MW*SW*Zl55**2/cb
+     &      *sa+EE*MW/SW*Zl25**2/cb*sa*sb**2-EE/CW**2*MW
+     &      *SW*Zl25**2/cb*sa*sb**2+2D0*EE/CW**2*MW*SW*Zl55
+     &      **2/cb*sa*sb**2+EE/MW*Mm/SW*Zl25*Zl55*ca/cb*dconjg(mue
+     &      )+EE/MW*Mm/SW*Zl25*Zl55*ca/cb*mue
+      AAABC(58) = Sqrt2*Zl36*dconjg(Zl66)*ls3*sb-Sqrt2*dconjg(Zl36
+     &      )*Zl66*dconjg(ls3)*sb+EE/MW*Ml/SW*Zl36*dconjg(Zl66
+     &      )*dconjg(mue)-EE/MW*Ml/SW*dconjg(Zl36)*Zl66*mue
+      AAABC(59) = EE/MW*Me/SW*Zl14*Zl44*(dconjg(mue)-mue)
+      AAABC(60) = EE/MW*Mm/SW*Zl25*Zl55*(dconjg(mue)-mue)
+      AAABC(61) = 2D0*Sqrt2*Zl14*Zl44*ca*ls1+2D0*EE/MW*Me
+     &      **2/SW*ca/cb-EE*MW/SW*Zl14**2*ca/cb+EE*MW/SW
+     &      *Zl14**2*sa*sb+EE/CW**2*MW*SW*Zl14**2*ca/cb-EE
+     &      /CW**2*MW*SW*Zl14**2*sa*sb-2D0*EE/CW**2*MW*SW
+     &      *Zl44**2*ca/cb+2D0*EE/CW**2*MW*SW*Zl44**2*sa
+     &      *sb+EE*MW/SW*Zl14**2*ca/cb*sb**2-EE/CW**2*MW
+     &      *SW*Zl14**2*ca/cb*sb**2+2D0*EE/CW**2*MW*SW*Zl44
+     &      **2*ca/cb*sb**2-EE/MW*Me/SW*Zl14*Zl44/cb*dconjg(mue
+     &      )*sa-EE/MW*Me/SW*Zl14*Zl44/cb*mue*sa
+      AAABC(62) = Sqrt2*Zl36*dconjg(Zl66)*ls3*sa+Sqrt2*dconjg(Zl36
+     &      )*Zl66*dconjg(ls3)*sa-EE*MW/SW*Zl36*dconjg(Zl36
+     &      )*ca*sb-EE*MW/SW*Zl36*dconjg(Zl36)/cb*sa+EE/CW
+     &      **2*MW*SW*Zl36*dconjg(Zl36)*ca*sb+EE/CW**2*MW
+     &      *SW*Zl36*dconjg(Zl36)/cb*sa-2D0*EE/CW**2*MW*SW
+     &      *Zl66*dconjg(Zl66)*ca*sb-2D0*EE/CW**2*MW*SW*Zl66
+     &      *dconjg(Zl66)/cb*sa+2D0*EE/MW*Ml**2/SW*Zl36*dconjg(Zl36
+     &      )/cb*sa+2D0*EE/MW*Ml**2/SW*Zl66*dconjg(Zl66)/cb
+     &      *sa+EE*MW/SW*Zl36*dconjg(Zl36)/cb*sa*sb**2-EE
+     &      /CW**2*MW*SW*Zl36*dconjg(Zl36)/cb*sa*sb**2+2D0
+     &      *EE/CW**2*MW*SW*Zl66*dconjg(Zl66)/cb*sa*sb**2
+     &      +EE/MW*Ml/SW*Zl36*dconjg(Zl66)*ca/cb*dconjg(mue
+     &      )+EE/MW*Ml/SW*dconjg(Zl36)*Zl66*ca/cb*mue
+      AAABC(63) = 2D0*Sqrt2*Zl25*Zl55*ca*ls2+2D0*EE/MW*Mm
+     &      **2/SW*ca/cb-EE*MW/SW*Zl25**2*ca/cb+EE*MW/SW
+     &      *Zl25**2*sa*sb+EE/CW**2*MW*SW*Zl25**2*ca/cb-EE
+     &      /CW**2*MW*SW*Zl25**2*sa*sb-2D0*EE/CW**2*MW*SW
+     &      *Zl55**2*ca/cb+2D0*EE/CW**2*MW*SW*Zl55**2*sa
+     &      *sb+EE*MW/SW*Zl25**2*ca/cb*sb**2-EE/CW**2*MW
+     &      *SW*Zl25**2*ca/cb*sb**2+2D0*EE/CW**2*MW*SW*Zl55
+     &      **2*ca/cb*sb**2-EE/MW*Mm/SW*Zl25*Zl55/cb*dconjg(mue
+     &      )*sa-EE/MW*Mm/SW*Zl25*Zl55/cb*mue*sa
+      AAABC(64) = 2D0*Sqrt2*Zl14*Zl44*ls1*sa+2D0*EE/MW*Me
+     &      **2/SW/cb*sa-EE*MW/SW*Zl14**2*ca*sb-EE*MW/SW
+     &      *Zl14**2/cb*sa+EE/CW**2*MW*SW*Zl14**2*ca*sb+EE
+     &      /CW**2*MW*SW*Zl14**2/cb*sa-2D0*EE/CW**2*MW*SW
+     &      *Zl44**2*ca*sb-2D0*EE/CW**2*MW*SW*Zl44**2/cb
+     &      *sa+EE*MW/SW*Zl14**2/cb*sa*sb**2-EE/CW**2*MW
+     &      *SW*Zl14**2/cb*sa*sb**2+2D0*EE/CW**2*MW*SW*Zl44
+     &      **2/cb*sa*sb**2+EE/MW*Me/SW*Zl14*Zl44*ca/cb*dconjg(mue
+     &      )+EE/MW*Me/SW*Zl14*Zl44*ca/cb*mue
+      AAABR(22) = EE*MW*(ca/SW*sb+cb/SW*sa+SW/CW**2*ca*sb
+     &      +SW/CW**2*cb*sa)
+      AAABR(23) = EE*MW*(ca/SW*cb-sa/SW*sb+SW/CW**2*ca*cb
+     &      -SW/CW**2*sa*sb)
+      AAABC(65) = Vus*(2D0*Zd22*Zu41*sb*us1+2D0*Zd52*Zu11
+     &      /cb*ds2-2D0*Zd52*Zu11/cb*ds2*sb**2-EE*MW/SW*Sqrt2
+     &      *Zd22*Zu11+EE/MW*Ms**2/SW*Sqrt2*Zd22*Zu11+2D0
+     &      *EE*MW/SW*Sqrt2*Zd22*Zu11*sb**2-EE/MW*Ms/SW*Sqrt2
+     &      *Zd52*Zu11/cb*dconjg(mue)*sb)
+      AAABC(66) = Vcs*(2D0*Zd22*Zu52*sb*us2+2D0*Zd52*Zu22
+     &      /cb*ds2-2D0*Zd52*Zu22/cb*ds2*sb**2-EE*MW/SW*Sqrt2
+     &      *Zd22*Zu22-EE/MW*Mc**2/SW*Sqrt2*Zd22*Zu22+EE
+     &      /MW*Ms**2/SW*Sqrt2*Zd22*Zu22+2D0*EE*MW/SW*Sqrt2
+     &      *Zd22*Zu22*sb**2+EE/MW*Mc/SW*Sqrt2*Zd22*Zu52
+     &      /cb*mue/sb-EE/MW*Mc/SW*Sqrt2*Zd22*Zu52/cb*mue
+     &      *sb-EE/MW*Ms/SW*Sqrt2*Zd52*Zu22/cb*dconjg(mue
+     &      )*sb)
+      AAABR(24) = Vud*(2D0*Zd11*Zu41*sb*us1+2D0*Zd41*Zu11
+     &      *cb*ds1-EE*MW/SW*Sqrt2*Zd11*Zu11+2D0*EE*MW/SW
+     &      *Sqrt2*Zd11*Zu11*sb**2)
+      AAABC(67) = Vcd*(2D0*Zd11*Zu52*sb*us2+2D0*Zd41*Zu22
+     &      *cb*ds1-EE*MW/SW*Sqrt2*Zd11*Zu22-EE/MW*Mc**2
+     &      /SW*Sqrt2*Zd11*Zu22+2D0*EE*MW/SW*Sqrt2*Zd11*Zu22
+     &      *sb**2+EE/MW*Mc/SW*Sqrt2*Zd11*Zu52*cb*mue/sb)
+      AAABC(68) = 2D0*dconjg(Zd33)*Zu63*sb*dconjg(us3)+2D0
+     &      *dconjg(Zd63)*Zu33/cb*ds3-2D0*dconjg(Zd63)*Zu33
+     &      /cb*ds3*sb**2-EE*MW/SW*Sqrt2*dconjg(Zd33)*Zu33
+     &      +EE/MW*Mb**2/SW*Sqrt2*dconjg(Zd33)*Zu33-EE/MW
+     &      *Mt**2/SW*Sqrt2*dconjg(Zd33)*Zu33+2D0*EE*MW/SW
+     &      *Sqrt2*dconjg(Zd33)*Zu33*sb**2-EE/MW*Mb/SW*Sqrt2
+     &      *dconjg(Zd63)*Zu33/cb*dconjg(mue)*sb+EE/MW*Mt
+     &      /SW*Sqrt2*dconjg(Zd33)*Zu63/cb*mue/sb-EE/MW*Mt
+     &      /SW*Sqrt2*dconjg(Zd33)*Zu63/cb*mue*sb
+      AAABC(69) = 2D0*dconjg(Zd33)*Zu66*sb*dconjg(us3)+2D0
+     &      *dconjg(Zd63)*Zu36/cb*ds3-2D0*dconjg(Zd63)*Zu36
+     &      /cb*ds3*sb**2-EE*MW/SW*Sqrt2*dconjg(Zd33)*Zu36
+     &      +EE/MW*Mb**2/SW*Sqrt2*dconjg(Zd33)*Zu36-EE/MW
+     &      *Mt**2/SW*Sqrt2*dconjg(Zd33)*Zu36+2D0*EE*MW/SW
+     &      *Sqrt2*dconjg(Zd33)*Zu36*sb**2-EE/MW*Mb/SW*Sqrt2
+     &      *dconjg(Zd63)*Zu36/cb*dconjg(mue)*sb+EE/MW*Mt
+     &      /SW*Sqrt2*dconjg(Zd33)*Zu66/cb*mue/sb-EE/MW*Mt
+     &      /SW*Sqrt2*dconjg(Zd33)*Zu66/cb*mue*sb
+      AAABR(25) = Vud*(2D0*Zd11*Zu44*sb*us1+2D0*Zd41*Zu14
+     &      *cb*ds1-EE*MW/SW*Sqrt2*Zd11*Zu14+2D0*EE*MW/SW
+     &      *Sqrt2*Zd11*Zu14*sb**2)
+      AAABC(70) = Vus*(2D0*Zd22*Zu44*sb*us1+2D0*Zd52*Zu14
+     &      /cb*ds2-2D0*Zd52*Zu14/cb*ds2*sb**2-EE*MW/SW*Sqrt2
+     &      *Zd22*Zu14+EE/MW*Ms**2/SW*Sqrt2*Zd22*Zu14+2D0
+     &      *EE*MW/SW*Sqrt2*Zd22*Zu14*sb**2-EE/MW*Ms/SW*Sqrt2
+     &      *Zd52*Zu14/cb*dconjg(mue)*sb)
+      AAABC(71) = Vcs*(2D0*Zd22*Zu55*sb*us2+2D0*Zd52*Zu25
+     &      /cb*ds2-2D0*Zd52*Zu25/cb*ds2*sb**2-EE*MW/SW*Sqrt2
+     &      *Zd22*Zu25-EE/MW*Mc**2/SW*Sqrt2*Zd22*Zu25+EE
+     &      /MW*Ms**2/SW*Sqrt2*Zd22*Zu25+2D0*EE*MW/SW*Sqrt2
+     &      *Zd22*Zu25*sb**2+EE/MW*Mc/SW*Sqrt2*Zd22*Zu55
+     &      /cb*mue/sb-EE/MW*Mc/SW*Sqrt2*Zd22*Zu55/cb*mue
+     &      *sb-EE/MW*Ms/SW*Sqrt2*Zd52*Zu25/cb*dconjg(mue
+     &      )*sb)
+      AAABC(72) = Vcd*(2D0*Zd11*Zu55*sb*us2+2D0*Zd41*Zu25
+     &      *cb*ds1-EE*MW/SW*Sqrt2*Zd11*Zu25-EE/MW*Mc**2
+     &      /SW*Sqrt2*Zd11*Zu25+2D0*EE*MW/SW*Sqrt2*Zd11*Zu25
+     &      *sb**2+EE/MW*Mc/SW*Sqrt2*Zd11*Zu55*cb*mue/sb)
+      AAABC(73) = EE/MW*Ms/SW*Zd22*Zd52*tb*(dconjg(mue)-mue)
+      AAABC(74) = 1D0/cb*(Sqrt2*Zd33*dconjg(Zd63)*ds3-Sqrt2
+     &      *dconjg(Zd33)*Zd63*dconjg(ds3)-Sqrt2*Zd33*dconjg(Zd63
+     &      )*ds3*sb**2+Sqrt2*dconjg(Zd33)*Zd63*dconjg(ds3
+     &      )*sb**2-EE/MW*Mb/SW*Zd33*dconjg(Zd63)*dconjg(mue
+     &      )*sb+EE/MW*Mb/SW*dconjg(Zd33)*Zd63*mue*sb)
+      AAABC(75) = 1D0/cb*(Sqrt2*Zd22*Zd55*ds2-Sqrt2*Zd25
+     &      *Zd52*ds2-Sqrt2*Zd22*Zd55*ds2*sb**2+Sqrt2*Zd25
+     &      *Zd52*ds2*sb**2-EE/MW*Ms/SW*Zd22*Zd55*mue*sb
+     &      +EE/MW*Ms/SW*Zd25*Zd52*dconjg(mue)*sb)
+      AAABC(76) = 1D0/cb*(Sqrt2*dconjg(Zd33)*Zd66*dconjg(ds3
+     &      )-Sqrt2*Zd36*dconjg(Zd63)*ds3-Sqrt2*dconjg(Zd33
+     &      )*Zd66*dconjg(ds3)*sb**2+Sqrt2*Zd36*dconjg(Zd63
+     &      )*ds3*sb**2-EE/MW*Mb/SW*dconjg(Zd33)*Zd66*mue
+     &      *sb+EE/MW*Mb/SW*Zd36*dconjg(Zd63)*dconjg(mue
+     &      )*sb)
+      AAABR(26) = Sqrt2*cb*ds1*(Zd11*Zd44-Zd14*Zd41)
+      AAABC(77) = 6D0*Sqrt2*Zd22*Zd52*ds2*sa+6D0*EE/MW*Ms
+     &      **2/SW/cb*sa-3D0*EE*MW/SW*Zd22**2*ca*sb-3D0*EE
+     &      *MW/SW*Zd22**2/cb*sa-EE/CW**2*MW*SW*Zd22**2*ca
+     &      *sb-EE/CW**2*MW*SW*Zd22**2/cb*sa-2D0*EE/CW**2
+     &      *MW*SW*Zd52**2*ca*sb-2D0*EE/CW**2*MW*SW*Zd52
+     &      **2/cb*sa+3D0*EE*MW/SW*Zd22**2/cb*sa*sb**2+EE
+     &      /CW**2*MW*SW*Zd22**2/cb*sa*sb**2+2D0*EE/CW**2
+     &      *MW*SW*Zd52**2/cb*sa*sb**2+3D0*EE/MW*Ms/SW*Zd22
+     &      *Zd52*ca/cb*dconjg(mue)+3D0*EE/MW*Ms/SW*Zd22
+     &      *Zd52*ca/cb*mue
+      AAABR(27) = 6D0*Sqrt2*Zd11*Zd41*ca*ds1-3D0*EE*MW/SW
+     &      *Zd11**2*ca*cb+3D0*EE*MW/SW*Zd11**2*sa*sb-EE
+     &      /CW**2*MW*SW*Zd11**2*ca*cb+EE/CW**2*MW*SW*Zd11
+     &      **2*sa*sb-2D0*EE/CW**2*MW*SW*Zd41**2*ca*cb+2D0
+     &      *EE/CW**2*MW*SW*Zd41**2*sa*sb
+      AAABC(78) = EE/MW*Ms/SW*Zd22*Zd52*(dconjg(mue)-mue)
+      AAABC(79) = 3D0*Sqrt2*Zd33*dconjg(Zd63)*ds3*sa+3D0
+     &      *Sqrt2*dconjg(Zd33)*Zd63*dconjg(ds3)*sa-3D0*EE
+     &      *MW/SW*Zd33*dconjg(Zd33)*ca*sb-3D0*EE*MW/SW*Zd33
+     &      *dconjg(Zd33)/cb*sa-EE/CW**2*MW*SW*Zd33*dconjg(Zd33
+     &      )*ca*sb-EE/CW**2*MW*SW*Zd33*dconjg(Zd33)/cb*sa
+     &      -2D0*EE/CW**2*MW*SW*Zd63*dconjg(Zd63)*ca*sb-2D0
+     &      *EE/CW**2*MW*SW*Zd63*dconjg(Zd63)/cb*sa+6D0*EE
+     &      /MW*Mb**2/SW*Zd33*dconjg(Zd33)/cb*sa+6D0*EE/MW
+     &      *Mb**2/SW*Zd63*dconjg(Zd63)/cb*sa+3D0*EE*MW/SW
+     &      *Zd33*dconjg(Zd33)/cb*sa*sb**2+EE/CW**2*MW*SW
+     &      *Zd33*dconjg(Zd33)/cb*sa*sb**2+2D0*EE/CW**2*MW
+     &      *SW*Zd63*dconjg(Zd63)/cb*sa*sb**2+3D0*EE/MW*Mb
+     &      /SW*Zd33*dconjg(Zd63)*ca/cb*dconjg(mue)+3D0*EE
+     &      /MW*Mb/SW*dconjg(Zd33)*Zd63*ca/cb*mue
+      AAABC(80) = Sqrt2*Zd33*dconjg(Zd63)*ds3*sb-Sqrt2*dconjg(Zd33
+     &      )*Zd63*dconjg(ds3)*sb+EE/MW*Mb/SW*Zd33*dconjg(Zd63
+     &      )*dconjg(mue)-EE/MW*Mb/SW*dconjg(Zd33)*Zd63*mue
+      AAABC(81) = 3D0*Sqrt2*Zd33*dconjg(Zd63)*ca*ds3+3D0
+     &      *Sqrt2*dconjg(Zd33)*Zd63*ca*dconjg(ds3)-3D0*EE
+     &      *MW/SW*Zd33*dconjg(Zd33)*ca/cb+3D0*EE*MW/SW*Zd33
+     &      *dconjg(Zd33)*sa*sb-EE/CW**2*MW*SW*Zd33*dconjg(Zd33
+     &      )*ca/cb+EE/CW**2*MW*SW*Zd33*dconjg(Zd33)*sa*sb
+     &      -2D0*EE/CW**2*MW*SW*Zd63*dconjg(Zd63)*ca/cb+2D0
+     &      *EE/CW**2*MW*SW*Zd63*dconjg(Zd63)*sa*sb+6D0*EE
+     &      /MW*Mb**2/SW*Zd33*dconjg(Zd33)*ca/cb+6D0*EE/MW
+     &      *Mb**2/SW*Zd63*dconjg(Zd63)*ca/cb+3D0*EE*MW/SW
+     &      *Zd33*dconjg(Zd33)*ca/cb*sb**2+EE/CW**2*MW*SW
+     &      *Zd33*dconjg(Zd33)*ca/cb*sb**2+2D0*EE/CW**2*MW
+     &      *SW*Zd63*dconjg(Zd63)*ca/cb*sb**2-3D0*EE/MW*Mb
+     &      /SW*Zd33*dconjg(Zd63)/cb*dconjg(mue)*sa-3D0*EE
+     &      /MW*Mb/SW*dconjg(Zd33)*Zd63/cb*mue*sa
+      AAABC(82) = 6D0*Sqrt2*Zd22*Zd52*ca*ds2+6D0*EE/MW*Ms
+     &      **2/SW*ca/cb-3D0*EE*MW/SW*Zd22**2*ca/cb+3D0*EE
+     &      *MW/SW*Zd22**2*sa*sb-EE/CW**2*MW*SW*Zd22**2*ca
+     &      /cb+EE/CW**2*MW*SW*Zd22**2*sa*sb-2D0*EE/CW**2
+     &      *MW*SW*Zd52**2*ca/cb+2D0*EE/CW**2*MW*SW*Zd52
+     &      **2*sa*sb+3D0*EE*MW/SW*Zd22**2*ca/cb*sb**2+EE
+     &      /CW**2*MW*SW*Zd22**2*ca/cb*sb**2+2D0*EE/CW**2
+     &      *MW*SW*Zd52**2*ca/cb*sb**2-3D0*EE/MW*Ms/SW*Zd22
+     &      *Zd52/cb*dconjg(mue)*sa-3D0*EE/MW*Ms/SW*Zd22
+     &      *Zd52/cb*mue*sa
+      AAABR(28) = 6D0*Sqrt2*Zd11*Zd41*ds1*sa-3D0*EE*MW/SW
+     &      *Zd11**2*ca*sb-3D0*EE*MW/SW*Zd11**2*cb*sa-EE
+     &      /CW**2*MW*SW*Zd11**2*ca*sb-EE/CW**2*MW*SW*Zd11
+     &      **2*cb*sa-2D0*EE/CW**2*MW*SW*Zd41**2*ca*sb-2D0
+     &      *EE/CW**2*MW*SW*Zd41**2*cb*sa
+      AAABC(83) = 3D0*Sqrt2*dconjg(Zd33)*Zd66*dconjg(ds3
+     &      )*sa+3D0*Sqrt2*Zd36*dconjg(Zd63)*ds3*sa-3D0*EE
+     &      *MW/SW*dconjg(Zd33)*Zd36*ca*sb-3D0*EE*MW/SW*dconjg(Zd33
+     &      )*Zd36/cb*sa-EE/CW**2*MW*SW*dconjg(Zd33)*Zd36
+     &      *ca*sb-EE/CW**2*MW*SW*dconjg(Zd33)*Zd36/cb*sa
+     &      -2D0*EE/CW**2*MW*SW*dconjg(Zd63)*Zd66*ca*sb-2D0
+     &      *EE/CW**2*MW*SW*dconjg(Zd63)*Zd66/cb*sa+6D0*EE
+     &      /MW*Mb**2/SW*dconjg(Zd33)*Zd36/cb*sa+6D0*EE/MW
+     &      *Mb**2/SW*dconjg(Zd63)*Zd66/cb*sa+3D0*EE*MW/SW
+     &      *dconjg(Zd33)*Zd36/cb*sa*sb**2+EE/CW**2*MW*SW
+     &      *dconjg(Zd33)*Zd36/cb*sa*sb**2+2D0*EE/CW**2*MW
+     &      *SW*dconjg(Zd63)*Zd66/cb*sa*sb**2+3D0*EE/MW*Mb
+     &      /SW*dconjg(Zd33)*Zd66*ca/cb*mue+3D0*EE/MW*Mb
+     &      /SW*Zd36*dconjg(Zd63)*ca/cb*dconjg(mue)
+      AAABC(84) = 3D0*Sqrt2*Zd22*Zd55*ds2*sa+3D0*Sqrt2*Zd25
+     &      *Zd52*ds2*sa-3D0*EE*MW/SW*Zd22*Zd25*ca*sb-3D0
+     &      *EE*MW/SW*Zd22*Zd25/cb*sa-EE/CW**2*MW*SW*Zd22
+     &      *Zd25*ca*sb-EE/CW**2*MW*SW*Zd22*Zd25/cb*sa-2D0
+     &      *EE/CW**2*MW*SW*Zd52*Zd55*ca*sb-2D0*EE/CW**2
+     &      *MW*SW*Zd52*Zd55/cb*sa+3D0*EE*MW/SW*Zd22*Zd25
+     &      /cb*sa*sb**2+EE/CW**2*MW*SW*Zd22*Zd25/cb*sa*sb
+     &      **2+2D0*EE/CW**2*MW*SW*Zd52*Zd55/cb*sa*sb**2
+     &      +3D0*EE/MW*Ms/SW*Zd22*Zd55*ca/cb*mue+3D0*EE/MW
+     &      *Ms/SW*Zd25*Zd52*ca/cb*dconjg(mue)
+      AAABC(85) = Sqrt2*Zd22*Zd55*ds2*sb-Sqrt2*Zd25*Zd52
+     &      *ds2*sb+EE/MW*Ms/SW*Zd22*Zd55*mue-EE/MW*Ms/SW
+     &      *Zd25*Zd52*dconjg(mue)
+      AAABC(86) = Sqrt2*dconjg(Zd33)*Zd66*dconjg(ds3)*sb
+     &      -Sqrt2*Zd36*dconjg(Zd63)*ds3*sb+EE/MW*Mb/SW*dconjg(Zd33
+     &      )*Zd66*mue-EE/MW*Mb/SW*Zd36*dconjg(Zd63)*dconjg(mue
+     &      )
+      AAABR(29) = Sqrt2*ds1*sb*(Zd11*Zd44-Zd14*Zd41)
+      AAABC(87) = 3D0*Sqrt2*Zd22*Zd55*ca*ds2+3D0*Sqrt2*Zd25
+     &      *Zd52*ca*ds2-3D0*EE*MW/SW*Zd22*Zd25*ca/cb+3D0
+     &      *EE*MW/SW*Zd22*Zd25*sa*sb-EE/CW**2*MW*SW*Zd22
+     &      *Zd25*ca/cb+EE/CW**2*MW*SW*Zd22*Zd25*sa*sb-2D0
+     &      *EE/CW**2*MW*SW*Zd52*Zd55*ca/cb+2D0*EE/CW**2
+     &      *MW*SW*Zd52*Zd55*sa*sb+3D0*EE*MW/SW*Zd22*Zd25
+     &      *ca/cb*sb**2+EE/CW**2*MW*SW*Zd22*Zd25*ca/cb*sb
+     &      **2+2D0*EE/CW**2*MW*SW*Zd52*Zd55*ca/cb*sb**2
+     &      -3D0*EE/MW*Ms/SW*Zd22*Zd55/cb*mue*sa-3D0*EE/MW
+     &      *Ms/SW*Zd25*Zd52/cb*dconjg(mue)*sa
+      AAABC(88) = 3D0*Sqrt2*dconjg(Zd33)*Zd66*ca*dconjg(ds3
+     &      )+3D0*Sqrt2*Zd36*dconjg(Zd63)*ca*ds3-3D0*EE*MW
+     &      /SW*dconjg(Zd33)*Zd36*ca/cb+3D0*EE*MW/SW*dconjg(Zd33
+     &      )*Zd36*sa*sb-EE/CW**2*MW*SW*dconjg(Zd33)*Zd36
+     &      *ca/cb+EE/CW**2*MW*SW*dconjg(Zd33)*Zd36*sa*sb
+     &      -2D0*EE/CW**2*MW*SW*dconjg(Zd63)*Zd66*ca/cb+2D0
+     &      *EE/CW**2*MW*SW*dconjg(Zd63)*Zd66*sa*sb+6D0*EE
+     &      /MW*Mb**2/SW*dconjg(Zd33)*Zd36*ca/cb+6D0*EE/MW
+     &      *Mb**2/SW*dconjg(Zd63)*Zd66*ca/cb+3D0*EE*MW/SW
+     &      *dconjg(Zd33)*Zd36*ca/cb*sb**2+EE/CW**2*MW*SW
+     &      *dconjg(Zd33)*Zd36*ca/cb*sb**2+2D0*EE/CW**2*MW
+     &      *SW*dconjg(Zd63)*Zd66*ca/cb*sb**2-3D0*EE/MW*Mb
+     &      /SW*dconjg(Zd33)*Zd66/cb*mue*sa-3D0*EE/MW*Mb
+     &      /SW*Zd36*dconjg(Zd63)/cb*dconjg(mue)*sa
+      AAABR(30) = 3D0*Sqrt2*Zd11*Zd44*ca*ds1+3D0*Sqrt2*Zd14
+     &      *Zd41*ca*ds1-3D0*EE*MW/SW*Zd11*Zd14*ca*cb+3D0
+     &      *EE*MW/SW*Zd11*Zd14*sa*sb-EE/CW**2*MW*SW*Zd11
+     &      *Zd14*ca*cb+EE/CW**2*MW*SW*Zd11*Zd14*sa*sb-2D0
+     &      *EE/CW**2*MW*SW*Zd41*Zd44*ca*cb+2D0*EE/CW**2
+     &      *MW*SW*Zd41*Zd44*sa*sb
+      AAABR(31) = 3D0*Sqrt2*Zd11*Zd44*ds1*sa+3D0*Sqrt2*Zd14
+     &      *Zd41*ds1*sa-3D0*EE*MW/SW*Zd11*Zd14*ca*sb-3D0
+     &      *EE*MW/SW*Zd11*Zd14*cb*sa-EE/CW**2*MW*SW*Zd11
+     &      *Zd14*ca*sb-EE/CW**2*MW*SW*Zd11*Zd14*cb*sa-2D0
+     &      *EE/CW**2*MW*SW*Zd41*Zd44*ca*sb-2D0*EE/CW**2
+     &      *MW*SW*Zd41*Zd44*cb*sa
+      AAABC(89) = Vus*(2D0*Zd25*Zu41*sb*us1+2D0*Zd55*Zu11
+     &      /cb*ds2-2D0*Zd55*Zu11/cb*ds2*sb**2-EE*MW/SW*Sqrt2
+     &      *Zd25*Zu11+EE/MW*Ms**2/SW*Sqrt2*Zd25*Zu11+2D0
+     &      *EE*MW/SW*Sqrt2*Zd25*Zu11*sb**2-EE/MW*Ms/SW*Sqrt2
+     &      *Zd55*Zu11/cb*dconjg(mue)*sb)
+      AAABR(32) = Vud*(2D0*Zd14*Zu41*sb*us1+2D0*Zd44*Zu11
+     &      *cb*ds1-EE*MW/SW*Sqrt2*Zd14*Zu11+2D0*EE*MW/SW
+     &      *Sqrt2*Zd14*Zu11*sb**2)
+      AAABC(90) = Vcs*(2D0*Zd25*Zu52*sb*us2+2D0*Zd55*Zu22
+     &      /cb*ds2-2D0*Zd55*Zu22/cb*ds2*sb**2-EE*MW/SW*Sqrt2
+     &      *Zd25*Zu22-EE/MW*Mc**2/SW*Sqrt2*Zd25*Zu22+EE
+     &      /MW*Ms**2/SW*Sqrt2*Zd25*Zu22+2D0*EE*MW/SW*Sqrt2
+     &      *Zd25*Zu22*sb**2+EE/MW*Mc/SW*Sqrt2*Zd25*Zu52
+     &      /cb*mue/sb-EE/MW*Mc/SW*Sqrt2*Zd25*Zu52/cb*mue
+     &      *sb-EE/MW*Ms/SW*Sqrt2*Zd55*Zu22/cb*dconjg(mue
+     &      )*sb)
+      AAABC(91) = 2D0*dconjg(Zd36)*Zu63*sb*dconjg(us3)+2D0
+     &      *dconjg(Zd66)*Zu33/cb*ds3-2D0*dconjg(Zd66)*Zu33
+     &      /cb*ds3*sb**2-EE*MW/SW*Sqrt2*dconjg(Zd36)*Zu33
+     &      +EE/MW*Mb**2/SW*Sqrt2*dconjg(Zd36)*Zu33-EE/MW
+     &      *Mt**2/SW*Sqrt2*dconjg(Zd36)*Zu33+2D0*EE*MW/SW
+     &      *Sqrt2*dconjg(Zd36)*Zu33*sb**2-EE/MW*Mb/SW*Sqrt2
+     &      *dconjg(Zd66)*Zu33/cb*dconjg(mue)*sb+EE/MW*Mt
+     &      /SW*Sqrt2*dconjg(Zd36)*Zu63/cb*mue/sb-EE/MW*Mt
+     &      /SW*Sqrt2*dconjg(Zd36)*Zu63/cb*mue*sb
+      AAABC(92) = Vcd*(2D0*Zd14*Zu52*sb*us2+2D0*Zd44*Zu22
+     &      *cb*ds1-EE*MW/SW*Sqrt2*Zd14*Zu22-EE/MW*Mc**2
+     &      /SW*Sqrt2*Zd14*Zu22+2D0*EE*MW/SW*Sqrt2*Zd14*Zu22
+     &      *sb**2+EE/MW*Mc/SW*Sqrt2*Zd14*Zu52*cb*mue/sb)
+      AAABC(93) = 2D0*dconjg(Zd36)*Zu66*sb*dconjg(us3)+2D0
+     &      *dconjg(Zd66)*Zu36/cb*ds3-2D0*dconjg(Zd66)*Zu36
+     &      /cb*ds3*sb**2-EE*MW/SW*Sqrt2*dconjg(Zd36)*Zu36
+     &      +EE/MW*Mb**2/SW*Sqrt2*dconjg(Zd36)*Zu36-EE/MW
+     &      *Mt**2/SW*Sqrt2*dconjg(Zd36)*Zu36+2D0*EE*MW/SW
+     &      *Sqrt2*dconjg(Zd36)*Zu36*sb**2-EE/MW*Mb/SW*Sqrt2
+     &      *dconjg(Zd66)*Zu36/cb*dconjg(mue)*sb+EE/MW*Mt
+     &      /SW*Sqrt2*dconjg(Zd36)*Zu66/cb*mue/sb-EE/MW*Mt
+     &      /SW*Sqrt2*dconjg(Zd36)*Zu66/cb*mue*sb
+      AAABR(33) = Vud*(2D0*Zd14*Zu44*sb*us1+2D0*Zd44*Zu14
+     &      *cb*ds1-EE*MW/SW*Sqrt2*Zd14*Zu14+2D0*EE*MW/SW
+     &      *Sqrt2*Zd14*Zu14*sb**2)
+      AAABC(94) = Vus*(2D0*Zd25*Zu44*sb*us1+2D0*Zd55*Zu14
+     &      /cb*ds2-2D0*Zd55*Zu14/cb*ds2*sb**2-EE*MW/SW*Sqrt2
+     &      *Zd25*Zu14+EE/MW*Ms**2/SW*Sqrt2*Zd25*Zu14+2D0
+     &      *EE*MW/SW*Sqrt2*Zd25*Zu14*sb**2-EE/MW*Ms/SW*Sqrt2
+     &      *Zd55*Zu14/cb*dconjg(mue)*sb)
+      AAABC(95) = Vcs*(2D0*Zd25*Zu55*sb*us2+2D0*Zd55*Zu25
+     &      /cb*ds2-2D0*Zd55*Zu25/cb*ds2*sb**2-EE*MW/SW*Sqrt2
+     &      *Zd25*Zu25-EE/MW*Mc**2/SW*Sqrt2*Zd25*Zu25+EE
+     &      /MW*Ms**2/SW*Sqrt2*Zd25*Zu25+2D0*EE*MW/SW*Sqrt2
+     &      *Zd25*Zu25*sb**2+EE/MW*Mc/SW*Sqrt2*Zd25*Zu55
+     &      /cb*mue/sb-EE/MW*Mc/SW*Sqrt2*Zd25*Zu55/cb*mue
+     &      *sb-EE/MW*Ms/SW*Sqrt2*Zd55*Zu25/cb*dconjg(mue
+     &      )*sb)
+      AAABC(96) = Vcd*(2D0*Zd14*Zu55*sb*us2+2D0*Zd44*Zu25
+     &      *cb*ds1-EE*MW/SW*Sqrt2*Zd14*Zu25-EE/MW*Mc**2
+     &      /SW*Sqrt2*Zd14*Zu25+2D0*EE*MW/SW*Sqrt2*Zd14*Zu25
+     &      *sb**2+EE/MW*Mc/SW*Sqrt2*Zd14*Zu55*cb*mue/sb)
+      AAABC(97) = 1D0/cb*(Sqrt2*Zd36*dconjg(Zd66)*ds3-Sqrt2
+     &      *dconjg(Zd36)*Zd66*dconjg(ds3)-Sqrt2*Zd36*dconjg(Zd66
+     &      )*ds3*sb**2+Sqrt2*dconjg(Zd36)*Zd66*dconjg(ds3
+     &      )*sb**2-EE/MW*Mb/SW*Zd36*dconjg(Zd66)*dconjg(mue
+     &      )*sb+EE/MW*Mb/SW*dconjg(Zd36)*Zd66*mue*sb)
+      AAABC(98) = EE/MW*Ms/SW*Zd25*Zd55*tb*(dconjg(mue)-mue)
+      AAABC(99) = Sqrt2*Zd36*dconjg(Zd66)*ds3*sb-Sqrt2*dconjg(Zd36
+     &      )*Zd66*dconjg(ds3)*sb+EE/MW*Mb/SW*Zd36*dconjg(Zd66
+     &      )*dconjg(mue)-EE/MW*Mb/SW*dconjg(Zd36)*Zd66*mue
+      AAABC(100) = 6D0*Sqrt2*Zd25*Zd55*ds2*sa+6D0*EE/MW*Ms
+     &      **2/SW/cb*sa-3D0*EE*MW/SW*Zd25**2*ca*sb-3D0*EE
+     &      *MW/SW*Zd25**2/cb*sa-EE/CW**2*MW*SW*Zd25**2*ca
+     &      *sb-EE/CW**2*MW*SW*Zd25**2/cb*sa-2D0*EE/CW**2
+     &      *MW*SW*Zd55**2*ca*sb-2D0*EE/CW**2*MW*SW*Zd55
+     &      **2/cb*sa+3D0*EE*MW/SW*Zd25**2/cb*sa*sb**2+EE
+     &      /CW**2*MW*SW*Zd25**2/cb*sa*sb**2+2D0*EE/CW**2
+     &      *MW*SW*Zd55**2/cb*sa*sb**2+3D0*EE/MW*Ms/SW*Zd25
+     &      *Zd55*ca/cb*dconjg(mue)+3D0*EE/MW*Ms/SW*Zd25
+     &      *Zd55*ca/cb*mue
+      AAABR(34) = 6D0*Sqrt2*Zd14*Zd44*ca*ds1-3D0*EE*MW/SW
+     &      *Zd14**2*ca*cb+3D0*EE*MW/SW*Zd14**2*sa*sb-EE
+     &      /CW**2*MW*SW*Zd14**2*ca*cb+EE/CW**2*MW*SW*Zd14
+     &      **2*sa*sb-2D0*EE/CW**2*MW*SW*Zd44**2*ca*cb+2D0
+     &      *EE/CW**2*MW*SW*Zd44**2*sa*sb
+      AAABR(35) = 6D0*Sqrt2*Zd14*Zd44*ds1*sa-3D0*EE*MW/SW
+     &      *Zd14**2*ca*sb-3D0*EE*MW/SW*Zd14**2*cb*sa-EE
+     &      /CW**2*MW*SW*Zd14**2*ca*sb-EE/CW**2*MW*SW*Zd14
+     &      **2*cb*sa-2D0*EE/CW**2*MW*SW*Zd44**2*ca*sb-2D0
+     &      *EE/CW**2*MW*SW*Zd44**2*cb*sa
+      AAABC(101) = 6D0*Sqrt2*Zd25*Zd55*ca*ds2+6D0*EE/MW*Ms
+     &      **2/SW*ca/cb-3D0*EE*MW/SW*Zd25**2*ca/cb+3D0*EE
+     &      *MW/SW*Zd25**2*sa*sb-EE/CW**2*MW*SW*Zd25**2*ca
+     &      /cb+EE/CW**2*MW*SW*Zd25**2*sa*sb-2D0*EE/CW**2
+     &      *MW*SW*Zd55**2*ca/cb+2D0*EE/CW**2*MW*SW*Zd55
+     &      **2*sa*sb+3D0*EE*MW/SW*Zd25**2*ca/cb*sb**2+EE
+     &      /CW**2*MW*SW*Zd25**2*ca/cb*sb**2+2D0*EE/CW**2
+     &      *MW*SW*Zd55**2*ca/cb*sb**2-3D0*EE/MW*Ms/SW*Zd25
+     &      *Zd55/cb*dconjg(mue)*sa-3D0*EE/MW*Ms/SW*Zd25
+     &      *Zd55/cb*mue*sa
+      AAABC(102) = EE/MW*Ms/SW*Zd25*Zd55*(dconjg(mue)-mue)
+      AAABC(103) = 3D0*Sqrt2*Zd36*dconjg(Zd66)*ca*ds3+3D0
+     &      *Sqrt2*dconjg(Zd36)*Zd66*ca*dconjg(ds3)-3D0*EE
+     &      *MW/SW*Zd36*dconjg(Zd36)*ca/cb+3D0*EE*MW/SW*Zd36
+     &      *dconjg(Zd36)*sa*sb-EE/CW**2*MW*SW*Zd36*dconjg(Zd36
+     &      )*ca/cb+EE/CW**2*MW*SW*Zd36*dconjg(Zd36)*sa*sb
+     &      -2D0*EE/CW**2*MW*SW*Zd66*dconjg(Zd66)*ca/cb+2D0
+     &      *EE/CW**2*MW*SW*Zd66*dconjg(Zd66)*sa*sb+6D0*EE
+     &      /MW*Mb**2/SW*Zd36*dconjg(Zd36)*ca/cb+6D0*EE/MW
+     &      *Mb**2/SW*Zd66*dconjg(Zd66)*ca/cb+3D0*EE*MW/SW
+     &      *Zd36*dconjg(Zd36)*ca/cb*sb**2+EE/CW**2*MW*SW
+     &      *Zd36*dconjg(Zd36)*ca/cb*sb**2+2D0*EE/CW**2*MW
+     &      *SW*Zd66*dconjg(Zd66)*ca/cb*sb**2-3D0*EE/MW*Mb
+     &      /SW*Zd36*dconjg(Zd66)/cb*dconjg(mue)*sa-3D0*EE
+     &      /MW*Mb/SW*dconjg(Zd36)*Zd66/cb*mue*sa
+      AAABC(104) = 3D0*Sqrt2*Zd36*dconjg(Zd66)*ds3*sa+3D0
+     &      *Sqrt2*dconjg(Zd36)*Zd66*dconjg(ds3)*sa-3D0*EE
+     &      *MW/SW*Zd36*dconjg(Zd36)*ca*sb-3D0*EE*MW/SW*Zd36
+     &      *dconjg(Zd36)/cb*sa-EE/CW**2*MW*SW*Zd36*dconjg(Zd36
+     &      )*ca*sb-EE/CW**2*MW*SW*Zd36*dconjg(Zd36)/cb*sa
+     &      -2D0*EE/CW**2*MW*SW*Zd66*dconjg(Zd66)*ca*sb-2D0
+     &      *EE/CW**2*MW*SW*Zd66*dconjg(Zd66)/cb*sa+6D0*EE
+     &      /MW*Mb**2/SW*Zd36*dconjg(Zd36)/cb*sa+6D0*EE/MW
+     &      *Mb**2/SW*Zd66*dconjg(Zd66)/cb*sa+3D0*EE*MW/SW
+     &      *Zd36*dconjg(Zd36)/cb*sa*sb**2+EE/CW**2*MW*SW
+     &      *Zd36*dconjg(Zd36)/cb*sa*sb**2+2D0*EE/CW**2*MW
+     &      *SW*Zd66*dconjg(Zd66)/cb*sa*sb**2+3D0*EE/MW*Mb
+     &      /SW*Zd36*dconjg(Zd66)*ca/cb*dconjg(mue)+3D0*EE
+     &      /MW*Mb/SW*dconjg(Zd36)*Zd66*ca/cb*mue
+      AAABC(105) = EE/MW*Mc/SW*Zu22*Zu52/tb*(dconjg(mue)-mue
+     &      )
+      AAABC(106) = Sqrt2*Zu33*dconjg(Zu63)*sb*us3-Sqrt2*dconjg(Zu33
+     &      )*Zu63*sb*dconjg(us3)+EE/MW*Mt/SW*Zu33*dconjg(Zu63
+     &      )*cb*dconjg(mue)/sb-EE/MW*Mt/SW*dconjg(Zu33)*Zu63
+     &      *cb*mue/sb
+      AAABR(36) = Sqrt2*sb*us1*(Zu11*Zu44-Zu14*Zu41)
+      AAABC(107) = Sqrt2*Zu22*Zu55*sb*us2-Sqrt2*Zu25*Zu52
+     &      *sb*us2+EE/MW*Mc/SW*Zu22*Zu55*cb*mue/sb-EE/MW
+     &      *Mc/SW*Zu25*Zu52*cb*dconjg(mue)/sb
+      AAABC(108) = Sqrt2*dconjg(Zu33)*Zu66*sb*dconjg(us3
+     &      )-Sqrt2*Zu36*dconjg(Zu63)*sb*us3+EE/MW*Mt/SW
+     &      *dconjg(Zu33)*Zu66*cb*mue/sb-EE/MW*Mt/SW*Zu36
+     &      *dconjg(Zu63)*cb*dconjg(mue)/sb
+      AAABR(37) = 6D0*Sqrt2*Zu11*Zu41*ca*us1+3D0*EE*MW/SW
+     &      *Zu11**2*ca*sb+3D0*EE*MW/SW*Zu11**2*cb*sa-EE
+     &      /CW**2*MW*SW*Zu11**2*ca*sb-EE/CW**2*MW*SW*Zu11
+     &      **2*cb*sa+4D0*EE/CW**2*MW*SW*Zu41**2*ca*sb+4D0
+     &      *EE/CW**2*MW*SW*Zu41**2*cb*sa
+      AAABC(109) = 3D0*Sqrt2*Zu33*dconjg(Zu63)*ca*us3+3D0
+     &      *Sqrt2*dconjg(Zu33)*Zu63*ca*dconjg(us3)+3D0*EE
+     &      *MW/SW*Zu33*dconjg(Zu33)*ca*sb+3D0*EE*MW/SW*Zu33
+     &      *dconjg(Zu33)*cb*sa-EE/CW**2*MW*SW*Zu33*dconjg(Zu33
+     &      )*ca*sb-EE/CW**2*MW*SW*Zu33*dconjg(Zu33)*cb*sa
+     &      +4D0*EE/CW**2*MW*SW*Zu63*dconjg(Zu63)*ca*sb+4D0
+     &      *EE/CW**2*MW*SW*Zu63*dconjg(Zu63)*cb*sa-6D0*EE
+     &      /MW*Mt**2/SW*Zu33*dconjg(Zu33)*ca/sb-6D0*EE/MW
+     &      *Mt**2/SW*Zu63*dconjg(Zu63)*ca/sb-3D0*EE/MW*Mt
+     &      /SW*Zu33*dconjg(Zu63)*dconjg(mue)*sa/sb-3D0*EE
+     &      /MW*Mt/SW*dconjg(Zu33)*Zu63*mue*sa/sb
+      AAABC(110) = Sqrt2*Zu33*dconjg(Zu63)*cb*us3-Sqrt2*dconjg(Zu33
+     &      )*Zu63*cb*dconjg(us3)-EE/MW*Mt/SW*Zu33*dconjg(Zu63
+     &      )*dconjg(mue)+EE/MW*Mt/SW*dconjg(Zu33)*Zu63*mue
+      AAABR(38) = 6D0*Sqrt2*Zu11*Zu41*sa*us1-3D0*EE*MW/SW
+     &      *Zu11**2*ca*cb+3D0*EE*MW/SW*Zu11**2*sa*sb+EE
+     &      /CW**2*MW*SW*Zu11**2*ca*cb-EE/CW**2*MW*SW*Zu11
+     &      **2*sa*sb-4D0*EE/CW**2*MW*SW*Zu41**2*ca*cb+4D0
+     &      *EE/CW**2*MW*SW*Zu41**2*sa*sb
+      AAABC(111) = 3D0*Sqrt2*Zu33*dconjg(Zu63)*sa*us3+3D0
+     &      *Sqrt2*dconjg(Zu33)*Zu63*sa*dconjg(us3)-3D0*EE
+     &      *MW/SW*Zu33*dconjg(Zu33)*ca*cb+3D0*EE*MW/SW*Zu33
+     &      *dconjg(Zu33)*sa*sb+EE/CW**2*MW*SW*Zu33*dconjg(Zu33
+     &      )*ca*cb-EE/CW**2*MW*SW*Zu33*dconjg(Zu33)*sa*sb
+     &      -4D0*EE/CW**2*MW*SW*Zu63*dconjg(Zu63)*ca*cb+4D0
+     &      *EE/CW**2*MW*SW*Zu63*dconjg(Zu63)*sa*sb-6D0*EE
+     &      /MW*Mt**2/SW*Zu33*dconjg(Zu33)*sa/sb-6D0*EE/MW
+     &      *Mt**2/SW*Zu63*dconjg(Zu63)*sa/sb+3D0*EE/MW*Mt
+     &      /SW*Zu33*dconjg(Zu63)*ca*dconjg(mue)/sb+3D0*EE
+     &      /MW*Mt/SW*dconjg(Zu33)*Zu63*ca*mue/sb
+      AAABC(112) = EE/MW*Mc/SW*Zu22*Zu52*(dconjg(mue)-mue)
+      AAABC(113) = 6D0*Sqrt2*Zu22*Zu52*ca*us2-6D0*EE/MW*Mc
+     &      **2/SW*ca/sb+3D0*EE*MW/SW*Zu22**2*ca*sb+3D0*EE
+     &      *MW/SW*Zu22**2*cb*sa-EE/CW**2*MW*SW*Zu22**2*ca
+     &      *sb-EE/CW**2*MW*SW*Zu22**2*cb*sa+4D0*EE/CW**2
+     &      *MW*SW*Zu52**2*ca*sb+4D0*EE/CW**2*MW*SW*Zu52
+     &      **2*cb*sa-3D0*EE/MW*Mc/SW*Zu22*Zu52*dconjg(mue
+     &      )*sa/sb-3D0*EE/MW*Mc/SW*Zu22*Zu52*mue*sa/sb
+      AAABC(114) = 6D0*Sqrt2*Zu22*Zu52*sa*us2-6D0*EE/MW*Mc
+     &      **2/SW*sa/sb-3D0*EE*MW/SW*Zu22**2*ca*cb+3D0*EE
+     &      *MW/SW*Zu22**2*sa*sb+EE/CW**2*MW*SW*Zu22**2*ca
+     &      *cb-EE/CW**2*MW*SW*Zu22**2*sa*sb-4D0*EE/CW**2
+     &      *MW*SW*Zu52**2*ca*cb+4D0*EE/CW**2*MW*SW*Zu52
+     &      **2*sa*sb+3D0*EE/MW*Mc/SW*Zu22*Zu52*ca*dconjg(mue
+     &      )/sb+3D0*EE/MW*Mc/SW*Zu22*Zu52*ca*mue/sb
+      AAABC(115) = Sqrt2*dconjg(Zu33)*Zu66*cb*dconjg(us3
+     &      )-Sqrt2*Zu36*dconjg(Zu63)*cb*us3-EE/MW*Mt/SW
+     &      *dconjg(Zu33)*Zu66*mue+EE/MW*Mt/SW*Zu36*dconjg(Zu63
+     &      )*dconjg(mue)
+      AAABR(39) = 3D0*Sqrt2*Zu11*Zu44*ca*us1+3D0*Sqrt2*Zu14
+     &      *Zu41*ca*us1+3D0*EE*MW/SW*Zu11*Zu14*ca*sb+3D0
+     &      *EE*MW/SW*Zu11*Zu14*cb*sa-EE/CW**2*MW*SW*Zu11
+     &      *Zu14*ca*sb-EE/CW**2*MW*SW*Zu11*Zu14*cb*sa+4D0
+     &      *EE/CW**2*MW*SW*Zu41*Zu44*ca*sb+4D0*EE/CW**2
+     &      *MW*SW*Zu41*Zu44*cb*sa
+      AAABR(40) = Sqrt2*cb*us1*(Zu11*Zu44-Zu14*Zu41)
+      AAABC(116) = 3D0*Sqrt2*Zu22*Zu55*sa*us2+3D0*Sqrt2*Zu25
+     &      *Zu52*sa*us2-3D0*EE*MW/SW*Zu22*Zu25*ca*cb+3D0
+     &      *EE*MW/SW*Zu22*Zu25*sa*sb+EE/CW**2*MW*SW*Zu22
+     &      *Zu25*ca*cb-EE/CW**2*MW*SW*Zu22*Zu25*sa*sb-4D0
+     &      *EE/CW**2*MW*SW*Zu52*Zu55*ca*cb+4D0*EE/CW**2
+     &      *MW*SW*Zu52*Zu55*sa*sb+3D0*EE/MW*Mc/SW*Zu22*Zu55
+     &      *ca*mue/sb+3D0*EE/MW*Mc/SW*Zu25*Zu52*ca*dconjg(mue
+     &      )/sb
+      AAABR(41) = 3D0*Sqrt2*Zu11*Zu44*sa*us1+3D0*Sqrt2*Zu14
+     &      *Zu41*sa*us1-3D0*EE*MW/SW*Zu11*Zu14*ca*cb+3D0
+     &      *EE*MW/SW*Zu11*Zu14*sa*sb+EE/CW**2*MW*SW*Zu11
+     &      *Zu14*ca*cb-EE/CW**2*MW*SW*Zu11*Zu14*sa*sb-4D0
+     &      *EE/CW**2*MW*SW*Zu41*Zu44*ca*cb+4D0*EE/CW**2
+     &      *MW*SW*Zu41*Zu44*sa*sb
+      AAABC(117) = 3D0*Sqrt2*dconjg(Zu33)*Zu66*ca*dconjg(us3
+     &      )+3D0*Sqrt2*Zu36*dconjg(Zu63)*ca*us3+3D0*EE*MW
+     &      /SW*dconjg(Zu33)*Zu36*ca*sb+3D0*EE*MW/SW*dconjg(Zu33
+     &      )*Zu36*cb*sa-EE/CW**2*MW*SW*dconjg(Zu33)*Zu36
+     &      *ca*sb-EE/CW**2*MW*SW*dconjg(Zu33)*Zu36*cb*sa
+     &      +4D0*EE/CW**2*MW*SW*dconjg(Zu63)*Zu66*ca*sb+4D0
+     &      *EE/CW**2*MW*SW*dconjg(Zu63)*Zu66*cb*sa-6D0*EE
+     &      /MW*Mt**2/SW*dconjg(Zu33)*Zu36*ca/sb-6D0*EE/MW
+     &      *Mt**2/SW*dconjg(Zu63)*Zu66*ca/sb-3D0*EE/MW*Mt
+     &      /SW*dconjg(Zu33)*Zu66*mue*sa/sb-3D0*EE/MW*Mt
+     &      /SW*Zu36*dconjg(Zu63)*dconjg(mue)*sa/sb
+      AAABC(118) = 3D0*Sqrt2*Zu22*Zu55*ca*us2+3D0*Sqrt2*Zu25
+     &      *Zu52*ca*us2+3D0*EE*MW/SW*Zu22*Zu25*ca*sb+3D0
+     &      *EE*MW/SW*Zu22*Zu25*cb*sa-EE/CW**2*MW*SW*Zu22
+     &      *Zu25*ca*sb-EE/CW**2*MW*SW*Zu22*Zu25*cb*sa+4D0
+     &      *EE/CW**2*MW*SW*Zu52*Zu55*ca*sb+4D0*EE/CW**2
+     &      *MW*SW*Zu52*Zu55*cb*sa-3D0*EE/MW*Mc/SW*Zu22*Zu55
+     &      *mue*sa/sb-3D0*EE/MW*Mc/SW*Zu25*Zu52*dconjg(mue
+     &      )*sa/sb
+      AAABC(119) = 3D0*Sqrt2*dconjg(Zu33)*Zu66*sa*dconjg(us3
+     &      )+3D0*Sqrt2*Zu36*dconjg(Zu63)*sa*us3-3D0*EE*MW
+     &      /SW*dconjg(Zu33)*Zu36*ca*cb+3D0*EE*MW/SW*dconjg(Zu33
+     &      )*Zu36*sa*sb+EE/CW**2*MW*SW*dconjg(Zu33)*Zu36
+     &      *ca*cb-EE/CW**2*MW*SW*dconjg(Zu33)*Zu36*sa*sb
+     &      -4D0*EE/CW**2*MW*SW*dconjg(Zu63)*Zu66*ca*cb+4D0
+     &      *EE/CW**2*MW*SW*dconjg(Zu63)*Zu66*sa*sb-6D0*EE
+     &      /MW*Mt**2/SW*dconjg(Zu33)*Zu36*sa/sb-6D0*EE/MW
+     &      *Mt**2/SW*dconjg(Zu63)*Zu66*sa/sb+3D0*EE/MW*Mt
+     &      /SW*dconjg(Zu33)*Zu66*ca*mue/sb+3D0*EE/MW*Mt
+     &      /SW*Zu36*dconjg(Zu63)*ca*dconjg(mue)/sb
+      AAABC(120) = Sqrt2*Zu22*Zu55*cb*us2-Sqrt2*Zu25*Zu52
+     &      *cb*us2-EE/MW*Mc/SW*Zu22*Zu55*mue+EE/MW*Mc/SW
+     &      *Zu25*Zu52*dconjg(mue)
+      AAABC(121) = Sqrt2*Zu36*dconjg(Zu66)*sb*us3-Sqrt2*dconjg(Zu36
+     &      )*Zu66*sb*dconjg(us3)+EE/MW*Mt/SW*Zu36*dconjg(Zu66
+     &      )*cb*dconjg(mue)/sb-EE/MW*Mt/SW*dconjg(Zu36)*Zu66
+     &      *cb*mue/sb
+      AAABC(122) = EE/MW*Mc/SW*Zu25*Zu55/tb*(dconjg(mue)-mue
+     &      )
+      AAABR(42) = 6D0*Sqrt2*Zu14*Zu44*sa*us1-3D0*EE*MW/SW
+     &      *Zu14**2*ca*cb+3D0*EE*MW/SW*Zu14**2*sa*sb+EE
+     &      /CW**2*MW*SW*Zu14**2*ca*cb-EE/CW**2*MW*SW*Zu14
+     &      **2*sa*sb-4D0*EE/CW**2*MW*SW*Zu44**2*ca*cb+4D0
+     &      *EE/CW**2*MW*SW*Zu44**2*sa*sb
+      AAABC(123) = 6D0*Sqrt2*Zu25*Zu55*ca*us2-6D0*EE/MW*Mc
+     &      **2/SW*ca/sb+3D0*EE*MW/SW*Zu25**2*ca*sb+3D0*EE
+     &      *MW/SW*Zu25**2*cb*sa-EE/CW**2*MW*SW*Zu25**2*ca
+     &      *sb-EE/CW**2*MW*SW*Zu25**2*cb*sa+4D0*EE/CW**2
+     &      *MW*SW*Zu55**2*ca*sb+4D0*EE/CW**2*MW*SW*Zu55
+     &      **2*cb*sa-3D0*EE/MW*Mc/SW*Zu25*Zu55*dconjg(mue
+     &      )*sa/sb-3D0*EE/MW*Mc/SW*Zu25*Zu55*mue*sa/sb
+      AAABR(43) = 6D0*Sqrt2*Zu14*Zu44*ca*us1+3D0*EE*MW/SW
+     &      *Zu14**2*ca*sb+3D0*EE*MW/SW*Zu14**2*cb*sa-EE
+     &      /CW**2*MW*SW*Zu14**2*ca*sb-EE/CW**2*MW*SW*Zu14
+     &      **2*cb*sa+4D0*EE/CW**2*MW*SW*Zu44**2*ca*sb+4D0
+     &      *EE/CW**2*MW*SW*Zu44**2*cb*sa
+      AAABC(124) = EE/MW*Mc/SW*Zu25*Zu55*(dconjg(mue)-mue)
+      AAABC(125) = 3D0*Sqrt2*Zu36*dconjg(Zu66)*sa*us3+3D0
+     &      *Sqrt2*dconjg(Zu36)*Zu66*sa*dconjg(us3)-3D0*EE
+     &      *MW/SW*Zu36*dconjg(Zu36)*ca*cb+3D0*EE*MW/SW*Zu36
+     &      *dconjg(Zu36)*sa*sb+EE/CW**2*MW*SW*Zu36*dconjg(Zu36
+     &      )*ca*cb-EE/CW**2*MW*SW*Zu36*dconjg(Zu36)*sa*sb
+     &      -4D0*EE/CW**2*MW*SW*Zu66*dconjg(Zu66)*ca*cb+4D0
+     &      *EE/CW**2*MW*SW*Zu66*dconjg(Zu66)*sa*sb-6D0*EE
+     &      /MW*Mt**2/SW*Zu36*dconjg(Zu36)*sa/sb-6D0*EE/MW
+     &      *Mt**2/SW*Zu66*dconjg(Zu66)*sa/sb+3D0*EE/MW*Mt
+     &      /SW*Zu36*dconjg(Zu66)*ca*dconjg(mue)/sb+3D0*EE
+     &      /MW*Mt/SW*dconjg(Zu36)*Zu66*ca*mue/sb
+      AAABC(126) = 3D0*Sqrt2*Zu36*dconjg(Zu66)*ca*us3+3D0
+     &      *Sqrt2*dconjg(Zu36)*Zu66*ca*dconjg(us3)+3D0*EE
+     &      *MW/SW*Zu36*dconjg(Zu36)*ca*sb+3D0*EE*MW/SW*Zu36
+     &      *dconjg(Zu36)*cb*sa-EE/CW**2*MW*SW*Zu36*dconjg(Zu36
+     &      )*ca*sb-EE/CW**2*MW*SW*Zu36*dconjg(Zu36)*cb*sa
+     &      +4D0*EE/CW**2*MW*SW*Zu66*dconjg(Zu66)*ca*sb+4D0
+     &      *EE/CW**2*MW*SW*Zu66*dconjg(Zu66)*cb*sa-6D0*EE
+     &      /MW*Mt**2/SW*Zu36*dconjg(Zu36)*ca/sb-6D0*EE/MW
+     &      *Mt**2/SW*Zu66*dconjg(Zu66)*ca/sb-3D0*EE/MW*Mt
+     &      /SW*Zu36*dconjg(Zu66)*dconjg(mue)*sa/sb-3D0*EE
+     &      /MW*Mt/SW*dconjg(Zu36)*Zu66*mue*sa/sb
+      AAABC(127) = 6D0*Sqrt2*Zu25*Zu55*sa*us2-6D0*EE/MW*Mc
+     &      **2/SW*sa/sb-3D0*EE*MW/SW*Zu25**2*ca*cb+3D0*EE
+     &      *MW/SW*Zu25**2*sa*sb+EE/CW**2*MW*SW*Zu25**2*ca
+     &      *cb-EE/CW**2*MW*SW*Zu25**2*sa*sb-4D0*EE/CW**2
+     &      *MW*SW*Zu55**2*ca*cb+4D0*EE/CW**2*MW*SW*Zu55
+     &      **2*sa*sb+3D0*EE/MW*Mc/SW*Zu25*Zu55*ca*dconjg(mue
+     &      )/sb+3D0*EE/MW*Mc/SW*Zu25*Zu55*ca*mue/sb
+      AAABC(128) = Sqrt2*Zu36*dconjg(Zu66)*cb*us3-Sqrt2*dconjg(Zu36
+     &      )*Zu66*cb*dconjg(us3)-EE/MW*Mt/SW*Zu36*dconjg(Zu66
+     &      )*dconjg(mue)+EE/MW*Mt/SW*dconjg(Zu36)*Zu66*mue
+      AAABR(44) = EE*MW*(ca/SW*cb-sa/SW*sb+2D0*sa/SW*sb**3
+     &      +SW/CW**2*ca*cb-SW/CW**2*sa*sb+2D0*SW/CW**2*sa
+     &      *sb**3-2D0*ca/SW*cb*sb**2-2D0*SW/CW**2*ca*cb
+     &      *sb**2)
+      AAABR(45) = EE*MW*(ca/SW*sb-2D0*ca/SW*sb**3+cb/SW*sa
+     &      +SW/CW**2*ca*sb-2D0*SW/CW**2*ca*sb**3+SW/CW**2
+     &      *cb*sa-2D0*cb/SW*sa*sb**2-2D0*SW/CW**2*cb*sa
+     &      *sb**2)
+      AAABR(46) = EE*MW*(ca/SW*cb**2*sb-cb/SW*sa*sb**2+SW
+     &      /CW**2*ca*cb**2*sb-SW/CW**2*cb*sa*sb**2)
+      AAABR(47) = EE*MW*(ca/SW*cb*sb**2+cb**2/SW*sa*sb+SW
+     &      /CW**2*ca*cb*sb**2+SW/CW**2*cb**2*sa*sb)
+      AAABR(48) = EE*MW*(ca/SW*cb-5D0*sa/SW*sb+6D0*sa**3
+     &      /SW*sb+SW/CW**2*ca*cb-5D0*SW/CW**2*sa*sb+6D0
+     &      *SW/CW**2*sa**3*sb-6D0*ca/SW*cb*sa**2-6D0*SW
+     &      /CW**2*ca*cb*sa**2)
+      AAABR(49) = EE*MW*(ca/SW*sb+5D0*cb/SW*sa-6D0*cb/SW
+     &      *sa**3+SW/CW**2*ca*sb+5D0*SW/CW**2*cb*sa-6D0
+     &      *SW/CW**2*cb*sa**3-6D0*ca/SW*sa**2*sb-6D0*SW
+     &      /CW**2*ca*sa**2*sb)
+      AAABR(50) = EE*MW*(ca/SW*sb+cb/SW*sa-2D0*cb/SW*sa**3
+     &      +SW/CW**2*ca*sb+SW/CW**2*cb*sa-2D0*SW/CW**2*cb
+     &      *sa**3-2D0*ca/SW*sa**2*sb-2D0*SW/CW**2*ca*sa
+     &      **2*sb)
+      AAABR(51) = EE*MW*(ca/SW*cb-sa/SW*sb+2D0*sa**3/SW*sb
+     &      +SW/CW**2*ca*cb-SW/CW**2*sa*sb+2D0*SW/CW**2*sa
+     &      **3*sb-2D0*ca/SW*cb*sa**2-2D0*SW/CW**2*ca*cb
+     &      *sa**2)
+      AAABR(52) = EE*(SW/CW-CW/SW)
+      AAABR(53) = EE/SW
+      AAABR(54) = EE/SW*(ca*sb-cb*sa)
+      AAABR(55) = EE/SW*(ca*cb+sa*sb)
+      AAABC(129) = EE*(SW/CW*Zl33*dconjg(Zl33)+2D0*SW/CW
+     &      *Zl63*dconjg(Zl63)-CW/SW*Zl33*dconjg(Zl33))
+      AAABC(130) = EE*(Zl33*dconjg(Zl33)+Zl63*dconjg(Zl63))
+      AAABR(56) = EE*(SW/CW*Zl11**2+2D0*SW/CW*Zl41**2-CW
+     &      /SW*Zl11**2)
+      AAABR(57) = EE*(SW/CW*Zl22**2+2D0*SW/CW*Zl52**2-CW
+     &      /SW*Zl22**2)
+      AAABR(58) = EE*(SW/CW*Zl22*Zl25+2D0*SW/CW*Zl52*Zl55
+     &      -CW/SW*Zl22*Zl25)
+      AAABR(59) = EE*(SW/CW*Zl11*Zl14+2D0*SW/CW*Zl41*Zl44
+     &      -CW/SW*Zl11*Zl14)
+      AAABC(131) = EE*(SW/CW*dconjg(Zl33)*Zl36+2D0*SW/CW
+     &      *dconjg(Zl63)*Zl66-CW/SW*dconjg(Zl33)*Zl36)
+      AAABC(132) = EE*(dconjg(Zl33)*Zl36+dconjg(Zl63)*Zl66)
+      AAABC(133) = EE/SW*Sqrt2*dconjg(Zl33)
+      AAABR(60) = EE/SW*Sqrt2*Zl11
+      AAABR(61) = EE/SW*Sqrt2*Zl22
+      AAABR(62) = EE*(SW/CW*Zl14**2+2D0*SW/CW*Zl44**2-CW
+     &      /SW*Zl14**2)
+      AAABC(134) = EE*(SW/CW*Zl36*dconjg(Zl36)+2D0*SW/CW
+     &      *Zl66*dconjg(Zl66)-CW/SW*Zl36*dconjg(Zl36))
+      AAABC(135) = EE*(Zl36*dconjg(Zl36)+Zl66*dconjg(Zl66))
+      AAABR(63) = EE*(SW/CW*Zl25**2+2D0*SW/CW*Zl55**2-CW
+     &      /SW*Zl25**2)
+      AAABC(136) = EE/SW*Sqrt2*dconjg(Zl36)
+      AAABR(64) = EE/SW*Sqrt2*Zl25
+      AAABR(65) = EE/SW*Sqrt2*Zl14
+      AAABR(66) = EE*(SW/CW+CW/SW)
+      AAABC(137) = EE*(SW/CW*Zd33*dconjg(Zd33)-2D0*SW/CW
+     &      *Zd63*dconjg(Zd63)+3D0*CW/SW*Zd33*dconjg(Zd33))
+      AAABC(138) = EE*(Zd33*dconjg(Zd33)+Zd63*dconjg(Zd63))
+      AAABR(67) = EE*(SW/CW*Zd22**2-2D0*SW/CW*Zd52**2+3D0
+     &      *CW/SW*Zd22**2)
+      AAABR(68) = EE*(SW/CW*Zd11**2-2D0*SW/CW*Zd41**2+3D0
+     &      *CW/SW*Zd11**2)
+      AAABC(139) = GG*(Zd33*dconjg(Zd33)+Zd63*dconjg(Zd63))
+      AAABR(69) = EE*(SW/CW*Zd22*Zd25-2D0*SW/CW*Zd52*Zd55
+     &      +3D0*CW/SW*Zd22*Zd25)
+      AAABC(140) = EE*(SW/CW*dconjg(Zd33)*Zd36-2D0*SW/CW
+     &      *dconjg(Zd63)*Zd66+3D0*CW/SW*dconjg(Zd33)*Zd36)
+      AAABC(141) = EE*(dconjg(Zd33)*Zd36+dconjg(Zd63)*Zd66)
+      AAABR(70) = EE*(SW/CW*Zd11*Zd14-2D0*SW/CW*Zd41*Zd44
+     &      +3D0*CW/SW*Zd11*Zd14)
+      AAABC(142) = GG*(dconjg(Zd33)*Zd36+dconjg(Zd63)*Zd66)
+      AAABR(71) = EE/SW*Sqrt2*Vus*Zd22*Zu11
+      AAABR(72) = EE/SW*Sqrt2*Vcs*Zd22*Zu22
+      AAABC(143) = EE/SW*Sqrt2*dconjg(Zd33)*Zu33
+      AAABR(73) = EE/SW*Sqrt2*Vcd*Zd11*Zu22
+      AAABR(74) = EE/SW*Sqrt2*Vud*Zd11*Zu11
+      AAABR(75) = EE/SW*Sqrt2*Vcd*Zd11*Zu25
+      AAABR(76) = EE/SW*Sqrt2*Vcs*Zd22*Zu25
+      AAABR(77) = EE/SW*Sqrt2*Vud*Zd11*Zu14
+      AAABC(144) = EE/SW*Sqrt2*dconjg(Zd33)*Zu36
+      AAABR(78) = EE/SW*Sqrt2*Vus*Zd22*Zu14
+      AAABR(79) = EE*(SW/CW*Zd25**2-2D0*SW/CW*Zd55**2+3D0
+     &      *CW/SW*Zd25**2)
+      AAABC(145) = EE*(SW/CW*Zd36*dconjg(Zd36)-2D0*SW/CW
+     &      *Zd66*dconjg(Zd66)+3D0*CW/SW*Zd36*dconjg(Zd36))
+      AAABC(146) = EE*(Zd36*dconjg(Zd36)+Zd66*dconjg(Zd66))
+      AAABR(80) = EE*(SW/CW*Zd14**2-2D0*SW/CW*Zd44**2+3D0
+     &      *CW/SW*Zd14**2)
+      AAABC(147) = GG*(Zd36*dconjg(Zd36)+Zd66*dconjg(Zd66))
+      AAABR(81) = EE/SW*Sqrt2*Vcs*Zd25*Zu22
+      AAABR(82) = EE/SW*Sqrt2*Vud*Zd14*Zu11
+      AAABR(83) = EE/SW*Sqrt2*Vcd*Zd14*Zu22
+      AAABR(84) = EE/SW*Sqrt2*Vus*Zd25*Zu11
+      AAABC(148) = EE/SW*Sqrt2*dconjg(Zd36)*Zu33
+      AAABR(85) = EE/SW*Sqrt2*Vcs*Zd25*Zu25
+      AAABR(86) = EE/SW*Sqrt2*Vcd*Zd14*Zu25
+      AAABC(149) = EE/SW*Sqrt2*dconjg(Zd36)*Zu36
+      AAABR(87) = EE/SW*Sqrt2*Vus*Zd25*Zu14
+      AAABR(88) = EE/SW*Sqrt2*Vud*Zd14*Zu14
+      AAABR(89) = EE*(SW/CW*Zu11**2+4D0*SW/CW*Zu41**2-3D0
+     &      *CW/SW*Zu11**2)
+      AAABC(150) = EE*(SW/CW*Zu33*dconjg(Zu33)+4D0*SW/CW
+     &      *Zu63*dconjg(Zu63)-3D0*CW/SW*Zu33*dconjg(Zu33))
+      AAABC(151) = EE*(Zu33*dconjg(Zu33)+Zu63*dconjg(Zu63))
+      AAABR(90) = EE*(SW/CW*Zu22**2+4D0*SW/CW*Zu52**2-3D0
+     &      *CW/SW*Zu22**2)
+      AAABC(152) = GG*(Zu33*dconjg(Zu33)+Zu63*dconjg(Zu63))
+      AAABR(91) = EE*(SW/CW*Zu11*Zu14+4D0*SW/CW*Zu41*Zu44
+     &      -3D0*CW/SW*Zu11*Zu14)
+      AAABR(92) = EE*(SW/CW*Zu22*Zu25+4D0*SW/CW*Zu52*Zu55
+     &      -3D0*CW/SW*Zu22*Zu25)
+      AAABC(153) = EE*(SW/CW*dconjg(Zu33)*Zu36+4D0*SW/CW
+     &      *dconjg(Zu63)*Zu66-3D0*CW/SW*dconjg(Zu33)*Zu36)
+      AAABC(154) = EE*(dconjg(Zu33)*Zu36+dconjg(Zu63)*Zu66)
+      AAABC(155) = GG*(dconjg(Zu33)*Zu36+dconjg(Zu63)*Zu66)
+      AAABC(156) = EE*(SW/CW*Zu36*dconjg(Zu36)+4D0*SW/CW
+     &      *Zu66*dconjg(Zu66)-3D0*CW/SW*Zu36*dconjg(Zu36))
+      AAABC(157) = EE*(Zu36*dconjg(Zu36)+Zu66*dconjg(Zu66))
+      AAABR(93) = EE*(SW/CW*Zu14**2+4D0*SW/CW*Zu44**2-3D0
+     &      *CW/SW*Zu14**2)
+      AAABR(94) = EE*(SW/CW*Zu25**2+4D0*SW/CW*Zu55**2-3D0
+     &      *CW/SW*Zu25**2)
+      AAABC(158) = GG*(Zu36*dconjg(Zu36)+Zu66*dconjg(Zu66))
+      AAABR(95) = EE*(SW/CW*ca*cb+SW/CW*sa*sb+CW/SW*ca*cb
+     &      +CW/SW*sa*sb)
+      AAABR(96) = EE*(SW/CW*ca*sb-SW/CW*cb*sa+CW/SW*ca*sb
+     &      -CW/SW*cb*sa)
+      AAABR(97) = EE/CW*MW*SW
+      AAABR(98) = EE*MW*(2D0*SW*ca*sb-2D0*SW*cb*sa+SW**3
+     &      /CW**2*ca*sb-SW**3/CW**2*cb*sa+CW**2/SW*ca*sb
+     &      -CW**2/SW*cb*sa)
+      AAABR(99) = EE*MW*(2D0*SW*ca*cb+2D0*SW*sa*sb+SW**3
+     &      /CW**2*ca*cb+SW**3/CW**2*sa*sb+CW**2/SW*ca*cb
+     &      +CW**2/SW*sa*sb)
+      AAABC(159) = EE/SW*Sqrt2*(dconjg(Zm12)*Zp22*sb-dconjg(Zm22
+     &      )*Zp12*cb)
+      AAABC(160) = EE/SW*Sqrt2*(dconjg(Zm11)*Zp22*sb-dconjg(Zm21
+     &      )*Zp12*cb)
+      AAABC(161) = EE/SW*Sqrt2*(Zm12*dconjg(Zp21)*sb-Zm22
+     &      *dconjg(Zp11)*cb)
+      AAABC(162) = EE/SW*Sqrt2*(dconjg(Zm11)*Zp21*sb-dconjg(Zm21
+     &      )*Zp11*cb)
+      AAABC(163) = EE/SW*Sqrt2*(dconjg(Zm12)*Zp22*ca-dconjg(Zm22
+     &      )*Zp12*sa)
+      AAABC(164) = EE/SW*Sqrt2*(dconjg(Zm12)*Zp22*sa+dconjg(Zm22
+     &      )*Zp12*ca)
+      AAABC(165) = EE/SW*Sqrt2*(dconjg(Zm11)*Zp21*ca-dconjg(Zm21
+     &      )*Zp11*sa)
+      AAABC(166) = EE/SW*Sqrt2*(dconjg(Zm12)*Zp21*sa+dconjg(Zm22
+     &      )*Zp11*ca)
+      AAABC(167) = EE/SW*Sqrt2*(Zm11*dconjg(Zp22)*sa+Zm21
+     &      *dconjg(Zp12)*ca)
+      AAABC(168) = EE/SW*Sqrt2*(dconjg(Zm12)*Zp22*cb+dconjg(Zm22
+     &      )*Zp12*sb)
+      AAABC(169) = EE/SW*Sqrt2*(dconjg(Zm11)*Zp21*sa+dconjg(Zm21
+     &      )*Zp11*ca)
+      AAABC(170) = EE/SW*Sqrt2*(dconjg(Zm12)*Zp21*ca-dconjg(Zm22
+     &      )*Zp11*sa)
+      AAABC(171) = EE/SW*Sqrt2*(Zm11*dconjg(Zp22)*ca-Zm21
+     &      *dconjg(Zp12)*sa)
+      AAABC(172) = EE/SW*Sqrt2*(dconjg(Zm12)*Zp21*cb+dconjg(Zm22
+     &      )*Zp11*sb)
+      AAABC(173) = EE/SW*Sqrt2*(Zm11*dconjg(Zp22)*cb+Zm21
+     &      *dconjg(Zp12)*sb)
+      AAABC(174) = EE/SW*Sqrt2*(dconjg(Zm11)*Zp21*cb+dconjg(Zm21
+     &      )*Zp11*sb)
+      AAABC(175) = EE/SW*(2D0*Zl22*dconjg(Zm12)-Mm/MW*Sqrt2
+     &      *Zl52*dconjg(Zm22)/cb)
+      AAABC(176) = EE/SW*(2D0*Zl11*dconjg(Zm12)-Me/MW*Sqrt2
+     &      *Zl41*dconjg(Zm22)/cb)
+      AAABC(177) = EE/SW*(2D0*Zl11*dconjg(Zm11)-Me/MW*Sqrt2
+     &      *Zl41*dconjg(Zm21)/cb)
+      AAABC(178) = EE/SW*(2D0*Zl22*dconjg(Zm11)-Mm/MW*Sqrt2
+     &      *Zl52*dconjg(Zm21)/cb)
+      AAABC(179) = EE/SW*(2D0*dconjg(Zl33)*dconjg(Zm11)-Ml
+     &      /MW*Sqrt2*dconjg(Zl63)*dconjg(Zm21)/cb)
+      AAABC(180) = EE/SW*(2D0*dconjg(Zl33)*dconjg(Zm12)-Ml
+     &      /MW*Sqrt2*dconjg(Zl63)*dconjg(Zm22)/cb)
+      AAABC(181) = EE/SW*(2D0*Zl25*dconjg(Zm12)-Mm/MW*Sqrt2
+     &      *Zl55*dconjg(Zm22)/cb)
+      AAABC(182) = EE/SW*(2D0*Zl25*dconjg(Zm11)-Mm/MW*Sqrt2
+     &      *Zl55*dconjg(Zm21)/cb)
+      AAABC(183) = EE/SW*(2D0*Zl14*dconjg(Zm12)-Me/MW*Sqrt2
+     &      *Zl44*dconjg(Zm22)/cb)
+      AAABC(184) = EE/SW*(2D0*dconjg(Zl36)*dconjg(Zm11)-Ml
+     &      /MW*Sqrt2*dconjg(Zl66)*dconjg(Zm21)/cb)
+      AAABC(185) = EE/SW*(2D0*Zl14*dconjg(Zm11)-Me/MW*Sqrt2
+     &      *Zl44*dconjg(Zm21)/cb)
+      AAABC(186) = EE/SW*(2D0*dconjg(Zl36)*dconjg(Zm12)-Ml
+     &      /MW*Sqrt2*dconjg(Zl66)*dconjg(Zm22)/cb)
+      AAABC(187) = EE*sb*(2D0*dconjg(Zm11)/SW*Zn32-Sqrt2
+     &      /CW*dconjg(Zm21)*Zn12-Sqrt2/SW*dconjg(Zm21)*Zn22
+     &      )
+      AAABC(188) = EE*cb*(2D0*dconjg(Zn42)/SW*dconjg(Zp11
+     &      )+Sqrt2/CW*dconjg(Zn12)*dconjg(Zp21)+Sqrt2/SW
+     &      *dconjg(Zn22)*dconjg(Zp21))
+      AAABC(189) = EE*sb*(2D0*dconjg(Zm11)/SW*Zn34-Sqrt2
+     &      /CW*dconjg(Zm21)*Zn14-Sqrt2/SW*dconjg(Zm21)*Zn24
+     &      )
+      AAABC(190) = EE*cb*(2D0*dconjg(Zn44)/SW*dconjg(Zp11
+     &      )+Sqrt2/CW*dconjg(Zn14)*dconjg(Zp21)+Sqrt2/SW
+     &      *dconjg(Zn24)*dconjg(Zp21))
+      AAABC(191) = EE*sb*(2D0*dconjg(Zm11)/SW*Zn33-Sqrt2
+     &      /CW*dconjg(Zm21)*Zn13-Sqrt2/SW*dconjg(Zm21)*Zn23
+     &      )
+      AAABC(192) = EE*cb*(2D0*dconjg(Zn43)/SW*dconjg(Zp11
+     &      )+Sqrt2/CW*dconjg(Zn13)*dconjg(Zp21)+Sqrt2/SW
+     &      *dconjg(Zn23)*dconjg(Zp21))
+      AAABC(193) = EE*sb*(2D0*dconjg(Zm11)/SW*Zn31-Sqrt2
+     &      /CW*dconjg(Zm21)*Zn11-Sqrt2/SW*dconjg(Zm21)*Zn21
+     &      )
+      AAABC(194) = EE*cb*(2D0*dconjg(Zn41)/SW*dconjg(Zp11
+     &      )+Sqrt2/CW*dconjg(Zn11)*dconjg(Zp21)+Sqrt2/SW
+     &      *dconjg(Zn21)*dconjg(Zp21))
+      AAABC(195) = EE*sb*(2D0*dconjg(Zm12)/SW*Zn33-Sqrt2
+     &      /CW*dconjg(Zm22)*Zn13-Sqrt2/SW*dconjg(Zm22)*Zn23
+     &      )
+      AAABC(196) = EE*cb*(2D0*dconjg(Zn43)/SW*dconjg(Zp12
+     &      )+Sqrt2/CW*dconjg(Zn13)*dconjg(Zp22)+Sqrt2/SW
+     &      *dconjg(Zn23)*dconjg(Zp22))
+      AAABC(197) = EE*sb*(2D0*dconjg(Zm12)/SW*Zn32-Sqrt2
+     &      /CW*dconjg(Zm22)*Zn12-Sqrt2/SW*dconjg(Zm22)*Zn22
+     &      )
+      AAABC(198) = EE*cb*(2D0*dconjg(Zn42)/SW*dconjg(Zp12
+     &      )+Sqrt2/CW*dconjg(Zn12)*dconjg(Zp22)+Sqrt2/SW
+     &      *dconjg(Zn22)*dconjg(Zp22))
+      AAABC(199) = EE*sb*(2D0*dconjg(Zm12)/SW*Zn31-Sqrt2
+     &      /CW*dconjg(Zm22)*Zn11-Sqrt2/SW*dconjg(Zm22)*Zn21
+     &      )
+      AAABC(200) = EE*cb*(2D0*dconjg(Zn41)/SW*dconjg(Zp12
+     &      )+Sqrt2/CW*dconjg(Zn11)*dconjg(Zp22)+Sqrt2/SW
+     &      *dconjg(Zn21)*dconjg(Zp22))
+      AAABC(201) = EE*sb*(2D0*dconjg(Zm12)/SW*Zn34-Sqrt2
+     &      /CW*dconjg(Zm22)*Zn14-Sqrt2/SW*dconjg(Zm22)*Zn24
+     &      )
+      AAABC(202) = EE*cb*(2D0*dconjg(Zn44)/SW*dconjg(Zp12
+     &      )+Sqrt2/CW*dconjg(Zn14)*dconjg(Zp22)+Sqrt2/SW
+     &      *dconjg(Zn24)*dconjg(Zp22))
+      AAABC(203) = EE*cb*(2D0*dconjg(Zm12)/SW*Zn33-Sqrt2
+     &      /CW*dconjg(Zm22)*Zn13-Sqrt2/SW*dconjg(Zm22)*Zn23
+     &      )
+      AAABC(204) = EE*sb*(2D0*dconjg(Zn43)/SW*dconjg(Zp12
+     &      )+Sqrt2/CW*dconjg(Zn13)*dconjg(Zp22)+Sqrt2/SW
+     &      *dconjg(Zn23)*dconjg(Zp22))
+      AAABC(205) = EE*cb*(2D0*dconjg(Zm12)/SW*Zn32-Sqrt2
+     &      /CW*dconjg(Zm22)*Zn12-Sqrt2/SW*dconjg(Zm22)*Zn22
+     &      )
+      AAABC(206) = EE*sb*(2D0*dconjg(Zn42)/SW*dconjg(Zp12
+     &      )+Sqrt2/CW*dconjg(Zn12)*dconjg(Zp22)+Sqrt2/SW
+     &      *dconjg(Zn22)*dconjg(Zp22))
+      AAABC(207) = EE*cb*(2D0*dconjg(Zm11)/SW*Zn34-Sqrt2
+     &      /CW*dconjg(Zm21)*Zn14-Sqrt2/SW*dconjg(Zm21)*Zn24
+     &      )
+      AAABC(208) = EE*sb*(2D0*dconjg(Zn44)/SW*dconjg(Zp11
+     &      )+Sqrt2/CW*dconjg(Zn14)*dconjg(Zp21)+Sqrt2/SW
+     &      *dconjg(Zn24)*dconjg(Zp21))
+      AAABC(209) = EE*cb*(2D0*dconjg(Zm11)/SW*Zn33-Sqrt2
+     &      /CW*dconjg(Zm21)*Zn13-Sqrt2/SW*dconjg(Zm21)*Zn23
+     &      )
+      AAABC(210) = EE*sb*(2D0*dconjg(Zn43)/SW*dconjg(Zp11
+     &      )+Sqrt2/CW*dconjg(Zn13)*dconjg(Zp21)+Sqrt2/SW
+     &      *dconjg(Zn23)*dconjg(Zp21))
+      AAABC(211) = EE*cb*(2D0*dconjg(Zm12)/SW*Zn31-Sqrt2
+     &      /CW*dconjg(Zm22)*Zn11-Sqrt2/SW*dconjg(Zm22)*Zn21
+     &      )
+      AAABC(212) = EE*sb*(2D0*dconjg(Zn41)/SW*dconjg(Zp12
+     &      )+Sqrt2/CW*dconjg(Zn11)*dconjg(Zp22)+Sqrt2/SW
+     &      *dconjg(Zn21)*dconjg(Zp22))
+      AAABC(213) = EE*cb*(2D0*dconjg(Zm11)/SW*Zn31-Sqrt2
+     &      /CW*dconjg(Zm21)*Zn11-Sqrt2/SW*dconjg(Zm21)*Zn21
+     &      )
+      AAABC(214) = EE*sb*(2D0*dconjg(Zn41)/SW*dconjg(Zp11
+     &      )+Sqrt2/CW*dconjg(Zn11)*dconjg(Zp21)+Sqrt2/SW
+     &      *dconjg(Zn21)*dconjg(Zp21))
+      AAABC(215) = EE*cb*(2D0*dconjg(Zm11)/SW*Zn32-Sqrt2
+     &      /CW*dconjg(Zm21)*Zn12-Sqrt2/SW*dconjg(Zm21)*Zn22
+     &      )
+      AAABC(216) = EE*sb*(2D0*dconjg(Zn42)/SW*dconjg(Zp11
+     &      )+Sqrt2/CW*dconjg(Zn12)*dconjg(Zp21)+Sqrt2/SW
+     &      *dconjg(Zn22)*dconjg(Zp21))
+      AAABC(217) = EE*cb*(2D0*dconjg(Zm12)/SW*Zn34-Sqrt2
+     &      /CW*dconjg(Zm22)*Zn14-Sqrt2/SW*dconjg(Zm22)*Zn24
+     &      )
+      AAABC(218) = EE*sb*(2D0*dconjg(Zn44)/SW*dconjg(Zp12
+     &      )+Sqrt2/CW*dconjg(Zn14)*dconjg(Zp22)+Sqrt2/SW
+     &      *dconjg(Zn24)*dconjg(Zp22))
+      AAABC(219) = EE/SW*Vcd*Zd11*dconjg(Zm11)
+      AAABC(220) = EE/MW*Mc/SW*Sqrt2*Vcd*Zd11*dconjg(Zp21
+     &      )/sb
+      AAABC(221) = EE/SW*(2D0*dconjg(Zd33)*dconjg(Zm11)-Mb
+     &      /MW*Sqrt2*dconjg(Zd63)*dconjg(Zm21)/cb)
+      AAABC(222) = EE/MW*Mt/SW*Sqrt2*dconjg(Zd33)*dconjg(Zp21
+     &      )/sb
+      AAABC(223) = EE/SW*Vus*(2D0*Zd22*dconjg(Zm12)-Ms/MW
+     &      *Sqrt2*Zd52*dconjg(Zm22)/cb)
+      AAABC(224) = EE/SW*Vud*Zd11*dconjg(Zm12)
+      AAABC(225) = EE/SW*Vcs*(2D0*Zd22*dconjg(Zm11)-Ms/MW
+     &      *Sqrt2*Zd52*dconjg(Zm21)/cb)
+      AAABC(226) = EE/MW*Mc/SW*Sqrt2*Vcs*Zd22*dconjg(Zp21
+     &      )/sb
+      AAABC(227) = EE/SW*Vud*Zd11*dconjg(Zm11)
+      AAABC(228) = EE/SW*Vcs*(2D0*Zd22*dconjg(Zm12)-Ms/MW
+     &      *Sqrt2*Zd52*dconjg(Zm22)/cb)
+      AAABC(229) = EE/MW*Mc/SW*Sqrt2*Vcs*Zd22*dconjg(Zp22
+     &      )/sb
+      AAABC(230) = EE/SW*Vus*(2D0*Zd22*dconjg(Zm11)-Ms/MW
+     &      *Sqrt2*Zd52*dconjg(Zm21)/cb)
+      AAABC(231) = EE/SW*(2D0*dconjg(Zd33)*dconjg(Zm12)-Mb
+     &      /MW*Sqrt2*dconjg(Zd63)*dconjg(Zm22)/cb)
+      AAABC(232) = EE/MW*Mt/SW*Sqrt2*dconjg(Zd33)*dconjg(Zp22
+     &      )/sb
+      AAABC(233) = EE/SW*Vcd*Zd11*dconjg(Zm12)
+      AAABC(234) = EE/MW*Mc/SW*Sqrt2*Vcd*Zd11*dconjg(Zp22
+     &      )/sb
+      AAABC(235) = EE/SW*Vud*Zd14*dconjg(Zm12)
+      AAABC(236) = EE/SW*Vcd*Zd14*dconjg(Zm11)
+      AAABC(237) = EE/MW*Mc/SW*Sqrt2*Vcd*Zd14*dconjg(Zp21
+     &      )/sb
+      AAABC(238) = EE/SW*(2D0*dconjg(Zd36)*dconjg(Zm12)-Mb
+     &      /MW*Sqrt2*dconjg(Zd66)*dconjg(Zm22)/cb)
+      AAABC(239) = EE/MW*Mt/SW*Sqrt2*dconjg(Zd36)*dconjg(Zp22
+     &      )/sb
+      AAABC(240) = EE/SW*(2D0*dconjg(Zd36)*dconjg(Zm11)-Mb
+     &      /MW*Sqrt2*dconjg(Zd66)*dconjg(Zm21)/cb)
+      AAABC(241) = EE/MW*Mt/SW*Sqrt2*dconjg(Zd36)*dconjg(Zp21
+     &      )/sb
+      AAABC(242) = EE/SW*Vus*(2D0*Zd25*dconjg(Zm11)-Ms/MW
+     &      *Sqrt2*Zd55*dconjg(Zm21)/cb)
+      AAABC(243) = EE/SW*Vus*(2D0*Zd25*dconjg(Zm12)-Ms/MW
+     &      *Sqrt2*Zd55*dconjg(Zm22)/cb)
+      AAABC(244) = EE/SW*Vud*Zd14*dconjg(Zm11)
+      AAABC(245) = EE/SW*Vcs*(2D0*Zd25*dconjg(Zm11)-Ms/MW
+     &      *Sqrt2*Zd55*dconjg(Zm21)/cb)
+      AAABC(246) = EE/MW*Mc/SW*Sqrt2*Vcs*Zd25*dconjg(Zp21
+     &      )/sb
+      AAABC(247) = EE/SW*Vcs*(2D0*Zd25*dconjg(Zm12)-Ms/MW
+     &      *Sqrt2*Zd55*dconjg(Zm22)/cb)
+      AAABC(248) = EE/MW*Mc/SW*Sqrt2*Vcs*Zd25*dconjg(Zp22
+     &      )/sb
+      AAABC(249) = EE/SW*Vcd*Zd14*dconjg(Zm12)
+      AAABC(250) = EE/MW*Mc/SW*Sqrt2*Vcd*Zd14*dconjg(Zp22
+     &      )/sb
+      AAABR(100) = EE/MW*Mm/SW
+      AAABR(101) = EE/MW*Me/SW
+      AAABR(102) = EE/MW*Ml/SW
+      AAABR(103) = EE/MW*Mm/SW/cb*sa
+      AAABR(104) = EE/MW*Ml/SW*tb
+      AAABR(105) = EE/MW*Mm/SW*tb
+      AAABR(106) = EE/MW*Me/SW*tb
+      AAABR(107) = EE/MW*Mm/SW*ca/cb
+      AAABR(108) = EE/MW*Me/SW/cb*sa
+      AAABR(109) = EE/MW*Me/SW*ca/cb
+      AAABR(110) = EE/MW*Ml/SW/cb*sa
+      AAABR(111) = EE/MW*Ml/SW*ca/cb
+      AAABR(112) = EE/MW*Me/SW*Sqrt2*tb
+      AAABR(113) = EE/MW*Mm/SW*Sqrt2*tb
+      AAABR(114) = EE/MW*Ml/SW*Sqrt2*tb
+      AAABR(115) = EE/MW*Ml/SW*Sqrt2
+      AAABR(116) = EE/MW*Me/SW*Sqrt2
+      AAABR(117) = EE/MW*Mm/SW*Sqrt2
+      AAABC(251) = EE*Sqrt2*(Zl11/CW*dconjg(Zn12)+Zl11/SW
+     &      *dconjg(Zn22)-Me/MW/SW*Zl41*dconjg(Zn32)/cb)
+      AAABC(252) = EE*Sqrt2*(2D0*Zl41/CW*Zn12+Me/MW/SW*Zl11
+     &      *Zn32/cb)
+      AAABC(253) = EE*Sqrt2*(Zl11/CW*dconjg(Zn11)+Zl11/SW
+     &      *dconjg(Zn21)-Me/MW/SW*Zl41*dconjg(Zn31)/cb)
+      AAABC(254) = EE*Sqrt2*(2D0*Zl41/CW*Zn11+Me/MW/SW*Zl11
+     &      *Zn31/cb)
+      AAABC(255) = EE*Sqrt2*(Zl22/CW*dconjg(Zn14)+Zl22/SW
+     &      *dconjg(Zn24)-Mm/MW/SW*Zl52*dconjg(Zn34)/cb)
+      AAABC(256) = EE*Sqrt2*(2D0*Zl52/CW*Zn14+Mm/MW/SW*Zl22
+     &      *Zn34/cb)
+      AAABC(257) = EE*Sqrt2*(Zl11/CW*dconjg(Zn13)+Zl11/SW
+     &      *dconjg(Zn23)-Me/MW/SW*Zl41*dconjg(Zn33)/cb)
+      AAABC(258) = EE*Sqrt2*(2D0*Zl41/CW*Zn13+Me/MW/SW*Zl11
+     &      *Zn33/cb)
+      AAABC(259) = EE*Sqrt2*(Zl33/CW*dconjg(Zn14)+Zl33/SW
+     &      *dconjg(Zn24)-Ml/MW/SW*Zl63*dconjg(Zn34)/cb)
+      AAABC(260) = EE*Sqrt2*(2D0*Zl63/CW*Zn14+Ml/MW/SW*Zl33
+     &      *Zn34/cb)
+      AAABC(261) = EE*Sqrt2*(Zl33/CW*dconjg(Zn11)+Zl33/SW
+     &      *dconjg(Zn21)-Ml/MW/SW*Zl63*dconjg(Zn31)/cb)
+      AAABC(262) = EE*Sqrt2*(2D0*Zl63/CW*Zn11+Ml/MW/SW*Zl33
+     &      *Zn31/cb)
+      AAABC(263) = EE*Sqrt2*(Zl22/CW*dconjg(Zn13)+Zl22/SW
+     &      *dconjg(Zn23)-Mm/MW/SW*Zl52*dconjg(Zn33)/cb)
+      AAABC(264) = EE*Sqrt2*(2D0*Zl52/CW*Zn13+Mm/MW/SW*Zl22
+     &      *Zn33/cb)
+      AAABC(265) = EE*Sqrt2*(Zl33/CW*dconjg(Zn12)+Zl33/SW
+     &      *dconjg(Zn22)-Ml/MW/SW*Zl63*dconjg(Zn32)/cb)
+      AAABC(266) = EE*Sqrt2*(2D0*Zl63/CW*Zn12+Ml/MW/SW*Zl33
+     &      *Zn32/cb)
+      AAABC(267) = EE*Sqrt2*(Zl33/CW*dconjg(Zn13)+Zl33/SW
+     &      *dconjg(Zn23)-Ml/MW/SW*Zl63*dconjg(Zn33)/cb)
+      AAABC(268) = EE*Sqrt2*(2D0*Zl63/CW*Zn13+Ml/MW/SW*Zl33
+     &      *Zn33/cb)
+      AAABC(269) = EE*Sqrt2*(Zl11/CW*dconjg(Zn14)+Zl11/SW
+     &      *dconjg(Zn24)-Me/MW/SW*Zl41*dconjg(Zn34)/cb)
+      AAABC(270) = EE*Sqrt2*(2D0*Zl41/CW*Zn14+Me/MW/SW*Zl11
+     &      *Zn34/cb)
+      AAABC(271) = EE*Sqrt2*(Zl22/CW*dconjg(Zn12)+Zl22/SW
+     &      *dconjg(Zn22)-Mm/MW/SW*Zl52*dconjg(Zn32)/cb)
+      AAABC(272) = EE*Sqrt2*(2D0*Zl52/CW*Zn12+Mm/MW/SW*Zl22
+     &      *Zn32/cb)
+      AAABC(273) = EE*Sqrt2*(Zl22/CW*dconjg(Zn11)+Zl22/SW
+     &      *dconjg(Zn21)-Mm/MW/SW*Zl52*dconjg(Zn31)/cb)
+      AAABC(274) = EE*Sqrt2*(2D0*Zl52/CW*Zn11+Mm/MW/SW*Zl22
+     &      *Zn31/cb)
+      AAABC(275) = EE*Sqrt2*(Zl14/CW*dconjg(Zn13)+Zl14/SW
+     &      *dconjg(Zn23)-Me/MW/SW*Zl44*dconjg(Zn33)/cb)
+      AAABC(276) = EE*Sqrt2*(2D0*Zl44/CW*Zn13+Me/MW/SW*Zl14
+     &      *Zn33/cb)
+      AAABC(277) = EE*Sqrt2*(Zl36/CW*dconjg(Zn14)+Zl36/SW
+     &      *dconjg(Zn24)-Ml/MW/SW*Zl66*dconjg(Zn34)/cb)
+      AAABC(278) = EE*Sqrt2*(2D0*Zl66/CW*Zn14+Ml/MW/SW*Zl36
+     &      *Zn34/cb)
+      AAABC(279) = EE*Sqrt2*(Zl36/CW*dconjg(Zn13)+Zl36/SW
+     &      *dconjg(Zn23)-Ml/MW/SW*Zl66*dconjg(Zn33)/cb)
+      AAABC(280) = EE*Sqrt2*(2D0*Zl66/CW*Zn13+Ml/MW/SW*Zl36
+     &      *Zn33/cb)
+      AAABC(281) = EE*Sqrt2*(Zl14/CW*dconjg(Zn14)+Zl14/SW
+     &      *dconjg(Zn24)-Me/MW/SW*Zl44*dconjg(Zn34)/cb)
+      AAABC(282) = EE*Sqrt2*(2D0*Zl44/CW*Zn14+Me/MW/SW*Zl14
+     &      *Zn34/cb)
+      AAABC(283) = EE*Sqrt2*(Zl25/CW*dconjg(Zn11)+Zl25/SW
+     &      *dconjg(Zn21)-Mm/MW/SW*Zl55*dconjg(Zn31)/cb)
+      AAABC(284) = EE*Sqrt2*(2D0*Zl55/CW*Zn11+Mm/MW/SW*Zl25
+     &      *Zn31/cb)
+      AAABC(285) = EE*Sqrt2*(Zl25/CW*dconjg(Zn14)+Zl25/SW
+     &      *dconjg(Zn24)-Mm/MW/SW*Zl55*dconjg(Zn34)/cb)
+      AAABC(286) = EE*Sqrt2*(2D0*Zl55/CW*Zn14+Mm/MW/SW*Zl25
+     &      *Zn34/cb)
+      AAABC(287) = EE*Sqrt2*(Zl25/CW*dconjg(Zn13)+Zl25/SW
+     &      *dconjg(Zn23)-Mm/MW/SW*Zl55*dconjg(Zn33)/cb)
+      AAABC(288) = EE*Sqrt2*(2D0*Zl55/CW*Zn13+Mm/MW/SW*Zl25
+     &      *Zn33/cb)
+      AAABC(289) = EE*Sqrt2*(Zl25/CW*dconjg(Zn12)+Zl25/SW
+     &      *dconjg(Zn22)-Mm/MW/SW*Zl55*dconjg(Zn32)/cb)
+      AAABC(290) = EE*Sqrt2*(2D0*Zl55/CW*Zn12+Mm/MW/SW*Zl25
+     &      *Zn32/cb)
+      AAABC(291) = EE*Sqrt2*(Zl14/CW*dconjg(Zn12)+Zl14/SW
+     &      *dconjg(Zn22)-Me/MW/SW*Zl44*dconjg(Zn32)/cb)
+      AAABC(292) = EE*Sqrt2*(2D0*Zl44/CW*Zn12+Me/MW/SW*Zl14
+     &      *Zn32/cb)
+      AAABC(293) = EE*Sqrt2*(Zl36/CW*dconjg(Zn12)+Zl36/SW
+     &      *dconjg(Zn22)-Ml/MW/SW*Zl66*dconjg(Zn32)/cb)
+      AAABC(294) = EE*Sqrt2*(2D0*Zl66/CW*Zn12+Ml/MW/SW*Zl36
+     &      *Zn32/cb)
+      AAABC(295) = EE*Sqrt2*(Zl14/CW*dconjg(Zn11)+Zl14/SW
+     &      *dconjg(Zn21)-Me/MW/SW*Zl44*dconjg(Zn31)/cb)
+      AAABC(296) = EE*Sqrt2*(2D0*Zl44/CW*Zn11+Me/MW/SW*Zl14
+     &      *Zn31/cb)
+      AAABC(297) = EE*Sqrt2*(Zl36/CW*dconjg(Zn11)+Zl36/SW
+     &      *dconjg(Zn21)-Ml/MW/SW*Zl66*dconjg(Zn31)/cb)
+      AAABC(298) = EE*Sqrt2*(2D0*Zl66/CW*Zn11+Ml/MW/SW*Zl36
+     &      *Zn31/cb)
+      AAABC(299) = EE/SW*dconjg(Zp11)
+      AAABC(300) = EE/MW*Me/SW*Sqrt2*dconjg(Zm21)/cb
+      AAABC(301) = EE/MW*Ml/SW*Sqrt2*dconjg(Zm21)/cb
+      AAABC(302) = EE/MW*Mm/SW*Sqrt2*dconjg(Zm21)/cb
+      AAABC(303) = EE/SW*dconjg(Zp12)
+      AAABC(304) = EE/MW*Ml/SW*Sqrt2*dconjg(Zm22)/cb
+      AAABC(305) = EE/MW*Me/SW*Sqrt2*dconjg(Zm22)/cb
+      AAABC(306) = EE/MW*Mm/SW*Sqrt2*dconjg(Zm22)/cb
+      AAABC(307) = EE*Sqrt2*(dconjg(Zn14)/CW-dconjg(Zn24
+     &      )/SW)
+      AAABC(308) = EE*Sqrt2*(dconjg(Zn13)/CW-dconjg(Zn23
+     &      )/SW)
+      AAABC(309) = EE*Sqrt2*(dconjg(Zn12)/CW-dconjg(Zn22
+     &      )/SW)
+      AAABC(310) = EE*Sqrt2*(dconjg(Zn11)/CW-dconjg(Zn21
+     &      )/SW)
+      AAABC(311) = EE*Sqrt2*(Zd33/CW*dconjg(Zn11)-3D0*Zd33
+     &      /SW*dconjg(Zn21)+3D0*Mb/MW/SW*Zd63*dconjg(Zn31
+     &      )/cb)
+      AAABC(312) = EE*Sqrt2*(2D0*Zd63/CW*Zn11+3D0*Mb/MW/SW
+     &      *Zd33*Zn31/cb)
+      AAABC(313) = EE/CW*Sqrt2*Zd41*Zn12
+      AAABC(314) = EE*Sqrt2*Zd11*(dconjg(Zn12)/CW-3D0*dconjg(Zn22
+     &      )/SW)
+      AAABC(315) = EE/CW*Sqrt2*Zd41*Zn13
+      AAABC(316) = EE*Sqrt2*Zd11*(dconjg(Zn13)/CW-3D0*dconjg(Zn23
+     &      )/SW)
+      AAABC(317) = EE*Sqrt2*(Zd33/CW*dconjg(Zn14)-3D0*Zd33
+     &      /SW*dconjg(Zn24)+3D0*Mb/MW/SW*Zd63*dconjg(Zn34
+     &      )/cb)
+      AAABC(318) = EE*Sqrt2*(2D0*Zd63/CW*Zn14+3D0*Mb/MW/SW
+     &      *Zd33*Zn34/cb)
+      AAABC(319) = EE/CW*Sqrt2*Zd41*Zn11
+      AAABC(320) = EE*Sqrt2*Zd11*(dconjg(Zn11)/CW-3D0*dconjg(Zn21
+     &      )/SW)
+      AAABC(321) = EE/CW*Sqrt2*Zd41*Zn14
+      AAABC(322) = EE*Sqrt2*Zd11*(dconjg(Zn14)/CW-3D0*dconjg(Zn24
+     &      )/SW)
+      AAABC(323) = EE*Sqrt2*(2D0*Zd52/CW*Zn13+3D0*Ms/MW/SW
+     &      *Zd22*Zn33/cb)
+      AAABC(324) = EE*Sqrt2*(Zd22/CW*dconjg(Zn13)-3D0*Zd22
+     &      /SW*dconjg(Zn23)+3D0*Ms/MW/SW*Zd52*dconjg(Zn33
+     &      )/cb)
+      AAABC(325) = EE*Sqrt2*(Zd33/CW*dconjg(Zn13)-3D0*Zd33
+     &      /SW*dconjg(Zn23)+3D0*Mb/MW/SW*Zd63*dconjg(Zn33
+     &      )/cb)
+      AAABC(326) = EE*Sqrt2*(2D0*Zd63/CW*Zn13+3D0*Mb/MW/SW
+     &      *Zd33*Zn33/cb)
+      AAABC(327) = EE*Sqrt2*(2D0*Zd52/CW*Zn11+3D0*Ms/MW/SW
+     &      *Zd22*Zn31/cb)
+      AAABC(328) = EE*Sqrt2*(Zd22/CW*dconjg(Zn11)-3D0*Zd22
+     &      /SW*dconjg(Zn21)+3D0*Ms/MW/SW*Zd52*dconjg(Zn31
+     &      )/cb)
+      AAABC(329) = EE*Sqrt2*(Zd33/CW*dconjg(Zn12)-3D0*Zd33
+     &      /SW*dconjg(Zn22)+3D0*Mb/MW/SW*Zd63*dconjg(Zn32
+     &      )/cb)
+      AAABC(330) = EE*Sqrt2*(2D0*Zd63/CW*Zn12+3D0*Mb/MW/SW
+     &      *Zd33*Zn32/cb)
+      AAABC(331) = EE*Sqrt2*(2D0*Zd52/CW*Zn14+3D0*Ms/MW/SW
+     &      *Zd22*Zn34/cb)
+      AAABC(332) = EE*Sqrt2*(Zd22/CW*dconjg(Zn14)-3D0*Zd22
+     &      /SW*dconjg(Zn24)+3D0*Ms/MW/SW*Zd52*dconjg(Zn34
+     &      )/cb)
+      AAABC(333) = EE*Sqrt2*(2D0*Zd52/CW*Zn12+3D0*Ms/MW/SW
+     &      *Zd22*Zn32/cb)
+      AAABC(334) = EE*Sqrt2*(Zd22/CW*dconjg(Zn12)-3D0*Zd22
+     &      /SW*dconjg(Zn22)+3D0*Ms/MW/SW*Zd52*dconjg(Zn32
+     &      )/cb)
+      AAABC(335) = EE*Sqrt2*(2D0*Zd55/CW*Zn12+3D0*Ms/MW/SW
+     &      *Zd25*Zn32/cb)
+      AAABC(336) = EE*Sqrt2*(Zd25/CW*dconjg(Zn12)-3D0*Zd25
+     &      /SW*dconjg(Zn22)+3D0*Ms/MW/SW*Zd55*dconjg(Zn32
+     &      )/cb)
+      AAABC(337) = EE*Sqrt2*(Zd36/CW*dconjg(Zn14)-3D0*Zd36
+     &      /SW*dconjg(Zn24)+3D0*Mb/MW/SW*Zd66*dconjg(Zn34
+     &      )/cb)
+      AAABC(338) = EE*Sqrt2*(2D0*Zd66/CW*Zn14+3D0*Mb/MW/SW
+     &      *Zd36*Zn34/cb)
+      AAABC(339) = EE/CW*Sqrt2*Zd44*Zn13
+      AAABC(340) = EE*Sqrt2*Zd14*(dconjg(Zn13)/CW-3D0*dconjg(Zn23
+     &      )/SW)
+      AAABC(341) = EE*Sqrt2*(2D0*Zd55/CW*Zn14+3D0*Ms/MW/SW
+     &      *Zd25*Zn34/cb)
+      AAABC(342) = EE*Sqrt2*(Zd25/CW*dconjg(Zn14)-3D0*Zd25
+     &      /SW*dconjg(Zn24)+3D0*Ms/MW/SW*Zd55*dconjg(Zn34
+     &      )/cb)
+      AAABC(343) = EE*Sqrt2*(Zd36/CW*dconjg(Zn11)-3D0*Zd36
+     &      /SW*dconjg(Zn21)+3D0*Mb/MW/SW*Zd66*dconjg(Zn31
+     &      )/cb)
+      AAABC(344) = EE*Sqrt2*(2D0*Zd66/CW*Zn11+3D0*Mb/MW/SW
+     &      *Zd36*Zn31/cb)
+      AAABC(345) = EE*Sqrt2*(Zd36/CW*dconjg(Zn12)-3D0*Zd36
+     &      /SW*dconjg(Zn22)+3D0*Mb/MW/SW*Zd66*dconjg(Zn32
+     &      )/cb)
+      AAABC(346) = EE*Sqrt2*(2D0*Zd66/CW*Zn12+3D0*Mb/MW/SW
+     &      *Zd36*Zn32/cb)
+      AAABC(347) = EE/CW*Sqrt2*Zd44*Zn11
+      AAABC(348) = EE*Sqrt2*Zd14*(dconjg(Zn11)/CW-3D0*dconjg(Zn21
+     &      )/SW)
+      AAABC(349) = EE/CW*Sqrt2*Zd44*Zn12
+      AAABC(350) = EE*Sqrt2*Zd14*(dconjg(Zn12)/CW-3D0*dconjg(Zn22
+     &      )/SW)
+      AAABC(351) = EE*Sqrt2*(2D0*Zd55/CW*Zn11+3D0*Ms/MW/SW
+     &      *Zd25*Zn31/cb)
+      AAABC(352) = EE*Sqrt2*(Zd25/CW*dconjg(Zn11)-3D0*Zd25
+     &      /SW*dconjg(Zn21)+3D0*Ms/MW/SW*Zd55*dconjg(Zn31
+     &      )/cb)
+      AAABC(353) = EE*Sqrt2*(2D0*Zd55/CW*Zn13+3D0*Ms/MW/SW
+     &      *Zd25*Zn33/cb)
+      AAABC(354) = EE*Sqrt2*(Zd25/CW*dconjg(Zn13)-3D0*Zd25
+     &      /SW*dconjg(Zn23)+3D0*Ms/MW/SW*Zd55*dconjg(Zn33
+     &      )/cb)
+      AAABC(355) = EE*Sqrt2*(Zd36/CW*dconjg(Zn13)-3D0*Zd36
+     &      /SW*dconjg(Zn23)+3D0*Mb/MW/SW*Zd66*dconjg(Zn33
+     &      )/cb)
+      AAABC(356) = EE*Sqrt2*(2D0*Zd66/CW*Zn13+3D0*Mb/MW/SW
+     &      *Zd36*Zn33/cb)
+      AAABC(357) = EE/CW*Sqrt2*Zd44*Zn14
+      AAABC(358) = EE*Sqrt2*Zd14*(dconjg(Zn14)/CW-3D0*dconjg(Zn24
+     &      )/SW)
+      AAABR(118) = EE/MW*Ms/SW
+      AAABR(119) = EE/MW*Mb/SW
+      AAABR(120) = EE/MW*Ms/SW/cb*sa
+      AAABR(121) = EE/MW*Ms/SW*tb
+      AAABR(122) = EE/MW*Ms/SW*ca/cb
+      AAABR(123) = EE/MW*Mb/SW/cb*sa
+      AAABR(124) = EE/MW*Mb/SW*tb
+      AAABR(125) = EE/MW*Mb/SW*ca/cb
+      AAABR(126) = EE/MW*Mc/SW*Sqrt2*Vcs/cb*(1D0/sb-sb)
+      AAABR(127) = EE/MW*Ms/SW*Sqrt2*Vcs/cb*sb
+      AAABR(128) = EE/MW*Ms/SW*Sqrt2*Vus*tb
+      AAABR(129) = EE/MW*Mt/SW*Sqrt2/cb*(1D0/sb-sb)
+      AAABR(130) = EE/MW*Mb/SW*Sqrt2/cb*sb
+      AAABR(131) = EE/MW*Mc/SW*Sqrt2*Vcd/tb
+      AAABR(132) = EE/MW*Ms/SW*Sqrt2*Vus
+      AAABR(133) = EE/MW*Mc/SW*Sqrt2*Vcs
+      AAABR(134) = EE/MW*Ms/SW*Sqrt2*Vcs
+      AAABR(135) = EE/MW*Mt/SW*Sqrt2
+      AAABR(136) = EE/MW*Mb/SW*Sqrt2
+      AAABR(137) = EE/MW*Mc/SW*Sqrt2*Vcd
+      AAABC(359) = EE/SW*Vcs*(2D0*dconjg(Zp11)*Zu22-Mc/MW
+     &      *Sqrt2*dconjg(Zp21)*Zu52/sb)
+      AAABC(360) = EE/MW*Ms/SW*Sqrt2*Vcs*dconjg(Zm21)*Zu22
+     &      /cb
+      AAABC(361) = EE/SW*(2D0*dconjg(Zp11)*Zu33-Mt/MW*Sqrt2
+     &      *dconjg(Zp21)*Zu63/sb)
+      AAABC(362) = EE/MW*Mb/SW*Sqrt2*dconjg(Zm21)*Zu33/cb
+      AAABC(363) = EE/SW*Vcd*(2D0*dconjg(Zp11)*Zu22-Mc/MW
+     &      *Sqrt2*dconjg(Zp21)*Zu52/sb)
+      AAABC(364) = EE/SW*Vud*dconjg(Zp11)*Zu11
+      AAABC(365) = EE/SW*Vus*dconjg(Zp11)*Zu11
+      AAABC(366) = EE/MW*Ms/SW*Sqrt2*Vus*dconjg(Zm21)*Zu11
+     &      /cb
+      AAABC(367) = EE/SW*Vus*dconjg(Zp11)*Zu14
+      AAABC(368) = EE/MW*Ms/SW*Sqrt2*Vus*dconjg(Zm21)*Zu14
+     &      /cb
+      AAABC(369) = EE/SW*(2D0*dconjg(Zp11)*Zu36-Mt/MW*Sqrt2
+     &      *dconjg(Zp21)*Zu66/sb)
+      AAABC(370) = EE/MW*Mb/SW*Sqrt2*dconjg(Zm21)*Zu36/cb
+      AAABC(371) = EE/SW*Vcs*(2D0*dconjg(Zp11)*Zu25-Mc/MW
+     &      *Sqrt2*dconjg(Zp21)*Zu55/sb)
+      AAABC(372) = EE/MW*Ms/SW*Sqrt2*Vcs*dconjg(Zm21)*Zu25
+     &      /cb
+      AAABC(373) = EE/SW*Vud*dconjg(Zp11)*Zu14
+      AAABC(374) = EE/SW*Vcd*(2D0*dconjg(Zp11)*Zu25-Mc/MW
+     &      *Sqrt2*dconjg(Zp21)*Zu55/sb)
+      AAABC(375) = EE/SW*(2D0*dconjg(Zp12)*Zu33-Mt/MW*Sqrt2
+     &      *dconjg(Zp22)*Zu63/sb)
+      AAABC(376) = EE/MW*Mb/SW*Sqrt2*dconjg(Zm22)*Zu33/cb
+      AAABC(377) = EE/SW*Vud*dconjg(Zp12)*Zu11
+      AAABC(378) = EE/SW*Vcs*(2D0*dconjg(Zp12)*Zu22-Mc/MW
+     &      *Sqrt2*dconjg(Zp22)*Zu52/sb)
+      AAABC(379) = EE/MW*Ms/SW*Sqrt2*Vcs*dconjg(Zm22)*Zu22
+     &      /cb
+      AAABC(380) = EE/SW*Vcd*(2D0*dconjg(Zp12)*Zu22-Mc/MW
+     &      *Sqrt2*dconjg(Zp22)*Zu52/sb)
+      AAABC(381) = EE/SW*Vus*dconjg(Zp12)*Zu11
+      AAABC(382) = EE/MW*Ms/SW*Sqrt2*Vus*dconjg(Zm22)*Zu11
+     &      /cb
+      AAABC(383) = EE/SW*(2D0*dconjg(Zp12)*Zu36-Mt/MW*Sqrt2
+     &      *dconjg(Zp22)*Zu66/sb)
+      AAABC(384) = EE/MW*Mb/SW*Sqrt2*dconjg(Zm22)*Zu36/cb
+      AAABC(385) = EE/SW*Vcs*(2D0*dconjg(Zp12)*Zu25-Mc/MW
+     &      *Sqrt2*dconjg(Zp22)*Zu55/sb)
+      AAABC(386) = EE/MW*Ms/SW*Sqrt2*Vcs*dconjg(Zm22)*Zu25
+     &      /cb
+      AAABC(387) = EE/SW*Vud*dconjg(Zp12)*Zu14
+      AAABC(388) = EE/SW*Vus*dconjg(Zp12)*Zu14
+      AAABC(389) = EE/MW*Ms/SW*Sqrt2*Vus*dconjg(Zm22)*Zu14
+     &      /cb
+      AAABC(390) = EE/SW*Vcd*(2D0*dconjg(Zp12)*Zu25-Mc/MW
+     &      *Sqrt2*dconjg(Zp22)*Zu55/sb)
+      AAABR(138) = GG*Sqrt2*Zd41
+      AAABR(139) = GG*Sqrt2*Zd11
+      AAABR(140) = GG*Sqrt2*Zd52
+      AAABR(141) = GG*Sqrt2*Zd22
+      AAABC(391) = GG*Sqrt2*Zd33
+      AAABC(392) = GG*Sqrt2*Zd63
+      AAABR(142) = GG*Sqrt2*Zd44
+      AAABR(143) = GG*Sqrt2*Zd14
+      AAABC(393) = GG*Sqrt2*Zd36
+      AAABC(394) = GG*Sqrt2*Zd66
+      AAABR(144) = GG*Sqrt2*Zd55
+      AAABR(145) = GG*Sqrt2*Zd25
+      AAABC(395) = EE*Sqrt2*(dconjg(Zn11)/CW*Zu33+3D0*dconjg(Zn21
+     &      )/SW*Zu33+3D0*Mt/MW/SW*dconjg(Zn41)*Zu63/sb)
+      AAABC(396) = EE*Sqrt2*(4D0*Zn11/CW*Zu63-3D0*Mt/MW/SW
+     &      *Zn41*Zu33/sb)
+      AAABC(397) = EE*Sqrt2*(dconjg(Zn11)/CW*Zu22+3D0*dconjg(Zn21
+     &      )/SW*Zu22+3D0*Mc/MW/SW*dconjg(Zn41)*Zu52/sb)
+      AAABC(398) = EE*Sqrt2*(4D0*Zn11/CW*Zu52-3D0*Mc/MW/SW
+     &      *Zn41*Zu22/sb)
+      AAABC(399) = EE*Sqrt2*(dconjg(Zn12)/CW*Zu33+3D0*dconjg(Zn22
+     &      )/SW*Zu33+3D0*Mt/MW/SW*dconjg(Zn42)*Zu63/sb)
+      AAABC(400) = EE*Sqrt2*(4D0*Zn12/CW*Zu63-3D0*Mt/MW/SW
+     &      *Zn42*Zu33/sb)
+      AAABC(401) = EE*Sqrt2*Zu11*(dconjg(Zn14)/CW+3D0*dconjg(Zn24
+     &      )/SW)
+      AAABC(402) = EE/CW*Sqrt2*Zn14*Zu41
+      AAABC(403) = EE*Sqrt2*Zu11*(dconjg(Zn13)/CW+3D0*dconjg(Zn23
+     &      )/SW)
+      AAABC(404) = EE/CW*Sqrt2*Zn13*Zu41
+      AAABC(405) = EE*Sqrt2*Zu11*(dconjg(Zn11)/CW+3D0*dconjg(Zn21
+     &      )/SW)
+      AAABC(406) = EE/CW*Sqrt2*Zn11*Zu41
+      AAABC(407) = EE*Sqrt2*(dconjg(Zn14)/CW*Zu22+3D0*dconjg(Zn24
+     &      )/SW*Zu22+3D0*Mc/MW/SW*dconjg(Zn44)*Zu52/sb)
+      AAABC(408) = EE*Sqrt2*(4D0*Zn14/CW*Zu52-3D0*Mc/MW/SW
+     &      *Zn44*Zu22/sb)
+      AAABC(409) = EE*Sqrt2*Zu11*(dconjg(Zn12)/CW+3D0*dconjg(Zn22
+     &      )/SW)
+      AAABC(410) = EE/CW*Sqrt2*Zn12*Zu41
+      AAABC(411) = EE*Sqrt2*(dconjg(Zn12)/CW*Zu22+3D0*dconjg(Zn22
+     &      )/SW*Zu22+3D0*Mc/MW/SW*dconjg(Zn42)*Zu52/sb)
+      AAABC(412) = EE*Sqrt2*(4D0*Zn12/CW*Zu52-3D0*Mc/MW/SW
+     &      *Zn42*Zu22/sb)
+      AAABC(413) = EE*Sqrt2*(dconjg(Zn13)/CW*Zu33+3D0*dconjg(Zn23
+     &      )/SW*Zu33+3D0*Mt/MW/SW*dconjg(Zn43)*Zu63/sb)
+      AAABC(414) = EE*Sqrt2*(4D0*Zn13/CW*Zu63-3D0*Mt/MW/SW
+     &      *Zn43*Zu33/sb)
+      AAABC(415) = EE*Sqrt2*(dconjg(Zn14)/CW*Zu33+3D0*dconjg(Zn24
+     &      )/SW*Zu33+3D0*Mt/MW/SW*dconjg(Zn44)*Zu63/sb)
+      AAABC(416) = EE*Sqrt2*(4D0*Zn14/CW*Zu63-3D0*Mt/MW/SW
+     &      *Zn44*Zu33/sb)
+      AAABC(417) = EE*Sqrt2*(dconjg(Zn13)/CW*Zu22+3D0*dconjg(Zn23
+     &      )/SW*Zu22+3D0*Mc/MW/SW*dconjg(Zn43)*Zu52/sb)
+      AAABC(418) = EE*Sqrt2*(4D0*Zn13/CW*Zu52-3D0*Mc/MW/SW
+     &      *Zn43*Zu22/sb)
+      AAABC(419) = EE*Sqrt2*Zu14*(dconjg(Zn13)/CW+3D0*dconjg(Zn23
+     &      )/SW)
+      AAABC(420) = EE/CW*Sqrt2*Zn13*Zu44
+      AAABC(421) = EE*Sqrt2*(dconjg(Zn13)/CW*Zu25+3D0*dconjg(Zn23
+     &      )/SW*Zu25+3D0*Mc/MW/SW*dconjg(Zn43)*Zu55/sb)
+      AAABC(422) = EE*Sqrt2*(4D0*Zn13/CW*Zu55-3D0*Mc/MW/SW
+     &      *Zn43*Zu25/sb)
+      AAABC(423) = EE*Sqrt2*Zu14*(dconjg(Zn12)/CW+3D0*dconjg(Zn22
+     &      )/SW)
+      AAABC(424) = EE/CW*Sqrt2*Zn12*Zu44
+      AAABC(425) = EE*Sqrt2*(dconjg(Zn14)/CW*Zu25+3D0*dconjg(Zn24
+     &      )/SW*Zu25+3D0*Mc/MW/SW*dconjg(Zn44)*Zu55/sb)
+      AAABC(426) = EE*Sqrt2*(4D0*Zn14/CW*Zu55-3D0*Mc/MW/SW
+     &      *Zn44*Zu25/sb)
+      AAABC(427) = EE*Sqrt2*(dconjg(Zn13)/CW*Zu36+3D0*dconjg(Zn23
+     &      )/SW*Zu36+3D0*Mt/MW/SW*dconjg(Zn43)*Zu66/sb)
+      AAABC(428) = EE*Sqrt2*(4D0*Zn13/CW*Zu66-3D0*Mt/MW/SW
+     &      *Zn43*Zu36/sb)
+      AAABC(429) = EE*Sqrt2*Zu14*(dconjg(Zn14)/CW+3D0*dconjg(Zn24
+     &      )/SW)
+      AAABC(430) = EE/CW*Sqrt2*Zn14*Zu44
+      AAABC(431) = EE*Sqrt2*(dconjg(Zn11)/CW*Zu36+3D0*dconjg(Zn21
+     &      )/SW*Zu36+3D0*Mt/MW/SW*dconjg(Zn41)*Zu66/sb)
+      AAABC(432) = EE*Sqrt2*(4D0*Zn11/CW*Zu66-3D0*Mt/MW/SW
+     &      *Zn41*Zu36/sb)
+      AAABC(433) = EE*Sqrt2*(dconjg(Zn12)/CW*Zu36+3D0*dconjg(Zn22
+     &      )/SW*Zu36+3D0*Mt/MW/SW*dconjg(Zn42)*Zu66/sb)
+      AAABC(434) = EE*Sqrt2*(4D0*Zn12/CW*Zu66-3D0*Mt/MW/SW
+     &      *Zn42*Zu36/sb)
+      AAABC(435) = EE*Sqrt2*(dconjg(Zn11)/CW*Zu25+3D0*dconjg(Zn21
+     &      )/SW*Zu25+3D0*Mc/MW/SW*dconjg(Zn41)*Zu55/sb)
+      AAABC(436) = EE*Sqrt2*(4D0*Zn11/CW*Zu55-3D0*Mc/MW/SW
+     &      *Zn41*Zu25/sb)
+      AAABC(437) = EE*Sqrt2*Zu14*(dconjg(Zn11)/CW+3D0*dconjg(Zn21
+     &      )/SW)
+      AAABC(438) = EE/CW*Sqrt2*Zn11*Zu44
+      AAABC(439) = EE*Sqrt2*(dconjg(Zn12)/CW*Zu25+3D0*dconjg(Zn22
+     &      )/SW*Zu25+3D0*Mc/MW/SW*dconjg(Zn42)*Zu55/sb)
+      AAABC(440) = EE*Sqrt2*(4D0*Zn12/CW*Zu55-3D0*Mc/MW/SW
+     &      *Zn42*Zu25/sb)
+      AAABC(441) = EE*Sqrt2*(dconjg(Zn14)/CW*Zu36+3D0*dconjg(Zn24
+     &      )/SW*Zu36+3D0*Mt/MW/SW*dconjg(Zn44)*Zu66/sb)
+      AAABC(442) = EE*Sqrt2*(4D0*Zn14/CW*Zu66-3D0*Mt/MW/SW
+     &      *Zn44*Zu36/sb)
+      AAABR(146) = EE/MW*Mt/SW
+      AAABR(147) = EE/MW*Mc/SW
+      AAABR(148) = EE/MW*Mt/SW/tb
+      AAABR(149) = EE/MW*Mc/SW*ca/sb
+      AAABR(150) = EE/MW*Mc/SW*sa/sb
+      AAABR(151) = EE/MW*Mt/SW*sa/sb
+      AAABR(152) = EE/MW*Mc/SW/tb
+      AAABR(153) = EE/MW*Mt/SW*ca/sb
+      AAABR(154) = GG*Sqrt2*Zu11
+      AAABR(155) = GG*Sqrt2*Zu41
+      AAABC(443) = GG*Sqrt2*Zu33
+      AAABC(444) = GG*Sqrt2*Zu63
+      AAABR(156) = GG*Sqrt2*Zu22
+      AAABR(157) = GG*Sqrt2*Zu52
+      AAABC(445) = GG*Sqrt2*Zu36
+      AAABC(446) = GG*Sqrt2*Zu66
+      AAABR(158) = GG*Sqrt2*Zu25
+      AAABR(159) = GG*Sqrt2*Zu55
+      AAABR(160) = GG*Sqrt2*Zu14
+      AAABR(161) = GG*Sqrt2*Zu44
+      AAABC(447) = EE*(Zn11/CW*Zn31*cb+Zn11/CW*Zn41*sb-Zn21
+     &      /SW*Zn31*cb-Zn21/SW*Zn41*sb)
+      AAABC(448) = EE*(Zn11/CW*Zn34*cb+Zn11/CW*Zn44*sb+Zn14
+     &      /CW*Zn31*cb+Zn14/CW*Zn41*sb-Zn21/SW*Zn34*cb-Zn21
+     &      /SW*Zn44*sb-Zn24/SW*Zn31*cb-Zn24/SW*Zn41*sb)
+      AAABC(449) = EE*(Zn11/CW*Zn32*cb+Zn11/CW*Zn42*sb+Zn12
+     &      /CW*Zn31*cb+Zn12/CW*Zn41*sb-Zn21/SW*Zn32*cb-Zn21
+     &      /SW*Zn42*sb-Zn22/SW*Zn31*cb-Zn22/SW*Zn41*sb)
+      AAABC(450) = EE*(Zn11/CW*Zn33*cb+Zn11/CW*Zn43*sb+Zn13
+     &      /CW*Zn31*cb+Zn13/CW*Zn41*sb-Zn21/SW*Zn33*cb-Zn21
+     &      /SW*Zn43*sb-Zn23/SW*Zn31*cb-Zn23/SW*Zn41*sb)
+      AAABC(451) = EE*(Zn11/CW*Zn33*sb-Zn11/CW*Zn43*cb+Zn13
+     &      /CW*Zn31*sb-Zn13/CW*Zn41*cb-Zn21/SW*Zn33*sb+Zn21
+     &      /SW*Zn43*cb-Zn23/SW*Zn31*sb+Zn23/SW*Zn41*cb)
+      AAABC(452) = EE*(Zn11/CW*Zn33*sa+Zn11/CW*Zn43*ca+Zn13
+     &      /CW*Zn31*sa+Zn13/CW*Zn41*ca-Zn21/SW*Zn33*sa-Zn21
+     &      /SW*Zn43*ca-Zn23/SW*Zn31*sa-Zn23/SW*Zn41*ca)
+      AAABC(453) = EE*(Zn11/CW*Zn34*ca-Zn11/CW*Zn44*sa+Zn14
+     &      /CW*Zn31*ca-Zn14/CW*Zn41*sa-Zn21/SW*Zn34*ca+Zn21
+     &      /SW*Zn44*sa-Zn24/SW*Zn31*ca+Zn24/SW*Zn41*sa)
+      AAABC(454) = EE*(Zn11/CW*Zn32*ca-Zn11/CW*Zn42*sa+Zn12
+     &      /CW*Zn31*ca-Zn12/CW*Zn41*sa-Zn21/SW*Zn32*ca+Zn21
+     &      /SW*Zn42*sa-Zn22/SW*Zn31*ca+Zn22/SW*Zn41*sa)
+      AAABC(455) = EE*(Zn11/CW*Zn34*sb-Zn11/CW*Zn44*cb+Zn14
+     &      /CW*Zn31*sb-Zn14/CW*Zn41*cb-Zn21/SW*Zn34*sb+Zn21
+     &      /SW*Zn44*cb-Zn24/SW*Zn31*sb+Zn24/SW*Zn41*cb)
+      AAABC(456) = EE*(Zn11/CW*Zn32*sa+Zn11/CW*Zn42*ca+Zn12
+     &      /CW*Zn31*sa+Zn12/CW*Zn41*ca-Zn21/SW*Zn32*sa-Zn21
+     &      /SW*Zn42*ca-Zn22/SW*Zn31*sa-Zn22/SW*Zn41*ca)
+      AAABC(457) = EE*(Zn11/CW*Zn31*sb-Zn11/CW*Zn41*cb-Zn21
+     &      /SW*Zn31*sb+Zn21/SW*Zn41*cb)
+      AAABC(458) = EE*(Zn11/CW*Zn32*sb-Zn11/CW*Zn42*cb+Zn12
+     &      /CW*Zn31*sb-Zn12/CW*Zn41*cb-Zn21/SW*Zn32*sb+Zn21
+     &      /SW*Zn42*cb-Zn22/SW*Zn31*sb+Zn22/SW*Zn41*cb)
+      AAABC(459) = EE*(Zn11/CW*Zn33*ca-Zn11/CW*Zn43*sa+Zn13
+     &      /CW*Zn31*ca-Zn13/CW*Zn41*sa-Zn21/SW*Zn33*ca+Zn21
+     &      /SW*Zn43*sa-Zn23/SW*Zn31*ca+Zn23/SW*Zn41*sa)
+      AAABC(460) = EE*(Zn11/CW*Zn31*sa+Zn11/CW*Zn41*ca-Zn21
+     &      /SW*Zn31*sa-Zn21/SW*Zn41*ca)
+      AAABC(461) = EE*(Zn11/CW*Zn34*sa+Zn11/CW*Zn44*ca+Zn14
+     &      /CW*Zn31*sa+Zn14/CW*Zn41*ca-Zn21/SW*Zn34*sa-Zn21
+     &      /SW*Zn44*ca-Zn24/SW*Zn31*sa-Zn24/SW*Zn41*ca)
+      AAABC(462) = EE*(Zn11/CW*Zn31*ca-Zn11/CW*Zn41*sa-Zn21
+     &      /SW*Zn31*ca+Zn21/SW*Zn41*sa)
+      AAABC(463) = EE*(Zn12/CW*Zn33*cb+Zn12/CW*Zn43*sb+Zn13
+     &      /CW*Zn32*cb+Zn13/CW*Zn42*sb-Zn22/SW*Zn33*cb-Zn22
+     &      /SW*Zn43*sb-Zn23/SW*Zn32*cb-Zn23/SW*Zn42*sb)
+      AAABC(464) = EE*(Zn12/CW*Zn34*cb+Zn12/CW*Zn44*sb+Zn14
+     &      /CW*Zn32*cb+Zn14/CW*Zn42*sb-Zn22/SW*Zn34*cb-Zn22
+     &      /SW*Zn44*sb-Zn24/SW*Zn32*cb-Zn24/SW*Zn42*sb)
+      AAABC(465) = EE*(Zn12/CW*Zn32*cb+Zn12/CW*Zn42*sb-Zn22
+     &      /SW*Zn32*cb-Zn22/SW*Zn42*sb)
+      AAABC(466) = EE*(Zn12/CW*Zn34*sb-Zn12/CW*Zn44*cb+Zn14
+     &      /CW*Zn32*sb-Zn14/CW*Zn42*cb-Zn22/SW*Zn34*sb+Zn22
+     &      /SW*Zn44*cb-Zn24/SW*Zn32*sb+Zn24/SW*Zn42*cb)
+      AAABC(467) = EE*(Zn12/CW*Zn33*ca-Zn12/CW*Zn43*sa+Zn13
+     &      /CW*Zn32*ca-Zn13/CW*Zn42*sa-Zn22/SW*Zn33*ca+Zn22
+     &      /SW*Zn43*sa-Zn23/SW*Zn32*ca+Zn23/SW*Zn42*sa)
+      AAABC(468) = EE*(Zn12/CW*Zn34*sa+Zn12/CW*Zn44*ca+Zn14
+     &      /CW*Zn32*sa+Zn14/CW*Zn42*ca-Zn22/SW*Zn34*sa-Zn22
+     &      /SW*Zn44*ca-Zn24/SW*Zn32*sa-Zn24/SW*Zn42*ca)
+      AAABC(469) = EE*(Zn12/CW*Zn34*ca-Zn12/CW*Zn44*sa+Zn14
+     &      /CW*Zn32*ca-Zn14/CW*Zn42*sa-Zn22/SW*Zn34*ca+Zn22
+     &      /SW*Zn44*sa-Zn24/SW*Zn32*ca+Zn24/SW*Zn42*sa)
+      AAABC(470) = EE*(Zn12/CW*Zn33*sa+Zn12/CW*Zn43*ca+Zn13
+     &      /CW*Zn32*sa+Zn13/CW*Zn42*ca-Zn22/SW*Zn33*sa-Zn22
+     &      /SW*Zn43*ca-Zn23/SW*Zn32*sa-Zn23/SW*Zn42*ca)
+      AAABC(471) = EE*(Zn12/CW*Zn32*sb-Zn12/CW*Zn42*cb-Zn22
+     &      /SW*Zn32*sb+Zn22/SW*Zn42*cb)
+      AAABC(472) = EE*(Zn12/CW*Zn32*ca-Zn12/CW*Zn42*sa-Zn22
+     &      /SW*Zn32*ca+Zn22/SW*Zn42*sa)
+      AAABC(473) = EE*(Zn12/CW*Zn32*sa+Zn12/CW*Zn42*ca-Zn22
+     &      /SW*Zn32*sa-Zn22/SW*Zn42*ca)
+      AAABC(474) = EE*(Zn12/CW*Zn33*sb-Zn12/CW*Zn43*cb+Zn13
+     &      /CW*Zn32*sb-Zn13/CW*Zn42*cb-Zn22/SW*Zn33*sb+Zn22
+     &      /SW*Zn43*cb-Zn23/SW*Zn32*sb+Zn23/SW*Zn42*cb)
+      AAABC(475) = EE*(Zn13/CW*Zn33*cb+Zn13/CW*Zn43*sb-Zn23
+     &      /SW*Zn33*cb-Zn23/SW*Zn43*sb)
+      AAABC(476) = EE*(Zn13/CW*Zn34*cb+Zn13/CW*Zn44*sb+Zn14
+     &      /CW*Zn33*cb+Zn14/CW*Zn43*sb-Zn23/SW*Zn34*cb-Zn23
+     &      /SW*Zn44*sb-Zn24/SW*Zn33*cb-Zn24/SW*Zn43*sb)
+      AAABC(477) = EE*(Zn13/CW*Zn33*ca-Zn13/CW*Zn43*sa-Zn23
+     &      /SW*Zn33*ca+Zn23/SW*Zn43*sa)
+      AAABC(478) = EE*(Zn13/CW*Zn33*sa+Zn13/CW*Zn43*ca-Zn23
+     &      /SW*Zn33*sa-Zn23/SW*Zn43*ca)
+      AAABC(479) = EE*(Zn13/CW*Zn34*sb-Zn13/CW*Zn44*cb+Zn14
+     &      /CW*Zn33*sb-Zn14/CW*Zn43*cb-Zn23/SW*Zn34*sb+Zn23
+     &      /SW*Zn44*cb-Zn24/SW*Zn33*sb+Zn24/SW*Zn43*cb)
+      AAABC(480) = EE*(Zn13/CW*Zn34*sa+Zn13/CW*Zn44*ca+Zn14
+     &      /CW*Zn33*sa+Zn14/CW*Zn43*ca-Zn23/SW*Zn34*sa-Zn23
+     &      /SW*Zn44*ca-Zn24/SW*Zn33*sa-Zn24/SW*Zn43*ca)
+      AAABC(481) = EE*(Zn13/CW*Zn33*sb-Zn13/CW*Zn43*cb-Zn23
+     &      /SW*Zn33*sb+Zn23/SW*Zn43*cb)
+      AAABC(482) = EE*(Zn13/CW*Zn34*ca-Zn13/CW*Zn44*sa+Zn14
+     &      /CW*Zn33*ca-Zn14/CW*Zn43*sa-Zn23/SW*Zn34*ca+Zn23
+     &      /SW*Zn44*sa-Zn24/SW*Zn33*ca+Zn24/SW*Zn43*sa)
+      AAABC(483) = EE*(Zn14/CW*Zn34*cb+Zn14/CW*Zn44*sb-Zn24
+     &      /SW*Zn34*cb-Zn24/SW*Zn44*sb)
+      AAABC(484) = EE*(Zn14/CW*Zn34*ca-Zn14/CW*Zn44*sa-Zn24
+     &      /SW*Zn34*ca+Zn24/SW*Zn44*sa)
+      AAABC(485) = EE*(Zn14/CW*Zn34*sa+Zn14/CW*Zn44*ca-Zn24
+     &      /SW*Zn34*sa-Zn24/SW*Zn44*ca)
+      AAABC(486) = EE*(Zn14/CW*Zn34*sb-Zn14/CW*Zn44*cb-Zn24
+     &      /SW*Zn34*sb+Zn24/SW*Zn44*cb)
+      AAABC(487) = EE*(SW/CW*Zm21*dconjg(Zm22)-2D0*CW/SW
+     &      *Zm11*dconjg(Zm12)-CW/SW*Zm21*dconjg(Zm22))
+      AAABC(488) = EE*(Zm11*dconjg(Zm12)+Zm21*dconjg(Zm22))
+      AAABC(489) = EE*(SW/CW*Zp21*dconjg(Zp22)-2D0*CW/SW
+     &      *Zp11*dconjg(Zp12)-CW/SW*Zp21*dconjg(Zp22))
+      AAABC(490) = EE*(Zp11*dconjg(Zp12)+Zp21*dconjg(Zp22))
+      AAABC(491) = EE*(SW/CW*Zm21*dconjg(Zm21)-2D0*CW/SW
+     &      *Zm11*dconjg(Zm11)-CW/SW*Zm21*dconjg(Zm21))
+      AAABC(492) = EE*(Zm11*dconjg(Zm11)+Zm21*dconjg(Zm21))
+      AAABC(493) = EE*(SW/CW*Zp21*dconjg(Zp21)-2D0*CW/SW
+     &      *Zp11*dconjg(Zp11)-CW/SW*Zp21*dconjg(Zp21))
+      AAABC(494) = EE*(Zp11*dconjg(Zp11)+Zp21*dconjg(Zp21))
+      AAABC(495) = EE*(SW/CW*Zm22*dconjg(Zm22)-2D0*CW/SW
+     &      *Zm12*dconjg(Zm12)-CW/SW*Zm22*dconjg(Zm22))
+      AAABC(496) = EE*(Zm12*dconjg(Zm12)+Zm22*dconjg(Zm22))
+      AAABC(497) = EE*(SW/CW*Zp22*dconjg(Zp22)-2D0*CW/SW
+     &      *Zp12*dconjg(Zp12)-CW/SW*Zp22*dconjg(Zp22))
+      AAABC(498) = EE*(Zp12*dconjg(Zp12)+Zp22*dconjg(Zp22))
+      AAABC(499) = EE/SW*(2D0*dconjg(Zm12)*dconjg(Zn24)+Sqrt2
+     &      *dconjg(Zm22)*dconjg(Zn34))
+      AAABC(500) = EE/SW*(2D0*Zn24*dconjg(Zp12)-Sqrt2*Zn44
+     &      *dconjg(Zp22))
+      AAABC(501) = EE/SW*(2D0*dconjg(Zm12)*dconjg(Zn23)+Sqrt2
+     &      *dconjg(Zm22)*dconjg(Zn33))
+      AAABC(502) = EE/SW*(2D0*Zn23*dconjg(Zp12)-Sqrt2*Zn43
+     &      *dconjg(Zp22))
+      AAABC(503) = EE/SW*(2D0*dconjg(Zm12)*dconjg(Zn21)+Sqrt2
+     &      *dconjg(Zm22)*dconjg(Zn31))
+      AAABC(504) = EE/SW*(2D0*Zn21*dconjg(Zp12)-Sqrt2*Zn41
+     &      *dconjg(Zp22))
+      AAABC(505) = EE/SW*(2D0*dconjg(Zm11)*dconjg(Zn22)+Sqrt2
+     &      *dconjg(Zm21)*dconjg(Zn32))
+      AAABC(506) = EE/SW*(2D0*Zn22*dconjg(Zp11)-Sqrt2*Zn42
+     &      *dconjg(Zp21))
+      AAABC(507) = EE/SW*(2D0*dconjg(Zm12)*dconjg(Zn22)+Sqrt2
+     &      *dconjg(Zm22)*dconjg(Zn32))
+      AAABC(508) = EE/SW*(2D0*Zn22*dconjg(Zp12)-Sqrt2*Zn42
+     &      *dconjg(Zp22))
+      AAABC(509) = EE/SW*(2D0*dconjg(Zm11)*dconjg(Zn24)+Sqrt2
+     &      *dconjg(Zm21)*dconjg(Zn34))
+      AAABC(510) = EE/SW*(2D0*Zn24*dconjg(Zp11)-Sqrt2*Zn44
+     &      *dconjg(Zp21))
+      AAABC(511) = EE/SW*(2D0*dconjg(Zm11)*dconjg(Zn23)+Sqrt2
+     &      *dconjg(Zm21)*dconjg(Zn33))
+      AAABC(512) = EE/SW*(2D0*Zn23*dconjg(Zp11)-Sqrt2*Zn43
+     &      *dconjg(Zp21))
+      AAABC(513) = EE/SW*(2D0*dconjg(Zm11)*dconjg(Zn21)+Sqrt2
+     &      *dconjg(Zm21)*dconjg(Zn31))
+      AAABC(514) = EE/SW*(2D0*Zn21*dconjg(Zp11)-Sqrt2*Zn41
+     &      *dconjg(Zp21))
+      AAABR(162) = EE/CW*SW
+      AAABR(163) = EE/SW*Sqrt2
+      AAABR(164) = EE*(SW/CW+3D0*CW/SW)
+      AAABR(165) = EE/SW*Sqrt2*Vcd
+      AAABR(166) = EE/SW*Sqrt2*Vcs
+      AAABR(167) = EE/SW*Sqrt2*Vud
+      AAABR(168) = EE/SW*Sqrt2*Vus
+      AAABR(169) = EE*(SW/CW-3D0*CW/SW)
+      AAABC(515) = EE*(SW/CW*dconjg(Zn31)*Zn32-SW/CW*dconjg(Zn41
+     &      )*Zn42+CW/SW*dconjg(Zn31)*Zn32-CW/SW*dconjg(Zn41
+     &      )*Zn42)
+      AAABC(516) = EE*(SW/CW*dconjg(Zn31)*Zn33-SW/CW*dconjg(Zn41
+     &      )*Zn43+CW/SW*dconjg(Zn31)*Zn33-CW/SW*dconjg(Zn41
+     &      )*Zn43)
+      AAABC(517) = EE*(SW/CW*dconjg(Zn31)*Zn34-SW/CW*dconjg(Zn41
+     &      )*Zn44+CW/SW*dconjg(Zn31)*Zn34-CW/SW*dconjg(Zn41
+     &      )*Zn44)
+      AAABC(518) = EE*(SW/CW*Zn31*dconjg(Zn31)-SW/CW*Zn41
+     &      *dconjg(Zn41)+CW/SW*Zn31*dconjg(Zn31)-CW/SW*Zn41
+     &      *dconjg(Zn41))
+      AAABC(519) = EE*(SW/CW*Zn32*dconjg(Zn32)-SW/CW*Zn42
+     &      *dconjg(Zn42)+CW/SW*Zn32*dconjg(Zn32)-CW/SW*Zn42
+     &      *dconjg(Zn42))
+      AAABC(520) = EE*(SW/CW*dconjg(Zn32)*Zn34-SW/CW*dconjg(Zn42
+     &      )*Zn44+CW/SW*dconjg(Zn32)*Zn34-CW/SW*dconjg(Zn42
+     &      )*Zn44)
+      AAABC(521) = EE*(SW/CW*dconjg(Zn32)*Zn33-SW/CW*dconjg(Zn42
+     &      )*Zn43+CW/SW*dconjg(Zn32)*Zn33-CW/SW*dconjg(Zn42
+     &      )*Zn43)
+      AAABC(522) = EE*(SW/CW*dconjg(Zn33)*Zn34-SW/CW*dconjg(Zn43
+     &      )*Zn44+CW/SW*dconjg(Zn33)*Zn34-CW/SW*dconjg(Zn43
+     &      )*Zn44)
+      AAABC(523) = EE*(SW/CW*Zn33*dconjg(Zn33)-SW/CW*Zn43
+     &      *dconjg(Zn43)+CW/SW*Zn33*dconjg(Zn33)-CW/SW*Zn43
+     &      *dconjg(Zn43))
+      AAABC(524) = EE*(SW/CW*Zn34*dconjg(Zn34)-SW/CW*Zn44
+     &      *dconjg(Zn44)+CW/SW*Zn34*dconjg(Zn34)-CW/SW*Zn44
+     &      *dconjg(Zn44))
+      AAABR(170) = EE**2*(SW/CW-CW/SW)
+      AAABR(171) = EE**2
+      AAABR(172) = EE**2*(2D0-SW**2/CW**2-CW**2/SW**2)
+      AAABR(173) = EE**2/SW**2
+      AAABR(174) = EE**2/CW*(ca*sb-cb*sa)
+      AAABR(175) = EE**2/SW*(ca*sb-cb*sa)
+      AAABR(176) = EE**2/CW*(ca*cb+sa*sb)
+      AAABR(177) = EE**2/SW*(ca*cb+sa*sb)
+      AAABR(178) = EE**2/CW
+      AAABR(179) = EE**2/SW
+      AAABR(180) = EE**2*(SW/CW*Zl11**2+2D0*SW/CW*Zl41**2
+     &      -CW/SW*Zl11**2)
+      AAABC(525) = EE**2*(SW/CW*Zl33*dconjg(Zl33)+2D0*SW
+     &      /CW*Zl63*dconjg(Zl63)-CW/SW*Zl33*dconjg(Zl33))
+      AAABC(526) = EE**2*(Zl33*dconjg(Zl33)+Zl63*dconjg(Zl63
+     &      ))
+      AAABR(181) = EE**2*(SW/CW*Zl22**2+2D0*SW/CW*Zl52**2
+     &      -CW/SW*Zl22**2)
+      AAABR(182) = EE**2*(2D0*Zl22**2-SW**2/CW**2*Zl22**2
+     &      -4D0*SW**2/CW**2*Zl52**2-CW**2/SW**2*Zl22**2)
+      AAABC(527) = EE**2*(2D0*Zl33*dconjg(Zl33)-SW**2/CW
+     &      **2*Zl33*dconjg(Zl33)-4D0*SW**2/CW**2*Zl63*dconjg(Zl63
+     &      )-CW**2/SW**2*Zl33*dconjg(Zl33))
+      AAABR(183) = EE**2*(2D0*Zl11**2-SW**2/CW**2*Zl11**2
+     &      -4D0*SW**2/CW**2*Zl41**2-CW**2/SW**2*Zl11**2)
+      AAABC(528) = EE**2/SW**2*Zl33*dconjg(Zl33)
+      AAABR(184) = EE**2/SW**2*Zl22**2
+      AAABR(185) = EE**2/SW**2*Zl11**2
+      AAABR(186) = EE**2*(SW/CW*Zl11*Zl14+2D0*SW/CW*Zl41
+     &      *Zl44-CW/SW*Zl11*Zl14)
+      AAABC(529) = EE**2*(SW/CW*dconjg(Zl33)*Zl36+2D0*SW
+     &      /CW*dconjg(Zl63)*Zl66-CW/SW*dconjg(Zl33)*Zl36)
+      AAABC(530) = EE**2*(dconjg(Zl33)*Zl36+dconjg(Zl63)*Zl66
+     &      )
+      AAABR(187) = EE**2*(SW/CW*Zl22*Zl25+2D0*SW/CW*Zl52
+     &      *Zl55-CW/SW*Zl22*Zl25)
+      AAABR(188) = EE**2*(2D0*Zl22*Zl25-SW**2/CW**2*Zl22
+     &      *Zl25-4D0*SW**2/CW**2*Zl52*Zl55-CW**2/SW**2*Zl22
+     &      *Zl25)
+      AAABC(531) = EE**2*(2D0*dconjg(Zl33)*Zl36-SW**2/CW
+     &      **2*dconjg(Zl33)*Zl36-4D0*SW**2/CW**2*dconjg(Zl63
+     &      )*Zl66-CW**2/SW**2*dconjg(Zl33)*Zl36)
+      AAABR(189) = EE**2*(2D0*Zl11*Zl14-SW**2/CW**2*Zl11
+     &      *Zl14-4D0*SW**2/CW**2*Zl41*Zl44-CW**2/SW**2*Zl11
+     &      *Zl14)
+      AAABR(190) = EE**2/SW**2*Zl11*Zl14
+      AAABR(191) = EE**2/SW**2*Zl22*Zl25
+      AAABC(532) = EE**2/SW**2*dconjg(Zl33)*Zl36
+      AAABR(192) = EE**2/CW*Sqrt2*Zl22
+      AAABR(193) = EE**2/SW*Sqrt2*Zl22
+      AAABC(533) = EE**2/CW*Sqrt2*dconjg(Zl33)
+      AAABC(534) = EE**2/SW*Sqrt2*dconjg(Zl33)
+      AAABR(194) = EE**2/CW*Sqrt2*Zl11
+      AAABR(195) = EE**2/SW*Sqrt2*Zl11
+      AAABR(196) = EE**2*(SW/CW*Zl25**2+2D0*SW/CW*Zl55**2
+     &      -CW/SW*Zl25**2)
+      AAABC(535) = EE**2*(SW/CW*Zl36*dconjg(Zl36)+2D0*SW
+     &      /CW*Zl66*dconjg(Zl66)-CW/SW*Zl36*dconjg(Zl36))
+      AAABC(536) = EE**2*(Zl36*dconjg(Zl36)+Zl66*dconjg(Zl66
+     &      ))
+      AAABR(197) = EE**2*(SW/CW*Zl14**2+2D0*SW/CW*Zl44**2
+     &      -CW/SW*Zl14**2)
+      AAABC(537) = EE**2*(2D0*Zl36*dconjg(Zl36)-SW**2/CW
+     &      **2*Zl36*dconjg(Zl36)-4D0*SW**2/CW**2*Zl66*dconjg(Zl66
+     &      )-CW**2/SW**2*Zl36*dconjg(Zl36))
+      AAABR(198) = EE**2*(2D0*Zl14**2-SW**2/CW**2*Zl14**2
+     &      -4D0*SW**2/CW**2*Zl44**2-CW**2/SW**2*Zl14**2)
+      AAABR(199) = EE**2*(2D0*Zl25**2-SW**2/CW**2*Zl25**2
+     &      -4D0*SW**2/CW**2*Zl55**2-CW**2/SW**2*Zl25**2)
+      AAABC(538) = EE**2/SW**2*Zl36*dconjg(Zl36)
+      AAABR(200) = EE**2/SW**2*Zl14**2
+      AAABR(201) = EE**2/SW**2*Zl25**2
+      AAABR(202) = EE**2/CW*Sqrt2*Zl14
+      AAABR(203) = EE**2/SW*Sqrt2*Zl14
+      AAABR(204) = EE**2/CW*Sqrt2*Zl25
+      AAABR(205) = EE**2/SW*Sqrt2*Zl25
+      AAABC(539) = EE**2/CW*Sqrt2*dconjg(Zl36)
+      AAABC(540) = EE**2/SW*Sqrt2*dconjg(Zl36)
+      AAABR(206) = EE**2*(2D0+SW**2/CW**2+CW**2/SW**2)
+      AAABR(207) = EE**2*(SW/CW*Zd11**2-2D0*SW/CW*Zd41**2
+     &      +3D0*CW/SW*Zd11**2)
+      AAABC(541) = EE**2*(SW/CW*Zd33*dconjg(Zd33)-2D0*SW
+     &      /CW*Zd63*dconjg(Zd63)+3D0*CW/SW*Zd33*dconjg(Zd33
+     &      ))
+      AAABC(542) = EE**2*(Zd33*dconjg(Zd33)+Zd63*dconjg(Zd63
+     &      ))
+      AAABR(208) = EE**2*(SW/CW*Zd22**2-2D0*SW/CW*Zd52**2
+     &      +3D0*CW/SW*Zd22**2)
+      AAABC(543) = EE*GG*(SW/CW*Zd33*dconjg(Zd33)-2D0*SW
+     &      /CW*Zd63*dconjg(Zd63)+3D0*CW/SW*Zd33*dconjg(Zd33
+     &      ))
+      AAABC(544) = EE*GG*(Zd33*dconjg(Zd33)+Zd63*dconjg(Zd63
+     &      ))
+      AAABR(209) = EE*GG*(SW/CW*Zd11**2-2D0*SW/CW*Zd41**2
+     &      +3D0*CW/SW*Zd11**2)
+      AAABR(210) = EE*GG
+      AAABR(211) = EE*GG*(SW/CW*Zd22**2-2D0*SW/CW*Zd52**2
+     &      +3D0*CW/SW*Zd22**2)
+      AAABR(212) = EE**2*(6D0*Zd22**2+SW**2/CW**2*Zd22**2
+     &      +4D0*SW**2/CW**2*Zd52**2+9D0*CW**2/SW**2*Zd22
+     &      **2)
+      AAABR(213) = EE**2*(6D0*Zd11**2+SW**2/CW**2*Zd11**2
+     &      +4D0*SW**2/CW**2*Zd41**2+9D0*CW**2/SW**2*Zd11
+     &      **2)
+      AAABC(545) = EE**2*(6D0*Zd33*dconjg(Zd33)+SW**2/CW
+     &      **2*Zd33*dconjg(Zd33)+4D0*SW**2/CW**2*Zd63*dconjg(Zd63
+     &      )+9D0*CW**2/SW**2*Zd33*dconjg(Zd33))
+      AAABR(214) = GG**2
+      AAABC(546) = GG**2*(Zd33*dconjg(Zd33)+Zd63*dconjg(Zd63
+     &      ))
+      AAABC(547) = EE**2/SW**2*Zd33*dconjg(Zd33)
+      AAABR(215) = EE**2/SW**2*Zd22**2
+      AAABR(216) = EE**2/SW**2*Zd11**2
+      AAABC(548) = EE**2*(SW/CW*dconjg(Zd33)*Zd36-2D0*SW
+     &      /CW*dconjg(Zd63)*Zd66+3D0*CW/SW*dconjg(Zd33)*Zd36
+     &      )
+      AAABC(549) = EE**2*(dconjg(Zd33)*Zd36+dconjg(Zd63)*Zd66
+     &      )
+      AAABR(217) = EE**2*(SW/CW*Zd11*Zd14-2D0*SW/CW*Zd41
+     &      *Zd44+3D0*CW/SW*Zd11*Zd14)
+      AAABR(218) = EE**2*(SW/CW*Zd22*Zd25-2D0*SW/CW*Zd52
+     &      *Zd55+3D0*CW/SW*Zd22*Zd25)
+      AAABC(550) = EE*GG*(SW/CW*dconjg(Zd33)*Zd36-2D0*SW
+     &      /CW*dconjg(Zd63)*Zd66+3D0*CW/SW*dconjg(Zd33)*Zd36
+     &      )
+      AAABC(551) = EE*GG*(dconjg(Zd33)*Zd36+dconjg(Zd63)*Zd66
+     &      )
+      AAABR(219) = EE*GG*(SW/CW*Zd22*Zd25-2D0*SW/CW*Zd52
+     &      *Zd55+3D0*CW/SW*Zd22*Zd25)
+      AAABR(220) = EE*GG*(SW/CW*Zd11*Zd14-2D0*SW/CW*Zd41
+     &      *Zd44+3D0*CW/SW*Zd11*Zd14)
+      AAABC(552) = EE**2*(6D0*dconjg(Zd33)*Zd36+SW**2/CW
+     &      **2*dconjg(Zd33)*Zd36+4D0*SW**2/CW**2*dconjg(Zd63
+     &      )*Zd66+9D0*CW**2/SW**2*dconjg(Zd33)*Zd36)
+      AAABR(221) = EE**2*(6D0*Zd22*Zd25+SW**2/CW**2*Zd22
+     &      *Zd25+4D0*SW**2/CW**2*Zd52*Zd55+9D0*CW**2/SW
+     &      **2*Zd22*Zd25)
+      AAABR(222) = EE**2*(6D0*Zd11*Zd14+SW**2/CW**2*Zd11
+     &      *Zd14+4D0*SW**2/CW**2*Zd41*Zd44+9D0*CW**2/SW
+     &      **2*Zd11*Zd14)
+      AAABC(553) = GG**2*(dconjg(Zd33)*Zd36+dconjg(Zd63)*Zd66
+     &      )
+      AAABC(554) = EE**2/SW**2*dconjg(Zd33)*Zd36
+      AAABR(223) = EE**2/SW**2*Zd11*Zd14
+      AAABR(224) = EE**2/SW**2*Zd22*Zd25
+      AAABR(225) = EE**2/CW*Sqrt2*Vud*Zd11*Zu11
+      AAABR(226) = EE**2/SW*Sqrt2*Vud*Zd11*Zu11
+      AAABR(227) = EE**2/CW*Sqrt2*Vus*Zd22*Zu11
+      AAABR(228) = EE**2/SW*Sqrt2*Vus*Zd22*Zu11
+      AAABR(229) = EE**2/CW*Sqrt2*Vcs*Zd22*Zu22
+      AAABR(230) = EE**2/SW*Sqrt2*Vcs*Zd22*Zu22
+      AAABR(231) = EE**2/CW*Sqrt2*Vcd*Zd11*Zu22
+      AAABR(232) = EE**2/SW*Sqrt2*Vcd*Zd11*Zu22
+      AAABC(555) = EE**2/CW*Sqrt2*dconjg(Zd33)*Zu33
+      AAABC(556) = EE**2/SW*Sqrt2*dconjg(Zd33)*Zu33
+      AAABR(233) = EE*GG/SW*Sqrt2*Vcs*Zd22*Zu22
+      AAABR(234) = EE*GG/SW*Sqrt2*Vcd*Zd11*Zu22
+      AAABR(235) = EE*GG/SW*Sqrt2*Vus*Zd22*Zu11
+      AAABC(557) = EE*GG/SW*Sqrt2*dconjg(Zd33)*Zu33
+      AAABR(236) = EE*GG/SW*Sqrt2*Vud*Zd11*Zu11
+      AAABR(237) = EE**2/CW*Sqrt2*Vud*Zd11*Zu14
+      AAABR(238) = EE**2/SW*Sqrt2*Vud*Zd11*Zu14
+      AAABR(239) = EE**2/CW*Sqrt2*Vcd*Zd11*Zu25
+      AAABR(240) = EE**2/SW*Sqrt2*Vcd*Zd11*Zu25
+      AAABC(558) = EE**2/CW*Sqrt2*dconjg(Zd33)*Zu36
+      AAABC(559) = EE**2/SW*Sqrt2*dconjg(Zd33)*Zu36
+      AAABR(241) = EE**2/CW*Sqrt2*Vus*Zd22*Zu14
+      AAABR(242) = EE**2/SW*Sqrt2*Vus*Zd22*Zu14
+      AAABR(243) = EE**2/CW*Sqrt2*Vcs*Zd22*Zu25
+      AAABR(244) = EE**2/SW*Sqrt2*Vcs*Zd22*Zu25
+      AAABR(245) = EE*GG/SW*Sqrt2*Vcd*Zd11*Zu25
+      AAABR(246) = EE*GG/SW*Sqrt2*Vus*Zd22*Zu14
+      AAABR(247) = EE*GG/SW*Sqrt2*Vud*Zd11*Zu14
+      AAABC(560) = EE*GG/SW*Sqrt2*dconjg(Zd33)*Zu36
+      AAABR(248) = EE*GG/SW*Sqrt2*Vcs*Zd22*Zu25
+      AAABR(249) = EE**2*(SW/CW*Zd14**2-2D0*SW/CW*Zd44**2
+     &      +3D0*CW/SW*Zd14**2)
+      AAABC(561) = EE**2*(SW/CW*Zd36*dconjg(Zd36)-2D0*SW
+     &      /CW*Zd66*dconjg(Zd66)+3D0*CW/SW*Zd36*dconjg(Zd36
+     &      ))
+      AAABC(562) = EE**2*(Zd36*dconjg(Zd36)+Zd66*dconjg(Zd66
+     &      ))
+      AAABR(250) = EE**2*(SW/CW*Zd25**2-2D0*SW/CW*Zd55**2
+     &      +3D0*CW/SW*Zd25**2)
+      AAABR(251) = EE*GG*(SW/CW*Zd14**2-2D0*SW/CW*Zd44**2
+     &      +3D0*CW/SW*Zd14**2)
+      AAABR(252) = EE*GG*(SW/CW*Zd25**2-2D0*SW/CW*Zd55**2
+     &      +3D0*CW/SW*Zd25**2)
+      AAABC(563) = EE*GG*(SW/CW*Zd36*dconjg(Zd36)-2D0*SW
+     &      /CW*Zd66*dconjg(Zd66)+3D0*CW/SW*Zd36*dconjg(Zd36
+     &      ))
+      AAABC(564) = EE*GG*(Zd36*dconjg(Zd36)+Zd66*dconjg(Zd66
+     &      ))
+      AAABR(253) = EE**2*(6D0*Zd14**2+SW**2/CW**2*Zd14**2
+     &      +4D0*SW**2/CW**2*Zd44**2+9D0*CW**2/SW**2*Zd14
+     &      **2)
+      AAABC(565) = EE**2*(6D0*Zd36*dconjg(Zd36)+SW**2/CW
+     &      **2*Zd36*dconjg(Zd36)+4D0*SW**2/CW**2*Zd66*dconjg(Zd66
+     &      )+9D0*CW**2/SW**2*Zd36*dconjg(Zd36))
+      AAABR(254) = EE**2*(6D0*Zd25**2+SW**2/CW**2*Zd25**2
+     &      +4D0*SW**2/CW**2*Zd55**2+9D0*CW**2/SW**2*Zd25
+     &      **2)
+      AAABC(566) = GG**2*(Zd36*dconjg(Zd36)+Zd66*dconjg(Zd66
+     &      ))
+      AAABR(255) = EE**2/SW**2*Zd25**2
+      AAABR(256) = EE**2/SW**2*Zd14**2
+      AAABC(567) = EE**2/SW**2*Zd36*dconjg(Zd36)
+      AAABC(568) = EE**2/CW*Sqrt2*dconjg(Zd36)*Zu33
+      AAABC(569) = EE**2/SW*Sqrt2*dconjg(Zd36)*Zu33
+      AAABR(257) = EE**2/CW*Sqrt2*Vud*Zd14*Zu11
+      AAABR(258) = EE**2/SW*Sqrt2*Vud*Zd14*Zu11
+      AAABR(259) = EE**2/CW*Sqrt2*Vcs*Zd25*Zu22
+      AAABR(260) = EE**2/SW*Sqrt2*Vcs*Zd25*Zu22
+      AAABR(261) = EE**2/CW*Sqrt2*Vcd*Zd14*Zu22
+      AAABR(262) = EE**2/SW*Sqrt2*Vcd*Zd14*Zu22
+      AAABR(263) = EE**2/CW*Sqrt2*Vus*Zd25*Zu11
+      AAABR(264) = EE**2/SW*Sqrt2*Vus*Zd25*Zu11
+      AAABC(570) = EE*GG/SW*Sqrt2*dconjg(Zd36)*Zu33
+      AAABR(265) = EE*GG/SW*Sqrt2*Vus*Zd25*Zu11
+      AAABR(266) = EE*GG/SW*Sqrt2*Vcs*Zd25*Zu22
+      AAABR(267) = EE*GG/SW*Sqrt2*Vcd*Zd14*Zu22
+      AAABR(268) = EE*GG/SW*Sqrt2*Vud*Zd14*Zu11
+      AAABR(269) = EE**2/CW*Sqrt2*Vcd*Zd14*Zu25
+      AAABR(270) = EE**2/SW*Sqrt2*Vcd*Zd14*Zu25
+      AAABR(271) = EE**2/CW*Sqrt2*Vus*Zd25*Zu14
+      AAABR(272) = EE**2/SW*Sqrt2*Vus*Zd25*Zu14
+      AAABC(571) = EE**2/CW*Sqrt2*dconjg(Zd36)*Zu36
+      AAABC(572) = EE**2/SW*Sqrt2*dconjg(Zd36)*Zu36
+      AAABR(273) = EE**2/CW*Sqrt2*Vcs*Zd25*Zu25
+      AAABR(274) = EE**2/SW*Sqrt2*Vcs*Zd25*Zu25
+      AAABR(275) = EE**2/CW*Sqrt2*Vud*Zd14*Zu14
+      AAABR(276) = EE**2/SW*Sqrt2*Vud*Zd14*Zu14
+      AAABR(277) = EE*GG/SW*Sqrt2*Vus*Zd25*Zu14
+      AAABR(278) = EE*GG/SW*Sqrt2*Vcd*Zd14*Zu25
+      AAABR(279) = EE*GG/SW*Sqrt2*Vud*Zd14*Zu14
+      AAABR(280) = EE*GG/SW*Sqrt2*Vcs*Zd25*Zu25
+      AAABC(573) = EE*GG/SW*Sqrt2*dconjg(Zd36)*Zu36
+      AAABR(281) = EE**2*(SW/CW*Zu11**2+4D0*SW/CW*Zu41**2
+     &      -3D0*CW/SW*Zu11**2)
+      AAABC(574) = EE**2*(SW/CW*Zu33*dconjg(Zu33)+4D0*SW
+     &      /CW*Zu63*dconjg(Zu63)-3D0*CW/SW*Zu33*dconjg(Zu33
+     &      ))
+      AAABC(575) = EE**2*(Zu33*dconjg(Zu33)+Zu63*dconjg(Zu63
+     &      ))
+      AAABR(282) = EE**2*(SW/CW*Zu22**2+4D0*SW/CW*Zu52**2
+     &      -3D0*CW/SW*Zu22**2)
+      AAABR(283) = EE*GG*(SW/CW*Zu11**2+4D0*SW/CW*Zu41**2
+     &      -3D0*CW/SW*Zu11**2)
+      AAABC(576) = EE*GG*(SW/CW*Zu33*dconjg(Zu33)+4D0*SW
+     &      /CW*Zu63*dconjg(Zu63)-3D0*CW/SW*Zu33*dconjg(Zu33
+     &      ))
+      AAABC(577) = EE*GG*(Zu33*dconjg(Zu33)+Zu63*dconjg(Zu63
+     &      ))
+      AAABR(284) = EE*GG*(SW/CW*Zu22**2+4D0*SW/CW*Zu52**2
+     &      -3D0*CW/SW*Zu22**2)
+      AAABR(285) = EE**2*(6D0*Zu22**2-SW**2/CW**2*Zu22**2
+     &      -16D0*SW**2/CW**2*Zu52**2-9D0*CW**2/SW**2*Zu22
+     &      **2)
+      AAABR(286) = EE**2*(6D0*Zu11**2-SW**2/CW**2*Zu11**2
+     &      -16D0*SW**2/CW**2*Zu41**2-9D0*CW**2/SW**2*Zu11
+     &      **2)
+      AAABC(578) = EE**2*(6D0*Zu33*dconjg(Zu33)-SW**2/CW
+     &      **2*Zu33*dconjg(Zu33)-16D0*SW**2/CW**2*Zu63*dconjg(Zu63
+     &      )-9D0*CW**2/SW**2*Zu33*dconjg(Zu33))
+      AAABC(579) = GG**2*(Zu33*dconjg(Zu33)+Zu63*dconjg(Zu63
+     &      ))
+      AAABC(580) = EE**2/SW**2*Zu33*dconjg(Zu33)
+      AAABR(287) = EE**2/SW**2*Zu11**2
+      AAABR(288) = EE**2/SW**2*Zu22**2
+      AAABC(581) = EE**2*(SW/CW*dconjg(Zu33)*Zu36+4D0*SW
+     &      /CW*dconjg(Zu63)*Zu66-3D0*CW/SW*dconjg(Zu33)*Zu36
+     &      )
+      AAABC(582) = EE**2*(dconjg(Zu33)*Zu36+dconjg(Zu63)*Zu66
+     &      )
+      AAABR(289) = EE**2*(SW/CW*Zu11*Zu14+4D0*SW/CW*Zu41
+     &      *Zu44-3D0*CW/SW*Zu11*Zu14)
+      AAABR(290) = EE**2*(SW/CW*Zu22*Zu25+4D0*SW/CW*Zu52
+     &      *Zu55-3D0*CW/SW*Zu22*Zu25)
+      AAABC(583) = EE*GG*(SW/CW*dconjg(Zu33)*Zu36+4D0*SW
+     &      /CW*dconjg(Zu63)*Zu66-3D0*CW/SW*dconjg(Zu33)*Zu36
+     &      )
+      AAABC(584) = EE*GG*(dconjg(Zu33)*Zu36+dconjg(Zu63)*Zu66
+     &      )
+      AAABR(291) = EE*GG*(SW/CW*Zu22*Zu25+4D0*SW/CW*Zu52
+     &      *Zu55-3D0*CW/SW*Zu22*Zu25)
+      AAABR(292) = EE*GG*(SW/CW*Zu11*Zu14+4D0*SW/CW*Zu41
+     &      *Zu44-3D0*CW/SW*Zu11*Zu14)
+      AAABR(293) = EE**2*(6D0*Zu22*Zu25-SW**2/CW**2*Zu22
+     &      *Zu25-16D0*SW**2/CW**2*Zu52*Zu55-9D0*CW**2/SW
+     &      **2*Zu22*Zu25)
+      AAABR(294) = EE**2*(6D0*Zu11*Zu14-SW**2/CW**2*Zu11
+     &      *Zu14-16D0*SW**2/CW**2*Zu41*Zu44-9D0*CW**2/SW
+     &      **2*Zu11*Zu14)
+      AAABC(585) = EE**2*(6D0*dconjg(Zu33)*Zu36-SW**2/CW
+     &      **2*dconjg(Zu33)*Zu36-16D0*SW**2/CW**2*dconjg(Zu63
+     &      )*Zu66-9D0*CW**2/SW**2*dconjg(Zu33)*Zu36)
+      AAABC(586) = GG**2*(dconjg(Zu33)*Zu36+dconjg(Zu63)*Zu66
+     &      )
+      AAABR(295) = EE**2/SW**2*Zu11*Zu14
+      AAABR(296) = EE**2/SW**2*Zu22*Zu25
+      AAABC(587) = EE**2/SW**2*dconjg(Zu33)*Zu36
+      AAABR(297) = EE**2*(SW/CW*Zu25**2+4D0*SW/CW*Zu55**2
+     &      -3D0*CW/SW*Zu25**2)
+      AAABR(298) = EE**2*(SW/CW*Zu14**2+4D0*SW/CW*Zu44**2
+     &      -3D0*CW/SW*Zu14**2)
+      AAABC(588) = EE**2*(SW/CW*Zu36*dconjg(Zu36)+4D0*SW
+     &      /CW*Zu66*dconjg(Zu66)-3D0*CW/SW*Zu36*dconjg(Zu36
+     &      ))
+      AAABC(589) = EE**2*(Zu36*dconjg(Zu36)+Zu66*dconjg(Zu66
+     &      ))
+      AAABR(299) = EE*GG*(SW/CW*Zu25**2+4D0*SW/CW*Zu55**2
+     &      -3D0*CW/SW*Zu25**2)
+      AAABC(590) = EE*GG*(SW/CW*Zu36*dconjg(Zu36)+4D0*SW
+     &      /CW*Zu66*dconjg(Zu66)-3D0*CW/SW*Zu36*dconjg(Zu36
+     &      ))
+      AAABC(591) = EE*GG*(Zu36*dconjg(Zu36)+Zu66*dconjg(Zu66
+     &      ))
+      AAABR(300) = EE*GG*(SW/CW*Zu14**2+4D0*SW/CW*Zu44**2
+     &      -3D0*CW/SW*Zu14**2)
+      AAABC(592) = EE**2*(6D0*Zu36*dconjg(Zu36)-SW**2/CW
+     &      **2*Zu36*dconjg(Zu36)-16D0*SW**2/CW**2*Zu66*dconjg(Zu66
+     &      )-9D0*CW**2/SW**2*Zu36*dconjg(Zu36))
+      AAABR(301) = EE**2*(6D0*Zu14**2-SW**2/CW**2*Zu14**2
+     &      -16D0*SW**2/CW**2*Zu44**2-9D0*CW**2/SW**2*Zu14
+     &      **2)
+      AAABR(302) = EE**2*(6D0*Zu25**2-SW**2/CW**2*Zu25**2
+     &      -16D0*SW**2/CW**2*Zu55**2-9D0*CW**2/SW**2*Zu25
+     &      **2)
+      AAABC(593) = GG**2*(Zu36*dconjg(Zu36)+Zu66*dconjg(Zu66
+     &      ))
+      AAABR(303) = EE**2/SW**2*Zu14**2
+      AAABC(594) = EE**2/SW**2*Zu36*dconjg(Zu36)
+      AAABR(304) = EE**2/SW**2*Zu25**2
+      AAABR(305) = CW*EE**2/SW
+      AAABR(306) = CW**2*EE**2/SW**2
+      end
+
+      subroutine mtrini
+      implicit none
+#include "model.h"
+
+      integer m1,m2,m3,m4
+
+      do m1 = 1,3
+      MTR001(m1)=0D0
+      MTR002(m1)=0D0
+      MTR003(m1)=0D0
+      MTR004(m1)=0D0
+      MTR005(m1)=0D0
+      MTR010(m1)=0D0
+      MTR011(m1)=0D0
+      MTR012(m1)=0D0
+      MTR017(m1)=0D0
+      MTR018(m1)=0D0
+      MTR019(m1)=0D0
+      MTR020(m1)=0D0
+      MTR023(m1)=0D0
+      MTR024(m1)=0D0
+      MTR025(m1)=0D0
+      MTR028(m1)=0D0
+      MTR029(m1)=0D0
+      MTR033(m1)=0D0
+      MTR034(m1)=0D0
+      MTR039(m1)=0D0
+      MTR040(m1)=0D0
+      MTR045(m1)=0D0
+      MTR046(m1)=0D0
+      MTR051(m1)=0D0
+      MTR052(m1)=0D0
+      MTR055(m1)=0D0
+      MTR058(m1)=0D0
+      MTR059(m1)=0D0
+      MTR060(m1)=0D0
+      MTR061(m1)=0D0
+      MTR062(m1)=0D0
+      MTR063(m1)=0D0
+      MTR064(m1)=0D0
+      MTR065(m1)=0D0
+      MTR066(m1)=0D0
+      MTR067(m1)=0D0
+      MTR068(m1)=0D0
+      MTR069(m1)=0D0
+      MTR070(m1)=0D0
+      MTR071(m1)=0D0
+      MTR072(m1)=0D0
+      MTR073(m1)=0D0
+      MTR074(m1)=0D0
+      MTR077(m1)=0D0
+      MTR078(m1)=0D0
+      MTR079(m1)=0D0
+      MTR080(m1)=0D0
+      MTR085(m1)=0D0
+      MTR086(m1)=0D0
+      MTR087(m1)=0D0
+      MTR088(m1)=0D0
+      MTR091(m1)=0D0
+      MTR092(m1)=0D0
+      MTR093(m1)=0D0
+      MTR094(m1)=0D0
+      MTR095(m1)=0D0
+      MTR096(m1)=0D0
+      MTR098(m1)=0D0
+      MTR113(m1)=0D0
+      MTR116(m1)=0D0
+      MTR117(m1)=0D0
+      MTR131(m1)=0D0
+      MTR142(m1)=0D0
+      MTR143(m1)=0D0
+      MTR144(m1)=0D0
+      MTR145(m1)=0D0
+      MTR158(m1)=0D0
+      MTR161(m1)=0D0
+      MTR162(m1)=0D0
+      MTR163(m1)=0D0
+      MTR164(m1)=0D0
+      MTR173(m1)=0D0
+      MTR174(m1)=0D0
+      MTR175(m1)=0D0
+      MTR176(m1)=0D0
+      MTR181(m1)=0D0
+      MTR182(m1)=0D0
+      MTR183(m1)=0D0
+      MTR184(m1)=0D0
+      MTR212(m1)=0D0
+      MTR213(m1)=0D0
+      MTR214(m1)=0D0
+      MTR215(m1)=0D0
+      MTR216(m1)=0D0
+      MTR217(m1)=0D0
+      MTR218(m1)=0D0
+      MTR219(m1)=0D0
+      MTR220(m1)=0D0
+      MTR221(m1)=0D0
+      MTR222(m1)=0D0
+      MTR223(m1)=0D0
+      MTR224(m1)=0D0
+      MTR225(m1)=0D0
+      MTR226(m1)=0D0
+      MTR227(m1)=0D0
+      MTR228(m1)=0D0
+      MTR229(m1)=0D0
+      MTR230(m1)=0D0
+      MTR231(m1)=0D0
+      MTR232(m1)=0D0
+      MTR233(m1)=0D0
+      MTR234(m1)=0D0
+      MTR235(m1)=0D0
+      MTR236(m1)=0D0
+      MTR237(m1)=0D0
+      MTR238(m1)=0D0
+      MTR239(m1)=0D0
+      MTR240(m1)=0D0
+      MTR241(m1)=0D0
+      MTR242(m1)=0D0
+      MTR243(m1)=0D0
+      MTR244(m1)=0D0
+      MTR245(m1)=0D0
+      MTR246(m1)=0D0
+      MTR247(m1)=0D0
+      MTR248(m1)=0D0
+      MTR255(m1)=0D0
+      MTR256(m1)=0D0
+      MTR257(m1)=0D0
+      MTR258(m1)=0D0
+      MTR259(m1)=0D0
+      MTR260(m1)=0D0
+      MTR261(m1)=0D0
+      MTR262(m1)=0D0
+      MTR263(m1)=0D0
+      MTR264(m1)=0D0
+      MTR265(m1)=0D0
+      MTR278(m1)=0D0
+      MTR279(m1)=0D0
+      MTR280(m1)=0D0
+      MTR281(m1)=0D0
+      MTR282(m1)=0D0
+      MTR283(m1)=0D0
+      MTR284(m1)=0D0
+      MTR285(m1)=0D0
+      MTR286(m1)=0D0
+      MTR287(m1)=0D0
+      MTR288(m1)=0D0
+      MTR295(m1)=0D0
+      MTR296(m1)=0D0
+      MTR297(m1)=0D0
+      MTR298(m1)=0D0
+      MTR299(m1)=0D0
+      MTR300(m1)=0D0
+      MTR301(m1)=0D0
+      MTR302(m1)=0D0
+      MTR303(m1)=0D0
+      MTR304(m1)=0D0
+      MTR305(m1)=0D0
+      MTR306(m1)=0D0
+      MTR307(m1)=0D0
+      enddo
+      do m1 = 1,3
+      do m2 = 1,3
+      MTR006(m1,m2)=0D0
+      MTR007(m1,m2)=0D0
+      MTR008(m1,m2)=0D0
+      MTR009(m1,m2)=0D0
+      MTR013(m1,m2)=0D0
+      MTR014(m1,m2)=0D0
+      MTR015(m1,m2)=0D0
+      MTR016(m1,m2)=0D0
+      MTR021(m1,m2)=0D0
+      MTR022(m1,m2)=0D0
+      MTR026(m1,m2)=0D0
+      MTR027(m1,m2)=0D0
+      MTR030(m1,m2)=0D0
+      MTR031(m1,m2)=0D0
+      MTR032(m1,m2)=0D0
+      MTR035(m1,m2)=0D0
+      MTR036(m1,m2)=0D0
+      MTR037(m1,m2)=0D0
+      MTR038(m1,m2)=0D0
+      MTR041(m1,m2)=0D0
+      MTR042(m1,m2)=0D0
+      MTR043(m1,m2)=0D0
+      MTR044(m1,m2)=0D0
+      MTR047(m1,m2)=0D0
+      MTR048(m1,m2)=0D0
+      MTR049(m1,m2)=0D0
+      MTR050(m1,m2)=0D0
+      MTR053(m1,m2)=0D0
+      MTR054(m1,m2)=0D0
+      MTR056(m1,m2)=0D0
+      MTR075(m1,m2)=0D0
+      MTR076(m1,m2)=0D0
+      MTR081(m1,m2)=0D0
+      MTR082(m1,m2)=0D0
+      MTR083(m1,m2)=0D0
+      MTR084(m1,m2)=0D0
+      MTR089(m1,m2)=0D0
+      MTR090(m1,m2)=0D0
+      MTR097(m1,m2)=0D0
+      MTR114(m1,m2)=0D0
+      MTR115(m1,m2)=0D0
+      MTR132(m1,m2)=0D0
+      MTR133(m1,m2)=0D0
+      MTR134(m1,m2)=0D0
+      MTR135(m1,m2)=0D0
+      MTR136(m1,m2)=0D0
+      MTR137(m1,m2)=0D0
+      MTR154(m1,m2)=0D0
+      MTR155(m1,m2)=0D0
+      MTR156(m1,m2)=0D0
+      MTR157(m1,m2)=0D0
+      MTR159(m1,m2)=0D0
+      MTR160(m1,m2)=0D0
+      MTR206(m1,m2)=0D0
+      MTR207(m1,m2)=0D0
+      MTR249(m1,m2)=0D0
+      MTR250(m1,m2)=0D0
+      MTR251(m1,m2)=0D0
+      MTR252(m1,m2)=0D0
+      MTR253(m1,m2)=0D0
+      MTR254(m1,m2)=0D0
+      MTR266(m1,m2)=0D0
+      MTR267(m1,m2)=0D0
+      MTR268(m1,m2)=0D0
+      MTR269(m1,m2)=0D0
+      MTR270(m1,m2)=0D0
+      MTR271(m1,m2)=0D0
+      MTR272(m1,m2)=0D0
+      MTR273(m1,m2)=0D0
+      MTR274(m1,m2)=0D0
+      MTR275(m1,m2)=0D0
+      MTR276(m1,m2)=0D0
+      MTR277(m1,m2)=0D0
+      MTR289(m1,m2)=0D0
+      MTR290(m1,m2)=0D0
+      MTR291(m1,m2)=0D0
+      MTR292(m1,m2)=0D0
+      MTR293(m1,m2)=0D0
+      MTR294(m1,m2)=0D0
+      enddo
+      enddo
+      do m1 = 1,3
+      do m2 = 1,3
+      do m3 = 1,3
+      MTR057(m1,m2,m3)=0D0
+      enddo
+      enddo
+      enddo
+      do m1 = 1,2
+      do m2 = 1,3
+      do m3 = 1,3
+      MTR109(m1,m2,m3)=0D0
+      MTR110(m1,m2,m3)=0D0
+      MTR111(m1,m2,m3)=0D0
+      MTR112(m1,m2,m3)=0D0
+      enddo
+      enddo
+      enddo
+      do m1 = 1,3
+      do m2 = 1,2
+      do m3 = 1,3
+      MTR138(m1,m2,m3)=0D0
+      MTR139(m1,m2,m3)=0D0
+      MTR140(m1,m2,m3)=0D0
+      MTR141(m1,m2,m3)=0D0
+      MTR146(m1,m2,m3)=0D0
+      MTR147(m1,m2,m3)=0D0
+      MTR148(m1,m2,m3)=0D0
+      MTR149(m1,m2,m3)=0D0
+      MTR165(m1,m2,m3)=0D0
+      MTR166(m1,m2,m3)=0D0
+      MTR167(m1,m2,m3)=0D0
+      MTR168(m1,m2,m3)=0D0
+      enddo
+      enddo
+      enddo
+      quuMass(1)=Mu
+      quuMass(2)=Mc
+      quuMass(3)=Mt
+      qudMass(1)=Md
+      qudMass(2)=Ms
+      qudMass(3)=Mb
+      lpdMass(1)=Me
+      lpdMass(2)=Mm
+      lpdMass(3)=Ml
+      neuMass(1)=MNE1
+      neuMass(2)=MNE2
+      neuMass(3)=MNE3
+      neuMass(4)=MNE4
+      chaMass(1)=MC1
+      chaMass(2)=MC2
+      sluMass(1)=MSne
+      sluMass(2)=MSnm
+      sluMass(3)=MSnl
+      sldMass(1)=MSe1
+      sldMass(2)=MSm1
+      sldMass(3)=MSl1
+      sleMass(1)=MSe2
+      sleMass(2)=MSm2
+      sleMass(3)=MSl2
+      squMass(1)=MSu1
+      squMass(2)=MSc1
+      squMass(3)=MSt1
+      sqvMass(1)=MSu2
+      sqvMass(2)=MSc2
+      sqvMass(3)=MSt2
+      sqdMass(1)=MSd1
+      sqdMass(2)=MSs1
+      sqdMass(3)=MSb1
+      sqeMass(1)=MSd2
+      sqeMass(2)=MSs2
+      sqeMass(3)=MSb2
+      hisMass(1)=Mh1
+      hisMass(2)=Mh2
+      hisMass(3)=MH3
+      MTR001(1)=AAABR(8)
+      MTR001(2)=AAABR(7)
+      MTR002(1)=AAABR(11)
+      MTR002(2)=AAABR(12)
+      MTR003(1)=AAABR(15)
+      MTR003(2)=AAABR(14)
+      MTR004(1)=AAABC(1)
+      MTR004(2)=AAABC(2)
+      MTR004(3)=AAABC(3)
+      MTR005(1)=AAABC(6)
+      MTR005(2)=AAABC(4)
+      MTR005(3)=AAABC(5)
+      MTR006(1,1)=2D0*AAABR(16)
+      MTR006(1,2)=AAABC(8)
+      MTR006(2,1)=AAABC(7)
+      MTR006(2,2)=AAABC(10)
+      MTR006(3,3)=AAABC(9)
+      MTR007(1,1)=2D0*AAABR(17)
+      MTR007(1,2)=AAABC(14)
+      MTR007(2,1)=AAABC(12)
+      MTR007(2,2)=AAABC(13)
+      MTR007(3,3)=AAABC(11)
+      MTR008(1,1)=2D0*AAABR(18)
+      MTR008(1,2)=AAABC(18)
+      MTR008(2,1)=AAABC(16)
+      MTR008(2,2)=AAABC(17)
+      MTR008(3,3)=AAABC(15)
+      MTR009(1,1)=2D0*AAABR(19)
+      MTR009(1,2)=AAABC(20)
+      MTR009(2,1)=AAABC(21)
+      MTR009(2,2)=AAABC(22)
+      MTR009(3,3)=AAABC(19)
+      MTR010(1)=cI*AAABR(20)
+      MTR010(2)=cI*AAABR(21)
+      MTR010(3)=AAABR(6)
+      MTR011(1)=dconjg(AAABC(1))
+      MTR011(2)=dconjg(AAABC(2))
+      MTR011(3)=dconjg(AAABC(3))
+      MTR012(1)=dconjg(AAABC(6))
+      MTR012(2)=dconjg(AAABC(4))
+      MTR012(3)=dconjg(AAABC(5))
+      MTR013(1,1)=2D0*AAABR(16)
+      MTR013(1,2)=dconjg(AAABC(7))
+      MTR013(2,1)=dconjg(AAABC(8))
+      MTR013(2,2)=dconjg(AAABC(10))
+      MTR013(3,3)=dconjg(AAABC(9))
+      MTR014(1,1)=2D0*AAABR(18)
+      MTR014(1,2)=dconjg(AAABC(16))
+      MTR014(2,1)=dconjg(AAABC(18))
+      MTR014(2,2)=dconjg(AAABC(17))
+      MTR014(3,3)=dconjg(AAABC(15))
+      MTR015(1,1)=2D0*AAABR(17)
+      MTR015(1,2)=dconjg(AAABC(12))
+      MTR015(2,1)=dconjg(AAABC(14))
+      MTR015(2,2)=dconjg(AAABC(13))
+      MTR015(3,3)=dconjg(AAABC(11))
+      MTR016(1,1)=2D0*AAABR(19)
+      MTR016(1,2)=dconjg(AAABC(21))
+      MTR016(2,1)=dconjg(AAABC(20))
+      MTR016(2,2)=dconjg(AAABC(22))
+      MTR016(3,3)=dconjg(AAABC(19))
+      MTR017(1)=cI*AAABR(20)
+      MTR017(2)=cI*AAABR(21)
+      MTR017(3)=-AAABR(6)
+      MTR018(1)=AAABC(24)
+      MTR018(2)=AAABC(23)
+      MTR018(3)=AAABC(25)
+      MTR019(1)=AAABC(26)
+      MTR019(2)=AAABC(28)
+      MTR019(3)=-AAABC(27)
+      MTR020(1)=AAABC(30)
+      MTR020(2)=AAABC(29)
+      MTR020(3)=AAABC(31)
+      MTR021(1,1)=cI*AAABC(32)
+      MTR021(1,2)=cI*AAABC(36)
+      MTR021(1,3)=cI*AAABC(33)
+      MTR021(2,1)=-cI*AAABC(34)
+      MTR021(2,2)=-cI*AAABC(39)
+      MTR021(2,3)=-cI*AAABC(35)
+      MTR021(3,1)=AAABC(38)
+      MTR021(3,2)=AAABC(37)
+      MTR021(3,3)=AAABC(40)
+      MTR022(1,1)=cI*AAABC(46)
+      MTR022(1,2)=cI*AAABC(41)
+      MTR022(1,3)=cI*AAABC(42)
+      MTR022(2,1)=-cI*AAABC(48)
+      MTR022(2,2)=-cI*AAABC(47)
+      MTR022(2,3)=-cI*AAABC(49)
+      MTR022(3,1)=-AAABC(45)
+      MTR022(3,2)=-AAABC(44)
+      MTR022(3,3)=-AAABC(43)
+      MTR023(1)=AAABC(50)
+      MTR023(2)=AAABC(51)
+      MTR023(3)=AAABC(52)
+      MTR024(1)=dconjg(AAABC(30))
+      MTR024(2)=dconjg(AAABC(29))
+      MTR024(3)=dconjg(AAABC(31))
+      MTR025(1)=AAABC(53)
+      MTR025(2)=AAABC(55)
+      MTR025(3)=-AAABC(54)
+      MTR026(1,1)=cI*dconjg(AAABC(46))
+      MTR026(1,2)=cI*dconjg(AAABC(41))
+      MTR026(1,3)=cI*dconjg(AAABC(42))
+      MTR026(2,1)=-cI*dconjg(AAABC(48))
+      MTR026(2,2)=-cI*dconjg(AAABC(47))
+      MTR026(2,3)=-cI*dconjg(AAABC(49))
+      MTR026(3,1)=dconjg(AAABC(45))
+      MTR026(3,2)=dconjg(AAABC(44))
+      MTR026(3,3)=dconjg(AAABC(43))
+      MTR027(1,1)=cI*AAABC(64)
+      MTR027(1,2)=cI*AAABC(57)
+      MTR027(1,3)=cI*AAABC(62)
+      MTR027(2,1)=-cI*AAABC(61)
+      MTR027(2,2)=-cI*AAABC(63)
+      MTR027(2,3)=-cI*AAABC(56)
+      MTR027(3,1)=AAABC(59)
+      MTR027(3,2)=AAABC(60)
+      MTR027(3,3)=AAABC(58)
+      MTR028(1)=dconjg(AAABC(24))
+      MTR028(2)=dconjg(AAABC(23))
+      MTR028(3)=dconjg(AAABC(25))
+      MTR029(1)=dconjg(AAABC(50))
+      MTR029(2)=dconjg(AAABC(51))
+      MTR029(3)=dconjg(AAABC(52))
+      MTR030(1,1)=AAABR(22)
+      MTR030(1,2)=AAABR(22)
+      MTR030(1,3)=AAABR(22)
+      MTR030(2,1)=-AAABR(23)
+      MTR030(2,2)=-AAABR(23)
+      MTR030(2,3)=-AAABR(23)
+      MTR031(1,1)=AAABR(24)
+      MTR031(1,2)=AAABC(67)
+      MTR031(2,1)=AAABC(65)
+      MTR031(2,2)=AAABC(66)
+      MTR031(3,3)=AAABC(68)
+      MTR032(1,1)=AAABR(25)
+      MTR032(1,2)=AAABC(72)
+      MTR032(2,1)=AAABC(70)
+      MTR032(2,2)=AAABC(71)
+      MTR032(3,3)=AAABC(69)
+      MTR033(2)=AAABC(73)
+      MTR033(3)=-AAABC(74)
+      MTR034(1)=AAABR(26)
+      MTR034(2)=AAABC(75)
+      MTR034(3)=AAABC(76)
+      MTR035(1,1)=cI*AAABR(28)
+      MTR035(1,2)=cI*AAABC(77)
+      MTR035(1,3)=cI*AAABC(79)
+      MTR035(2,1)=-cI*AAABR(27)
+      MTR035(2,2)=-cI*AAABC(82)
+      MTR035(2,3)=-cI*AAABC(81)
+      MTR035(3,2)=3D0*AAABC(78)
+      MTR035(3,3)=3D0*AAABC(80)
+      MTR036(1,1)=cI*AAABR(31)
+      MTR036(1,2)=cI*AAABC(84)
+      MTR036(1,3)=cI*AAABC(83)
+      MTR036(2,1)=-cI*AAABR(30)
+      MTR036(2,2)=-cI*AAABC(87)
+      MTR036(2,3)=-cI*AAABC(88)
+      MTR036(3,1)=-3D0*AAABR(29)
+      MTR036(3,2)=-3D0*AAABC(85)
+      MTR036(3,3)=-3D0*AAABC(86)
+      MTR037(1,1)=AAABR(32)
+      MTR037(1,2)=AAABC(92)
+      MTR037(2,1)=AAABC(89)
+      MTR037(2,2)=AAABC(90)
+      MTR037(3,3)=AAABC(91)
+      MTR038(1,1)=AAABR(33)
+      MTR038(1,2)=AAABC(96)
+      MTR038(2,1)=AAABC(94)
+      MTR038(2,2)=AAABC(95)
+      MTR038(3,3)=AAABC(93)
+      MTR039(1)=AAABR(26)
+      MTR039(2)=dconjg(AAABC(75))
+      MTR039(3)=dconjg(AAABC(76))
+      MTR040(2)=AAABC(98)
+      MTR040(3)=-AAABC(97)
+      MTR041(1,1)=cI*AAABR(31)
+      MTR041(1,2)=cI*dconjg(AAABC(84))
+      MTR041(1,3)=cI*dconjg(AAABC(83))
+      MTR041(2,1)=-cI*AAABR(30)
+      MTR041(2,2)=-cI*dconjg(AAABC(87))
+      MTR041(2,3)=-cI*dconjg(AAABC(88))
+      MTR041(3,1)=3D0*AAABR(29)
+      MTR041(3,2)=3D0*dconjg(AAABC(85))
+      MTR041(3,3)=3D0*dconjg(AAABC(86))
+      MTR042(1,1)=cI*AAABR(35)
+      MTR042(1,2)=cI*AAABC(100)
+      MTR042(1,3)=cI*AAABC(104)
+      MTR042(2,1)=-cI*AAABR(34)
+      MTR042(2,2)=-cI*AAABC(101)
+      MTR042(2,3)=-cI*AAABC(103)
+      MTR042(3,2)=3D0*AAABC(102)
+      MTR042(3,3)=3D0*AAABC(99)
+      MTR043(1,1)=AAABR(24)
+      MTR043(1,2)=dconjg(AAABC(65))
+      MTR043(2,1)=dconjg(AAABC(67))
+      MTR043(2,2)=dconjg(AAABC(66))
+      MTR043(3,3)=dconjg(AAABC(68))
+      MTR044(1,1)=AAABR(32)
+      MTR044(1,2)=dconjg(AAABC(89))
+      MTR044(2,1)=dconjg(AAABC(92))
+      MTR044(2,2)=dconjg(AAABC(90))
+      MTR044(3,3)=dconjg(AAABC(91))
+      MTR045(2)=AAABC(105)
+      MTR045(3)=AAABC(106)
+      MTR046(1)=AAABR(36)
+      MTR046(2)=AAABC(107)
+      MTR046(3)=AAABC(108)
+      MTR047(1,1)=cI*AAABR(37)
+      MTR047(1,2)=cI*AAABC(113)
+      MTR047(1,3)=cI*AAABC(109)
+      MTR047(2,1)=cI*AAABR(38)
+      MTR047(2,2)=cI*AAABC(114)
+      MTR047(2,3)=cI*AAABC(111)
+      MTR047(3,2)=3D0*AAABC(112)
+      MTR047(3,3)=-3D0*AAABC(110)
+      MTR048(1,1)=cI*AAABR(39)
+      MTR048(1,2)=cI*AAABC(118)
+      MTR048(1,3)=cI*AAABC(117)
+      MTR048(2,1)=cI*AAABR(41)
+      MTR048(2,2)=cI*AAABC(116)
+      MTR048(2,3)=cI*AAABC(119)
+      MTR048(3,1)=3D0*AAABR(40)
+      MTR048(3,2)=3D0*AAABC(120)
+      MTR048(3,3)=3D0*AAABC(115)
+      MTR049(1,1)=AAABR(25)
+      MTR049(1,2)=dconjg(AAABC(70))
+      MTR049(2,1)=dconjg(AAABC(72))
+      MTR049(2,2)=dconjg(AAABC(71))
+      MTR049(3,3)=dconjg(AAABC(69))
+      MTR050(1,1)=AAABR(33)
+      MTR050(1,2)=dconjg(AAABC(94))
+      MTR050(2,1)=dconjg(AAABC(96))
+      MTR050(2,2)=dconjg(AAABC(95))
+      MTR050(3,3)=dconjg(AAABC(93))
+      MTR051(1)=AAABR(36)
+      MTR051(2)=dconjg(AAABC(107))
+      MTR051(3)=dconjg(AAABC(108))
+      MTR052(2)=AAABC(122)
+      MTR052(3)=AAABC(121)
+      MTR053(1,1)=cI*AAABR(39)
+      MTR053(1,2)=cI*dconjg(AAABC(118))
+      MTR053(1,3)=cI*dconjg(AAABC(117))
+      MTR053(2,1)=cI*AAABR(41)
+      MTR053(2,2)=cI*dconjg(AAABC(116))
+      MTR053(2,3)=cI*dconjg(AAABC(119))
+      MTR053(3,1)=-3D0*AAABR(40)
+      MTR053(3,2)=-3D0*dconjg(AAABC(120))
+      MTR053(3,3)=-3D0*dconjg(AAABC(115))
+      MTR054(1,1)=cI*AAABR(43)
+      MTR054(1,2)=cI*AAABC(123)
+      MTR054(1,3)=cI*AAABC(126)
+      MTR054(2,1)=cI*AAABR(42)
+      MTR054(2,2)=cI*AAABC(127)
+      MTR054(2,3)=cI*AAABC(125)
+      MTR054(3,2)=3D0*AAABC(124)
+      MTR054(3,3)=-3D0*AAABC(128)
+      MTR055(1)=AAABR(45)
+      MTR055(2)=-AAABR(44)
+      MTR056(1,3)=AAABR(47)
+      MTR056(2,3)=-AAABR(46)
+      MTR056(3,1)=-MTR056(1,3)
+      MTR056(3,2)=-MTR056(2,3)
+      MTR057(1,1,1)=3D0*AAABR(50)
+      MTR057(1,1,2)=-AAABR(48)
+      MTR057(1,2,1)=MTR057(1,1,2)
+      MTR057(1,2,2)=-AAABR(49)
+      MTR057(1,3,3)=AAABR(45)
+      MTR057(2,1,1)=MTR057(1,1,2)
+      MTR057(2,1,2)=MTR057(1,2,2)
+      MTR057(2,2,1)=MTR057(1,2,2)
+      MTR057(2,2,2)=3D0*AAABR(51)
+      MTR057(2,3,3)=-AAABR(44)
+      MTR057(3,1,3)=MTR057(1,3,3)
+      MTR057(3,2,3)=MTR057(2,3,3)
+      MTR057(3,3,1)=MTR057(1,3,3)
+      MTR057(3,3,2)=MTR057(2,3,3)
+      MTR058(1)=cI*AAABR(55)
+      MTR058(2)=-cI*AAABR(54)
+      MTR058(3)=AAABR(53)
+      MTR059(1)=cI*AAABR(55)
+      MTR059(2)=-cI*AAABR(54)
+      MTR059(3)=-AAABR(53)
+      MTR060(1)=EE
+      MTR060(2)=EE
+      MTR060(3)=AAABC(130)
+      MTR061(1)=AAABR(56)
+      MTR061(2)=AAABR(57)
+      MTR061(3)=AAABC(129)
+      MTR062(3)=1D0
+      MTR063(1)=AAABR(59)
+      MTR063(2)=AAABR(58)
+      MTR063(3)=AAABC(131)
+      MTR064(1)=AAABR(60)
+      MTR064(2)=AAABR(61)
+      MTR064(3)=AAABC(133)
+      MTR065(1)=AAABR(59)
+      MTR065(2)=AAABR(58)
+      MTR065(3)=dconjg(AAABC(131))
+      MTR066(1)=EE
+      MTR066(2)=EE
+      MTR066(3)=AAABC(135)
+      MTR067(1)=AAABR(62)
+      MTR067(2)=AAABR(63)
+      MTR067(3)=AAABC(134)
+      MTR068(1)=AAABR(65)
+      MTR068(2)=AAABR(64)
+      MTR068(3)=AAABC(136)
+      MTR069(1)=AAABR(60)
+      MTR069(2)=AAABR(61)
+      MTR069(3)=dconjg(AAABC(133))
+      MTR070(1)=AAABR(65)
+      MTR070(2)=AAABR(64)
+      MTR070(3)=dconjg(AAABC(136))
+      MTR071(1)=EE
+      MTR071(2)=EE
+      MTR071(3)=AAABC(138)
+      MTR072(1)=GG
+      MTR072(2)=GG
+      MTR072(3)=AAABC(139)
+      MTR073(1)=AAABR(68)
+      MTR073(2)=AAABR(67)
+      MTR073(3)=AAABC(137)
+      MTR074(1)=AAABR(70)
+      MTR074(2)=AAABR(69)
+      MTR074(3)=AAABC(140)
+      MTR075(1,1)=AAABR(74)
+      MTR075(1,2)=AAABR(73)
+      MTR075(2,1)=AAABR(71)
+      MTR075(2,2)=AAABR(72)
+      MTR075(3,3)=AAABC(143)
+      MTR076(1,1)=AAABR(77)
+      MTR076(1,2)=AAABR(75)
+      MTR076(2,1)=AAABR(78)
+      MTR076(2,2)=AAABR(76)
+      MTR076(3,3)=AAABC(144)
+      MTR077(1)=AAABR(70)
+      MTR077(2)=AAABR(69)
+      MTR077(3)=dconjg(AAABC(140))
+      MTR078(1)=EE
+      MTR078(2)=EE
+      MTR078(3)=AAABC(146)
+      MTR079(1)=GG
+      MTR079(2)=GG
+      MTR079(3)=AAABC(147)
+      MTR080(1)=AAABR(80)
+      MTR080(2)=AAABR(79)
+      MTR080(3)=AAABC(145)
+      MTR081(1,1)=AAABR(82)
+      MTR081(1,2)=AAABR(83)
+      MTR081(2,1)=AAABR(84)
+      MTR081(2,2)=AAABR(81)
+      MTR081(3,3)=AAABC(148)
+      MTR082(1,1)=AAABR(88)
+      MTR082(1,2)=AAABR(86)
+      MTR082(2,1)=AAABR(87)
+      MTR082(2,2)=AAABR(85)
+      MTR082(3,3)=AAABC(149)
+      MTR083(1,1)=AAABR(74)
+      MTR083(1,2)=AAABR(71)
+      MTR083(2,1)=AAABR(73)
+      MTR083(2,2)=AAABR(72)
+      MTR083(3,3)=dconjg(AAABC(143))
+      MTR084(1,1)=AAABR(82)
+      MTR084(1,2)=AAABR(84)
+      MTR084(2,1)=AAABR(83)
+      MTR084(2,2)=AAABR(81)
+      MTR084(3,3)=dconjg(AAABC(148))
+      MTR085(1)=EE
+      MTR085(2)=EE
+      MTR085(3)=AAABC(151)
+      MTR086(1)=GG
+      MTR086(2)=GG
+      MTR086(3)=AAABC(152)
+      MTR087(1)=AAABR(89)
+      MTR087(2)=AAABR(90)
+      MTR087(3)=AAABC(150)
+      MTR088(1)=AAABR(91)
+      MTR088(2)=AAABR(92)
+      MTR088(3)=AAABC(153)
+      MTR089(1,1)=AAABR(77)
+      MTR089(1,2)=AAABR(78)
+      MTR089(2,1)=AAABR(75)
+      MTR089(2,2)=AAABR(76)
+      MTR089(3,3)=dconjg(AAABC(144))
+      MTR090(1,1)=AAABR(88)
+      MTR090(1,2)=AAABR(87)
+      MTR090(2,1)=AAABR(86)
+      MTR090(2,2)=AAABR(85)
+      MTR090(3,3)=dconjg(AAABC(149))
+      MTR091(1)=AAABR(91)
+      MTR091(2)=AAABR(92)
+      MTR091(3)=dconjg(AAABC(153))
+      MTR092(1)=EE
+      MTR092(2)=EE
+      MTR092(3)=AAABC(157)
+      MTR093(1)=GG
+      MTR093(2)=GG
+      MTR093(3)=AAABC(158)
+      MTR094(1)=AAABR(93)
+      MTR094(2)=AAABR(94)
+      MTR094(3)=AAABC(156)
+      MTR095(1)=AAABR(54)
+      MTR095(2)=AAABR(55)
+      MTR096(1)=AAABR(96)
+      MTR096(2)=AAABR(95)
+      MTR097(1,3)=AAABR(95)
+      MTR097(2,3)=-AAABR(96)
+      MTR097(3,1)=-MTR097(1,3)
+      MTR097(3,2)=-MTR097(2,3)
+      MTR098(1)=AAABR(98)
+      MTR098(2)=AAABR(99)
+      MTR099(1,1)=AAABC(162)
+      MTR099(1,2)=AAABC(160)
+      MTR099(2,1)=dconjg(AAABC(161))
+      MTR099(2,2)=AAABC(159)
+      MTR100(1,1)=dconjg(AAABC(162))
+      MTR100(1,2)=AAABC(161)
+      MTR100(2,1)=dconjg(AAABC(160))
+      MTR100(2,2)=dconjg(AAABC(159))
+      MTR101(1,1,1)=cI*AAABC(165)
+      MTR101(1,1,2)=cI*AAABC(169)
+      MTR101(1,1,3)=AAABC(174)
+      MTR101(1,2,1)=cI*dconjg(AAABC(171))
+      MTR101(1,2,2)=cI*dconjg(AAABC(167))
+      MTR101(1,2,3)=dconjg(AAABC(173))
+      MTR101(2,1,1)=cI*AAABC(170)
+      MTR101(2,1,2)=cI*AAABC(166)
+      MTR101(2,1,3)=AAABC(172)
+      MTR101(2,2,1)=cI*AAABC(163)
+      MTR101(2,2,2)=cI*AAABC(164)
+      MTR101(2,2,3)=AAABC(168)
+      MTR102(1,1,1)=cI*dconjg(AAABC(165))
+      MTR102(1,1,2)=cI*dconjg(AAABC(169))
+      MTR102(1,1,3)=-dconjg(AAABC(174))
+      MTR102(1,2,1)=cI*dconjg(AAABC(170))
+      MTR102(1,2,2)=cI*dconjg(AAABC(166))
+      MTR102(1,2,3)=-dconjg(AAABC(172))
+      MTR102(2,1,1)=cI*AAABC(171)
+      MTR102(2,1,2)=cI*AAABC(167)
+      MTR102(2,1,3)=-AAABC(173)
+      MTR102(2,2,1)=cI*dconjg(AAABC(163))
+      MTR102(2,2,2)=cI*dconjg(AAABC(164))
+      MTR102(2,2,3)=-dconjg(AAABC(168))
+      MTR103(1,1)=AAABC(177)
+      MTR103(1,2)=AAABC(178)
+      MTR103(1,3)=AAABC(179)
+      MTR103(2,1)=AAABC(176)
+      MTR103(2,2)=AAABC(175)
+      MTR103(2,3)=AAABC(180)
+      MTR104(1,1)=AAABC(185)
+      MTR104(1,2)=AAABC(182)
+      MTR104(1,3)=AAABC(184)
+      MTR104(2,1)=AAABC(183)
+      MTR104(2,2)=AAABC(181)
+      MTR104(2,3)=AAABC(186)
+      MTR105(1,1)=AAABC(193)
+      MTR105(1,2)=AAABC(187)
+      MTR105(1,3)=AAABC(191)
+      MTR105(1,4)=AAABC(189)
+      MTR105(2,1)=AAABC(199)
+      MTR105(2,2)=AAABC(197)
+      MTR105(2,3)=AAABC(195)
+      MTR105(2,4)=AAABC(201)
+      MTR106(1,1)=AAABC(194)
+      MTR106(1,2)=AAABC(188)
+      MTR106(1,3)=AAABC(192)
+      MTR106(1,4)=AAABC(190)
+      MTR106(2,1)=AAABC(200)
+      MTR106(2,2)=AAABC(198)
+      MTR106(2,3)=AAABC(196)
+      MTR106(2,4)=AAABC(202)
+      MTR107(1,1)=AAABC(213)
+      MTR107(1,2)=AAABC(215)
+      MTR107(1,3)=AAABC(209)
+      MTR107(1,4)=AAABC(207)
+      MTR107(2,1)=AAABC(211)
+      MTR107(2,2)=AAABC(205)
+      MTR107(2,3)=AAABC(203)
+      MTR107(2,4)=AAABC(217)
+      MTR108(1,1)=AAABC(214)
+      MTR108(1,2)=AAABC(216)
+      MTR108(1,3)=AAABC(210)
+      MTR108(1,4)=AAABC(208)
+      MTR108(2,1)=AAABC(212)
+      MTR108(2,2)=AAABC(206)
+      MTR108(2,3)=AAABC(204)
+      MTR108(2,4)=AAABC(218)
+      MTR109(1,1,1)=2D0*AAABC(227)
+      MTR109(1,1,2)=AAABC(230)
+      MTR109(1,2,1)=2D0*AAABC(219)
+      MTR109(1,2,2)=AAABC(225)
+      MTR109(1,3,3)=AAABC(221)
+      MTR109(2,1,1)=2D0*AAABC(224)
+      MTR109(2,1,2)=AAABC(223)
+      MTR109(2,2,1)=2D0*AAABC(233)
+      MTR109(2,2,2)=AAABC(228)
+      MTR109(2,3,3)=AAABC(231)
+      MTR110(1,2,1)=AAABC(220)
+      MTR110(1,2,2)=AAABC(226)
+      MTR110(1,3,3)=AAABC(222)
+      MTR110(2,2,1)=AAABC(234)
+      MTR110(2,2,2)=AAABC(229)
+      MTR110(2,3,3)=AAABC(232)
+      MTR111(1,1,1)=2D0*AAABC(244)
+      MTR111(1,1,2)=AAABC(242)
+      MTR111(1,2,1)=2D0*AAABC(236)
+      MTR111(1,2,2)=AAABC(245)
+      MTR111(1,3,3)=AAABC(240)
+      MTR111(2,1,1)=2D0*AAABC(235)
+      MTR111(2,1,2)=AAABC(243)
+      MTR111(2,2,1)=2D0*AAABC(249)
+      MTR111(2,2,2)=AAABC(247)
+      MTR111(2,3,3)=AAABC(238)
+      MTR112(1,2,1)=AAABC(237)
+      MTR112(1,2,2)=AAABC(246)
+      MTR112(1,3,3)=AAABC(241)
+      MTR112(2,2,1)=AAABC(250)
+      MTR112(2,2,2)=AAABC(248)
+      MTR112(2,3,3)=AAABC(239)
+      MTR113(1)=AAABR(101)
+      MTR113(2)=AAABR(100)
+      MTR113(3)=AAABR(102)
+      MTR114(1,1)=cI*AAABR(108)
+      MTR114(1,2)=-cI*AAABR(109)
+      MTR114(1,3)=-AAABR(106)
+      MTR114(2,1)=cI*AAABR(103)
+      MTR114(2,2)=-cI*AAABR(107)
+      MTR114(2,3)=-AAABR(105)
+      MTR114(3,1)=cI*AAABR(110)
+      MTR114(3,2)=-cI*AAABR(111)
+      MTR114(3,3)=-AAABR(104)
+      MTR115(1,1)=cI*AAABR(108)
+      MTR115(1,2)=-cI*AAABR(109)
+      MTR115(1,3)=AAABR(106)
+      MTR115(2,1)=cI*AAABR(103)
+      MTR115(2,2)=-cI*AAABR(107)
+      MTR115(2,3)=AAABR(105)
+      MTR115(3,1)=cI*AAABR(110)
+      MTR115(3,2)=-cI*AAABR(111)
+      MTR115(3,3)=AAABR(104)
+      MTR116(1)=AAABR(112)
+      MTR116(2)=AAABR(113)
+      MTR116(3)=AAABR(114)
+      MTR117(1)=AAABR(116)
+      MTR117(2)=AAABR(117)
+      MTR117(3)=AAABR(115)
+      MTR118(1,1)=AAABC(253)
+      MTR118(1,2)=AAABC(273)
+      MTR118(1,3)=AAABC(261)
+      MTR118(2,1)=AAABC(251)
+      MTR118(2,2)=AAABC(271)
+      MTR118(2,3)=AAABC(265)
+      MTR118(3,1)=AAABC(257)
+      MTR118(3,2)=AAABC(263)
+      MTR118(3,3)=AAABC(267)
+      MTR118(4,1)=AAABC(269)
+      MTR118(4,2)=AAABC(255)
+      MTR118(4,3)=AAABC(259)
+      MTR119(1,1)=AAABC(254)
+      MTR119(1,2)=AAABC(274)
+      MTR119(1,3)=AAABC(262)
+      MTR119(2,1)=AAABC(252)
+      MTR119(2,2)=AAABC(272)
+      MTR119(2,3)=AAABC(266)
+      MTR119(3,1)=AAABC(258)
+      MTR119(3,2)=AAABC(264)
+      MTR119(3,3)=AAABC(268)
+      MTR119(4,1)=AAABC(270)
+      MTR119(4,2)=AAABC(256)
+      MTR119(4,3)=AAABC(260)
+      MTR120(1,1)=AAABC(295)
+      MTR120(1,2)=AAABC(283)
+      MTR120(1,3)=AAABC(297)
+      MTR120(2,1)=AAABC(291)
+      MTR120(2,2)=AAABC(289)
+      MTR120(2,3)=AAABC(293)
+      MTR120(3,1)=AAABC(275)
+      MTR120(3,2)=AAABC(287)
+      MTR120(3,3)=AAABC(279)
+      MTR120(4,1)=AAABC(281)
+      MTR120(4,2)=AAABC(285)
+      MTR120(4,3)=AAABC(277)
+      MTR121(1,1)=AAABC(296)
+      MTR121(1,2)=AAABC(284)
+      MTR121(1,3)=AAABC(298)
+      MTR121(2,1)=AAABC(292)
+      MTR121(2,2)=AAABC(290)
+      MTR121(2,3)=AAABC(294)
+      MTR121(3,1)=AAABC(276)
+      MTR121(3,2)=AAABC(288)
+      MTR121(3,3)=AAABC(280)
+      MTR121(4,1)=AAABC(282)
+      MTR121(4,2)=AAABC(286)
+      MTR121(4,3)=AAABC(278)
+      MTR122(1,1)=AAABC(299)
+      MTR122(1,2)=AAABC(299)
+      MTR122(1,3)=AAABC(299)
+      MTR122(2,1)=AAABC(303)
+      MTR122(2,2)=AAABC(303)
+      MTR122(2,3)=AAABC(303)
+      MTR123(1,1)=AAABC(300)
+      MTR123(1,2)=AAABC(302)
+      MTR123(1,3)=AAABC(301)
+      MTR123(2,1)=AAABC(305)
+      MTR123(2,2)=AAABC(306)
+      MTR123(2,3)=AAABC(304)
+      MTR124(1,1)=dconjg(AAABC(177))
+      MTR124(1,2)=dconjg(AAABC(178))
+      MTR124(1,3)=dconjg(AAABC(179))
+      MTR124(2,1)=dconjg(AAABC(176))
+      MTR124(2,2)=dconjg(AAABC(175))
+      MTR124(2,3)=dconjg(AAABC(180))
+      MTR125(1,1)=dconjg(AAABC(185))
+      MTR125(1,2)=dconjg(AAABC(182))
+      MTR125(1,3)=dconjg(AAABC(184))
+      MTR125(2,1)=dconjg(AAABC(183))
+      MTR125(2,2)=dconjg(AAABC(181))
+      MTR125(2,3)=dconjg(AAABC(186))
+      MTR126(1,1)=AAABC(310)
+      MTR126(1,2)=AAABC(310)
+      MTR126(1,3)=AAABC(310)
+      MTR126(2,1)=AAABC(309)
+      MTR126(2,2)=AAABC(309)
+      MTR126(2,3)=AAABC(309)
+      MTR126(3,1)=AAABC(308)
+      MTR126(3,2)=AAABC(308)
+      MTR126(3,3)=AAABC(308)
+      MTR126(4,1)=AAABC(307)
+      MTR126(4,2)=AAABC(307)
+      MTR126(4,3)=AAABC(307)
+      MTR127(1,1)=AAABC(320)
+      MTR127(1,2)=AAABC(328)
+      MTR127(1,3)=AAABC(311)
+      MTR127(2,1)=AAABC(314)
+      MTR127(2,2)=AAABC(334)
+      MTR127(2,3)=AAABC(329)
+      MTR127(3,1)=AAABC(316)
+      MTR127(3,2)=AAABC(324)
+      MTR127(3,3)=AAABC(325)
+      MTR127(4,1)=AAABC(322)
+      MTR127(4,2)=AAABC(332)
+      MTR127(4,3)=AAABC(317)
+      MTR128(1,1)=2D0*AAABC(319)
+      MTR128(1,2)=AAABC(327)
+      MTR128(1,3)=AAABC(312)
+      MTR128(2,1)=2D0*AAABC(313)
+      MTR128(2,2)=AAABC(333)
+      MTR128(2,3)=AAABC(330)
+      MTR128(3,1)=2D0*AAABC(315)
+      MTR128(3,2)=AAABC(323)
+      MTR128(3,3)=AAABC(326)
+      MTR128(4,1)=2D0*AAABC(321)
+      MTR128(4,2)=AAABC(331)
+      MTR128(4,3)=AAABC(318)
+      MTR129(1,1)=2D0*AAABC(347)
+      MTR129(1,2)=AAABC(351)
+      MTR129(1,3)=AAABC(344)
+      MTR129(2,1)=2D0*AAABC(349)
+      MTR129(2,2)=AAABC(335)
+      MTR129(2,3)=AAABC(346)
+      MTR129(3,1)=2D0*AAABC(339)
+      MTR129(3,2)=AAABC(353)
+      MTR129(3,3)=AAABC(356)
+      MTR129(4,1)=2D0*AAABC(357)
+      MTR129(4,2)=AAABC(341)
+      MTR129(4,3)=AAABC(338)
+      MTR130(1,1)=AAABC(348)
+      MTR130(1,2)=AAABC(352)
+      MTR130(1,3)=AAABC(343)
+      MTR130(2,1)=AAABC(350)
+      MTR130(2,2)=AAABC(336)
+      MTR130(2,3)=AAABC(345)
+      MTR130(3,1)=AAABC(340)
+      MTR130(3,2)=AAABC(354)
+      MTR130(3,3)=AAABC(355)
+      MTR130(4,1)=AAABC(358)
+      MTR130(4,2)=AAABC(342)
+      MTR130(4,3)=AAABC(337)
+      MTR131(2)=AAABR(118)
+      MTR131(3)=AAABR(119)
+      MTR132(2,1)=cI*AAABR(120)
+      MTR132(2,2)=-cI*AAABR(122)
+      MTR132(2,3)=-AAABR(121)
+      MTR132(3,1)=cI*AAABR(123)
+      MTR132(3,2)=-cI*AAABR(125)
+      MTR132(3,3)=-AAABR(124)
+      MTR133(2,1)=cI*AAABR(120)
+      MTR133(2,2)=-cI*AAABR(122)
+      MTR133(2,3)=AAABR(121)
+      MTR133(3,1)=cI*AAABR(123)
+      MTR133(3,2)=-cI*AAABR(125)
+      MTR133(3,3)=AAABR(124)
+      MTR134(1,2)=AAABR(131)
+      MTR134(2,2)=AAABR(126)
+      MTR134(3,3)=AAABR(129)
+      MTR135(2,1)=AAABR(128)
+      MTR135(2,2)=AAABR(127)
+      MTR135(3,3)=AAABR(130)
+      MTR136(2,1)=AAABR(132)
+      MTR136(2,2)=AAABR(134)
+      MTR136(3,3)=AAABR(136)
+      MTR137(1,2)=AAABR(137)
+      MTR137(2,2)=AAABR(133)
+      MTR137(3,3)=AAABR(135)
+      MTR138(1,1,1)=2D0*AAABC(364)
+      MTR138(1,1,2)=AAABC(363)
+      MTR138(1,2,1)=2D0*AAABC(377)
+      MTR138(1,2,2)=AAABC(380)
+      MTR138(2,1,1)=2D0*AAABC(365)
+      MTR138(2,1,2)=AAABC(359)
+      MTR138(2,2,1)=2D0*AAABC(381)
+      MTR138(2,2,2)=AAABC(378)
+      MTR138(3,1,3)=AAABC(361)
+      MTR138(3,2,3)=AAABC(375)
+      MTR139(2,1,1)=AAABC(366)
+      MTR139(2,1,2)=AAABC(360)
+      MTR139(2,2,1)=AAABC(382)
+      MTR139(2,2,2)=AAABC(379)
+      MTR139(3,1,3)=AAABC(362)
+      MTR139(3,2,3)=AAABC(376)
+      MTR140(1,1,1)=2D0*AAABC(373)
+      MTR140(1,1,2)=AAABC(374)
+      MTR140(1,2,1)=2D0*AAABC(387)
+      MTR140(1,2,2)=AAABC(390)
+      MTR140(2,1,1)=2D0*AAABC(367)
+      MTR140(2,1,2)=AAABC(371)
+      MTR140(2,2,1)=2D0*AAABC(388)
+      MTR140(2,2,2)=AAABC(385)
+      MTR140(3,1,3)=AAABC(369)
+      MTR140(3,2,3)=AAABC(383)
+      MTR141(2,1,1)=AAABC(368)
+      MTR141(2,1,2)=AAABC(372)
+      MTR141(2,2,1)=AAABC(389)
+      MTR141(2,2,2)=AAABC(386)
+      MTR141(3,1,3)=AAABC(370)
+      MTR141(3,2,3)=AAABC(384)
+      MTR142(1)=AAABR(138)
+      MTR142(2)=AAABR(140)
+      MTR142(3)=AAABC(392)
+      MTR143(1)=AAABR(139)
+      MTR143(2)=AAABR(141)
+      MTR143(3)=AAABC(391)
+      MTR144(1)=AAABR(142)
+      MTR144(2)=AAABR(144)
+      MTR144(3)=AAABC(394)
+      MTR145(1)=AAABR(143)
+      MTR145(2)=AAABR(145)
+      MTR145(3)=AAABC(393)
+      MTR146(1,1,1)=2D0*dconjg(AAABC(227))
+      MTR146(1,1,2)=dconjg(AAABC(230))
+      MTR146(1,2,1)=2D0*dconjg(AAABC(224))
+      MTR146(1,2,2)=dconjg(AAABC(223))
+      MTR146(2,1,1)=2D0*dconjg(AAABC(219))
+      MTR146(2,1,2)=dconjg(AAABC(225))
+      MTR146(2,2,1)=2D0*dconjg(AAABC(233))
+      MTR146(2,2,2)=dconjg(AAABC(228))
+      MTR146(3,1,3)=dconjg(AAABC(221))
+      MTR146(3,2,3)=dconjg(AAABC(231))
+      MTR147(2,1,1)=dconjg(AAABC(220))
+      MTR147(2,1,2)=dconjg(AAABC(226))
+      MTR147(2,2,1)=dconjg(AAABC(234))
+      MTR147(2,2,2)=dconjg(AAABC(229))
+      MTR147(3,1,3)=dconjg(AAABC(222))
+      MTR147(3,2,3)=dconjg(AAABC(232))
+      MTR148(1,1,1)=2D0*dconjg(AAABC(244))
+      MTR148(1,1,2)=dconjg(AAABC(242))
+      MTR148(1,2,1)=2D0*dconjg(AAABC(235))
+      MTR148(1,2,2)=dconjg(AAABC(243))
+      MTR148(2,1,1)=2D0*dconjg(AAABC(236))
+      MTR148(2,1,2)=dconjg(AAABC(245))
+      MTR148(2,2,1)=2D0*dconjg(AAABC(249))
+      MTR148(2,2,2)=dconjg(AAABC(247))
+      MTR148(3,1,3)=dconjg(AAABC(240))
+      MTR148(3,2,3)=dconjg(AAABC(238))
+      MTR149(2,1,1)=dconjg(AAABC(237))
+      MTR149(2,1,2)=dconjg(AAABC(246))
+      MTR149(2,2,1)=dconjg(AAABC(250))
+      MTR149(2,2,2)=dconjg(AAABC(248))
+      MTR149(3,1,3)=dconjg(AAABC(241))
+      MTR149(3,2,3)=dconjg(AAABC(239))
+      MTR150(1,1)=AAABC(405)
+      MTR150(1,2)=AAABC(397)
+      MTR150(1,3)=AAABC(395)
+      MTR150(2,1)=AAABC(409)
+      MTR150(2,2)=AAABC(411)
+      MTR150(2,3)=AAABC(399)
+      MTR150(3,1)=AAABC(403)
+      MTR150(3,2)=AAABC(417)
+      MTR150(3,3)=AAABC(413)
+      MTR150(4,1)=AAABC(401)
+      MTR150(4,2)=AAABC(407)
+      MTR150(4,3)=AAABC(415)
+      MTR151(1,1)=4D0*AAABC(406)
+      MTR151(1,2)=AAABC(398)
+      MTR151(1,3)=AAABC(396)
+      MTR151(2,1)=4D0*AAABC(410)
+      MTR151(2,2)=AAABC(412)
+      MTR151(2,3)=AAABC(400)
+      MTR151(3,1)=4D0*AAABC(404)
+      MTR151(3,2)=AAABC(418)
+      MTR151(3,3)=AAABC(414)
+      MTR151(4,1)=4D0*AAABC(402)
+      MTR151(4,2)=AAABC(408)
+      MTR151(4,3)=AAABC(416)
+      MTR152(1,1)=AAABC(437)
+      MTR152(1,2)=AAABC(435)
+      MTR152(1,3)=AAABC(431)
+      MTR152(2,1)=AAABC(423)
+      MTR152(2,2)=AAABC(439)
+      MTR152(2,3)=AAABC(433)
+      MTR152(3,1)=AAABC(419)
+      MTR152(3,2)=AAABC(421)
+      MTR152(3,3)=AAABC(427)
+      MTR152(4,1)=AAABC(429)
+      MTR152(4,2)=AAABC(425)
+      MTR152(4,3)=AAABC(441)
+      MTR153(1,1)=4D0*AAABC(438)
+      MTR153(1,2)=AAABC(436)
+      MTR153(1,3)=AAABC(432)
+      MTR153(2,1)=4D0*AAABC(424)
+      MTR153(2,2)=AAABC(440)
+      MTR153(2,3)=AAABC(434)
+      MTR153(3,1)=4D0*AAABC(420)
+      MTR153(3,2)=AAABC(422)
+      MTR153(3,3)=AAABC(428)
+      MTR153(4,1)=4D0*AAABC(430)
+      MTR153(4,2)=AAABC(426)
+      MTR153(4,3)=AAABC(442)
+      MTR154(2,1)=AAABR(131)
+      MTR154(2,2)=AAABR(126)
+      MTR154(3,3)=AAABR(129)
+      MTR155(1,2)=AAABR(128)
+      MTR155(2,2)=AAABR(127)
+      MTR155(3,3)=AAABR(130)
+      MTR156(2,1)=AAABR(137)
+      MTR156(2,2)=AAABR(133)
+      MTR156(3,3)=AAABR(135)
+      MTR157(1,2)=AAABR(132)
+      MTR157(2,2)=AAABR(134)
+      MTR157(3,3)=AAABR(136)
+      MTR158(2)=AAABR(147)
+      MTR158(3)=AAABR(146)
+      MTR159(2,1)=cI*AAABR(149)
+      MTR159(2,2)=cI*AAABR(150)
+      MTR159(2,3)=AAABR(152)
+      MTR159(3,1)=cI*AAABR(153)
+      MTR159(3,2)=cI*AAABR(151)
+      MTR159(3,3)=AAABR(148)
+      MTR160(2,1)=cI*AAABR(149)
+      MTR160(2,2)=cI*AAABR(150)
+      MTR160(2,3)=-AAABR(152)
+      MTR160(3,1)=cI*AAABR(153)
+      MTR160(3,2)=cI*AAABR(151)
+      MTR160(3,3)=-AAABR(148)
+      MTR161(1)=AAABR(154)
+      MTR161(2)=AAABR(156)
+      MTR161(3)=AAABC(443)
+      MTR162(1)=AAABR(155)
+      MTR162(2)=AAABR(157)
+      MTR162(3)=AAABC(444)
+      MTR163(1)=AAABR(160)
+      MTR163(2)=AAABR(158)
+      MTR163(3)=AAABC(445)
+      MTR164(1)=AAABR(161)
+      MTR164(2)=AAABR(159)
+      MTR164(3)=AAABC(446)
+      MTR165(1,1,1)=2D0*dconjg(AAABC(364))
+      MTR165(1,1,2)=dconjg(AAABC(363))
+      MTR165(1,2,1)=2D0*dconjg(AAABC(377))
+      MTR165(1,2,2)=dconjg(AAABC(380))
+      MTR165(2,1,1)=2D0*dconjg(AAABC(365))
+      MTR165(2,1,2)=dconjg(AAABC(359))
+      MTR165(2,2,1)=2D0*dconjg(AAABC(381))
+      MTR165(2,2,2)=dconjg(AAABC(378))
+      MTR165(3,1,3)=dconjg(AAABC(361))
+      MTR165(3,2,3)=dconjg(AAABC(375))
+      MTR166(2,1,1)=dconjg(AAABC(366))
+      MTR166(2,1,2)=dconjg(AAABC(360))
+      MTR166(2,2,1)=dconjg(AAABC(382))
+      MTR166(2,2,2)=dconjg(AAABC(379))
+      MTR166(3,1,3)=dconjg(AAABC(362))
+      MTR166(3,2,3)=dconjg(AAABC(376))
+      MTR167(1,1,1)=2D0*dconjg(AAABC(373))
+      MTR167(1,1,2)=dconjg(AAABC(374))
+      MTR167(1,2,1)=2D0*dconjg(AAABC(387))
+      MTR167(1,2,2)=dconjg(AAABC(390))
+      MTR167(2,1,1)=2D0*dconjg(AAABC(367))
+      MTR167(2,1,2)=dconjg(AAABC(371))
+      MTR167(2,2,1)=2D0*dconjg(AAABC(388))
+      MTR167(2,2,2)=dconjg(AAABC(385))
+      MTR167(3,1,3)=dconjg(AAABC(369))
+      MTR167(3,2,3)=dconjg(AAABC(383))
+      MTR168(2,1,1)=dconjg(AAABC(368))
+      MTR168(2,1,2)=dconjg(AAABC(372))
+      MTR168(2,2,1)=dconjg(AAABC(389))
+      MTR168(2,2,2)=dconjg(AAABC(386))
+      MTR168(3,1,3)=dconjg(AAABC(370))
+      MTR168(3,2,3)=dconjg(AAABC(384))
+      MTR169(1,1)=dconjg(AAABC(320))
+      MTR169(1,2)=dconjg(AAABC(328))
+      MTR169(1,3)=dconjg(AAABC(311))
+      MTR169(2,1)=dconjg(AAABC(314))
+      MTR169(2,2)=dconjg(AAABC(334))
+      MTR169(2,3)=dconjg(AAABC(329))
+      MTR169(3,1)=dconjg(AAABC(316))
+      MTR169(3,2)=dconjg(AAABC(324))
+      MTR169(3,3)=dconjg(AAABC(325))
+      MTR169(4,1)=dconjg(AAABC(322))
+      MTR169(4,2)=dconjg(AAABC(332))
+      MTR169(4,3)=dconjg(AAABC(317))
+      MTR170(1,1)=2D0*dconjg(AAABC(319))
+      MTR170(1,2)=dconjg(AAABC(327))
+      MTR170(1,3)=dconjg(AAABC(312))
+      MTR170(2,1)=2D0*dconjg(AAABC(313))
+      MTR170(2,2)=dconjg(AAABC(333))
+      MTR170(2,3)=dconjg(AAABC(330))
+      MTR170(3,1)=2D0*dconjg(AAABC(315))
+      MTR170(3,2)=dconjg(AAABC(323))
+      MTR170(3,3)=dconjg(AAABC(326))
+      MTR170(4,1)=2D0*dconjg(AAABC(321))
+      MTR170(4,2)=dconjg(AAABC(331))
+      MTR170(4,3)=dconjg(AAABC(318))
+      MTR171(1,1)=dconjg(AAABC(348))
+      MTR171(1,2)=dconjg(AAABC(352))
+      MTR171(1,3)=dconjg(AAABC(343))
+      MTR171(2,1)=dconjg(AAABC(350))
+      MTR171(2,2)=dconjg(AAABC(336))
+      MTR171(2,3)=dconjg(AAABC(345))
+      MTR171(3,1)=dconjg(AAABC(340))
+      MTR171(3,2)=dconjg(AAABC(354))
+      MTR171(3,3)=dconjg(AAABC(355))
+      MTR171(4,1)=dconjg(AAABC(358))
+      MTR171(4,2)=dconjg(AAABC(342))
+      MTR171(4,3)=dconjg(AAABC(337))
+      MTR172(1,1)=2D0*dconjg(AAABC(347))
+      MTR172(1,2)=dconjg(AAABC(351))
+      MTR172(1,3)=dconjg(AAABC(344))
+      MTR172(2,1)=2D0*dconjg(AAABC(349))
+      MTR172(2,2)=dconjg(AAABC(335))
+      MTR172(2,3)=dconjg(AAABC(346))
+      MTR172(3,1)=2D0*dconjg(AAABC(339))
+      MTR172(3,2)=dconjg(AAABC(353))
+      MTR172(3,3)=dconjg(AAABC(356))
+      MTR172(4,1)=2D0*dconjg(AAABC(357))
+      MTR172(4,2)=dconjg(AAABC(341))
+      MTR172(4,3)=dconjg(AAABC(338))
+      MTR173(1)=AAABR(139)
+      MTR173(2)=AAABR(141)
+      MTR173(3)=dconjg(AAABC(391))
+      MTR174(1)=AAABR(138)
+      MTR174(2)=AAABR(140)
+      MTR174(3)=dconjg(AAABC(392))
+      MTR175(1)=AAABR(143)
+      MTR175(2)=AAABR(145)
+      MTR175(3)=dconjg(AAABC(393))
+      MTR176(1)=AAABR(142)
+      MTR176(2)=AAABR(144)
+      MTR176(3)=dconjg(AAABC(394))
+      MTR177(1,1)=dconjg(AAABC(405))
+      MTR177(1,2)=dconjg(AAABC(397))
+      MTR177(1,3)=dconjg(AAABC(395))
+      MTR177(2,1)=dconjg(AAABC(409))
+      MTR177(2,2)=dconjg(AAABC(411))
+      MTR177(2,3)=dconjg(AAABC(399))
+      MTR177(3,1)=dconjg(AAABC(403))
+      MTR177(3,2)=dconjg(AAABC(417))
+      MTR177(3,3)=dconjg(AAABC(413))
+      MTR177(4,1)=dconjg(AAABC(401))
+      MTR177(4,2)=dconjg(AAABC(407))
+      MTR177(4,3)=dconjg(AAABC(415))
+      MTR178(1,1)=4D0*dconjg(AAABC(406))
+      MTR178(1,2)=dconjg(AAABC(398))
+      MTR178(1,3)=dconjg(AAABC(396))
+      MTR178(2,1)=4D0*dconjg(AAABC(410))
+      MTR178(2,2)=dconjg(AAABC(412))
+      MTR178(2,3)=dconjg(AAABC(400))
+      MTR178(3,1)=4D0*dconjg(AAABC(404))
+      MTR178(3,2)=dconjg(AAABC(418))
+      MTR178(3,3)=dconjg(AAABC(414))
+      MTR178(4,1)=4D0*dconjg(AAABC(402))
+      MTR178(4,2)=dconjg(AAABC(408))
+      MTR178(4,3)=dconjg(AAABC(416))
+      MTR179(1,1)=dconjg(AAABC(437))
+      MTR179(1,2)=dconjg(AAABC(435))
+      MTR179(1,3)=dconjg(AAABC(431))
+      MTR179(2,1)=dconjg(AAABC(423))
+      MTR179(2,2)=dconjg(AAABC(439))
+      MTR179(2,3)=dconjg(AAABC(433))
+      MTR179(3,1)=dconjg(AAABC(419))
+      MTR179(3,2)=dconjg(AAABC(421))
+      MTR179(3,3)=dconjg(AAABC(427))
+      MTR179(4,1)=dconjg(AAABC(429))
+      MTR179(4,2)=dconjg(AAABC(425))
+      MTR179(4,3)=dconjg(AAABC(441))
+      MTR180(1,1)=4D0*dconjg(AAABC(438))
+      MTR180(1,2)=dconjg(AAABC(436))
+      MTR180(1,3)=dconjg(AAABC(432))
+      MTR180(2,1)=4D0*dconjg(AAABC(424))
+      MTR180(2,2)=dconjg(AAABC(440))
+      MTR180(2,3)=dconjg(AAABC(434))
+      MTR180(3,1)=4D0*dconjg(AAABC(420))
+      MTR180(3,2)=dconjg(AAABC(422))
+      MTR180(3,3)=dconjg(AAABC(428))
+      MTR180(4,1)=4D0*dconjg(AAABC(430))
+      MTR180(4,2)=dconjg(AAABC(426))
+      MTR180(4,3)=dconjg(AAABC(442))
+      MTR181(1)=AAABR(154)
+      MTR181(2)=AAABR(156)
+      MTR181(3)=dconjg(AAABC(443))
+      MTR182(1)=AAABR(155)
+      MTR182(2)=AAABR(157)
+      MTR182(3)=dconjg(AAABC(444))
+      MTR183(1)=AAABR(160)
+      MTR183(2)=AAABR(158)
+      MTR183(3)=dconjg(AAABC(445))
+      MTR184(1)=AAABR(161)
+      MTR184(2)=AAABR(159)
+      MTR184(3)=dconjg(AAABC(446))
+      MTR185(1,1)=dconjg(AAABC(299))
+      MTR185(1,2)=dconjg(AAABC(299))
+      MTR185(1,3)=dconjg(AAABC(299))
+      MTR185(2,1)=dconjg(AAABC(303))
+      MTR185(2,2)=dconjg(AAABC(303))
+      MTR185(2,3)=dconjg(AAABC(303))
+      MTR186(1,1)=dconjg(AAABC(300))
+      MTR186(1,2)=dconjg(AAABC(302))
+      MTR186(1,3)=dconjg(AAABC(301))
+      MTR186(2,1)=dconjg(AAABC(305))
+      MTR186(2,2)=dconjg(AAABC(306))
+      MTR186(2,3)=dconjg(AAABC(304))
+      MTR187(1,1)=dconjg(AAABC(253))
+      MTR187(1,2)=dconjg(AAABC(273))
+      MTR187(1,3)=dconjg(AAABC(261))
+      MTR187(2,1)=dconjg(AAABC(251))
+      MTR187(2,2)=dconjg(AAABC(271))
+      MTR187(2,3)=dconjg(AAABC(265))
+      MTR187(3,1)=dconjg(AAABC(257))
+      MTR187(3,2)=dconjg(AAABC(263))
+      MTR187(3,3)=dconjg(AAABC(267))
+      MTR187(4,1)=dconjg(AAABC(269))
+      MTR187(4,2)=dconjg(AAABC(255))
+      MTR187(4,3)=dconjg(AAABC(259))
+      MTR188(1,1)=dconjg(AAABC(254))
+      MTR188(1,2)=dconjg(AAABC(274))
+      MTR188(1,3)=dconjg(AAABC(262))
+      MTR188(2,1)=dconjg(AAABC(252))
+      MTR188(2,2)=dconjg(AAABC(272))
+      MTR188(2,3)=dconjg(AAABC(266))
+      MTR188(3,1)=dconjg(AAABC(258))
+      MTR188(3,2)=dconjg(AAABC(264))
+      MTR188(3,3)=dconjg(AAABC(268))
+      MTR188(4,1)=dconjg(AAABC(270))
+      MTR188(4,2)=dconjg(AAABC(256))
+      MTR188(4,3)=dconjg(AAABC(260))
+      MTR189(1,1)=dconjg(AAABC(295))
+      MTR189(1,2)=dconjg(AAABC(283))
+      MTR189(1,3)=dconjg(AAABC(297))
+      MTR189(2,1)=dconjg(AAABC(291))
+      MTR189(2,2)=dconjg(AAABC(289))
+      MTR189(2,3)=dconjg(AAABC(293))
+      MTR189(3,1)=dconjg(AAABC(275))
+      MTR189(3,2)=dconjg(AAABC(287))
+      MTR189(3,3)=dconjg(AAABC(279))
+      MTR189(4,1)=dconjg(AAABC(281))
+      MTR189(4,2)=dconjg(AAABC(285))
+      MTR189(4,3)=dconjg(AAABC(277))
+      MTR190(1,1)=dconjg(AAABC(296))
+      MTR190(1,2)=dconjg(AAABC(284))
+      MTR190(1,3)=dconjg(AAABC(298))
+      MTR190(2,1)=dconjg(AAABC(292))
+      MTR190(2,2)=dconjg(AAABC(290))
+      MTR190(2,3)=dconjg(AAABC(294))
+      MTR190(3,1)=dconjg(AAABC(276))
+      MTR190(3,2)=dconjg(AAABC(288))
+      MTR190(3,3)=dconjg(AAABC(280))
+      MTR190(4,1)=dconjg(AAABC(282))
+      MTR190(4,2)=dconjg(AAABC(286))
+      MTR190(4,3)=dconjg(AAABC(278))
+      MTR191(1,1)=dconjg(AAABC(310))
+      MTR191(1,2)=dconjg(AAABC(310))
+      MTR191(1,3)=dconjg(AAABC(310))
+      MTR191(2,1)=dconjg(AAABC(309))
+      MTR191(2,2)=dconjg(AAABC(309))
+      MTR191(2,3)=dconjg(AAABC(309))
+      MTR191(3,1)=dconjg(AAABC(308))
+      MTR191(3,2)=dconjg(AAABC(308))
+      MTR191(3,3)=dconjg(AAABC(308))
+      MTR191(4,1)=dconjg(AAABC(307))
+      MTR191(4,2)=dconjg(AAABC(307))
+      MTR191(4,3)=dconjg(AAABC(307))
+      MTR192(1,1)=dconjg(AAABC(193))
+      MTR192(1,2)=dconjg(AAABC(187))
+      MTR192(1,3)=dconjg(AAABC(191))
+      MTR192(1,4)=dconjg(AAABC(189))
+      MTR192(2,1)=dconjg(AAABC(199))
+      MTR192(2,2)=dconjg(AAABC(197))
+      MTR192(2,3)=dconjg(AAABC(195))
+      MTR192(2,4)=dconjg(AAABC(201))
+      MTR193(1,1)=dconjg(AAABC(194))
+      MTR193(1,2)=dconjg(AAABC(188))
+      MTR193(1,3)=dconjg(AAABC(192))
+      MTR193(1,4)=dconjg(AAABC(190))
+      MTR193(2,1)=dconjg(AAABC(200))
+      MTR193(2,2)=dconjg(AAABC(198))
+      MTR193(2,3)=dconjg(AAABC(196))
+      MTR193(2,4)=dconjg(AAABC(202))
+      MTR194(1,1)=dconjg(AAABC(213))
+      MTR194(1,2)=dconjg(AAABC(215))
+      MTR194(1,3)=dconjg(AAABC(209))
+      MTR194(1,4)=dconjg(AAABC(207))
+      MTR194(2,1)=dconjg(AAABC(211))
+      MTR194(2,2)=dconjg(AAABC(205))
+      MTR194(2,3)=dconjg(AAABC(203))
+      MTR194(2,4)=dconjg(AAABC(217))
+      MTR195(1,1)=dconjg(AAABC(214))
+      MTR195(1,2)=dconjg(AAABC(216))
+      MTR195(1,3)=dconjg(AAABC(210))
+      MTR195(1,4)=dconjg(AAABC(208))
+      MTR195(2,1)=dconjg(AAABC(212))
+      MTR195(2,2)=dconjg(AAABC(206))
+      MTR195(2,3)=dconjg(AAABC(204))
+      MTR195(2,4)=dconjg(AAABC(218))
+      MTR196(1,1)=2D0*AAABC(447)
+      MTR196(1,2)=AAABC(449)
+      MTR196(1,3)=AAABC(450)
+      MTR196(1,4)=AAABC(448)
+      MTR196(2,1)=AAABC(449)
+      MTR196(2,2)=2D0*AAABC(465)
+      MTR196(2,3)=AAABC(463)
+      MTR196(2,4)=AAABC(464)
+      MTR196(3,1)=AAABC(450)
+      MTR196(3,2)=AAABC(463)
+      MTR196(3,3)=2D0*AAABC(475)
+      MTR196(3,4)=AAABC(476)
+      MTR196(4,1)=AAABC(448)
+      MTR196(4,2)=AAABC(464)
+      MTR196(4,3)=AAABC(476)
+      MTR196(4,4)=2D0*AAABC(483)
+      MTR197(1,1)=2D0*dconjg(AAABC(447))
+      MTR197(1,2)=dconjg(AAABC(449))
+      MTR197(1,3)=dconjg(AAABC(450))
+      MTR197(1,4)=dconjg(AAABC(448))
+      MTR197(2,1)=dconjg(AAABC(449))
+      MTR197(2,2)=2D0*dconjg(AAABC(465))
+      MTR197(2,3)=dconjg(AAABC(463))
+      MTR197(2,4)=dconjg(AAABC(464))
+      MTR197(3,1)=dconjg(AAABC(450))
+      MTR197(3,2)=dconjg(AAABC(463))
+      MTR197(3,3)=2D0*dconjg(AAABC(475))
+      MTR197(3,4)=dconjg(AAABC(476))
+      MTR197(4,1)=dconjg(AAABC(448))
+      MTR197(4,2)=dconjg(AAABC(464))
+      MTR197(4,3)=dconjg(AAABC(476))
+      MTR197(4,4)=2D0*dconjg(AAABC(483))
+      MTR198(1,1,1)=2D0*cI*AAABC(460)
+      MTR198(1,1,2)=-2D0*cI*AAABC(462)
+      MTR198(1,1,3)=-2D0*AAABC(457)
+      MTR198(1,2,1)=cI*AAABC(456)
+      MTR198(1,2,2)=-cI*AAABC(454)
+      MTR198(1,2,3)=-AAABC(458)
+      MTR198(1,3,1)=cI*AAABC(452)
+      MTR198(1,3,2)=-cI*AAABC(459)
+      MTR198(1,3,3)=-AAABC(451)
+      MTR198(1,4,1)=cI*AAABC(461)
+      MTR198(1,4,2)=-cI*AAABC(453)
+      MTR198(1,4,3)=-AAABC(455)
+      MTR198(2,1,1)=cI*AAABC(456)
+      MTR198(2,1,2)=-cI*AAABC(454)
+      MTR198(2,1,3)=-AAABC(458)
+      MTR198(2,2,1)=2D0*cI*AAABC(473)
+      MTR198(2,2,2)=-2D0*cI*AAABC(472)
+      MTR198(2,2,3)=-2D0*AAABC(471)
+      MTR198(2,3,1)=cI*AAABC(470)
+      MTR198(2,3,2)=-cI*AAABC(467)
+      MTR198(2,3,3)=-AAABC(474)
+      MTR198(2,4,1)=cI*AAABC(468)
+      MTR198(2,4,2)=-cI*AAABC(469)
+      MTR198(2,4,3)=-AAABC(466)
+      MTR198(3,1,1)=cI*AAABC(452)
+      MTR198(3,1,2)=-cI*AAABC(459)
+      MTR198(3,1,3)=-AAABC(451)
+      MTR198(3,2,1)=cI*AAABC(470)
+      MTR198(3,2,2)=-cI*AAABC(467)
+      MTR198(3,2,3)=-AAABC(474)
+      MTR198(3,3,1)=2D0*cI*AAABC(478)
+      MTR198(3,3,2)=-2D0*cI*AAABC(477)
+      MTR198(3,3,3)=-2D0*AAABC(481)
+      MTR198(3,4,1)=cI*AAABC(480)
+      MTR198(3,4,2)=-cI*AAABC(482)
+      MTR198(3,4,3)=-AAABC(479)
+      MTR198(4,1,1)=cI*AAABC(461)
+      MTR198(4,1,2)=-cI*AAABC(453)
+      MTR198(4,1,3)=-AAABC(455)
+      MTR198(4,2,1)=cI*AAABC(468)
+      MTR198(4,2,2)=-cI*AAABC(469)
+      MTR198(4,2,3)=-AAABC(466)
+      MTR198(4,3,1)=cI*AAABC(480)
+      MTR198(4,3,2)=-cI*AAABC(482)
+      MTR198(4,3,3)=-AAABC(479)
+      MTR198(4,4,1)=2D0*cI*AAABC(485)
+      MTR198(4,4,2)=-2D0*cI*AAABC(484)
+      MTR198(4,4,3)=-2D0*AAABC(486)
+      MTR199(1,1,1)=2D0*cI*dconjg(AAABC(460))
+      MTR199(1,1,2)=-2D0*cI*dconjg(AAABC(462))
+      MTR199(1,1,3)=2D0*dconjg(AAABC(457))
+      MTR199(1,2,1)=cI*dconjg(AAABC(456))
+      MTR199(1,2,2)=-cI*dconjg(AAABC(454))
+      MTR199(1,2,3)=dconjg(AAABC(458))
+      MTR199(1,3,1)=cI*dconjg(AAABC(452))
+      MTR199(1,3,2)=-cI*dconjg(AAABC(459))
+      MTR199(1,3,3)=dconjg(AAABC(451))
+      MTR199(1,4,1)=cI*dconjg(AAABC(461))
+      MTR199(1,4,2)=-cI*dconjg(AAABC(453))
+      MTR199(1,4,3)=dconjg(AAABC(455))
+      MTR199(2,1,1)=cI*dconjg(AAABC(456))
+      MTR199(2,1,2)=-cI*dconjg(AAABC(454))
+      MTR199(2,1,3)=dconjg(AAABC(458))
+      MTR199(2,2,1)=2D0*cI*dconjg(AAABC(473))
+      MTR199(2,2,2)=-2D0*cI*dconjg(AAABC(472))
+      MTR199(2,2,3)=2D0*dconjg(AAABC(471))
+      MTR199(2,3,1)=cI*dconjg(AAABC(470))
+      MTR199(2,3,2)=-cI*dconjg(AAABC(467))
+      MTR199(2,3,3)=dconjg(AAABC(474))
+      MTR199(2,4,1)=cI*dconjg(AAABC(468))
+      MTR199(2,4,2)=-cI*dconjg(AAABC(469))
+      MTR199(2,4,3)=dconjg(AAABC(466))
+      MTR199(3,1,1)=cI*dconjg(AAABC(452))
+      MTR199(3,1,2)=-cI*dconjg(AAABC(459))
+      MTR199(3,1,3)=dconjg(AAABC(451))
+      MTR199(3,2,1)=cI*dconjg(AAABC(470))
+      MTR199(3,2,2)=-cI*dconjg(AAABC(467))
+      MTR199(3,2,3)=dconjg(AAABC(474))
+      MTR199(3,3,1)=2D0*cI*dconjg(AAABC(478))
+      MTR199(3,3,2)=-2D0*cI*dconjg(AAABC(477))
+      MTR199(3,3,3)=2D0*dconjg(AAABC(481))
+      MTR199(3,4,1)=cI*dconjg(AAABC(480))
+      MTR199(3,4,2)=-cI*dconjg(AAABC(482))
+      MTR199(3,4,3)=dconjg(AAABC(479))
+      MTR199(4,1,1)=cI*dconjg(AAABC(461))
+      MTR199(4,1,2)=-cI*dconjg(AAABC(453))
+      MTR199(4,1,3)=dconjg(AAABC(455))
+      MTR199(4,2,1)=cI*dconjg(AAABC(468))
+      MTR199(4,2,2)=-cI*dconjg(AAABC(469))
+      MTR199(4,2,3)=dconjg(AAABC(466))
+      MTR199(4,3,1)=cI*dconjg(AAABC(480))
+      MTR199(4,3,2)=-cI*dconjg(AAABC(482))
+      MTR199(4,3,3)=dconjg(AAABC(479))
+      MTR199(4,4,1)=2D0*cI*dconjg(AAABC(485))
+      MTR199(4,4,2)=-2D0*cI*dconjg(AAABC(484))
+      MTR199(4,4,3)=2D0*dconjg(AAABC(486))
+      MTR200(1,1)=AAABC(492)
+      MTR200(1,2)=dconjg(AAABC(488))
+      MTR200(2,1)=AAABC(488)
+      MTR200(2,2)=AAABC(496)
+      MTR201(1,1)=AAABC(494)
+      MTR201(1,2)=dconjg(AAABC(490))
+      MTR201(2,1)=AAABC(490)
+      MTR201(2,2)=AAABC(498)
+      MTR202(1,1)=AAABC(491)
+      MTR202(1,2)=dconjg(AAABC(487))
+      MTR202(2,1)=AAABC(487)
+      MTR202(2,2)=AAABC(495)
+      MTR203(1,1)=AAABC(493)
+      MTR203(1,2)=dconjg(AAABC(489))
+      MTR203(2,1)=AAABC(489)
+      MTR203(2,2)=AAABC(497)
+      MTR204(1,1)=AAABC(513)
+      MTR204(1,2)=AAABC(505)
+      MTR204(1,3)=AAABC(511)
+      MTR204(1,4)=AAABC(509)
+      MTR204(2,1)=AAABC(503)
+      MTR204(2,2)=AAABC(507)
+      MTR204(2,3)=AAABC(501)
+      MTR204(2,4)=AAABC(499)
+      MTR205(1,1)=AAABC(514)
+      MTR205(1,2)=AAABC(506)
+      MTR205(1,3)=AAABC(512)
+      MTR205(1,4)=AAABC(510)
+      MTR205(2,1)=AAABC(504)
+      MTR205(2,2)=AAABC(508)
+      MTR205(2,3)=AAABC(502)
+      MTR205(2,4)=AAABC(500)
+      MTR206(1,1)=AAABR(167)
+      MTR206(1,2)=AAABR(165)
+      MTR206(2,1)=AAABR(168)
+      MTR206(2,2)=AAABR(166)
+      MTR206(3,3)=AAABR(163)
+      MTR207(1,1)=AAABR(167)
+      MTR207(1,2)=AAABR(168)
+      MTR207(2,1)=AAABR(165)
+      MTR207(2,2)=AAABR(166)
+      MTR207(3,3)=AAABR(163)
+      MTR208(1,1)=dconjg(AAABC(513))
+      MTR208(1,2)=dconjg(AAABC(505))
+      MTR208(1,3)=dconjg(AAABC(511))
+      MTR208(1,4)=dconjg(AAABC(509))
+      MTR208(2,1)=dconjg(AAABC(503))
+      MTR208(2,2)=dconjg(AAABC(507))
+      MTR208(2,3)=dconjg(AAABC(501))
+      MTR208(2,4)=dconjg(AAABC(499))
+      MTR209(1,1)=dconjg(AAABC(514))
+      MTR209(1,2)=dconjg(AAABC(506))
+      MTR209(1,3)=dconjg(AAABC(512))
+      MTR209(1,4)=dconjg(AAABC(510))
+      MTR209(2,1)=dconjg(AAABC(504))
+      MTR209(2,2)=dconjg(AAABC(508))
+      MTR209(2,3)=dconjg(AAABC(502))
+      MTR209(2,4)=dconjg(AAABC(500))
+      MTR210(1,1)=AAABC(518)
+      MTR210(1,2)=dconjg(AAABC(515))
+      MTR210(1,3)=dconjg(AAABC(516))
+      MTR210(1,4)=dconjg(AAABC(517))
+      MTR210(2,1)=AAABC(515)
+      MTR210(2,2)=AAABC(519)
+      MTR210(2,3)=dconjg(AAABC(521))
+      MTR210(2,4)=dconjg(AAABC(520))
+      MTR210(3,1)=AAABC(516)
+      MTR210(3,2)=AAABC(521)
+      MTR210(3,3)=AAABC(523)
+      MTR210(3,4)=dconjg(AAABC(522))
+      MTR210(4,1)=AAABC(517)
+      MTR210(4,2)=AAABC(520)
+      MTR210(4,3)=AAABC(522)
+      MTR210(4,4)=AAABC(524)
+      MTR211(1,1)=AAABC(518)
+      MTR211(1,2)=AAABC(515)
+      MTR211(1,3)=AAABC(516)
+      MTR211(1,4)=AAABC(517)
+      MTR211(2,1)=dconjg(AAABC(515))
+      MTR211(2,2)=AAABC(519)
+      MTR211(2,3)=AAABC(521)
+      MTR211(2,4)=AAABC(520)
+      MTR211(3,1)=dconjg(AAABC(516))
+      MTR211(3,2)=dconjg(AAABC(521))
+      MTR211(3,3)=AAABC(523)
+      MTR211(3,4)=AAABC(522)
+      MTR211(4,1)=dconjg(AAABC(517))
+      MTR211(4,2)=dconjg(AAABC(520))
+      MTR211(4,3)=dconjg(AAABC(522))
+      MTR211(4,4)=AAABC(524)
+      MTR212(1)=cI*AAABR(177)
+      MTR212(2)=-cI*AAABR(175)
+      MTR212(3)=AAABR(179)
+      MTR213(1)=cI*AAABR(176)
+      MTR213(2)=-cI*AAABR(174)
+      MTR213(3)=AAABR(178)
+      MTR214(1)=cI*AAABR(177)
+      MTR214(2)=-cI*AAABR(175)
+      MTR214(3)=-AAABR(179)
+      MTR215(1)=cI*AAABR(176)
+      MTR215(2)=-cI*AAABR(174)
+      MTR215(3)=-AAABR(178)
+      MTR216(1)=AAABR(171)
+      MTR216(2)=AAABR(171)
+      MTR216(3)=AAABC(526)
+      MTR217(1)=AAABR(180)
+      MTR217(2)=AAABR(181)
+      MTR217(3)=AAABC(525)
+      MTR218(1)=AAABR(185)
+      MTR218(2)=AAABR(184)
+      MTR218(3)=AAABC(528)
+      MTR219(1)=AAABR(183)
+      MTR219(2)=AAABR(182)
+      MTR219(3)=AAABC(527)
+      MTR220(1)=AAABR(186)
+      MTR220(2)=AAABR(187)
+      MTR220(3)=AAABC(529)
+      MTR221(1)=AAABR(190)
+      MTR221(2)=AAABR(191)
+      MTR221(3)=AAABC(532)
+      MTR222(1)=AAABR(189)
+      MTR222(2)=AAABR(188)
+      MTR222(3)=AAABC(531)
+      MTR223(1)=AAABR(195)
+      MTR223(2)=AAABR(193)
+      MTR223(3)=AAABC(534)
+      MTR224(1)=AAABR(194)
+      MTR224(2)=AAABR(192)
+      MTR224(3)=AAABC(533)
+      MTR225(1)=AAABR(186)
+      MTR225(2)=AAABR(187)
+      MTR225(3)=dconjg(AAABC(529))
+      MTR226(1)=AAABR(190)
+      MTR226(2)=AAABR(191)
+      MTR226(3)=dconjg(AAABC(532))
+      MTR227(1)=AAABR(189)
+      MTR227(2)=AAABR(188)
+      MTR227(3)=dconjg(AAABC(531))
+      MTR228(1)=AAABR(171)
+      MTR228(2)=AAABR(171)
+      MTR228(3)=AAABC(536)
+      MTR229(1)=AAABR(197)
+      MTR229(2)=AAABR(196)
+      MTR229(3)=AAABC(535)
+      MTR230(1)=AAABR(200)
+      MTR230(2)=AAABR(201)
+      MTR230(3)=AAABC(538)
+      MTR231(1)=AAABR(198)
+      MTR231(2)=AAABR(199)
+      MTR231(3)=AAABC(537)
+      MTR232(1)=AAABR(203)
+      MTR232(2)=AAABR(205)
+      MTR232(3)=AAABC(540)
+      MTR233(1)=AAABR(202)
+      MTR233(2)=AAABR(204)
+      MTR233(3)=AAABC(539)
+      MTR234(1)=AAABR(195)
+      MTR234(2)=AAABR(193)
+      MTR234(3)=dconjg(AAABC(534))
+      MTR235(1)=AAABR(194)
+      MTR235(2)=AAABR(192)
+      MTR235(3)=dconjg(AAABC(533))
+      MTR236(1)=AAABR(203)
+      MTR236(2)=AAABR(205)
+      MTR236(3)=dconjg(AAABC(540))
+      MTR237(1)=AAABR(202)
+      MTR237(2)=AAABR(204)
+      MTR237(3)=dconjg(AAABC(539))
+      MTR238(1)=AAABR(171)
+      MTR238(2)=AAABR(171)
+      MTR238(3)=AAABC(542)
+      MTR239(1)=AAABR(210)
+      MTR239(2)=AAABR(210)
+      MTR239(3)=AAABC(544)
+      MTR240(1)=AAABR(207)
+      MTR240(2)=AAABR(208)
+      MTR240(3)=AAABC(541)
+      MTR241(1)=AAABR(214)
+      MTR241(2)=AAABR(214)
+      MTR241(3)=AAABC(546)
+      MTR242(1)=AAABR(209)
+      MTR242(2)=AAABR(211)
+      MTR242(3)=AAABC(543)
+      MTR243(1)=AAABR(216)
+      MTR243(2)=AAABR(215)
+      MTR243(3)=AAABC(547)
+      MTR244(1)=AAABR(213)
+      MTR244(2)=AAABR(212)
+      MTR244(3)=AAABC(545)
+      MTR245(1)=AAABR(217)
+      MTR245(2)=AAABR(218)
+      MTR245(3)=AAABC(548)
+      MTR246(1)=AAABR(220)
+      MTR246(2)=AAABR(219)
+      MTR246(3)=AAABC(550)
+      MTR247(1)=AAABR(223)
+      MTR247(2)=AAABR(224)
+      MTR247(3)=AAABC(554)
+      MTR248(1)=AAABR(222)
+      MTR248(2)=AAABR(221)
+      MTR248(3)=AAABC(552)
+      MTR249(1,1)=AAABR(226)
+      MTR249(1,2)=AAABR(232)
+      MTR249(2,1)=AAABR(228)
+      MTR249(2,2)=AAABR(230)
+      MTR249(3,3)=AAABC(556)
+      MTR250(1,1)=AAABR(236)
+      MTR250(1,2)=AAABR(234)
+      MTR250(2,1)=AAABR(235)
+      MTR250(2,2)=AAABR(233)
+      MTR250(3,3)=AAABC(557)
+      MTR251(1,1)=AAABR(225)
+      MTR251(1,2)=AAABR(231)
+      MTR251(2,1)=AAABR(227)
+      MTR251(2,2)=AAABR(229)
+      MTR251(3,3)=AAABC(555)
+      MTR252(1,1)=AAABR(238)
+      MTR252(1,2)=AAABR(240)
+      MTR252(2,1)=AAABR(242)
+      MTR252(2,2)=AAABR(244)
+      MTR252(3,3)=AAABC(559)
+      MTR253(1,1)=AAABR(247)
+      MTR253(1,2)=AAABR(245)
+      MTR253(2,1)=AAABR(246)
+      MTR253(2,2)=AAABR(248)
+      MTR253(3,3)=AAABC(560)
+      MTR254(1,1)=AAABR(237)
+      MTR254(1,2)=AAABR(239)
+      MTR254(2,1)=AAABR(241)
+      MTR254(2,2)=AAABR(243)
+      MTR254(3,3)=AAABC(558)
+      MTR255(1)=AAABR(217)
+      MTR255(2)=AAABR(218)
+      MTR255(3)=dconjg(AAABC(548))
+      MTR256(1)=AAABR(220)
+      MTR256(2)=AAABR(219)
+      MTR256(3)=dconjg(AAABC(550))
+      MTR257(1)=AAABR(223)
+      MTR257(2)=AAABR(224)
+      MTR257(3)=dconjg(AAABC(554))
+      MTR258(1)=AAABR(222)
+      MTR258(2)=AAABR(221)
+      MTR258(3)=dconjg(AAABC(552))
+      MTR259(1)=AAABR(171)
+      MTR259(2)=AAABR(171)
+      MTR259(3)=AAABC(562)
+      MTR260(1)=AAABR(210)
+      MTR260(2)=AAABR(210)
+      MTR260(3)=AAABC(564)
+      MTR261(1)=AAABR(249)
+      MTR261(2)=AAABR(250)
+      MTR261(3)=AAABC(561)
+      MTR262(1)=AAABR(214)
+      MTR262(2)=AAABR(214)
+      MTR262(3)=AAABC(566)
+      MTR263(1)=AAABR(251)
+      MTR263(2)=AAABR(252)
+      MTR263(3)=AAABC(563)
+      MTR264(1)=AAABR(256)
+      MTR264(2)=AAABR(255)
+      MTR264(3)=AAABC(567)
+      MTR265(1)=AAABR(253)
+      MTR265(2)=AAABR(254)
+      MTR265(3)=AAABC(565)
+      MTR266(1,1)=AAABR(258)
+      MTR266(1,2)=AAABR(262)
+      MTR266(2,1)=AAABR(264)
+      MTR266(2,2)=AAABR(260)
+      MTR266(3,3)=AAABC(569)
+      MTR267(1,1)=AAABR(268)
+      MTR267(1,2)=AAABR(267)
+      MTR267(2,1)=AAABR(265)
+      MTR267(2,2)=AAABR(266)
+      MTR267(3,3)=AAABC(570)
+      MTR268(1,1)=AAABR(257)
+      MTR268(1,2)=AAABR(261)
+      MTR268(2,1)=AAABR(263)
+      MTR268(2,2)=AAABR(259)
+      MTR268(3,3)=AAABC(568)
+      MTR269(1,1)=AAABR(276)
+      MTR269(1,2)=AAABR(270)
+      MTR269(2,1)=AAABR(272)
+      MTR269(2,2)=AAABR(274)
+      MTR269(3,3)=AAABC(572)
+      MTR270(1,1)=AAABR(279)
+      MTR270(1,2)=AAABR(278)
+      MTR270(2,1)=AAABR(277)
+      MTR270(2,2)=AAABR(280)
+      MTR270(3,3)=AAABC(573)
+      MTR271(1,1)=AAABR(275)
+      MTR271(1,2)=AAABR(269)
+      MTR271(2,1)=AAABR(271)
+      MTR271(2,2)=AAABR(273)
+      MTR271(3,3)=AAABC(571)
+      MTR272(1,1)=AAABR(226)
+      MTR272(1,2)=AAABR(228)
+      MTR272(2,1)=AAABR(232)
+      MTR272(2,2)=AAABR(230)
+      MTR272(3,3)=dconjg(AAABC(556))
+      MTR273(1,1)=AAABR(236)
+      MTR273(1,2)=AAABR(235)
+      MTR273(2,1)=AAABR(234)
+      MTR273(2,2)=AAABR(233)
+      MTR273(3,3)=dconjg(AAABC(557))
+      MTR274(1,1)=AAABR(225)
+      MTR274(1,2)=AAABR(227)
+      MTR274(2,1)=AAABR(231)
+      MTR274(2,2)=AAABR(229)
+      MTR274(3,3)=dconjg(AAABC(555))
+      MTR275(1,1)=AAABR(258)
+      MTR275(1,2)=AAABR(264)
+      MTR275(2,1)=AAABR(262)
+      MTR275(2,2)=AAABR(260)
+      MTR275(3,3)=dconjg(AAABC(569))
+      MTR276(1,1)=AAABR(268)
+      MTR276(1,2)=AAABR(265)
+      MTR276(2,1)=AAABR(267)
+      MTR276(2,2)=AAABR(266)
+      MTR276(3,3)=dconjg(AAABC(570))
+      MTR277(1,1)=AAABR(257)
+      MTR277(1,2)=AAABR(263)
+      MTR277(2,1)=AAABR(261)
+      MTR277(2,2)=AAABR(259)
+      MTR277(3,3)=dconjg(AAABC(568))
+      MTR278(1)=AAABR(171)
+      MTR278(2)=AAABR(171)
+      MTR278(3)=AAABC(575)
+      MTR279(1)=AAABR(210)
+      MTR279(2)=AAABR(210)
+      MTR279(3)=AAABC(577)
+      MTR280(1)=AAABR(281)
+      MTR280(2)=AAABR(282)
+      MTR280(3)=AAABC(574)
+      MTR281(1)=AAABR(214)
+      MTR281(2)=AAABR(214)
+      MTR281(3)=AAABC(579)
+      MTR282(1)=AAABR(283)
+      MTR282(2)=AAABR(284)
+      MTR282(3)=AAABC(576)
+      MTR283(1)=AAABR(287)
+      MTR283(2)=AAABR(288)
+      MTR283(3)=AAABC(580)
+      MTR284(1)=AAABR(286)
+      MTR284(2)=AAABR(285)
+      MTR284(3)=AAABC(578)
+      MTR285(1)=AAABR(289)
+      MTR285(2)=AAABR(290)
+      MTR285(3)=AAABC(581)
+      MTR286(1)=AAABR(292)
+      MTR286(2)=AAABR(291)
+      MTR286(3)=AAABC(583)
+      MTR287(1)=AAABR(295)
+      MTR287(2)=AAABR(296)
+      MTR287(3)=AAABC(587)
+      MTR288(1)=AAABR(294)
+      MTR288(2)=AAABR(293)
+      MTR288(3)=AAABC(585)
+      MTR289(1,1)=AAABR(238)
+      MTR289(1,2)=AAABR(242)
+      MTR289(2,1)=AAABR(240)
+      MTR289(2,2)=AAABR(244)
+      MTR289(3,3)=dconjg(AAABC(559))
+      MTR290(1,1)=AAABR(247)
+      MTR290(1,2)=AAABR(246)
+      MTR290(2,1)=AAABR(245)
+      MTR290(2,2)=AAABR(248)
+      MTR290(3,3)=dconjg(AAABC(560))
+      MTR291(1,1)=AAABR(237)
+      MTR291(1,2)=AAABR(241)
+      MTR291(2,1)=AAABR(239)
+      MTR291(2,2)=AAABR(243)
+      MTR291(3,3)=dconjg(AAABC(558))
+      MTR292(1,1)=AAABR(276)
+      MTR292(1,2)=AAABR(272)
+      MTR292(2,1)=AAABR(270)
+      MTR292(2,2)=AAABR(274)
+      MTR292(3,3)=dconjg(AAABC(572))
+      MTR293(1,1)=AAABR(279)
+      MTR293(1,2)=AAABR(277)
+      MTR293(2,1)=AAABR(278)
+      MTR293(2,2)=AAABR(280)
+      MTR293(3,3)=dconjg(AAABC(573))
+      MTR294(1,1)=AAABR(275)
+      MTR294(1,2)=AAABR(271)
+      MTR294(2,1)=AAABR(269)
+      MTR294(2,2)=AAABR(273)
+      MTR294(3,3)=dconjg(AAABC(571))
+      MTR295(1)=AAABR(289)
+      MTR295(2)=AAABR(290)
+      MTR295(3)=dconjg(AAABC(581))
+      MTR296(1)=AAABR(292)
+      MTR296(2)=AAABR(291)
+      MTR296(3)=dconjg(AAABC(583))
+      MTR297(1)=AAABR(295)
+      MTR297(2)=AAABR(296)
+      MTR297(3)=dconjg(AAABC(587))
+      MTR298(1)=AAABR(294)
+      MTR298(2)=AAABR(293)
+      MTR298(3)=dconjg(AAABC(585))
+      MTR299(1)=AAABR(171)
+      MTR299(2)=AAABR(171)
+      MTR299(3)=AAABC(589)
+      MTR300(1)=AAABR(210)
+      MTR300(2)=AAABR(210)
+      MTR300(3)=AAABC(591)
+      MTR301(1)=AAABR(298)
+      MTR301(2)=AAABR(297)
+      MTR301(3)=AAABC(588)
+      MTR302(1)=AAABR(214)
+      MTR302(2)=AAABR(214)
+      MTR302(3)=AAABC(593)
+      MTR303(1)=AAABR(300)
+      MTR303(2)=AAABR(299)
+      MTR303(3)=AAABC(590)
+      MTR304(1)=AAABR(303)
+      MTR304(2)=AAABR(304)
+      MTR304(3)=AAABC(594)
+      MTR305(1)=AAABR(301)
+      MTR305(2)=AAABR(302)
+      MTR305(3)=AAABC(592)
+      MTR306(1)=AAABR(175)
+      MTR306(2)=AAABR(177)
+      MTR307(1)=AAABR(174)
+      MTR307(2)=AAABR(176)
+
+      end
+
+***********************************************
+
+      subroutine ModelVarIni(sqrtS, *)
+      implicit none
+      double precision sqrtS
+      double precision Alfas
+
+#include "model.h"
+
+c      double precision ALPHAS2
+c      external ALPHAS2
+
+c      Alfas = ALPHAS2(sqrtS)
+c      GG = sqrt(4*pi*Alfas)
+      end
+
+************************************************
+
+      subroutine ModelDigest
+      implicit none
+
+#include "model.h"
+
+
+      end
+
+#include "cpvf.inc"
+

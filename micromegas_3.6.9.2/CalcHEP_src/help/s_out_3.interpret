@@ -1,0 +1,5 @@
+1 10 55 Numerical interpreter
+  This menu function  is used to produce numerical
+results corresponding to the calculated squared matrix
+element by means of the numerical interpreter embedded
+in the CompHEP package. 

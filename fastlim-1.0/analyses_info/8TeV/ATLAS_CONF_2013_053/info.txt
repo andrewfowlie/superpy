@@ -1,0 +1,2 @@
+0 leptons + 2 b-jets + Etmiss [Sbottom/stop] at 8TeV with $20.1fb^{-1}$ 
+http://arxiv.org/abs/1308.2631

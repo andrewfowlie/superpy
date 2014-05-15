@@ -1,0 +1,13 @@
+external_func(MtEff,1).
+external_func(MbEff,1).
+external_func(McEff,1).
+
+parameter Q=100: 'QCD scale for quark masses'.
+
+parameter Mt = MtEff(Q),
+	  Mb = MbEff(Q),
+          Mc=  McEff(Q).
+
+let Mm=0 ,Ms=0.
+coeff   EE,Mt,Mb,Ml,MW,MZ.
+

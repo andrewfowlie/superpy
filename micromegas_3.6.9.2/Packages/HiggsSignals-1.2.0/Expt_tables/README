@@ -1,0 +1,75 @@
+#----------------------------------------------------------------#
+            HiggsSignals - Default observable sets
+#----------------------------------------------------------------#
+
+#################################################
+#       latestresults-1.2.0-LHCinclusive        #
+#################################################
+Contains only LHC observables from ATLAS and CMS combinations.
+In total, these are 10 signal rate and 4 mass measurements.
+#################################################
+#       latestresults-1.2.0-CMSgaga125p7        #
+#################################################
+Same as latestresults-1.2.0 except for the CMS H->gammagamma
+category measurements, which have been extrapolated from 125.0 GeV
+to 125.7 GeV (see below for details). This extrapolation has been
+validated against the CMS six-dimensional scale factor fit.
+############################################
+#       latestresults-1.2.0 (default)      #
+############################################
+Includes up-to-date measurements from ATLAS, CMS, D0 and CDF
+in all possible subchannels, as available up to beginning of 
+March 2014. This includes, among others, the ATLAS H->tautau,
+and CMS ttH-tagged results. A few observables have been updated
+to the numbers of the corresponding journal publications.
+####################################
+#       latestresults-1.1.0        #
+####################################
+Includes up-to-date measurements from ATLAS, CMS, D0 and CDF
+in all possible subchannels, as available up to October 2013.
+
+####################################
+#  latestresults-1.0.0_inclusive   #
+####################################
+Includes up-to-date measurements from ATLAS, CMS, D0 and CDF
+in the inclusive channels, as available up to April 2013.
+It also contains a few mu-plots needed for the mass-centered
+chi^2 method.
+
+####################################
+#       latestresults-1.0.0        #
+####################################
+Includes up-to-date measurements from ATLAS, CMS, D0 and CDF
+in all possible subchannels, as available up to April 2013.
+
+n.B: This is not identical to the version shipped with 
+     HiggsSignals-1.0.0 due to some necessary corrections.
+     For comparison, the original 1.0.0 observable set is
+     provided in the directory: 
+     
+         Expt_tables/legacy/latestresults-1.0.0-old
+
+#----------------------------------------------------------------#
+            HiggsSignals - Additional observable sets
+#----------------------------------------------------------------#
+####################################
+#      CMS-13-005-gaga-125p7       #
+####################################
+Includes unofficial CMS H->gamma gamma observables for the 
+Higgs mass of 125.7 Gev, which have been extrapolated from 
+the official MVA category measurements given for mH = 125.0 GeV.
+
+The extrapolation was done in the following way:
+1) universal signal strength mod. have been fitted at 125.0 GeV for
+   - the untagged categories ---> mu(untagged) = 0.64 (+0.32 -0.30)
+   - the dijet categories ---> mu(VBF) = 0.79 (+0.58 -0.54)
+   - e,mu,ETmiss categories ---> mu(VH) = 0.63 (+1.18 - 1.14)
+2) Signal strength mod. for 125.7 GeV are given in CMS-PAS-HIG-13-005.
+   We now assume that the different categories scale "on average"
+   by the ratio of the corresponding signal strengths,   
+                mu(125.7 GeV)/mu(125.0 GeV)                 
+   These ratios are 1.094 (untagged), 1.278 (VBF) and 0.906 (VH).
+#----------------------------------------------------------------#
+Last update: TS, 2014-03-09
+For questions/comments, please contact: tim@th.physik.uni-bonn.de
+#----------------------------------------------------------------#         

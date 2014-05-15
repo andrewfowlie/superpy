@@ -1,0 +1,14 @@
+# Data taken from CMS-PAS-HIG-13-017
+# Signal composition is approximately 60% ggH, 4% VBF, 36% VH
+13017101	1301701		1
+CMS-PAS-HIG-13-017
+LHC, CMS, CMS
+(pp)->Vh->VWW (hadronic V)
+8	25.4 0.044
+1	0
+20.0
+125.0 125.0 1.0
+4	125
+12 22 32 42
+1.000	0.819	11.594	10.181
+125.0	-1.0	1.0		3.0

@@ -1,0 +1,16 @@
+MSSM(../slha.in)
+ Variables 
+ Name  | Value       |>  Comment                                   <|
+alfSMZ |0.1184       |alpha_QCD(MZ)
+MZ     |91.3         |Z-boson mass.  PDG value   91.1876 +/- 0.0021
+MW     |80.2         |W-boson mass.  PDG valeu   80.385  +/- 0.015
+Mtp    |173.07       |top quark pole mass
+MbMb   |4.23         |Mb(Mb) running mass
+McMc   |1.27         |Mc(Mc) running mass
+GG     |1.117        |Drived by CalcHEP
+Q      |100          |QCD scale
+EE     |0.3123       |PDG value 4*pi/EE^2=128 corresponds to EE=0.3134
+Ml     |1.777        |mass of tau-lepton
+tb     |10           |Tangent beta
+wt     |1.442        |width of top quark
+Maux   |1            |mass of aux particles

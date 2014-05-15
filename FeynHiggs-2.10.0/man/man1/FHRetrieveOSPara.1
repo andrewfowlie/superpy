@@ -1,0 +1,97 @@
+.TH FHRETRIEVEOSPARA 1 "10-May-2011"
+.SH NAME
+.PP
+FHRetrieveOSPara \- retrieve all on-shell input parameters from
+FeynHiggs
+.SH SYNOPSIS (Fortran version)
+.PP
+integer error
+.br
+double precision scalefactor
+.br
+double precision AlfasMZ, MC, MT, MB, MW, MZ
+.br
+double precision TB, MA0, MHp
+.br
+double precision M3SL, M3SE, M3SQ, M3SU, M3SD
+.br
+double precision M2SL, M2SE, M2SQ, M2SU, M2SD
+.br
+double precision M1SL, M1SE, M1SQ, M1SU, M1SD
+.br
+double complex MUE, M_1, M_2, M_3
+.br
+double complex At, Ab, Atau, Ac, As, Amu, Au, Ad, Ae
+.sp
+subroutine FHRetrievePara(error, scalefactor,
+.br
+  AlfasMZ, MC, MT, MB, MW, MZ,
+.br
+  TB, MA0, MHp,
+.br
+  M3SL, M3SE, M3SQ, M3SU, M3SD,
+.br
+  M2SL, M2SE, M2SQ, M2SU, M2SD,
+.br
+  M1SL, M1SE, M1SQ, M1SU, M1SD,
+.br
+  MUE,
+.br
+  Atau, At, Ab, Amu, Ac, As, Ae, Au, Ad,
+.br
+  M_1, M_2, M_3)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHRetrieveOSPara[]
+.SH DESCRIPTION
+FHRetrieveOSPara retrieves the on-shell input parameters from
+FeynHiggs.  
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in RetrieveOSPara.F from
+which the error message was emitted.
+.TP
+.B scalefactor (output)
+the renormalization scale is MT times the scalefactor.
+.TP
+.B AlfasMZ (output)
+the strong coupling constant at MZ.
+.TP
+.B MC, MT, MB, MW, MZ (output)
+the charm, top, bottom, W, and Z masses, respectively.
+.TP
+.B TB (output)
+tan(beta), the ratio of the vacuum expectation values.
+.TP
+.B MA0, MHp (output)
+the masses of the CP-odd and charged Higgs, respectively.
+The one not used as input parameter is set to -1.
+.TP
+.B MgSL, MgSE, MgSQ, MgSU, MgSD, g = 1..3, (output)
+the soft-SUSY breaking parameters for the g-th generation in the 
+sfermion sector, specifically:
+MgSL for the slepton doublet,
+MgSE for the slepton singlet,
+MgSQ for the squark doublet,
+MgSU for the up-type squark singlet, and
+MgSD for the down-type squark singlet.
+.TP
+.B MUE (output)
+the Higgs mixing parameter.
+.TP
+.B Ae, Amu, Atau, Au, Ac, At, Ad, As, Ab (output)
+the soft-SUSY breaking parameters.
+.br
+To give an example (and thus fix the notation) the stop mass matrix is
+given by (DT1, DT2 are the D-terms):
+.br
+   ( M3SQ^2 + MT^2 + DT1    MT (At^* - MUE/TB)  )
+.br
+   ( MT (At - MUE^*/TB)     M3SU^2 + MT^2 + DT2 ) 
+.TP
+.B M_1, M_2, M_3 (output)
+the gaugino mass parameters.
+.SH SEE ALSO
+.PP
+libFH(1)

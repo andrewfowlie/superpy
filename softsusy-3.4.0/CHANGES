@@ -1,0 +1,4 @@
+<li> 26/11/13 <b>Major upgrade</b>: Added Next-to-Minimal Supersymmetric Standard Model. See manual for object structure and other details. 
+<li> 26/09/13 Added lowOrg wrapper, renaming old method fixedPointIteration in
+order to provide backwards compatibility: thanks to S Akula for the suggestion. Also, renamed CMSSM->SUGRA in boundary conditions to both provide backwards compatibility and for NMSSM generalisation
+<li> 2/10/13 In the case that user tries to invoke SLHA2 RPV+flavour violation, SOFTSUSY bails immediately with a better error message. 

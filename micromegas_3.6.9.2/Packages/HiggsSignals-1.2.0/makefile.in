@@ -1,0 +1,108 @@
+
+
+MODS = usefulbits_HS.mod store_pathname_HS.mod datatables.mod combinatorics.mod \
+	   numerics.mod io.mod expt_syst.mod pc_chisq.mod mc_chisq.mod all_chisq.mod
+
+tempMODS = $(MODS:.mod=.o)
+
+OBJSbasic = $(tempMODS:.MOD=.o)
+
+OBJScommandline = $(OBJSbasic) \
+ HiggsSignals.o
+
+OBJSsubroutines =  $(OBJSbasic) \
+ HiggsSignals_subroutines.o
+
+.SUFFIXES: .exe .o .mod .f90 .F .F90 .MOD
+
+#as advised in http://gcc.gnu.org/wiki/GfortranFAQ
+%.o : %.mod
+
+default: HiggsSignals
+
+.f90.mod:
+	$(F90C) $(F90FLAGS) $(HBLIBS) $(HBINCLUDE) $(ADDITIONALDEFINE) -c $< -o $*.o -lHB
+
+.f90.o:
+	$(F90C) $(F90FLAGS) $(HBLIBS) $(HBINCLUDE) $(ADDITIONALDEFINE) -c $< -o $*.o -lHB
+
+.F90.MOD:
+	$(F90C) $(F90FLAGS) $(HBLIBS) $(HBINCLUDE) $(ADDITIONALDEFINE) -c $< -o $*.o -lHB
+
+.F90.o:
+	$(F90C) $(F90FLAGS) $(HBLIBS) $(HBINCLUDE) $(ADDITIONALDEFINE) -c $< -o $*.o -lHB
+
+.F.o:
+	$(F77C) -c $< -o $*.o
+
+.mod.o: $(HiggsBounds)/libHB.a
+	$(F90C) $(F90FLAGS) $(HBLIBS) $(HBINCLUDE) -c $*.f90 -o $*.o -lHB
+
+.MOD.o: $(HiggsBounds)/libHB.a
+	$(F90C) $(F90FLAGS) $(HBLIBS) $(HBINCLUDE) -c $*.F90 -o $*.o -lHB
+
+HiggsSignals: $(HiggsBounds)/libHB.a libHS.a $(MODS) $(OBJScommandline)
+	$(F90C) $(F90FLAGS) $(HBINCLUDE) $(OBJScommandline) -o $(EXE) $(HSLIBS) -lHS $(HBLIBS) -lHB
+
+libHS:  $(MODS) $(OBJSsubroutines)
+	ar -rv libHS.a $(OBJSsubroutines)
+	ranlib libHS.a	
+
+libHS.a: libHS
+
+$(HiggsBounds)/libHB.a:
+	cd $(HiggsBounds); ./configure; $(MAKE)
+
+
+HSexamples:  libHS.a
+	$(F90C) $(F90FLAGS) $(HBLIBS) $(HBINCLUDE) example_programs/HSeffC.f90 -o example_programs/HSeffC $(HSLIBS) -lHB
+	$(F90C) $(F90FLAGS) $(HBLIBS) $(HBINCLUDE) example_programs/HShadr.f90 -o example_programs/HShadr $(HSLIBS) -lHB
+	$(F90C) $(F90FLAGS) $(HBLIBS) $(HBINCLUDE) example_programs/HSscaleUncertainties.f90 -o example_programs/HSscaleUncertainties $(HSLIBS) -lHB
+	$(F90C) $(F90FLAGS) $(HBLIBS) $(HBINCLUDE) example_programs/HSwithToys.f90 -o example_programs/HSwithToys $(HSLIBS) -lHB
+	$(F90C) $(F90FLAGS) $(HBLIBS) $(HBINCLUDE) example_programs/HS_efficiencies.f90 -o example_programs/HS_efficiencies $(HSLIBS) -lHB	
+	$(F90C) $(F90FLAGS) $(HBLIBS) $(HBINCLUDE) example_programs/HSwithSLHA.f90 -o example_programs/HSwithSLHA $(HSLIBS) -lHB
+	$(F90C) $(F90FLAGS) $(HBLIBS) $(HBINCLUDE) example_programs/HBandHSwithSLHA.f90 -o example_programs/HBandHSwithSLHA $(HSLIBS) -lHB
+	$(F90C) $(F90FLAGS) $(HBLIBS) $(HBINCLUDE) example_programs/HS_mass.f90 -o example_programs/HS_mass $(HSLIBS) -lHB
+
+HSeffC: libHS.a
+	$(F90C) $(F90FLAGS) $(HBLIBS) $(HBINCLUDE) example_programs/HSeffC.f90 -o example_programs/HSeffC $(HSLIBS) -lHB
+
+HS_mass: libHS.a
+	$(F90C) $(F90FLAGS) $(HBLIBS) $(HBINCLUDE) example_programs/HS_mass.f90 -o example_programs/HS_mass $(HSLIBS) -lHB
+
+HShadr: libHS.a
+	$(F90C) $(F90FLAGS) $(HBLIBS) $(HBINCLUDE) example_programs/HShadr.f90 -o example_programs/HShadr $(HSLIBS) -lHB
+
+HSscaleUncertainties: libHS.a
+	$(F90C) $(F90FLAGS) $(HBLIBS) $(HBINCLUDE) example_programs/HSscaleUncertainties.f90 -o example_programs/HSscaleUncertainties $(HSLIBS) -lHB
+
+HSwithToys: libHS.a
+	$(F90C) $(F90FLAGS) $(HBLIBS) $(HBINCLUDE) example_programs/HSwithToys.f90 -o example_programs/HSwithToys $(HSLIBS) -lHB
+
+HS_efficiencies: libHS.a
+	$(F90C) $(F90FLAGS) $(HBLIBS) $(HBINCLUDE) example_programs/HS_efficiencies.f90 -o example_programs/HS_efficiencies $(HSLIBS) -lHB
+
+HSwithSLHA: libHS.a
+	$(F90C) $(F90FLAGS) $(HBLIBS) $(HBINCLUDE) example_programs/HSwithSLHA.f90 -o example_programs/HSwithSLHA $(HSLIBS) -lHB
+
+HBandHSwithSLHA: libHS.a
+	$(F90C) $(F90FLAGS) $(HBLIBS) $(HBINCLUDE) example_programs/HBandHSwithSLHA.f90 -o example_programs/HBandHSwithSLHA $(HSLIBS) -lHB
+
+HBandHSwithFH: libHS.a
+	$(F77C) $(FHINCLUDE) $(HBLIBS) $(HBINCLUDE) example_programs/HBandHSwithFH.F -o example_programs/HBandHSwithFH $(FHLIBS) $(HSLIBS) -lHB
+	
+clean:
+	rm -f *.o *.mod *.MOD *.a
+	rm -f store_pathname_HS.f90
+	rm -f *.o *.mod *.MOD *.a *~ 
+	rm -f example_programs/*~
+	rm -f example_data/*-fromHB
+	rm -f example_data/*-fromHS
+	rm -f example_data/*-fromHBandHS
+	rm -f store_pathname_HS.f90	
+	rm -f example_programs/*.txt	
+	rm -f example_programs/tmp/*
+	rm -f Expt_tables/mutables.binary
+	rm -f Expt_tables/analyses.txt	
+	rm -f temp*.txt
+	rm -f HiggsSignals

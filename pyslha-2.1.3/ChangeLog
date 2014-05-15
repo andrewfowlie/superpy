@@ -1,0 +1,479 @@
+2013-07-15  Andy Buckley  <andy.buckley@cern.ch>
+
+	* Version 2.1.3
+
+	* Allow a missing MASS block, if an extra ignorenomass kw argument
+	is passed to the readSLHA(File) functions.
+
+	* Fix **kwargs passing from file read/write functions to the
+	string read/write ones.
+
+	* Add parsing robustness against unknown data section types,
+	particularly the proposed XSECTION.
+
+2013-05-31  Andy Buckley  <andy.buckley@cern.ch>
+
+	* Version 2.1.2
+
+	* Adding a reference to the arXiv paper in the package docstring
+	and slhaplot help message.
+
+2013-05-10  Andy Buckley  <andy.buckley@cern.ch>
+
+	* Version 2.1.1
+
+	* Layout tweak for decay ID code alignment in SLHA output.
+
+	* Treat consecutive strings as a single value in SLHA entry parsing.
+
+	* Improvements/fixes to repr vs. str and tuple-value output formatting.
+
+2013-05-07  Andy Buckley  <andy.buckley@cern.ch>
+
+	* Version 2.1.0
+
+	* Adding multi-value support and refactoring Block value setting.
+
+2013-04-29  Andy Buckley  <andy.buckley@cern.ch>
+
+	* Version 2.0.0 with new Block API.
+
+	* Adding a leading space to float formatting of positive numbers
+	to improve alignment.
+
+	* Clean-up of precision formatting in output.
+
+	* Split writeSLHA implementation into distinct writeSLHA{Blocks,Decays}.
+
+2013-04-28  Andy Buckley  <andy.buckley@cern.ch>
+
+	* Adding a dict arg (compatible with dict.update) to the Block
+	constructor.
+
+	* Adding Block.set_value(*args) and Block documentation.
+
+	* Various fixes to ISAWIG output (and conversion to use new
+	tuple-indexing on mixing matrices and single-value accessing on
+	ALPHA).
+
+	* Improved API for access to entries/values and single/multi-value
+	state on Block.
+
+2013-04-26  Andy Buckley  <andy.buckley@cern.ch>
+
+	* Improved SLHA output formatting.
+
+	* Adding direct entry access via the [] operator to the Block
+	class's entries.
+
+	* Converting entries storage to avoid recursion, by using tuples
+	as dict keys if necessary.
+
+	* Version 1.5.0, since the behaviour has significantly altered.
+
+	* Preserving the ordering of blocks, decays, and their their
+	contents if possible, using ordered dicts. Thanks to Anders
+	Kvellestad for the suggestion.
+
+2013-04-08  Andy Buckley  <andy.buckley@cern.ch>
+
+	* Version 1.4.4
+
+	* pyslha.py: Fix handling of particles with NaN widths (and decay
+	channels with NaN BRs). Both are filled into the blocks in
+	readSLHA(File) now, with None as the value for the invalid
+	width/BR: test for correctness with e.g. 'myparticle.width is not
+	None'. BR == NaN decays will be added if the ignorenobr arg ==
+	False (the default). Thanks to Lukas Vanelderen for the report.
+
+2012-11-16  Andy Buckley  <andy.buckley@cern.ch>
+
+	* Version 1.4.2, 1.4.3
+
+	* setup.py: Adding install_requires for tex2pix so that
+	PyPI/easy_install/pip automatic dependency handling will work.
+
+2012-03-19  Andy Buckley  <andy.buckley@cern.ch>
+
+	* Adding a naive --aspect-ratio option, but the output is not ideal.
+
+2012-03-04  Andy Buckley  <andy.buckley@cern.ch>
+
+	* Version 1.4.1
+
+	* Adding the --include command line option, which allows
+	user-customisable additions to the plot.
+
+	* Version 1.4.0
+
+	* Updated test script which can take the output formats as an optional argument.
+
+	* Check for duplicates and unsupported formats in the format string.
+
+	* Adding rendering support for JPEG and PS (as opposed to EPS) formats.
+
+	* Changing format string behaviour to require comma separators.
+
+2012-03-03  Andy Buckley  <andy.buckley@cern.ch>
+
+	* Version 1.3.3
+
+	* Fix pyslha.ParseError printout to be more helpful.
+
+	* Version 1.3.2
+
+	* Improving error handling if tex2pix cannot be found or the MASS
+	block is missing in the spectrum file, and adding the
+	pyslha.ParseError class.
+
+	* Version 1.3.1
+
+	* Fix LaTeX package checks for tikz an mathpazo by adding .sty to
+	the searched-for package names.
+
+	* Version 1.3.0
+
+	* Test for presence of the mathpazo package before including it in
+	the default preamble.
+
+	* Converting rendering system to use the separate tex2pix
+	library (which itself is based on the slhaplot rendering
+	experience).
+
+2011-10-12  Andy Buckley  <andy@insectnation.org>
+
+	* Version 1.2.9
+
+	* Fixing decay style handling, thanks to a suggestion from John Conley.
+
+2011-09-24  Andy Buckley  <andy@insectnation.org>
+
+	* Version 1.2.8
+
+	* Adding a max mass cutoff for slhaplot: don't show particle lines
+	or associated decays for particles with masses greater than the
+	cutoff. This is set to 10 TeV by default, i.e. above realistic LHC
+	scales and was really introduced to protect the plotting code
+	against Planck scale gravitons.
+
+2011-09-10  Andy Buckley  <andy@insectnation.org>
+
+	* Version 1.2.7 (I'm not sure what happened to the ChangeLog
+	reports for 1.2.{4,5,6}...)
+
+	* slhaplot: Fixing the min/max x/y functions in the class used to
+	implement label merging. Thanks to Alexander Mann for the bug
+	report, patch, and test spectrum!
+
+2011-06-20  Andy Buckley  <andy@insectnation.org>
+
+	* pyslha.py: Add "precision" arguments to the write* functions,
+	with default FP precision set to ".8" as suggested by Diego
+	Restrepo.
+
+2011-04-10  Andy Buckley  <andy@insectnation.org>
+
+	* slhaplot: Add a warning about lack of provided decays if decays
+	should be drawn, but none have been found in the input file.
+
+	* Version 1.2.3.
+
+	* Fix insufficiently careful parsing of BLOCK "Q=" declarations.
+
+	* Add little pre-release testing script, "test".
+
+	* Add missing IDHW / IDPDG mapping for W+- and Z0.
+
+2011-03-13  Andy Buckley  <andy@insectnation.org>
+
+	* Version 1.2.2: use a more dynamic system for choosing y-tick
+	values, to avoid overlaps and too-close tick labels in high-mass
+	SUSY models.
+
+2011-03-10  Andy Buckley  <andy@insectnation.org>
+
+	* Version 1.2.1: add more semantic and case-insensitive handling
+	of format codes, and simultaneously avoid using the any() function
+	which requires Python >= 2.5.
+
+2011-02-27  Andy Buckley  <andy@insectnation.org>
+
+	* Version 1.2.0 (major version change due to interface changes and
+	major new format functionality)
+
+	* Change --outfile to --outname since multiple simultaneous
+	formats are now supported and a single output name can't get all
+	the file extensions correct.
+
+	* Add EPS and PNG formats, and allow all (apart from TeX fragment)
+	formats to be produced with a single command.
+
+	* Version 1.1.0
+
+	* Improving the newly-fixed HERWIG <-> PDG particle ID translation
+	with a pair of functions, pdgid2herwigid and herwigid2pdgid, which
+	are publicly available in the pyslha API.
+
+	* Enabling simultaneous rendering of multiple input files.
+
+	* Adding repr() implementations for the pyslha objects.
+
+2011-02-26  Andy Buckley  <andy@insectnation.org>
+
+	* Adding some more LHA spectrum files to the collection for
+	testing.
+
+	* Removed make-plots output support... TikZ is just nicer and more
+	widely supported, and I've not been bothering to test with
+	make-plots anymore. It's there in the version history if anyone's
+	interested!
+
+	* Removing the --show-gravitino argument from slhaplot: I see no
+	reason to treat gravitinos specially and clutter the UI, so if the
+	gravitino is there, we plot it! Until we supply a
+	user-customization hook for the particle display details, removing
+	the gravitino will have to be done by hacking the TeX (or
+	slhaplot) source.
+
+	* Version 1.0.8
+
+	* Adding non-SUSY HERWIG IDHW <-> PDGID particle ID code mappings.
+
+	* Protecting plotter against unknown particles in decay spec.
+
+2011-02-22  Andy Buckley  <andy@insectnation.org>
+
+	* Bump version to 1.0.7
+
+	* Accept percentage args for --br
+
+	* Add gravitino rendering, based on a patch from Martin Spinrath.
+
+
+2011-01-26  Andy Buckley  <andy@insectnation.org>
+
+	* Added tag pyslha-1.0.6 for changeset 4f426f1f5923
+
+	* Merge in a version of decay line color scaling in proportion to
+	branching ratio, from Martin Spinrath
+
+2011-01-21  Andy Buckley  <andy@insectnation.org>
+
+	* Added tag pyslha-1.0.5 for changeset 0502c4942fbc
+
+	* Fix units issue in slhaplot -- thanks to Martin Spinrath!
+
+2010-12-30  Andy Buckley  <andy@insectnation.org>
+
+	* Ignore setup build and dist directories
+
+	* Added tag pyslha-1.0.4 for changeset 513c294bc9dd
+
+	* Use normal distutils
+
+	* Added tag pyslha-1.0.3 for changeset f3c3eb463cb1
+
+	* Added tag pyslha-1.0.2 for changeset 3a7032d517e3
+
+	* Add web page link, y-scalefactor in TeX comment, and default
+	format indicator in help output
+
+2010-11-30  Andy Buckley  <andy@insectnation.org>
+
+	* Added tag pyslha-1.0.1 for changeset c0c964fdbe5f
+
+	* Doc correction and version bump now that PDF plotting is done
+	internally to slhaplot
+
+	* Added tag pyslha-1.0.0 for changeset f82d84b0002b
+
+	* A big moment -- I see no reason not to call this version 1.0.0
+	now that all the plotting works as I intended!
+
+	* Set decay line width based on BR by default, contollable with
+	new --decaystyle option
+
+	* Allow plotting from a string cated from stdin
+
+	* Make merged labels maintain the plot size by introducing x
+	scaling
+
+	* Document label treatment options
+
+2010-11-17  Andy Buckley  <andy@insectnation.org>
+
+	* Added pdflatex, kpsewhich and tikz.sty checks
+
+2010-11-03  Andy Buckley  <andy@insectnation.org>
+
+	* Updating version number and removing need for pdfcrop
+
+	* Specifying a more appropriate paper size
+
+	* PDF making ~working
+
+	* Various fixes and adding the user-preamble insert
+
+2010-11-02  Andy Buckley  <andy@insectnation.org>
+
+	* Added tag pyslha-0.5.1 for changeset 9a0c2171bd69
+
+	* Also natively plot from ISAWIG files: 0.5.1
+
+	* Now that we have TikZ, I think it's time for a version increment
+	to 0.5.0
+
+	* TikZ mode version 1 done! That was easy...
+
+	* Adding decay arrows in TikZ
+
+	* TikZ plotting underway. x-coord overhaul required.
+
+	* Started putting in TikZ rendering
+
+2010-10-07  Andy Buckley  <andy@insectnation.org>
+
+	* Added tag pyslha-0.4.4 for changeset 3d3926a3e605
+
+	* Restructuring to allow for multiple output formats, plus some
+	other tweaks
+
+	* Removing logscale
+
+2010-10-05  Andy Buckley  <andy@insectnation.org>
+
+	* Added tag pyslha-0.4.3 for changeset 427216d07f43
+
+	* Bug fixes
+
+	* Added tag pyslha-0.4.2 for changeset 1b83c1b0aa71
+
+	* Adding more decay sorting and some guesstimated attempt at
+	choosing the appropriate HW matrix element code.
+
+2010-10-04  Andy Buckley  <andy@insectnation.org>
+
+	* Adding 3 body gluino decay sorting
+
+	* Added tag pyslha-0.4.1 for changeset 03bafdeeffa2
+
+	* Not requiring the with statement, to aid backwards compatibility
+
+	* Adding first HERWIG decay order sorting
+
+2010-09-28  Andy Buckley  <andy@insectnation.org>
+
+	* Added tag pyslha-0.4.0 for changeset 279a1614bca4
+
+	* Incrementing release again, and doc upgrades, adding currently
+	unused --format flag, etc.
+
+	* Option reworking / clean-up
+
+	* Even more cunning rearrangement of labels
+
+2010-09-27  Andy Buckley  <andy@insectnation.org>
+
+	* A slightly more sophisticated attempt at label shifting for
+	collision avoidance
+
+2010-09-24  Andy Buckley  <andy@insectnation.org>
+
+	* Version update for the merged label plotting since the output is
+	so much improved
+
+	* Label collision avoidance by merging
+
+2010-09-14  Andy Buckley  <andy@insectnation.org>
+
+	* Tweak to how docstrings are handled between the module and the
+	setup file
+
+	* Moving ISAWIG writer functions into module
+
+	* A few typo fixes, including a regex omission which was blocking
+	'cyclic' SLHA -> ISA -> SLHA -> ... conversions
+
+2010-09-09  Andy Buckley  <andy@insectnation.org>
+
+	* Better name for minimum BR flag
+
+	* Making labels a bit smaller
+
+	* Hiding x ticks
+
+2010-08-25  Andy Buckley  <andy@insectnation.org>
+
+	* More improvements, and fixing ISAWIG ref file... but still some
+	inconsistency
+
+	* Fixes and tests... now problem with listed decays for particles
+	with no mass/width entry
+
+	* Reading of ISAWIG file to pyslha objects done
+
+2010-08-21  Andy Buckley  <andy@insectnation.org>
+
+	* More SLHA-writing implementation, plus a consistency check
+	assertion on Decay.nda == len(Decay.ids)
+
+	* Reading the first block of masses from the ISAWIG file format
+
+2010-08-20  Andy Buckley  <andy@insectnation.org>
+
+	* Adding use of the distribute/setuptools system
+
+	* Adding setup file, and adding version number variable to pyslha
+	module
+
+	* More renamings, tidyings, and adding some structure to
+	isawig2slha
+
+	* Rename slha2isa to make it explicit that the format that will be
+	written is that for ISAWIG rather than the non-machine-readable
+	format written out by ISASUSY
+
+2010-08-17  Andy Buckley  <andy@insectnation.org>
+
+	* Add reading of SLHA from a string with readSLHA, and rename
+	readSpcFile to readSLHAFile
+
+2010-08-14  Andy Buckley  <andy@insectnation.org>
+
+	* Writing out remaining params: main missing bits are decay ID
+	ordering (need a sorting function) and fixing the handling of the
+	ALPHA block (no index, only one entry)
+
+	* slha2isa partially done
+
+	* Better label positioning, command line options, writing to file
+
+2010-08-11  Andy Buckley  <andy@insectnation.org>
+
+	* Added decays, and other tweaks to slhaplot
+
+	* Use physical abs mass, set XMin, colour lines, slight horizontal
+	offsets
+
+2010-08-10  Andy Buckley  <andy@insectnation.org>
+
+	* Writing the initial form of slhaplot
+
+2010-08-03  Andy Buckley  <andy@insectnation.org>
+
+	* Adding the start of a script to convert SLHA to ISASUSY format
+
+	* Adding docstrings and making the Particle masses get populated
+	via the MASS block contents
+
+2010-08-02  Andy Buckley  <andy@insectnation.org>
+
+	* Decay parsing done
+
+2010-08-01  Andy Buckley  <andy@insectnation.org>
+
+	* Handling Q= entries on block names
+
+	* Automatic string to numeric type conversion
+
+	* Making a basic block -> tree reader

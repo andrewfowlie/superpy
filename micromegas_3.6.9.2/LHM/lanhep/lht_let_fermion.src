@@ -1,0 +1,295 @@
+
+let l1={ne,e}, L1={Ne,E}.
+let l2={nm,m}, L2={Nm,M}.
+let l3={nl,l}, L3={Nl,L}.
+
+let q1l={u,d}, Q1l=anti(q1l).
+let q2l={c,s}, Q2l=anti(q2l). 
+let q3l={t,b}, Q3l=anti(q3l). 
+let q1= {u,d}, Q1=anti(q1).
+let q2= {c,s}, Q2=anti(q2).  
+let q3= {t,b}, Q3=anti(q3). 
+
+let ur=(1+g5)/2*u, 	Ur=anti(ur).
+let dr=(1+g5)/2*d, 	Dr=anti(dr).
+let sr=(1+g5)/2*s, 	Sr=anti(sr).
+let cr=(1+g5)/2*c, 	Cr=anti(cr).
+let br=(1+g5)/2*b, 	Br=anti(br).
+let tr=(1+g5)/2*t, 	Tr=anti(tr).
+
+let uor=(1+g5)/2*'~u',    Uor=anti(uor).
+let dor=(1+g5)/2*'~d',    Dor=anti(dor).
+let sor=(1+g5)/2*'~s',    Sor=anti(sor).
+let cor=(1+g5)/2*'~c',    Cor=anti(cor).
+let bor=(1+g5)/2*'~b',    Bor=anti(bor).
+let tor=(1+g5)/2*'~t2',    Tor=anti(tor).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+let  'tl+'= ( cb*(1-g5)/2*t+sb*(1-g5)/2*tp where sb=sa**2*del, cb=1-1/2*sa**4*del**2).
+let '~tl+'= (-sb*(1-g5)/2*t+cb*(1-g5)/2*tp where sb=sa**2*del, cb=1-1/2*sa**4*del**2).
+
+% 
+let sap=sa*(1-ca**2*(ca**2-sa**2)/2*del**2).
+let cap=ca*(1-sa**2*(sa**2-ca**2)/2*del**2).
+
+let   'tr+'  = cap*(1+g5)/2*t     +sap*(1+g5)/2*tp.
+let  '~tr+'  =-sap*(1+g5)/2*t     +cap*(1+g5)/2*tp.
+% 'tr+'  and '~tr+' are T-EVEN light and heavy eigenstates respectively
+
+
+let 'tl-' = (1-g5)/2*'~t2'.
+let  tl1=1/Sqrt2*('tl-'+'tl+').
+let  tl2=1/Sqrt2*('tl-'-'tl+').
+
+let '~tr-' = (1+g5)/2*'~t1'.
+let '~tl-' = (1-g5)/2*'~t1'.
+
+let '~tl1'=1/Sqrt2*('~tl-'+'~tl+').
+let '~tl2'=1/Sqrt2*('~tl-'-'~tl+').
+
+let '~tr1'=1/Sqrt2*('~tr-'+'~tr+').
+let '~tr2'=1/Sqrt2*('~tr-'-'~tr+').
+
+%%%%%%%%%%
+
+let 'bl+' = (1-g5)/2*b.
+let 'blc+' = (1-g5)/2*(Vtd*d+Vts*s+Vtb*b).
+let 'bl-' = (1-g5)/2*'~b'.
+let 'blc-' = (1-g5)/2*(Vtd*'~d'+Vts*'~s'+Vtb*'~b').
+%AB
+let  bl1=('bl-'+'bl+')/Sqrt2.
+let  bl2=('bl-'-'bl+')/Sqrt2.
+
+let  blc1=('blc-'+'blc+')/Sqrt2.
+let  blc2=('blc-'-'blc+')/Sqrt2.
+
+let 'br+' = (1+g5)/2*b.
+
+let q3l1={tl1,blc1}.
+let q3l2={tl2,blc2}.
+let Q3l1={anti(tl1),anti(blc1)}.
+let Q3l2={anti(tl2),anti(blc2)}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% first generation %%%%%%%%%%%
+
+let 'u+' = u.
+let 'u-' = '~u'.
+let  u1=('u-'+'u+')/Sqrt2.
+let  u2=('u-'-'u+')/Sqrt2.
+
+
+let 'd+' = d.
+let 'd-' = '~d'.
+let 'dc+' = Vud*d+Vus*s+Vub*b.
+let 'dc-' = Vud*'~d'+Vus*'~s'+Vub*'~b'.
+let  d1=('d-'+'d+')/Sqrt2.
+let  d2=('d-'-'d+')/Sqrt2.
+let  dc1=('dc-'+'dc+')/Sqrt2.
+let  dc2=('dc-'-'dc+')/Sqrt2.
+
+let qd1={u1,dc1}.
+let qd2={u2,dc2}.
+
+let Qd1={anti(u1),anti(dc1)}.
+let Qd2={anti(u2),anti(dc2)}.
+%--------------------------
+let 'ur+' = (1+g5)/2*u.
+
+let 'ul+' = (1-g5)/2*u.
+let 'ul-' = (1-g5)/2*'~u'.
+let  ul1=('ul-'+'ul+')/Sqrt2.
+let  ul2=('ul-'-'ul+')/Sqrt2.
+
+let 'dr+' = (1+g5)/2*d.
+
+let 'dl+' =  (1-g5)/2*d.
+let 'dl-' =  (1-g5)/2*'~d'.
+let  dl1=('dl-'+'dl+')/Sqrt2.
+let  dl2=('dl-'-'dl+')/Sqrt2.
+
+let 'dlc+' =  (1-g5)/2*(Vud*d+Vus*s+Vub*b).
+let 'dlc-' =  (1-g5)/2*(Vud*'~d'+Vus*'~s'+Vub*'~b').
+let  dlc1=('dlc-'+'dlc+')/Sqrt2.
+let  dlc2=('dlc-'-'dlc+')/Sqrt2.
+
+%--------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%% second generation %%%%%%%%%%%
+let 'c+' = c.
+let 'c-' = '~c'.
+let  c1=('c-'+'c+')/Sqrt2.
+let  c2=('c-'-'c+')/Sqrt2.
+
+
+let 's+' = s.
+let 's-' = '~s'.
+let 'sc+' = Vcd*d+Vcs*s+Vcb*b.
+let 'sc-' = Vcd*'~d'+Vcs*'~s'+Vcb*'~b'.
+let  s1=('s-'+'s+')/Sqrt2.
+let  s2=('s-'-'s+')/Sqrt2.
+let  sc1=('sc-'+'sc+')/Sqrt2.
+let  sc2=('sc-'-'sc+')/Sqrt2.
+
+let qs1={c1,sc1}.
+let qs2={c2,sc2}.
+let Qs1={anti(c1),anti(sc1)}.
+let Qs2={anti(c2),anti(sc2)}.
+%--------------------------
+
+let 'cr+' = (1+g5)/2*c.
+
+let 'cl+' = (1-g5)/2*c.
+let 'cl-' = (1-g5)/2*'~c'.
+let  cl1=('cl-'+'cl+')/Sqrt2.
+let  cl2=('cl-'-'cl+')/Sqrt2.
+
+let 'sr+' = (1+g5)/2*s.
+
+let 'sl+' =  (1-g5)/2*s.
+let 'sl-' =  (1-g5)/2*'~s'.
+let  sl1=('sl-'+'sl+')/Sqrt2.
+let  sl2=('sl-'-'sl+')/Sqrt2.
+
+let 'slc+' =  (1-g5)/2*(Vcd*d+Vcs*s+Vcb*b).
+let 'slc-' =  (1-g5)/2*(Vcd*'~d'+Vcs*'~s'+Vcb*'~b').
+let  slc1=('slc-'+'slc+')/Sqrt2.
+let  slc2=('slc-'-'slc+')/Sqrt2.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+let    Q51 ={i*bl1,	-i*tl1,		'~tl1',		0,	0}.
+let barQ51 ={anti(i*bl1), anti(-i*tl1),anti('~tl1'),	0,	0}.
+
+let    Q31 ={i*bl1,	-i*tl1,		'~tl1'	}.
+let barQ31 ={anti(i*bl1), anti(-i*tl1),anti('~tl1')}.
+
+let    Q2_31 ={i*sl1,	-i*cl1,		0	}.
+let barQ2_31 ={anti(i*sl1), anti(-i*cl1),0      }.
+
+let    QB21 = {tl1,blc1}.
+let barQB21 = anti(QB21).
+let    QB21S ={tl1,blc1}.
+let barQB21S =anti(QB21).
+
+let    QS21 = {cl1,slc1}.
+let barQS21 = anti(QS21).
+let    QS21S ={cl1,slc1}.
+let barQS21S =anti(QS21).
+
+let    QD21 = {ul1,dlc1}.
+let barQD21 = anti(QD21).
+let    QD21S ={ul1,dlc1}.
+let barQD21S =anti(QD21).
+
+let    Q52 ={0,		0,	       '~tl2',	i*bl2,	  	-i*tl2	      	}.
+let barQ52 ={0,		0,	anti('~tl2'),	anti(i*bl2), anti(-i*tl2)	}.
+let barQ52S ={anti(i*bl2),      anti(-i*tl2),	 anti('~tl2'),     0,	     0  }.
+
+
+%chen for kappa, 4/25/2006%%%%%%%%%
+%let pg11={i*dl1,-i*ul1}.
+%let pg12={i*dl2,-i*ul2}.
+%let pg21={i*sl1,-i*cl1}.
+%let pg22={i*sl2,-i*cl2}.
+%let pg31={i*bl1,-i*tl1}.
+%let pg32={i*bl2,-i*tl2}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%KAPPA DEFS%%
+%let  Q1K ={i*bl1,-i*tl1,0,0,0}.
+%let  Q2K ={0,0,0,i*bl2,-i*tl2}.
+%let dtc=dor.
+%let  QCK ={i*dc,-i*uc, ki, 0,i*dtc,-i*utc}.
+
+
+
+
+let    Q52S ={i*bl2,	      -i*tl2  	  ,	 '~tl2',	   0,	     0 }.
+
+
+let    Q32 ={0, 	0,	        '~tl2'}.
+let barQ32 ={0, 	0,	   anti('~tl2')}.
+
+let    Q32S ={i*bl2,	      -i*tl2	  ,	 '~tl2'	  }.
+let barQ32S ={anti(i*bl2),    anti(-i*tl2),	 anti('~tl2')}.
+
+let    Q2_32S ={i*sl2,	           -i*cl2,	 0	  }.
+let barQ2_32S ={anti(i*sl2),    anti(-i*cl2),	 0        }.
+
+let    QB22 ={tl2,blc2}.
+let barQB22 =anti(QB22).
+
+let    QS22 ={cl2,slc2}.
+let barQS22 =anti(QS22).
+
+let    QD22 ={ul2,dlc2}.
+let barQD22 =anti(QD22).
+
+let    QB22S ={tl2,blc2}.
+let barQB22S =anti(QB22S).
+
+let    QS22S ={cl2,slc2}.
+let barQS22S =anti(QS22S).
+
+let    QD22S ={ul2,dlc2}.
+let barQD22S =anti(QD22S).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+let 'n1+' = ne.
+let 'n1-' = '~ne'.
+let  n1a=('n1-'+'n1+')/Sqrt2.
+let  n1b=('n1-'-'n1+')/Sqrt2.
+
+
+let 'e1+' = e.
+let 'e1-' = '~e'.
+let  e1a=('e1-'+'e1+')/Sqrt2.
+let  e1b=('e1-'-'e1+')/Sqrt2.
+
+let l1a={n1a,e1a}.
+let l1b={n1b,e1b}.
+let L1a={anti(n1a),anti(e1a)}.
+let L1b={anti(n1b),anti(e1b)}.
+%--------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+let 'n2+' = nm.
+let 'n2-' = '~nm'.
+let  n2a=('n2-'+'n2+')/Sqrt2.
+let  n2b=('n2-'-'n2+')/Sqrt2.
+
+
+let 'e2+' = m.
+let 'e2-' = '~m'.
+let  e2a=('e2-'+'e2+')/Sqrt2.
+let  e2b=('e2-'-'e2+')/Sqrt2.
+
+let l2a={n2a,e2a}.
+let l2b={n2b,e2b}.
+let L2a={anti(n2a),anti(e2a)}.
+let L2b={anti(n2b),anti(e2b)}.
+%--------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+let 'n3+' = nl.
+let 'n3-' = '~nl'.
+let  n3a=('n3-'+'n3+')/Sqrt2.
+let  n3b=('n3-'-'n3+')/Sqrt2.
+
+
+let 'e3+' = l.
+let 'e3-' = '~l'.
+let  e3a=('e3-'+'e3+')/Sqrt2.
+let  e3b=('e3-'-'e3+')/Sqrt2.
+
+let l3a={n3a,e3a}.
+let l3b={n3b,e3b}.
+let L3a={anti(n3a),anti(e3a)}.
+let L3b={anti(n3b),anti(e3b)}.
+%--------------------------
+
+

@@ -1,0 +1,11 @@
+Standard Model(CKM=1)
+ Constraints 
+ Name  |  Expression                                    |
+CW     |sqrt(1-SW^ 2)     % cos of the Weinberg angle
+MW     |MZ*CW             % W-boson  mass
+LamQCD |initQCD5(alfSMZ,McMc,MbMb,Mtp)
+ GF    |EE^2/(2*SW*MW)^2/Sqrt2        % Fermi constant    
+ Mb    |MbEff(Q)
+ Mt    |MtEff(Q)
+ Mc    |McEff(Q)
+=========================================================

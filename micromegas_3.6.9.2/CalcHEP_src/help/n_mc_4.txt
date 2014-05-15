@@ -1,0 +1,7 @@
+2 5 50 
+Presents the list of calculated constraints
+and gives you a possibility to display 
+dependence of constraints on each independent 
+parameter. Also there is an option to check 
+current values of particle masses, their widths
+and decay channels.

@@ -1,0 +1,11 @@
+if(test $# -eq 1) then
+  mkdir $1
+  if(test $? -eq 0) then
+    cd $1; tar -xvf ../sources/new.tar;   cd ..   
+  else
+     echo Can not creat directory $1
+     exit 2 
+  fi
+else
+  echo One argument,  name of directory to create, is needed.
+fi  

@@ -1,0 +1,8 @@
+rootS    lumi    Data      BG     sys         ULnBSM:obs, exp  ULxsecBSM(fb):obs, exp    name   SR                  
+    8    20.1     102      94      13                  38  -1                 1.9  -1   cut_0   SRA mCT150          
+    8    20.1      48      39       6                  26  -1                 1.3  -1   cut_1   SRA mCT200          
+    8    20.1      14    15.8     2.8                 9.0  -1                0.45  -1   cut_2   SRA mCT250          
+    8    20.1       7     5.9     1.1                 7.5  -1                0.37  -1   cut_3   SRA mCT300          
+    8    20.1       3     2.5     0.6                 5.2  -1                0.26  -1   cut_4   SRA mCT350          
+    8    20.1      65      64      10                  27  -1                 1.3  -1   cut_5   SRB                 
+

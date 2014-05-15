@@ -1,0 +1,38 @@
+:
+#====================================
+USR=`pwd`
+bin=`echo $0_A_E_P |sed s/s_blind_A_E_P//`; cd $bin; bin=`pwd`
+cd $USR
+#====================================
+
+if(test $# -ne 3) then
+ echo Error, $0 needs 3  parameters
+ echo 1: model number
+ echo 2: process name closed in \"\"  without composit and X particles
+ echo 3: output: C , REDUCE, MATHEMATICA, or FORM
+ exit 200
+fi
+
+
+Nmodel=$1
+
+model=
+output=
+
+while(test $Nmodel  -ne 1)
+do
+  Nmodel=`expr $Nmodel  - 1`
+  model=$model"["
+done
+
+
+for FILE in  results/* tmp/*
+do 
+   if(test ! -d  $FILE) then 
+     rm -f $FILE
+   fi 
+done
+
+
+$bin/s_calchep -blind "$model"{{"$2"{{[{[{{f" $3 "{{0
+err=$?; if(test $err -ne 0) then exit $err; fi

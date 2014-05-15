@@ -1,0 +1,4 @@
+6 7 60 5    Write results
+  This function creates files with symbolic results for the
+squared matrix element in FORM  notations
+  See the generated files in the subdirectory '\results'.

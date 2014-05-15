@@ -1,0 +1,11 @@
+#arxiv:0807.4493 [hep-ex] 28 Jul 2008
+#CDF_ZH_llbb_1fb
+#needs interpolation
+#columns: Mh, obs, exp (as ratio to SM cross sections)
+
+110	15	15
+115	17	16
+120	19	19
+130	30	28
+140	65	55
+150	160	140

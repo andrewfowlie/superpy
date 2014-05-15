@@ -1,0 +1,9 @@
+3 5 50 Plot
+CalcHEP  presents the value of function via areas
+of the boxes 
+   S ~  F^P 
+By default, P=1. This menu position  gives you a
+possibility to change P. If P=2 then linear sizes
+of boxes will be proportion to function. The 
+option P<<1 allows us to see boxes which are 
+invisible at the default P=1 case.  

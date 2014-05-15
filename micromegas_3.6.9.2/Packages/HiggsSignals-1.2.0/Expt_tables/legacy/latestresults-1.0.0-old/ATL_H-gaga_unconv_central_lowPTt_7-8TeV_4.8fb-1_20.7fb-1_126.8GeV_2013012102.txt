@@ -1,0 +1,17 @@
+# Published at Moriond 2013.
+# unconverted central lowPTt category
+# More info in ../Moriond2013.info
+# Don't use it together with the inclusive result (observableID: 2013012101)
+# (data overlap!).
+2013012102	201301202	1
+ATL-CONF-2013-012
+LHC, ATL, ATL
+(pp)->h->gammagamma (unconv.-central-lowPTt)
+8 	25.5	0.036
+1	0
+2.0	ATLgagacat
+126.8 126.8 0.1
+5	126.8
+11 21 31 41 51
+1.0 0.668 0.536 0.443 0.835
+126.8	0.17	0.87	1.60

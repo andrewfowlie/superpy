@@ -1,0 +1,15 @@
+#CDF Note 9219 Feb 28, 2008
+#CDF_WH_lnubb_1.9fb
+#125,135,145 are interpolated
+#columns: Mh, obs, exp (as ratio to SM cross sections)
+
+110	6.8	6.5
+115	8.2	7.3
+120	9.8	8.9
+125	12.8	10.75
+130	15.8	12.6
+135	26.8	18.0
+140	37.8	23.4
+145	61.5	40.5
+150	85.2	57.6
+

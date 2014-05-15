@@ -1,0 +1,224 @@
+% Definition of complex variables 
+
+let Zv11=Zv11r+i*Zv11i,Zv12=Zv12r+i*Zv12i,
+    Zv21=Zv21r+i*Zv21i,Zv22=Zv22r+i*Zv22i,
+
+    Zv11c=Zv11r-i*Zv11i,Zv12c=Zv12r-i*Zv12i,
+    Zv21c=Zv21r-i*Zv21i,Zv22c=Zv22r-i*Zv22i.
+    
+let Zu11=Zu11r+i*Zu11i, Zu12=Zu12r+i*Zu12i,
+    Zu21=Zu21r+i*Zu21i, Zu22=Zu22r+i*Zu22i,
+ 
+    Zu11c=Zu11r-i*Zu11i,Zu12c=Zu12r-i*Zu12i,
+    Zu21c=Zu21r-i*Zu21i,Zu22c=Zu22r-i*Zu22i.
+    
+let Zn11=Zn11r+i*Zn11i,Zn12=Zn12r+i*Zn12i,Zn13=Zn13r+i*Zn13i,Zn14=Zn14r+i*Zn14i,
+    Zn21=Zn21r+i*Zn21i,Zn22=Zn22r+i*Zn22i,Zn23=Zn23r+i*Zn23i,Zn24=Zn24r+i*Zn24i,
+    Zn31=Zn31r+i*Zn31i,Zn32=Zn32r+i*Zn32i,Zn33=Zn33r+i*Zn33i,Zn34=Zn34r+i*Zn34i,
+    Zn41=Zn41r+i*Zn41i,Zn42=Zn42r+i*Zn42i,Zn43=Zn43r+i*Zn43i,Zn44=Zn44r+i*Zn44i.
+   
+let Zn11c=Zn11r-i*Zn11i,Zn12c=Zn12r-i*Zn12i,Zn13c=Zn13r-i*Zn13i,Zn14c=Zn14r-i*Zn14i,
+    Zn21c=Zn21r-i*Zn21i,Zn22c=Zn22r-i*Zn22i,Zn23c=Zn23r-i*Zn23i,Zn24c=Zn24r-i*Zn24i,
+    Zn31c=Zn31r-i*Zn31i,Zn32c=Zn32r-i*Zn32i,Zn33c=Zn33r-i*Zn33i,Zn34c=Zn34r-i*Zn34i,
+    Zn41c=Zn41r-i*Zn41i,Zn42c=Zn42r-i*Zn42i,Zn43c=Zn43r-i*Zn43i,Zn44c=Zn44r-i*Zn44i.
+
+% Matrix orthogonality:
+
+OrthMatrix({{Zh11, Zh12, Zh13}, {Zh21, Zh22, Zh23}, {Zh31, Zh32, Zh33}}).
+
+%  auxiliary parameters to define  orthogonality
+parameter QQ21=0:'to avoid', QQ22=0:'to avoid', QQ23=0:'to avoid',
+QQ24=0:'to avoid',QQ31=0:'to avoid', QQ32=0:'to avoid', QQ33=0:'to avoid',
+QQ34=0:'to avoid',QQ41=0:'to avoid', QQ42=0:'to avoid', QQ43=0:'to avoid', 
+QQ44=0:'to avoid'.
+
+%HermMatrix({{Zb11r,Zb21r},{Zb12r,Zb22r}}, {{Zb11i,Zb21i},{Zb12i,Zb22i}}).
+
+%HermMatrix({{Zt11r,Zt12r},{Zt21r,Zt22r}}, {{Zt11i,Zt12i},{Zt21i,Zt22i}}).
+%HermMatrix({{Zl11r,Zl12r},{Zl21r,Zl22r}}, {{Zl11i,Zl12i},{Zl21i,Zl22i}}).
+%HermMatrix({{Zl11r,Zl12r},{Zl21r,Zl11r}}, {{Zl11i,Zl12i},{Zl21i,Zl22i}}).
+
+%OrthMatrix({{Zb11r, Zb21r, Zb21i}, {QQ21, QQ22, QQ23}, {QQ31, QQ32, QQ33}}).
+%OrthMatrix({{Zt11r, Zt21r, Zt21i}, {QQ21, QQ22, QQ23}, {QQ31, QQ32, QQ33}}).
+%OrthMatrix({{Zl11r, Zl21r, Zl21i}, {QQ21, QQ22, QQ23}, {QQ31, QQ32, QQ33}}).
+
+
+OrthMatrix({{Zu11r, Zu11i, Zu12r, Zu12i}, 
+            {QQ21, QQ22, QQ23, QQ24}, 
+            {QQ31, QQ32, QQ33, QQ34},
+            {QQ41, QQ42, QQ43, QQ44}
+            }).
+
+OrthMatrix({{Zv11r, Zv11i, Zv12r, Zv12i}, 
+            {QQ21, QQ22, QQ23, QQ24}, 
+            {QQ31, QQ32, QQ33, QQ34},
+            {QQ41, QQ42, QQ43, QQ44}
+            }).
+
+OrthMatrix({{Zu22r, Zu22i, Zu21r, Zu21i}, 
+            {QQ21, QQ22, QQ23, QQ24}, 
+            {QQ31, QQ32, QQ33, QQ34},
+            {QQ41, QQ42, QQ43, QQ44}
+            }).
+
+OrthMatrix({{Zv22r, Zv22i, Zv21r, Zv21i}, 
+            {QQ21, QQ22, QQ23, QQ24}, 
+            {QQ31, QQ32, QQ33, QQ34},
+            {QQ41, QQ42, QQ43, QQ44}
+            }).
+
+
+% Gauge bosons & gaugino ( for MSSM)
+
+let Vud=1, Vus=0, Vub=0, Vcd=0,Vcs=1,Vcb=0, Vtd=0,Vts=0,Vtb=1.
+
+let B0 = -SW*Z+CW*A,
+    W3 =  CW*Z+SW*A.
+% gb include complex matrix
+
+let f_B0 = i*(Zn11c*  up(~o1)+Zn21c*  up(~o2)+Zn31c*  up(~o3)+Zn41c*  up(~o4)).
+let f_B0b=-i*(Zn11 *down(~o1)+Zn21 *down(~o2)+Zn31 *down(~o3)+Zn41 *down(~o4)).
+
+let W  =  {'W+',W3,'W-'},
+    Wc =  {'W-',W3,'W+'}.
+
+let f_Wp = i*(Zv11*up('~1+')+Zv21*up('~2+')).
+let f_W3 = i*(Zn12c*up(~o1)  +Zn22c*up(~o2) +Zn32c*up(~o3) +Zn42c*up(~o4)).
+let f_Wm = i*(Zu11c*up('~1-')+Zu21c*up('~2-')).
+
+let f_Wpb =-i*(Zv11c*down('~1-')+Zv21c*down('~2-')).
+let f_W3b =-i*(Zn12*down(~o1)  +Zn22*down(~o2)+Zn32*down(~o3)+Zn42*down(~o4)).
+let f_Wmb =-i*(Zu11*down('~1+')+Zu21*down('~2+')).
+
+let f_W = { f_Wp , f_W3 , f_Wm },
+    f_Wb= { f_Wpb, f_W3b, f_Wmb},
+    f_Wc= { f_Wmb, f_W3b, f_Wpb}.
+
+let f_G = -i*up(~g), f_Gb = i*down(~g).
+
+
+let vev1=Sqrt2*MW*SW/EE*cb, vev2=Sqrt2*MW*SW/EE*sb.
+
+
+let s_h1 = { vev(vev1) + ((Zh11*h1+Zh21*h2+Zh31*h3) + i*(-cb*'Z.f'+sb*(
+Zh13*h1+Zh23*h2+Zh33*h3) ))/Sqrt2, 
+		         (-cb*'W-.f' + sb*'H-') },
+    s_H1 = anti(s_h1).
+
+let s_h2 = {              (sb*'W+.f'+cb*'H+'),
+            vev(vev2) + ((Zh12*h1+Zh22*h2+Zh32*h3) + i*(cb*
+	     (Zh13*h1+Zh23*h2+Zh33*h3)+sb*'Z.f'))/Sqrt2 },
+    s_H2 = anti(s_h2).
+
+let f_h1 = { Zn13c*up(~o1)+Zn23c*up(~o2)+Zn33c*up(~o3)+Zn43c*up(~o4),
+	      Zu12c*up('~1-')+Zu22c*up('~2-') },
+    f_h1b= anti(f_h1).
+
+let f_h2 = { Zv12*up('~1+')+Zv22*up('~2+'),
+              Zn14c*up(~o1)+Zn24c*up(~o2)+Zn34c*up(~o3)+Zn44c*up(~o4) },
+	      
+    f_h2b= anti(f_h2).
+
+
+% Leptons & sleptons
+
+let f_l1={up(ne), up(e)}, f_l1b=anti(f_l1),
+    f_l2={up(nm), up(m)}, f_l2b=anti(f_l2),
+    f_l3={up(nl), up(l)}, f_l3b=anti(f_l3).
+
+let f_r1=up(E), f_r1b=anti(f_r1),
+    f_r2=up(M), f_r2b=anti(f_r2),
+    f_r3=up(L), f_r3b=anti(f_r3).
+
+
+let s_l1 = { ~ne, ~eL},
+    s_L1 = anti(s_l1).
+let s_l2 = { ~nm, ~mL},
+    s_L2 = anti(s_l2).
+let s_l3 = { ~nl, ~l1*Zl11c+ ~l2*Zl21c},
+    s_L3 = anti(s_l3).
+
+let s_R1 = ~eR,
+    s_r1 = anti(s_R1).
+let s_R2 =  ~mR,
+    s_r2 = anti(s_R2).
+let s_R3 =  ~l1*Zl12c+ ~l2*Zl22c,
+    s_r3 = anti(s_R3).
+
+% Quarks & squarks
+
+let f_q1={up(u), Vud*up(d)+Vus*up(s)+Vub*up(b) },
+    f_q2={up(c), Vcd*up(d)+Vcs*up(s)+Vcb*up(b) },
+    f_q3={up(t), Vtd*up(d)+Vts*up(s)+Vtb*up(b) },
+    
+    f_q1b=anti(f_q1),
+    f_q2b=anti(f_q2),
+    f_q3b=anti(f_q3).
+    
+let f_u1 =up(U),   f_u1b=anti(f_u1),
+    f_u2 =up(C),   f_u2b=anti(f_u2),
+    f_u3 =up(T),   f_u3b=anti(f_u3).
+
+let f_d1 =up(D),   f_d1b=anti(f_d1),
+    f_d2 =up(S),   f_d2b=anti(f_d2),
+    f_d3 =up(B),   f_d3b=anti(f_d3).
+
+
+let _u = ~uL,
+    _d = ~dL.
+
+let _c =  ~cL,
+    _s =  ~sL.
+
+let _t =  ~t1*Zt11c+ ~t2*Zt21c,
+    _b =  ~b1*Zb11c+ ~b2*Zb21c.
+
+let s_q1  = {_u, _d*Vud+ _s*Vus+ _b*Vub}, s_Q1 = anti(s_q1),
+    s_q2  = {_c, _d*Vcd+ _s*Vcs+ _b*Vcb}, s_Q2 = anti(s_q2),
+    s_q3  = {_t, _d*Vtd+ _s*Vts+ _b*Vtb}, s_Q3 = anti(s_q3).
+
+clear _u, _d, _c, _s, _t, _b.
+
+
+let _u =  ~uR,
+    _d =  ~dR.
+
+let _c = ~cR,
+    _s = ~sR.
+
+let _t =   ~t1*Zt12c+ ~t2*Zt22c,
+    _b =   ~b1*Zb12c+ ~b2*Zb22c.
+ 
+let s_U1 = _u, s_u1 = anti(s_U1),
+    s_U2 = _c, s_u2 = anti(s_U2),
+    s_U3 = _t, s_u3 = anti(s_U3),
+    s_D1 = _d, s_d1 = anti(s_D1),
+    s_D2 = _s, s_d2 = anti(s_D2),
+    s_D3 = _b, s_d3 = anti(s_D3).
+
+clear _u, _d, _c, _s, _t, _b.
+
+
+let Wgh={'W+.c', CW*'Z.c'+SW*'A.c', 'W-.c'},
+    WGh={'W+.C', CW*'Z.C'+SW*'A.C', 'W-.C'}.
+
+let g=EE/SW, g1=EE/CW.
+
+let     vvev1= 1/(Sqrt2*MW*SW/EE).
+
+do_if mix2g==on.
+  let  Mc_=Mc.
+do_else.
+  let  Mc_=0.
+end_if.
+
+
+let   ml1 = 0,             md1 = -Mq*vvev1/cb,  mu1 =  Mq*vvev1/sb, 
+      ml2 = 0,             md2 = -Mq*vvev1/cb,  mu2 =  Mc_*vvev1/sb,
+      ml3r= -Ml*vvev1/cb,  md3r= -Mb*vvev1/cb,  mu3r=  Mt*vvev1/sb,
+      ml3 = -Ml*vvev1/cb,  md3 = -Mb*vvev1/cb,  mu3 =  Mt*vvev1/sb,
+      ml3i=0,              md3i=0,              mu3i=0.
+
+let   ls1=0,                        ls2=0,                         ls3=  Ml*vvev1*(Alr+i*Ali)/cb, 
+      ds1= Mq*vvev1*(Adr+i*Adi)/cb, ds2= Mq*vvev1*(Adr+i*Adi)/cb,  ds3=  Mb*vvev1*(Abr+i*Abi)/cb, 
+      us1=-Mq*vvev1*(Aur+i*Aui)/sb, us2=-Mc_*vvev1*(Aur+i*Aui)/sb,  us3= -Mt*vvev1*(Atr+i*Ati)/sb.

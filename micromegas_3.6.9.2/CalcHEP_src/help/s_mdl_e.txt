@@ -1,0 +1,14 @@
+2 2 50 0 Edit Model
+ Information about the model is stored in five
+files. Select the corresponding item to view/edit
+one of these files. You can get information about
+each part of the model via F1 key.
+  When you  leave this menu, CalcHEP checks the
+model. If a certain file is changed, CalcHEP asks
+you: "Save correction ?". For the case of
+negative answer CalcHEP forgets your changes. If
+the answer is affirmative, CalcHEP begins to check
+the model contents. If no error is found, you are
+returned to the previous menu. Otherwise an error
+message appears on the screen and  exit from
+the menu does not  occur.

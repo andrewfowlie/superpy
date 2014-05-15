@@ -1,0 +1,12 @@
+#Atlas 2011-133 Aug 23, 2011
+#2011133_Atlas_H-tautau-ll4nu_1.06fb-1
+#data read in from Fig. 5
+#columns: Mh, obs, exp (as ratio to SM cross sections)
+
+        110.            32.7            34.2    
+        115.            32.7            34.4    
+        120.            29.6            31.0    
+        125.            30.8            32.2    
+        130.            33.2            34.9    
+        135.            41.8            43.7    
+        140.            60.5            62.9    

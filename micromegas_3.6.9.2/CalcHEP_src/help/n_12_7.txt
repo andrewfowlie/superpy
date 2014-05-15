@@ -1,0 +1,5 @@
+5 5 45 8
+  Writes a file with decay widths and 
+branchings for all subrocess in format
+of Les Houches SUSY accord.
+ 

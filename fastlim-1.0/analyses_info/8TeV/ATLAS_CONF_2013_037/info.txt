@@ -1,0 +1,2 @@
+1 lepton + 4(1 b-)jets + Etmiss [Medium / heavy stop] at 8TeV with $20.7fb^{-1}$
+https://cds.cern.ch/record/1532431

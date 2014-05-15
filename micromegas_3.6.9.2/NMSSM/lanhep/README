@@ -1,0 +1,77 @@
+This directory presents lanHEP source files  for NMSSM.
+
+1) file gi_Nmass.src 
+
+We restore  neutralino mass matrix NMMij  and use 
+NMM11    0    NMM13  NMM14   0
+ 0     NMM22  NMM23  NMM24   0
+                     NMM34   0
+                            NMM45
+                            NMM55
+
+to improve Lagrangian to discribe Neutralino mass/mixing by GI manner. 
+
+
+2)  file improve_squarks.src
+
+We define MbMM and MtMM on the scale of corresponding squarks.
+Restore   squark mass matrix: 
+  a) Correct Ab -> AB and At->AT  to reproduce off-diagonal term.
+  b) Add  
+      lterm dX3*(EE/SW)**2*(s_H2*tau*s_h2)*(s_Q3*tau*s_q3)/4.
+which shifts both   MMt11 and MMb11 on 
+
+     +1/2*MW**2*dX3*sb**2
+
+but in differente sides. 
+
+It gives complete gauge invariance, if dX3 choosen in such a way to
+reproduce mass martix.  But dX3 typically > 1. ( dX3=1 corresponds to
+SU(2) DD term). The same trick for first 2 generation gives dX1,dX2 << 1.  
+May be mixing angle is wrong ( say, was calculated before diagonalizing ..)????
+  
+3) Quark masses:
+
+   MbMM and MtMM as well as AB AT are  contibute to superpotential  which lead
+   to unwanted values of quark masses. It is improved in  file Yukawa.src. 
+   deltaMb correactions are implemented in the same time.
+   
+ 
+4) s-quark mixig for first 2 generation.
+   It needs for direct detection. We assume that u,d,s quarks have the same
+   small mass Mq. Result should not depend on this mass while it small. 
+
+
+5) Flags: 
+
+keys  slha=on.    %  model functions read  data from slha file. Used in CalcHEP
+           off.   %  the slha parameters are free parameters initiated by
+                     micromrgas/nmssmTools
+keys tools=nmhdecay. %  model calls nmhdecay 
+keys tools=nmspec.   %  model calls nmspec
+keys tolls=slha.     %  model reads  slha output  file  produced by spectrtum generator.
+keys tools=off.      %  for micromegas/nmssmTools.     
+
+keys  mix2g=on.      % adds mixing of squarks of  first two generation. 
+keys gi_Nmass=on.    % trick with GI treatment of neutralino mixing. 
+
+For micromegas/nmssmTools: 
+  keys   slha=off.
+  keys   tools=off.
+  keys   mix2g=on.
+
+For CalcHEP with EWSB input:
+  keys  slha=on.
+  keys   tools=nmhdeay.
+  keys  mix2g=off.
+
+For CalcHEP with SUGRA scenario:
+  keys  slha=on.
+  keys   tools=nmspec.
+  keys  mix2g=off.
+
+For CalcHEP with file input:
+  keys  slha=on.
+  keys  tools=slha.
+  keys  mix2g=off.
+

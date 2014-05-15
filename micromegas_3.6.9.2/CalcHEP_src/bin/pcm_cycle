@@ -1,0 +1,52 @@
+:
+
+USR=`pwd`
+bin=`echo $0_A_E_P |sed s/pcm_cycle_A_E_P//`; cd $bin; bin=`pwd`
+cd $USR
+#===============================
+if(test $# -ne 3) then
+ echo Error, $0 needs 3 numerical parameters
+ echo 1: Initial CM momentum
+ echo 2: Step for momentum
+ echo 3: Number of steps
+ exit 200
+fi
+ 
+pcm=$1
+step=$2
+nstep=$3
+
+first=1
+
+while(test 0 -ne $nstep)
+do
+
+  $bin/set_momenta $pcm $pcm
+  err=$?; if(test $err -ne 0) then exit $err; fi
+
+  if(test $first -eq 1) then
+    n1=`grep Session_number session.dat|cut -f2 -d" "`
+    n2=`expr $n1 - 1 + $3`
+
+    file=pcm_tab_"$n1"_"$n2"
+    lastpcm=`$bin/calc "$pcm+($nstep-1)*($step)"`
+
+    echo "#type 0 %curve"  > $file
+    echo "#x-axis: \"Pcm[GeV]\"" >> $file
+    echo "#xMin $1"        >> $file
+    echo "#xMax $lastpcm"  >> $file
+    echo "#xDim $3"        >> $file
+    echo "#yName   Cross section [pb]" >> $file
+
+    first=0
+  fi 
+  res=`$bin/run_vegas`
+  err=$?; if(test $err -ne 0) then exit $err; fi
+
+  echo Pcm=$pcm[GeV]  sigma=$res[pb] 
+  echo $res >>$file
+
+  pcm=`$bin/calc "$pcm + ($2)"`
+  nstep=`expr $nstep - 1`
+done   
+echo See $file file

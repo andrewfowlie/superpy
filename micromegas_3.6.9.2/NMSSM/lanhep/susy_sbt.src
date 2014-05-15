@@ -1,0 +1,35 @@
+% Soft SUSY-breaking terms
+
+lterm  -M2_H1*s_h1*s_H1.
+lterm  -M2_H2*s_h2*s_H2.
+lterm  -M2_H3*s_n*s_N.
+lterm  -hL*hLs*eps2*s_h1*s_h2*s_n - hK*hKs*s_n**3/3 +AddHermConj.
+
+lterm  -Mq2**2*s_q1*s_Q1  -Mq2**2*s_q2*s_Q2  -Mq3Q**2*s_q3*s_Q3.
+lterm  -Mu2**2*s_u1*s_U1  -Mu2**2*s_u2*s_U2  -Mu3Q**2*s_u3*s_U3.
+lterm  -Md2**2*s_d1*s_D1  -Md2**2*s_d2*s_D2  -Md3Q**2*s_d3*s_D3.
+
+lterm  -Ml2**2*s_l1*s_L1  -Ml2**2*s_l2*s_L2  -Ml3**2*s_l3*s_L3.
+lterm  -Mr2**2*s_r1*s_R1  -Mr2**2*s_r2*s_R2  -Mr3**2*s_r3*s_R3.
+
+lterm    MG1I*f_B0*f_B0/2+AddHermConj.
+lterm    MG2I*f_Wb*f_Wc/2+AddHermConj.
+lterm    MSG*(~g)*cc(~g)/2.
+
+
+lterm  s_h1*eps2*( ls1*s_l1*s_r1
+                 +ls2*s_l2*s_r2
+                 +ls3*s_l3*s_r3) + AddHermConj.
+
+lterm  s_h2*eps2*( us1*s_q1*s_u1
+                 +us2*s_q2*s_u2
+                 +us3*s_q3*s_u3) + AddHermConj.
+
+lterm  s_h1*eps2*(  ds1*(Vud*s_q1+Vcd*s_q2+Vtd*s_q3)*s_d1
+                   +ds2*(Vus*s_q1+Vcs*s_q2+Vts*s_q3)*s_d2
+		   +ds3*(Vub*s_q1+Vcb*s_q2+Vtb*s_q3)*s_d3 ) + AddHermConj.
+
+% New Terms 
+
+lterm -MM3*eps2*s_h1*s_h2 - 1/2*MSP*s_n**2 - xis*s_n +  AddHermConj.
+

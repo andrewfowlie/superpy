@@ -1,0 +1,3 @@
+5 5 65 10
+ It is possible to introduce alias names for particle sets 
+ to use them in historgam and cut tables.

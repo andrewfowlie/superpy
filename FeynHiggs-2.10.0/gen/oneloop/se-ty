@@ -1,0 +1,237 @@
+#! /bin/sh
+
+test $# -eq 0 && {
+  echo 'Usage:  $0 file'
+  echo 'generates the self-energy "file"'
+  echo 'will output diagrams & Mma code if DEBUG=1'
+  exit 1
+}
+
+logfile=`dirname $1`-log/`basename $1 .F`.log
+
+mkdir -p `dirname $1` `dirname $logfile`
+
+math -run file=\"$1\" \
+     -run debug=${DEBUG:-0} << \_EOF_ > $logfile
+AppendTo[$Echo, "stdout"];
+
+<< FeynArts`
+
+<< FormCalc`
+
+Alfa = Alfa1L;
+EL = EL1L;
+
+Mf[3,g_] := Mf[tM1,g];
+Mf2[3,g_] := Mf2[tM1,g];
+Mf[4,g_] := Mf[bX,g];
+Mf2[4,g_] := Mf2[bX,g];
+Mfy[4,g_] := Mf[bX,g];
+Mfy2[4,g_] := Mf2[bX,g];
+Mdy[g_] := Mf[bX,g];
+Sq[Mfy[a__]] = Mfy2[a];
+
+sfrulz[t_, ty_] = {
+  MSf[s_,t,g_] -> MSf[s,ty,g],
+  MSf2[s_,t,g_] -> MSf2[s,ty,g],
+  USf[s1_,s2_,t,g_] -> USf[s1,s2,ty,g],
+  USfC[s1_,s2_,t,g_] -> USfC[s1,s2,ty,g],
+  MASf[as_,t] -> MASf[as,ty],
+  MASf2[as_,t] -> MASf2[as,ty],
+  UASf[as1_,as2_,t] -> UASf[as1,as2,ty],
+  UASfC[as1_,as2_,t] -> UASfC[as1,as2,ty],
+  Kf[g__,t] -> Kf[g,ty],
+  KfC[g__,t] -> KfC[g,ty]
+};
+
+$DebugCmd = {"#ifdef DETAILED_DEBUG\n", "#endif\n", "DHIGGS ", " ENDL"};
+
+NClear[];
+N[sqrt2] = Sqrt[2.];
+
+Finite = 1;
+
+Attributes[paint] = {HoldFirst};
+
+paint[ins_] := Paint[ ins,
+  PaintLevel -> {Classes},
+  ColumnsXRows -> {3, 4},
+  DisplayFunction -> (Export[
+    "!gzip -c > " <> StringReplace[file,
+      ".F" -> "-" <> Block[{ins}, ToString[ins]] <> ".ps.gz"],
+    #, "PS", ImageSize -> 144 {3, 4} ]&)
+] /; debug === 1;
+
+
+Derivative[1, 0, 0][B0] = DB0;
+Derivative[1, 0, 0][B1] = DB1;
+Derivative[1, 0, 0][B11] = DB11;
+Derivative[1, 0, 0][B00] = DB00;
+
+loopint = _A0 | _B0 | _B1 | _B00 | _B11 | _DB0 | _DB1 | _DB00 | _DB11;
+
+simp[x_] := FullSimplify[Factor[Collect[x, loopint, simp2]]] /.
+  plus -> Plus //. a_ b_. + a_ c_ -> a (b + c);
+
+simp2[x_] := FullSimplify[x] /. -1 + SBA2 -> -CBA2 /. Plus -> plus;
+
+
+SetOptions[WriteExpr,
+  Newline -> "\n",
+  TmpType -> "ComplexType"];
+
+SetOptions[PrepareExpr,
+  FinalTouch -> simp,
+  (*MinLeafCount -> 1,*)
+  Optimize -> True,
+  Expensive -> List@@ loopint,
+  DebugLines -> True];
+
+
+tops[_ -> {}] := CreateTopologies[1, 1 -> 0];
+tops[_] := CreateTopologies[1, 1 -> 1,
+  ExcludeTopologies -> Tadpoles];
+
+
+calc[process_, {args_, deriv_}, foo_] :=
+Block[ {charged, top, tst, bsb, lsl, all, rem, res},
+  Run["rm -f", file <> "*"];
+
+  top = tops[process];
+
+  InitializeModel[Model /. Options[InsertFields]];
+  charged = !SelfConjugate[ process[[1]] ];
+
+  If[ charged,
+    bsb = InsertFields[top, process,
+      LastSelections -> F[3|4] | S[13|14]];
+    paint[bsb];
+    tst = Head[bsb][],
+  (* else *)
+    tst = InsertFields[top, process, 
+      LastSelections -> F[3] | S[13],
+      ExcludeParticles -> {F[4], S[14]}];
+    paint[tst];
+    bsb = InsertFields[top, process,
+      LastSelections -> F[4] | S[14]];
+    paint[bsb]
+  ];
+
+  lsl = InsertFields[top, process,
+    LastSelections -> F[1|2] | S[11|12]];
+  paint[lsl];
+
+  all = InsertFields[top, process];
+  paint[all];
+
+  rem = DiagramComplement[all, tst, bsb, lsl];
+  paint[rem];
+
+  amps = CreateFeynAmp/@ {tst, bsb, lsl, rem};
+  If[ debug === 1, Put[amps, file <> ".amp"] ];
+
+  res = CalcFeynAmp[amps, Transverse -> False,
+    OnShell -> False, Dimension -> 4];
+  res = Apply[List, res, 1] //. Join[Subexpr[], Abbr[]] /. ToOldBRules /.
+    { Pair[_k, _k] -> k2,
+      Pair[_e | _ec, _k] -> If[MatchQ[process, _V -> _V], 0, 1],
+      Pair[_e, _ec] -> -1 } /.
+    sfrulz[3, tM1] /.
+    sfrulz[4, bX] /.
+    { CKM[a__] -> CKMin[a],
+      CKMC[a__] -> CKMinC[a] } /.
+    USf[a__] USfC[a__] -> USf2[a];
+
+  If[ charged,
+    res[[1]] = res[[2]] /. {(Mf|Mf2)[bX, _] -> 0, (Kf|KfC)[__, bX] -> 0};
+    res[[2]] = Simplify[ res[[2]] - res[[1]] ] ];
+
+  res = deriv[simp/@ res];
+  If[ debug === 1, Put[res, file <> ".m"] ];
+
+  res = res /. {
+    Mino3 -> "M_3", Mino3C -> "M_3C",
+    IndexDelta -> Delta,
+    Sqrt[2] -> sqrt2, 1/Sqrt[2] -> 1/sqrt2 };
+
+  hh = OpenFortran[file];
+
+  WriteString[hh, "\
+* " <> foo <> ".F\n\
+* generated " <> TimeStamp[] <> "\n\
+* this file is part of FeynHiggs\n\
+* please do not edit directly\n\n\
+#include \"externals.h\"\n\
+#include \"types.h\"\n\n\n\
+\tComplexType function " <> ToFortran[foo@@ Flatten[{args, bX}]] <> "\n\
+\timplicit none\n\
+\tinteger bX\n" <>
+    ("\tRealType " <> # <> "\n" &)/@ args <> "\n\
+#include \"FH.h\"\n\
+#include \"looptools.h\"\n\n" <>
+    VarDecl[
+      Cases[res, SumOver[i_, _] -> i, Infinity] //Union,
+      "integer"] <> "\n"];
+
+  gen3only = {
+    SumOver[i_, 3] :> SumOver[i, gM, 3] /;
+      !StringMatchQ[ToString[i], "Ind*"],
+    SumOver[i_, 6] -> SumOver[i, 1, 6, gM] };
+
+  WriteExpr[hh, {
+    foo -> res[[1]] /. gen3only,
+    "\tif( mssmpart .le. 1 ) return\n",
+    RuleAdd[foo, res[[2]]] /. gen3only,
+    "\tif( mssmpart .le. 2 ) return\n",
+    RuleAdd[foo, res[[3]]],
+    "\tif( mssmpart .le. 3 ) return\n",
+    RuleAdd[foo, res[[4]]],
+    "\tend\n"
+  }];
+
+  Close[hh];
+]
+
+
+fi["h0h0"] := S[1] -> S[1];
+fi["h0HH"] := S[1] -> S[2];
+fi["h0A0"] := S[1] -> S[3];
+fi["h0G0"] := S[1] -> S[4];
+fi["HHHH"] := S[2] -> S[2];
+fi["HHA0"] := S[2] -> S[3];
+fi["HHG0"] := S[2] -> S[4];
+fi["A0A0"] := S[3] -> S[3];
+fi["A0Z"]  := S[3] -> V[2];
+fi["A0G0"] := S[3] -> S[4];
+fi["G0G0"] := S[4] -> S[4];
+fi["HmHp"] := S[5] -> S[5];
+fi["HmGp"] := S[5] -> S[6];
+fi["GmGp"] := S[6] -> S[6];
+fi["WW"]   := V[3] -> V[3];
+fi["ZZ"]   := V[2] -> V[2];
+fi["h0"]   := S[1] -> {};
+fi["HH"]   := S[2] -> {};
+fi["A0"]   := S[3] -> {};
+_fi := Abort[];
+
+
+td := {{}, Identity};
+se := {{"k2"}, Identity};
+dse := {{"k2"}, D[#, k2]&};
+
+
+fvmod["f-nmfv"] = "FV";
+_fvmod = Sequence[];
+
+
+self[file_] := (
+  MkDir[#1];
+  SetOptions[InsertFields, Model -> {"MSSMQCD", fvmod[#1], "EnhHbb"}];
+  calc[fi[#3], ToExpression[#2], #2 <> "_" <> #3]
+)& @@ StringSplit[file, {"/", "_", "."}];
+
+
+self[file];
+
+_EOF_
+

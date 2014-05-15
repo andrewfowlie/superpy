@@ -1,0 +1,9 @@
+lterm 
+      - (la1 - (g1**2/4 +g**2/4) )*s_H1*s_h1*s_H1*s_h1/2  
+      - (la2 - (g1**2/4 +g**2/4) ) *(s_H2*s_h2)**2/2        
+      - (la3 - (g**2/4 -g1**2/4)  ) *(s_H1*s_h1)*(s_H2*s_h2) 
+      - (la4 + g**2/2 )*eps2*(s_h1*s_h2)*eps2*(s_H1*s_H2)
+      -  la5*( (eps2*(s_h1*s_h2))**2 + (eps2*(s_H1*s_H2))**2 )/2 
+      - la6*(s_h1*s_H1)*(eps2*s_h1*s_h2+eps2*s_H1*s_H2)
+      - la7*(s_h2*s_H2)*(eps2*s_h1*s_h2+eps2*s_H1*s_H2)
+.

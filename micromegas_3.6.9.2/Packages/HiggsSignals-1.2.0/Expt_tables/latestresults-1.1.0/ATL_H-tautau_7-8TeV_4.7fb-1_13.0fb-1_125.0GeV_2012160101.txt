@@ -1,0 +1,14 @@
+# Combination of 7 and 8TeV results, here implemented as 8TeV only.
+# Data read in from Fig.1 in ATL-CONF-2012-162.
+2012160101	201216001	1
+ATL-CONF-2012-160
+LHC, ATL, ATL
+(p p)-> h -> tau tau
+8 	17.7	0.036
+1	0
+20
+125.0 125.0 1.0
+4	-1
+14 24 34 44
+
+125.0	0.119  0.770  1.470

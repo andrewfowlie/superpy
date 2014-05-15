@@ -1,0 +1,15 @@
+# Mass uncertainty contains 0.6 GeV (stat) and 0.5 GeV (syst) error. 
+#(Gauss: 0.8, linear: 1.1)
+# Measurement was performed at 125.5GeV, but best-fit mass is 124.3 +- 1.1 GeV.
+7268821	726882	1
+Phys.Lett.B726(2013)88
+LHC, ATL, ATL
+(pp)->h->ZZ->4l
+8	25.3	0.036
+1	1
+1.1
+124.3 124.3 0.1
+4	-1
+13 23 33 43
+
+       124.3           1.08           1.43           1.83

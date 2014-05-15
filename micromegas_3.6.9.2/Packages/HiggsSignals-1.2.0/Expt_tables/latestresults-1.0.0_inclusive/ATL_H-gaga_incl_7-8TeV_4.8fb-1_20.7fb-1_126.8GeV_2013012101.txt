@@ -1,0 +1,18 @@
+# Published at Moriond 2013.
+# N.b.: This is the inclusive result. Don't use it together with the
+# results of the ATLAS H->gammagamma subcategories (data overlap!).
+# We set the analysis ID of this results and the dominant subcategory 
+# result (LowPTt) to be the same (201301202), to exclude the possibility
+# of simultaneous use.
+2013012101	201301202	1
+ATL-CONF-2013-012
+LHC, ATL, ATL
+(pp)->h->gammagamma (inclusive)
+8 	25.5	0.036
+1	1
+0.9
+126.8 126.8 0.1
+5	126.8
+11 21 31 41 51
+1.0 0.99 0.95 0.81 1.04
+126.8	1.41	1.65	1.89

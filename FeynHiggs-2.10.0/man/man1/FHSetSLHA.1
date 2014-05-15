@@ -1,0 +1,38 @@
+.TH FHSETSLHA 1 "14-May-2012"
+.SH NAME
+.PP
+FHSetSLHA \- set the FeynHiggs parameters from SLHA data
+.SH SYNOPSIS (Fortran version)
+.PP
+#include "SLHA.h"
+.sp
+integer error
+.br
+double complex slhadata(nslhadata)
+.sp
+subroutine FHSetSLHA(error, slhadata)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHSetSLHA[slhafile]
+.SH DESCRIPTION
+FHSetSLHA is the companion routine to FHSetPara.  It extracts the
+parameters for FeynHiggs from SUSY Les Houches Accord (SLHA) data.  
+In Fortran, it reads the data from the slhadata array used by the SLHA 
+library (see hep-ph/0605049), in Mathematica it reads the data from the
+SLHA file directly.  As with FHSetPara, the flags must have been set
+before with FHSetFlags.
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in SetSLHA.F from
+which the error message was emitted.
+.TP
+.B slhadata (input)
+the SLHA data structure.  The slhadata array should never be accessed
+directly, but only through the preprocessor macros defined in SLHA.h.
+.TP
+.B slhafile (input)
+the name of the file from which to read the SLHA data.
+.SH SEE ALSO
+.PP
+libFH(1)

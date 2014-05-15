@@ -1,0 +1,20 @@
+*-----------------------------------------------------------------------
+*+CDE HC_ COMMON BLOCKS:
+      COMMON /HC_SMPARA/ AEM_H,ASMZ_H,MZ_H,SW_H,ME_H,MMU_H,MTAU_H,MDMT_H
+     .                  ,MSMT_H,MBMT_H,MUMT_H,MCMT_H,MTPOLE_H,GAMW_H
+     .                  ,GAMZ_H,EEM_H,ASMT_H,CW_H,TW_H,MW_H,GW_H,GP_H
+     .                  ,V_H,GF_H,MTMT_H
+*
+      COMMON /HC_RSUSYPARA/ TB_H,CB_H,SB_H,MQ3_H,MU3_H,MD3_H,ML3_H,ME3_H
+*
+      COMPLEX*16 MU_H,M1_H,M2_H,M3_H,AT_H,AB_H,ATAU_H
+      COMMON /HC_CSUSYPARA/ MU_H,M1_H,M2_H,M3_H,AT_H,AB_H,ATAU_H
+*
+*NEW COMMON BLOCKS for V2
+*
+      REAL*8     RAUX_H(999)
+      COMPLEX*16 CAUX_H(999)
+      COMMON /HC_RAUX/ RAUX_H
+      COMMON /HC_CAUX/ CAUX_H
+      DATA NAUX/999/
+*-----------------------------------------------------------------------

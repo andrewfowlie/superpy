@@ -1,0 +1,209 @@
+{F1 -> DiracChain[Spinor[k[1], 0, -1], 6, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], 6, Spinor[k[2], 0, 1]], 
+ F58 -> DiracChain[Spinor[k[1], 0, -1], 7, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], 6, Spinor[k[2], 0, 1]], 
+ F2 -> DiracChain[Spinor[k[1], 0, -1], 6, Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[4], 0, 1], 6, Spinor[k[3], 0, -1]], 
+ F64 -> DiracChain[Spinor[k[1], 0, -1], 7, Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[4], 0, 1], 6, Spinor[k[3], 0, -1]], 
+ F31 -> DiracChain[Spinor[k[1], 0, -1], 6, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], 7, Spinor[k[2], 0, 1]], 
+ F59 -> DiracChain[Spinor[k[1], 0, -1], 7, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], 7, Spinor[k[2], 0, 1]], 
+ F33 -> DiracChain[Spinor[k[1], 0, -1], 6, Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[4], 0, 1], 7, Spinor[k[3], 0, -1]], 
+ F68 -> DiracChain[Spinor[k[1], 0, -1], 7, Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[4], 0, 1], 7, Spinor[k[3], 0, -1]], 
+ F48 -> DiracChain[Spinor[k[4], 0, 1], 6, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[1], 0, -1], 6, k[1], Spinor[k[2], 0, 1]], 
+ F50 -> DiracChain[Spinor[k[4], 0, 1], 7, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[1], 0, -1], 6, k[1], Spinor[k[2], 0, 1]], 
+ F53 -> DiracChain[Spinor[k[4], 0, 1], 6, Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[1], 0, -1], 6, k[1], Spinor[k[3], 0, -1]], 
+ F54 -> DiracChain[Spinor[k[4], 0, 1], 7, Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[1], 0, -1], 6, k[1], Spinor[k[3], 0, -1]], 
+ F78 -> DiracChain[Spinor[k[4], 0, 1], 6, Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[1], 0, -1], 6, k[2], Spinor[k[3], 0, -1]], 
+ F79 -> DiracChain[Spinor[k[4], 0, 1], 7, Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[1], 0, -1], 6, k[2], Spinor[k[3], 0, -1]], 
+ F83 -> DiracChain[Spinor[k[4], 0, 1], 6, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[1], 0, -1], 6, k[3], Spinor[k[2], 0, 1]], 
+ F75 -> DiracChain[Spinor[k[4], 0, 1], 7, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[1], 0, -1], 6, k[3], Spinor[k[2], 0, 1]], 
+ F82 -> DiracChain[Spinor[k[4], 0, 1], 6, Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[1], 0, -1], 6, k[3], Spinor[k[3], 0, -1]], 
+ F84 -> DiracChain[Spinor[k[4], 0, 1], 7, Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[1], 0, -1], 6, k[3], Spinor[k[3], 0, -1]], 
+ F13 -> DiracChain[Spinor[k[4], 0, 1], 6, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[1], 0, -1], 7, k[1], Spinor[k[2], 0, 1]], 
+ F16 -> DiracChain[Spinor[k[4], 0, 1], 7, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[1], 0, -1], 7, k[1], Spinor[k[2], 0, 1]], 
+ F10 -> DiracChain[Spinor[k[4], 0, 1], 6, Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[1], 0, -1], 7, k[1], Spinor[k[3], 0, -1]], 
+ F12 -> DiracChain[Spinor[k[4], 0, 1], 7, Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[1], 0, -1], 7, k[1], Spinor[k[3], 0, -1]], 
+ F14 -> DiracChain[Spinor[k[4], 0, 1], 6, Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[1], 0, -1], 7, k[2], Spinor[k[3], 0, -1]], 
+ F11 -> DiracChain[Spinor[k[4], 0, 1], 7, Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[1], 0, -1], 7, k[2], Spinor[k[3], 0, -1]], 
+ F19 -> DiracChain[Spinor[k[4], 0, 1], 6, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[1], 0, -1], 7, k[3], Spinor[k[2], 0, 1]], 
+ F22 -> DiracChain[Spinor[k[4], 0, 1], 7, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[1], 0, -1], 7, k[3], Spinor[k[2], 0, 1]], 
+ F17 -> DiracChain[Spinor[k[4], 0, 1], 6, Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[1], 0, -1], 7, k[3], Spinor[k[3], 0, -1]], 
+ F21 -> DiracChain[Spinor[k[4], 0, 1], 7, Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[1], 0, -1], 7, k[3], Spinor[k[3], 0, -1]], 
+ F43 -> DiracChain[Spinor[k[1], 0, -1], 6, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], 6, k[1], Spinor[k[2], 0, 1]], 
+ F90 -> DiracChain[Spinor[k[1], 0, -1], 7, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], 6, k[1], Spinor[k[2], 0, 1]], 
+ F44 -> DiracChain[Spinor[k[1], 0, -1], 7, k[2], Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], 6, k[1], Spinor[k[2], 0, 1]], 
+ F30 -> DiracChain[Spinor[k[1], 0, -1], 6, Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[4], 0, 1], 6, k[1], Spinor[k[3], 0, -1]], 
+ F76 -> DiracChain[Spinor[k[1], 0, -1], 7, Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[4], 0, 1], 6, k[1], Spinor[k[3], 0, -1]], 
+ F92 -> DiracChain[Spinor[k[1], 0, -1], 7, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], 6, k[2], Spinor[k[2], 0, 1]], 
+ F91 -> DiracChain[Spinor[k[1], 0, -1], 7, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], 6, k[3], Spinor[k[2], 0, 1]], 
+ F77 -> DiracChain[Spinor[k[1], 0, -1], 6, Lor[1], Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], 6, Lor[1], Spinor[k[2], 0, 1]], 
+ F45 -> DiracChain[Spinor[k[1], 0, -1], 7, Lor[1], Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], 6, Lor[1], Spinor[k[2], 0, 1]], 
+ F74 -> DiracChain[Spinor[k[1], 0, -1], 6, Lor[1], Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[4], 0, 1], 6, Lor[1], Spinor[k[3], 0, -1]], 
+ F46 -> DiracChain[Spinor[k[1], 0, -1], 7, Lor[1], Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[4], 0, 1], 6, Lor[1], Spinor[k[3], 0, -1]], 
+ F5 -> DiracChain[Spinor[k[1], 0, -1], 6, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], 7, k[1], Spinor[k[2], 0, 1]], 
+ F72 -> DiracChain[Spinor[k[1], 0, -1], 7, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], 7, k[1], Spinor[k[2], 0, 1]], 
+ F57 -> DiracChain[Spinor[k[1], 0, -1], 6, k[2], Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], 7, k[1], Spinor[k[2], 0, 1]], 
+ F6 -> DiracChain[Spinor[k[1], 0, -1], 6, Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[4], 0, 1], 7, k[1], Spinor[k[3], 0, -1]], 
+ F73 -> DiracChain[Spinor[k[1], 0, -1], 7, Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[4], 0, 1], 7, k[1], Spinor[k[3], 0, -1]], 
+ F7 -> DiracChain[Spinor[k[1], 0, -1], 6, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], 7, k[2], Spinor[k[2], 0, 1]], 
+ F8 -> DiracChain[Spinor[k[1], 0, -1], 6, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], 7, k[3], Spinor[k[2], 0, 1]], 
+ F56 -> DiracChain[Spinor[k[1], 0, -1], 6, Lor[1], Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], 7, Lor[1], Spinor[k[2], 0, 1]], 
+ F34 -> DiracChain[Spinor[k[1], 0, -1], 7, Lor[1], Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], 7, Lor[1], Spinor[k[2], 0, 1]], 
+ F55 -> DiracChain[Spinor[k[1], 0, -1], 6, Lor[1], Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[4], 0, 1], 7, Lor[1], Spinor[k[3], 0, -1]], 
+ F39 -> DiracChain[Spinor[k[1], 0, -1], 7, Lor[1], Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[4], 0, 1], 7, Lor[1], Spinor[k[3], 0, -1]], 
+ F67 -> DiracChain[Spinor[k[4], 0, 1], 6, Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[1], 0, -1], -7, k[1], k[2], Spinor[k[3], 0, -1]], 
+ F69 -> DiracChain[Spinor[k[4], 0, 1], 7, Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[1], 0, -1], -7, k[1], k[2], Spinor[k[3], 0, -1]], 
+ F88 -> DiracChain[Spinor[k[4], 0, 1], 6, Lor[1], Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[1], 0, -1], -7, k[2], Lor[1], Spinor[k[3], 0, -1]], 
+ F32 -> DiracChain[Spinor[k[4], 0, 1], 6, Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[1], 0, -1], -6, k[1], k[2], Spinor[k[3], 0, -1]], 
+ F35 -> DiracChain[Spinor[k[4], 0, 1], 7, Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[1], 0, -1], -6, k[1], k[2], Spinor[k[3], 0, -1]], 
+ F9 -> DiracChain[Spinor[k[4], 0, 1], 7, Lor[1], Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[1], 0, -1], -6, k[2], Lor[1], Spinor[k[3], 0, -1]], 
+ F38 -> DiracChain[Spinor[k[1], 0, -1], 6, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], -7, k[1], k[2], Spinor[k[2], 0, 1]], 
+ F61 -> DiracChain[Spinor[k[1], 0, -1], 7, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], -7, k[1], k[2], Spinor[k[2], 0, 1]], 
+ F40 -> DiracChain[Spinor[k[1], 0, -1], 6, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], -7, k[1], k[3], Spinor[k[2], 0, 1]], 
+ F62 -> DiracChain[Spinor[k[1], 0, -1], 7, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], -7, k[1], k[3], Spinor[k[2], 0, 1]], 
+ F49 -> DiracChain[Spinor[k[1], 0, -1], 6, Lor[1], Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], -7, k[1], Lor[1], Spinor[k[2], 0, 1]], 
+ F15 -> DiracChain[Spinor[k[1], 0, -1], 7, Lor[1], Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], -7, k[1], Lor[1], Spinor[k[2], 0, 1]], 
+ F70 -> DiracChain[Spinor[k[1], 0, -1], -7, k[2], Lor[1], 
+    Spinor[k[3], 0, -1]]*DiracChain[Spinor[k[4], 0, 1], -7, k[1], Lor[1], 
+    Spinor[k[2], 0, 1]], F36 -> DiracChain[Spinor[k[1], 0, -1], -6, k[2], 
+    Lor[1], Spinor[k[3], 0, -1]]*DiracChain[Spinor[k[4], 0, 1], -7, k[1], 
+    Lor[1], Spinor[k[2], 0, 1]], 
+ F52 -> DiracChain[Spinor[k[1], 0, -1], 6, Lor[1], Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[4], 0, 1], -7, k[1], Lor[1], Spinor[k[3], 0, -1]], 
+ F24 -> DiracChain[Spinor[k[1], 0, -1], 7, Lor[1], Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[4], 0, 1], -7, k[1], Lor[1], Spinor[k[3], 0, -1]], 
+ F85 -> DiracChain[Spinor[k[1], 0, -1], 6, Lor[1], Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], -7, k[2], Lor[1], Spinor[k[2], 0, 1]], 
+ F27 -> DiracChain[Spinor[k[1], 0, -1], 7, Lor[1], Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], -7, k[2], Lor[1], Spinor[k[2], 0, 1]], 
+ F86 -> DiracChain[Spinor[k[1], 0, -1], 6, Lor[1], Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], -7, k[3], Lor[1], Spinor[k[2], 0, 1]], 
+ F29 -> DiracChain[Spinor[k[1], 0, -1], 7, Lor[1], Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], -7, k[3], Lor[1], Spinor[k[2], 0, 1]], 
+ F60 -> DiracChain[Spinor[k[1], 0, -1], -7, Lor[1], Lor[2], 
+    Spinor[k[3], 0, -1]]*DiracChain[Spinor[k[4], 0, 1], -7, Lor[1], Lor[2], 
+    Spinor[k[2], 0, 1]], F66 -> DiracChain[Spinor[k[1], 0, -1], -7, Lor[1], 
+    Lor[2], Spinor[k[2], 0, 1]]*DiracChain[Spinor[k[4], 0, 1], -7, Lor[1], 
+    Lor[2], Spinor[k[3], 0, -1]], 
+ F41 -> DiracChain[Spinor[k[1], 0, -1], 6, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], -6, k[1], k[2], Spinor[k[2], 0, 1]], 
+ F63 -> DiracChain[Spinor[k[1], 0, -1], 7, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], -6, k[1], k[2], Spinor[k[2], 0, 1]], 
+ F42 -> DiracChain[Spinor[k[1], 0, -1], 6, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], -6, k[1], k[3], Spinor[k[2], 0, 1]], 
+ F65 -> DiracChain[Spinor[k[1], 0, -1], 7, Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], -6, k[1], k[3], Spinor[k[2], 0, 1]], 
+ F51 -> DiracChain[Spinor[k[1], 0, -1], 6, Lor[1], Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], -6, k[1], Lor[1], Spinor[k[2], 0, 1]], 
+ F18 -> DiracChain[Spinor[k[1], 0, -1], 7, Lor[1], Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], -6, k[1], Lor[1], Spinor[k[2], 0, 1]], 
+ F71 -> DiracChain[Spinor[k[1], 0, -1], -7, k[2], Lor[1], 
+    Spinor[k[3], 0, -1]]*DiracChain[Spinor[k[4], 0, 1], -6, k[1], Lor[1], 
+    Spinor[k[2], 0, 1]], F37 -> DiracChain[Spinor[k[1], 0, -1], -6, k[2], 
+    Lor[1], Spinor[k[3], 0, -1]]*DiracChain[Spinor[k[4], 0, 1], -6, k[1], 
+    Lor[1], Spinor[k[2], 0, 1]], 
+ F47 -> DiracChain[Spinor[k[1], 0, -1], 6, Lor[1], Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[4], 0, 1], -6, k[1], Lor[1], Spinor[k[3], 0, -1]], 
+ F28 -> DiracChain[Spinor[k[1], 0, -1], 7, Lor[1], Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[4], 0, 1], -6, k[1], Lor[1], Spinor[k[3], 0, -1]], 
+ F87 -> DiracChain[Spinor[k[1], 0, -1], 6, Lor[1], Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], -6, k[2], Lor[1], Spinor[k[2], 0, 1]], 
+ F23 -> DiracChain[Spinor[k[1], 0, -1], 7, Lor[1], Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], -6, k[2], Lor[1], Spinor[k[2], 0, 1]], 
+ F89 -> DiracChain[Spinor[k[1], 0, -1], 6, Lor[1], Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], -6, k[3], Lor[1], Spinor[k[2], 0, 1]], 
+ F25 -> DiracChain[Spinor[k[1], 0, -1], 7, Lor[1], Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], -6, k[3], Lor[1], Spinor[k[2], 0, 1]], 
+ F4 -> DiracChain[Spinor[k[1], 0, -1], -6, Lor[1], Lor[2], 
+    Spinor[k[3], 0, -1]]*DiracChain[Spinor[k[4], 0, 1], -6, Lor[1], Lor[2], 
+    Spinor[k[2], 0, 1]], F3 -> DiracChain[Spinor[k[1], 0, -1], -6, Lor[1], 
+    Lor[2], Spinor[k[2], 0, 1]]*DiracChain[Spinor[k[4], 0, 1], -6, Lor[1], 
+    Lor[2], Spinor[k[3], 0, -1]], 
+ F20 -> DiracChain[Spinor[k[4], 0, 1], -7, Lor[1], Lor[2], 
+    Spinor[k[2], 0, 1]]*DiracChain[Spinor[k[1], 0, -1], -7, k[2], Lor[1], 
+    Lor[2], Spinor[k[3], 0, -1]], 
+ F26 -> DiracChain[Spinor[k[4], 0, 1], -6, Lor[1], Lor[2], 
+    Spinor[k[2], 0, 1]]*DiracChain[Spinor[k[1], 0, -1], -7, k[2], Lor[1], 
+    Lor[2], Spinor[k[3], 0, -1]], 
+ F80 -> DiracChain[Spinor[k[4], 0, 1], -7, Lor[1], Lor[2], 
+    Spinor[k[2], 0, 1]]*DiracChain[Spinor[k[1], 0, -1], -6, k[2], Lor[1], 
+    Lor[2], Spinor[k[3], 0, -1]], 
+ F81 -> DiracChain[Spinor[k[4], 0, 1], -6, Lor[1], Lor[2], 
+    Spinor[k[2], 0, 1]]*DiracChain[Spinor[k[1], 0, -1], -6, k[2], Lor[1], 
+    Lor[2], Spinor[k[3], 0, -1]], SUN2 -> SUNT[Col1, Col3]*SUNT[Col4, Col2], 
+ SUN1 -> SUNT[Col1, Col2]*SUNT[Col4, Col3], 
+ Sub1[Neu5] -> SW*ZNeu[Neu5, 1] - 3*CW*ZNeu[Neu5, 2], 
+ Sub4[Neu5] -> SW*ZNeuC[Neu5, 1] - 3*CW*ZNeuC[Neu5, 2], 
+ Sub3[Neu6] -> SW*ZNeu[Neu6, 1] - 3*CW*ZNeu[Neu6, 2], 
+ Sub2[Neu6] -> SW*ZNeuC[Neu6, 1] - 3*CW*ZNeuC[Neu6, 2], 
+ Sub5[All6, Neu5, Neu6] -> MNeu[Neu6]*Sub1[Neu5]*UASf[All6, 6, 4]*
+    UASfC[All6, 2, 4]*ZNeu[Neu6, 1] + MNeu[Neu5]*Sub2[Neu6]*UASf[All6, 3, 4]*
+    UASfC[All6, 5, 4]*ZNeuC[Neu5, 1], Sub6[All6, Neu5, Neu6] -> 
+  (MNeu[Neu5]*Sub1[Neu5]*UASf[All6, 6, 4]*UASfC[All6, 2, 4]*ZNeu[Neu6, 1])/
+    (CB*MW) + (CB*MW*MNeu[Neu6]*Sub2[Neu6]*UASf[All6, 3, 4]*UASfC[All6, 5, 4]*
+     ZNeuC[Neu5, 1])/(CB2*MW2), Sub8[All6, Neu5, Neu6] -> 
+  MNeu[Neu6]*Sub3[Neu6]*UASf[All6, 6, 4]*UASfC[All6, 2, 4]*ZNeu[Neu5, 1] + 
+   MNeu[Neu5]*Sub4[Neu5]*UASf[All6, 3, 4]*UASfC[All6, 5, 4]*ZNeuC[Neu6, 1], 
+ Sub7[All6, Neu5, Neu6] -> 
+  (MNeu[Neu5]*Sub3[Neu6]*UASf[All6, 6, 4]*UASfC[All6, 2, 4]*ZNeu[Neu5, 1])/
+    (CB*MW) + (CB*MW*MNeu[Neu6]*Sub4[Neu5]*UASf[All6, 3, 4]*UASfC[All6, 5, 4]*
+     ZNeuC[Neu6, 1])/(CB2*MW2)}

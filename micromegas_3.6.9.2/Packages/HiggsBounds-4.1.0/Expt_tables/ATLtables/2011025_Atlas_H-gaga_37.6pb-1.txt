@@ -1,0 +1,10 @@
+#Atlas 2011-025 Mar 12, 2011
+#2011025_Atlas_H-gaga_37.6pb-1
+#no interpolation
+#columns: Mh, obs, exp (as ratio to SM cross sections)
+
+110      16.1   22.1    
+115      37.9   20.1    
+120      23.6   19.9    
+130      9.3    19.1   
+140      8.0    23.0   

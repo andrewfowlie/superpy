@@ -1,0 +1,190 @@
+SuperIso Version 3.3 (16 June 2012)
+-----------------------------------
+By Farvah Nazila Mahmoudi (mahmoudi@in2p3.fr)
+
+
+INTRODUCTION
+------------
+The most recent version of this program can be obtained from: 
+http://superiso.in2p3.fr
+
+This C code (in C99 standard) provides the calculation of several flavour physics observables as well as the muon anomalous magnetic moment, for a set of supersymmetric or 2HDM parameters which can be either calculated within this program using the provided interfaces with Isajet, Softsusy, SuSpect, SPheno, NMSSMTools or 2HDMC, or directly supplied by user thanks to a SUSY Les Houches Accord (SLHA1 or SLHA2) file.
+
+
+If you use this program to write a paper, please cite: 
+
+F. Mahmoudi, arXiv:0710.2067 [hep-ph], Comput. Phys. Commun. 178 (2008) 745
+AND
+F. Mahmoudi, arXiv:0808.3144 [hep-ph], Comput. Phys. Commun. 180 (2009) 1579.
+AND
+F. Mahmoudi, Comput. Phys. Commun. 180 (2009) 1718.
+
+
+The program has been tested on Linux and Mac machines with gcc and icc.
+
+
+Installation and Compilation
+----------------------------
+- tar xzvf superiso_vX.X.tgz
+- cd superiso_vX.X
+- in Makefile, first define your C compiler, and the path to Isajet, Softsusy, SPheno, SuSpect, NMSSMTools, HiggsBounds (HBwithFH, see below) or 2HDMC, if you want to use them. If not, you must comment them in the main programs.
+- compile with: make
+
+12 programs are available:
+- sm.c: Standard Model
+- cmssm.c: cmssm parameter space, linked to isajet, softsusy, spheno or suspect
+- amsb.c: amsb parameter space, linked to isajet (>=7.80), softsusy, spheno or suspect
+- hcamsb.c: hypercharged amsb parameter space, linked to isajet (>=7.80)
+- mmamsb.c: mixed moduli amsb parameter space, linked to isajet (>=7.80)
+- gmsb.c: gmsb parameter space, linked to isajet (>=7.80), softsusy, spheno or suspect
+- nuhm.c: nuhm parameter space, linked to isajet (>=7.80), softsusy or suspect
+- thdm.c: 2HDM types I-IV parameter space, linked to 2HDMC
+- slha.c: scans the user provided SLHA file
+- cnmssm.c: semi constrained NMSSM parameter space, linked to NMSSMTools
+- ngmsb.c: NMSSM GMSB parameter space, linked to NMSSMTools
+- nnuhm.c: NMSSM NUHM parameter space, linked to NMSSMTools
+
+They can be compiled with: make name (or make name.c), where "name" stands for sm, cmssm, amsb, gmsb, nuhm, ...
+
+They can be run with: ./name.x
+Note that an example of SLHA file is also provided: example.lha
+
+To use Higgsbounds limits when using SuperIso, the user has to have compiled HBwithFH (provided in the Higgsbound package) as well as FeynHiggs. More details are given in the following:
+- In HiggsBounds-f90/configure choose the same compiler as the one with which FeynHiggs is compiled. Also, provide the link to FHINCLUDE and FHLIBS. For example 
+FHINCLUDE = -I/path/FeynHiggs-2.8.6/build/include
+FHLIBS = -L/path/FeynHiggs-2.8.6/build/ -lFH
+- In HiggsBounds-f90/example_programs/HBwithFH.F comment "call setPara" and uncomment "call setSLHA("tmp.slha")" instead.
+- In HiggsBounds-f90/example_programs, run: ./demonstrateHiggsBounds_HBwithFH.bat to compile HBwithFH.
+- In the SuperIso Makefile, add the path to HBwithFH.
+
+
+Included Files
+--------------
+- Procedures in src/
+alphas.c: calculation of the strong coupling constant
+bdtaunu.c: calculation of the observables related to B-> D tau nu
+bkll.c: calculation of the observables related to B-> K* mu+ mu-
+bsgamma.c: calculation of the inclusive branching ratio of B-> Xs gamma
+bsll.c: calculation of the observables related to B-> Xs l+ l-
+bsll_extra.c: extra functions for bsll.c
+bsmumu.c: calculation of the branching ratios of B(s,d)-> mu+ mu-
+btaunu.c: calculation of the branching ratio of B-> tau nu
+dmunu.c: calculation of the branching ratios of D-> mu nu
+dslnu.c: calculation of the branching ratios of Ds-> tau nu and Ds-> mu nu
+excluded_masses.c: procedures which check the charge of the LSP, and the agreement with the collider lower mass limits (LEP and Tevatron)
+flha.c: generation of FLHA output files
+general.c: some useful mathematical functions 
+gmuon.c: calculation of the muon anomalous magnetic moment
+higgsbounds.c: procedures calling HiggsBounds
+isajet.c: procedures calling Isajet
+isospin.c: calculation of the isospin asymmetry in B-> K* gamma
+kmunu.c: calculation of the observables related to K-> mu nu
+leshouches.c: procedures reading files in the SLHA format
+nmssmtools.c: procedures calling NMSSMTools
+quark_masses.c: calculation of the quark masses
+spheno.c: procedures calling SPheno
+softsusy.c: procedures calling Softsusy
+suspect.c: procedures calling SuSpect
+2hdmc.c: procedures calling 2HDMC
+wilson.c: calculation of the Wilson coefficients and RGE runnings
+
+- Main programs
+sm.c: calculation of the observables in the SM
+cmssm.c: calculation of the observables for a CMSSM point
+amsb.c: calculation of the observables for an AMSB point
+hcamsb.c: calculation of the observables for an HC-AMSB point
+mmamsb.c: calculation of the observables for an MM-AMSB point
+gmsb.c: calculation of the observables for a GMSB point
+nuhm.c: calculation of the observables for a NUHM point
+thdm.c: calculation of the observables for a 2HDM type I-IV point
+slha.c: calculation of the observables using a given SLHA file
+cnmssm.c: calculation of the observables for a CNMSSM point
+ngmsb.c: calculation of the observables for a NMSSM GMSB point
+nnuhm.c: calculation of the observables for a NMSSM NUHM point
+
+- Headers in src
+include.h: definitions and prototypes
+
+- Other
+example.lha: example SLHA file
+Makefile(s)
+README
+
+
+History
+-------
+v3.3 - 06/16/2012 - 	Addition of observables related to B->K* mu+ mu-.
+			Addition of observables related to B->Xs l+ l-.
+			Addition of untagged BR(Bs -> mu+ mu-).
+			Addition of more Cprime Wilson coefficients.
+			Minor corrections and improvements.
+			Updated parameter values.
+
+v3.2 - 10/26/2011 - 	Addition of BR(Bd -> mu+ mu-).
+			Minor corrections and improvements.
+			Updated parameter values.
+
+v3.1 - 05/23/2011 - 	Improved interface for Higgsbounds.
+			Wolfenstein parameterization for the CKM matrix.
+
+v3.0 - 02/23/2011 - 	NMSSM calculations included.
+			Interface with NMSSMTools. 
+
+v2.8 - 11/02/2010 - 	FLHA compliant.
+			Interface with HiggsBounds v2 and HDECAY. 
+			Interface with SPheno.
+			Interface with SuSpect.
+			Addition of HC-AMSB and MM-AMSB models.
+			Improvement of the BR(Bs -> mu+ mu-) calculation.
+			Updated parameter values.
+
+v2.7 - 11/16/2009 - 	Compatibility with the new Isajet 7.80.
+			Implementation of D-> mu nu.
+			Improvement in the CKM matrix implementation.
+			Updated parameter values.
+
+v2.6 - 08/31/2009 - 	Implementation of the general 2HDM.
+			Interface with 2HDMC.
+			Addition of a main program for the SM.
+			Improvement of g-2 calculation.
+
+v2.5 - 03/29/2009 - 	Replacement of "float" type by "double" to match the relic version conventions.
+			Minor improvements.
+			
+v2.4 - 02/15/2009 - 	Implementation of the branching ratios of Ds-> tau nu and Ds-> mu nu.
+			Bug fixed in the SLHA2 reader.
+
+v2.3 - 08/25/2008 - 	Implementation of the branching ratio of Bs-> mu+ mu-.
+			Update of the numerical inputs (based on PDG 2008).
+			Some minor corrections and improvements.
+			Change of the name of some routines.
+
+v2.2 - 06/26/2008 - 	Implementation of B-> tau nu, B-> D tau nu and K-> mu nu observables.
+
+v2.1 - 04/15/2008 - 	SLHA2 compliant.
+
+v2.0 - 02/18/2008 -	Full NNLO implementation for the branching ratio (b -> s gamma).
+			Improvement of the calculation of the Wilson coefficients.
+			Updated parameters for the computation of the isospin asymmetry.
+			Implementation of the muon g-2 calculation. 
+			
+v1.1 - 01/14/2008 - 	NUHM module has been added, as well as some minor corrections.
+
+v1.0 - 09/17/2007 - 	First public release.
+
+
+LICENSE
+-------
+    SuperIso Copyright (C) 2012 F. Mahmoudi
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or any 
+    later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
+
+    See <http://www.gnu.org/licenses/>.  

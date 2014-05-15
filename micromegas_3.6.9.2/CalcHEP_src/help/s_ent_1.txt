@@ -1,0 +1,15 @@
+6 2 65 18    Process format
+
+  Enter a process you wish to compute. The generic form is
+P1[,P2]-> P3,P4 ... [N*x]. Here P# is a particle name, N is the
+number of inclusive particles. The particle names may be chosen
+from the table in the upper part of the screen. N may be chosen
+among 1,2,3. The total number of particles cannot exceed 6.
+
+ Examples:  
+     A,A->W+,W-  
+     e1,E1->H,2*x 
+     A,e1->e1,1*x
+
+If the name of  particle is absent from the table, the
+user is prompted to describe this particle as a composite one.

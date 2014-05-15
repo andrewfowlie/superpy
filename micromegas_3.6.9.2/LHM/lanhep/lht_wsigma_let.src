@@ -1,0 +1,126 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+let Q11 = {
+         {0, 		1/2,		0,	0,	0},
+         {1/2,      	0,              0,	0,	0},
+         {0,	   	0,		0,	0,	0},
+         {0,	   	0,		0,	0,	0},
+         {0,	  	0,		0,	0,	0}}.
+
+let Q12={{0, 	      -i/2,		0,	0,	0},
+         {i/2,      	0,              0,	0,	0},
+         {0,	   	0,		0,	0,	0},
+         {0,	   	0,		0,	0,	0},
+         {0,	  	0,		0,	0,	0}}.
+let Q13={{1/2, 	        0,		0,	0,	0},
+         {0,          -1/2,              0,	0,	0},
+         {0,	   	0,		0,	0,	0},
+         {0,	   	0,		0,	0,	0},
+         {0,	  	0,		0,	0,	0}}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	 
+
+let Q21={{0,	   	0,		0,	0,	0},
+         {0,	   	0,		0,	0,	0},
+         {0,	  	0,		0,	0,	0},
+         {0, 		0,		0,	0,   -1/2},
+         {0,      	0,              0,   -1/2,	0}}.
+
+let Q22={{0,	   	0,		0,	0,	0},
+         {0,	   	0,		0,	0,	0},
+         {0,	  	0,		0,	0,	0},
+         {0, 		0,		0,	0,    -i/2},
+         {0,      	0,              0,	i/2,	0}}.
+
+let Q23={{0,	   	0,		0,	0,	0},
+         {0,	   	0,		0,	0,	0},
+         {0,	  	0,		0,	0,	0},
+         {0, 		0,		0,   -1/2,      0},
+         {0,      	0,              0,	0,    1/2}}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	 
+
+let QT12={{0, 	      i/2,		0,	0,	0},
+         {-i/2,      	0,              0,	0,	0},
+         {0,	   	0,		0,	0,	0},
+         {0,	   	0,		0,	0,	0},
+         {0,	  	0,		0,	0,	0}}.
+	 
+let QT22={{0,	   	0,		0,	0,	0},
+         {0,	   	0,		0,	0,	0},
+         {0,	  	0,		0,	0,	0},
+         {0, 		0,		0,	0,     i/2},
+         {0,      	0,              0,   -i/2,	0}}.
+
+let Y1  ={{-3,	   	0,		0,	0,	0},
+         {0,	       -3,		0,	0,	0},
+         {0,	  	0,		2,	0,	0},
+         {0, 		0,		0,	2,      0},
+         {0,      	0,              0,	0,      2}}/10.
+	 
+let Y2  ={{-2,	   	0,		0,	0,	0},
+         {0,	       -2,		0,	0,	0},
+         {0,	  	0,	       -2,	0,	0},
+         {0, 		0,		0,	3,      0},
+         {0,      	0,              0,	0,      3}}/10.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+let      Q_ONE^i^j^a ={Q11^i^j,Q12^i^j,Q13^i^j}^a.	
+let     WQ_ONE^i^j^mu=W_ONE^a^mu*Q_ONE^i^j^a.
+
+let     Q_TWO^i^j^a = {Q21^i^j,Q22^i^j,Q23^i^j}^a.	 
+let     WQ_TWO^i^j^mu=W_TWO^a^mu*Q_TWO^i^j^a.
+
+let     QT_ONE^i^j^a={Q11^i^j,QT12^i^j,Q13^i^j}^a.	
+let     WQT_ONE^i^j^mu=W_ONE^a^mu*QT_ONE^i^j^a.
+
+let     QT_TWO^i^j^a = {Q21^i^j,QT22^i^j,Q23^i^j}^a.	 
+let     WQT_TWO^i^j^mu=W_TWO^a^mu*QT_TWO^i^j^a.
+
+
+let     BQ_ONE^i^j^mu=B_ONE^mu*Y1^i^j.
+let     BQ_TWO^i^j^mu=B_TWO^mu*Y2^i^j.
+
+%%%%%%  BQ   == BQT     since  Y1=Y1T, Y2=Y2T   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+let	W1SIGMA1^i^j^mu= -i*( g1*(WQ_ONE^i^l^mu*sigma1^l^j  + sigma1^i^l* WQT_ONE^l^j^mu) 
+		      +      g1p*(BQ_ONE^i^l^mu*sigma1^l^j  + sigma1^i^l*  BQ_ONE^l^j^mu)).
+
+let	W2SIGMA1^i^j^mu= -i*( g2*(WQ_TWO^i^l^mu*sigma1^l^j  + sigma1^i^l*  WQT_TWO^l^j^mu) 
+		           + g2p*(BQ_TWO^i^l^mu*sigma1^l^j +  sigma1^i^l*   BQ_TWO^l^j^mu)).
+let     WSIGMA1^i^j^mu=W1SIGMA1^i^j^mu+W2SIGMA1^i^j^mu.
+
+%%%%%
+
+let	W1SIGMA0^i^j^mu= -i*( g1*(WQ_ONE^i^l^mu*sigma0^l^j  + sigma0^i^l* WQT_ONE^l^j^mu) 
+		      +      g1p*(BQ_ONE^i^l^mu*sigma0^l^j  + sigma0^i^l*  BQ_ONE^l^j^mu)).
+
+let	W2SIGMA0^i^j^mu= -i*( g2*(WQ_TWO^i^l^mu*sigma0^l^j  + sigma0^i^l*  WQT_TWO^l^j^mu) 
+		           + g2p*(BQ_TWO^i^l^mu*sigma0^l^j +  sigma0^i^l*   BQ_TWO^l^j^mu)).
+let     WSIGMA0^i^j^mu=W1SIGMA0^i^j^mu+W2SIGMA0^i^j^mu.
+%%%%%
+let	W1SIGMA2^i^j^mu= -i*( g1*(WQ_ONE^i^l^mu*sigma2^l^j  + sigma2^i^l* WQT_ONE^l^j^mu) 
+		      +      g1p*(BQ_ONE^i^l^mu*sigma2^l^j  + sigma2^i^l*  BQ_ONE^l^j^mu)).
+
+let	W2SIGMA2^i^j^mu= -i*( g2*(WQ_TWO^i^l^mu*sigma2^l^j  + sigma2^i^l*  WQT_TWO^l^j^mu) 
+		           + g2p*(BQ_TWO^i^l^mu*sigma2^l^j +  sigma2^i^l*   BQ_TWO^l^j^mu)).
+let     WSIGMA2^i^j^mu=W1SIGMA2^i^j^mu+W2SIGMA2^i^j^mu.
+%%%%%
+let	W1SIGMA3^i^j^mu= -i*( g1*(WQ_ONE^i^l^mu*sigma3^l^j  + sigma3^i^l* WQT_ONE^l^j^mu) 
+		      +      g1p*(BQ_ONE^i^l^mu*sigma3^l^j  + sigma3^i^l*  BQ_ONE^l^j^mu)).
+
+let	W2SIGMA3^i^j^mu= -i*( g2*(WQ_TWO^i^l^mu*sigma3^l^j  + sigma3^i^l*  WQT_TWO^l^j^mu) 
+		           + g2p*(BQ_TWO^i^l^mu*sigma3^l^j +  sigma3^i^l*   BQ_TWO^l^j^mu)).
+let     WSIGMA3^i^j^mu=W1SIGMA3^i^j^mu+W2SIGMA3^i^j^mu.
+
+%%%%%
+let	W1SIGMA4^i^j^mu= -i*( g1*(WQ_ONE^i^l^mu*sigma4^l^j  + sigma4^i^l* WQT_ONE^l^j^mu) 
+		      +      g1p*(BQ_ONE^i^l^mu*sigma4^l^j  + sigma4^i^l*  BQ_ONE^l^j^mu)).
+
+let	W2SIGMA4^i^j^mu= -i*( g2*(WQ_TWO^i^l^mu*sigma4^l^j  + sigma4^i^l*  WQT_TWO^l^j^mu) 
+		           + g2p*(BQ_TWO^i^l^mu*sigma4^l^j +  sigma4^i^l*   BQ_TWO^l^j^mu)).
+let     WSIGMA4^i^j^mu=W1SIGMA4^i^j^mu+W2SIGMA4^i^j^mu.
+
+
+%%%%%%%%%%%%    END OF SIGMA DEFINITION       %%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 

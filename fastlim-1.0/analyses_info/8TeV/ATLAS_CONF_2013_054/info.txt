@@ -1,0 +1,2 @@
+0 leptons + >=7-10 jets + Etmiss [Incl. squarks & gluinos] at 8TeV with $20.3fb^{-1}$
+http://arxiv.org/abs/1308.1841

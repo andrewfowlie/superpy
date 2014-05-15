@@ -1,0 +1,10 @@
+#D0 Note 5503 Jul 26, 2006
+#D0_bbH_bb_0.9fb
+#interpolation
+#columns: Mh, TB limit obs, TB limit exp 
+
+100	46	50
+110	57	58
+120	60	62
+150	85	84
+170	121	104

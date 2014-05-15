@@ -1,0 +1,19 @@
+# Published at Moriond 2013, data is taken from
+# https://twiki.cern.ch/twiki/bin/view/CMSPublic/Hig13005TWiki
+# Mass resolution set to 2GeV. Mass measurement does not
+# enter the mass chi^2.
+# The assignment is linked to 0/1jet result (13002101), 
+# which holds the mass observable.
+# Efficiencies are chosen such that we have about 30% VBF.
+13002102	1300202		1
+CMS-PAS-HIG-13-002
+LHC, CMS, CMS
+(pp)->h->ZZ->4l (2jet)
+8 	24.7	0.044
+1	0
+2.0	CMSZZ
+125.7 125.7 0.1
+2	125.7
+13 23
+1.00 5.00
+125.7	0.652	1.235	2.087

@@ -1,0 +1,14 @@
+# Cut-based result, taken from Fig. 23 in
+# arXiv:1312.1129. This channel is pure WH production.
+1312112914  131211294  1
+arXiv:1312.1129
+LHC, CMS, CMS
+(pp)->h->WW->3l3nu (WH)
+8 25.3 0.026
+1 0
+20.0
+125.6 125.6 1.0
+1 -1
+32
+
+125.6	-0.39	0.56	1.83

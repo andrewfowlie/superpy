@@ -1,0 +1,10 @@
+#D0 Note 5502 Sep 29 2009
+#D0_ppH_WW_ee_0.6fb
+#no interpolation
+#columns: Mh(in GeV), obs, exp (in pb)
+
+120	12.6	10.1
+140	7.4	6.4
+160	4.3	2.9
+180	5.7	3.2
+200	7.6	4.0

@@ -1,0 +1,14 @@
+1 6 35
+  CalcHEP provides you with a
+possibility to apply Weizsacker-
+Williams approximation to
+processes of electro-production
+for the case of small angle of
+scattering of charged particle. 
+In this case one can reduce
+electro-production process to the
+photo-production one with an
+appropriate photon spectrum. The
+resulting  spectrum depends on
+maximum value of photon
+virtualities taking into account.

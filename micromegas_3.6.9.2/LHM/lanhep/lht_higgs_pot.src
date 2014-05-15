@@ -1,0 +1,238 @@
+
+% parameter lamphi2,mu,lamh4.
+% 
+% lterm lamphi2*f**2*phi*phid - mu**2*h*hd + lamh4*(h*hd)**2.
+
+%  parameter ap=1,aa=1.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%              
+   parameter lamh4=MH**2/2/v**2.
+   let aa=2*lamh4*SW**2*CW**2/EE.
+   let ap=2*lamh4/2/lam1**2.
+   
+   
+%    %let aa=MH**2/v**2/EE**2*SW**2*CW**2.
+%    % we assume ap=0
+%    %%%%%%%%%%%%%%%%%
+%   
+%     lterm  1/2*aa*v**4/del**4*(g1**2* (Q1*SIGMA*Q1T*SIGMAT) + g2**2* (Q2*SIGMA*Q2T*SIGMAT)  ) 
+% 	      
+% 	      where
+% 	      
+% 	      Q1=Q11,Q1T=Q11,Q2=Q21,Q2T=Q21,
+% 	      SIGMA = sigma0+ sigma1*del/v+ sigma2*del**2/v**2,
+% 	      SIGMAT=csigma0+csigma1*del/v+csigma2*del**2/v**2,
+% 	      
+% 	      Q1=Q12,Q1T=Q12,Q2=Q22,Q2T=Q22,
+% 	      SIGMA = sigma0+ sigma1*del/v+ sigma2*del**2/v**2,
+% 	      SIGMAT=csigma0+csigma1*del/v+csigma2*del**2/v**2,
+% 	      
+% 	      Q1=Q13,Q1T=Q13,Q2=Q23,Q2T=Q23,
+% 	      SIGMA = sigma0+ sigma1*del/v+ sigma2*del**2/v**2,
+% 	      SIGMAT=csigma0+csigma1*del/v+csigma2*del**2/v**2.
+% 	       
+%         	
+%    lterm 1/2*aa*v**4/del**4*(g1p**2*  Y1*SIGMA*Y1*SIGMAT + g2p**2*  Y2*SIGMA*Y2*SIGMAT )
+%             
+%             where
+%             
+%             SIGMA =sigma0  +sigma1*del/v+ sigma2*del**2/v**2,
+%             SIGMAT=csigma0+csigma1*del/v+csigma2*del**2/v**2.
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%              
+    
+    
+    
+     lterm -ap/4*lam1**2*f*
+       eps2^w^x*eps2^y^z*eps^i^j^k*eps^k^m^n*	  
+       A^i^w*B^j^x*C^m^y*D^n^z
+			    where
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %==>ZERO		      
+       A=sigma0_3,B=sigma1_3,C=csigma1_3,D=csigma1_3; 
+       A=sigma1_3,B=sigma0_3,C=csigma1_3,D=csigma1_3;
+       A=sigma1_3,B=sigma1_3,C=csigma0_3,D=csigma1_3;
+       A=sigma1_3,B=sigma1_3,C=csigma1_3,D=csigma0_3;
+    %%%%%%%%%%%%%%%%%%%
+    %==>ZERO
+       A=sigma0_3,B=sigma0_3,C=csigma0_3,D=csigma3_3;
+       A=sigma0_3,B=sigma0_3,C=csigma3_3,D=csigma0_3;
+       A=sigma0_3,B=sigma3_3,C=csigma0_3,D=csigma0_3;
+       A=sigma3_3,B=sigma0_3,C=csigma0_3,D=csigma0_3;
+    %%%%%%%%%%%%%%%%%%%
+   
+       A=sigma0_3,B=sigma0_3,C=csigma1_3,D=csigma2_3;
+       A=sigma0_3,B=sigma0_3,C=csigma2_3,D=csigma1_3;
+       A=sigma0_3,B=sigma1_3,C=csigma2_3,D=csigma0_3;
+       A=sigma0_3,B=sigma2_3,C=csigma1_3,D=csigma0_3;
+       A=sigma1_3,B=sigma2_3,C=csigma0_3,D=csigma0_3;
+       A=sigma2_3,B=sigma1_3,C=csigma0_3,D=csigma0_3;
+       
+       A=sigma1_3,B=sigma0_3,C=csigma2_3,D=csigma0_3;
+       A=sigma2_3,B=sigma0_3,C=csigma1_3,D=csigma0_3;
+       A=sigma1_3,B=sigma0_3,C=csigma0_3,D=csigma2_3;
+       A=sigma2_3,B=sigma0_3,C=csigma0_3,D=csigma1_3;
+       A=sigma0_3,B=sigma1_3,C=csigma0_3,D=csigma2_3;
+       A=sigma0_3,B=sigma2_3,C=csigma0_3,D=csigma1_3.
+	
+    
+    lterm -ap/4*lam1**2*f*
+       eps2^w^x*eps2^y^z*eps^i^j^k*eps^k^m^n*	     
+       A^i^w*B^j^x*C^m^y*D^n^z
+			       where
+	
+  
+   %==>ZERO			 
+   %	A=tsigma0_3,B=tsigma1_3,C=ctsigma1_3,D=ctsigma1_3; 
+   %	A=tsigma1_3,B=tsigma0_3,C=ctsigma1_3,D=ctsigma1_3;
+   %	A=tsigma1_3,B=tsigma1_3,C=ctsigma0_3,D=ctsigma1_3;
+   %	A=tsigma1_3,B=tsigma1_3,C=ctsigma1_3,D=ctsigma0_3;
+   %%%%%%%%%%%%%%%%%%%
+   %==>ZERO
+   %	A=tsigma0_3,B=tsigma0_3,C=ctsigma0_3,D=ctsigma3_3;
+   %	A=tsigma0_3,B=tsigma0_3,C=ctsigma3_3,D=ctsigma0_3;
+   %	A=tsigma0_3,B=tsigma3_3,C=ctsigma0_3,D=ctsigma0_3;
+   %	A=tsigma3_3,B=tsigma0_3,C=ctsigma0_3,D=ctsigma0_3;
+   %%%%%%%%%%%%%%%%%%%
+  
+       A=tsigma0_3,B=tsigma0_3,C=ctsigma1_3,D=ctsigma2_3;
+       A=tsigma0_3,B=tsigma0_3,C=ctsigma2_3,D=ctsigma1_3;
+       A=tsigma0_3,B=tsigma1_3,C=ctsigma2_3,D=ctsigma0_3;
+       A=tsigma0_3,B=tsigma2_3,C=ctsigma1_3,D=ctsigma0_3;
+       A=tsigma1_3,B=tsigma2_3,C=ctsigma0_3,D=ctsigma0_3;
+       A=tsigma2_3,B=tsigma1_3,C=ctsigma0_3,D=ctsigma0_3;
+	 
+       A=tsigma1_3,B=tsigma0_3,C=ctsigma2_3,D=ctsigma0_3;
+       A=tsigma2_3,B=tsigma0_3,C=ctsigma1_3,D=ctsigma0_3;
+       A=tsigma1_3,B=tsigma0_3,C=ctsigma0_3,D=ctsigma2_3;
+       A=tsigma2_3,B=tsigma0_3,C=ctsigma0_3,D=ctsigma1_3;
+       A=tsigma0_3,B=tsigma1_3,C=ctsigma0_3,D=ctsigma2_3;
+       A=tsigma0_3,B=tsigma2_3,C=ctsigma0_3,D=ctsigma1_3.
+	
+    
+	
+   
+  
+  
+     lterm -ap/4*lam1**2*
+       eps2^w^x*eps2^y^z*eps^i^j^k*eps^k^m^n*	     
+       A^i^w*B^j^x*C^m^y*D^n^z
+			       where
+       
+       
+   %==>ZERO    
+   %	A=sigma1_3,B=sigma1_3,C=csigma1_3,D=csigma1_3;
+   %%%%%%%%%%%%%%%%%%%
+       A=sigma0_3,B=sigma1_3,C=csigma1_3,D=csigma2_3;
+       A=sigma0_3,B=sigma1_3,C=csigma2_3,D=csigma1_3;
+       A=sigma0_3,B=sigma2_3,C=csigma1_3,D=csigma1_3;		 
+   
+       A=sigma1_3,B=sigma0_3,C=csigma1_3,D=csigma2_3;
+       A=sigma1_3,B=sigma0_3,C=csigma2_3,D=csigma1_3;
+       A=sigma2_3,B=sigma0_3,C=csigma1_3,D=csigma1_3;  
+   
+       A=sigma1_3,B=sigma1_3,C=csigma0_3,D=csigma2_3;
+       A=sigma1_3,B=sigma2_3,C=csigma0_3,D=csigma1_3;	   
+       A=sigma2_3,B=sigma1_3,C=csigma0_3,D=csigma1_3;  
+   
+       A=sigma1_3,B=sigma1_3,C=csigma2_3,D=csigma0_3;
+       A=sigma1_3,B=sigma2_3,C=csigma1_3,D=csigma0_3;
+       A=sigma2_3,B=sigma1_3,C=csigma1_3,D=csigma0_3.
+   
+  
+  lterm -ap/4*lam1**2*
+      eps2^w^x*eps2^y^z*eps^i^j^k*eps^k^m^n*	 
+      A^i^w*B^j^x*C^m^y*D^n^z
+			   where
+   %%%%%%%%%%%%%%
+      A=sigma0_3,B=sigma0_3,C=csigma2_3,D=csigma2_3;
+      A=sigma0_3,B=sigma2_3,C=csigma0_3,D=csigma2_3;
+      A=sigma2_3,B=sigma0_3,C=csigma0_3,D=csigma2_3;
+      A=sigma2_3,B=sigma0_3,C=csigma2_3,D=csigma0_3;
+      A=sigma2_3,B=sigma2_3,C=csigma0_3,D=csigma0_3;
+      A=sigma0_3,B=sigma2_3,C=csigma2_3,D=csigma0_3;
+   
+   %%%%%%%%%%%%%%
+      A=sigma0_3,B=sigma0_3,C=csigma1_3,D=csigma3_3;
+      A=sigma0_3,B=sigma0_3,C=csigma3_3,D=csigma1_3;
+      
+      A=sigma0_3,B=sigma1_3,C=csigma0_3,D=csigma3_3;
+      A=sigma0_3,B=sigma3_3,C=csigma0_3,D=csigma1_3;
+      
+      A=sigma0_3,B=sigma1_3,C=csigma0_3,D=csigma3_3;
+      A=sigma0_3,B=sigma3_3,C=csigma0_3,D=csigma1_3;
+      
+      A=sigma1_3,B=sigma0_3,C=csigma0_3,D=csigma3_3;
+      A=sigma3_3,B=sigma0_3,C=csigma0_3,D=csigma1_3;
+      
+      A=sigma1_3,B=sigma3_3,C=csigma0_3,D=csigma0_3;
+      A=sigma3_3,B=sigma1_3,C=csigma0_3,D=csigma0_3;
+   %%%%%%%%%
+      A=sigma0_3,B=sigma0_3,C=csigma0_3,D=csigma4_3;
+      A=sigma0_3,B=sigma0_3,C=csigma4_3,D=csigma0_3;	
+      A=sigma0_3,B=sigma4_3,C=csigma0_3,D=csigma0_3;
+      A=sigma4_3,B=sigma0_3,C=csigma0_3,D=csigma0_3.
+  %%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%%%%%%%	
+  
+    lterm -ap/4*lam1**2*
+     eps2^w^x*eps2^y^z*eps^i^j^k*eps^k^m^n*	
+     A^i^w*B^j^x*C^m^y*D^n^z
+			  where
+       
+  %==>ZERO   
+  %    A=tsigma1_3,B=tsigma1_3,C=ctsigma1_3,D=ctsigma1_3;
+  %%%%%%%%%%%%%%%%%%%
+     A=tsigma0_3,B=tsigma1_3,C=ctsigma1_3,D=ctsigma2_3;
+     A=tsigma0_3,B=tsigma1_3,C=ctsigma2_3,D=ctsigma1_3;
+     A=tsigma0_3,B=tsigma2_3,C=ctsigma1_3,D=ctsigma1_3; 	    
+  
+     A=tsigma1_3,B=tsigma0_3,C=ctsigma1_3,D=ctsigma2_3;
+     A=tsigma1_3,B=tsigma0_3,C=ctsigma2_3,D=ctsigma1_3;
+     A=tsigma2_3,B=tsigma0_3,C=ctsigma1_3,D=ctsigma1_3;  
+  
+     A=tsigma1_3,B=tsigma1_3,C=ctsigma0_3,D=ctsigma2_3;
+     A=tsigma1_3,B=tsigma2_3,C=ctsigma0_3,D=ctsigma1_3; 	  
+     A=tsigma2_3,B=tsigma1_3,C=ctsigma0_3,D=ctsigma1_3;  
+   
+   
+     A=tsigma1_3,B=tsigma1_3,C=ctsigma2_3,D=ctsigma0_3;
+     A=tsigma1_3,B=tsigma2_3,C=ctsigma1_3,D=ctsigma0_3;
+     A=tsigma2_3,B=tsigma1_3,C=ctsigma1_3,D=ctsigma0_3;
+  
+  %%%%%%%%%%%%%%
+     A=tsigma0_3,B=tsigma0_3,C=ctsigma2_3,D=ctsigma2_3;
+     A=tsigma0_3,B=tsigma2_3,C=ctsigma0_3,D=ctsigma2_3;
+     A=tsigma2_3,B=tsigma0_3,C=ctsigma0_3,D=ctsigma2_3;
+     A=tsigma2_3,B=tsigma0_3,C=ctsigma2_3,D=ctsigma0_3;
+     A=tsigma2_3,B=tsigma2_3,C=ctsigma0_3,D=ctsigma0_3;
+     A=tsigma0_3,B=tsigma2_3,C=ctsigma2_3,D=ctsigma0_3.
+  
+   
+     lterm -ap/4*lam1**2*
+      eps2^w^x*eps2^y^z*eps^i^j^k*eps^k^m^n*	 
+      A^i^w*B^j^x*C^m^y*D^n^z
+			   where
+  %%%%%%%%%%%%%%
+      A=tsigma0_3,B=tsigma0_3,C=ctsigma1_3,D=ctsigma3_3;
+      A=tsigma0_3,B=tsigma0_3,C=ctsigma3_3,D=ctsigma1_3;
+      
+      A=tsigma0_3,B=tsigma1_3,C=ctsigma0_3,D=ctsigma3_3;
+      A=tsigma0_3,B=tsigma3_3,C=ctsigma0_3,D=ctsigma1_3;
+      
+      A=tsigma0_3,B=tsigma1_3,C=ctsigma0_3,D=ctsigma3_3;
+      A=tsigma0_3,B=tsigma3_3,C=ctsigma0_3,D=ctsigma1_3;
+      
+      A=tsigma1_3,B=tsigma0_3,C=ctsigma0_3,D=ctsigma3_3;
+      A=tsigma3_3,B=tsigma0_3,C=ctsigma0_3,D=ctsigma1_3;
+      
+      A=tsigma1_3,B=tsigma3_3,C=ctsigma0_3,D=ctsigma0_3;
+      A=tsigma3_3,B=tsigma1_3,C=ctsigma0_3,D=ctsigma0_3;
+   %%%%%%%%%
+      A=tsigma0_3,B=tsigma0_3,C=ctsigma0_3,D=ctsigma4_3;
+      A=tsigma0_3,B=tsigma0_3,C=ctsigma4_3,D=ctsigma0_3;       
+      A=tsigma0_3,B=tsigma4_3,C=ctsigma0_3,D=ctsigma0_3;
+      A=tsigma4_3,B=tsigma0_3,C=ctsigma0_3,D=ctsigma0_3.
+  %%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%%%%%%%	
+	

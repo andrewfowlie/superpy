@@ -1,0 +1,17 @@
+# Published at Moriond 2013.
+# converted rest highPTt category
+# More info in ../Moriond2013.info
+# Don't use it together with the inclusive result (observableID: 2013012101)
+# (data overlap!).
+2013012109	201301209	1
+ATL-CONF-2013-012
+LHC, ATL, ATL
+(pp)->h->gammagamma (conv.-rest-highPTt)
+8 	25.5	0.036
+1	0
+2	ATLgagacat
+126.8 126.8 1.0
+5	126.8
+11 21 31 41 51
+1.0 1.984 1.733 1.684 2.736
+126.8	0.04	1.27	2.59

@@ -1,0 +1,15 @@
+# Data is taken from ATLAS-CONF-2013-079, Fig. 13.
+# This is the combined 7+8 TeV data.
+# Efficiencies are approximated (for 7+8TeV) from Tab. 3.
+2013079101	201307901	1
+ATL-CONF-2013-079
+LHC, ATL, ATL
+(pp)->Vh->Vbb (0 lepton)
+8 	25.0	0.036
+1	0
+15.
+125.0 125.0 1.0
+2	125.
+35 45
+0.067 0.44
+125.0	-0.40	0.46	1.34

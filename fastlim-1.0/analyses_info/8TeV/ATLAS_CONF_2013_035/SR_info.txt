@@ -1,0 +1,8 @@
+rootS    lumi    Data      BG     sys         ULnBSM:obs, exp  ULxsecBSM(fb):obs, exp    name   SR                  
+    8    20.7     101      96      19                41.8  -1                2.02  -1   cut_0   SRnoZa              
+    8    20.7      32      29       6                18.0  -1                0.87  -1   cut_1   SRnoZb              
+    8    20.7       5     4.4     1.8                 6.8  -1                0.33  -1   cut_2   SRnoZc              
+    8    20.7     273     249      35                83.7  -1                4.04  -1   cut_3   SRZa                
+    8    20.7      23      22       5                13.9  -1                0.67  -1   cut_4   SRZb                
+    8    20.7       6     6.3     1.5                 6.5  -1                0.31  -1   cut_5   SRZc                
+

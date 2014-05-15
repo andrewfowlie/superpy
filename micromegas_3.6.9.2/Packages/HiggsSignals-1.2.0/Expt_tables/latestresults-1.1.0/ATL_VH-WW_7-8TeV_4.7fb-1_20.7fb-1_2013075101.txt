@@ -1,0 +1,14 @@
+# Contributions from ZH->Ztautau in the 3-lepton analysis is small and
+# therefore neglected here.
+2013075101	201307501		1
+ATL-CONF-2013-075
+LHC, ATL, ATL
+(pp)->Vh->VWW
+8	25.4 0.044
+1	0
+25.0
+125.0 125.0 1.0
+2	-1
+32 42
+
+125.0	1.70	3.70	5.6

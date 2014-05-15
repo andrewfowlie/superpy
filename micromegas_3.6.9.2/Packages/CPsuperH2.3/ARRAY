@@ -1,0 +1,29 @@
+*
+*-----------------------------------------------------------------------
+*ARRAYS:
+      REAL*8 SMPARA_H(20),SSPARA_H(38)
+      DATA NSMIN/20/
+      DATA NSSIN/38/
+*
+      INTEGER*8 IFLAG_H(100)
+      DATA NFLAG/100/
+*
+      REAL*8     HMASS_H(3),OMIX_H(3,3)
+      REAL*8     STMASS_H(2),SBMASS_H(2),STAUMASS_H(2),SNU3MASS_H
+      REAL*8     MC_H(2),MN_H(4)
+      COMPLEX*16 STMIX_H(2,2),SBMIX_H(2,2),STAUMIX_H(2,2)
+      COMPLEX*16 UL_H(2,2),UR_H(2,2),N_H(4,4)
+*
+      COMPLEX*16 NHC_H(100,3)  ! 100 = NCMAX
+      REAL*8     SHC_H(100)
+      COMPLEX*16 CHC_H(100)
+      DATA NCMAX/100/
+*
+      REAL*8 GAMBRN(101,3,3)   ! 101 = IFLAG_H(20)+IFLAG_H(21)+1 = NMNH
+*                                      ISMN       =ISUSYN        = 50
+      REAL*8 GAMBRC(51,3)      !  51 = IFLAG_H(21)+IFLAG_H(23)+1 = NMCH
+*                                      ISMC       =ISUSYC        = 25
+      DATA NMNH/101/
+      DATA NMCH/51/
+*-----------------------------------------------------------------------
+*

@@ -1,0 +1,94 @@
+ #! /bin/sh
+#configure script for HiggsBounds
+
+# this tells the fortran program where to look to read in tables of experimental data and Higgs branching ratios
+chmod u+x ./create_store_pathname.bat
+./create_store_pathname.bat > store_pathname.f90
+
+echo 'running configure script...' 1>&2
+
+echo '   *   *   *   '
+echo 'Reminder: You must enter the correct paths in the ./configure manually if you'
+echo 'wish to use HiggsBounds in conjunction with FeynHiggs or CPsuperH'
+echo 'Also, you may need/wish to change the fortran compiler used. '
+echo 'The default is gfortran.'
+echo '   *   *   *   '
+
+
+cat - makefile.in > makefile << _EOF_
+
+# --- variables defined by configure ---
+# If you want to edit these variables, change ./configure, not ./makefile
+
+
+#----------------------------
+
+# Put you favourite compiler and compiler options in here:
+
+# e.g.
+
+#  a) GNU compiler (http://gcc.gnu.org/wiki/GFortran): 
+F90C = gfortran
+F77C = gfortran
+F90FLAGS = -fbounds-check -ffixed-line-length-none
+# use the compiler flag -fopenmp for parallel processing
+
+#  b) g95 compiler (www.g95.org):
+#F90C = g95
+#F77C = g95
+#F90FLAGS = -fbounds-check -ffree-line-length-huge
+
+#  c)  Portland Group Inc. compiler: 
+#F90C = pgf90
+#F77C = pgf90
+#F90FLAGS = -C -Ktrap=fp -Mbounds
+
+#  d) Intel compiler:
+#F90C = ifort
+#F77C = ifort
+#F90FLAGS =  
+
+#if using the NAG compiler, you need the compiler flag -DNAGf90Fortran
+#because the subroutines flush,iargc,getarg need to use modules
+#caution: the use of the NAG compiler is unsupported)
+
+#(nb. the f77 compiler is currently only used for compiling the example programs)
+
+#------------------------------
+
+# If you wish to use HiggsBounds in conjunction with FeynHiggs or CPsuperH,
+# make sure these paths indicate where you've stored these packages on your system,
+
+# for example:
+
+FHINCLUDE = -I/blah/blah/FeynHiggs-2.x.x/i586-linux/include
+FHLIBS = -L/blah/blah/FeynHiggs-2.x.x/i586-linux/lib -lFH
+
+CPSUPERHLIBS = -L/blah/blah/CPsuperH2 -lcpsuperh2 
+
+# Note that care must be taken to ensure that consistent compilers are used
+# If you get error messages similar to 
+#   ... undefined reference to initialize_higgsbounds__...
+# and the paths the libraries are correct, it's a good idea to check 
+# that the same compilers are used for each package.
+# (you may be able to work around this 
+#   e.g. if FeynHiggs was compiled with g77 it may be possible to compile HiggsBounds
+#  with gfortran and add -lg2c to the end of the variable FHLIBS)
+
+#-----------------------------
+
+HBLIBS = -L./ -lHB
+
+EXE = HiggsBounds
+
+#-----------------------------
+
+#USECHISQMODS = \$(CHISQMODS)
+#ADDITIONALDEFINE = -DenableCHISQ
+
+# --- end defs by configure ---
+
+
+_EOF_
+
+echo 'finished configure script' 1>&2

@@ -1,0 +1,29 @@
+.TH FHGETSMPARA 1 "1-May-2011"
+.SH NAME
+.PP
+FHGetSMPara \- retrieves the SM parameters computed from the  
+input values by FHSetSMPara
+.SH SYNOPSIS (Fortran version)
+.PP
+integer error
+.br
+double complex CKM(3,3)
+.sp
+subroutine FHGetSMPara(error, CKM)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHGetSMPara[]
+.SH DESCRIPTION
+FHGetSMPara returns the CKM matrix which was computed from the input
+parameters by FHSetSMPara(1).
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in GetSMPara.F from which
+the error message was emitted
+.TP
+.B CKM (output)
+the CKM matrix
+.SH SEE ALSO
+.PP
+libFH(1)

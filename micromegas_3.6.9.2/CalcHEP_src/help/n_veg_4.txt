@@ -1,0 +1,9 @@
+ 1 2 51 
+ It launches NS Vegas integration sessions 
+ each of them call integrand NC times. The NS/NC
+ parameters are defined in in the first 2 items
+ of this menu. The results of integration are 
+ displayed on the screen and  stored in files. 
+ If accuracy of integration is not sufficient
+ the user launch 'Start integration' again to 
+ continue Monte Carlo. 

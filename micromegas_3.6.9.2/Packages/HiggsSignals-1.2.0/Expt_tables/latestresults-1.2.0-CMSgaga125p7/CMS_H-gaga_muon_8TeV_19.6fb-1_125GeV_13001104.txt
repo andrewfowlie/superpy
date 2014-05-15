@@ -1,0 +1,15 @@
+# Presented at Moriond 2013.
+# Muon category. ggf is negligible.
+# The mu values are taken from the MVA analysis.
+13001104	1300104		1
+CMS-PAS-HIG-13-001
+LHC, CMS, CMS
+(pp)->h->gammagamma(mu)
+8	19.6	 0.044
+1	0
+2.0	CMSgagacat
+125.7 125.7 1.0
+4	125.7
+21 31 41 51
+1	593.96	593.96	1300.73
+125.7	 -0.944  0.416  2.256

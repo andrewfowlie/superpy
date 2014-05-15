@@ -1,0 +1,5 @@
+1 12 51 3
+ Launch the  event generation.
+ Generated events will be stored in 
+ "event_N.txt" file, where N - is a ordinal 
+ number of current session.

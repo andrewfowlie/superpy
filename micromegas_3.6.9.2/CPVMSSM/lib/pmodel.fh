@@ -1,0 +1,7 @@
+       integer readVarCPVMSSM, LepBound
+       real*8 Bsmumu,Bsg,Bulnu,Bdll,ABsg,deltMd,deltMs,EDMth,EDMel,EDMmu
+       real*8 EDMHg,gmuon  
+
+       integer LoopGamma
+       external LoopGamma 
+ 

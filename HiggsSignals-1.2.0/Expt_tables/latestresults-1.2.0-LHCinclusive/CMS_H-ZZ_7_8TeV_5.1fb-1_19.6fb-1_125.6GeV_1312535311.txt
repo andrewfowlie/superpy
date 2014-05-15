@@ -1,0 +1,14 @@
+# This peak observable contains the mass measurement. Signal measured at 125.7GeV, but
+# best-fit mass implemented here is 125.6 +- 0.4 +- 0.2 GeV.
+1312535311	131253531		1
+arXiv:1312.5353
+LHC, CMS, CMS
+(pp)->h->ZZ->4l
+8 	24.7	0.044
+1	1
+0.6
+125.6 125.6 0.1
+4	-1
+13 23 33 43
+
+125.6	0.68	0.93	1.22

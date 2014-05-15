@@ -1,0 +1,15 @@
+# Data read in from Fig.9 in ATL-CONF-2013-108.
+# Boosted lep-had category.
+# Assume 63.9% ggH, 15.8% VBF, 12.2% WH, 6.1% ZH
+2013108105	201310805	1
+ATLAS-CONF-2013-108
+LHC, ATL, ATL
+(pp)->h->tautau (boosted,hadhad)
+8 	20.3	0.028
+1	0
+20
+125.0 125.0 1.0
+4	125.0
+14 24 34 44
+1.0 3.05 5.5 4.9
+125.0	-0.21	0.77	1.94

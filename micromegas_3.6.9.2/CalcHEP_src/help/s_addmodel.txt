@@ -1,0 +1,14 @@
+ 2 10 76  Add a model to the list.   
+  To add mew model to the CaclHEP model list one has to specify the name of 
+directory where the needed model is disposed. The directory name  can be 
+started from the "~" or "$" symbols to describe a path started from  user 
+home directory like or specified by some environment variable
+      ~/...
+      ~<user name>/...
+      $<name>/...
+If this directory indeed exists and contains *.mdl files  the user gets the 
+corresponding model menu to choose the needed one. The menu records contain 
+the model title and the model number. The chosen model is copied to user's 
+"models" directory. Before the  coping the user can modify the model title.
+   For example, to restore one of built-in models use  
+  Dir= $CALCHEP/models

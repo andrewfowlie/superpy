@@ -1,0 +1,13 @@
+# Note, the H->mumu has channel identifier '8' in HiggsSignals.
+13007101	1300701		1
+CMS-PAS-HIG-13-007
+LHC, CMS, CMS
+(pp)->h->mumu
+8	25.4 0.026
+1	0
+2.0
+125.7 125.7 1.0
+2	-1
+18 28
+
+125.7	0.2		2.9		5.7

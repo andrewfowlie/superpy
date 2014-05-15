@@ -1,0 +1,28 @@
+#! /bin/sh
+
+scren=1
+scfac=1
+pdfnnlo=92
+
+masses=`for (( m=100 ; m < 320 ; m+=20 )) ; do echo $m ; done
+        for (( m=320 ; m < 360 ; m+=5  )) ; do echo $m ; done
+        for (( m=360 ; m <= 1000 ; m+=20 )) ; do echo $m ; done`
+
+for (( sqrts=2000 ; sqrts <= 14000 ; sqrts+=250 )) ; do
+  for mass in $masses ; do
+    rm -f hresum.pl
+    wget --no-proxy --post-data="\
+coll=1&\
+energy=$sqrts&\
+mass=$mass&\
+scren=$scren&\
+scfac=$scfac&\
+pdfnnlo=$pdfnnlo&\
+.cgifields=pdfnnlo" http://theory.fi.infn.it/cgi-bin/hresum.pl
+    nnlo=`grep NNLO hresum.pl | sed 's/.* \([^ ]*\) pb/\1/'`
+    nnll=`grep NNLL hresum.pl | sed 's/.* \([^ ]*\) pb/\1/'`
+    test "$nnlo" -gt 0 || break
+    echo $mass $sqrts $nnlo $nnll >> ggh-sm.dat
+  done
+done
+

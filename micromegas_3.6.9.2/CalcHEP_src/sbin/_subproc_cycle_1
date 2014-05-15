@@ -1,0 +1,70 @@
+:
+
+nFirst=0
+strCom="{}0"
+#strCom="\\06Vegas{{0"
+nOld=1
+nSub=1
+  ./n_calchep -blind "{$strCom" 1>/dev/null 2>/dev/null 
+
+run=1
+pFirst=`grep \#Subprocess  session.dat |cut -f4 -d" "`
+posFirst="{}0"
+
+Wt=0
+
+while(test 1 -eq  1)
+do
+    nSub=`grep \#Subprocess  session.dat |cut -f2 -d" "`
+    if(test $run -eq 1) then
+       Wi=`$1/run_vegas`
+echo Wi=$Wi  
+       if(test "$Wi" != "0.0E+0"  ) then
+          Wt=`$1/calc "$Wt + ($Wi)"`
+          cp session.dat session.dat.$nSub  
+          Nsess=`grep \#Session_number session.dat|cut -f2 -d" "`
+          cp prt_$Nsess prt_$Nsess.$nSub 
+       fi
+    else 
+       if(test -r session.dat.$nSub) then
+          mv session.dat.$nSub session.dat 
+          Nsess=`grep \#Session_number session.dat|cut -f2 -d" "`
+          mv prt_$Nsess.$nSub prt_$Nsess 
+          Wi=`grep "< >"  prt_$Nsess |tail -1`
+          Wi=`echo $Wi| cut -f3 -d" "`
+          Wi=`$1/calc $Wi`
+          if(test "$Wi" != "0") then
+              mess="`grep \#Subprocess  session.dat` width=$Wi Br=`$1/calc $Wi/\($Wt\)`"
+              if(test $2 -ne 0) then 
+                  Nevents=`$1/calc "1+floor($2*($Wi)/($Wt))"`
+                  ./n_calchep -blind "[[[[[[[[[{[[[[[[[[[{{$Nevents{[{0" 1>/dev/null 2>/dev/null
+                  mess="$mess Nevents=  $Nevents"
+              fi
+           else 
+              mess="`grep \#Subprocess  session.dat` width=0.E0 Br=0.E0 Nevents=0"
+          fi
+          echo $mess
+       fi  
+    fi
+
+    strCom="[$strCom"
+    ./n_calchep -blind "{$strCom" 1>/dev/null 2>/dev/null
+    nSub1=`grep \#Subprocess  session.dat |cut -f2 -d" "`
+    pNext=`grep \#Subprocess  session.dat |cut -f4 -d" "`
+
+    if(test $pNext != $pFirst -o $nSub -eq $nSub1) then
+       if(test $run -eq  1) then
+         echo "width($pFirst)=$Wt"
+         run=2
+         strCom=$posFirst
+         ./n_calchep -blind "{$strCom" 1>/dev/null 2>/dev/null
+       else 
+         if(test $nSub -eq $nSub1) then exit; fi
+         run=1
+         Wt=0 
+         posFirst=$strCom
+         pFirst=`grep \#Subprocess  session.dat |cut -f4 -d" "` 
+       fi  
+    fi
+done
+

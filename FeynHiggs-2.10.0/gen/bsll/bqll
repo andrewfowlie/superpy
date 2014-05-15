@@ -1,0 +1,320 @@
+#! /bin/sh -x
+
+me=`basename $0`
+name=m/$me-$1
+#name=m/$me
+
+echo "$name" | grep -E '^m/bsll-(Hp|Cha|Neu|Glu|SM|All)$' || {
+  echo "invoke me as bsll Hp|Cha|Neu|Glu|SM|All" ;
+  exit 1
+}
+
+test -d m || mkdir m
+
+mma="math -run me=\"$me\" -run tag=\"$1\" -run name=\"$name\""
+
+rm -f $name.*
+#trap "rm -f $name.fc*" 0
+
+
+$mma << \_EOF_
+AppendTo[$Echo, "stdout"];
+
+<< FeynArts`
+
+<< FormCalc`
+
+NClear[];
+N[sqrt2] = Sqrt[2.];
+sqrt2/: sqrt2/2 = 1/sqrt2;
+sqrt2/: sqrt2^2 = 2;
+sqrt2/: sqrt2^-2 = 1/2;
+
+massrulz = {
+  MT -> Mf[tT,3],
+  MT2 -> Mf2[tT,3],
+  Mdy[g_] -> Mf[bTR,g],
+(*
+  MB -> Mf[bTR,3],
+  MB2 -> Mf[bTR,3],
+*)
+  MSf[s_,4,g_] -> MSf[s,bTR,g],
+  MSf2[s_,4,g_] -> MSf2[s,bTR,g],
+  USf[s__,4,g_] -> USf[s,bTR,g],
+  USfC[s__,4,g_] -> USfC[s,bTR,g],
+  MASf[as_,4] -> MASf[as,bTR],
+  MASf2[as_,4] -> MASf2[as,bTR],
+  UASf[as__,4] -> UASf[as,bTR],
+  UASfC[as__,4] -> UASfC[as,bTR],
+  Kf[g__,4] -> Kf[g,bTR],
+  KfC[g__,4] -> KfC[g,bTR]
+}
+
+Neglect[Mq] = Neglect[Mq2] = 0;
+Sq[Mq] = Mq2;
+
+MU = Mq; MU2 = Mq2;
+MC = Mq; MC2 = Mq2;
+
+MS = MS2 = 0;
+MM = MM2 = 0;
+
+Sq[Alfas] =.;
+Alfas = asMT;
+
+(*_USf = VCha = UCha = IndexDelta;*)
+
+fs = 2;
+fl["bsll"] = 2;
+
+proc = F[4, {3}] -> {F[4, {fs}], F[2, {fl[me]}], -F[2, {fl[me]}]};
+
+opt["All"] = Sequence[];
+opt["Hp"] = LastSelections -> S[5];
+opt["Cha"] = LastSelections -> F[12];
+opt["Neu"] = Sequence[ExcludeParticles -> F[15], LastSelections -> F[11]];
+opt["Glu"] = LastSelections -> F[15];
+opt["SM"] = ExcludeParticles -> {F[11|12|15], S[5] (*, V[1]*)};
+
+
+SCsimp[expr_, var_:{SW, CW, SW2, CW2},
+  rul_:{CW2 -> 1 - SW2, SW2 -> 1 - CW2}] :=
+Block[ {p, s},
+  p = Cases[expr,
+    p_Plus /; Complement[Cases[p, _Symbol, {-1}], var] === {},
+    Infinity] //Union;
+  Block[var,
+    s = Fold[Simplify[#1 /. #2]&, p, rul] /.
+      (Join[#, Map[-#&, #, {2}]]&)[Reverse/@ rul];
+    expr /. Thread[p -> s] ]
+]
+
+
+simp[ins_, opt___] :=
+Block[ {amp},
+  Paint[ins,
+    ColumnsXRows -> {4, 5},
+    (*PaintLevel -> {Classes},*)
+    DisplayFunction -> (Export[name <> ".ps", #, ImageSize -> 72 2 {4, 5}]&)];
+
+  amp = CreateFeynAmp[ins];
+
+  amp = CalcFeynAmp[ amp, opt,
+(*RetainFile -> True,*)
+    SimplifyQ2 -> False,
+    FermionChains -> Chiral,
+(*Antisymmetrize -> False,*)
+(*SortDen -> False,*)
+    FermionOrder -> (*None*) {2, 1, 3, 4} ];
+
+  Put[amp, name <> ".raw"];
+
+  amp = amp //. Subexpr[] /.
+    C0i[Except[LoopTools`cc0 | LoopTools`cc00], __] -> 0 /.
+    D0i[Except[LoopTools`dd0 | LoopTools`dd00], __] -> 0 /.
+    (#1 -> 0 &)@@@ Select[Abbr[], !FreeQ[#, DiracChain[__, _k, __]] &] /.
+    FormCalc`S23|FormCalc`T12|FormCalc`T13 -> 0;
+
+  amp = ApplyUnitarity[amp, CKM, 3];
+
+  Put[amp, name <> ".amp"];
+  Put[Abbr[], name <> ".abbr"];
+
+  Plus@@ amp //. Abbr[]
+];
+
+tops = CreateTopologies[1, 1 -> 3
+  (*, ExcludeTopologies -> Loops[4]*)
+  (*, ExcludeTopologies -> {Tadpoles, WFCorrections}*)
+  (*, TrianglesOnly*)
+  (*, BoxesOnly*)
+];
+
+ins = InsertFields[tops,
+  proc, opt[tag],
+  InsertionLevel -> {Particles},
+Restrictions -> NoLightFHCoupling,
+  Model -> myMSSMQCD];
+
+amp = simp[ins];
+
+
+Alfa2 = (Alfa = Sqrt[2]/Pi GF MW2 SW2)^2;
+
+Attributes[C0z] = Attributes[C00z] =
+Attributes[D0z] = Attributes[D00z] = {Orderless};
+
+(*
+C0i[LoopTools`cc0, 0, 0, 0, m__] := C0z[m];
+C0i[LoopTools`cc00, 0, 0, 0, m__] := C00z[m];
+D0i[LoopTools`dd0, 0, 0, 0, 0, 0, 0, m__] := D0z[m];
+D0i[LoopTools`dd00, 0, 0, 0, 0, 0, 0, m__] := D00z[m];
+*)
+
+C0i[LoopTools`cc0, _, _, _, m__] := C0z[m];
+C0i[LoopTools`cc00, _, _, _, m__] := C00z[m];
+D0i[LoopTools`dd0, _, _, _, _, _, _, m__] := D0z[m];
+D0i[LoopTools`dd00, _, _, _, _, _, _, m__] := D00z[m];
+
+C0z[m1_, m2_, m2_] := c0[m1, m2];
+C00z[m1_, m2_, m2_] := c00[m1, m2];
+B0i[bb0, _, m1_, m2_] := b0[m1, m2];
+B0i[bb1, _, m1_, m2_] := b1[m1, m2];
+
+(* approximate, from 0811.2891: *)
+c00[m1_, m2_] := -1/2 b1[m1, m2];
+c0[m1_, m2_] := (-1/2 + b1[m2, m1] + 2 c00[m1, m2])/m2
+
+(* exact: *)
+b1[m1_, m2_] := 1/2/(m1 - m2) (A0[m2] - m1 b0[m1, m2] - (m1 + m2)/2);
+b0[m1_, m2_] := (A0[m1] - A0[m2])/(m1 - m2)
+
+
+Attributes[ColorDelta] = {Orderless};
+
+omend[om_Integer, g___] :=
+  Opi[g, {R, L}[[1 + Mod[om + Length[{g}], 2]]]]
+
+dc = amp /.
+  {Col1 -> 1, Col3 -> 3,
+   Col2 -> 2, Col4 -> 4,
+   Spinor[_[1], __] -> b,
+   Spinor[_[2], __] -> s,
+   Spinor[_[3], __] -> lbar,
+   Spinor[_[4], __] -> l} /.
+  SUNT[i_, j_] -> ColorDelta[i, j] /.
+  Mat[ DiracChain[s1:s, g1__, s2_] ColorDelta[1, 2] *
+       DiracChain[s3_, g2__, s4_] ] :>
+    Op[s1.omend[g1].s2, s3.omend[g2].s4] /.
+  {Sqrt[2] -> sqrt2, 1/Sqrt[2] -> 1/sqrt2};
+
+Put[dc, name <> ".dc"];
+
+
+(* VVV = ijk ijk, vvv = ijk kji *)
+
+(*
+Op[s1_ . Opi[Lor[i_], Lor[j_], Lor[k_], om1_] . s2_,
+   s3_ . Opi[Lor[i_], Lor[j_], Lor[k_], om2_] . s4_] :=
+  Opx[s1.VVV[om1].s2, s3.VVV[om2].s4];
+*)
+
+Op[s1_ . Opi[Lor[i_], Lor[j_], Lor[k_], om1_] . s2_,
+   s3_ . Opi[Lor[i_], Lor[j_], Lor[k_], om2_] . s4_] :=
+  20 Opx[s1.V[om1].s2, s3.V[om2].s4] -
+  Opx[s1.vvv[om1].s2, s3.vvv[om2].s4];	(* see ijk2kji.m *)
+
+Op[s1_ . Opi[Lor[i_], Lor[j_], om1_] . s2_,
+   s3_ . Opi[Lor[i_], Lor[j_], om2_] . s4_] :=
+  Opx[s1.T[om1].s2, s3.T[om2].s4];
+
+Op[s1_ . Opi[Lor[i_], om1_] . s2_,
+   s3_ . Opi[Lor[i_], om2_] . s4_] :=
+  Opx[s1.V[om1].s2, s3.V[om2].s4];
+
+Op[s1_ . Opi[om1_] . s2_,
+   s3_ . Opi[om2_] . s4_] :=
+  Opx[s1.S[om1].s2, s3.S[om2].s4];
+
+
+Opx[s.op_[om1_].b, lbar.op_[om2_].l] := OP[op[om1, om2]];
+
+
+Put[dc, name <> ".dc1"];
+
+
+(* Note: the following Fierz identities from 0112305 are used only
+   if FermionOrder -> None is set in CalcFeynAmp above.  In this case
+   also Antisymmetric -> False must be used, or else the VVV bits
+   are invalid. *)
+
+(* 0112305 Eq. 4.6 *)
+OP[vvv[L,L]] := Evan[VVV[L,L]] + 4 OP[V[L,L]];
+
+(* 0112305 Eq. 4.9 *)
+Opx[s.VVV[L].l, l.VVV[L].b] := Evan[VVV[L,L]] + 16 OP[V[L,L]];
+Opx[s.VVV[L].l, l.VVV[R].b] := Evan[VVV[R,R]] + 4 OP[V[L,R]];
+
+(* 0112305 Eq. 4.7 *)
+Opx[s.S[L].l, l.S[L].b] := Evan[S[L,L]] - 1/2 OP[S[L,L]] + 1/8 OP[T[L,L]];
+Opx[s.S[L].l, l.S[R].b] := Evan[S[L,R]] - 1/2 OP[V[R,L]];
+Opx[s.V[L].l, l.V[L].b] := Evan[V[L,L]] + OP[V[L,L]];
+Opx[s.V[L].l, l.V[R].b] := Evan[V[L,R]] - 2 OP[S[R,L]];
+Opx[s.T[L].l, l.T[L].b] := Evan[T[L,L]] + 6 OP[S[L,L]] + 1/2 OP[T[L,L]];
+
+
+(* due to vanishing of the corresponding hadronic matrix elements: *)
+OP[V[om_,R]] := +OP[V[om,5]]/2;
+OP[V[om_,L]] := -OP[V[om,5]]/2;
+OP[_T] = 0;
+
+OP[S[om_,R]] := OP[S[om,1]] + OP[S[om,5]];
+OP[S[om_,L]] := OP[S[om,1]] - OP[S[om,5]];
+
+
+dc = SCsimp[Simplify[dc /. Mq|Mq2 -> 0 /. massrulz /.
+    {o_OP -> o, S|T|U -> 0} /.
+    {Finite -> 1, _Evan -> 0, _Evanescent -> 0}] /.
+  {MB2 Den[MB2, 0] -> 1, MB2 Den[0, MB2] -> -1}] /.
+    a_ CW2 + a_ SW2 -> a //Simplify;
+
+Put[dc, name <> ".dc2"];
+
+
+OpName[V[L,5]] := "CAL";
+OpName[V[R,5]] := "CAR";
+OpName[S[L,1]] := "CSL";
+OpName[S[R,1]] := "CSR";
+OpName[S[L,5]] := "CPL";
+OpName[S[R,5]] := "CPR";
+
+
+ops = Union[Cases[dc, _OP, Infinity]];
+
+fac = -2 GF/Sqrt[2] Alfa/(2 Pi SW2) CKM[3,3] CKMC[3,fs] /.
+  GF -> Alfa Pi/(Sqrt[2] MW2 SW2);
+
+coeff = ((OpName@@ #) <> tag -> Coefficient[dc, #]/fac)&/@ ops;
+
+(*Put[coeff, name <> ".coeff.raw"];*)
+
+chk = dc /. Thread[ops -> 0];
+If[ chk =!= 0,
+  Print["WARNING: REMAINDER NOT ZERO"];
+  Put[chk, name <> ".ZERO"] ];
+
+
+fin[var_ -> expr_] := (Print[var]; var -> fin[expr]);
+
+fin[expr_] := Simplify @
+  Collect[expr, {_SumOver, _Log}, FullSimplify];
+
+coeff = fin/@ coeff;
+
+Put[coeff, name <> ".coeff"];
+
+If[ !FreeQ[coeff, Den[0, 0]],
+  Print["WARNING: REMAINING Den[0, 0]"] ];
+
+Mino3 = "M_3";
+Mino3C = "M_3C";
+
+hh = OpenFortran[name <> ".F"];
+
+$DebugCmd = {"#ifdef DETAILED_DEBUG\n", "#endif\n", "DCONST ", " ENDL"};
+
+WriteExpr[hh, coeff /. IndexDelta -> Delta,
+  (*HornerStyle -> False,*)
+  TmpType -> False,
+  Expensive -> {_B0i, _C0z, _C00z, _D0z, _D00z},
+  RealArgs -> {B0i, C0z, C00z, D0z, D00z},
+  Optimize -> True,
+  DebugLines -> True,
+  FinalCollect -> True];
+
+Close[hh];
+_EOF_
+
+gzip -f $name*.ps
+
+

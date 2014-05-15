@@ -1,0 +1,11 @@
+#arxiv:0908.1811 D0 13 Aug 2009
+#D0_Hp_taunu_1.0fb
+#needs interpolation
+#columns: Mh, obs, exp BR(t -> H+ b)*BR(H+ -> tau nu) 
+
+80	0.16	0.18
+100	0.15	0.17
+120	0.17	0.18
+140	0.18	0.19
+150	0.19	0.19
+155	0.18	0.19

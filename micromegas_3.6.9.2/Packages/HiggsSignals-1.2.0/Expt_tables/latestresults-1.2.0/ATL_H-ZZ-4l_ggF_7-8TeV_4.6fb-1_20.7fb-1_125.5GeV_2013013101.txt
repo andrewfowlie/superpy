@@ -1,0 +1,22 @@
+# WARNING: This observable should not be used with
+# ATL_H-ZZ-4l_7-8TeV_4.6fb-1_20.7fb-1_124.3GeV_2013013101.txt
+# simultaneously (same ID and similar data)!
+#
+# Data is taken from Fig. 6 in arXiv:1307.1427 named "other categories".
+# The measurement was performed at mH=125.5GeV.
+# In order to provide the possibility of using also the mass measurement
+# of the H->ZZ channel, we implement this observable at the 124.3 GeV.
+# Mass uncertainty contains 0.6 GeV (stat) and 0.5 GeV (syst) error. 
+#(Gauss: 0.8, linear: 1.1)
+1307142713	130714273	1
+ATL-CONF-2013-013,arXiv:1307.1427
+LHC, ATL, ATL
+(pp)->h->ZZ->4l (ggH-like)
+8	25.3	0.036
+1	1
+1.1	ATLZZ
+124.3 124.3 0.1
+4	124.3
+13 23 33 43
+1.0 0.6 0.6 0.6
+       124.3           1.08           1.45           1.88

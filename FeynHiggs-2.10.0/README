@@ -1,0 +1,69 @@
+To build the mighty FeynHiggs, enter
+
+  ./configure
+  make
+  make install
+
+If you want to build also the Mathematica frontend, say
+
+  ./configure
+  make all
+  make install
+
+The files are installed in
+
+  <prefix>/lib		-- the FH library
+  <prefix>/lib64	-- the FH library (if compiled in 64-bit)
+  <prefix>/bin		-- the FH executables
+  <prefix>/include	-- the FH include files
+
+where <prefix> is by default the same as the HOSTTYPE
+environment variable (e.g. x86_64-linux).  To override this,
+add --prefix=<prefix> to the configure command line.
+See ./configure --help for a complete list of options.
+
+The FeynHiggs library (libFH.a) provides these functions:
+
+  FHSetFlags, FHRetrieveFlags
+  FHSetFlagsString, FHRetrieveFlagsString
+  FHSetSMPara, FHRetrieveSMPara, FHGetSMPara
+  FHSetPara, FHRetrievePara, FHRetrieveOSPara
+  FHGetPara, FHGetTLPara
+  FHSetSLHA
+  FHSetLFV, FHRetrieveLFV
+  FHSetNMFV, FHRetrieveNMFV, FHGetNMFV
+  FHSetDebug
+  FHHiggsCorr
+  FHUncertainties
+  FHCouplings
+  FHSelectUZ
+  FHHiggsProd
+  FHConstraints
+  FHOutput, FHOutputSLHA
+  FHRecordIndex
+  FHClearRecord
+  FHReadRecord
+  FHSLHARecord
+  FHLoopRecord
+  FHTableRecord
+  FHSetRecord, FHRetrieveRecord
+
+They are documented in the respective man pages.  Note that you
+might have to set the MANPATH to include the FeynHiggs directory,
+or add the FeynHiggs directory to the man command, as in
+	man -M <fhdir>/man FeynHiggs
+
+Using the FeynHiggs functions in a program is quite simple
+(see also libFH(1)):
+
+- The program must be linked with -L<fhlib-path>/lib -lFH, where
+  <fhlib-path> specifies the location of libFH.a, typically
+  something like $HOME/FeynHiggs-2.9.0/x86_64-linux.
+
+- You MUST call FHSetFlags and one of FHSetPara, FHSetSLHA, FHSetRecord 
+  before calling FHGetPara, FHHiggsCorr, FHCouplings, or FHHiggsProd to
+  set the flags and parameters.
+
+
+Enjoy!
+

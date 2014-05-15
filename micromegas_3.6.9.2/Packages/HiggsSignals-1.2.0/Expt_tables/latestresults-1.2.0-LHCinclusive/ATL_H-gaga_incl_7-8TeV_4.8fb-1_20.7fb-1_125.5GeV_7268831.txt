@@ -1,0 +1,14 @@
+# Published at Moriond 2013.
+# Measurement was performed at 125.5GeV, however, best-fit mass is 126.8 +- 0.9 GeV.
+7268831	726883	1
+Phys.Lett.B726(2013)88
+LHC, ATL, ATL
+(pp)->h->gammagamma
+8 	25.5	0.036
+1	1
+0.9
+126.8 126.8 0.1
+5	-1
+11 21 31 41 51
+
+126.8	1.27	1.55	1.88

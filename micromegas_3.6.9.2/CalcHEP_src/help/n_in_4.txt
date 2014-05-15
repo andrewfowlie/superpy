@@ -1,0 +1,2 @@
+3 15 70
+ The enter of value of momentum of the second incoming particle.

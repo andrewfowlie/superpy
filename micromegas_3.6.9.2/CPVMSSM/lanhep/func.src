@@ -1,0 +1,215 @@
+% External functions
+
+external_func(one,1).
+external_func(initQCD5,4).
+external_func(McRun,1).
+external_func(MbRun,1).
+external_func(MtRun,1).
+external_func(McEff,1).
+external_func(MbEff,1).
+external_func(MtEff,1).
+external_func(cpHiggs,34).
+external_func(slhaRead,2).
+external_func(slhaVal,*).
+
+
+%QCD sector
+parameter Lqcd=initQCD5(alfSMZ,McMc,MbMb,Mtp),
+          MbMt =MbRun(Mtp),
+          McMt =McRun(Mtp).
+
+parameter SHok = cpHiggs(EE,alfSMZ,Mtp,McMt,MbMt,Ml,SW,tb,MHc,aMu,fiMu,aM1,fiM1,aM2,fiM2,aM3,fiM3,Mq3,Mu3,Md3,Ml3,Mr3,aAt,fiAt,aAb,fiAb,aAl,fiAl,
+aAu,fiAu,aAd,fiAd,aAm,fiAm).
+
+parameter RdOK=slhaRead(str("cpsuperh2_slha.out"),4).
+slhaRead('./cpsuperh2_slha.out').
+
+
+parameter  CW  = sqrt(1-SW**2) : 'cos of the Weinberg angle'.
+parameter  MZ  = 91.187:'Z mass', MW=MZ*CW:'W mass'.
+parameter  S2W = 2*SW*CW, C2W=CW**2-SW**2.
+parameter sb=tb/sqrt(1+tb**2):'Sinus beta', cb=sqrt(1-sb**2):'Cosine beta'.
+angle     sin=sb, cos=cb, tan=tb, texname='\\beta'.
+
+parameter t2b=2*tb/(1-tb**2).
+parameter c2b=cb**2-sb**2 : 'cos(2b)'.
+parameter s2b=2*sb*cb :     'sin(2b)'.
+
+parameter Mt=MtEff(Q),  Mb=MbEff(Q), Mc=McEff(Q). 
+
+
+%Higgs sector
+parameter   Mh1=slhaVal(str(MASS),MZ,1,25),
+            Mh2=slhaVal(str(MASS),MZ,1,35), 
+            Mh3=slhaVal(str(MASS),MZ,1,36).
+
+parameter
+ Zh11=slhaVal(str(CVHMIX),MZ,2,1,1),
+ Zh12  =slhaVal(str(CVHMIX),MZ,2,1,2),
+ Zh13  =-slhaVal(str(CVHMIX),MZ,2,1,3)*sb+slhaVal(str(CVHMIX),MZ,2,1,4)*cb,
+ Zh21  =slhaVal(str(CVHMIX),MZ,2,2,1),
+ Zh22  =slhaVal(str(CVHMIX),MZ,2,2,2),
+ Zh23  =-slhaVal(str(CVHMIX),MZ,2,2,3)*sb+slhaVal(str(CVHMIX),MZ,2,2,4)*cb,
+ Zh31  =slhaVal(str(CVHMIX),MZ,2,3,1),
+ Zh32  =slhaVal(str(CVHMIX),MZ,2,3,2),
+ Zh33  =-slhaVal(str(CVHMIX),MZ,2,3,3)*sb+slhaVal(str(CVHMIX),MZ,2,3,4)*cb.
+
+parameter
+ la1   =slhaVal(str(HCOUPLINGS),MZ,1,1),
+ la2   =slhaVal(str(HCOUPLINGS),MZ,1,2),
+ la3   =slhaVal(str(HCOUPLINGS),MZ,1,3),
+ la4   =slhaVal(str(HCOUPLINGS),MZ,1,4),
+ la5r  =slhaVal(str(HCOUPLINGS),MZ,1,5),
+ la6r  =slhaVal(str(HCOUPLINGS),MZ,1,6),
+ la7r  =slhaVal(str(HCOUPLINGS),MZ,1,7),
+ la5i  =slhaVal(str(IMHCOUPLINGS),MZ,1,5),
+ la6i  =slhaVal(str(IMHCOUPLINGS),MZ,1,6),
+ la7i  =slhaVal(str(IMHCOUPLINGS),MZ,1,7).
+
+% Neutralino sector 
+parameter
+ MNE1  =slhaVal(str(MASS),MZ,1,1000022 ),
+ MNE2  =slhaVal(str(MASS),MZ,1,1000023 ),
+ MNE3  =slhaVal(str(MASS),MZ,1,1000025 ),
+ MNE4  =slhaVal(str(MASS),MZ,1,1000035 ),
+
+ Zn11r =slhaVal(str(NMIX),MZ,2,1,1),
+ Zn12r =slhaVal(str(NMIX),MZ,2,1,2),
+ Zn13r =slhaVal(str(NMIX),MZ,2,1,3),
+ Zn14r =slhaVal(str(NMIX),MZ,2,1,4),
+ Zn21r =slhaVal(str(NMIX),MZ,2,2,1),
+ Zn22r =slhaVal(str(NMIX),MZ,2,2,2),
+ Zn23r =slhaVal(str(NMIX),MZ,2,2,3),
+ Zn24r =slhaVal(str(NMIX),MZ,2,2,4),
+ Zn31r =slhaVal(str(NMIX),MZ,2,3,1),
+ Zn32r =slhaVal(str(NMIX),MZ,2,3,2),
+ Zn33r =slhaVal(str(NMIX),MZ,2,3,3),
+ Zn34r =slhaVal(str(NMIX),MZ,2,3,4),
+ Zn41r =slhaVal(str(NMIX),MZ,2,4,1),
+ Zn42r =slhaVal(str(NMIX),MZ,2,4,2),
+ Zn43r =slhaVal(str(NMIX),MZ,2,4,3),
+ Zn44r =slhaVal(str(NMIX),MZ,2,4,4),
+ Zn11i =slhaVal(str(IMNMIX),MZ,2,1,1),
+ Zn12i =slhaVal(str(IMNMIX),MZ,2,1,2),
+ Zn13i =slhaVal(str(IMNMIX),MZ,2,1,3),
+ Zn14i =slhaVal(str(IMNMIX),MZ,2,1,4),
+ Zn21i =slhaVal(str(IMNMIX),MZ,2,2,1),
+ Zn22i =slhaVal(str(IMNMIX),MZ,2,2,2),
+ Zn23i =slhaVal(str(IMNMIX),MZ,2,2,3),
+ Zn24i =slhaVal(str(IMNMIX),MZ,2,2,4),
+ Zn31i =slhaVal(str(IMNMIX),MZ,2,3,1),
+ Zn32i =slhaVal(str(IMNMIX),MZ,2,3,2),
+ Zn33i =slhaVal(str(IMNMIX),MZ,2,3,3),
+ Zn34i =slhaVal(str(IMNMIX),MZ,2,3,4),
+ Zn41i =slhaVal(str(IMNMIX),MZ,2,4,1),
+ Zn42i =slhaVal(str(IMNMIX),MZ,2,4,2),
+ Zn43i =slhaVal(str(IMNMIX),MZ,2,4,3),
+ Zn44i =slhaVal(str(IMNMIX),MZ,2,4,4).
+
+parameter
+ MC1   =slhaVal(str(MASS),MZ,1,1000024), 
+ MC2   =slhaVal(str(MASS),MZ,1,1000037), 
+ Zv11r =slhaVal(str(VMIX),MZ,2,1,1),     
+ Zv12r =slhaVal(str(VMIX),MZ,2,1,2),     
+ Zv21r =slhaVal(str(VMIX),MZ,2,2,1),     
+ Zv22r =slhaVal(str(VMIX),MZ,2,2,2),     
+ Zv11i =slhaVal(str(IMVMIX),MZ,2,1,1),   
+ Zv12i =slhaVal(str(IMVMIX),MZ,2,1,2),   
+ Zv21i =slhaVal(str(IMVMIX),MZ,2,2,1),   
+ Zv22i =slhaVal(str(IMVMIX),MZ,2,2,2),   
+ Zu11r =slhaVal(str(UMIX),MZ,2,1,1),     
+ Zu12r =slhaVal(str(UMIX),MZ,2,1,2),     
+ Zu21r =slhaVal(str(UMIX),MZ,2,2,1),     
+ Zu22r =slhaVal(str(UMIX),MZ,2,2,2),     
+ Zu11i =slhaVal(str(IMUMIX),MZ,2,1,1),   
+ Zu12i =slhaVal(str(IMUMIX),MZ,2,1,2),   
+ Zu21i =slhaVal(str(IMUMIX),MZ,2,2,1),   
+ Zu22i =slhaVal(str(IMUMIX),MZ,2,2,2).
+
+% HQq threshold  correction 
+parameter
+ Tu3r  =slhaVal(str(THRESHOLD),MZ,2,6,1),
+ Tu3i  =slhaVal(str(THRESHOLD),MZ,2,6,2),
+ Td3r  =slhaVal(str(THRESHOLD),MZ,2,5,1),
+ Td3i  =slhaVal(str(THRESHOLD),MZ,2,5,2).
+
+
+parameter
+ MSl1  =slhaVal(str(MASS),MZ,1,1000015),
+ MSl2  =slhaVal(str(MASS),MZ,1,2000015),
+ Zl11r =slhaVal(str(STAUMIX),MZ,2,1,1),
+ Zl21r =slhaVal(str(STAUMIX),MZ,2,2,1),
+ Zl21i =slhaVal(str(IMSTAUMIX),MZ,2,2,1).
+SetAngle(Zl11r**2+Zl21r**2+Zl21i**2=1).
+ let Zl11c=Zl11r,  Zl21c=Zl21r-i*Zl21i,  Zl12c=-Zl21r-i*Zl21i, Zl22c=Zl11r.	
+
+parameter
+ MSt1  =slhaVal(str(MASS),MZ,1,1000006),
+ MSt2  =slhaVal(str(MASS),MZ,1,2000006),
+ Zt11r =slhaVal(str(STOPMIX),MZ,2,1,1),
+ Zt21r =slhaVal(str(STOPMIX),MZ,2,2,1),
+ Zt21i =slhaVal(str(IMSTOPMIX),MZ,2,2,1).
+SetAngle(Zt11r**2+Zt21r**2+Zt21i**2=1).
+ let Zt11c=Zt11r, Zt21c=Zt21r -i*Zt21i, Zt12c=-Zt21r-i*Zt21i, Zt22c=Zt11r.
+
+parameter
+ MSb1  =slhaVal(str(MASS),MZ,1,1000005),
+ MSb2  =slhaVal(str(MASS),MZ,1,2000005),
+ Zb11r =slhaVal(str(SBOTMIX),MZ,2,1,1),
+ Zb21r =slhaVal(str(SBOTMIX),MZ,2,2,1),
+ Zb21i =slhaVal(str(IMSBOTMIX),MZ,2,2,1).
+SetAngle(Zb11r**2+Zb21r**2+Zb21i**2=1).
+ let Zb11c=Zb11r, Zb21c=Zb21r-i*Zb21i, Zb12c=-Zb21r-i*Zb21i, Zb22c=Zb11r.
+
+parameter PI=3.14159265358979323846*1:' pi'.
+
+parameter mur=aMu*cos(fiMu*PI/180) : '   ',  
+          mui=aMu*sin(fiMu*PI/180) : '   '  .
+
+parameter Alr=aAl*cos(fiAl*PI/180)     :'Tau soft coupling Real'.
+parameter Ali=aAl*sin(fiAl*PI/180)     :'Tau soft coupling Imaginary'.
+
+parameter Abr=aAb*cos(fiAb*PI/180)     :' b soft coupling Real'.
+parameter Abi=aAb*sin(fiAb*PI/180)     :' b soft coupling Imaginary'.
+
+parameter Atr=aAt*cos(fiAt*PI/180)     :' t soft coupling Real'.
+parameter Ati=aAt*sin(fiAt*PI/180)     :' t soft coupling Imaginary'.
+
+parameter Adr=aAd*cos(fiAd*PI/180)     :' d/s soft coupling Real'.
+parameter Adi=aAd*sin(fiAd*PI/180)     :' d/s soft coupling Imaginary'.
+
+parameter Aur=aAu*cos(fiAu*PI/180)     :' u/c soft coupling Real'.
+parameter Aui=aAu*sin(fiAu*PI/180)     :' u/c soft coupling Imaginary'.
+
+
+parameter sfiM3=sin(fiM3*PI/180),
+          cfiM3=cos(fiM3*PI/180).
+       
+
+
+
+parameter MSne=sqrt(c2b*MW**2/2+CW**2*Ml1**2)/CW:'e-sNeutrino mass'.
+
+parameter MSnm=sqrt(c2b*MW**2/2+CW**2*Ml2**2)/CW:'mu-sneutrino mass',
+          MSnl=sqrt(c2b*MW**2/2+CW**2*Ml3**2)/CW:'tau-sneutrino mass'.
+
+parameter MSeL=sqrt(-c2b*(CW**2-SW**2)*MW**2/2+CW**2*Ml1**2)/CW:'1st selectron mass',
+          MSeR=sqrt(-SW**2*c2b*MW**2+CW**2*Mr1**2)/CW:'2nd selectron mass',
+          MSmL=sqrt(-c2b*(CW**2-SW**2)*MW**2/2+CW**2*Ml2**2)/CW:'1st smuon mass',
+          MSmR =sqrt(-SW**2*c2b*MW**2+CW**2*Mr2**2)/CW:'2nd smuon mass'.
+
+
+
+
+
+
+
+parameter MSuL = sqrt(Mq1**2+MW**2/CW**2*(1/2-2/3*SW**2)*c2b),
+          MScL = sqrt(Mq2**2+MW**2/CW**2*(1/2-2/3*SW**2)*c2b),
+	  MSuR = sqrt(Mu1**2+MW**2/CW**2*(    2/3*SW**2)*c2b),
+          MScR = sqrt(Mu2**2+MW**2/CW**2*(    2/3*SW**2)*c2b).
+
+parameter MSdL = sqrt(Mq1**2-MW**2/CW**2*(1/2-1/3*SW**2)*c2b),
+          MSsL = sqrt(Mq2**2-MW**2/CW**2*(1/2-1/3*SW**2)*c2b),
+          MSdR = sqrt(Mu1**2+MW**2/CW**2*(   -1/3*SW**2)*c2b),
+          MSsR = sqrt(Mu2**2+MW**2/CW**2*(   -1/3*SW**2)*c2b).

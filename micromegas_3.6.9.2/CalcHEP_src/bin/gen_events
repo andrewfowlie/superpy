@@ -1,0 +1,23 @@
+:
+
+if( test -r session.dat) then
+   testStr=`grep Max\( session.dat |grep :`
+   if(test "$testStr" = "Max(0):") then
+      testStr=
+   fi
+fi 
+
+if(test "$testStr") then 
+  if(test $# -ne 1) then
+     echo ERROR!. $0 need two parameters:
+     echo "1   number of events"  
+     exit 200
+  else
+     ./n_calchep -blind  "[[[[[[[[{[[[[[[[[[{{$1{[{0"
+
+     exit $? 
+  fi
+else 
+  echo " Generator is not prepared!" 
+  exit 201
+fi

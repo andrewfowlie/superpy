@@ -1,0 +1,41 @@
+2 4 76 22  Table editor
+  To change position of the  cursor and  the   highlighted  cell one  can
+use the arrow keys, the Tab key, and the mouse click. If the table is open
+for changes and one types any printing symb it will be inserted into the
+table at the cursor position.
+  The  PgUp, PgDn  keys are used to scroll the table. The F1 and F2
+functional keys provide information about the meaning of table fields and
+about facilities of the Table Editor.
+  There are some auxiliary commands which help the user to operate the
+tables. These commands can be realized by means of Control symbols or by
+mouse click on the command label displayed on the table borders:
+
+  "Xgoto" (^X)   in frame of current line and current field  sets the  
+cursor on  the position directed by the user.
+  "Ygoto" (^Y)   moves the cursor to the line directed by the user. It puts
+cursor position on the bottom line  if one type '$' instead of line number.
+  "Find" (^F)   searches the string, or set of strings  directed by the 
+user. If strings have to be separated by commas.  To continue the search, 
+press ^F again. To initialize new search, change cursor position and press 
+^F. The search is performed in the region below the cursor.
+  "Write" (^W)  writes the contents of current field into a file.   
+
+The following commands are available only if the table is open for changes:
+
+  "Clr" (^C)    clears the contents of the current fields right to the
+cursor position.
+  "Del" (^D)    cuts the current line from the table and puts it into the
+buffer.
+  "Size" (^S) allows  the user to change the width of current field. This
+command is active only if the cursor is disposed in the column which name
+is surrounded by the '\verb|>|','\verb|<|' symbols.
+  "Read" (^R)  moves the contents of the file defined by the user into  
+the current field. White space characters are ignored. The size of field 
+inceases automatically if it is possible and  needed.
+  "ErrMess"(^E) redisplays the last   error message  concerning the tables.
+
+To insert new line just press the 'Enter key'. The contents of new line will 
+correspondts to the last deleted line.
+
+
+To exit the table  one has to press the Esc key.

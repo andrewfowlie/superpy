@@ -1,0 +1,1162 @@
+{Amp[{{S[10, {hno}], k[1], m1, {}}} -> {{F[4, {gno1, Col2}], k[2], m2, {}}, 
+     {-F[4, {gno2, Col3}], k[3], m3, {}}}][
+  (I*ELMZ*Delta[gno1, gno2]*Mat[SUN1]*Mf[bH, gno1]*
+    (((I/2)*F1*(SA*Conjugate[HffDb[sub1L, 1, 4, gno1]]*
+         XHiggs[hno, 1, uzext] - CA*Conjugate[HffDb[sub1L, 2, 4, gno1]]*
+         XHiggs[hno, 2, uzext] + I*SB*Conjugate[HffDb[sub1L, 3, 4, gno1]]*
+         XHiggs[hno, 3, uzext]))/CB + 
+     (F2*(I*SA*HffDb[sub1L, 1, 4, gno1]*XHiggs[hno, 1, uzext] - 
+        I*CA*HffDb[sub1L, 2, 4, gno1]*XHiggs[hno, 2, uzext] + 
+        SB*HffDb[sub1L, 3, 4, gno1]*XHiggs[hno, 3, uzext]))/(2*CB)))/
+   (MW*SW)], Amp[{{S[10, {hno}], k[1], m1, {}}} -> 
+    {{F[4, {gno1, Col2}], k[2], m2, {}}, {-F[4, {gno2, Col3}], k[3], m3, 
+      {}}}][Den[m12, MZ2]*Mat[SUN1]*
+   ((AlfaMZ*ELMZ*(F1 - F2)*B0i[bb0, m12, MASf2[All4, 2], MASf2[All5, 2]]*
+      Delta[gno1, gno2]*Mf[bH, gno2]*Sub20[All4, All5, Ind3, Ind4]*
+      Sub3[All4, All5, Ind1, Ind2])/(32*CB*CW*MW*MW2*Pi*SW*SW2) + 
+    (AlfaMZ*ELMZ*(F1 - F2)*B0i[bb0, m12, MASf2[All4, bH], MASf2[All5, bH]]*
+      Delta[gno1, gno2]*Mf[bH, gno2]*Sub23[All4, All5, Ind1, Ind2]*
+      Sub38[All4, All5, Ind3, Ind4])/(32*CB*CW*MW*MW2*Pi*SW*SW2) + 
+    (AlfaMZ*ELMZ*(F1 - F2)*B0i[bb0, m12, MASf2[All4, tH], MASf2[All5, tH]]*
+      Delta[gno1, gno2]*Mf[bH, gno2]*Sub59[All4, All5, Ind1, Ind2, Ind3, 
+       Ind4])/(32*CW*MW*MW2*Pi*SB*SW*SW2*TB*TB2))*SumOver[All4, 6]*
+   SumOver[All5, 6]*SumOver[Ind1, 3]*SumOver[Ind2, 3]*SumOver[Ind3, 3]*
+   SumOver[Ind4, 3], Den[m12, MZ2]*Mat[SUN1]*
+   ((AlfaMZ*ELMZ*(F1 - F2)*B0i[bb0, m12, MASf2[All4, tH], MASf2[All5, tH]]*
+      Delta[gno1, gno2]*Mf[bH, gno1]*Sub110[All4, All5, Ind1, Ind2, Ind3])/
+     (96*CW*CW2*MW*Pi*SB*SW*SW2*TB) + 
+    (AlfaMZ*ELMZ*(F1 - F2)*B0i[bb1, m12, MASf2[All4, tH], MASf2[All5, tH]]*
+      Delta[gno1, gno2]*Mf[bH, gno1]*Sub110[All4, All5, Ind1, Ind2, Ind3])/
+     (48*CW*CW2*MW*Pi*SB*SW*SW2*TB) + 
+    (AlfaMZ*ELMZ*(F1 - F2)*B0i[bb0, m12, MASf2[All4, 2], MASf2[All5, 2]]*
+      Delta[gno1, gno2]*Mf[bH, gno1]*Sub76[All4, All5, Ind1, Ind2, Ind3])/
+     (32*CB*CW*CW2*MW*Pi*SW*SW2) + (AlfaMZ*ELMZ*(F1 - F2)*
+      B0i[bb1, m12, MASf2[All4, 2], MASf2[All5, 2]]*Delta[gno1, gno2]*
+      Mf[bH, gno1]*Sub76[All4, All5, Ind1, Ind2, Ind3])/
+     (16*CB*CW*CW2*MW*Pi*SW*SW2) + (AlfaMZ*ELMZ*(F1 - F2)*
+      B0i[bb0, m12, MASf2[All4, bH], MASf2[All5, bH]]*Delta[gno1, gno2]*
+      Mf[bH, gno1]*Sub93[All4, All5, Ind1, Ind2, Ind3])/
+     (96*CB*CW*CW2*MW*Pi*SW*SW2) + (AlfaMZ*ELMZ*(F1 - F2)*
+      B0i[bb1, m12, MASf2[All4, bH], MASf2[All5, bH]]*Delta[gno1, gno2]*
+      Mf[bH, gno1]*Sub93[All4, All5, Ind1, Ind2, Ind3])/
+     (48*CB*CW*CW2*MW*Pi*SW*SW2))*SumOver[All4, 6]*SumOver[All5, 6]*
+   SumOver[Ind1, 3]*SumOver[Ind2, 3]*SumOver[Ind3, 3], 
+  Den[m12, MZ2]*Mat[SUN1]*SumOver[All4, 6]*SumOver[Ind1, 3]*
+   (((I/32)*AlfaMZ*ELMZ*(F1 - F2)*S2B*A0[MASf2[All4, 2]]*Delta[gno1, gno2]*
+      Mf[bH, gno1]*Sub113[All4, Ind1]*XHiggs[hno, 3, uzext])/
+     (CB2*CW2*MW*MW2*Pi*SW*SW2) + ((I/32)*AlfaMZ*ELMZ*(F1 - F2)*S2B*
+      A0[MASf2[All4, bH]]*Delta[gno1, gno2]*Mf[bH, gno1]*Sub116[All4, Ind1]*
+      XHiggs[hno, 3, uzext])/(CB2*CW2*MW*MW2*Pi*SW*SW2) - 
+    ((I/32)*AlfaMZ*ELMZ*(F1 - F2)*S2B*A0[MASf2[All4, tH]]*Delta[gno1, gno2]*
+      Mf[bH, gno1]*Sub119[All4, Ind1]*XHiggs[hno, 3, uzext])/
+     (CW2*MW*MW2*Pi*SB2*SW*SW2)), Den[m12, MZ2]*Mat[SUN1]*
+   (((-I/8)*AlfaMZ*ELMZ*(F1 - F2)*A0[MCha2[Cha5]]*Delta[gno1, gno2]*
+      Mf[bH, gno1]*Sub128[Cha4, Cha5])/(MW*Pi*SW*SW2) - 
+    ((I/8)*AlfaMZ*ELMZ*(F1 - F2)*B0i[bb0, m12, MCha2[Cha4], MCha2[Cha5]]*
+      Delta[gno1, gno2]*Mf[bH, gno1]*Sub134[Cha4, Cha5])/
+     (CW2*MW*Pi*sqrt2*SW*SW2) - ((I/8)*AlfaMZ*ELMZ*(F1 - F2)*
+      B0i[bb1, m12, MCha2[Cha4], MCha2[Cha5]]*Delta[gno1, gno2]*Mf[bH, gno1]*
+      Sub136[Cha4, Cha5])/(CW2*MW*Pi*sqrt2*SW*SW2))*SumOver[Cha4, 2]*
+   SumOver[Cha5, 2], 
+  -((AlfaMZ*ELMZ*Mat[SUN1]*(-(Delta[gno1, gno2]*Den[m12, MZ2]*Mf[bH, gno1]*
+         Sub159[Gen4])/(96*CW*CW2*MW*MW2*SB*SB2*SW2) - 
+      (CKM[Gen4, gno2]*CKMC[Gen4, gno1]*Sub274[Gen4])/(16*CW2*MW*MW2*SB*SW2*
+        TB*TB2))*SumOver[Gen4, 3])/(Pi*SW)), Den[m12, MZ2]*Mat[SUN1]*
+   (((I/32)*AlfaMZ*ELMZ*(F1 - F2)*A0[MNeu2[Neu5]]*Delta[gno1, gno2]*
+      Mf[bH, gno1]*Sub305[Neu4, Neu5])/(CW2*MW*Pi*SW*SW2) + 
+    ((I/32)*AlfaMZ*ELMZ*(F1 - F2)*B0i[bb1, m12, MNeu2[Neu4], MNeu2[Neu5]]*
+      Delta[gno1, gno2]*Mf[bH, gno1]*Sub310[Neu4, Neu5])/
+     (CW*CW2*MW*Pi*SW*SW2) + ((I/32)*AlfaMZ*ELMZ*(F1 - F2)*
+      B0i[bb0, m12, MNeu2[Neu4], MNeu2[Neu5]]*Delta[gno1, gno2]*Mf[bH, gno1]*
+      Sub313[Neu4, Neu5])/(CW*CW2*MW*Pi*SW*SW2))*SumOver[Neu4, 4]*
+   SumOver[Neu5, 4], (ELMZ*Mat[SUN1]*(((I/4)*Sub328)/MW + 
+     (AlfaMZ*Sub490*Delta[gno1, gno2]*Mf[bH, gno1])/(288*CB*CB2*CW2^2*MW*MW2*
+       Pi*SW2) - (Sub368*Delta[gno1, gno2]*Den[m12, MZ2]*Mf[bH, gno1])/
+      (192*CW*CW2^2*MW*Pi*SW2)))/SW, 
+  (AlfaMZ*ELMZ*Mat[SUN1]*
+    ((C0i[cc0, m22, m12, m32, MCha2[Cha4], MASf2[All4, tH], MASf2[All5, tH]]*
+       MCha[Cha4]*Sub493[All4, All5, Cha4, Ind1, Ind4]*
+       Sub502[All4, All5, Ind2, Ind3])/(48*CB*sqrt2) + 
+     Sub532[All4, All5, Cha4, Ind1, Ind2, Ind3, Ind4]/96)*SumOver[All4, 6]*
+    SumOver[All5, 6]*SumOver[Cha4, 2]*SumOver[Ind1, 3]*SumOver[Ind2, 3]*
+    SumOver[Ind3, 3]*SumOver[Ind4, 3])/(MW*MW2*Pi*SW*SW2), 
+  -((AlfaMZ*ELMZ*Mat[SUN1]*
+     (-(C0i[cc0, m22, m12, m32, MNeu2[Neu4], MASf2[All4, bH], 
+          MASf2[All5, bH]]*MNeu[Neu4]*Sub553[All4, All5, Neu4])/432 + 
+      Sub556[All4, All5, Neu4]/432)*SumOver[All4, 6]*SumOver[All5, 6]*
+     SumOver[Ind1, 3]*SumOver[Ind2, 3]*SumOver[Neu4, 4]*
+     (Sub543[All4, All5, Ind1, Ind2]/(CB*CW) - 
+      (3*I)*Sub546[All4, All5, Ind1, Ind2]*XHiggs[hno, 3, uzext]))/
+    (CB2*CW2*MW*MW2*Pi*SW*SW2)), 
+  -(AlfasDb*ELMZ*Mat[SUN1]*(C0i[cc0, m22, m12, m32, MGl2, MASf2[All4, bH], 
+        MASf2[All5, bH]]*Sub557[All4, All5] + 
+      C0i[cc1, m22, m12, m32, MGl2, MASf2[All4, bH], MASf2[All5, bH]]*
+       Mf[bH, gno1]*Sub558[All4, All5] + C0i[cc2, m22, m12, m32, MGl2, 
+        MASf2[All4, bH], MASf2[All5, bH]]*Mf[bH, gno2]*Sub559[All4, All5])*
+     SumOver[All4, 6]*SumOver[All5, 6]*SumOver[Ind1, 3]*SumOver[Ind2, 3]*
+     (Sub543[All4, All5, Ind1, Ind2]/(CB*CW) - 
+      (3*I)*Sub546[All4, All5, Ind1, Ind2]*XHiggs[hno, 3, uzext]))/
+   (9*MW*Pi*SW), (AlfaMZ*ELMZ*Mat[SUN1]*
+    (((-I/16)*B0i[bb0, m32, MASf2[All4, tH], MCha2[Cha5]]*
+       Sub564[All4, Cha4, Cha5, Ind1, Ind2])/(CB*SB) - 
+     (C0i[cc2, m12, m32, m22, MCha2[Cha4], MCha2[Cha5], MASf2[All4, tH]]*
+       Sub575[All4, Cha4, Cha5, Ind1, Ind2])/16 - 
+     (I/16)*Sub592[All4, Cha4, Cha5, Ind1, Ind2])*SumOver[All4, 6]*
+    SumOver[Cha4, 2]*SumOver[Cha5, 2]*SumOver[Ind1, 3]*SumOver[Ind2, 3])/
+   (MW2*Pi*SW*SW2), (AlfaMZ*ELMZ*Mat[SUN1]*
+    ((-I/144)*B0i[bb0, m32, MASf2[All4, bH], MNeu2[Neu5]]*
+      Sub596[All4, Neu4, Neu5] - (I/144)*C0i[cc1, m12, m32, m22, MNeu2[Neu4], 
+       MNeu2[Neu5], MASf2[All4, bH]]*Sub603[All4, Neu4, Neu5] + 
+     Sub612[All4, Neu4, Neu5]/144)*SumOver[All4, 6]*SumOver[Neu4, 4]*
+    SumOver[Neu5, 4])/(CB2*CW*CW2*MW2*Pi*SW*SW2)], {Mat[SUN1, SUN1] -> 3}, 
+ {F1 -> WeylChain[Spinor[k[2], Mf[bH, gno1], 1, 2, 0], 6, 
+    Spinor[k[3], Mf[bH, gno2], -1, 1, 0]], 
+  F2 -> WeylChain[Spinor[k[2], Mf[bH, gno1], 1, 2, 0], 7, 
+    Spinor[k[3], Mf[bH, gno2], -1, 1, 0]], SUN1 -> SUNT[Col2, Col3]}, 
+ {Sub364 -> 2*dMA0G0sq1 + dZA0G01*(-2*m12 + MA02), 
+  Sub314 -> dMWsq1/MW2 + (CA*dZh0HH1)/SA, 
+  Sub318 -> dMWsq1/MW2 + (dZh0HH1*SA)/CA, 
+  Sub338 -> CBA*F1 + (F1 - F2)*S2B*SAB, Sub341 -> CAB*(F1 - F2)*S2B + F1*SBA, 
+  Sub328 -> (F2*Sub324)/CB + 4*F1*Sub327, 
+  Sub348 -> 3*C2B*(-F1 + F2)*MW2*S2B*SAB^2 + SBA*Sub347, 
+  Sub352 -> 3*C2B*CAB^2*(F1 - F2)*MW2*S2B + CBA*Sub351, 
+  Sub361 -> 3*CW2*(F1 - F2)*S2B*Sub336 + 2*(C2B*MW2*Sub345 + Sub360), 
+  Sub415 -> -3*(F1 + F2)*S2B*SAB + CBA*Sub370, 
+  Sub416 -> -3*CAB*(F1 + F2)*S2B + SBA*Sub370, 
+  Sub395 -> CA*(-Sub388 + Sub389 + Sub390)*Sub391 - SA*Sub393*Sub394, 
+  Sub490 -> CB*MW2*(3*CW2*Sub397 + CB2*Sub410) - 
+    CW2*(3*CB2*MW2*Sub428 + Sub489), Sub400 -> 2*F1 + F2*(-2 + 3/SW2), 
+  Sub332 -> 12*CBA*CW2^2 + C2B*CAB*(CW2 - SW2), 
+  Sub334 -> Sub330*Sub333 + Sub163*Sub329*(CW2 - SW2), 
+  Sub423 -> -2*(F1 + F2) + (3*F1)/SW2, Sub369 -> F2*(3 - 2*SW2) + 2*F1*SW2, 
+  Sub370 -> F1*(3 - 2*SW2) + 2*F2*SW2, 
+  Sub339 -> 3*Sub338 - 2*CBA*(F1 + F2)*SW2, 
+  Sub406 -> 3*CW2*F2*m22 - 8*(F1 + F2)*MW2*SW2, 
+  Sub342 -> 3*Sub341 - 2*(F1 + F2)*SBA*SW2, 
+  Sub443 -> (F2*Sub430*(3 - 2*SW2)^2)/SW2 + 4*F1*Sub122*SW2, 
+  Sub368 -> AlfaMZ*CW*Sub362 - (16*I)*CW2^2*Pi*Sub367*SW2, 
+  Sub421 -> Sub420 + 2*F1*(-m12 + m22 + m32)*Sub380*SW2, 
+  Sub442 -> (F2*Sub122*(3 - 2*SW2)^2)/SW2 + 4*F1*Sub430*SW2, 
+  Sub444 -> 9*CW2*m22*Sub436 + MW2*(Sub442 + Sub443)*SW2, 
+  Sub331 -> 12*CW2^2*SBA + C2B*SAB*(-CW2 + SW2), 
+  Sub409 -> 3*CW2*Sub408 + Sub406*(6 - 4*SW2), 
+  Sub149 -> (4*I)*Sub147*SW2 + Sub148*(-3 + 4*SW2), 
+  Sub448 -> (3*(m12 + m22 - m32)*Sub436)/MW2 + 
+    (2*(F1*Sub122 - F2*Sub430)*(-3 + 4*SW2))/CW2, 
+  Sub374 -> F1*(9 - 4*SW2) + F2*(3 + 4*SW2), 
+  Sub365 -> 3*CW*(F1 - F2)*Sub364 + 2*dZA0G01*MW*MZ*(3*F1 - 2*(F1 + F2)*SW2), 
+  Sub357 -> SBA*Sub354 + CAB*MW2*S2B*(-3*F1 + 2*(F1 + F2)*SW2), 
+  Sub355 -> CBA*Sub354 + MW2*S2B*SAB*(-3*F1 + 2*(F1 + F2)*SW2), 
+  Sub351 -> SBA*Sub350 + CAB*MW2*S2B*(3*F1 - 2*(F1 + F2)*SW2), 
+  Sub347 -> CBA*Sub346 + MW2*S2B*SAB*(3*F1 - 2*(F1 + F2)*SW2), 
+  Sub356 -> Sub355 + MW2*(CBA - S2B*SAB)*(-3*F2 + 2*(F1 + F2)*SW2), 
+  Sub358 -> Sub357 - MW2*(CAB*S2B - SBA)*(-3*F2 + 2*(F1 + F2)*SW2), 
+  Sub349 -> Sub348 + MW2*(2*CBA + S2B*SAB)*SBA*(-3*F2 + 2*(F1 + F2)*SW2), 
+  Sub353 -> Sub352 + CBA*MW2*(CAB*S2B + 2*SBA)*(-3*F2 + 2*(F1 + F2)*SW2), 
+  Sub153 -> Sub152 + MW2*Sub5*(-1 + 4*SW2)*(-3*F2 + 2*(F1 + F2)*SW2), 
+  Sub155 -> Sub154 + MW2*Sub5*(-3 + 4*SW2)*(-3*F2 + 2*(F1 + F2)*SW2), 
+  Sub431 -> 4*CW2*F1*Sub122 + (F2*Sub430*(-3 - 4*(-2 + SW2)*SW2))/SW2, 
+  Sub457 -> S2B*Sub456 + C2B*(-Sub454 + Sub455)*TB, 
+  Sub151 -> Sub150 + MW2*Sub6*(-3 + 8*SW2)*(-3*F2 + 2*(F1 + F2)*SW2)*TB, 
+  Sub237 -> S2B*SAB*TB2 - CBA*CW2*(2 + TB2), 
+  Sub239 -> CAB*S2B*TB2 - CW2*SBA*(2 + TB2), 
+  Sub344 -> SAB*Sub340*B0i[bb0, m12, MA02, Mh02] + 
+    CAB*Sub343*B0i[bb0, m12, MA02, MHH2], 
+  Sub481 -> SA2*B0i[bb0, m32, Mh02, Mf2[bH, gno1]] + 
+    CA2*B0i[bb0, m32, MHH2, Mf2[bH, gno1]], 
+  Sub424 -> CBA*SA*B0i[bb0, m32, Mh02, Mf2[bH, gno1]] + 
+    CA*SBA*B0i[bb0, m32, MHH2, Mf2[bH, gno1]], 
+  Sub337 -> CBA*SAB*B0i[bb1, m12, Mh02, MA02] + 
+    CAB*SBA*B0i[bb1, m12, MHH2, MA02], 
+  Sub359 -> SBA*Sub356*B0i[bb1, m12, Mh02, MZ2] - 
+    CBA*Sub358*B0i[bb1, m12, MHH2, MZ2], 
+  Sub329 -> B0i[bb0, m12, MHp2, MHp2] + 2*B0i[bb1, m12, MHp2, MHp2], 
+  Sub330 -> B0i[bb0, m12, MW2, MW2] + 2*B0i[bb1, m12, MW2, MW2], 
+  Sub486 -> SA2*C0i[cc0, m12, m32, m22, Mf2[bH, gno1], Mf2[bH, gno1], Mh02] + 
+    CA2*C0i[cc0, m12, m32, m22, Mf2[bH, gno1], Mf2[bH, gno1], MHH2], 
+  Sub388 -> C0i[cc0, m22, m12, m32, Mf2[bH, gno1], Mh02, MHH2] + 
+    C0i[cc0, m22, m12, m32, Mf2[bH, gno1], MHH2, Mh02], 
+  Sub460 -> CBA*SA*C0i[cc0, m32, m12, m22, Mf2[bH, gno1], Mh02, MZ2] + 
+    CA*SBA*C0i[cc0, m32, m12, m22, Mf2[bH, gno1], MHH2, MZ2], 
+  Sub483 -> 2*Sub482 + (m12 + m22 - m32)*C0i[cc1, m12, m32, m22, 
+      Mf2[bH, gno1], Mf2[bH, gno1], MA02], 
+  Sub485 -> SA2*C0i[cc1, m12, m32, m22, Mf2[bH, gno1], Mf2[bH, gno1], Mh02] + 
+    CA2*C0i[cc1, m12, m32, m22, Mf2[bH, gno1], Mf2[bH, gno1], MHH2], 
+  Sub381 -> C0i[cc0, m22, m12, m32, Mf2[bH, gno1], MA02, MA02] + 
+    C0i[cc1, m22, m12, m32, Mf2[bH, gno1], MA02, MA02], 
+  Sub392 -> C0i[cc0, m22, m12, m32, Mf2[bH, gno1], Mh02, Mh02] - 
+    C0i[cc1, m22, m12, m32, Mf2[bH, gno1], Mh02, Mh02], 
+  Sub476 -> Sub475*C0i[cc0, m22, m12, m32, Mf2[bH, gno1], Mh02, MZ2] + 
+    Sub474*C0i[cc1, m22, m12, m32, Mf2[bH, gno1], Mh02, MZ2], 
+  Sub450 -> SA*SAB*C0i[cc1, m22, m12, m32, Mf2[bH, gno1], Mh02, MA02] + 
+    CA*CAB*C0i[cc1, m22, m12, m32, Mf2[bH, gno1], MHH2, MA02], 
+  Sub389 -> C0i[cc1, m22, m12, m32, Mf2[bH, gno1], Mh02, MHH2] + 
+    C0i[cc1, m22, m12, m32, Mf2[bH, gno1], MHH2, Mh02], 
+  Sub385 -> C0i[cc0, m22, m12, m32, Mf2[bH, gno1], MHH2, MHH2] - 
+    C0i[cc1, m22, m12, m32, Mf2[bH, gno1], MHH2, MHH2], 
+  Sub479 -> Sub478*C0i[cc0, m22, m12, m32, Mf2[bH, gno1], MHH2, MZ2] + 
+    Sub477*C0i[cc1, m22, m12, m32, Mf2[bH, gno1], MHH2, MZ2], 
+  Sub382 -> C0i[cc0, m22, m12, m32, Mf2[bH, gno1], MZ2, MA02] + 
+    C0i[cc1, m22, m12, m32, Mf2[bH, gno1], MZ2, MA02], 
+  Sub451 -> C0i[cc0, m22, m12, m32, Mf2[bH, gno1], MZ2, Mh02] + 
+    C0i[cc1, m22, m12, m32, Mf2[bH, gno1], MZ2, Mh02], 
+  Sub452 -> C0i[cc0, m22, m12, m32, Mf2[bH, gno1], MZ2, MHH2] + 
+    C0i[cc1, m22, m12, m32, Mf2[bH, gno1], MZ2, MHH2], 
+  Sub458 -> CBA*SA*C0i[cc1, m32, m12, m22, Mf2[bH, gno1], Mh02, MZ2] + 
+    CA*SBA*C0i[cc1, m32, m12, m22, Mf2[bH, gno1], MHH2, MZ2], 
+  Sub439 -> SA2*C0i[cc2, m12, m32, m22, Mf2[bH, gno1], Mf2[bH, gno1], Mh02] + 
+    CA2*C0i[cc2, m12, m32, m22, Mf2[bH, gno1], Mf2[bH, gno1], MHH2], 
+  Sub454 -> SA*SAB*C0i[cc2, m22, m12, m32, Mf2[bH, gno1], MA02, Mh02] + 
+    CA*CAB*C0i[cc2, m22, m12, m32, Mf2[bH, gno1], MA02, MHH2], 
+  Sub393 -> Sub392 - C0i[cc2, m22, m12, m32, Mf2[bH, gno1], Mh02, Mh02], 
+  Sub455 -> SA*SAB*C0i[cc2, m22, m12, m32, Mf2[bH, gno1], Mh02, MA02] + 
+    CA*CAB*C0i[cc2, m22, m12, m32, Mf2[bH, gno1], MHH2, MA02], 
+  Sub390 -> C0i[cc2, m22, m12, m32, Mf2[bH, gno1], Mh02, MHH2] + 
+    C0i[cc2, m22, m12, m32, Mf2[bH, gno1], MHH2, Mh02], 
+  Sub386 -> Sub385 - C0i[cc2, m22, m12, m32, Mf2[bH, gno1], MHH2, MHH2], 
+  Sub383 -> C2B*TB2*C0i[cc2, m22, m12, m32, Mf2[bH, gno1], MA02, MA02] - 
+    S2B*TB*C0i[cc2, m22, m12, m32, Mf2[bH, gno1], MZ2, MA02], 
+  Sub456 -> SA*SAB*C0i[cc2, m22, m12, m32, Mf2[bH, gno1], MZ2, Mh02] + 
+    CA*CAB*C0i[cc2, m22, m12, m32, Mf2[bH, gno1], MZ2, MHH2], 
+  Sub464 -> CBA*SA*C0i[cc2, m32, m12, m22, Mf2[bH, gno1], Mh02, MZ2] + 
+    CA*SBA*C0i[cc2, m32, m12, m22, Mf2[bH, gno1], MHH2, MZ2], 
+  Sub316 -> dMf1[4, gno1] + (dZe1 + Sub315/2)*Mf[bH, gno1], 
+  Sub320 -> dMf1[4, gno1] + (dZe1 + Sub319/2)*Mf[bH, gno1], 
+  Sub323 -> dMf1[4, gno1] + (Sub322*Mf[bH, gno1])/2, 
+  Sub585 -> F2*Mf[bH, gno1] - F1*Mf[bH, gno2], 
+  Sub172 -> F2*Mf[bH, gno1] + F1*Mf[bH, gno2], 
+  Sub199 -> F2*Mf[bH, gno1] - F1*TB2*Mf[bH, gno2], 
+  Sub317 -> Conjugate[dZfR1[4, gno1, gno2]]*Mf[bH, gno1] + 
+    dZfL1[4, gno2, gno1]*Mf[bH, gno2], 
+  Sub325 -> Conjugate[dZfL1[4, gno1, gno2]]*Mf[bH, gno1] + 
+    dZfR1[4, gno2, gno1]*Mf[bH, gno2], 
+  Sub411 -> MA02*(3 - 2*SW2) - 3*Mf2[bH, gno1], 
+  Sub407 -> MZ2*(3 - 2*SW2) - 3*Mf2[bH, gno1], 
+  Sub604 -> (-2*I)*m22 + I*Mf2[bH, gno1], 
+  Sub432 -> MW2*(9 - 4*SW2^2) - 9*CW2*Mf2[bH, gno1], 
+  Sub433 -> 4*MW2*(-3 + SW2)*SW2 + 9*CW2*Mf2[bH, gno1], 
+  Sub403 -> 2*F2*m22*(-3 + 2*SW2) + 3*(F1 + F2)*Mf2[bH, gno1], 
+  Sub399 -> 4*MW2*Sub398*SW2 - 9*CW2*(F1 + F2)*Mf2[bH, gno1], 
+  Sub404 -> 4*F1*m22*Sub171*SW2 - 3*C2B*(F1 + F2)*Sub138*Mf2[bH, gno1], 
+  Sub401 -> (m12 - m22 - m32)*Sub171*Sub400*SW2 + 3*C2B*(F1 + F2)*Sub138*
+     Mf2[bH, gno1], Sub419 -> F2*(m12 - m22 - m32)*Sub380*(-3 + 2*SW2) + 
+    3*(F1 + F2)*S2B*Sub138*Mf2[bH, gno1], 
+  Sub414 -> -(Sub380*(Sub413 - 4*F1*m22*SW2)) + 3*(F1 + F2)*S2B*Sub138*
+     Mf2[bH, gno1], Sub474 -> CBA*(3*F2 - 2*(F1 + F2)*SW2)*
+     (2*m22 - 3*Mf2[bH, gno1]) - Sub339*Mf2[bH, gno1], 
+  Sub475 -> CBA*(3*F2 - 2*(F1 + F2)*SW2)*(2*m22 + Mh02 - 5*Mf2[bH, gno1]) + 
+    Sub339*Mf2[bH, gno1], Sub477 -> SBA*(3*F2 - 2*(F1 + F2)*SW2)*
+     (2*m22 - 3*Mf2[bH, gno1]) - Sub342*Mf2[bH, gno1], 
+  Sub478 -> SBA*(3*F2 - 2*(F1 + F2)*SW2)*(2*m22 + MHH2 - 5*Mf2[bH, gno1]) + 
+    Sub342*Mf2[bH, gno1], Sub375 -> (2*m22 + MZ2)*Sub370 - 
+    Sub374*Mf2[bH, gno1], Sub420 -> 
+   Sub419 - 3*(F1 + F2)*Sub380*Mf2[bH, gno1], 
+  Sub397 -> CB2*(Sub171*Sub377 - Sub379*Sub380*TB) + 
+    3*(F1 + F2)*Sub396*Mf2[bH, gno1], 
+  Sub418 -> 2*m22*Sub369*Sub380 - (Sub369*Sub380 + Sub417)*Mf2[bH, gno1], 
+  Sub438 -> 8*MW2*Sub437*SW2*(-3 + 2*SW2) + 9*CW2*Sub436*Mf2[bH, gno1], 
+  Sub440 -> m22*Sub436 - (Sub436 + Sub437)*Mf2[bH, gno1], 
+  Sub441 -> CB2*Sub438*B0i[bb0, m32, MZ2, Mf2[bH, gno1]] - 
+    18*CW2*Sub439*Sub440*Mf2[bH, gno1], 
+  Sub445 -> 2*(m12 + m22 - m32)*MW2*Sub437*SW2*(-3 + 2*SW2) + 
+    Sub444*Mf2[bH, gno1], Sub449 -> 2*Sub447 + 3*CW2*Sub448*Mf2[bH, gno1], 
+  Sub462 -> (2*m22 + MZ2)*(3*F1 - 2*(F1 + F2)*SW2) - Sub461*Mf2[bH, gno1], 
+  Sub468 -> CBA*(m12 - m22 - m32)*(-3*F2 + 2*(F1 + F2)*SW2) + 
+    Sub467*Mf2[bH, gno1], Sub471 -> 
+   (m12 - m22 - m32)*SBA*(-3*F2 + 2*(F1 + F2)*SW2) - Sub470*Mf2[bH, gno1], 
+  Sub487 -> (m12 + m22 - m32)*Sub436*Sub485 + 2*Sub437*Sub486*Mf2[bH, gno1], 
+  Sub371 -> 2*(m12 - m32)*Sub370 + (F1 - F2)*(3 - 4*SW2)*Mf2[bH, gno1], 
+  Sub373 -> Sub370*Sub372 + (F1 - F2)*(3 - 4*SW2)*Mf2[bH, gno1], 
+  Sub465 -> 2*(m12 - m32)*(3*F1 - 2*(F1 + F2)*SW2) + 
+    (F1 + F2)*(3 - 4*SW2)*Mf2[bH, gno1], 
+  Sub447 -> 4*m12*Sub437*SW2*(-3 + 2*SW2) + 3*Sub446*(-3 + 4*SW2)*
+     Mf2[bH, gno1], Sub463 -> Sub462 + (-6*F1 + 4*(F1 + F2)*SW2)*
+     Mf2[bH, gno1], Sub466 -> Sub465 + (6*F2 - 4*(F1 + F2)*SW2)*
+     Mf2[bH, gno1], Sub469 -> Sub468 + 3*CBA*(-3*F1 + 2*(F1 + F2)*SW2)*
+     Mf2[bH, gno1], Sub472 -> Sub471 + 3*SBA*(-3*F1 + 2*(F1 + F2)*SW2)*
+     Mf2[bH, gno1], Sub427 -> Sub423*Sub424*SW2 + 
+    3*C2B*(F1 - F2)*(SA*SAB*Sub425 + CA*CAB*Sub426)*TB*Mf2[bH, gno1], 
+  Sub482 -> m22*C0i[cc2, m12, m32, m22, Mf2[bH, gno1], Mf2[bH, gno1], MA02] + 
+    C0i[cc0, m12, m32, m22, Mf2[bH, gno1], Mf2[bH, gno1], MA02]*
+     Mf2[bH, gno1], Sub379 -> Sub378 - C0i[cc2, m32, m12, m22, Mf2[bH, gno1], 
+      MA02, MZ2]*(Sub371 + 2*Sub369*Mf2[bH, gno1]), 
+  Sub377 -> Sub376 - C0i[cc2, m32, m12, m22, Mf2[bH, gno1], MZ2, MZ2]*
+     (Sub371 + 2*Sub369*Mf2[bH, gno1]), 
+  Sub376 -> Sub373*C0i[cc1, m32, m12, m22, Mf2[bH, gno1], MZ2, MZ2] + 
+    C0i[cc0, m32, m12, m22, Mf2[bH, gno1], MZ2, MZ2]*
+     (Sub375 + 2*Sub370*Mf2[bH, gno1]), 
+  Sub262 -> (1 + TB2)*Mf2[bH, gno1] - Mf2[bH, gno2], 
+  Sub175 -> CBA*CW2*(m12 - m22 - m32) + (-(C2B*CAB) + CBA*CW2)*Mf2[bH, gno2], 
+  Sub174 -> CW2*(m12 - m22 - m32)*SBA + (C2B*SAB + CW2*SBA)*Mf2[bH, gno2], 
+  Sub265 -> Mf2[bH, gno1] - (1 + TB2)*Mf2[bH, gno2], 
+  Sub5 -> SA*XHiggs[hno, 1, uzext] - CA*XHiggs[hno, 2, uzext], 
+  Sub138 -> SAB*XHiggs[hno, 1, uzext] - CAB*XHiggs[hno, 2, uzext], 
+  Sub387 -> (2*CAB*S2A + C2A*SAB)*XHiggs[hno, 1, uzext] - 
+    3*C2A*CAB*XHiggs[hno, 2, uzext], 
+  Sub171 -> SBA*XHiggs[hno, 1, uzext] + CBA*XHiggs[hno, 2, uzext], 
+  Sub181 -> (C2B*SAB + CW2*SBA)*XHiggs[hno, 1, uzext] + 
+    (-(C2B*CAB) + CBA*CW2)*XHiggs[hno, 2, uzext], 
+  Sub163 -> (C2B*SAB + 2*CW2*SBA)*XHiggs[hno, 1, uzext] + 
+    (-(C2B*CAB) + 2*CBA*CW2)*XHiggs[hno, 2, uzext], 
+  Sub363 -> dMh0G0sq1*XHiggs[hno, 1, uzext] + 
+    dMHHG0sq1*XHiggs[hno, 2, uzext], 
+  Sub6 -> CA*XHiggs[hno, 1, uzext] + SA*XHiggs[hno, 2, uzext], 
+  Sub391 -> (C2A*CAB - 2*S2A*SAB)*XHiggs[hno, 1, uzext] + 
+    (2*CAB*S2A + C2A*SAB)*XHiggs[hno, 2, uzext], 
+  Sub394 -> 3*C2A*SAB*XHiggs[hno, 1, uzext] + (-(C2A*CAB) + 2*S2A*SAB)*
+     XHiggs[hno, 2, uzext], Sub380 -> CBA*XHiggs[hno, 1, uzext] - 
+    SBA*XHiggs[hno, 2, uzext], Sub176 -> Sub174*XHiggs[hno, 1, uzext] + 
+    Sub175*XHiggs[hno, 2, uzext], Sub333 -> Sub331*XHiggs[hno, 1, uzext] + 
+    Sub332*XHiggs[hno, 2, uzext], Sub417 -> Sub415*XHiggs[hno, 1, uzext] - 
+    Sub416*XHiggs[hno, 2, uzext], 
+  Sub321 -> SA*(Sub317 + 2*Sub316*Delta[gno1, gno2])*XHiggs[hno, 1, uzext] - 
+    CA*(Sub317 + 2*Sub320*Delta[gno1, gno2])*XHiggs[hno, 2, uzext], 
+  Sub326 -> SA*(Sub325 + 2*Sub316*Delta[gno1, gno2])*XHiggs[hno, 1, uzext] - 
+    CA*(Sub325 + 2*Sub320*Delta[gno1, gno2])*XHiggs[hno, 2, uzext], 
+  Sub125 -> (-I)*Sub6 + CB*XHiggs[hno, 3, uzext], 
+  Sub562 -> I*Sub6 + CB*XHiggs[hno, 3, uzext], 
+  Sub231 -> Sub6*TB - I*SB*XHiggs[hno, 3, uzext], 
+  Sub246 -> Sub6*TB*(1 - 2*TB2) - I*SB*XHiggs[hno, 3, uzext], 
+  Sub244 -> Sub6*TB*(1 + 2*TB2) - I*SB*XHiggs[hno, 3, uzext], 
+  Sub147 -> Sub6*TB + I*SB*XHiggs[hno, 3, uzext], 
+  Sub143 -> Sub5*(3 - 4*SW2) + (3*I)*SB*XHiggs[hno, 3, uzext], 
+  Sub148 -> I*Sub6*TB + SB*XHiggs[hno, 3, uzext], 
+  Sub436 -> (F1 + F2)*Sub5 - I*(F1 - F2)*SB*XHiggs[hno, 3, uzext], 
+  Sub437 -> (F1 + F2)*Sub5 + I*(F1 - F2)*SB*XHiggs[hno, 3, uzext], 
+  Sub446 -> (F1 - F2)*Sub5 - I*(F1 + F2)*SB*XHiggs[hno, 3, uzext], 
+  Sub152 -> MW2*Sub5*(1 - 4*SW2)*(-3*F1 + 2*(F1 + F2)*SW2) - 
+    (3*I)*CW2*(F1 - F2)*m12*SB*XHiggs[hno, 3, uzext], 
+  Sub154 -> MW2*Sub5*(3 - 4*SW2)*(-3*F1 + 2*(F1 + F2)*SW2) - 
+    (9*I)*CW2*(F1 - F2)*m12*SB*XHiggs[hno, 3, uzext], 
+  Sub150 -> MW2*Sub6*(3 - 8*SW2)*(-3*F1 + 2*(F1 + F2)*SW2)*TB + 
+    (9*I)*CW2*(F1 - F2)*m12*SB*XHiggs[hno, 3, uzext], 
+  Sub362 -> 6*(F1 - F2)*MW2*Sub334 + I*Sub361*XHiggs[hno, 3, uzext], 
+  Sub366 -> 6*CW*(F1 - F2)*Sub363 + Sub365*XHiggs[hno, 3, uzext], 
+  Sub428 -> SB*Sub422 + I*Sub427*XHiggs[hno, 3, uzext], 
+  Sub488 -> 3*CW2*(Sub436*Sub484 + Sub487)*Mf2[bH, gno1] - 
+    I*CB2*MW2*Sub480*XHiggs[hno, 3, uzext], 
+  Sub367 -> Sub366 + 2*dZA0G01*MW*MZ*(-3*F2 + 2*(F1 + F2)*SW2)*
+     XHiggs[hno, 3, uzext], 
+  Sub324 -> I*Sub321 + SB*(Sub317 + 2*Sub323*Delta[gno1, gno2])*
+     XHiggs[hno, 3, uzext], Sub327 -> ((I/4)*Sub326)/CB - 
+    (TB*(Sub325 + 2*Sub323*Delta[gno1, gno2])*XHiggs[hno, 3, uzext])/4, 
+  Sub137[Gen4] -> B0i[bb0, m12, MASf2[Gen4, 1], MASf2[Gen4, 1]] + 
+    2*B0i[bb1, m12, MASf2[Gen4, 1], MASf2[Gen4, 1]], 
+  Sub139[Gen4] -> A0[Mf2[2, Gen4]]*Mf2[2, Gen4] + 
+    3*A0[Mf2[bH, Gen4]]*Mf2[bH, Gen4], Sub144[Gen4] -> 
+   Sub142*B0i[bb0, m12, Mf2[2, Gen4], Mf2[2, Gen4]]*Mf2[2, Gen4] + 
+    Sub143*B0i[bb0, m12, Mf2[bH, Gen4], Mf2[bH, Gen4]]*Mf2[bH, Gen4], 
+  Sub156[Gen4] -> Sub153*B0i[bb1, m12, Mf2[2, Gen4], Mf2[2, Gen4]]*
+     Mf2[2, Gen4] + Sub155*B0i[bb1, m12, Mf2[bH, Gen4], Mf2[bH, Gen4]]*
+     Mf2[bH, Gen4], Sub191[Gen4] -> TB2*(2*m22 + MW2 - 3*Mf2[bH, gno1]) - 
+    2*Mf2[tH, Gen4], Sub264[Gen4] -> TB2^2*Mf2[bH, gno1] - Mf2[tH, Gen4], 
+  Sub164[Gen4] -> 2*Mf2[bH, gno2] - Mf2[tH, Gen4], 
+  Sub267[Gen4] -> TB2^2*Mf2[bH, gno2] - Mf2[tH, Gen4], 
+  Sub263[Gen4] -> (m12 + m22 - m32 - Sub262)*TB2 + Mf2[tH, Gen4], 
+  Sub183[Gen4] -> 2*CBA*CW2*(m22 + 2*MW2 - Mf2[bH, gno1]) + 
+    (C2B*CAB + CBA*CW2)*Mf2[tH, Gen4], Sub187[Gen4] -> 
+   CBA*CW2*(2*m22 + MW2 - 3*Mf2[bH, gno1]) + (C2B*CAB + 2*CBA*CW2)*
+     Mf2[tH, Gen4], Sub212[Gen4] -> 2*CW2*SBA*TB2*(-m22 + Mf2[bH, gno1]) + 
+    CAB*S2B*Mf2[tH, Gen4], Sub211[Gen4] -> 
+   2*CBA*CW2*TB2*(-m22 + Mf2[bH, gno1]) + S2B*SAB*Mf2[tH, Gen4], 
+  Sub182[Gen4] -> 2*CW2*SBA*(m22 + 2*MW2 - Mf2[bH, gno1]) + 
+    (-(C2B*SAB) + CW2*SBA)*Mf2[tH, Gen4], 
+  Sub186[Gen4] -> CW2*SBA*(2*m22 + MW2 - 3*Mf2[bH, gno1]) + 
+    (-(C2B*SAB) + 2*CW2*SBA)*Mf2[tH, Gen4], 
+  Sub238[Gen4] -> CBA*CW2*TB2*(2*m22 + MHp2 - 3*Mf2[bH, gno1]) + 
+    Sub237*Mf2[tH, Gen4], Sub240[Gen4] -> 
+   CW2*SBA*TB2*(2*m22 + MHp2 - 3*Mf2[bH, gno1]) + Sub239*Mf2[tH, Gen4], 
+  Sub245[Gen4] -> Sub147*TB2^2*Mf2[bH, gno1] - Sub244*Mf2[tH, Gen4], 
+  Sub247[Gen4] -> Sub147*TB2^2*Mf2[bH, gno2] - Sub246*Mf2[tH, Gen4], 
+  Sub232[Gen4] -> CBA*MW2*SB*TB2 + CA*TB*Mf2[tH, Gen4], 
+  Sub225[Gen4] -> MW2*SB*(SBA*TB - CBA*TB2) + CA*TB*Mf2[tH, Gen4], 
+  Sub233[Gen4] -> MW2*SB*SBA*TB2 - SA*TB*Mf2[tH, Gen4], 
+  Sub226[Gen4] -> MW2*SB*(CBA*TB + SBA*TB2) + SA*TB*Mf2[tH, Gen4], 
+  Sub241[Gen4] -> TB2*(2*m22 + MHp2 - 3*Mf2[bH, gno1]) - 
+    (2 + TB2)*Mf2[tH, Gen4], Sub200[Gen4] -> 
+   F1*TB2*Mf[bH, gno2]*Mf2[bH, gno1] - F2*Mf[bH, gno1]*Mf2[tH, Gen4], 
+  Sub160[Gen4] -> F1*TB2^2*Mf[bH, gno2]*Mf2[bH, gno1] + 
+    F2*Mf[bH, gno1]*Mf2[tH, Gen4], Sub201[Gen4] -> 
+   F2*TB2*Mf[bH, gno1]*Mf2[bH, gno2] - F1*Mf[bH, gno2]*Mf2[tH, Gen4], 
+  Sub161[Gen4] -> F2*TB2^2*Mf[bH, gno1]*Mf2[bH, gno2] + 
+    F1*Mf[bH, gno2]*Mf2[tH, Gen4], Sub196[Gen4] -> 
+   F2*TB2*Mf[bH, gno1]*Mf2[bH, gno2] + F1*Mf[bH, gno2]*
+     (-(Sub195*TB2) + Mf2[tH, Gen4]), Sub206[Gen4] -> 
+   F2*Sub205*TB*Mf[bH, gno1] + (F1*Mf[bH, gno2]*(2*TB2*Mf2[bH, gno1] + 
+       Mf2[tH, Gen4]))/TB, Sub252[Gen4] -> 2*F1*m22*Mf[bH, gno2] - 
+    (F2*Mf[bH, gno1]*(TB2*Mf2[bH, gno2] + Mf2[tH, Gen4]))/TB2, 
+  Sub197[Gen4] -> F1*TB2*Mf[bH, gno2]*(2*m12 - 2*m32 + Mf2[bH, gno1]) + 
+    F2*Mf[bH, gno1]*(2*TB2*Mf2[bH, gno2] + Mf2[tH, Gen4]), 
+  Sub140[Gen4] -> -3*A0[Mf2[tH, Gen4]]*Mf2[tH, Gen4] + TB2*Sub139[Gen4], 
+  Sub141[Gen4] -> (S2B*A0[MASf2[Gen4, 1]])/CW2 - (4*Sub140[Gen4])/(MW2*TB), 
+  Sub146[Gen4] -> CB*MW*MZ*Sub138*Sub137[Gen4] - I*CW*Sub145[Gen4], 
+  Sub157[Gen4] -> CB*Sub151*B0i[bb1, m12, Mf2[tH, Gen4], Mf2[tH, Gen4]]*
+     Mf2[tH, Gen4] + SB*TB*Sub156[Gen4], Sub158[Gen4] -> 
+   (-3*I)*(F1 - F2)*MW2*SB*Sub149*B0i[bb0, m12, Mf2[tH, Gen4], Mf2[tH, Gen4]]*
+     Mf2[tH, Gen4] + 2*TB*Sub157[Gen4], Sub159[Gen4] -> 
+   3*(-F1 + F2)*MW2*SB2*TB*Sub146[Gen4] + 2*CB*CW*Sub158[Gen4], 
+  Sub162[Gen4] -> C0i[cc1, m22, m12, m32, Mf2[tH, Gen4], MHp2, MHp2]*
+     Sub160[Gen4] + C0i[cc2, m22, m12, m32, Mf2[tH, Gen4], MHp2, MHp2]*
+     Sub161[Gen4], Sub165[Gen4] -> 
+   F1*Mf[bH, gno2]*(2*m12 - 2*m32 + Mf2[bH, gno1]) + 
+    F2*Mf[bH, gno1]*Sub164[Gen4], Sub167[Gen4] -> 
+   F2*Mf[bH, gno1]*Mf2[bH, gno2] - F1*Mf[bH, gno2]*Sub166[Gen4], 
+  Sub169[Gen4] -> F2*Mf[bH, gno1]*Mf2[tH, Gen4] - 
+    F1*Mf[bH, gno2]*Sub168[Gen4], Sub173[Gen4] -> 
+   Sub163*Sub172*C0i[cc0, m22, m12, m32, Mf2[tH, Gen4], MHp2, MHp2]*
+     Mf2[tH, Gen4] + CW2*Sub171*Sub170[Gen4], 
+  Sub180[Gen4] -> F2*Sub176*Mf[bH, gno1] - F1*Mf[bH, gno2]*Sub179[Gen4], 
+  Sub185[Gen4] -> F1*Sub181*Mf[bH, gno2]*Mf2[bH, gno1] - 
+    F2*Mf[bH, gno1]*Sub184[Gen4], Sub189[Gen4] -> 
+   F1*Sub181*Mf[bH, gno2]*Mf2[tH, Gen4] - F2*Mf[bH, gno1]*Sub188[Gen4], 
+  Sub192[Gen4] -> F2*Mf[bH, gno1]*Mf2[tH, Gen4] + 
+    F1*Mf[bH, gno2]*Sub191[Gen4], Sub194[Gen4] -> 
+   Sub190[Gen4]/CW2 + (Sub193*C0i[cc0, m32, m12, m22, Mf2[tH, Gen4], MHp2, 
+       MW2]*Sub192[Gen4])/TB, Sub198[Gen4] -> 
+   C0i[cc1, m32, m12, m22, Mf2[tH, Gen4], MHp2, MW2]*Sub196[Gen4] + 
+    C0i[cc2, m32, m12, m22, Mf2[tH, Gen4], MHp2, MW2]*Sub197[Gen4], 
+  Sub202[Gen4] -> C0i[cc1, m22, m12, m32, Mf2[tH, Gen4], MW2, MHp2]*
+     Sub200[Gen4] + C0i[cc2, m22, m12, m32, Mf2[tH, Gen4], MW2, MHp2]*
+     Sub201[Gen4], Sub203[Gen4] -> 
+   Sub199*C0i[cc0, m22, m12, m32, Mf2[tH, Gen4], MW2, MHp2]*Mf2[tH, Gen4] - 
+    Sub202[Gen4], Sub209[Gen4] -> I*Sub208*Sub201[Gen4] + 
+    CW2*Sub207*TB*Sub206[Gen4], Sub214[Gen4] -> 
+   F1*Sub210*TB2*Mf[bH, gno2]*Mf2[bH, gno1] + F2*Mf[bH, gno1]*Sub213[Gen4], 
+  Sub218[Gen4] -> 2*F1*m22*Sub147*Mf[bH, gno2] - 
+    F2*Mf[bH, gno1]*Sub217[Gen4], Sub219[Gen4] -> 
+   (C0i[cc1, m22, m12, m32, Mf2[tH, Gen4], MHp2, MW2]*Sub214[Gen4])/CW2 + 
+    (C0i[cc2, m12, m32, m22, Mf2[tH, Gen4], Mf2[tH, Gen4], MW2]*Mf2[tH, Gen4]*
+      Sub218[Gen4])/(MW2*SB), Sub224[Gen4] -> 
+   F1*Sub147*Mf[bH, gno2]*Sub220[Gen4] - F2*Mf[bH, gno1]*Sub223[Gen4], 
+  Sub230[Gen4] -> F2*Mf[bH, gno1]*Sub227[Gen4] + 
+    F1*Mf[bH, gno2]*Sub229[Gen4], Sub235[Gen4] -> 
+   F2*Sub231*Mf[bH, gno1]*Mf2[tH, Gen4] + F1*Mf[bH, gno2]*Sub234[Gen4], 
+  Sub243[Gen4] -> F1*Sub210*Mf[bH, gno2]*Mf2[tH, Gen4] + 
+    F2*Mf[bH, gno1]*Sub242[Gen4], Sub248[Gen4] -> 
+   F1*Mf[bH, gno2]*Sub245[Gen4] - F2*Mf[bH, gno1]*Sub247[Gen4], 
+  Sub249[Gen4] -> (C0i[cc0, m22, m12, m32, Mf2[tH, Gen4], MHp2, MW2]*
+      Sub243[Gen4])/CW2 - (C0i[cc0, m12, m32, m22, Mf2[tH, Gen4], 
+       Mf2[tH, Gen4], MHp2]*Mf2[tH, Gen4]*Sub248[Gen4])/(MW2*SB*TB2), 
+  Sub250[Gen4] -> Sub236[Gen4] + MW2*SB*(-Sub219[Gen4] + Sub249[Gen4]), 
+  Sub253[Gen4] -> F2*Sub231*Mf[bH, gno1]*Sub251[Gen4] + 
+    Sub147*TB2*Sub252[Gen4], Sub254[Gen4] -> 
+   F1*Sub6*(1 + TB2)*Mf[bH, gno2]*Mf2[bH, gno1] - Sub253[Gen4]/(2*TB*TB2), 
+  Sub256[Gen4] -> F1*(m12 + m22 - m32)*Mf[bH, gno2] + 
+    F2*Mf[bH, gno1]*Sub255[Gen4], Sub257[Gen4] -> 
+   F1*Mf[bH, gno2]*Sub255[Gen4] - Sub256[Gen4], 
+  Sub260[Gen4] -> F1*Mf[bH, gno2]*Sub258[Gen4] - 
+    F2*Mf[bH, gno1]*Sub259[Gen4], Sub261[Gen4] -> 
+   (-I/2)*Sub147*Sub257[Gen4] - (Sub148*Sub260[Gen4])/2, 
+  Sub266[Gen4] -> F2*Mf[bH, gno1]*(Sub265*TB2 + Mf2[tH, Gen4]) + 
+    F1*Mf[bH, gno2]*Sub264[Gen4], Sub268[Gen4] -> 
+   (m12 + m22 - m32)*Sub148 + (I*Sub147*Sub267[Gen4])/TB2, 
+  Sub270[Gen4] -> 2*TB2*C0i[cc1, m12, m32, m22, Mf2[tH, Gen4], Mf2[tH, Gen4], 
+      MW2]*Sub261[Gen4] - C0i[cc1, m12, m32, m22, Mf2[tH, Gen4], 
+      Mf2[tH, Gen4], MHp2]*Sub269[Gen4], Sub271[Gen4] -> 
+   2*C0i[cc2, m12, m32, m22, Mf2[tH, Gen4], Mf2[tH, Gen4], MHp2]*
+     Sub254[Gen4] - (I*Sub270[Gen4])/(TB*TB2), 
+  Sub272[Gen4] -> Sub250[Gen4] - TB*Mf2[tH, Gen4]*Sub271[Gen4], 
+  Sub274[Gen4] -> MW2*SB*Sub163*TB*Sub162[Gen4] - TB2*Sub273[Gen4], 
+  Sub228[Gen4] -> (MW2*SB*SBA + CA*Mf2[tH, Gen4])*XHiggs[hno, 1, uzext] + 
+    (CBA*MW2*SB + SA*Mf2[tH, Gen4])*XHiggs[hno, 2, uzext], 
+  Sub179[Gen4] -> Sub177[Gen4]*XHiggs[hno, 1, uzext] + 
+    Sub178[Gen4]*XHiggs[hno, 2, uzext], Sub184[Gen4] -> 
+   Sub182[Gen4]*XHiggs[hno, 1, uzext] + Sub183[Gen4]*XHiggs[hno, 2, uzext], 
+  Sub188[Gen4] -> Sub186[Gen4]*XHiggs[hno, 1, uzext] + 
+    Sub187[Gen4]*XHiggs[hno, 2, uzext], Sub217[Gen4] -> 
+   Sub6*TB*Sub215[Gen4] + I*SB*Sub216*XHiggs[hno, 3, uzext], 
+  Sub229[Gen4] -> TB*Sub228[Gen4] + I*SB*Mf2[tH, Gen4]*XHiggs[hno, 3, uzext], 
+  Sub145[Gen4] -> (2*I)*Sub144[Gen4] + CB*CW2*Sub141[Gen4]*
+     XHiggs[hno, 3, uzext], Sub223[Gen4] -> Sub6*TB*Sub221[Gen4] + 
+    I*SB*Sub222[Gen4]*XHiggs[hno, 3, uzext], 
+  Sub112[Ind1] -> 2*CB2*MW2*SW2 - CW2*Mf2[2, Ind1], 
+  Sub111[Ind1] -> CB2*MW2*(-1 + 2*SW2) + CW2*Mf2[2, Ind1], 
+  Sub535[Ind1] -> CAB*CB*MW*MZ*(3 - 2*SW2) - 6*CA*CW*Mf2[bH, Ind1], 
+  Sub539[Ind1] -> CAB*CB*MW*MZ*SW2 - 3*CA*CW*Mf2[bH, Ind1], 
+  Sub115[Ind1] -> 2*CB2*MW2*SW2 - 3*CW2*Mf2[bH, Ind1], 
+  Sub114[Ind1] -> CB2*MW2*(-3 + 2*SW2) + 3*CW2*Mf2[bH, Ind1], 
+  Sub534[Ind1] -> CB*MW*MZ*SAB*(3 - 2*SW2) - 6*CW*SA*Mf2[bH, Ind1], 
+  Sub538[Ind1] -> CB*MW*MZ*SAB*SW2 - 3*CW*SA*Mf2[bH, Ind1], 
+  Sub508[Ind1] -> MW*MZ*SAB*SB*(3 - 4*SW2) - 6*CA*CW*Mf2[tH, Ind1], 
+  Sub504[Ind1] -> 2*MW*MZ*SAB*SB*SW2 - 3*CA*CW*Mf2[tH, Ind1], 
+  Sub118[Ind1] -> 4*MW2*SB2*SW2 - 3*CW2*Mf2[tH, Ind1], 
+  Sub117[Ind1] -> MW2*SB2*(-3 + 4*SW2) + 3*CW2*Mf2[tH, Ind1], 
+  Sub505[Ind1] -> 2*CAB*MW*MZ*SB*SW2 + 3*CW*SA*Mf2[tH, Ind1], 
+  Sub509[Ind1] -> CAB*MW*MZ*SB*(3 - 4*SW2) + 6*CW*SA*Mf2[tH, Ind1], 
+  Sub506[Ind1] -> Sub504[Ind1]*XHiggs[hno, 1, uzext] - 
+    Sub505[Ind1]*XHiggs[hno, 2, uzext], Sub510[Ind1] -> 
+   Sub508[Ind1]*XHiggs[hno, 1, uzext] - Sub509[Ind1]*XHiggs[hno, 2, uzext], 
+  Sub536[Ind1] -> Sub534[Ind1]*XHiggs[hno, 1, uzext] - 
+    Sub535[Ind1]*XHiggs[hno, 2, uzext], Sub540[Ind1] -> 
+   Sub538[Ind1]*XHiggs[hno, 1, uzext] - Sub539[Ind1]*XHiggs[hno, 2, uzext], 
+  Sub63[Ind2] -> CAB*CB*MW*MZ*(1 - 2*SW2) - 2*CA*CW*Mf2[2, Ind2], 
+  Sub67[Ind2] -> CAB*CB*MW*MZ*SW2 - CA*CW*Mf2[2, Ind2], 
+  Sub66[Ind2] -> CB*MW*MZ*SAB*SW2 - CW*SA*Mf2[2, Ind2], 
+  Sub62[Ind2] -> CB*MW*MZ*SAB*(-1 + 2*SW2) + 2*CW*SA*Mf2[2, Ind2], 
+  Sub80[Ind2] -> CAB*CB*MW*MZ*(3 - 2*SW2) - 6*CA*CW*Mf2[bH, Ind2], 
+  Sub84[Ind2] -> CAB*CB*MW*MZ*SW2 - 3*CA*CW*Mf2[bH, Ind2], 
+  Sub83[Ind2] -> CB*MW*MZ*SAB*SW2 - 3*CW*SA*Mf2[bH, Ind2], 
+  Sub79[Ind2] -> CB*MW*MZ*SAB*(-3 + 2*SW2) + 6*CW*SA*Mf2[bH, Ind2], 
+  Sub496[Ind2] -> MW*MZ*SAB*SB*(3 - 4*SW2) - 6*CA*CW*Mf2[tH, Ind2], 
+  Sub96[Ind2] -> 2*MW*MZ*SAB*SB*SW2 - 3*CA*CW*Mf2[tH, Ind2], 
+  Sub100[Ind2] -> MW*MZ*SAB*SB*(-3 + 4*SW2) + 6*CA*CW*Mf2[tH, Ind2], 
+  Sub97[Ind2] -> 2*CAB*MW*MZ*SB*SW2 + 3*CW*SA*Mf2[tH, Ind2], 
+  Sub101[Ind2] -> CAB*MW*MZ*SB*(3 - 4*SW2) + 6*CW*SA*Mf2[tH, Ind2], 
+  Sub497[Ind2] -> Sub496[Ind2]*XHiggs[hno, 1, uzext] - 
+    Sub101[Ind2]*XHiggs[hno, 2, uzext], Sub102[Ind2] -> 
+   Sub100[Ind2]*XHiggs[hno, 1, uzext] + Sub101[Ind2]*XHiggs[hno, 2, uzext], 
+  Sub64[Ind2] -> Sub62[Ind2]*XHiggs[hno, 1, uzext] + 
+    Sub63[Ind2]*XHiggs[hno, 2, uzext], Sub68[Ind2] -> 
+   Sub66[Ind2]*XHiggs[hno, 1, uzext] - Sub67[Ind2]*XHiggs[hno, 2, uzext], 
+  Sub81[Ind2] -> Sub79[Ind2]*XHiggs[hno, 1, uzext] + 
+    Sub80[Ind2]*XHiggs[hno, 2, uzext], Sub85[Ind2] -> 
+   Sub83[Ind2]*XHiggs[hno, 1, uzext] - Sub84[Ind2]*XHiggs[hno, 2, uzext], 
+  Sub98[Ind2] -> Sub96[Ind2]*XHiggs[hno, 1, uzext] - 
+    Sub97[Ind2]*XHiggs[hno, 2, uzext], 
+  Sub8[Ind3] -> CAB*CB*MW*MZ*(1 - 2*SW2) - 2*CA*CW*Mf2[2, Ind3], 
+  Sub12[Ind3] -> CAB*CB*MW*MZ*SW2 - CA*CW*Mf2[2, Ind3], 
+  Sub11[Ind3] -> CB*MW*MZ*SAB*SW2 - CW*SA*Mf2[2, Ind3], 
+  Sub7[Ind3] -> CB*MW*MZ*SAB*(-1 + 2*SW2) + 2*CW*SA*Mf2[2, Ind3], 
+  Sub26[Ind3] -> CAB*CB*MW*MZ*(3 - 2*SW2) - 6*CA*CW*Mf2[bH, Ind3], 
+  Sub30[Ind3] -> CAB*CB*MW*MZ*SW2 - 3*CA*CW*Mf2[bH, Ind3], 
+  Sub29[Ind3] -> CB*MW*MZ*SAB*SW2 - 3*CW*SA*Mf2[bH, Ind3], 
+  Sub25[Ind3] -> CB*MW*MZ*SAB*(-3 + 2*SW2) + 6*CW*SA*Mf2[bH, Ind3], 
+  Sub517[Ind3] -> MW*MZ*SAB*SB*(3 - 4*SW2) - 6*CA*CW*Mf2[tH, Ind3], 
+  Sub43[Ind3] -> 2*MW*MZ*SAB*SB*SW2 - 3*CA*CW*Mf2[tH, Ind3], 
+  Sub47[Ind3] -> MW*MZ*SAB*SB*(-3 + 4*SW2) + 6*CA*CW*Mf2[tH, Ind3], 
+  Sub44[Ind3] -> 2*CAB*MW*MZ*SB*SW2 + 3*CW*SA*Mf2[tH, Ind3], 
+  Sub48[Ind3] -> CAB*MW*MZ*SB*(3 - 4*SW2) + 6*CW*SA*Mf2[tH, Ind3], 
+  Sub13[Ind3] -> Sub11[Ind3]*XHiggs[hno, 1, uzext] - 
+    Sub12[Ind3]*XHiggs[hno, 2, uzext], Sub27[Ind3] -> 
+   Sub25[Ind3]*XHiggs[hno, 1, uzext] + Sub26[Ind3]*XHiggs[hno, 2, uzext], 
+  Sub31[Ind3] -> Sub29[Ind3]*XHiggs[hno, 1, uzext] - 
+    Sub30[Ind3]*XHiggs[hno, 2, uzext], Sub45[Ind3] -> 
+   Sub43[Ind3]*XHiggs[hno, 1, uzext] - Sub44[Ind3]*XHiggs[hno, 2, uzext], 
+  Sub518[Ind3] -> Sub517[Ind3]*XHiggs[hno, 1, uzext] - 
+    Sub48[Ind3]*XHiggs[hno, 2, uzext], Sub49[Ind3] -> 
+   Sub47[Ind3]*XHiggs[hno, 1, uzext] + Sub48[Ind3]*XHiggs[hno, 2, uzext], 
+  Sub9[Ind3] -> Sub7[Ind3]*XHiggs[hno, 1, uzext] + 
+    Sub8[Ind3]*XHiggs[hno, 2, uzext], Sub548[Neu4] -> 
+   SW*ZNeu[Neu4, 1] - 3*CW*ZNeu[Neu4, 2], 
+  Sub277[Neu4] -> SW*ZNeu[Neu4, 1] - CW*ZNeu[Neu4, 2], 
+  Sub275[Neu4] -> SA*ZNeu[Neu4, 3] + CA*ZNeu[Neu4, 4], 
+  Sub280[Neu4] -> SB*ZNeu[Neu4, 3] - CB*ZNeu[Neu4, 4], 
+  Sub283[Neu4] -> CA*ZNeu[Neu4, 3] - SA*ZNeu[Neu4, 4], 
+  Sub292[Neu4] -> CB*ZNeu[Neu4, 3] + SB*ZNeu[Neu4, 4], 
+  Sub550[Neu4] -> SW*ZNeuC[Neu4, 1] - 3*CW*ZNeuC[Neu4, 2], 
+  Sub289[Neu4] -> SW*ZNeuC[Neu4, 1] - CW*ZNeuC[Neu4, 2], 
+  Sub295[Neu4] -> SA*ZNeuC[Neu4, 3] + CA*ZNeuC[Neu4, 4], 
+  Sub298[Neu4] -> SB*ZNeuC[Neu4, 3] - CB*ZNeuC[Neu4, 4], 
+  Sub301[Neu4] -> CA*ZNeuC[Neu4, 3] - SA*ZNeuC[Neu4, 4], 
+  Sub287[Neu4] -> CB*ZNeuC[Neu4, 3] + SB*ZNeuC[Neu4, 4], 
+  Sub276[Neu5] -> SW*ZNeu[Neu5, 1] - CW*ZNeu[Neu5, 2], 
+  Sub278[Neu5] -> SA*ZNeu[Neu5, 3] + CA*ZNeu[Neu5, 4], 
+  Sub281[Neu5] -> SB*ZNeu[Neu5, 3] - CB*ZNeu[Neu5, 4], 
+  Sub284[Neu5] -> CA*ZNeu[Neu5, 3] - SA*ZNeu[Neu5, 4], 
+  Sub293[Neu5] -> CB*ZNeu[Neu5, 3] + SB*ZNeu[Neu5, 4], 
+  Sub593[Neu5] -> SW*ZNeuC[Neu5, 1] - 3*CW*ZNeuC[Neu5, 2], 
+  Sub288[Neu5] -> SW*ZNeuC[Neu5, 1] - CW*ZNeuC[Neu5, 2], 
+  Sub296[Neu5] -> SA*ZNeuC[Neu5, 3] + CA*ZNeuC[Neu5, 4], 
+  Sub299[Neu5] -> SB*ZNeuC[Neu5, 3] - CB*ZNeuC[Neu5, 4], 
+  Sub302[Neu5] -> CA*ZNeuC[Neu5, 3] - SA*ZNeuC[Neu5, 4], 
+  Sub290[Neu5] -> CB*ZNeuC[Neu5, 3] + SB*ZNeuC[Neu5, 4], 
+  Sub557[All4, All5] -> F1*Mino3*UASf[All5, 3 + gno2, bH]*
+     UASfC[All4, gno1, bH] + F2*Mino3C*UASf[All5, gno2, bH]*
+     UASfC[All4, 3 + gno1, bH], Sub558[All4, All5] -> 
+   F2*UASf[All5, gno2, bH]*UASfC[All4, gno1, bH] + 
+    F1*UASf[All5, 3 + gno2, bH]*UASfC[All4, 3 + gno1, bH], 
+  Sub559[All4, All5] -> F1*UASf[All5, gno2, bH]*UASfC[All4, gno1, bH] + 
+    F2*UASf[All5, 3 + gno2, bH]*UASfC[All4, 3 + gno1, bH], 
+  Sub113[All4, Ind1] -> Sub111[Ind1]*UASf[All4, Ind1, 2]*
+     UASfC[All4, Ind1, 2] - Sub112[Ind1]*UASf[All4, 3 + Ind1, 2]*
+     UASfC[All4, 3 + Ind1, 2], Sub116[All4, Ind1] -> 
+   Sub114[Ind1]*UASf[All4, Ind1, bH]*UASfC[All4, Ind1, bH] - 
+    Sub115[Ind1]*UASf[All4, 3 + Ind1, bH]*UASfC[All4, 3 + Ind1, bH], 
+  Sub119[All4, Ind1] -> Sub117[Ind1]*UASf[All4, Ind1, tH]*
+     UASfC[All4, Ind1, tH] - Sub118[Ind1]*UASf[All4, 3 + Ind1, tH]*
+     UASfC[All4, 3 + Ind1, tH], Sub65[All4, Ind2] -> 
+   Sub64[Ind2]*UASfC[All4, Ind2, 2] + CW*MUE*Sub6*Mf[2, Ind2]*
+     UASfC[All4, 3 + Ind2, 2], Sub69[All4, Ind2] -> 
+   CW*MUEC*Sub6*Mf[2, Ind2]*UASfC[All4, Ind2, 2] - 
+    2*Sub68[Ind2]*UASfC[All4, 3 + Ind2, 2], Sub82[All4, Ind2] -> 
+   Sub81[Ind2]*UASfC[All4, Ind2, bH] + 3*CW*MUE*Sub6*Mf[bH, Ind2]*
+     UASfC[All4, 3 + Ind2, bH], Sub86[All4, Ind2] -> 
+   3*CW*MUEC*Sub6*Mf[bH, Ind2]*UASfC[All4, Ind2, bH] - 
+    2*Sub85[Ind2]*UASfC[All4, 3 + Ind2, bH], Sub103[All4, Ind2] -> 
+   Sub102[Ind2]*UASfC[All4, Ind2, tH] + 3*CW*MUE*Sub5*Mf[tH, Ind2]*
+     UASfC[All4, 3 + Ind2, tH], Sub99[All4, Ind2] -> 
+   3*CW*MUEC*Sub5*Mf[tH, Ind2]*UASfC[All4, Ind2, tH] - 
+    2*Sub98[Ind2]*UASfC[All4, 3 + Ind2, tH], Sub10[All4, Ind3] -> 
+   Sub9[Ind3]*UASfC[All4, Ind3, 2] + CW*MUE*Sub6*Mf[2, Ind3]*
+     UASfC[All4, 3 + Ind3, 2], Sub14[All4, Ind3] -> 
+   CW*MUEC*Sub6*Mf[2, Ind3]*UASfC[All4, Ind3, 2] - 
+    2*Sub13[Ind3]*UASfC[All4, 3 + Ind3, 2], Sub28[All4, Ind3] -> 
+   Sub27[Ind3]*UASfC[All4, Ind3, bH] + 3*CW*MUE*Sub6*Mf[bH, Ind3]*
+     UASfC[All4, 3 + Ind3, bH], Sub32[All4, Ind3] -> 
+   3*CW*MUEC*Sub6*Mf[bH, Ind3]*UASfC[All4, Ind3, bH] - 
+    2*Sub31[Ind3]*UASfC[All4, 3 + Ind3, bH], Sub50[All4, Ind3] -> 
+   Sub49[Ind3]*UASfC[All4, Ind3, tH] + 3*CW*MUE*Sub5*Mf[tH, Ind3]*
+     UASfC[All4, 3 + Ind3, tH], Sub46[All4, Ind3] -> 
+   3*CW*MUEC*Sub5*Mf[tH, Ind3]*UASfC[All4, Ind3, tH] - 
+    2*Sub45[Ind3]*UASfC[All4, 3 + Ind3, tH], Sub549[All4, Neu4] -> 
+   CB*MW*Sub548[Neu4]*UASfC[All4, gno1, bH] + 3*CW*Mf[bH, gno1]*
+     UASfC[All4, 3 + gno1, bH]*ZNeu[Neu4, 3], Sub552[All4, Neu4] -> 
+   2*CB*MW*SW*UASfC[All4, 3 + gno1, bH]*ZNeuC[Neu4, 1] + 
+    3*CW*Mf[bH, gno1]*UASfC[All4, gno1, bH]*ZNeuC[Neu4, 3], 
+  Sub595[All4, Neu5] -> 2*CB*MW*SW*UASf[All4, 3 + gno2, bH]*ZNeu[Neu5, 1] + 
+    3*CW*Mf[bH, gno2]*UASf[All4, gno2, bH]*ZNeu[Neu5, 3], 
+  Sub594[All4, Neu5] -> CB*MW*Sub593[Neu5]*UASf[All4, gno2, bH] + 
+    3*CW*Mf[bH, gno2]*UASf[All4, 3 + gno2, bH]*ZNeuC[Neu5, 3], 
+  Sub537[All5, Ind1] -> Sub536[Ind1]*UASfC[All5, Ind1, bH] - 
+    3*CW*MUE*Sub6*Mf[bH, Ind1]*UASfC[All5, 3 + Ind1, bH], 
+  Sub541[All5, Ind1] -> 3*CW*MUEC*Sub6*Mf[bH, Ind1]*UASfC[All5, Ind1, bH] - 
+    2*Sub540[Ind1]*UASfC[All5, 3 + Ind1, bH], Sub511[All5, Ind1] -> 
+   Sub510[Ind1]*UASfC[All5, Ind1, tH] - 3*CW*MUE*Sub5*Mf[tH, Ind1]*
+     UASfC[All5, 3 + Ind1, tH], Sub507[All5, Ind1] -> 
+   3*CW*MUEC*Sub5*Mf[tH, Ind1]*UASfC[All5, Ind1, tH] - 
+    2*Sub506[Ind1]*UASfC[All5, 3 + Ind1, tH], Sub498[All5, Ind2] -> 
+   Sub497[Ind2]*UASfC[All5, Ind2, tH] - 3*CW*MUE*Sub5*Mf[tH, Ind2]*
+     UASfC[All5, 3 + Ind2, tH], Sub495[All5, Ind2] -> 
+   3*CW*MUEC*Sub5*Mf[tH, Ind2]*UASfC[All5, Ind2, tH] - 
+    2*Sub98[Ind2]*UASfC[All5, 3 + Ind2, tH], Sub519[All5, Ind3] -> 
+   Sub518[Ind3]*UASfC[All5, Ind3, tH] - 3*CW*MUE*Sub5*Mf[tH, Ind3]*
+     UASfC[All5, 3 + Ind3, tH], Sub516[All5, Ind3] -> 
+   3*CW*MUEC*Sub5*Mf[tH, Ind3]*UASfC[All5, Ind3, tH] - 
+    2*Sub45[Ind3]*UASfC[All5, 3 + Ind3, tH], Sub547[All5, Neu4] -> 
+   2*CB*MW*SW*UASf[All5, 3 + gno2, bH]*ZNeu[Neu4, 1] + 
+    3*CW*Mf[bH, gno2]*UASf[All5, gno2, bH]*ZNeu[Neu4, 3], 
+  Sub551[All5, Neu4] -> CB*MW*Sub550[Neu4]*UASf[All5, gno2, bH] + 
+    3*CW*Mf[bH, gno2]*UASf[All5, 3 + gno2, bH]*ZNeuC[Neu4, 3], 
+  Sub132[Cha4, Cha5] -> (-I)*Sub123[Cha4, Cha5]*Sub124[Cha4, Cha5] + 
+    Sub120[Cha4, Cha5]*Sub127[Cha4, Cha5], Sub128[Cha4, Cha5] -> 
+   (-I)*Sub120[Cha4, Cha5]*Sub123[Cha4, Cha5] + Sub124[Cha4, Cha5]*
+     Sub127[Cha4, Cha5], Sub135[Cha4, Cha5] -> 
+   Sub127[Cha4, Cha5]*Sub129[Cha4, Cha5] + I*Sub123[Cha4, Cha5]*
+     Sub130[Cha4, Cha5], Sub131[Cha4, Cha5] -> 
+   I*Sub123[Cha4, Cha5]*Sub129[Cha4, Cha5] + Sub127[Cha4, Cha5]*
+     Sub130[Cha4, Cha5], Sub133[Cha4, Cha5] -> MW*Sub131[Cha4, Cha5] - 
+    CW2*sqrt2*MCha[Cha5]*Sub132[Cha4, Cha5], Sub134[Cha4, Cha5] -> 
+   CW2*sqrt2*MCha2[Cha4]*Sub128[Cha4, Cha5] + MCha[Cha4]*Sub133[Cha4, Cha5], 
+  Sub588[Cha4, Cha5] -> F2*Mf[bH, gno1]*Mf2[bH, gno2]*Sub561[Cha4, Cha5] - 
+    I*F1*Mf[bH, gno2]*Mf2[bH, gno1]*Sub569[Cha4, Cha5], 
+  Sub589[Cha4, Cha5] -> I*F2*MCha[Cha4]*Mf[bH, gno1]*Mf2[bH, gno2]*
+     Sub566[Cha4, Cha5] + MCha[Cha5]*Sub588[Cha4, Cha5], 
+  Sub127[Cha4, Cha5] -> Sub126*UCha[Cha5, 2]*VCha[Cha4, 1] + 
+    Sub125*UCha[Cha5, 1]*VCha[Cha4, 2], Sub120[Cha4, Cha5] -> 
+   CB*UCha[Cha4, 2]*VCha[Cha5, 1] - SB*UCha[Cha4, 1]*VCha[Cha5, 2], 
+  Sub561[Cha4, Cha5] -> Sub126*UCha[Cha4, 2]*VCha[Cha5, 1] + 
+    Sub125*UCha[Cha4, 1]*VCha[Cha5, 2], Sub569[Cha4, Cha5] -> 
+   Sub430*UCha[Cha4, 2]*VCha[Cha5, 1] - Sub568*UCha[Cha4, 1]*VCha[Cha5, 2], 
+  Sub124[Cha4, Cha5] -> CB*UChaC[Cha5, 2]*VChaC[Cha4, 1] - 
+    SB*UChaC[Cha5, 1]*VChaC[Cha4, 2], Sub566[Cha4, Cha5] -> 
+   Sub122*UChaC[Cha5, 2]*VChaC[Cha4, 1] - Sub121*UChaC[Cha5, 1]*
+     VChaC[Cha4, 2], Sub563[Cha4, Cha5] -> 
+   Sub434*UChaC[Cha5, 2]*VChaC[Cha4, 1] + Sub562*UChaC[Cha5, 1]*
+     VChaC[Cha4, 2], Sub123[Cha4, Cha5] -> 
+   Sub122*UChaC[Cha4, 2]*VChaC[Cha5, 1] - Sub121*UChaC[Cha4, 1]*
+     VChaC[Cha5, 2], Sub2[Ind1, Ind2] -> KfC[Ind2, Ind1, 2] - 
+    MUE*TB*Delta[Ind1, Ind2]*Mf[2, Ind1], Sub1[Ind1, Ind2] -> 
+   Kf[Ind1, Ind2, 2] - MUEC*TB*Delta[Ind1, Ind2]*Mf[2, Ind1], 
+  Sub545[Ind1, Ind2] -> TB*KfC[Ind2, Ind1, bH] + MUE*Delta[Ind1, Ind2]*
+     Mf[bH, Ind1], Sub544[Ind1, Ind2] -> TB*Kf[Ind1, Ind2, bH] + 
+    MUEC*Delta[Ind1, Ind2]*Mf[bH, Ind1], Sub22[Ind1, Ind2] -> 
+   KfC[Ind2, Ind1, bH] - MUE*TB*Delta[Ind1, Ind2]*Mf[bH, Ind1], 
+  Sub21[Ind1, Ind2] -> Kf[Ind1, Ind2, bH] - MUEC*TB*Delta[Ind1, Ind2]*
+     Mf[bH, Ind1], Sub40[Ind1, Ind2] -> TB*KfC[Ind2, Ind1, tH] - 
+    MUE*Delta[Ind1, Ind2]*Mf[tH, Ind1], Sub39[Ind1, Ind2] -> 
+   TB*Kf[Ind1, Ind2, tH] - MUEC*Delta[Ind1, Ind2]*Mf[tH, Ind1], 
+  Sub54[Ind1, Ind2] -> KfC[Ind2, Ind1, tH] + MUE*TB*Delta[Ind1, Ind2]*
+     Mf[tH, Ind1], Sub53[Ind1, Ind2] -> Kf[Ind1, Ind2, tH] + 
+    MUEC*TB*Delta[Ind1, Ind2]*Mf[tH, Ind1], Sub73[Ind2, Ind3] -> 
+   TB*KfC[Ind3, Ind2, 2] + MUE*Delta[Ind2, Ind3]*Mf[2, Ind2], 
+  Sub72[Ind2, Ind3] -> TB*Kf[Ind2, Ind3, 2] + MUEC*Delta[Ind2, Ind3]*
+     Mf[2, Ind2], Sub90[Ind2, Ind3] -> TB*KfC[Ind3, Ind2, bH] + 
+    MUE*Delta[Ind2, Ind3]*Mf[bH, Ind2], Sub89[Ind2, Ind3] -> 
+   TB*Kf[Ind2, Ind3, bH] + MUEC*Delta[Ind2, Ind3]*Mf[bH, Ind2], 
+  Sub107[Ind2, Ind3] -> KfC[Ind3, Ind2, tH] + MUE*TB*Delta[Ind2, Ind3]*
+     Mf[tH, Ind2], Sub106[Ind2, Ind3] -> Kf[Ind2, Ind3, tH] + 
+    MUEC*TB*Delta[Ind2, Ind3]*Mf[tH, Ind2], Sub18[Ind3, Ind4] -> 
+   TB*KfC[Ind4, Ind3, 2] + MUE*Delta[Ind3, Ind4]*Mf[2, Ind3], 
+  Sub17[Ind3, Ind4] -> TB*Kf[Ind3, Ind4, 2] + MUEC*Delta[Ind3, Ind4]*
+     Mf[2, Ind3], Sub36[Ind3, Ind4] -> TB*KfC[Ind4, Ind3, bH] + 
+    MUE*Delta[Ind3, Ind4]*Mf[bH, Ind3], Sub35[Ind3, Ind4] -> 
+   TB*Kf[Ind3, Ind4, bH] + MUEC*Delta[Ind3, Ind4]*Mf[bH, Ind3], 
+  Sub57[Ind3, Ind4] -> TB*KfC[Ind4, Ind3, tH] - MUE*Delta[Ind3, Ind4]*
+     Mf[tH, Ind3], Sub56[Ind3, Ind4] -> TB*Kf[Ind3, Ind4, tH] - 
+    MUEC*Delta[Ind3, Ind4]*Mf[tH, Ind3], Sub525[Ind3, Ind4] -> 
+   KfC[Ind4, Ind3, tH] + MUE*TB*Delta[Ind3, Ind4]*Mf[tH, Ind3], 
+  Sub524[Ind3, Ind4] -> Kf[Ind3, Ind4, tH] + MUEC*TB*Delta[Ind3, Ind4]*
+     Mf[tH, Ind3], Sub279[Neu4, Neu5] -> Sub275[Neu4]*Sub276[Neu5] + 
+    Sub277[Neu4]*Sub278[Neu5], Sub282[Neu4, Neu5] -> 
+   Sub276[Neu5]*Sub280[Neu4] + Sub277[Neu4]*Sub281[Neu5], 
+  Sub285[Neu4, Neu5] -> Sub276[Neu5]*Sub283[Neu4] + 
+    Sub277[Neu4]*Sub284[Neu5], Sub291[Neu4, Neu5] -> 
+   Sub287[Neu4]*Sub288[Neu5] + Sub289[Neu4]*Sub290[Neu5], 
+  Sub294[Neu4, Neu5] -> Sub276[Neu5]*Sub292[Neu4] + 
+    Sub277[Neu4]*Sub293[Neu5], Sub297[Neu4, Neu5] -> 
+   Sub288[Neu5]*Sub295[Neu4] + Sub289[Neu4]*Sub296[Neu5], 
+  Sub300[Neu4, Neu5] -> Sub288[Neu5]*Sub298[Neu4] + 
+    Sub289[Neu4]*Sub299[Neu5], Sub303[Neu4, Neu5] -> 
+   Sub288[Neu5]*Sub301[Neu4] + Sub289[Neu4]*Sub302[Neu5], 
+  Sub311[Neu4, Neu5] -> Sub286[Neu4, Neu5]*Sub294[Neu4, Neu5] - 
+    Sub291[Neu4, Neu5]*Sub304[Neu4, Neu5], Sub305[Neu4, Neu5] -> 
+   Sub286[Neu4, Neu5]*Sub291[Neu4, Neu5] - Sub294[Neu4, Neu5]*
+     Sub304[Neu4, Neu5], Sub309[Neu4, Neu5] -> 
+   -(Sub304[Neu4, Neu5]*Sub306[Neu4, Neu5]) + Sub286[Neu4, Neu5]*
+     Sub307[Neu4, Neu5], Sub308[Neu4, Neu5] -> 
+   Sub286[Neu4, Neu5]*Sub306[Neu4, Neu5] - Sub304[Neu4, Neu5]*
+     Sub307[Neu4, Neu5], Sub312[Neu4, Neu5] -> MW*Sub308[Neu4, Neu5] + 
+    CW*MNeu[Neu5]*Sub311[Neu4, Neu5], Sub313[Neu4, Neu5] -> 
+   CW*MNeu2[Neu4]*Sub305[Neu4, Neu5] - MNeu[Neu4]*Sub312[Neu4, Neu5], 
+  Sub307[Neu4, Neu5] -> ZNeu[Neu5, 3]*ZNeuC[Neu4, 3] - 
+    ZNeu[Neu5, 4]*ZNeuC[Neu4, 4], Sub306[Neu4, Neu5] -> 
+   ZNeu[Neu4, 3]*ZNeuC[Neu5, 3] - ZNeu[Neu4, 4]*ZNeuC[Neu5, 4], 
+  Sub542[All4, All5, Ind1] -> Sub537[All5, Ind1]*UASf[All4, Ind1, bH] - 
+    Sub541[All5, Ind1]*UASf[All4, 3 + Ind1, bH], 
+  Sub512[All4, All5, Ind1] -> Sub511[All5, Ind1]*UASf[All4, Ind1, tH] - 
+    Sub507[All5, Ind1]*UASf[All4, 3 + Ind1, tH], 
+  Sub60[All4, All5, Ind1] -> (1 - 2*SW2)*UASf[All4, Ind1, 2]*
+     UASfC[All5, Ind1, 2] - 2*SW2*UASf[All4, 3 + Ind1, 2]*
+     UASfC[All5, 3 + Ind1, 2], Sub75[All4, All5, Ind1] -> 
+   (-1 + 2*SW2)*UASf[All4, Ind1, 2]*UASfC[All5, Ind1, 2] + 
+    2*SW2*UASf[All4, 3 + Ind1, 2]*UASfC[All5, 3 + Ind1, 2], 
+  Sub77[All4, All5, Ind1] -> (3 - 2*SW2)*UASf[All4, Ind1, bH]*
+     UASfC[All5, Ind1, bH] - 2*SW2*UASf[All4, 3 + Ind1, bH]*
+     UASfC[All5, 3 + Ind1, bH], Sub92[All4, All5, Ind1] -> 
+   (-3 + 2*SW2)*UASf[All4, Ind1, bH]*UASfC[All5, Ind1, bH] + 
+    2*SW2*UASf[All4, 3 + Ind1, bH]*UASfC[All5, 3 + Ind1, bH], 
+  Sub94[All4, All5, Ind1] -> (3 - 4*SW2)*UASf[All4, Ind1, tH]*
+     UASfC[All5, Ind1, tH] - 4*SW2*UASf[All4, 3 + Ind1, tH]*
+     UASfC[All5, 3 + Ind1, tH], Sub109[All4, All5, Ind1] -> 
+   (-3 + 4*SW2)*UASf[All4, Ind1, tH]*UASfC[All5, Ind1, tH] + 
+    4*SW2*UASf[All4, 3 + Ind1, tH]*UASfC[All5, 3 + Ind1, tH], 
+  Sub499[All4, All5, Ind2] -> Sub498[All5, Ind2]*UASf[All4, Ind2, tH] - 
+    Sub495[All5, Ind2]*UASf[All4, 3 + Ind2, tH], 
+  Sub70[All4, All5, Ind2] -> Sub65[All4, Ind2]*UASf[All5, Ind2, 2] + 
+    Sub69[All4, Ind2]*UASf[All5, 3 + Ind2, 2], Sub87[All4, All5, Ind2] -> 
+   Sub82[All4, Ind2]*UASf[All5, Ind2, bH] + Sub86[All4, Ind2]*
+     UASf[All5, 3 + Ind2, bH], Sub104[All4, All5, Ind2] -> 
+   Sub103[All4, Ind2]*UASf[All5, Ind2, tH] + Sub99[All4, Ind2]*
+     UASf[All5, 3 + Ind2, tH], Sub520[All4, All5, Ind3] -> 
+   Sub519[All5, Ind3]*UASf[All4, Ind3, tH] - Sub516[All5, Ind3]*
+     UASf[All4, 3 + Ind3, tH], Sub15[All4, All5, Ind3] -> 
+   Sub10[All4, Ind3]*UASf[All5, Ind3, 2] + Sub14[All4, Ind3]*
+     UASf[All5, 3 + Ind3, 2], Sub33[All4, All5, Ind3] -> 
+   Sub28[All4, Ind3]*UASf[All5, Ind3, bH] + Sub32[All4, Ind3]*
+     UASf[All5, 3 + Ind3, bH], Sub51[All4, All5, Ind3] -> 
+   Sub50[All4, Ind3]*UASf[All5, Ind3, tH] + Sub46[All4, Ind3]*
+     UASf[All5, 3 + Ind3, tH], Sub554[All4, All5, Neu4] -> 
+   F2*Sub549[All4, Neu4]*Sub551[All5, Neu4] + F1*Sub547[All5, Neu4]*
+     Sub552[All4, Neu4], Sub555[All4, All5, Neu4] -> 
+   F1*Sub549[All4, Neu4]*Sub551[All5, Neu4] + F2*Sub547[All5, Neu4]*
+     Sub552[All4, Neu4], Sub553[All4, All5, Neu4] -> 
+   F1*Sub547[All5, Neu4]*Sub549[All4, Neu4] + F2*Sub551[All5, Neu4]*
+     Sub552[All4, Neu4], Sub556[All4, All5, Neu4] -> 
+   C0i[cc1, m22, m12, m32, MNeu2[Neu4], MASf2[All4, bH], MASf2[All5, bH]]*
+     Mf[bH, gno1]*Sub554[All4, All5, Neu4] + 
+    C0i[cc2, m22, m12, m32, MNeu2[Neu4], MASf2[All4, bH], MASf2[All5, bH]]*
+     Mf[bH, gno2]*Sub555[All4, All5, Neu4], Sub491[All4, Cha4, Ind1] -> 
+   2*MW*SB*UASfC[All4, Ind1, tH]*VCha[Cha4, 1] - 
+    sqrt2*Mf[tH, Ind1]*UASfC[All4, 3 + Ind1, tH]*VCha[Cha4, 2], 
+  Sub567[All4, Cha4, Ind2] -> (MCha[Cha4]*Sub514[All4, Cha4, Ind2])/
+     (SB2*sqrt2) + (2*m22*UASfC[All4, Ind2, tH]*UChaC[Cha4, 2])/(CB*SB), 
+  Sub576[All4, Cha4, Ind2] -> (MCha[Cha4]*Sub514[All4, Cha4, Ind2])/
+     (SB2*sqrt2) + (MCha2[Cha4]*UASfC[All4, Ind2, tH]*UChaC[Cha4, 2])/
+     (CB*SB), Sub587[All4, Cha4, Ind2] -> 
+   (Sub585*MCha[Cha4]*Sub514[All4, Cha4, Ind2])/(SB2*sqrt2) + 
+    (F2*Sub583*Mf[bH, gno1]*UASfC[All4, Ind2, tH]*UChaC[Cha4, 2])/(CB*SB), 
+  Sub514[All4, Cha4, Ind2] -> 2*MW*SB*UASfC[All4, Ind2, tH]*VCha[Cha4, 1] - 
+    sqrt2*Mf[tH, Ind2]*UASfC[All4, 3 + Ind2, tH]*VCha[Cha4, 2], 
+  Sub560[All4, Cha5, Ind1] -> 2*MW*SB*UASf[All4, Ind1, tH]*VChaC[Cha5, 1] - 
+    sqrt2*Mf[tH, Ind1]*UASf[All4, 3 + Ind1, tH]*VChaC[Cha5, 2], 
+  Sub608[All4, Neu4, Neu5] -> F2*Sub304[Neu4, Neu5]*Sub552[All4, Neu4]*
+     Sub594[All4, Neu5] + F1*Sub286[Neu4, Neu5]*Sub549[All4, Neu4]*
+     Sub595[All4, Neu5], Sub596[All4, Neu4, Neu5] -> 
+   F2*Sub286[Neu4, Neu5]*Sub552[All4, Neu4]*Sub594[All4, Neu5] + 
+    F1*Sub304[Neu4, Neu5]*Sub549[All4, Neu4]*Sub595[All4, Neu5], 
+  Sub605[All4, Neu4, Neu5] -> F1*Sub286[Neu4, Neu5]*Sub552[All4, Neu4]*
+     Sub594[All4, Neu5] + F2*Sub304[Neu4, Neu5]*Sub549[All4, Neu4]*
+     Sub595[All4, Neu5], Sub601[All4, Neu4, Neu5] -> 
+   F2*Sub304[Neu4, Neu5]*Sub549[All4, Neu4]*Sub594[All4, Neu5] + 
+    F1*Sub286[Neu4, Neu5]*Sub552[All4, Neu4]*Sub595[All4, Neu5], 
+  Sub600[All4, Neu4, Neu5] -> F1*Sub304[Neu4, Neu5]*Sub549[All4, Neu4]*
+     Sub594[All4, Neu5] + F2*Sub286[Neu4, Neu5]*Sub552[All4, Neu4]*
+     Sub595[All4, Neu5], Sub597[All4, Neu4, Neu5] -> 
+   F2*Sub286[Neu4, Neu5]*Sub549[All4, Neu4]*Sub594[All4, Neu5] + 
+    F1*Sub304[Neu4, Neu5]*Sub552[All4, Neu4]*Sub595[All4, Neu5], 
+  Sub598[All4, Neu4, Neu5] -> F1*Sub286[Neu4, Neu5]*Sub549[All4, Neu4]*
+     Sub594[All4, Neu5] + F2*Sub304[Neu4, Neu5]*Sub552[All4, Neu4]*
+     Sub595[All4, Neu5], Sub599[All4, Neu4, Neu5] -> 
+   Mf[bH, gno1]*Sub597[All4, Neu4, Neu5] - 
+    Mf[bH, gno2]*Sub598[All4, Neu4, Neu5], Sub602[All4, Neu4, Neu5] -> 
+   Mf[bH, gno2]*Sub600[All4, Neu4, Neu5] - 
+    Mf[bH, gno1]*Sub601[All4, Neu4, Neu5], Sub607[All4, Neu4, Neu5] -> 
+   Sub604*Sub596[All4, Neu4, Neu5] + I*Mf[bH, gno1]*Sub606[All4, Neu4, Neu5], 
+  Sub609[All4, Neu4, Neu5] -> Mf[bH, gno2]*Sub598[All4, Neu4, Neu5] + 
+    MNeu[Neu5]*Sub608[All4, Neu4, Neu5], Sub610[All4, Neu4, Neu5] -> 
+   Mf[bH, gno1]*Sub597[All4, Neu4, Neu5] - Sub609[All4, Neu4, Neu5], 
+  Sub611[All4, Neu4, Neu5] -> MNeu2[Neu4]*Sub596[All4, Neu4, Neu5] - 
+    MNeu[Neu4]*Sub610[All4, Neu4, Neu5], Sub612[All4, Neu4, Neu5] -> 
+   C0i[cc2, m12, m32, m22, MNeu2[Neu4], MNeu2[Neu5], MASf2[All4, bH]]*
+     Sub607[All4, Neu4, Neu5] - I*C0i[cc0, m12, m32, m22, MNeu2[Neu4], 
+      MNeu2[Neu5], MASf2[All4, bH]]*Sub611[All4, Neu4, Neu5], 
+  Sub492[All5, Cha4, Ind1] -> 2*MW*SB*UASf[All5, Ind1, tH]*VChaC[Cha4, 1] - 
+    sqrt2*Mf[tH, Ind1]*UASf[All5, 3 + Ind1, tH]*VChaC[Cha4, 2], 
+  Sub513[All4, All5, Ind1, Ind2] -> 
+   3*CW*Sub6*Sub503[All4, All5, Ind1, Ind2] - Delta[Ind1, Ind2]*
+     Sub512[All4, All5, Ind1], Sub543[All4, All5, Ind1, Ind2] -> 
+   3*CW*Sub5*Sub533[All4, All5, Ind1, Ind2] - Delta[Ind1, Ind2]*
+     Sub542[All4, All5, Ind1], Sub55[All4, All5, Ind1, Ind2] -> 
+   Sub53[Ind1, Ind2]*UASf[All5, 3 + Ind2, tH]*UASfC[All4, Ind1, tH] - 
+    Sub54[Ind1, Ind2]*UASf[All5, Ind2, tH]*UASfC[All4, 3 + Ind1, tH], 
+  Sub3[All4, All5, Ind1, Ind2] -> Sub1[Ind1, Ind2]*UASf[All4, 3 + Ind2, 2]*
+     UASfC[All5, Ind1, 2] - Sub2[Ind1, Ind2]*UASf[All4, Ind2, 2]*
+     UASfC[All5, 3 + Ind1, 2], Sub533[All4, All5, Ind1, Ind2] -> 
+   Kf[Ind1, Ind2, bH]*UASf[All4, 3 + Ind2, bH]*UASfC[All5, Ind1, bH] + 
+    KfC[Ind2, Ind1, bH]*UASf[All4, Ind2, bH]*UASfC[All5, 3 + Ind1, bH], 
+  Sub23[All4, All5, Ind1, Ind2] -> Sub21[Ind1, Ind2]*UASf[All4, 3 + Ind2, bH]*
+     UASfC[All5, Ind1, bH] - Sub22[Ind1, Ind2]*UASf[All4, Ind2, bH]*
+     UASfC[All5, 3 + Ind1, bH], Sub546[All4, All5, Ind1, Ind2] -> 
+   Sub544[Ind1, Ind2]*UASf[All4, 3 + Ind2, bH]*UASfC[All5, Ind1, bH] - 
+    Sub545[Ind1, Ind2]*UASf[All4, Ind2, bH]*UASfC[All5, 3 + Ind1, bH], 
+  Sub503[All4, All5, Ind1, Ind2] -> 
+   Kf[Ind1, Ind2, tH]*UASf[All4, 3 + Ind2, tH]*UASfC[All5, Ind1, tH] + 
+    KfC[Ind2, Ind1, tH]*UASf[All4, Ind2, tH]*UASfC[All5, 3 + Ind1, tH], 
+  Sub41[All4, All5, Ind1, Ind2] -> Sub39[Ind1, Ind2]*UASf[All4, 3 + Ind2, tH]*
+     UASfC[All5, Ind1, tH] - Sub40[Ind1, Ind2]*UASf[All4, Ind2, tH]*
+     UASfC[All5, 3 + Ind1, tH], Sub523[All4, All5, Ind1, Ind2] -> 
+   Sub53[Ind1, Ind2]*UASf[All4, 3 + Ind2, tH]*UASfC[All5, Ind1, tH] - 
+    Sub54[Ind1, Ind2]*UASf[All4, Ind2, tH]*UASfC[All5, 3 + Ind1, tH], 
+  Sub500[All4, All5, Ind2, Ind3] -> 
+   3*CW*Sub6*Sub494[All4, All5, Ind2, Ind3] - Delta[Ind2, Ind3]*
+     Sub499[All4, All5, Ind2], Sub71[All4, All5, Ind2, Ind3] -> 
+   CW*Sub5*Sub61[All4, All5, Ind2, Ind3] + Delta[Ind2, Ind3]*
+     Sub70[All4, All5, Ind2], Sub88[All4, All5, Ind2, Ind3] -> 
+   3*CW*Sub5*Sub78[All4, All5, Ind2, Ind3] + Delta[Ind2, Ind3]*
+     Sub87[All4, All5, Ind2], Sub105[All4, All5, Ind2, Ind3] -> 
+   Delta[Ind2, Ind3]*Sub104[All4, All5, Ind2] + 
+    3*CW*Sub6*Sub95[All4, All5, Ind2, Ind3], Sub61[All4, All5, Ind2, Ind3] -> 
+   Kf[Ind2, Ind3, 2]*UASf[All5, 3 + Ind3, 2]*UASfC[All4, Ind2, 2] + 
+    KfC[Ind3, Ind2, 2]*UASf[All5, Ind3, 2]*UASfC[All4, 3 + Ind2, 2], 
+  Sub74[All4, All5, Ind2, Ind3] -> Sub72[Ind2, Ind3]*UASf[All5, 3 + Ind3, 2]*
+     UASfC[All4, Ind2, 2] - Sub73[Ind2, Ind3]*UASf[All5, Ind3, 2]*
+     UASfC[All4, 3 + Ind2, 2], Sub78[All4, All5, Ind2, Ind3] -> 
+   Kf[Ind2, Ind3, bH]*UASf[All5, 3 + Ind3, bH]*UASfC[All4, Ind2, bH] + 
+    KfC[Ind3, Ind2, bH]*UASf[All5, Ind3, bH]*UASfC[All4, 3 + Ind2, bH], 
+  Sub91[All4, All5, Ind2, Ind3] -> Sub89[Ind2, Ind3]*UASf[All5, 3 + Ind3, bH]*
+     UASfC[All4, Ind2, bH] - Sub90[Ind2, Ind3]*UASf[All5, Ind3, bH]*
+     UASfC[All4, 3 + Ind2, bH], Sub95[All4, All5, Ind2, Ind3] -> 
+   Kf[Ind2, Ind3, tH]*UASf[All5, 3 + Ind3, tH]*UASfC[All4, Ind2, tH] + 
+    KfC[Ind3, Ind2, tH]*UASf[All5, Ind3, tH]*UASfC[All4, 3 + Ind2, tH], 
+  Sub108[All4, All5, Ind2, Ind3] -> 
+   Sub106[Ind2, Ind3]*UASf[All5, 3 + Ind3, tH]*UASfC[All4, Ind2, tH] - 
+    Sub107[Ind2, Ind3]*UASf[All5, Ind3, tH]*UASfC[All4, 3 + Ind2, tH], 
+  Sub494[All4, All5, Ind2, Ind3] -> 
+   Kf[Ind2, Ind3, tH]*UASf[All4, 3 + Ind3, tH]*UASfC[All5, Ind2, tH] + 
+    KfC[Ind3, Ind2, tH]*UASf[All4, Ind3, tH]*UASfC[All5, 3 + Ind2, tH], 
+  Sub501[All4, All5, Ind2, Ind3] -> 
+   Sub106[Ind2, Ind3]*UASf[All4, 3 + Ind3, tH]*UASfC[All5, Ind2, tH] - 
+    Sub107[Ind2, Ind3]*UASf[All4, Ind3, tH]*UASfC[All5, 3 + Ind2, tH], 
+  Sub502[All4, All5, Ind2, Ind3] -> Sub500[All4, All5, Ind2, Ind3]/(CW*SB2) + 
+    ((3*I)*Sub501[All4, All5, Ind2, Ind3]*XHiggs[hno, 3, uzext])/(SB*TB), 
+  Sub34[All4, All5, Ind3, Ind4] -> 3*CW*Sub5*Sub24[All4, All5, Ind3, Ind4] + 
+    Delta[Ind3, Ind4]*Sub33[All4, All5, Ind3], 
+  Sub16[All4, All5, Ind3, Ind4] -> 
+   Delta[Ind3, Ind4]*Sub15[All4, All5, Ind3] + 
+    CW*Sub5*Sub4[All4, All5, Ind3, Ind4], Sub52[All4, All5, Ind3, Ind4] -> 
+   3*CW*Sub6*Sub42[All4, All5, Ind3, Ind4] + Delta[Ind3, Ind4]*
+     Sub51[All4, All5, Ind3], Sub521[All4, All5, Ind3, Ind4] -> 
+   3*CW*Sub6*Sub515[All4, All5, Ind3, Ind4] - Delta[Ind3, Ind4]*
+     Sub520[All4, All5, Ind3], Sub4[All4, All5, Ind3, Ind4] -> 
+   Kf[Ind3, Ind4, 2]*UASf[All5, 3 + Ind4, 2]*UASfC[All4, Ind3, 2] + 
+    KfC[Ind4, Ind3, 2]*UASf[All5, Ind4, 2]*UASfC[All4, 3 + Ind3, 2], 
+  Sub19[All4, All5, Ind3, Ind4] -> Sub17[Ind3, Ind4]*UASf[All5, 3 + Ind4, 2]*
+     UASfC[All4, Ind3, 2] - Sub18[Ind3, Ind4]*UASf[All5, Ind4, 2]*
+     UASfC[All4, 3 + Ind3, 2], Sub24[All4, All5, Ind3, Ind4] -> 
+   Kf[Ind3, Ind4, bH]*UASf[All5, 3 + Ind4, bH]*UASfC[All4, Ind3, bH] + 
+    KfC[Ind4, Ind3, bH]*UASf[All5, Ind4, bH]*UASfC[All4, 3 + Ind3, bH], 
+  Sub37[All4, All5, Ind3, Ind4] -> Sub35[Ind3, Ind4]*UASf[All5, 3 + Ind4, bH]*
+     UASfC[All4, Ind3, bH] - Sub36[Ind3, Ind4]*UASf[All5, Ind4, bH]*
+     UASfC[All4, 3 + Ind3, bH], Sub42[All4, All5, Ind3, Ind4] -> 
+   Kf[Ind3, Ind4, tH]*UASf[All5, 3 + Ind4, tH]*UASfC[All4, Ind3, tH] + 
+    KfC[Ind4, Ind3, tH]*UASf[All5, Ind4, tH]*UASfC[All4, 3 + Ind3, tH], 
+  Sub515[All4, All5, Ind3, Ind4] -> 
+   Kf[Ind3, Ind4, tH]*UASf[All4, 3 + Ind4, tH]*UASfC[All5, Ind3, tH] + 
+    KfC[Ind4, Ind3, tH]*UASf[All4, Ind4, tH]*UASfC[All5, 3 + Ind3, tH], 
+  Sub526[All4, All5, Ind3, Ind4] -> 
+   Sub524[Ind3, Ind4]*UASf[All4, 3 + Ind4, tH]*UASfC[All5, Ind3, tH] - 
+    Sub525[Ind3, Ind4]*UASf[All4, Ind4, tH]*UASfC[All5, 3 + Ind3, tH], 
+  Sub58[All4, All5, Ind3, Ind4] -> Sub56[Ind3, Ind4]*UASf[All4, 3 + Ind4, tH]*
+     UASfC[All5, Ind3, tH] - Sub57[Ind3, Ind4]*UASf[All4, Ind4, tH]*
+     UASfC[All5, 3 + Ind3, tH], Sub20[All4, All5, Ind3, Ind4] -> 
+   Sub16[All4, All5, Ind3, Ind4] - I*CB*CW*Sub19[All4, All5, Ind3, Ind4]*
+     XHiggs[hno, 3, uzext], Sub38[All4, All5, Ind3, Ind4] -> 
+   Sub34[All4, All5, Ind3, Ind4] - (3*I)*CB*CW*Sub37[All4, All5, Ind3, Ind4]*
+     XHiggs[hno, 3, uzext], Sub581[All4, Cha4, Cha5, Ind2] -> 
+   CB*SB*Sub561[Cha4, Cha5]*Sub576[All4, Cha4, Ind2] - 
+    MCha[Cha4]*MCha[Cha5]*Sub563[Cha4, Cha5]*UASfC[All4, Ind2, tH]*
+     UChaC[Cha4, 2], Sub565[All4, Cha4, Ind1, Ind2] -> 
+   (2*m22*CKM[Ind2, gno2]*CKMC[Ind1, gno1]*Sub491[All4, Cha4, Ind1]*
+      UASf[All4, Ind2, tH])/(CB*SB) + (sqrt2*CKM[Ind1, gno2]*CKMC[Ind2, gno1]*
+      MCha[Cha4]*Mf2[bH, gno1]*UASf[All4, Ind1, tH]*UASfC[All4, Ind2, tH]*
+      UChaC[Cha4, 2])/CB2, Sub584[All4, Cha4, Ind1, Ind2] -> 
+   (Sub583*CKM[Ind2, gno2]*CKMC[Ind1, gno1]*Sub491[All4, Cha4, Ind1]*
+      UASf[All4, Ind2, tH])/(CB*SB) + (sqrt2*CKM[Ind1, gno2]*CKMC[Ind2, gno1]*
+      MCha[Cha4]*Mf2[bH, gno1]*UASf[All4, Ind1, tH]*UASfC[All4, Ind2, tH]*
+      UChaC[Cha4, 2])/CB2, Sub493[All4, All5, Cha4, Ind1, Ind4] -> 
+   F1*CKM[Ind4, gno2]*CKMC[Ind1, gno1]*Mf[bH, gno2]*Sub491[All4, Cha4, Ind1]*
+     UASf[All5, Ind4, tH]*UCha[Cha4, 2] + F2*CKM[Ind1, gno2]*CKMC[Ind4, gno1]*
+     Mf[bH, gno1]*Sub492[All5, Cha4, Ind1]*UASfC[All4, Ind4, tH]*
+     UChaC[Cha4, 2], Sub110[All4, All5, Ind1, Ind2, Ind3] -> 
+   TB*Sub105[All4, All5, Ind2, Ind3]*Sub94[All4, All5, Ind1] - 
+    (3*I)*CW*SB*Sub108[All4, All5, Ind2, Ind3]*Sub109[All4, All5, Ind1]*
+     XHiggs[hno, 3, uzext], Sub76[All4, All5, Ind1, Ind2, Ind3] -> 
+   Sub60[All4, All5, Ind1]*Sub71[All4, All5, Ind2, Ind3] + 
+    I*CB*CW*Sub74[All4, All5, Ind2, Ind3]*Sub75[All4, All5, Ind1]*
+     XHiggs[hno, 3, uzext], Sub93[All4, All5, Ind1, Ind2, Ind3] -> 
+   Sub77[All4, All5, Ind1]*Sub88[All4, All5, Ind2, Ind3] + 
+    (3*I)*CB*CW*Sub91[All4, All5, Ind2, Ind3]*Sub92[All4, All5, Ind1]*
+     XHiggs[hno, 3, uzext], Sub582[All4, Cha4, Cha5, Ind1, Ind2] -> 
+   CB*SB*Sub580[All4, Cha4, Cha5, Ind1, Ind2] - F2*CKM[Ind1, gno2]*
+     CKMC[Ind2, gno1]*Mf[bH, gno1]*Sub560[All4, Cha5, Ind1]*
+     Sub581[All4, Cha4, Cha5, Ind2], Sub591[All4, Cha4, Cha5, Ind1, Ind2] -> 
+   Sub563[Cha4, Cha5]*Sub586[All4, Cha4, Cha5, Ind1, Ind2] - 
+    CKM[Ind1, gno2]*CKMC[Ind2, gno1]*Sub590[All4, Cha4, Cha5, Ind1, Ind2], 
+  Sub592[All4, Cha4, Cha5, Ind1, Ind2] -> 
+   (C0i[cc0, m12, m32, m22, MCha2[Cha4], MCha2[Cha5], MASf2[All4, tH]]*
+      Sub582[All4, Cha4, Cha5, Ind1, Ind2])/(CB*SB) + 
+    C0i[cc1, m12, m32, m22, MCha2[Cha4], MCha2[Cha5], MASf2[All4, tH]]*
+     Sub591[All4, Cha4, Cha5, Ind1, Ind2], 
+  Sub574[All4, Cha4, Cha5, Ind1, Ind2] -> 
+   ((-I)*F1*Mf2[bH, gno1]*Sub571[All4, Cha4, Cha5, Ind1, Ind2])/(CB*SB) - 
+    F1*Sub565[All4, Cha4, Ind1, Ind2]*Sub566[Cha4, Cha5]*UCha[Cha5, 2], 
+  Sub580[All4, Cha4, Cha5, Ind1, Ind2] -> 
+   F1*Mf[bH, gno2]*Sub579[All4, Cha4, Cha5, Ind1, Ind2] - 
+    MCha[Cha4]*Sub577[All4, Cha4, Cha5, Ind1, Ind2]*UCha[Cha5, 2], 
+  Sub586[All4, Cha4, Cha5, Ind1, Ind2] -> 
+   (Sub585*CKM[Ind1, gno2]*CKMC[Ind2, gno1]*MCha[Cha5]*
+      Sub514[All4, Cha4, Ind2]*Sub560[All4, Cha5, Ind1])/(SB2*sqrt2) + 
+    F1*Mf[bH, gno2]*Sub584[All4, Cha4, Ind1, Ind2]*UCha[Cha5, 2], 
+  Sub579[All4, Cha4, Cha5, Ind1, Ind2] -> 
+   CKM[Ind1, gno2]*CKMC[Ind2, gno1]*MCha[Cha4]*Sub578[All4, Cha4, Cha5, Ind1, 
+      Ind2] + (CKM[Ind2, gno2]*CKMC[Ind1, gno1]*MCha2[Cha4]*
+      Sub491[All4, Cha4, Ind1]*Sub563[Cha4, Cha5]*UASf[All4, Ind2, tH]*
+      UCha[Cha5, 2])/(CB*SB), Sub570[All4, Cha4, Cha5, Ind1, Ind2] -> 
+   CKM[Ind1, gno2]*CKMC[Ind2, gno1]*Sub560[All4, Cha5, Ind1]*
+     Sub567[All4, Cha4, Ind2]*Sub569[Cha4, Cha5] - 
+    (CKM[Ind2, gno2]*CKMC[Ind1, gno1]*Mf2[bH, gno2]*Sub491[All4, Cha4, Ind1]*
+      Sub566[Cha4, Cha5]*UASf[All4, Ind2, tH]*UCha[Cha5, 2])/(CB*SB), 
+  Sub571[All4, Cha4, Cha5, Ind1, Ind2] -> 
+   I*CKM[Ind2, gno2]*CKMC[Ind1, gno1]*Sub491[All4, Cha4, Ind1]*
+     Sub566[Cha4, Cha5]*UASf[All4, Ind2, tH]*UCha[Cha5, 2] + 
+    CKM[Ind1, gno2]*CKMC[Ind2, gno1]*Sub560[All4, Cha5, Ind1]*
+     Sub561[Cha4, Cha5]*UASfC[All4, Ind2, tH]*UChaC[Cha4, 2], 
+  Sub564[All4, Cha4, Cha5, Ind1, Ind2] -> 
+   F1*CKM[Ind2, gno2]*CKMC[Ind1, gno1]*Mf[bH, gno2]*Sub491[All4, Cha4, Ind1]*
+     Sub563[Cha4, Cha5]*UASf[All4, Ind2, tH]*UCha[Cha5, 2] - 
+    F2*CKM[Ind1, gno2]*CKMC[Ind2, gno1]*Mf[bH, gno1]*Sub560[All4, Cha5, Ind1]*
+     Sub561[Cha4, Cha5]*UASfC[All4, Ind2, tH]*UChaC[Cha4, 2], 
+  Sub573[All4, Cha4, Cha5, Ind1, Ind2] -> 
+   MCha[Cha5]*Sub572[All4, Cha4, Cha5, Ind1, Ind2] - 
+    (F2*Mf[bH, gno1]*Mf2[bH, gno1]*Sub560[All4, Cha5, Ind1]*
+      Sub569[Cha4, Cha5]*UASfC[All4, Ind2, tH]*UChaC[Cha4, 2])/(CB*SB), 
+  Sub577[All4, Cha4, Cha5, Ind1, Ind2] -> 
+   (F1*CKM[Ind2, gno2]*CKMC[Ind1, gno1]*MCha[Cha5]*Mf[bH, gno2]*
+      Sub491[All4, Cha4, Ind1]*Sub561[Cha4, Cha5]*UASf[All4, Ind2, tH])/
+     (CB*SB) - (I*F2*sqrt2*CKM[Ind1, gno2]*CKMC[Ind2, gno1]*Mf[bH, gno1]*
+      Mf2[bH, gno2]*Sub566[Cha4, Cha5]*UASf[All4, Ind1, tH]*
+      UASfC[All4, Ind2, tH]*UChaC[Cha4, 2])/CB2, 
+  Sub578[All4, Cha4, Cha5, Ind1, Ind2] -> 
+   (Sub514[All4, Cha4, Ind2]*Sub560[All4, Cha5, Ind1]*Sub561[Cha4, Cha5])/
+     (SB2*sqrt2) + (sqrt2*Mf2[bH, gno1]*Sub563[Cha4, Cha5]*
+      UASf[All4, Ind1, tH]*UASfC[All4, Ind2, tH]*UCha[Cha5, 2]*
+      UChaC[Cha4, 2])/CB2, Sub572[All4, Cha4, Cha5, Ind1, Ind2] -> 
+   (F2*Mf[bH, gno1]*Sub514[All4, Cha4, Ind2]*Sub560[All4, Cha5, Ind1]*
+      Sub566[Cha4, Cha5])/(SB2*sqrt2) + (F1*sqrt2*Mf[bH, gno2]*Mf2[bH, gno1]*
+      Sub569[Cha4, Cha5]*UASf[All4, Ind1, tH]*UASfC[All4, Ind2, tH]*
+      UCha[Cha5, 2]*UChaC[Cha4, 2])/CB2, 
+  Sub590[All4, Cha4, Cha5, Ind1, Ind2] -> 
+   Sub560[All4, Cha5, Ind1]*Sub561[Cha4, Cha5]*Sub587[All4, Cha4, Ind2] - 
+    (sqrt2*Sub589[Cha4, Cha5]*UASf[All4, Ind1, tH]*UASfC[All4, Ind2, tH]*
+      UCha[Cha5, 2]*UChaC[Cha4, 2])/CB2, 
+  Sub59[All4, All5, Ind1, Ind2, Ind3, Ind4] -> 
+   TB2*Sub41[All4, All5, Ind1, Ind2]*Sub52[All4, All5, Ind3, Ind4] + 
+    (3*I)*CW*SB*TB*Sub55[All4, All5, Ind1, Ind2]*Sub58[All4, All5, Ind3, 
+      Ind4]*XHiggs[hno, 3, uzext], Sub532[All4, All5, Cha4, Ind1, Ind2, Ind3, 
+    Ind4] -> C0i[cc1, m22, m12, m32, MCha2[Cha4], MASf2[All4, tH], 
+      MASf2[All5, tH]]*Sub528[All4, All5, Cha4, Ind1, Ind2, Ind3, Ind4] + 
+    C0i[cc2, m22, m12, m32, MCha2[Cha4], MASf2[All4, tH], MASf2[All5, tH]]*
+     Sub531[All4, All5, Cha4, Ind1, Ind2, Ind3, Ind4], 
+  Sub522[All4, All5, Cha4, Ind1, Ind2, Ind3, Ind4] -> 
+   (F2*CKM[Ind1, gno2]*CKMC[Ind2, gno1]*Mf[bH, gno1]*Sub492[All5, Cha4, Ind1]*
+      Sub514[All4, Cha4, Ind2]*Sub521[All4, All5, Ind3, Ind4])/SB2 + 
+    (2*F1*CKM[Ind3, gno2]*CKMC[Ind4, gno1]*Mf[bH, gno2]*Mf2[bH, gno1]*
+      Sub513[All4, All5, Ind1, Ind2]*UASf[All5, Ind3, tH]*
+      UASfC[All4, Ind4, tH]*UCha[Cha4, 2]*UChaC[Cha4, 2])/CB2, 
+  Sub529[All4, All5, Cha4, Ind1, Ind2, Ind3, Ind4] -> 
+   (F1*CKM[Ind1, gno2]*CKMC[Ind2, gno1]*Mf[bH, gno2]*Sub492[All5, Cha4, Ind1]*
+      Sub514[All4, Cha4, Ind2]*Sub521[All4, All5, Ind3, Ind4])/SB2 + 
+    (2*F2*CKM[Ind3, gno2]*CKMC[Ind4, gno1]*Mf[bH, gno1]*Mf2[bH, gno2]*
+      Sub513[All4, All5, Ind1, Ind2]*UASf[All5, Ind3, tH]*
+      UASfC[All4, Ind4, tH]*UCha[Cha4, 2]*UChaC[Cha4, 2])/CB2, 
+  Sub527[All4, All5, Cha4, Ind1, Ind2, Ind3, Ind4] -> 
+   (F2*CKM[Ind1, gno2]*CKMC[Ind2, gno1]*Mf[bH, gno1]*Sub492[All5, Cha4, Ind1]*
+      Sub514[All4, Cha4, Ind2]*Sub526[All4, All5, Ind3, Ind4])/SB2 + 
+    (2*F1*CKM[Ind3, gno2]*CKMC[Ind4, gno1]*Mf[bH, gno2]*Mf2[bH, gno1]*
+      Sub523[All4, All5, Ind1, Ind2]*UASf[All5, Ind3, tH]*
+      UASfC[All4, Ind4, tH]*UCha[Cha4, 2]*UChaC[Cha4, 2])/CB2, 
+  Sub530[All4, All5, Cha4, Ind1, Ind2, Ind3, Ind4] -> 
+   (F1*CKM[Ind1, gno2]*CKMC[Ind2, gno1]*Mf[bH, gno2]*Sub492[All5, Cha4, Ind1]*
+      Sub514[All4, Cha4, Ind2]*Sub526[All4, All5, Ind3, Ind4])/SB2 + 
+    (2*F2*CKM[Ind3, gno2]*CKMC[Ind4, gno1]*Mf[bH, gno1]*Mf2[bH, gno2]*
+      Sub523[All4, All5, Ind1, Ind2]*UASf[All5, Ind3, tH]*
+      UASfC[All4, Ind4, tH]*UCha[Cha4, 2]*UChaC[Cha4, 2])/CB2, 
+  Sub528[All4, All5, Cha4, Ind1, Ind2, Ind3, Ind4] -> 
+   Sub522[All4, All5, Cha4, Ind1, Ind2, Ind3, Ind4]/(CW*SB) + 
+    ((3*I)*Sub527[All4, All5, Cha4, Ind1, Ind2, Ind3, Ind4]*
+      XHiggs[hno, 3, uzext])/TB, Sub531[All4, All5, Cha4, Ind1, Ind2, Ind3, 
+    Ind4] -> Sub529[All4, All5, Cha4, Ind1, Ind2, Ind3, Ind4]/(CW*SB) + 
+    ((3*I)*Sub530[All4, All5, Cha4, Ind1, Ind2, Ind3, Ind4]*
+      XHiggs[hno, 3, uzext])/TB, Sub345 -> 6*F1*Sub337 - 6*F2*Sub337 - 
+    Sub344, Sub396 -> CB2*Sub138*Sub384 + CA2*Sub386*Sub387 + SA*Sub395, 
+  Sub461 -> 9*F1 - 3*F2 - 4*(F1 + F2)*SW2, 
+  Sub398 -> (F1*(3 - 2*SW2)^2)/SW2 + 4*F2*SW2, 
+  Sub402 -> (F2*(3 - 2*SW2)^2)/SW2 + 4*F1*SW2, 
+  Sub340 -> 3*CBA*F2 - Sub339 - 2*CBA*(F1 + F2)*SW2, 
+  Sub467 -> 3*F1*S2B*SAB - 3*F2*(CBA + S2B*SAB) + 2*CBA*(F1 + F2)*SW2, 
+  Sub412 -> -Sub411 + m22*(-6 + 4*SW2), 
+  Sub346 -> -3*CW2*(F1 - F2)*(m12 + Mh02) + 6*F1*MW2 - 4*(F1 + F2)*MW2*SW2, 
+  Sub350 -> -3*CW2*(F1 - F2)*(m12 + MHH2) + 6*F1*MW2 - 4*(F1 + F2)*MW2*SW2, 
+  Sub354 -> 3*CW2*(-F1 + F2)*m12 + 3*F1*MW2 - 2*(F1 + F2)*MW2*SW2, 
+  Sub470 -> 3*CAB*(-F1 + F2)*S2B + 3*F2*SBA - 2*(F1 + F2)*SBA*SW2, 
+  Sub343 -> 3*F2*SBA - Sub342 - 2*(F1 + F2)*SBA*SW2, 
+  Sub405 -> 3*CW2*Sub171*Sub403 - 3*CW2*Sub404 - 4*MW2*Sub171*Sub402*SW2, 
+  Sub435 -> F1*Sub126*Sub432 + F2*Sub433*Sub434 + (3*I)*MW2*Sub431*SW2, 
+  Sub453 -> S2B*SA*SAB*Sub451 + CA*CAB*S2B*Sub452 + C2B*Sub450*TB, 
+  Sub384 -> Sub383 - S2B*Sub382*TB + C2B*Sub381*TB2, 
+  Sub335 -> 2*A0[MHp2] - 2*A0[MW2] - 3*A0[MZ2], 
+  Sub360 -> -2*Sub359 + Sub349*B0i[bb0, m12, Mh02, MZ2] - 
+    Sub353*B0i[bb0, m12, MHH2, MZ2], 
+  Sub484 -> Sub481 - SB2*Sub483 - SB2*B0i[bb0, m32, MA02, Mf2[bH, gno1]], 
+  Sub425 -> C0i[cc0, m22, m12, m32, Mf2[bH, gno1], MA02, Mh02] + 
+    C0i[cc0, m22, m12, m32, Mf2[bH, gno1], Mh02, MA02] + 
+    C0i[cc1, m22, m12, m32, Mf2[bH, gno1], MA02, Mh02], 
+  Sub426 -> C0i[cc0, m22, m12, m32, Mf2[bH, gno1], MA02, MHH2] + 
+    C0i[cc0, m22, m12, m32, Mf2[bH, gno1], MHH2, MA02] + 
+    C0i[cc1, m22, m12, m32, Mf2[bH, gno1], MA02, MHH2], 
+  Sub422 -> Sub414*C0i[cc0, m22, m12, m32, Mf2[bH, gno1], MA02, MZ2] + 
+    Sub418*C0i[cc1, m22, m12, m32, Mf2[bH, gno1], MA02, MZ2] + 
+    Sub421*C0i[cc2, m22, m12, m32, Mf2[bH, gno1], MA02, MZ2], 
+  Sub473 -> Sub464*Sub466 + SA*Sub469*C0i[cc2, m22, m12, m32, Mf2[bH, gno1], 
+      Mh02, MZ2] + CA*Sub472*C0i[cc2, m22, m12, m32, Mf2[bH, gno1], MHH2, 
+      MZ2], Sub410 -> (3*CW2*Sub404 + Sub171*Sub409)*
+     C0i[cc0, m22, m12, m32, Mf2[bH, gno1], MZ2, MZ2] - 
+    Sub405*C0i[cc1, m22, m12, m32, Mf2[bH, gno1], MZ2, MZ2] + 
+    (Sub171*Sub399 - 3*CW2*Sub401)*C0i[cc2, m22, m12, m32, Mf2[bH, gno1], 
+      MZ2, MZ2], Sub408 -> F2*Sub407 + 2*F1*MZ2*SW2 - 3*F1*Mf2[bH, gno1], 
+  Sub413 -> F2*Sub412 - 2*F1*MA02*SW2 + 3*F1*Mf2[bH, gno1], 
+  Sub459 -> 3*F1*Sub372 - 2*(F1 + F2)*Sub372*SW2 + 
+    (F1 + F2)*(-3 + 4*SW2)*Mf2[bH, gno1], 
+  Sub378 -> Sub370*B0i[bb0, m32, MA02, Mf2[bH, gno1]] + 
+    Sub373*C0i[cc1, m32, m12, m22, Mf2[bH, gno1], MA02, MZ2] + 
+    C0i[cc0, m32, m12, m22, Mf2[bH, gno1], MA02, MZ2]*
+     (Sub375 + 2*Sub370*Mf2[bH, gno1]), 
+  Sub216 -> 2*m22 - Mf2[bH, gno1] + Mf2[bH, gno2], 
+  Sub193 -> Sub380 + I*XHiggs[hno, 3, uzext], 
+  Sub207 -> I*CBA*XHiggs[hno, 1, uzext] - I*SBA*XHiggs[hno, 2, uzext] + 
+    XHiggs[hno, 3, uzext], Sub121 -> Sub6 - I*CB*XHiggs[hno, 3, uzext], 
+  Sub568 -> Sub6 + I*CB*XHiggs[hno, 3, uzext], 
+  Sub208 -> (CBA*CW2 - S2B*SAB)*XHiggs[hno, 1, uzext] + 
+    (CAB*S2B - CW2*SBA)*XHiggs[hno, 2, uzext] - I*CW2*XHiggs[hno, 3, uzext], 
+  Sub204 -> (CBA*CW2 - S2B*SAB)*XHiggs[hno, 1, uzext] + 
+    (CAB*S2B - CW2*SBA)*XHiggs[hno, 2, uzext] + I*CW2*XHiggs[hno, 3, uzext], 
+  Sub210 -> (2*CBA*CW2 - S2B*SAB)*XHiggs[hno, 1, uzext] + 
+    (CAB*S2B - 2*CW2*SBA)*XHiggs[hno, 2, uzext] - 
+    (2*I)*CW2*XHiggs[hno, 3, uzext], 
+  Sub430 -> Sub5 - I*SB*XHiggs[hno, 3, uzext], 
+  Sub122 -> Sub5 + I*SB*XHiggs[hno, 3, uzext], 
+  Sub142 -> (SA - 4*SA*SW2)*XHiggs[hno, 1, uzext] + 
+    CA*(-1 + 4*SW2)*XHiggs[hno, 2, uzext] + I*SB*XHiggs[hno, 3, uzext], 
+  Sub126 -> I*SA*XHiggs[hno, 1, uzext] - I*CA*XHiggs[hno, 2, uzext] + 
+    SB*XHiggs[hno, 3, uzext], Sub434 -> (-I)*SA*XHiggs[hno, 1, uzext] + 
+    I*CA*XHiggs[hno, 2, uzext] + SB*XHiggs[hno, 3, uzext], 
+  Sub429 -> (CBA*SB - CB*SBA)*Sub369*XHiggs[hno, 1, uzext] - 
+    (CB*CBA + SB*SBA)*Sub369*XHiggs[hno, 2, uzext] + 
+    I*(CBA*SA + CA*SBA)*(-3*F2 + 2*(F1 + F2)*SW2)*XHiggs[hno, 3, uzext], 
+  Sub220[Gen4] -> 2*MW2 - Mf2[bH, gno1] - Mf2[tH, Gen4], 
+  Sub251[Gen4] -> 2*m22*TB2 - TB2*Mf2[bH, gno1] - Mf2[tH, Gen4], 
+  Sub222[Gen4] -> 2*MW2 - Mf2[bH, gno2] - Mf2[tH, Gen4], 
+  Sub258[Gen4] -> 2*MW2 - Mf2[bH, gno1] + Mf2[tH, Gen4], 
+  Sub255[Gen4] -> 2*MW2 - Mf2[bH, gno2] + Mf2[tH, Gen4], 
+  Sub221[Gen4] -> 2*MW2 - Mf2[bH, gno2] + 3*Mf2[tH, Gen4], 
+  Sub178[Gen4] -> 4*CBA*CW2*MW2 - 2*CBA*CW2*Mf2[bH, gno1] + 
+    (C2B*CAB + CBA*CW2)*Mf2[tH, Gen4], Sub177[Gen4] -> 
+   4*CW2*MW2*SBA - 2*CW2*SBA*Mf2[bH, gno1] + (-(C2B*SAB) + CW2*SBA)*
+     Mf2[tH, Gen4], Sub215[Gen4] -> Mf2[bH, gno1] + Mf2[bH, gno2] - 
+    2*(m22 + 2*MW2 + Mf2[tH, Gen4]), Sub170[Gen4] -> 
+   C0i[cc2, m32, m12, m22, Mf2[tH, Gen4], MW2, MW2]*Sub165[Gen4] + 
+    C0i[cc1, m32, m12, m22, Mf2[tH, Gen4], MW2, MW2]*Sub167[Gen4] + 
+    C0i[cc0, m32, m12, m22, Mf2[tH, Gen4], MW2, MW2]*Sub169[Gen4], 
+  Sub190[Gen4] -> C0i[cc2, m22, m12, m32, Mf2[tH, Gen4], MW2, MW2]*
+     Sub180[Gen4] + C0i[cc1, m22, m12, m32, Mf2[tH, Gen4], MW2, MW2]*
+     Sub185[Gen4] + C0i[cc0, m22, m12, m32, Mf2[tH, Gen4], MW2, MW2]*
+     Sub189[Gen4], Sub236[Gen4] -> 
+   C0i[cc0, m12, m32, m22, Mf2[tH, Gen4], Mf2[tH, Gen4], MW2]*Mf2[tH, Gen4]*
+     Sub224[Gen4] - B0i[bb0, m32, MW2, Mf2[tH, Gen4]]*Sub230[Gen4] + 
+    B0i[bb0, m32, MHp2, Mf2[tH, Gen4]]*Sub235[Gen4], 
+  Sub269[Gen4] -> I*F1*Sub147*Mf[bH, gno2]*Sub263[Gen4] - 
+    Sub148*Sub266[Gen4] + F2*TB2*Mf[bH, gno1]*Sub268[Gen4], 
+  Sub213[Gen4] -> Sub211[Gen4]*XHiggs[hno, 1, uzext] - 
+    Sub212[Gen4]*XHiggs[hno, 2, uzext] + (2*I)*CW2*TB2*(m22 - Mf2[bH, gno1])*
+     XHiggs[hno, 3, uzext], Sub227[Gen4] -> 
+   Sub225[Gen4]*XHiggs[hno, 1, uzext] + Sub226[Gen4]*XHiggs[hno, 2, uzext] + 
+    I*SB*(MW2*TB2 - Mf2[tH, Gen4])*XHiggs[hno, 3, uzext], 
+  Sub234[Gen4] -> Sub232[Gen4]*XHiggs[hno, 1, uzext] - 
+    Sub233[Gen4]*XHiggs[hno, 2, uzext] + I*SB*(MW2*TB2 + Mf2[tH, Gen4])*
+     XHiggs[hno, 3, uzext], Sub242[Gen4] -> 
+   Sub238[Gen4]*XHiggs[hno, 1, uzext] - Sub240[Gen4]*XHiggs[hno, 2, uzext] - 
+    I*CW2*Sub241[Gen4]*XHiggs[hno, 3, uzext], Sub136[Cha4, Cha5] -> 
+   CW2*m12*sqrt2*Sub128[Cha4, Cha5] + MW*MCha[Cha4]*Sub131[Cha4, Cha5] + 
+    MW*MCha[Cha5]*Sub135[Cha4, Cha5], Sub130[Cha4, Cha5] -> 
+   2*SW2*Delta[Cha4, Cha5] - 2*UCha[Cha4, 1]*UChaC[Cha5, 1] - 
+    UCha[Cha4, 2]*UChaC[Cha5, 2], Sub129[Cha4, Cha5] -> 
+   2*SW2*Delta[Cha4, Cha5] - 2*VCha[Cha5, 1]*VChaC[Cha4, 1] - 
+    VCha[Cha5, 2]*VChaC[Cha4, 2], Sub310[Neu4, Neu5] -> 
+   CW*m12*Sub305[Neu4, Neu5] - MW*MNeu[Neu4]*Sub308[Neu4, Neu5] + 
+    MW*MNeu[Neu5]*Sub309[Neu4, Neu5], Sub286[Neu4, Neu5] -> 
+   (-I)*Sub279[Neu4, Neu5]*XHiggs[hno, 1, uzext] + 
+    I*Sub285[Neu4, Neu5]*XHiggs[hno, 2, uzext] - 
+    Sub282[Neu4, Neu5]*XHiggs[hno, 3, uzext], Sub304[Neu4, Neu5] -> 
+   (-I)*Sub297[Neu4, Neu5]*XHiggs[hno, 1, uzext] + 
+    I*Sub303[Neu4, Neu5]*XHiggs[hno, 2, uzext] + 
+    Sub300[Neu4, Neu5]*XHiggs[hno, 3, uzext], Sub603[All4, Neu4, Neu5] -> 
+   Sub583*Sub596[All4, Neu4, Neu5] - MNeu[Neu4]*Sub599[All4, Neu4, Neu5] + 
+    MNeu[Neu5]*Sub602[All4, Neu4, Neu5], Sub606[All4, Neu4, Neu5] -> 
+   MNeu[Neu4]*Sub597[All4, Neu4, Neu5] + 
+    MNeu[Neu5]*Sub601[All4, Neu4, Neu5] + Mf[bH, gno2]*
+     Sub605[All4, Neu4, Neu5], Sub575[All4, Cha4, Cha5, Ind1, Ind2] -> 
+   F2*Mf[bH, gno1]*Sub570[All4, Cha4, Cha5, Ind1, Ind2] + 
+    CKM[Ind1, gno2]*CKMC[Ind2, gno1]*Sub573[All4, Cha4, Cha5, Ind1, Ind2] - 
+    Mf[bH, gno2]*Sub574[All4, Cha4, Cha5, Ind1, Ind2], 
+  Sub315 -> dZh0h01 + 2*dTB1*SB2 - Sub314 - (2*dSW1)/SW, 
+  Sub319 -> dZHHHH1 + 2*dTB1*SB2 - Sub318 - (2*dSW1)/SW, 
+  Sub336 -> C2B*Sub335 + 3*C2B*A0[MA02] + C2A*A0[Mh02] - C2A*A0[MHH2], 
+  Sub372 -> m12 - m22 + 3*m32 - 2*Mf2[bH, gno1], 
+  Sub195 -> m12 - m22 + 3*m32 - 2*Mf2[bH, gno2], 
+  Sub205 -> m12 - m22 - m32 + Mf2[bH, gno2], 
+  Sub168[Gen4] -> 2*m22 + MW2 - 3*Mf2[bH, gno1] + 2*Mf2[tH, Gen4], 
+  Sub583 -> m12 + m22 - m32 - Mf2[bH, gno1] + Mf2[bH, gno2], 
+  Sub166[Gen4] -> m12 - m22 + 3*m32 - Sub164[Gen4], 
+  Sub322 -> dZA0A01 + 2*dZe1 - dMWsq1/MW2 + 2*dTB1*SB2 - (2*dSW1)/SW - 
+    dZA0G01/TB, Sub480 -> Sub458*Sub459 + Sub460*Sub463 - Sub473 - 
+    SA*Sub476 - CA*Sub479 - 3*(F1 - F2)*(Sub453 - Sub457)*Mf2[bH, gno1], 
+  Sub489 -> Sub441 - 3*Sub488 + CB2*(3*MW2*(-(CB*Sub171*Sub370) + Sub429)*
+       B0i[bb0, m32, MZ2, Mf2[bH, gno1]] + MW2*Sub449*C0i[cc1, m12, m32, m22, 
+        Mf2[bH, gno1], Mf2[bH, gno1], MZ2] + 
+      2*Sub445*C0i[cc2, m12, m32, m22, Mf2[bH, gno1], Mf2[bH, gno1], MZ2] + 
+      (2*I)*Sub435*C0i[cc0, m12, m32, m22, Mf2[bH, gno1], Mf2[bH, gno1], MZ2]*
+       Mf2[bH, gno1]), Sub259[Gen4] -> m12 + m22 - m32 + Sub258[Gen4], 
+  Sub273[Gen4] -> MW2*SB*(TB*Sub173[Gen4] + CW2*TB*Sub194[Gen4] - 
+      CW2*Sub193*Sub198[Gen4] + Sub204*Sub203[Gen4] + 
+      I*C0i[cc2, m22, m12, m32, Mf2[tH, Gen4], MHp2, MW2]*Sub209[Gen4]) + 
+    CW2*Sub272[Gen4]}}

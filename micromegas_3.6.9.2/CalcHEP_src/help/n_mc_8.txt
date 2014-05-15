@@ -1,0 +1,2 @@
+5 5 65 10
+ It is possible to introduce various  cuts for the phase space.

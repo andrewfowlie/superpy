@@ -1,0 +1,135 @@
+
+%QCD parameters:
+
+parameter alfSMZ=0.1184: 'alpha_QCD(MZ)',
+          Mtp   =173.07: 'top quark pole mass',
+          MbMb  =4.2   : 'Mb(Mb) running mass',
+          McMc  =1.3   : 'Mc(Mc) running mass',
+          GG  = 1.117  : 'Drived by CalcHEP', 
+           Q  = 100    : 'QCD scale'.
+
+%Electroweak parameters: 
+parameter EE  = 0.31333 : 'Electromagnetic coupling constant (<->1/128)', 
+	  SW  = 0.4740  : 'sin of the Weinberg angle (PDG-94,"on-shell")',
+          Ml  = 1.777   : 'mass of tau-lepton'.
+
+
+
+%Higgs sector
+parameter tb=10   :'Tangent beta',
+          MHc=200 :'Charged Higgs Mass',
+          aMu=100 : '|mu|',
+          fiMu=100: 'phase of mu in Degrees'.
+
+do_if mix2g==on.
+   parameter Mq=0.05 : 'mass for light quarks'.
+   parameter Au=0,Ad=0.
+do_else.
+   let Mq=0.
+   let Au=0.
+   let Ad=0.
+end_if.
+
+
+
+%Gaugino sector 
+
+parameter aM1=193 :'  ',
+          aM2=400 :'  ',
+          aM3=5000:'  ',
+          fiM1=0  :'  ',
+          fiM2=0  :'  ',
+          fiM3=0  :'  '. 
+
+coeff     EE.
+
+
+
+let Mm=0 ,Ms=0.
+	  
+coeff   Mt,Mb,Ml,MW,MZ.
+
+	 
+
+%parameter md3i=0:'md3i',
+%          mu3i=0:'md3i'.
+
+
+
+
+
+
+ /******************** Chargino/neutralino parameters ********************/
+
+
+%OrthMatrix({{Zv11, Zv21}, {Zv12, Zv22}}).
+%OrthMatrix({{Zu11, Zu21}, {Zu12, Zu22}}).
+
+
+
+
+parameter MSG=204.8003998 :'mass of gluino'.
+
+
+% Neutralino mixing matrix
+
+	   
+	   
+
+ /*********************** Slepton sector *******************************/
+
+parameter Ml1=800   :'ML1',
+          Ml2=800   :'ML2',
+          Ml3=802.65:'ML3',
+          Mr1=800   :'MR1',
+          Mr2=800   :'MR2',
+          Mr3=804.23:'MR3'.
+
+parameter
+          aAt=100  : ' ' , 
+          fiAt=0   : ' ' ,
+          aAb=100  : ' ' , 
+          fiAb=0   : ' ' ,
+          aAl=100  : ' ' , 
+          fiAl=0   : '  ',
+          aAm =100 : '  ',
+          fiAm=0   : '  ',
+          aAe =100 : '  ',
+          fiAe=0   : '  ',
+          aAu=0     : '  ',
+          fiAu=0   : '  ',     
+          aAd=0     : '  ',
+          fiAd=0   : '  '.
+          
+ 	  
+% Selectron mixing matrix
+
+
+
+ /***************** Squarks sector ****************************/
+
+parameter Mq1=800, Mq2=700, Mq3=600.
+parameter Mu1=800, Mu2=800, Mu3=800.
+parameter Md1=800, Md2=800, Md3=800.
+
+%SetAngle(Zb11r**2+Zb21r**2+Zb21i**2=1).   
+
+
+%OrthMatrix({{Zb11, Zb21}, {Zb12, Zb22}}).
+
+
+% u-squarks mixing matrix
+
+
+
+
+
+% ============ Parameters of  Higgs effective potential 
+
+
+% ==================  Orthogonality of 
+% ==================== width parameters
+
+parameter wt = 1.442:'width of top quark'.
+
+parameter MG1,MG2.

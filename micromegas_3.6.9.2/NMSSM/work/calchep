@@ -1,0 +1,47 @@
+:
+
+EXTLIB=
+#    EXTLIB could be an  external libraries needed to collect n_calchep. 
+
+# ===============  below should work without user intervention, but ...  ====================== 
+lpath=`cd ..; pwd`
+
+CALCHEP=`cd ../../CalcHEP_src; pwd`
+SRC=`cd ../../sources; pwd`
+export CALCHEP
+
+. $CALCHEP/FlagsForSh
+
+PATH=$PATH:$CALCHEP
+
+EXTLIB="$SRC/micromegas.a $lpath/work/work_aux.a $EXTLIB"
+if(test -r $lpath/lib/mLib.so)then 
+  EXTLIB="$lpath/lib/mLib.so $EXTLIB"; 
+  PATH=$PATH:$lpath/lib
+fi
+if(test -r $lpath/lib/aLib.a) then EXTLIB="$lpath/lib/aLib.a $EXTLIB";  fi
+export EXTLIB
+
+
+while :
+do 
+  $CALCHEP/bin/s_calchep $*
+  err=$?
+  case $err in 
+     0) exit;; 
+    20) ;;
+    22)  
+         $CALCHEP/bin/s_calchep -blind "[{{0" 
+         cd results 
+         $CALCHEP/nCompil 1>/dev/null 2>/dev/null; $CALCHEP/ld_n
+         err=$?
+         if(test $err -eq 0) then
+           echo n_calchep is created
+         else 
+           echo n_calchep is not created. 
+         fi 
+         break;;
+     *) echo CalcHEP has finished with error code $err
+      break 
+  esac 
+done 

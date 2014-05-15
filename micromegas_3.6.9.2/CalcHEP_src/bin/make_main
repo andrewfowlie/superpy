@@ -1,0 +1,9 @@
+: 
+  CALCHEP=  
+#---------------
+
+lib=$CALCHEP/lib
+.  $CALCHEP/FlagsForSh
+
+$CC $CFLAGS -I$CALCHEP/include -I$CALCHEP/c_source/dynamicME/include $*  $lib/dynamic_vp.a  $lib/dynamic_me.a $lib/num_c.a $lib/serv.a $lib/sqme_aux.so \
+$CALCHEP/include/VandPgate.c  $lib/libSLHAplus.a  $lib/dummy.a $lib/ntools.a    $lDL -lm $LX11

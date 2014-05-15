@@ -1,0 +1,14 @@
+2 2 50
+In general CalcHEP does not include widths in
+t-channel propagators. In order to force CalcHEP
+to insert t-channel width one has to change
+   "Width in t-channels  OFF" 
+switch in symbolic mode. The corresponding menu
+is activated by the F5  key.  
+
+  If it was done, this menu function allows you
+to exclude widths from t-channel propagators.
+But for standard configuration
+ "Width in t-channels  OFF"
+this menu function has not any influence on 
+numerical results.

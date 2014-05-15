@@ -1,0 +1,24 @@
+.TH FHCLEARRECORD 1 "1-May-2011"
+.SH NAME
+.PP
+FHClearRecord \- initialize a FeynHiggs Record
+.SH SYNOPSIS (Fortran version)
+.PP
+#include "FHRecord.h"
+.sp
+RecordDecl(record)
+.sp
+subroutine FHClearRecord(record)
+.SH SYNOPSIS (Mathematica version)
+.PP
+record = FHClearRecord[]
+.SH DESCRIPTION
+FHClearRecord sets the fields of a FeynHiggs Record to initial values.
+Possible pre-existing values are overwritten.
+.SH ARGUMENTS
+.TP
+.B record (output)
+the initialized record.
+.SH SEE ALSO
+.PP
+libFH(1)

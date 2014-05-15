@@ -1,0 +1,33 @@
+UniG_S010_ZP
+ Constraints 
+ Name |> Expression                         <|> Comment                xZr  <|
+CW    |sqrt(1-SW^2)                     |     cos of the Weinberg angle
+MW    |MZ*CW                            |     W-boson  mass
+c12   |sqrt(1-s12^2)                    |     parameter  of C-K-M matrix
+c23   |sqrt(1-s23^2)                    |     parameter  of C-K-M matrix
+c13   |sqrt(1-s13^2)                    |     parameter  of C-K-M matrix
+Vud   |c12*c13                          |     C-K-M matrix element
+Vus   |s12*c13                          |     C-K-M matrix element
+Vub   |s13                              |     C-K-M matrix element
+Vcd   |-s12*c23-c12*s23*s13             |     C-K-M matrix element
+Vcs   |c12*c23-s12*s23*s13              |     C-K-M matrix element
+Vcb   |s23*c13                          |     C-K-M matrix element
+Vtd   |s12*s23-c12*c23*s13              |     C-K-M matrix element
+Vts   |-c12*s23-s12*c23*s13             |     C-K-M matrix element
+Vtb   |c23*c13                          |     C-K-M matrix element
+#ok   |SAVE(EE,SW,Mtp,v,g10,MZp,rc)     |     copy parameter
+mixb  |xWr                              |     W_R-W_L mixing
+mixc  |(MW/MWp)^2                       |     W_R-W_L mixing continued
+grq   |g10*sqrt(rc/2)                   |     t_R^0-b_R^1-W_R coupling
+gtlp  |-g10*sqrt(rc/40)                 |     Zp-t_L coupling
+gbrp  |-3*g10*sqrt(rc/40)               |     Zp-b_R coupling
+gulp  |3*g10*sqrt(rc/40)                |     Zp-tau_L coupling
+fcl   |Sqrt2/sqrt(1-2*cl)               |
+fcr   |Sqrt2/sqrt(1-2*cr)               |
+fcnur |Sqrt2/sqrt(1-2*cnur)             |
+func1 |fcl^2*fcr^2                      |
+func2 |fcl^2*fcr^2/fcnur^2              |
+CbrtW |1/(Sqrt2*Mbr*SW)                 |    for brtw coupling
+gbl   |(-3+2*SW^2)                      |
+fzb   |gbl*EE*fcr*Mtp/(6*SW*CW*Mbr)     |   Z-B-br coupling
+==============================================================================

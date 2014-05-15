@@ -1,0 +1,8 @@
+5 5 45 8
+  Calculates total width as a function of
+the chosen parameter at a number of points
+defined by the user.  The range of the
+parameter variation and the step size are
+input in the standard way. The results can
+be written in a file or displayed on the
+screen.

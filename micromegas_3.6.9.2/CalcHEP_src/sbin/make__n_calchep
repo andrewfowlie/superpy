@@ -1,0 +1,39 @@
+echo make__n_calchep $1
+
+ if(test -r n_calchep) then 
+    rm n_calchep
+ fi
+echo  model number is $1
+. ./EXTLIBsh
+cp VandP.c VandP.cc
+ $CALCHEP/sbin/nCompil
+ if(test $? -ne 0)then 
+    echo Error in compilation
+    echo Press the Enter key to continue
+    read qq 
+    exit 1 
+ fi
+
+
+ if(test -r n_comphep) then
+    rm n_comphep
+    echo WARNING: old n_comphep is deleted
+ fi
+ $CALCHEP/sbin/ld_n $* 
+ if(test $? -ne 0) then  
+    echo Error in  linking, n_comphep is not created.
+    echo Press the Enter key to continue
+    read qq 
+    exit 1
+ else
+  if(test ! -d aux) then
+    mkdir aux 
+    mkdir aux/models aux/tmp aux/results aux/so_generated
+    for FILE in vars func prtcls lgrng extlib
+    do 
+      cp ../models/$FILE$1.mdl aux/models/"$FILE"1.mdl
+    done
+  fi   
+
+   echo OK n_comphep is created 
+ fi 

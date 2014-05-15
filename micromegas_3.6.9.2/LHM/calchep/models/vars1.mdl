@@ -1,0 +1,26 @@
+Littlest Higgs-T
+ Variables 
+ Name  | Value       |>  Comment                                   <|
+EE     |0.307885     |Electromagnetic coupling constant (<->1/128)
+GG     |1.21772      |Strong coupling constant (Z point)  (PDG-94)
+alfSMZ |0.1184       |alpha_QCD(MZ)
+SW     |0.4713       |sin of the Weinberg angle (PDG-94,"on-shell")
+s12    |0.221        |Parameter of C-K-M matrix (PDG-94)
+s23    |0.04         |Parameter of C-K-M matrix (PDG-94)
+s13    |0.0035       |Parameter of C-K-M matrix (PDG-94)
+MZ     |91.1876      |Z-boson mass
+Q      |100          |QCD scale
+f      |1000         |
+sa     |0.707107     |
+zero0  |0            |
+Mtp    |173.07       |top quark pole mass
+MbMb   |4.23         |Mb(Mb) running mass
+McMc   |1.27         |Mc(Mc) running mass
+MH     |120          |
+kappa  |1            |
+kappal |1            |
+Ms     |0.2          |
+Mq     |0.01         |
+Mm     |0.1057       |mass of muon
+Ml     |1.777        |mass of tau-lepton
+wtop   |1.442        |width of t-quark

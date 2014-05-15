@@ -1,0 +1,56 @@
+:
+
+#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/pukhov/Packages/lhapdf-5.8.4/install/lib
+
+WORK=`pwd`
+export WORK
+
+cd ../ 
+CALCHEP=`pwd`
+cd $WORK
+
+
+export CALCHEP
+
+echo CALCHEP= $CALCHEP
+if(test -r lock.batch) then 
+   echo The \"lock.batch\" file in the current directory tells us that CalcHEP
+   echo already was launched in this directory. See details about  
+   echo the process in the \"lock.batch\" file. If the process indeed was
+   echo finished remove the \"lock.batch\" file to continue.
+   exit 1
+fi 
+
+echo host `uname -n` ,  process $$  >lock.batch
+   
+trap "rm -f lock.batch"  0 1 2 3 9 
+
+if(test $# -eq 0 ) then 
+   echo ""
+   echo Main usage: \"./calchep_batch  batch_file_name\"
+   echo "    An example batch file  can be seen in:"
+   echo "    file://"$CALCHEP/utile/batch_file
+   echo ""
+   echo "Help files can be created with the command: "
+   echo "    \"./calchep_batch -help\"."
+   echo ""
+   echo "The files and directories created by the batch script can"
+   echo "    be removed with the command: \"./calchep_batch -clean\"."
+   echo "    This will remove the Events, Processes and html directories."
+   echo ""      
+   exit 0 
+fi
+
+if(test $# -eq 1 -a  "$1" = "-clean") then 
+  rm -rf  Processes Events html
+  exit 0
+fi
+
+if(test $# -eq 1 -a  "$1" = "-help") then 
+  $CALCHEP/bin/run_batch
+  exit 0
+fi
+
+
+$CALCHEP/bin/run_batch  $*
+

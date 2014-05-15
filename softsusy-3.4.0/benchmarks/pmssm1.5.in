@@ -1,0 +1,43 @@
+# Example input in SLHA format, and suitable for input to
+# SOFTSUSY (v1.8 or higher): benchmark point - see arXiv:1109.3859
+Block MODSEL		     # Select model
+    1    0		     # non universal
+Block SMINPUTS		     # Standard Model inputs
+    1	1.279340000e+02	     # alpha^(-1) SM MSbar(MZ)
+    2   1.166370000e-05	     # G_Fermi
+    3   1.172000000e-01	     # alpha_s(MZ) SM MSbar
+    4   9.118760000e+01	     # MZ(pole)
+    5	4.250000000e+00	     # mb(mb) SM MSbar
+    6   1.733000000e+02	     # mtop(pole)
+    7	1.777000000e+00	     # mtau(pole)
+Block MINPAR		     # Input parameters
+    3   1.000000000e+01	     # tanb
+Block SOFTSUSY               # Optional SOFTSUSY-specific parameters
+    1   1.000000000e-03      # Numerical precision: suggested range 10^(-3...-6)
+    2   0.000000000e+00	     # Quark mixing parameter: see manual
+    5   1.000000000e+00      # Include 2-loop scalar mass squared/trilinear RGEs
+Block EXTPAR          # non-universal SUSY breaking parameters
+      0   -1.000000000000000e+00	 # Set MX=MSUSY 
+      1    7.000000000000000e+02         # M_1(MX)
+      2    2.500000000000000e+03         # M_2(MX)
+      3    8.400000000000000e+02         # M_3(MX)
+     11    0.000000000000000e+00         # At(MX)
+     12    0.000000000000000e+00         # Ab(MX)
+     13    0.000000000000000e+00         # Atau(MX)
+     23    2.500000000000000e+03         # mu(MX)
+     26    2.500000000000000e+03         # mA(pole)
+     31    2.500000000000000e+03         # meL(MX)
+     32    2.500000000000000e+03         # mmuL(MX)
+     33    2.500000000000000e+03         # mtauL(MX)
+     34    2.500000000000000e+03         # meR(MX)
+     35    2.500000000000000e+03         # mmuR(MX)
+     36    2.500000000000000e+03         # mtauR(MX)
+     41    8.400000000000000e+02         # mqL1(MX)
+     42    8.400000000000000e+02         # mqL2(MX)
+     43    2.500000000000000e+03         # mqL3(MX)
+     44    8.400000000000000e+02         # muR(MX)
+     45    8.400000000000000e+02         # mcR(MX)
+     46    2.500000000000000e+03         # mtR(MX)
+     47    8.400000000000000e+02         # mdR(MX)
+     48    8.400000000000000e+02         # msR(MX)
+     49    2.500000000000000e+03         # mbR(MX)

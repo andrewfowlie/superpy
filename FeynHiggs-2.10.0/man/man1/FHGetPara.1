@@ -1,0 +1,118 @@
+.TH FHGETPARA 1 "2-Oct-2013"
+.SH NAME
+.PP
+FHGetPara \- retrieves (some of) the MSSM parameters computed from the  
+input values by FHSetPara
+.SH SYNOPSIS (Fortran version)
+.PP
+integer error, nmfv
+.br
+double precision MSf(2,5,3), MASf(6,5), MCha(2), MNeu(4)
+.br
+double complex USf(2,2,5,3), UASf(6,6,5)
+.br
+double complex UCha(2,2), VCha(2,2), ZNeu(4,4)
+.br
+double complex Deltab
+.br
+double precision MGl
+.br
+double precision MHtree(4), SAtree
+.sp
+subroutine FHGetPara(error, nmfv, MSf, USf, MASf, UASf,
+.br
+  MCha, UCha, VCha, MNeu, ZNeu, Deltab, MGl,
+.br
+  MHtree, SAtree)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHGetPara[]
+.SH DESCRIPTION
+FHGetPara returns the sfermion, chargino, and neutralino masses and
+mixing matrices, and the correction to MB which were computed from the
+input parameters by FHSetPara(1).  The flags and parameters must have been
+set before with FHSetFlags(1) and FHSetPara(1).
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in GetPara.F from which
+the error message was emitted
+.TP
+.B nmfv (output)
+bit t = 1..4 indicates whether non-minimal flavour violation is
+active for sfermion type t: nu, e, u, d.
+.TP
+.B MSf(s,t,g) (output)
+the MFV sfermion masses, where
+.br
+s = 1..2  sfermion index
+.br
+t = 1..5  sfermion type: nu, e, u, d, d-resummed
+.br
+g = 1..3  generation index
+.TP
+.B USf(s1,s2,t,g) (output)
+the MFV sfermion mixing matrices, where
+.br
+s1 = 1..2  sfermion index (enumerates mass eigenstates)
+.br
+s2 = 1..2  sfermion index (enumerates gauge eigenstates)
+.br
+t  = 1..5  sfermion type: nu, e, u, d, d-resummed
+.br
+g  = 1..3  generation index
+.TP
+.B MASf(as,t) (output)
+the NMFV sfermion masses, where
+.br
+as = 1..6  sfermion index
+.br
+t  = 1..4  sfermion type: nu, e, u, d
+.TP
+.B UASf(as1,as2,t) (output)
+the sfermion mixing matrices, where
+.br
+as1 = 1..6  sfermion index (enumerates mass eigenstates)
+.br
+as2 = 1..6  sfermion index (enumerates gauge eigenstates)
+.br
+t   = 1..4  sfermion type: nu, e, u, d
+.TP
+.B MCha(c) (output)
+the chargino masses, where
+.br
+c  = 1..2  chargino index
+.TP
+.B UCha(c1,c2), VCha(c1,c2) (output)
+the chargino mixing matrices, where
+.br
+c1 = 1..2  chargino index (enumerates mass eigenstates)
+.br
+c2 = 1..2  chargino index (enumerates gauge eigenstates)
+.TP
+.B MNeu(n) (output)
+the neutralino masses, where
+.br
+n  = 1..4  neutralino index
+.TP
+.B ZNeu(n1,n2) (output)
+the neutralino mixing matrix, where
+.br
+n1 = 1..4  neutralino index (enumerates mass eigenstates)
+.br
+n2 = 1..4  neutralino index (enumerates gauge eigenstates)
+.TP
+.B Deltab (output)
+the correction to the bottom Yukawa coupling, Delta_b.
+.TP
+.B MGl (output)
+the gluino mass.
+.TP
+.B MHtree (output)
+the tree-level Higgs masses.
+.TP
+.B SAtree (output)
+the tree-level sin(alpha).
+.SH SEE ALSO
+.PP
+libFH(1)

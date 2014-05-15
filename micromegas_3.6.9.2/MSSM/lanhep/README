@@ -1,0 +1,15 @@
+The *.src files contains the definition of the Minimal Supersymmetric Standard Model
+in the LanHEP format. To process those files you need to install LanHEP 
+
+     http://theory.sinp.msu.ru/~semenov/lanhep.html
+
+For running LanHEP use
+
+            lhep startup.src -evl 2
+
+This will transform thes source files  into CalcHEP model files which 
+can then be used in CalcHEP or micrOMEGAs  for calculating cross sections and 
+Dark Matter related observables. The output should be four files (varsX.mdl   
+funcX.mdl prtclsX.mdl and lgrngX.mdl) which specify the model in the
+CalcHEP format. Here X could be 1,2, or 3 depending 
+on switches in the 'startup.src' file. See arXiv:1008.0181 for details. 

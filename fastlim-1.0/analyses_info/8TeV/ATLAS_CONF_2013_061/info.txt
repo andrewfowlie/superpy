@@ -1,0 +1,2 @@
+0-1 leptons + >=3 b-jets + Etmiss [3rd gen. squarks] at 8TeV with $20.1fb^{-1}$
+http://cds.cern.ch/record/1557778

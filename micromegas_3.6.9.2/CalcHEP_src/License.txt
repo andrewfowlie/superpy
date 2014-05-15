@@ -1,0 +1,53 @@
+ This license is  for distribution of CalcHEP and various models
+ of particle interaction which were developed for CalcHEP. Such models
+ typically use several scientific packages and so I have to
+ re-distribute programs written by other people.  In the same time  I
+ consider CalcHEP as a calculator of matrix elements which in its turn
+ can be included into other scientific packages.
+                                        Alexander Pukhov
+
+           Non-profit Use License Agreement
+           --------------------------------
+
+ 0. This license is written  for distribution of scientific software.
+    It is assumed that such software is published in
+    scientific journals and will be  used  for further academic studies
+    or education.  The including of given software into another packages or
+    its use for education   needs permission for redistribution and such
+    permission is provided by this license.
+
+
+ 1. This license touches only non-profit use and distribution  and does
+    not permit any  commercial re-licensing or re-distributions. In particular,
+    you  get this package free of charge.
+
+
+ 2. The license permits you to copy, use, re-distribute CalcHEP package
+    and  software which supports models of particle interactions  for
+    CalcHEP as well as  to include them into another packages with their
+    further  distribution under the following conditions:
+
+  a) any re-distribution has to be accompanied with a file which contains
+     the list  of scientific publications which present the given package
+     as well as  all its parts. This file also has to contain the list of
+     WWW sites where  original versions  of this package  and  original
+     versions  of  its parts are disposed.
+
+  b) redistributing the package you have a right to change installation
+     routines,  improve compiler dependent parts of the code, and  change
+     interface  routines. But modification of codes that change scientific
+     results produced by the package or  some its part are not permitted
+     by this license.
+
+
+ 3. This License states  that all included programs are  presented
+    as they were written by their authors,  except  changes described
+    in point 2(b).  All publications presenting  these programs as well
+    as addresses of WWW sites which distribute original versions are written
+    in file CITE which is included in any  distributed *.tgz archive. (*)
+
+
+ *)  You can also get corresponding information about  CalcHEP pressing
+   the F9 key.  Information about each model is also  stored into the
+   "Libraries" model item as a comment.
+

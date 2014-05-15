@@ -1,0 +1,12 @@
+3 5 50 Plot
+ The calculated values of the function will be
+written to a file plot_#.txt. After that a message
+about the file name will appear on the screen.
+ 
+ The generated file can be used to reproduce plot 
+via CalcHEP  facilities :
+       $CALCHEP/bin/plot_view < plot_#.txt
+Also it contains  GNUPLOT command commented by 
+#GNUPLOT and PAW command commented by #PAW.
+These commands can be moved in GNUPLOT and PAW 
+scripts for subsequent visualization of plots.

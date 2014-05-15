@@ -1,0 +1,35 @@
+{Amp[{{S[1], k[1], m1, {}}} -> {{V[5, {Glu2}], k[2], 0, {}}, 
+     {V[5, {Glu3}], k[3], 0, {}}}][0], 
+ Amp[{{S[1], k[1], m1, {}}} -> {{V[5, {Glu2}], k[2], 0, {}}, 
+     {V[5, {Glu3}], k[3], 0, {}}}][
+  Mat[SUN1]*(-(AlfasMH*cI*EL0*hggDIm[1, Gen4]*Mf2[4, Gen4]*Sub3[Gen4])/
+     (2*MW*Pi*SW) + (AlfasMH*EL0*hggU[1, Gen4]*Mf2[tH, Gen4]*Sub5[Gen4])/
+     (MW*Pi*SW) + (AlfasMH*EL0*hggDRe[1, Gen4]*Mf2[4, Gen4]*Sub7[Gen4])/
+     (MW*Pi*SW))*SumOver[Gen4, 3]], {Mat[SUN1, SUN1] -> 2}, 
+ {Pair1 -> Pair[ec[2], ec[3]], Pair2 -> Pair[ec[2], k[1]], 
+  Pair3 -> Pair[ec[3], k[1]], SUN1 -> SUNT[Glu2, Glu3, 0, 0], 
+  Abb1 -> -(m12*Pair1) + 2*Pair2*Pair3, 
+  Abb2 -> -(m12*Pair1) + 4*Pair2*Pair3}, 
+ {Sub2[Gen4] -> B0i[bb0, 0, Mf2[4, Gen4], Mf2[4, Gen4]] - 
+    4*C0i[cc00, 0, 0, m12, Mf2[4, Gen4], Mf2[4, Gen4], Mf2[4, Gen4]], 
+  Sub1[Gen4] -> C0i[cc12, 0, 0, m12, Mf2[4, Gen4], Mf2[4, Gen4], 
+     Mf2[4, Gen4]] + C0i[cc22, 0, 0, m12, Mf2[4, Gen4], Mf2[4, Gen4], 
+     Mf2[4, Gen4]], Sub4[Gen4] -> C0i[cc12, 0, 0, m12, Mf2[tH, Gen4], 
+     Mf2[tH, Gen4], Mf2[tH, Gen4]] + C0i[cc22, 0, 0, m12, Mf2[tH, Gen4], 
+     Mf2[tH, Gen4], Mf2[tH, Gen4]], Sub6[Gen4] -> 
+   Re[C0i[cc12, 0, 0, m12, Mf2[4, Gen4], Mf2[4, Gen4], Mf2[4, Gen4]]] + 
+    Re[C0i[cc22, 0, 0, m12, Mf2[4, Gen4], Mf2[4, Gen4], Mf2[4, Gen4]]], 
+  Sub3[Gen4] -> Abb1*Im[C0i[cc0, 0, 0, m12, Mf2[4, Gen4], Mf2[4, Gen4], 
+       Mf2[4, Gen4]]] + 2*Abb2*Im[C0i[cc2, 0, 0, m12, Mf2[4, Gen4], 
+       Mf2[4, Gen4], Mf2[4, Gen4]]] + 8*Pair2*Pair3*Im[Sub1[Gen4]] - 
+    2*Pair1*Im[Sub2[Gen4]], Sub5[Gen4] -> 
+   Pair1*B0i[bb0, 0, Mf2[tH, Gen4], Mf2[tH, Gen4]] - 
+    (Abb1*C0i[cc0, 0, 0, m12, Mf2[tH, Gen4], Mf2[tH, Gen4], Mf2[tH, Gen4]])/
+     2 - 4*Pair1*C0i[cc00, 0, 0, m12, Mf2[tH, Gen4], Mf2[tH, Gen4], 
+      Mf2[tH, Gen4]] - Abb2*C0i[cc2, 0, 0, m12, Mf2[tH, Gen4], Mf2[tH, Gen4], 
+      Mf2[tH, Gen4]] - 4*Pair2*Pair3*Sub4[Gen4], 
+  Sub7[Gen4] -> Pair1*Re[B0i[bb0, 0, Mf2[4, Gen4], Mf2[4, Gen4]]] - 
+    (Abb1*Re[C0i[cc0, 0, 0, m12, Mf2[4, Gen4], Mf2[4, Gen4], Mf2[4, Gen4]]])/
+     2 - 4*Pair1*Re[C0i[cc00, 0, 0, m12, Mf2[4, Gen4], Mf2[4, Gen4], 
+       Mf2[4, Gen4]]] - Abb2*Re[C0i[cc2, 0, 0, m12, Mf2[4, Gen4], 
+       Mf2[4, Gen4], Mf2[4, Gen4]]] - 4*Pair2*Pair3*Sub6[Gen4]}}

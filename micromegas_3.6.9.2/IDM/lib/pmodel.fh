@@ -1,0 +1,4 @@
+C to declare  types  of Fortran routines
+
+       integer hbBlocks
+       external  hbBlocks

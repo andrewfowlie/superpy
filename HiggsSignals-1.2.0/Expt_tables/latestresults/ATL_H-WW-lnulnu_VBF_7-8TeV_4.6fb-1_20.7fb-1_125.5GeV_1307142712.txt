@@ -1,0 +1,17 @@
+# WARNING: Do not use together with
+# ATL_H-WW-lnulnu_VBF_7-8TeV_4.6fb-1_20.7fb-1_125.5GeV_2013030102.txt
+# Data taken from Fig.6 in arXiv:1307.1427.
+# Published at Moriond 2013.
+1307142712	130714272	1
+ATL-CONF-2013-030,arXiv:1307.1427
+LHC, ATL, ATL
+(pp)->h->WW->lnulnu (VBF)
+8 	25.3	0.036
+1	0
+8.0
+125.5 125.5 0.1
+2	125.5
+12 22
+1.	50.
+       125.5          0.86           1.42           2.12
+ 

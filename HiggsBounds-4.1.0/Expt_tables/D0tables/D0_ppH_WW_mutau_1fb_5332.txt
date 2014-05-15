@@ -1,0 +1,9 @@
+#D0 Note 5332 Jul 25 2007
+#D0_ppH_WW_mutau_1fb
+#no interpolation
+#columns: Mh(in GeV), obs, exp (in pb)
+
+120	14.6	15.1
+140	9.9	13.2
+160	9.7	9.2
+180	13.0	9.7

@@ -1,0 +1,237 @@
+.TH FHCOUPLINGS 1 "11-May-2012"
+.SH NAME
+.PP
+FHCouplings \- compute the Higgs couplings, decay widths, and branching 
+ratios
+.SH SYNOPSIS (Fortran version)
+.PP
+#include "FHCouplings.h"
+.sp
+integer error
+.br
+double complex couplings(ncouplings), couplingsms(ncouplingsms)
+.br
+double precision gammas(ngammas), gammasms(ngammasms)
+.br
+integer fast
+.sp
+subroutine FHCouplings(error,
+.br
+  couplings, couplingsms,
+.br
+  gammas, gammasms, fast)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHCouplings[fast:1]
+.SH DESCRIPTION
+FHCouplings computes the Higgs couplings, decay widths, and branching 
+ratios.  It uses the Higgs masses and mixings computed during the last 
+invocation of FHHiggsCorr(1).  The flags and parameters must have been
+set before with FHSetFlags(1) and FHSetPara(1)/FHSetSLHA(1).
+.SH ARGUMENTS
+The arrays passed to FHCouplings should never be accessed directly,
+but only through the preprocessor macros defined in FHCouplings.h,
+which needs to be included once per file.
+.TP
+.B error (output)
+zero if successful, otherwise the line number in Couplings.F from
+which the error message was emitted
+.TP
+.B couplings(i) (output)
+the MSSM Higgs couplings.
+This array is indexed with preprocessor macros (see below).
+.TP
+.B couplingsms(i) (output)
+the couplings of a Standard Model Higgs with the same mass as the
+respective MSSM Higgs.
+This array is indexed with preprocessor macros (see below).
+.TP
+.B gammas(i) (output)
+the Higgs decay widths and branching ratios.
+This array is indexed with preprocessor macros (see below).
+.TP
+.B gammasms(i) (output)
+the decay widths and branching ratios of a Standard Model Higgs
+with the same mass as the respective MSSM Higgs.
+This array is indexed with preprocessor macros (see below).
+.TP
+.B fast (input)
+a flag indicating whether the off-diagonal fermion decays shall
+be computed.  Unless the decays h_i -> f_j f_k (j != k) are
+explicitly needed, they may safely be ignored, as they hardly 
+contribute to the total cross-section.
+.SH TOTAL DECAY WIDTHS
+.P
+The total decay widths are accessed as
+.TP
+.B GammaTot(h)
+the total width of the (MSSM) Higgs boson, where
+.br
+h = 1..4  Higgs: h0, HH, A0, Hp
+.TP
+.B GammaSMTot(h)
+the total width of a Standard Model Higgs boson with the same mass as 
+the respective MSSM Higgs boson, where
+.br
+h = 1..3  Higgs: h0, HH, A0
+.SH COUPLINGS, PARTIAL DECAY WIDTHS, AND BRANCHING RATIOS
+The following macros access couplings, widths, and branching ratios:
+.TP
+.B Coupling(c)
+the coupling for the scalar or vector channel c
+.TP
+.B LCoupling(c), RCoupling(c)
+the left- and right-handed couplings for the fermionic channel c,
+i.e. the coupling is
+.br
+                1 - gamma_5                1 + gamma_5
+.br
+   LCoupling(c) ----------- + RCoupling(c) -----------
+.br
+                     2                          2
+.br
+Equating this to S + i gamma_5 P, the scalar and pseudo-scalar 
+coefficients are trivially obtained as
+.br
+   scalar = 1/2 (RCoupling(c) + LCoupling(c)),
+.br
+   pseudo-scalar = 1/(2 i) (RCoupling(c) - LCoupling(c)).
+.PP
+The couplings are given in the conventions of the MSSM model file of
+FeynArts.  For couplings where the order is essential, the following
+rules apply:
+.br
+- A charged Higgs at pos. 1 is always the particle, i.e. H-,
+  this fixes all other particles by charge conservation.
+.br
+- For the H0ChaCha coupling, the first Chargino is the
+  particle, chi-, and the second one the antiparticle, chi+.
+.TP
+.B CouplingSM(c), LCouplingSM(c), RCouplingSM(c)
+the coupling for the corresponding SM channel.
+.TP
+.B Gamma(c), BR(c)
+the width and branching ratio for channel c.
+.TP
+.B GammaSM(c), BRSM(c)
+the width and branching ratio of the corresponding SM channel.
+.SH CHANNELS
+.TP
+.B H0VV(h,vv)
+neutral Higgs to vector + vector, where
+.br
+h  = 1..3  Higgs: h0, HH, A0
+.br
+vv = 1..5  vector-boson pair:
+.br
+           gamma gamma, gamma Z, ZZ, WW, gg
+.TP
+.B H0FF(h,t,g1,g2)
+neutral Higgs to fermion + fermion, where
+.br
+h  = 1..3  Higgs: h0, HH, A0
+.br
+t  = 1..4  fermion type: nu, e, u, d
+.br
+g1 = 1..3  fermion generation
+.br
+g2 = 1..3  fermion generation
+.TP
+.B HpFF(p,g1,g2)
+charged Higgs to fermion + fermion, where
+.br
+p  = 1..2  decay products: leptons, quarks
+.br
+g1 = 1..3  up-type fermion 1 generation
+.br
+g2 = 1..3  down-type fermion 2 generation
+.TP
+.B H0ChaCha(h,c1,c2)
+neutral Higgs to chargino + chargino, where
+.br
+h  = 1..3  Higgs: h0, HH, A0
+.br
+c1 = 1..2  chargino 1
+.br
+c2 = 1..2  chargino 2
+.TP
+.B H0NeuNeu(h,n1,n2)
+neutral Higgs to neutralino + neutralino, where
+.br
+h  = 1..3  Higgs: h0, HH, A0
+.br
+n1 = 1..4  neutralino 1
+.br
+n2 = 1..4  neutralino 2
+.TP
+.B HpNeuCha(n1,c2)
+charged Higgs to neutralino + chargino, where
+.br
+n1 = 1..4  neutralino
+.br
+c2 = 1..2  chargino
+.TP
+.B H0HV(h,hv)
+neutral Higgs to Higgs + vector, where
+.br
+h  = 1..3  decaying Higgs: h0, HH, A0
+.br
+hv = 1..3  produced pair: h0-Z, HH-Z, A0-Z
+.TP
+.B HpHV(hv)
+charged Higgs to Higgs + vector, where
+.br
+hv = 1..3  produced pair: h0-W, HH-W, A0-W
+.TP
+.B H0HH(h,h1,h2)
+neutral Higgs to Higgs + Higgs, where
+.br
+h  = 1..3  decaying Higgs: h0, HH, A0
+.br
+h1 = 1..4  produced Higgs 1: h0, HH, A0, Hp
+.br
+h2 = 1..4  produced Higgs 2: h0, HH, A0, Hp
+.TP
+.B H0SfSf(h,s1,s2,t,g)
+neutral Higgs to sfermion + sfermion, where
+.br
+h  = 1..3  Higgs: h0, HH, A0
+.br
+s1 = 1..2  sfermion 1
+.br
+s2 = 1..2  sfermion 2
+.br
+t  = 1..4  sfermion type: nu, e, u, d
+.br
+g  = 1..3  common sfermion generation
+.TP
+.B HpSfSf(s1,s2,p,g1,g2)
+charged Higgs to sfermion + sfermion, where
+.br
+s1 = 1..2  up-type sfermion 1
+.br
+s2 = 1..2  down-type sfermion 2
+.br
+p  = 1..2  decay products: sleptons, squarks
+.br
+g1 = 1..3  up-type sfermion 1 generation
+.br
+g2 = 1..3  down-type sfermion 2 generation
+.SH MATHEMATICA USAGE
+Mathematica and Fortran share the same names for the channels,
+but due to the structure of the Mathematica output, the results 
+have to be accessed in a slightly different way.
+.P
+To access the h0 -> top top decay, for example, one would use
+.P
+  couplings = FHCouplings[];
+  h0ff = Gamma[H0FF] /. couplings;
+  h0toptop = h0ff[[1,3,3,3]]
+.P
+in Mathematica, while in Fortran the same is done with
+.P
+  call FHCouplings(error, couplings, gammas, gammasms)
+  h0toptop = Gamma(H0FF(1,3,3,3))
+.SH SEE ALSO
+.PP
+libFH(1)

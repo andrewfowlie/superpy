@@ -1,0 +1,16 @@
+# Data read in from Fig. 10.
+# Data overlap with
+# CMS_VH-bb_7TeV_4.9fb-1_12020106.txt
+# CMS_VH-bb_8TeV_5.3fb-1_12020107.txt
+12045101	1204501		1
+CMS-PAS-HIG-12-045
+LHC, CMS, CMS
+(pp)->Vh->Vbb
+8	17.1   0.044
+1	0
+12.5
+125.8 125.8 1.0
+2	-1
+35 45
+
+125.8	0.708  1.309  1.963

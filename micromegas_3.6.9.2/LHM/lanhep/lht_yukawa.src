@@ -1,0 +1,551 @@
+ 
+ %%%%%%%%%%%%%%%%%%% SIGMA0*SIGMA0 == 0
+ lterm -1/(2*Sqrt2)*lam1*f*
+       eps^i^j^k*eps2^x^y*
+       anti('tr+')*
+       (
+       (    (sigma0_3^j^x* sigma0_3^k^y))*Q31^i 
+      -(  ( tsigma0_3^j^x*tsigma0_3^k^y))*Q32S^i 
+       )
+       + AddHermConj.
+ 
+ %%%%%%%%%%%%%%%%% SIGMA0*SIGMA1+ SIGMA1*SIGMA0
+  lterm -1/(2*Sqrt2)*lam1*f*
+	eps^i^j^k*eps2^x^y* 
+	anti('tr+')*
+	(
+    (	-1/f*( sigma0_3^j^x* sigma1_3^k^y+ sigma1_3^j^x* sigma0_3^k^y))*Q31^i 
+      -(-1/f*(tsigma0_3^j^x*tsigma1_3^k^y+tsigma1_3^j^x*tsigma0_3^k^y))*Q32S^i
+	)
+	+ AddHermConj.
+ 
+ %%%%%%%%%%%%%%%%%%%%%%% SIGMA1*SIGMA1 ==0
+ lterm -1/(2*Sqrt2)*lam1*f*
+	eps^i^j^k*eps2^x^y*
+	anti('tr+')*
+       (
+       (  1/f**2*( sigma1_3^j^x * sigma1_3^k^y))*Q31^i 
+	-(1/f**2*(tsigma1_3^j^x *tsigma1_3^k^y))*Q32S^i
+       )
+       + AddHermConj where f=v/del
+	.
+	
+ %%%%%%%%%%%%%%%%%%%% SIGMA0*SIGMA2+ SIGMA2*SIGMA0
+  lterm -1/(2*Sqrt2)*lam1*f*
+	eps^i^j^k*eps2^x^y*
+	anti('tr+')*
+	(
+	(1/f**2*( sigma0_3^j^x * sigma2_3^k^y+ sigma2_3^j^x * sigma0_3^k^y))*Q31^i 
+       -(1/f**2*(tsigma0_3^j^x *tsigma2_3^k^y+tsigma2_3^j^x *tsigma0_3^k^y))*Q32S^i
+    )
+	+ AddHermConj.
+  
+ %%%%%%%%%%%%%%%%%
+ %%%%%%%%%%%%%%%%%%%% SIGMA1*SIGMA2+ SIGMA2*SIGMA1
+  lterm -1/(2*Sqrt2)*lam1*f*
+	eps^i^j^k*eps2^x^y*
+	anti('tr+')*
+	(
+	(-1/f**3*( sigma1_3^j^x * sigma2_3^k^y+ sigma2_3^j^x * sigma1_3^k^y))*Q31^i 
+       -(-1/f**3*(tsigma1_3^j^x *tsigma2_3^k^y+tsigma2_3^j^x *tsigma1_3^k^y))*Q32S^i
+    )
+	+ AddHermConj. 
+  
+ %%%%%%%%%%%%%%%%%%%% SIGMA0*SIGMA3+ SIGMA3*SIGMA0
+  lterm -1/(2*Sqrt2)*lam1*f*
+	eps^i^j^k*eps2^x^y*
+	anti('tr+')*
+	(
+	(-1/f**3*( sigma0_3^j^x * sigma3_3^k^y+ sigma3_3^j^x * sigma0_3^k^y))*Q31^i 
+       -(-1/f**3*(tsigma0_3^j^x *tsigma3_3^k^y+tsigma3_3^j^x *tsigma0_3^k^y))*Q32S^i
+    )
+	+ AddHermConj. 
+ 
+ %%%%%%%%%%%%%%%%%
+ 
+  lterm  -lam2*f*(anti('~tl1')*'~tr1' + anti('~tl2')*'~tr2') 
+	 + AddHermConj.
+ %%%%%%%%%%%%%%%%%
+ %%%%%%%%%%%%%%%%%
+ % C-quark
+ %%%%%%%%%%%%%%%%%%% SIGMA0*SIGMA0 == 0
+ lterm -1/(2*Sqrt2)*lamc*f*
+       eps^i^j^k*eps2^x^y*
+       anti('cr+')*
+       (
+       (    (sigma0_3^j^x* sigma0_3^k^y))*Q2_31^i 
+      -(  ( tsigma0_3^j^x*tsigma0_3^k^y))*Q2_32S^i 
+       )
+       + AddHermConj.
+ 
+ %%%%%%%%%%%%%%%%% SIGMA0*SIGMA1+ SIGMA1*SIGMA0
+  lterm -1/(2*Sqrt2)*lamc*f*
+	eps^i^j^k*eps2^x^y* 
+	anti('cr+')*
+	(
+    (	-1/f*( sigma0_3^j^x* sigma1_3^k^y+ sigma1_3^j^x* sigma0_3^k^y))*Q2_31^i 
+      -(-1/f*(tsigma0_3^j^x*tsigma1_3^k^y+tsigma1_3^j^x*tsigma0_3^k^y))*Q2_32S^i
+	)
+	+ AddHermConj.
+ 
+ %%%%%%%%%%%%%%%%%%%%%%% SIGMA1*SIGMA1 ==0
+ lterm -1/(2*Sqrt2)*lamc*f*
+	eps^i^j^k*eps2^x^y*
+	anti('cr+')*
+       (
+       (  1/f**2*( sigma1_3^j^x * sigma1_3^k^y))*Q2_31^i 
+	-(1/f**2*(tsigma1_3^j^x *tsigma1_3^k^y))*Q2_32S^i
+       )
+       + AddHermConj.
+	
+ %%%%%%%%%%%%%%%%%%%% SIGMA0*SIGMA2+ SIGMA2*SIGMA0
+  lterm -1/(2*Sqrt2)*lamc*f*
+	eps^i^j^k*eps2^x^y*
+	anti('cr+')*
+	(
+	(1/f**2*( sigma0_3^j^x * sigma2_3^k^y+ sigma2_3^j^x * sigma0_3^k^y))*Q2_31^i 
+       -(1/f**2*(tsigma0_3^j^x *tsigma2_3^k^y+tsigma2_3^j^x *tsigma0_3^k^y))*Q2_32S^i
+    )
+	+ AddHermConj.
+  
+ %%%%%%%%%%%%%%%%%
+ %%%%%%%%%%%%%%%%%%%% SIGMA1*SIGMA2+ SIGMA2*SIGMA1
+  lterm -1/(2*Sqrt2)*lamc*f*
+	eps^i^j^k*eps2^x^y*
+	anti('cr+')*
+	(
+	(-1/f**3*( sigma1_3^j^x * sigma2_3^k^y+ sigma2_3^j^x * sigma1_3^k^y))*Q2_31^i 
+       -(-1/f**3*(tsigma1_3^j^x *tsigma2_3^k^y+tsigma2_3^j^x *tsigma1_3^k^y))*Q2_32S^i
+    )
+	+ AddHermConj. 
+  
+ %%%%%%%%%%%%%%%%%%%% SIGMA0*SIGMA3+ SIGMA3*SIGMA0
+  lterm -1/(2*Sqrt2)*lamc*f*
+	eps^i^j^k*eps2^x^y*
+	anti('cr+')*
+	(
+	(-1/f**3*( sigma0_3^j^x * sigma3_3^k^y+ sigma3_3^j^x * sigma0_3^k^y))*Q2_31^i 
+       -(-1/f**3*(tsigma0_3^j^x *tsigma3_3^k^y+tsigma3_3^j^x *tsigma0_3^k^y))*Q2_32S^i
+    )
+	+ AddHermConj. 
+ 
+  
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
+      
+
+ %B-QUARK
+ %%%%%%%%%%%%%%%%%%%% SIGMA0*SIGMA1+ SIGMA1*SIGMA0
+ 
+  lterm i/(Sqrt2)*lamq*f*
+	eps2^i^j*eps2^x^y*
+    (-1/f)*(   
+      anti(dq)*( sigma0_1^i* sigma1_2^j^y+ sigma1_1^i* sigma0_2^j^y)* QB22^x
+     -anti(dq)*(tsigma0_1^i*tsigma1_2^j^y+tsigma1_1^i* tsigma0_2^j^y)*QB21S^x
+	   )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vtd,dq='dr+',lamq=0;
+	    VCKM=Vts,dq='sr+',lamq=lams;
+	    VCKM=Vtb,dq='br+',lamq=lamb
+	.
+ 
+ %%%%%%%%%%%%%%%%%%%%%%% SIGMA1*SIGMA1 ==0
+ lterm i/(Sqrt2)*lamq*f*
+       eps2^i^j*eps2^x^y*
+   (1/f**2)*(	
+       anti(dq)*( sigma1_1^i* sigma1_2^j^y)* QB22^x 
+      -anti(dq)*(tsigma1_1^i*tsigma1_2^j^y)*QB21S^x 
+          )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vtd,dq='dr+',lamq=0;
+	    VCKM=Vts,dq='sr+',lamq=lams;
+	    VCKM=Vtb,dq='br+',lamq=lamb
+	.
+ %%%%%%%%%%%%%%%%%%%%%%% SIGMA0*SIGMA2+ SIGMA2*SIGMA0
+  lterm i/(Sqrt2)*lamq*f*
+	eps2^i^j*eps2^x^y*
+    (1/f**2)*( 
+        anti(dq)*( sigma0_1^i* sigma2_2^j^y+ sigma2_1^i* sigma0_2^j^y)* QB22^x 
+       -anti(dq)*(tsigma0_1^i* sigma2_2^j^y+tsigma2_1^i* tsigma0_2^j^y)*QB21S^x 
+	   )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vtd,dq='dr+',lamq=0;
+	    VCKM=Vts,dq='sr+',lamq=lams;
+	    VCKM=Vtb,dq='br+',lamq=lamb
+	.
+ 
+ %%%%%%%%%%%%%%%%%%%%%%% SIGMA0*SIGMA3+ SIGMA3*SIGMA0
+  lterm i/(Sqrt2)*lamq*f*
+	eps2^i^j*eps2^x^y*
+    (-1/f**3)*(        
+       anti(dq)*( sigma0_1^i* sigma3_2^j^y+ sigma3_1^i* sigma0_2^j^y)* QB22^x
+      -anti(dq)*(tsigma0_1^i*tsigma3_2^j^y+tsigma3_1^i*tsigma0_2^j^y)*QB21S^x
+	   )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vtd,dq='dr+',lamq=0;
+	    VCKM=Vts,dq='sr+',lamq=lams;
+	    VCKM=Vtb,dq='br+',lamq=lamb
+	.
+ %%%%%%%%%%%%%%%%%%%%%%% SIGMA1*SIGMA2+ SIGMA2*SIGMA1
+  lterm i/(Sqrt2)*lamq*f*
+	eps2^i^j*eps2^x^y*
+    (-1/f**3)*(        
+       anti(dq)*( sigma1_1^i* sigma2_2^j^y+ sigma2_1^i* sigma1_2^j^y)* QB22^x
+      -anti(dq)*(tsigma1_1^i*tsigma2_2^j^y+tsigma2_1^i*tsigma1_2^j^y)*QB21S^x
+	   )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vtd,dq='dr+',lamq=0;
+	    VCKM=Vts,dq='sr+',lamq=lams;
+	    VCKM=Vtb,dq='br+',lamq=lamb
+	.
+
+%%%%%TOBE>>>>
+%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% (SIGMA0*SIGMA1+ SIGMA1*SIGMA0)* X(1) 
+ 
+  lterm i/(Sqrt2)*lamq*f*
+	eps2^i^j*eps2^x^y*
+    (-1/f)*(-i/(2*f))*(   
+      anti(dq)*( sigma0_1^i* sigma1_2^j^y+ sigma1_1^i* sigma0_2^j^y)* QB22^x *sigma1_33
+     -anti(dq)*(tsigma0_1^i*tsigma1_2^j^y+tsigma1_1^i* tsigma0_2^j^y)*QB21S^x *csigma1_33
+	   )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vtd,dq='dr+',lamq=0;
+	    VCKM=Vts,dq='sr+',lamq=lams;
+	    VCKM=Vtb,dq='br+',lamq=lamb
+	.
+ %%%%%%%%%%%%%%%%%%%% (SIGMA0*SIGMA1+ SIGMA1*SIGMA0)* X(2) 
+ 
+  lterm i/(Sqrt2)*lamq*f*
+	eps2^i^j*eps2^x^y*
+    (-1/f)*(-1/f**2)*(   
+      anti(dq)*( sigma0_1^i* sigma1_2^j^y+ sigma1_1^i* sigma0_2^j^y)* QB22^x *(5/8*sigma1_33**2-sigma2_33/4)
+     -anti(dq)*(tsigma0_1^i*tsigma1_2^j^y+tsigma1_1^i* tsigma0_2^j^y)*QB21S^x *(5/8*csigma1_33**2-tsigma2_33/4)
+	   )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vtd,dq='dr+',lamq=0;
+	    VCKM=Vts,dq='sr+',lamq=lams;
+	    VCKM=Vtb,dq='br+',lamq=lamb
+	.
+ 
+ %%%%%%%%%%%%%%%%%%%%%%% (SIGMA1*SIGMA1 ==0) * X(1)
+ lterm i/(Sqrt2)*lamq*f*
+       eps2^i^j*eps2^x^y*
+   (1/f**2)*(-i/(2*f))*(	
+            anti(dq)*( sigma1_1^i* sigma1_2^j^y)* QB22^x *sigma1_33
+           -anti(dq)*(tsigma1_1^i*tsigma1_2^j^y)*QB21S^x *csigma1_33
+          )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vtd,dq='dr+',lamq=0;
+	    VCKM=Vts,dq='sr+',lamq=lams;
+	    VCKM=Vtb,dq='br+',lamq=lamb
+	.
+ %%%%%%%%%%%%%%%%%%%%%%% SIGMA0*SIGMA2+ SIGMA2*SIGMA0 * X(1)
+  lterm i/(Sqrt2)*lamq*f*
+	eps2^i^j*eps2^x^y*
+    (1/f**2)*(-i/(2*f))*( 
+	     anti(dq)*( sigma0_1^i* sigma2_2^j^y+ sigma2_1^i* sigma0_2^j^y)* QB22^x *sigma1_33
+	    -anti(dq)*(tsigma0_1^i* sigma2_2^j^y+tsigma2_1^i* sigma0_2^j^y)*QB21S^x *csigma1_33
+	   )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vtd,dq='dr+',lamq=0;
+	    VCKM=Vts,dq='sr+',lamq=lams;
+	    VCKM=Vtb,dq='br+',lamq=lamb
+	.
+
+%%%%%%%%%%%%%%% 
+%%%%%<<<< TOBE
+	
+ %S-QUARK
+ %%%%%%%%%%%%%%%%%%%% SIGMA0*SIGMA1+ SIGMA1*SIGMA0
+ 
+  lterm i/(Sqrt2)*lamq*f*
+	eps2^i^j*eps2^x^y*
+    (-1/f)*(   
+      anti(dq)*( sigma0_1^i* sigma1_2^j^y+ sigma1_1^i* sigma0_2^j^y)* QS22^x
+     -anti(dq)*(tsigma0_1^i*tsigma1_2^j^y+tsigma1_1^i* sigma0_2^j^y)*QS21S^x
+	   )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vcd,dq='dr+',lamq=0;
+	    VCKM=Vcs,dq='sr+',lamq=lams;
+	    VCKM=Vcb,dq='br+',lamq=lamb
+	.
+ 
+ %%%%%%%%%%%%%%%%%%%%%%% SIGMA1*SIGMA1 ==0
+ lterm i/(Sqrt2)*lamq*f*
+       eps2^i^j*eps2^x^y*
+   (1/f**2)*(	
+            anti(dq)*( sigma1_1^i* sigma1_2^j^y)* QS22^x 
+           -anti(dq)*(tsigma1_1^i*tsigma1_2^j^y)*QS21S^x 
+          )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vcd,dq='dr+',lamq=0;
+	    VCKM=Vcs,dq='sr+',lamq=lams;
+	    VCKM=Vcb,dq='br+',lamq=lamb
+	.
+ %%%%%%%%%%%%%%%%%%%%%%% SIGMA0*SIGMA2+ SIGMA2*SIGMA0
+  lterm i/(Sqrt2)*lamq*f*
+	eps2^i^j*eps2^x^y*
+    (1/f**2)*( 
+	     anti(dq)*( sigma0_1^i* sigma2_2^j^y+ sigma2_1^i* sigma0_2^j^y)* QS22^x 
+	    -anti(dq)*(tsigma0_1^i* sigma2_2^j^y+tsigma2_1^i* sigma0_2^j^y)*QS21S^x 
+	   )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vcd,dq='dr+',lamq=0;
+	    VCKM=Vcs,dq='sr+',lamq=lams;
+	    VCKM=Vcb,dq='br+',lamq=lamb
+	.
+
+ 
+ %%%%%%%%%%%%%%%%%%%%%%% SIGMA0*SIGMA3+ SIGMA3*SIGMA0
+  lterm i/(Sqrt2)*lamq*f*
+	eps2^i^j*eps2^x^y*
+    (-1/f**3)*(        
+	     anti(dq)*( sigma0_1^i* sigma3_2^j^y+ sigma3_1^i* sigma0_2^j^y)* QS22^x
+	    -anti(dq)*(tsigma0_1^i*tsigma3_2^j^y+tsigma3_1^i*tsigma0_2^j^y)*QS21S^x
+	   )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vcd,dq='dr+',lamq=0;
+	    VCKM=Vcs,dq='sr+',lamq=lams;
+	    VCKM=Vcb,dq='br+',lamq=lamb
+	.
+
+ %%%%%%%%%%%%%%%%%%%%%%% SIGMA1*SIGMA2+ SIGMA2*SIGMA1
+  lterm i/(Sqrt2)*lamq*f*
+	eps2^i^j*eps2^x^y*
+    (-1/f**3)*(        
+	     anti(dq)*( sigma1_1^i* sigma2_2^j^y+ sigma2_1^i* sigma1_2^j^y)* QS22^x
+	    -anti(dq)*(tsigma1_1^i*tsigma2_2^j^y+tsigma2_1^i*tsigma1_2^j^y)*QS21S^x
+	   )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vcd,dq='dr+',lamq=0;
+	    VCKM=Vcs,dq='sr+',lamq=lams;
+	    VCKM=Vcb,dq='br+',lamq=lamb
+	.
+
+	
+%%%%%%%%%%%%%%%%%
+%%%%%%%%%>>>>>TOBE
+%%%%%%%%%%%%%%%%%%%% (SIGMA0*SIGMA1+ SIGMA1*SIGMA0) *X(1)
+ 
+  lterm i/(Sqrt2)*lamq*f*
+	eps2^i^j*eps2^x^y*
+    (-1/f)*(-i/(2*f))*(   
+      anti(dq)*( sigma0_1^i* sigma1_2^j^y+ sigma1_1^i* sigma0_2^j^y)* QS22^x *sigma1_33
+     -anti(dq)*(tsigma0_1^i*tsigma1_2^j^y+tsigma1_1^i* sigma0_2^j^y)*QS21S^x *csigma1_33
+	   )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vcd,dq='dr+',lamq=0;
+	    VCKM=Vcs,dq='sr+',lamq=lams;
+	    VCKM=Vcb,dq='br+',lamq=lamb
+	.
+
+ %%%%%%%%%%%%%%%%%%%% (SIGMA0*SIGMA1+ SIGMA1*SIGMA0) *X(2)
+ 
+  lterm i/(Sqrt2)*lamq*f*
+	eps2^i^j*eps2^x^y*
+    (-1/f)*(-1/f**2)*(   
+      anti(dq)*( sigma0_1^i* sigma1_2^j^y+ sigma1_1^i* sigma0_2^j^y)* QS22^x *(5/8*sigma1_33**2-sigma2_33/4)
+     -anti(dq)*(tsigma0_1^i*tsigma1_2^j^y+tsigma1_1^i* sigma0_2^j^y)*QS21S^x *(5/8*csigma1_33**2-tsigma2_33/4)
+	   )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vcd,dq='dr+',lamq=0;
+	    VCKM=Vcs,dq='sr+',lamq=lams;
+	    VCKM=Vcb,dq='br+',lamq=lamb
+	.
+
+ 
+ %%%%%%%%%%%%%%%%%%%%%%% (SIGMA1*SIGMA1 ==0)* X(1)
+ lterm i/(Sqrt2)*lamq*f*
+       eps2^i^j*eps2^x^y*
+   (1/f**2)*(-i/(2*f))*(	
+            anti(dq)*( sigma1_1^i* sigma1_2^j^y)* QS22^x *sigma1_33 
+           -anti(dq)*(tsigma1_1^i*tsigma1_2^j^y)*QS21S^x *csigma1_33 
+          )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vcd,dq='dr+',lamq=0;
+	    VCKM=Vcs,dq='sr+',lamq=lams;
+	    VCKM=Vcb,dq='br+',lamq=lamb
+	.
+ %%%%%%%%%%%%%%%%%%%%%%% (SIGMA0*SIGMA2+ SIGMA2*SIGMA0) * X(1)
+  lterm i/(Sqrt2)*lamq*f*
+	eps2^i^j*eps2^x^y*
+    (1/f**2)*(-i/(2*f))*( 
+	     anti(dq)*( sigma0_1^i* sigma2_2^j^y+ sigma2_1^i* sigma0_2^j^y)* QS22^x *sigma1_33 
+	    -anti(dq)*(tsigma0_1^i* sigma2_2^j^y+tsigma2_1^i* sigma0_2^j^y)*QS21S^x *csigma1_33 
+	   )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vcd,dq='dr+',lamq=0;
+	    VCKM=Vcs,dq='sr+',lamq=lams;
+	    VCKM=Vcb,dq='br+',lamq=lamb
+	.
+
+ 
+%%%%%%%%%%%%%%%%
+%%%%%<<<< TOBE
+
+%SASHA modification made on 09/22/2006 >>>>>>>>>>>
+
+ %D-QUARK
+ %%%%%%%%%%%%%%%%%%%% SIGMA0*SIGMA1+ SIGMA1*SIGMA0
+ 
+  lterm i/(Sqrt2)*lamq*f*
+	eps2^i^j*eps2^x^y*
+    (-1/f)*(   
+      anti(dq)*( sigma0_1^i* sigma1_2^j^y+ sigma1_1^i* sigma0_2^j^y)* QD22^x
+     -anti(dq)*(tsigma0_1^i*tsigma1_2^j^y+tsigma1_1^i* sigma0_2^j^y)*QD21S^x
+	   )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vud,dq='dr+',lamq=0;
+	    VCKM=Vus,dq='sr+',lamq=lams;
+	    VCKM=Vub,dq='br+',lamq=lamb
+	.
+ 
+ %%%%%%%%%%%%%%%%%%%%%%% SIGMA1*SIGMA1 ==0
+ lterm i/(Sqrt2)*lamq*f*
+       eps2^i^j*eps2^x^y*
+   (1/f**2)*(	
+            anti(dq)*( sigma1_1^i* sigma1_2^j^y)* QD22^x 
+           -anti(dq)*(tsigma1_1^i*tsigma1_2^j^y)*QD21S^x 
+          )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vud,dq='dr+',lamq=0;
+	    VCKM=Vus,dq='sr+',lamq=lams;
+	    VCKM=Vub,dq='br+',lamq=lamb
+	.
+ %%%%%%%%%%%%%%%%%%%%%%% SIGMA0*SIGMA2+ SIGMA2*SIGMA0
+  lterm i/(Sqrt2)*lamq*f*
+	eps2^i^j*eps2^x^y*
+    (1/f**2)*( 
+	     anti(dq)*( sigma0_1^i* sigma2_2^j^y+ sigma2_1^i* sigma0_2^j^y)* QD22^x 
+	    -anti(dq)*(tsigma0_1^i* sigma2_2^j^y+tsigma2_1^i* sigma0_2^j^y)*QD21S^x 
+	   )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vud,dq='dr+',lamq=0;
+	    VCKM=Vus,dq='sr+',lamq=lams;
+	    VCKM=Vub,dq='br+',lamq=lamb
+	.
+
+ 
+ %%%%%%%%%%%%%%%%%%%%%%% SIGMA0*SIGMA3+ SIGMA3*SIGMA0
+  lterm i/(Sqrt2)*lamq*f*
+	eps2^i^j*eps2^x^y*
+    (-1/f**3)*(        
+	     anti(dq)*( sigma0_1^i* sigma3_2^j^y+ sigma3_1^i* sigma0_2^j^y)* QD22^x
+	    -anti(dq)*(tsigma0_1^i*tsigma3_2^j^y+tsigma3_1^i*tsigma0_2^j^y)*QD21S^x
+	   )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vud,dq='dr+',lamq=0;
+	    VCKM=Vus,dq='sr+',lamq=lams;
+	    VCKM=Vub,dq='br+',lamq=lamb
+	.
+
+ %%%%%%%%%%%%%%%%%%%%%%% SIGMA1*SIGMA2+ SIGMA2*SIGMA1
+  lterm i/(Sqrt2)*lamq*f*
+	eps2^i^j*eps2^x^y*
+    (-1/f**3)*(        
+	     anti(dq)*( sigma1_1^i* sigma2_2^j^y+ sigma2_1^i* sigma1_2^j^y)* QD22^x
+	    -anti(dq)*(tsigma1_1^i*tsigma2_2^j^y+tsigma2_1^i*tsigma1_2^j^y)*QD21S^x
+	   )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vud,dq='dr+',lamq=0;
+	    VCKM=Vus,dq='sr+',lamq=lams;
+	    VCKM=Vub,dq='br+',lamq=lamb
+	.
+
+	
+%%%%%%%%%%%%%%%%%%%% (SIGMA0*SIGMA1+ SIGMA1*SIGMA0) *X(1)
+ 
+  lterm i/(Sqrt2)*lamq*f*
+	eps2^i^j*eps2^x^y*
+    (-1/f)*(-i/(2*f))*(   
+      anti(dq)*( sigma0_1^i* sigma1_2^j^y+ sigma1_1^i* sigma0_2^j^y)* QD22^x *sigma1_33
+     -anti(dq)*(tsigma0_1^i*tsigma1_2^j^y+tsigma1_1^i* sigma0_2^j^y)*QD21S^x *csigma1_33
+	   )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vud,dq='dr+',lamq=0;
+	    VCKM=Vus,dq='sr+',lamq=lams;
+	    VCKM=Vub,dq='br+',lamq=lamb
+	.
+
+ %%%%%%%%%%%%%%%%%%%% (SIGMA0*SIGMA1+ SIGMA1*SIGMA0) *X(2)
+ 
+  lterm i/(Sqrt2)*lamq*f*
+	eps2^i^j*eps2^x^y*
+    (-1/f)*(-1/f**2)*(   
+      anti(dq)*( sigma0_1^i* sigma1_2^j^y+ sigma1_1^i* sigma0_2^j^y)* QD22^x *(5/8*sigma1_33**2-sigma2_33/4)
+     -anti(dq)*(tsigma0_1^i*tsigma1_2^j^y+tsigma1_1^i* sigma0_2^j^y)*QD21S^x *(5/8*csigma1_33**2-tsigma2_33/4)
+	   )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vud,dq='dr+',lamq=0;
+	    VCKM=Vus,dq='sr+',lamq=lams;
+	    VCKM=Vub,dq='br+',lamq=lamb
+	.
+
+ 
+ %%%%%%%%%%%%%%%%%%%%%%% (SIGMA1*SIGMA1 ==0)* X(1)
+ lterm i/(Sqrt2)*lamq*f*
+       eps2^i^j*eps2^x^y*
+   (1/f**2)*(-i/(2*f))*(	
+            anti(dq)*( sigma1_1^i* sigma1_2^j^y)* QD22^x *sigma1_33 
+           -anti(dq)*(tsigma1_1^i*tsigma1_2^j^y)*QD21S^x *csigma1_33 
+          )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vud,dq='dr+',lamq=0;
+	    VCKM=Vus,dq='sr+',lamq=lams;
+	    VCKM=Vub,dq='br+',lamq=lamb
+	.
+ %%%%%%%%%%%%%%%%%%%%%%% (SIGMA0*SIGMA2+ SIGMA2*SIGMA0) * X(1)
+  lterm i/(Sqrt2)*lamq*f*
+	eps2^i^j*eps2^x^y*
+    (1/f**2)*(-i/(2*f))*( 
+	     anti(dq)*( sigma0_1^i* sigma2_2^j^y+ sigma2_1^i* sigma0_2^j^y)* QD22^x *sigma1_33 
+	    -anti(dq)*(tsigma0_1^i* sigma2_2^j^y+tsigma2_1^i* sigma0_2^j^y)*QD21S^x *csigma1_33 
+	   )*VCKM	   
+	+ AddHermConj 
+	where 
+	    VCKM=Vud,dq='dr+',lamq=0;
+	    VCKM=Vus,dq='sr+',lamq=lams;
+	    VCKM=Vub,dq='br+',lamq=lamb
+	.
+
+%SASHA modification made on 09/22/2006 <<<<<<<<<<
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+let pp = {0,(vev(vh)+H)/Sqrt2 }, 
+    PP = {0,(vev(vh)+H)/Sqrt2 }.
+
+lterm  -M/v*Sqrt2*(anti(pl)*(1+g5)/2*pr*pp + anti(pr)*(1-g5)/2*pl*PP )
+    where
+	M=Mm,  pl=l2,  pr=m;
+	M=Ml,  pl=l3,  pr=l.
+
+

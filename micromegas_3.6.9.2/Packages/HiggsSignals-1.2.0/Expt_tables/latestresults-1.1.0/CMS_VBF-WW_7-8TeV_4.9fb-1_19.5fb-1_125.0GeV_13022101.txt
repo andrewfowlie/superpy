@@ -1,0 +1,13 @@
+# Data taken from CMS-PAS-HIG-13-022. The ggH process contributes to about 20%.
+13022101	1302201		1
+CMS-PAS-HIG-13-022
+LHC, CMS, CMS
+(pp)->VBF->WW
+8	24.4 0.044
+1	0
+25.0
+125.0 125.0 1.0
+2	125.0
+12 22
+1.0	50.0
+125.0	0.15	0.62	1.20

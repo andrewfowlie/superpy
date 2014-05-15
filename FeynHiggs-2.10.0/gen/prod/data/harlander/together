@@ -1,0 +1,7 @@
+#! /bin/sh -x
+
+( for sqrts in 7 10 14 ; do
+    awk "{print $sqrts \"\t\" \$1 \"\t\" \$2;}" ${sqrts}_sven.txt ;
+  done ) > bbh-lhc.dat
+
+

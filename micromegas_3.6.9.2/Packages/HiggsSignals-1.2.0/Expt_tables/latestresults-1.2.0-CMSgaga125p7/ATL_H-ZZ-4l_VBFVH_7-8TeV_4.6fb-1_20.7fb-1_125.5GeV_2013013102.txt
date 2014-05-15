@@ -1,0 +1,19 @@
+# WARNING: This observable should not be used with
+# ATL_H-ZZ-4l_7-8TeV_4.6fb-1_20.7fb-1_124.3GeV_2013013101.txt
+# simultaneously (data overlap)!
+#
+# Data is taken from Fig. 6 in arXiv:1307.1427 named "VBF+VH".
+# The measurement was performed at mH=125.5GeV.
+# VBF and VH is expected to contribute 60-70% in this category.
+1307142714	130714274	1
+ATL-CONF-2013-013,arXiv:1307.1427
+LHC, ATL, ATL
+(pp)->h->ZZ->4l(VBF/VH-like)
+8	25.3	0.036
+1	0
+1.1	ATLZZ
+125.5 125.5 0.1
+4	125.5
+13 23 33 43
+1. 14.5 10. 10.
+       125.5           0.28           1.18           2.82

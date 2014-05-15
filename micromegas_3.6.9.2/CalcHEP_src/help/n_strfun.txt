@@ -1,0 +1,14 @@
+3 11 74
+          The following distributions  are available in CalcHEP:
+
+   "CTEQ4m", "MRS(A')", "MRS(G)" describe the density of quarks and gluons
+       in proton/anti-proton;
+   "Laser photons"  describes the spectrum of photons scattered backward
+from the interaction of laser light with the high energy electron beam;
+   "Equiv.photons" describes  virtual photon emitted by the charged
+particle in the case of small angle scattering.
+   "ISR" describes  the effective  spectrum of electrons loosed energy due
+to the emission of photons in the electromagnetic field of the other
+electron and electron bunch.
+
+    See Manual for the further explanation and needed references.

@@ -1,0 +1,16 @@
+#DO Note XXXX 11 Dec 2008
+#CDF_ZH_llbb_2.7fb
+#no interpolation
+#columns: Mh, obs, exp (as ratio to SM cross sections)
+
+100	6	8.92
+105	5.4	8.85
+110	6.6	9.3
+115	7.1	9.9
+120	8.6	12.2
+125	11.1	13.8
+130	13.4	17.4
+135	18.3	23.3
+140	27.1	34.3
+145	44	51.7
+150	68.5	83.4

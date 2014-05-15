@@ -1,0 +1,15 @@
+#CDF Note 9642 Dec 29, 2008
+#CDF_VH_Metbb_2.1fb
+#no interpolation
+#columns: Mh, obs, exp (as ratio to SM cross sections)
+
+105	5.5	4.7	
+110	5.8	4.9	
+115	6.9	5.6	
+120	8.9	7.2	
+125	11.9	8.4	
+130	14.4	10.3	
+135	16.2	13.8	
+140	21.0	18.6	
+145	33.4	28.6	
+150	49.8	43.3	

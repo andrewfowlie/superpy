@@ -1,0 +1,10 @@
+(-2*GF^2*MW2^2*CKM[3, 3]^2*CKMC[3, 2]^2*
+   (D00z[MHp2, MHp2, Mf2[tT, 3], Mf2[tT, 3]]/(4*MW2^2*TB2^2) + 
+    (D00z[MHp2, MW2, Mf2[tT, 3], Mf2[tT, 3]]/(2*MW2^2) - 
+      D0z[MHp2, MW2, Mf2[tT, 3], Mf2[tT, 3]]/(2*MW2))/TB2)*Mf2[tT, 3]^2*
+   Op[{6, Lor[1]}, {6, Lor[1]}])/Pi^2 + 
+ (2*GF^2*MW2^2*CKM[3, 3]^2*CKMC[3, 2]^2*
+   (-D00z[MHp2, MHp2, Mf2[tT, 3], Mf2[tT, 3]]/(4*MW2^2*TB2^2) + 
+    (-D00z[MHp2, MW2, Mf2[tT, 3], Mf2[tT, 3]]/(2*MW2^2) + 
+      D0z[MHp2, MW2, Mf2[tT, 3], Mf2[tT, 3]]/(2*MW2))/TB2)*Mf2[tT, 3]^2*
+   Op[{6, Lor[1]}, {6, Lor[1]}])/Pi^2

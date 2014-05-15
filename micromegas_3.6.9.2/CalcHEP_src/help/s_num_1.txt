@@ -1,0 +1,5 @@
+2 2 51 4   Parameters
+       You can change any parameters to see how
+  it influences on  constraints, masses, widths,
+  decay channels. It does not change default 
+  parameters for subsequent numerical session. 

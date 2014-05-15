@@ -1,0 +1,67 @@
+UniG_S010_ZP
+ Parameters 
+ Name | Value       |> Comment                                                             <|
+EE    |0.31223      |Elementary charge (alpha=1/128.9, on-shell, MZ point, PDG96)
+GG    |1.238        |Strong coupling (LEP/SLD average alphas=0.122, PDG96)
+SW    |0.4730       |sine of the electroweak mixing angle (PDG96)
+s12   |0.221        |Parameter of C-K-M matrix  (PDG96)
+s23   |0.041        |Parameter of C-K-M matrix  (PDG96)
+s13   |0.0035       |Parameter of C-K-M matrix  (PDG96)
+Mm    |0.1057       |muon mass
+Ml    |1.777        |tau-lepton mass      (PDG96)
+Mc    |1.420        |c-quark mass  (pole mass, PDG96)
+Ms    |0.200        |s-quark mass  (pole mass, PDG96)
+Mb    |4.620        |b-quark mass  (pole mass, PDG96)
+Mtp   |175          |t-quark mass  (pole mass)
+MZ    |91.1884      |Z-boson mass         (PDG96)
+MH    |300          |higgs mass
+wtp   |1.59         |t-quark width        (tree level 1->2x)
+wZ    |2.49444      |Z-boson width        (tree level 1->2x)
+wW    |2.08895      |W-boson width        (tree level 1->2x)
+%wH   |0.0061744    |width of Higgs
+v     |246          |Higgs vev
+lambda|10000        |Cut-off of RS theory
+rc    |34.53        | Log(10^15)
+g10   |0.78         |4d SO(10) coupling to be varied between g' and g_s
+l5    |1.           |k*lambda_5
+r     |0.1          |SO(10) bulk breaking (should be smaller than 1/5)
+gH    |0.3          |H-lZP coupling
+gZ    |0.3          |Z-lZP coupling
+gZp   |0.3          |Z'-LZP coupling
+gUp   |0.3          |Z'-tau coupling
+gtl   |0.3          |Z'-top_L,b_L coupling
+gll   |0.3          |Z'-tau tau coupling
+gtr   |0.3          |Z'-top_R coupling
+grl   |0.3          |W'-n4-taur coupling
+xWr   |1.0          |factor in W-WR mixing
+gHZ   |1.0          | factor in Z'ZH coupling
+%Mtl  |3000         |t^1_L mass
+%wtl  |1.           |t^1_L witdh
+%Mbl  |3000         |b^1_L mass
+%wbl  |1.           |b^1_L witdh
+MXS   |3000         |X_S mass
+wXs   |1.           |X_S width
+MLZP  |100.         |n4 mass
+wn4   |0            |n4 width
+%Mbr  |1090         |b_R^1 mass
+wbr   |18.188       |b_R^1 width
+%Mur  |3000         |tau_R^1 mass
+wur   |0.00043      |tau_R^1 width
+%Mul  |3000         |tau_L^1 mass
+wul   |1.           |tau_L^1 width
+%Mn5  |3000         |nu_L^1 mass
+wn5   |1.           |nu_L^1 width
+MZp   |3000         |Zp mass (same as MXS)
+%wZp  |1.           |
+MWp   |3000         |Wp mass (same as MXS)
+cr    |-0.5         |c-parameter of the RH top quark
+cl    |0.4          |c-parameter of the LH top quark
+cnur  |-0.31        |c of the LZP (to be varied consistently with MLZP and MXS)
+Mul   |3000.        |mass of taul
+Mur   |3000.        |mass of taur
+Mn5   |3000.        |mass of nuL
+Mtl   |3000.        |mass of tL
+Mbl   |3000.        |mass of bl
+Mbr   |3000.        |mass of br
+mixzzp|0.01         |Z-Z' mixing
+=============================================================================================

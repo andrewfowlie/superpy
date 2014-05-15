@@ -1,0 +1,16 @@
+#CDF Note 7307 vs 3.0 for winter conferences 2009
+#CDF_WH_WWW_2.7fb
+#no interpolation
+#columns: Mh, obs, exp_median (as ratio to SM cross sections) 
+
+110	283.0	180
+120	94.9	65
+130	60.9	36	
+140	41.2	25	
+150	38.7	22.0
+160	25.1	20.1	
+170	36.7	24.0	
+180	40.4	29	
+190	49.2	34	
+200	46.5	40	
+

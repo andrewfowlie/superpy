@@ -1,0 +1,64 @@
+Amp[{{F[4, {3, Col1}], k[1], MB, {}}} -> {{F[4, {2, Col2}], k[2], 0, {}}, 
+    {F[2, {2}], k[3], 0, {}}, {-F[2, {2}], k[4], 0, {}}}][
+ SumOver[All5, 6]*(Alfa*asMT*Mat[F1*SUN1]*
+    (((1 - 2*SW2)*(3 - 2*SW2)*Den[0, MZ2]*Den[MB2, 0]*
+       ((2*MB*Mino3*B0i[bb0, 0, MGl2, MASf2[All5, 4]]*UASf[All5, 6, 4])/9 - 
+        (2*(MB2*B0i[bb1, MB2, MGl2, MASf2[All5, 4]]*UASf[All5, 3, 4] + 
+           MB*Mino3*B0i[bb0, MB2, MGl2, MASf2[All5, 4]]*UASf[All5, 6, 4]))/
+         9))/(CW2*SW2) + Den[0, 0]*
+      ((-16*C0i[cc00, 0, 0, MB2, MGl2, MASf2[All5, 4], MASf2[All5, 4]]*
+         UASf[All5, 3, 4])/9 + Den[MB2, 0]*
+        ((8*MB*Mino3*B0i[bb0, 0, MGl2, MASf2[All5, 4]]*UASf[All5, 6, 4])/9 - 
+         (8*(MB2*B0i[bb1, MB2, MGl2, MASf2[All5, 4]]*UASf[All5, 3, 4] + 
+            MB*Mino3*B0i[bb0, MB2, MGl2, MASf2[All5, 4]]*UASf[All5, 6, 4]))/
+          9)))*UASfC[All5, 2, 4] + Alfa*asMT*Mat[F2*SUN1]*
+    (((3 - 2*SW2)*Den[0, MZ2]*Den[MB2, 0]*
+       ((-4*MB*Mino3*B0i[bb0, 0, MGl2, MASf2[All5, 4]]*UASf[All5, 6, 4])/9 + 
+        (4*(MB2*B0i[bb1, MB2, MGl2, MASf2[All5, 4]]*UASf[All5, 3, 4] + 
+           MB*Mino3*B0i[bb0, MB2, MGl2, MASf2[All5, 4]]*UASf[All5, 6, 4]))/
+         9))/CW2 + Den[0, 0]*((-16*C0i[cc00, 0, 0, MB2, MGl2, MASf2[All5, 4], 
+          MASf2[All5, 4]]*UASf[All5, 3, 4])/9 + Den[MB2, 0]*
+        ((8*MB*Mino3*B0i[bb0, 0, MGl2, MASf2[All5, 4]]*UASf[All5, 6, 4])/9 - 
+         (8*(MB2*B0i[bb1, MB2, MGl2, MASf2[All5, 4]]*UASf[All5, 3, 4] + 
+            MB*Mino3*B0i[bb0, MB2, MGl2, MASf2[All5, 4]]*UASf[All5, 6, 4]))/
+          9)))*UASfC[All5, 2, 4] + Alfa*asMT*Mat[F4*SUN1]*
+    ((SW2*Den[0, MZ2]*Den[MB2, 0]*
+       (MB*Mino3C*((8*B0i[bb0, 0, MGl2, MASf2[All5, 4]])/9 - 
+          (8*B0i[bb0, MB2, MGl2, MASf2[All5, 4]])/9)*UASf[All5, 3, 4] - 
+        (8*MB2*B0i[bb1, MB2, MGl2, MASf2[All5, 4]]*UASf[All5, 6, 4])/9))/
+      CW2 + Den[0, 0]*((-16*C0i[cc00, 0, 0, MB2, MGl2, MASf2[All5, 4], 
+          MASf2[All5, 4]]*UASf[All5, 6, 4])/9 + Den[MB2, 0]*
+        (MB*Mino3C*((8*B0i[bb0, 0, MGl2, MASf2[All5, 4]])/9 - 
+           (8*B0i[bb0, MB2, MGl2, MASf2[All5, 4]])/9)*UASf[All5, 3, 4] - 
+         (8*MB2*B0i[bb1, MB2, MGl2, MASf2[All5, 4]]*UASf[All5, 6, 4])/9)))*
+    UASfC[All5, 5, 4] + Alfa*asMT*Mat[F3*SUN1]*
+    (((1 - 2*SW2)*Den[0, MZ2]*Den[MB2, 0]*
+       (MB*Mino3C*((-4*B0i[bb0, 0, MGl2, MASf2[All5, 4]])/9 + 
+          (4*B0i[bb0, MB2, MGl2, MASf2[All5, 4]])/9)*UASf[All5, 3, 4] + 
+        (4*MB2*B0i[bb1, MB2, MGl2, MASf2[All5, 4]]*UASf[All5, 6, 4])/9))/
+      CW2 + Den[0, 0]*((-16*C0i[cc00, 0, 0, MB2, MGl2, MASf2[All5, 4], 
+          MASf2[All5, 4]]*UASf[All5, 6, 4])/9 + Den[MB2, 0]*
+        (MB*Mino3C*((8*B0i[bb0, 0, MGl2, MASf2[All5, 4]])/9 - 
+           (8*B0i[bb0, MB2, MGl2, MASf2[All5, 4]])/9)*UASf[All5, 3, 4] - 
+         (8*MB2*B0i[bb1, MB2, MGl2, MASf2[All5, 4]]*UASf[All5, 6, 4])/9)))*
+    UASfC[All5, 5, 4]), SumOver[All5, 6]*SumOver[All6, 6]*SumOver[Ind1, 3]*
+  ((4*Alfa*asMT*(1 - 2*SW2)*C0i[cc00, MB2, 0, 0, MGl2, MASf2[All5, 4], 
+      MASf2[All6, 4]]*Den[0, MZ2]*Mat[F1*SUN1]*UASf[All5, 3, 4]*
+     ((-3 + 2*SW2)*UASf[All6, Ind1, 4]*UASfC[All5, Ind1, 4] + 
+      2*SW2*UASf[All6, 3 + Ind1, 4]*UASfC[All5, 3 + Ind1, 4])*
+     UASfC[All6, 2, 4])/(9*CW2*SW2) - 
+   (8*Alfa*asMT*C0i[cc00, MB2, 0, 0, MGl2, MASf2[All5, 4], MASf2[All6, 4]]*
+     Den[0, MZ2]*Mat[F2*SUN1]*UASf[All5, 3, 4]*
+     ((-3 + 2*SW2)*UASf[All6, Ind1, 4]*UASfC[All5, Ind1, 4] + 
+      2*SW2*UASf[All6, 3 + Ind1, 4]*UASfC[All5, 3 + Ind1, 4])*
+     UASfC[All6, 2, 4])/(9*CW2) + 
+   (4*Alfa*asMT*(1 - 2*SW2)*C0i[cc00, MB2, 0, 0, MGl2, MASf2[All5, 4], 
+      MASf2[All6, 4]]*Den[0, MZ2]*Mat[F3*SUN1]*UASf[All5, 6, 4]*
+     ((-3 + 2*SW2)*UASf[All6, Ind1, 4]*UASfC[All5, Ind1, 4] + 
+      2*SW2*UASf[All6, 3 + Ind1, 4]*UASfC[All5, 3 + Ind1, 4])*
+     UASfC[All6, 5, 4])/(9*CW2*SW2) - 
+   (8*Alfa*asMT*C0i[cc00, MB2, 0, 0, MGl2, MASf2[All5, 4], MASf2[All6, 4]]*
+     Den[0, MZ2]*Mat[F4*SUN1]*UASf[All5, 6, 4]*
+     ((-3 + 2*SW2)*UASf[All6, Ind1, 4]*UASfC[All5, Ind1, 4] + 
+      2*SW2*UASf[All6, 3 + Ind1, 4]*UASfC[All5, 3 + Ind1, 4])*
+     UASfC[All6, 5, 4])/(9*CW2))]

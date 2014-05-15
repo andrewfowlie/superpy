@@ -1,0 +1,98 @@
+% Higgs effective vertices
+
+external_func(HggF,1).
+external_func(HggA,1).
+external_func(HggS,1).
+external_func(Hgam1F,1).
+external_func(MbRun,1).
+external_func(MtRun,1).
+external_func(Hgam1S,1).
+external_func(Hgam1A,1).
+external_func(HggV,1).
+
+parameter aQCD =alphaQCD(Q)/PI.
+
+
+%parameter Mc=1.4.
+alias Mb=Mbp, Mc=Mcp, Mt=Mtp.
+
+% ======== Passarino-Veltman vertex finctions  ============
+
+%         quark and leptons
+ _p=[c,b,t,l] in 
+    parameter rhF__p=creal(HggF((Q/2/M_p)**2)),
+	          ihF__p=cimag(HggF((Q/2/M_p)**2)).
+            
+unalias Mb, Mc, Mt.
+
+%       Charged Scalars  
+    parameter rhS_Hc=creal(HggS((Q/2/MHC)**2)),
+	      ihS_Hc=cimag(HggS((Q/2/MHC)**2)).
+
+%   W 			  
+   parameter rhV_W=creal(HggV((Q/2/MW)**2)),  ihV_W=cimag(HggV((Q/2/MW)**2)).
+
+% PV functions with 1-loop corrections (for photons)  
+
+parameter McR=Mcp*McRun(Q/2)/McRun(Mcp), MbR=Mbp*MbRun(Q/2)/MbRun(Mbp), MtR=Mtp*MtRun(Q/2)/MtRun(Mtp).
+
+ alias Mc=McR,Mb=MbR, Mt=MtR.	  
+_p=[c,b,t,l] in
+ parameter rhF1__p=creal(HggF((Q/2/M_p)**2)*(1+aQCD*Hgam1F((Q/2/M_p)**2))),
+           ihF1__p=cimag(HggF((Q/2/M_p)**2)*(1+aQCD*Hgam1F((Q/2/M_p)**2))).
+ unalias Mc, Mb, Mt.
+
+
+% Amplitudes 
+			  
+_p=[c,b,t,l] in   parameter ahF__p=CoefVrt([anti(_p),_p,h]) /(mass _p).
+
+     parameter a_hV_W=CoefVrt(['W+','W-', h]) /MW**2/2,
+               a_hS_Hc=CoefVrt(['~H+','~H-', h], [abbr]) /MHC**2/2.
+        
+
+
+parameter Rqcd=1+ aQCD*(149/12+ aQCD*(68.6482-aQCD*212.447)).
+parameter lnTop=2*log( Mtp/Q).
+parameter Ctop=1+ aQCD*(11/4+  aQCD*((6.1537-2.8542*lnTop)+ aQCD*(10.999-17.93*lnTop+5.47*lnTop**2))).
+parameter Cq =1+11/4*aQCD,Csq =1 +9/2*aQCD.
+parameter alphaE0=1/137.036,Qu=2/3, Qd=-1/3.
+parameter Fodd = 1+aQCD*(221/12+aQCD*(171.5-5*lnTop)).
+
+
+          
+parameter LGGH=-aQCD/(8)*1/2*sqrt(Rqcd) *cabs(((rhF_b+i*ihF_b)*ahF_b +(rhF_c+i*ihF_c)*ahF_c)*Cq +(rhF_t+i*ihF_t)*ahF_t*Ctop ):'* public'.
+   
+parameter    LAAH=-alphaE0/(8*PI)*cabs( 
+   3*Qd**2*(rhF1_b+i*ihF1_b)*ahF_b +3*Qu**2*((rhF1_t+i*ihF1_t)*ahF_t +(rhF1_c+i*ihF1_c)*ahF_c  )      %  quarks
+  + (rhF_l+i*ihF_l)*ahF_l %  tau
+ - (rhV_W+i*ihV_W)*a_hV_W                     %  W
+ + (rhS_Hc+i*ihS_Hc)*a_hS_Hc                                           %  H+
+):'* public'.
+
+
+parameter 
+aSMhF_f=-EE/MW/SW/2,
+aSMhV_W=EE/SW/MW/2.
+
+parameter 
+LGGSM= -aQCD/(8)*1/2*sqrt(Rqcd)*fabs(aSMhF_f)*cabs(((rhF_b+i*ihF_b) +(rhF_c+i*ihF_c))*Cq +(rhF_t+i*ihF_t)*Ctop):
+'* public',      
+
+LAASM= -alphaE0/(8*PI)*cabs(
+   3*Qd**2*(rhF1_b+i*ihF1_b)*aSMhF_f +3*Qu**2*((rhF1_t+i*ihF1_t)*aSMhF_f +(rhF1_c+i*ihF1_c)*aSMhF_f )      %  quarks
++ (rhF_l+i*ihF_l)*aSMhF_f    % tau
+- (rhV_W+i*ihV_W)*aSMhV_W  ):'* public'.                                                       %  W
+
+let F_A^mu^nu=deriv^mu*A^nu-deriv^nu*A^mu.
+let F_G^mu^nu^a=deriv^mu*G^nu^a-deriv^nu*G^mu^a.
+
+
+lterm  LGGH*h*F**2 where F=deriv^mu*G^nu^a-deriv^nu*G^mu^a.
+lterm  LAAH*h*F**2 where F=deriv^mu*A^nu-deriv^nu*A^mu.
+
+clear F_G,F_A.
+
+%G    |G    |H    |     |-4*LGGH                                                    |(p1.p2*m1.m2-p1.m2*p2.m1)
+%A    |A    |H    |     |-4*LAAH                                                    |(p1.p2*m1.m2-p1.m2*p2.m1)
+

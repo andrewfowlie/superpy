@@ -1,0 +1,12 @@
+#CMS PAS HIG-11-009 Jul 22, 2011
+#11009_CMS_SM_H-tautau_1.1fb-1
+#numbers from https://twiki.cern.ch/twiki/bin/view/CMSPublic/Hig11009TWiki
+#columns: Mh, obs, exp (normalised to the SM)
+
+110  	8.767  	8.349  	
+115 	8.799 	9.005 	
+120 	10.037 	8.365 	
+125 	9.466 	8.729 	
+130 	9.559 	9.505 	
+135 	11.170 	11.750 
+140 	14.295 	14.265 

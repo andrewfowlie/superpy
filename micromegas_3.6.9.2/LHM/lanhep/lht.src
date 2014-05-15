@@ -1,0 +1,316 @@
+model 'Littlest Higgs-T'/1.
+%model 'Littlest Higgs-T'/12.
+%option SmartAngleComb=3.
+%option SplitCol1=1.
+%option SplitCol2=1.
+%option chepPDWidth=110.
+option chepPDWidth=300.
+
+let g5=gamma5.
+let PL=(1-g5)/2, PR=(1+g5)/2.
+
+%let eps30 =   {{{0, 0,0}, {0,0,-1}, { 0,1,0}},
+%	      { {0, 0,1}, {0,0, 0}, {-1,0,0}}, 
+%	      { {0, 0,0}, {0,0, 0}, { 0,0,0}}}.
+	     
+let eps2 =   {{0,-1},
+              {1, 0} }.
+	      
+let ctau =   anti(tau).
+
+%
+%
+%
+	     
+parameter  EE  = 0.307885: 'Electromagnetic coupling constant (<->1/128)',
+	   GG  = 1.21772 : 'Strong coupling constant (Z point)  (PDG-94)',
+	   alfSMZ=0.1184 : 'alpha_QCD(MZ)',
+	   SW  = 0.47130 : 'sin of the Weinberg angle (PDG-94,"on-shell")',
+           CW  = sqrt(1-SW**2) : 'cos of the Weinberg angle',
+	   s12 = 0.221   : 'Parameter of C-K-M matrix (PDG-94)',
+	   s23 = 0.040   : 'Parameter of C-K-M matrix (PDG-94)',
+           s13 = 0.0035  : 'Parameter of C-K-M matrix (PDG-94)',
+      	   MZ  = 91.1876 : 'Z-boson mass',	   
+	   MW  = MZ*CW.
+           
+parameter   Q  = 100    : 'QCD scale'.
+angle sin=SW,cos=CW.
+parameter  c12  = sqrt(1-s12**2) : 	'parameter  of C-K-M matrix',
+           c23  = sqrt(1-s23**2) : 	'parameter  of C-K-M matrix',
+           c13  = sqrt(1-s13**2) : 	'parameter  of C-K-M matrix'.
+
+parameter  Vud = c12*c13 		: 'C-K-M matrix element',
+	   Vus = s12*c13 		: 'C-K-M matrix element',
+	   Vub = s13     		: 'C-K-M matrix element',
+           Vcd = (-s12*c23-c12*s23*s13) : 'C-K-M matrix element',
+           Vcs = (c12*c23-s12*s23*s13)  : 'C-K-M matrix element',
+	   Vcb = s23*c13 		: 'C-K-M matrix element',
+	   Vtd = (s12*s23-c12*c23*s13) 	: 'C-K-M matrix element',
+	   Vts = (-c12*s23-s12*c23*s13)	: 'C-K-M matrix element',
+	   Vtb = c23*c13  		: 'C-K-M matrix element'.
+
+OrthMatrix( { {Vud,Vus,Vub}, {Vcd,Vcs,Vcb}, {Vtd,Vts,Vtb}} ).
+
+
+
+%%%%%%%%%%%%%%%
+parameter  v=2*MW*SW/EE, f=1000,  del=v/f.
+infinitesimal del.
+option InfiOrder=2.
+%coeff del.
+
+parameter  vh=v*(1+1/12*del**2).
+
+parameter sa=0.7071067, ca=sqrt(1-sa**2).
+
+angle sin=sa,cos=ca.
+
+parameter zero0=0.
+
+
+
+parameter Mtp   =173.5   : 'top quark pole mass',
+          MbMb  =4.23   : 'Mb(Mb) running mass',
+          McMc  =1.27    : 'Mc(Mc) running mass'.
+	
+ 
+ 
+
+parameter mtcorr= (1-2*sa**2*ca**2)*del**2/4.
+
+parameter lam1=Mtp/ca/v*(1+mtcorr).
+parameter lam2=Mtp/sa/v*(1+mtcorr).
+
+
+let sb=  sa**2*del.
+let cb=1-sa**4*del**2/2.
+
+%%%%%%%%%%%%%%%
+
+
+
+angle sin=SW,cos=CW.
+
+
+
+
+parameter       g=EE/SW,gp=EE/CW.
+let             g1   = (g/s   where  s=1/Sqrt2,g=EE/SW,gp=EE/CW),  
+                g2   = (g/c   where  c=1/Sqrt2,g=EE/SW,gp=EE/CW),
+                g1p  = (gp/sp where  sp=1/Sqrt2,g=EE/SW,gp=EE/CW),
+                g2p  = (gp/cp where  cp=1/Sqrt2,g=EE/SW,gp=EE/CW).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+parameter xh=5/4*g*gp/(5*g**2-gp**2).
+
+parameter 	 MWL = MW*sqrt(1).
+parameter        MZL = MZ*sqrt(1).
+
+parameter        MAH = gp*f/sqrt(5)*(1-5/8*del**2).
+
+parameter        MZH = g*f*(1-del**2/8).
+
+parameter        MWH = g*f*(1-del**2/8).
+
+parameter        Mte = sqrt(lam1**2+lam2**2)*f*(1-ca**2*sa**2/2*del**2).
+parameter        Mt1 = lam2*f.
+parameter        MH  = 120.
+parameter        MH3 = Sqrt2*MH/del.
+parameter        kappa=1,kappal=1.
+parameter        Muo = Sqrt2*kappa*f*(1-del**2/8).
+parameter        Mdo = Sqrt2*kappa*f.
+parameter        Mno = Sqrt2*kappal*f*(1-del**2/8).
+parameter        Mlo = Sqrt2*kappal*f.
+
+%parameter Mb=4.7.
+%parameter Mc=1.3.
+parameter Ms=0.2.
+parameter Mq=0.01.
+
+% functions
+external_func(initQCD5,4).
+external_func(McRun,1).
+external_func(MbRun,1).
+external_func(MtRun,1).
+external_func(alphaQCD,1).
+external_func(McEff,1).
+external_func(MbEff,1).
+external_func(MtEff,1).
+
+
+%QCD sector
+parameter Lqcd=initQCD5(alfSMZ,McMc,MbMb,Mtp).
+parameter Mb=MbEff(Q).
+parameter Mt=MtEff(Q).
+parameter Mc=McEff(Q).
+%parameter Mt=Mtp.
+
+
+parameter PI=acos(-1).
+parameter Mbp=MbMb*(1+4/3*alphaQCD(MbMb)/PI).
+parameter Mcp=Mc*(1+4/3*alphaQCD(Mc)/PI).   
+
+%parameter lamb=Mb/v*(1+7/12*del**2).
+parameter  lamb=Mb/v.
+parameter lams=Ms/v.
+%parameter lamc=Mc/v*(1-3/4*del**2).
+parameter lamc=Mc/v*(1+1/4*del**2). 
+%%%%% page 30  hep-ph/0301040 %%%%%%%%%%%
+vector  'W+'/'W-'     	:('W boson',  pdg 24,   mass  MWL, width wW  = auto),	  
+  	'~W+'/'~W-'   	:('W heavy', pdg 10000024,    mass  MWH, width wWh = auto),	      
+  	 A/A	      	:(photon,pdg 22,gauge),
+  	 Z/Z	      	:('Z boson', pdg 23,    mass MZL, width wZ = auto),
+  	'~A'/'~A'	:('photon heavy',pdg 10000022,mass MAH),
+  	'~Z'/'~Z'	:('Z heavy',	pdg 10000023, mass MZH, width wZh = auto),
+	 G/G		: (gluon, pdg 21, color c8, gauge).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+scalar   H/H  	        :('H  higgs', pdg 25,      mass MH, width wH=auto).
+scalar '~P0'/'~P0'	:('P0  higgs',  pdg 10000035,    mass MH3, width wp0=auto).
+scalar '~PS'/'~PS'     	:('pp higgs', pdg 10000036,      mass MH3, width wps=auto).
+scalar '~P+'/'~P-' 	:('p+  higgs',  pdg 10000037,    mass MH3, width wpp=auto).
+scalar '~++'/'~--'  	:('p++  higgs', pdg 10000038,    mass MH3, width wpdp=auto).
+%%%%%%%% FERMIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+spinor 		ne/Ne:(neutrino,pdg 12,left), 	      e:(electron,pdg 11),
+		nm/Nm:('mu-neutrino',pdg 14, left),    m:(muon, pdg 13,mass Mm  = 0.1057),
+		nl/Nl:('tau-neutrino',pdg 16, left),   l:('tau-lepton',pdg 15, mass Ml  = 1.777).
+
+spinor		u:('u-quark',pdg 2, color c3, mass Mq), 
+		d:('d-quark',pdg 1, color c3, mass Mq),
+		c:('c-quark',pdg 4,color c3, mass Mc),
+		s:('s-quark',pdg 3,color c3, mass Ms),
+		t:('t-quark',pdg 6,color c3, mass Mt, width wtop = 1.442),
+		b:('b-quark',pdg 5,color c3, mass Mb ),
+		tp/Tp:('tp-quark',pdg 10000006,color c3, mass Mte, width wtp=auto).
+
+
+spinor		'~ne'/'~Ne':('nue-todd' ,pdg 100000012,  mass Mno, width wneo=auto),
+		'~nm'/'~Nm':('numu-todd' ,pdg 100000014, mass Mno, width wnmo=auto),
+		'~nl'/'~Nl':('nutau-todd',pdg 100000016, mass Mno, width wnlo=auto),
+		'~e'/'~E':('ele-todd' ,pdg 100000011,  mass Mlo, width weo=auto),
+		'~m'/'~M':('muon-todd',pdg 100000013,  mass Mlo, width wmo=auto),
+	        '~l'/'~L':('tau-todd',pdg 100000015,   mass Mlo, width wlo=auto).
+
+spinor		'~u'/'~U':('u-todd',pdg 10000002,color c3, mass Muo,    width wuo=auto),
+		'~d'/'~D':('d-todd',pdg 10000001,color c3, mass Mdo,    width wdo=auto),
+		'~c'/'~C':('c-todd',pdg 10000004,color c3, mass Muo,    width wco=auto),
+		'~s'/'~S':('s-todd',pdg 10000003,color c3, mass Mdo,    width wso=auto),
+		'~b'/'~B':('b-todd',pdg 10000005,color c3, mass Mdo,    width wbo=auto),
+	        '~t2'/'~T2':('T2-todd',pdg 20000006,color c3, mass Muo, width wt2o=auto).
+spinor
+	        '~t1'/'~T1': ('T1-todd'   ,pdg 30000006,color c3, mass Mt1, width wt1o=auto).
+
+%spinor		dc/Dc:('dc-quark',color c3, mass Mdc  = 1000, width wqo).
+%spinor		ki/Ki:('ki-quark',color c3, mass Mki  = 1000, width wqo).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+ let
+ h0=	(H+ vev(vh))/Sqrt2,
+ p0= 	'~PS'/Sqrt2 -i*'~P0'/Sqrt2,
+'h+' =  vev(0),  'h-'=anti('h+'),
+'p+'=   '~P+'/i,  'p-'=anti('p+'),
+'p++'='~++'/i,   'p--'=anti('p++').
+
+let   'WA+'   	=   'W+'.
+let   'WA-'   	=   anti('WA+').
+
+let   'WB+' 	=   '~W+'.
+let   'WB-' 	=   anti('WB+').
+
+let W1  =     	  ('WA+'+'WA-' )/Sqrt2.
+let W2  =       i*('WA+'-'WA-' )/Sqrt2.
+let WP1 =   	  ('WB+'+'WB-')/Sqrt2.
+let WP2 =       i*('WB+'-'WB-')/Sqrt2.
+ 
+ let W3    =     (SW*A  +   CW*Z).
+ let B0	=       -(CW*A  -   SW*Z).
+
+
+let WP3  =    (xh*del**2*'~A' 	  +'~Z').
+let B0P   =   ('~A'	-xh*del**2*'~Z').
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+let 	W^a^mu  ={W1^mu, W2^mu, W3^mu}^a,
+    	WP^a^mu ={WP1^mu,WP2^mu,WP3^mu}^a.
+
+let 	W_CL^a^mu  ={-W1^mu, -W2^mu, -W3^mu}^a,
+   	WP_CL^a^mu ={-WP1^mu,-WP2^mu,-WP3^mu}^a.
+
+let     W_ONE^a^mu=(W^a^mu-WP^a^mu)/Sqrt2,
+        W_TWO^a^mu=(W^a^mu+WP^a^mu)/Sqrt2.
+  
+let     W_ONE_CL^a^mu=(W_CL^a^mu-WP_CL^a^mu)/Sqrt2,
+        W_TWO_CL^a^mu=(W_CL^a^mu+WP_CL^a^mu)/Sqrt2.
+
+    
+let   	B_ONE^mu=(B0^mu-B0P^mu)/Sqrt2,
+       	B_TWO^mu=(B0^mu+B0P^mu)/Sqrt2.
+    
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%coeff del.
+%infinitesimal del.
+
+read 'lht_sigma0_let.src'.
+read 'lht_sigma1_let.src'.
+read 'lht_sigma2_let.src'.
+read 'lht_sigma3_let.src'.
+read 'lht_sigma4_let.src'.
+read 'lht_wsigma_let.src'.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+read 'lht_let_fermion.src'. 
+
+%chen, kappa term, 4/25/2006
+ read 'lht_kappa.src'.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% TERMS OF LAGRANGIAN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% EFFECTIVE HIGGS POTENTIAL %%%%%%%%%%%%%%%%%
+
+read 'lht_higgs_pot.src'.      
+       
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%% YUKAWA INTERACTIONS %%%%%%%%%%%%%%%%%%%%%%
+
+read 'lht_yukawa.src'.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%% GAUGE-MATTER INTERACTIONS %%%%%%%%%%%%%%%%%%%%%%
+
+read 'lht_gauge_matter.src'.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%% GAUGE-GAUGE INTERACTIONS %%%%%%%%%%%%%%%%%%%%%%
+
+read 'lht_gauge_gauge.src'.
+
+%%%%% SCALAR KINETIC TERM %%%%%%%%%%%%%%%%%
+
+read 'lht_scalar_kin.src'. 
+
+
+%%% Higgs effective vertices
+read 'lht_higgs_eff.src'.
+
+infinitesimal del**2.
+
+
+CheckHerm.
+
+%coeff GG.
+%coeff del.
+
+
+

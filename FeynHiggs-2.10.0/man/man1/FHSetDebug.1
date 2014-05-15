@@ -1,0 +1,30 @@
+.TH FHSETDEBUG 1 "2-Oct-2007"
+.SH NAME
+.PP
+FHSetDebug \- set the FeynHiggs debug level
+.SH SYNOPSIS (Fortran version)
+.PP
+integer debuglevel
+.sp
+subroutine FHSetDebug(debuglevel)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHSetDebug[debuglevel]
+.SH DESCRIPTION
+FHSetDebug sets the debug level for FeynHiggs.
+.SH ARGUMENTS
+.TP
+.B debuglevel (input)
+the new debug level, where
+.br
+0: no debug messages,
+.br
+1: dump setflags and setpara values,
+.br
+2: echo input parameters in detail,
+   display Higgs mass matrix at p^2 = 0 and CTs,
+.br
+3: display search for zeros.
+.SH SEE ALSO
+.PP
+libFH(1)

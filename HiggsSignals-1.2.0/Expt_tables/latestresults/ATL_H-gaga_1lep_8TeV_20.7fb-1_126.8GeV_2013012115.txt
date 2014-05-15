@@ -1,0 +1,17 @@
+# Published at Moriond 2013.
+# one lepton category
+# More info in ../Moriond2013.info
+# Don't use it together with the inclusive result (observableID: 2013012101)
+# (data overlap!).
+2013012115	201301215	1
+ATL-CONF-2013-012
+LHC, ATL, ATL
+(pp)->h->gammagamma(1lep)
+8 	20.7	0.036
+1	0
+2	ATLgagacat
+126.8 126.8 1.0
+5	126.8
+11 21 31 41 51
+1.0 1.965 732.7 309.5 1149.0
+126.8	1.03	2.69	4.66

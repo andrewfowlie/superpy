@@ -1,0 +1,10 @@
+6 6 60 9   Exclude X-particles
+ This request appears on the screen in the process is 
+not completely specified. 
+ This option can provide you a possibility to restrict 
+additional particles.  For example:
+               W+>1,Z
+excludes diagrams with more than 1 additional W+ and diagrams
+containing  at least one additional Z boson.
+
+  Use empty input to get the full set of diagrams.

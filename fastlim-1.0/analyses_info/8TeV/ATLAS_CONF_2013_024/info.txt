@@ -1,0 +1,2 @@
+0 lepton + 6 (2 b-)jets + Etmiss [Heavy stop] at 8TeV with $20.5fb^{-1}$
+https://cds.cern.ch/record/1525880

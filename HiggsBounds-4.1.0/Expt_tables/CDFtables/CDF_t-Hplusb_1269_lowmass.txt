@@ -1,0 +1,7 @@
+#0907.1269 CDF 
+#CDF_t-Hplusb_1269_lowmass
+#assumes BR(H+ -> c sbar )=1
+#columns: Mh, obs, exp BR(t -> H+ b)
+
+60	0.09	0.13
+70	0.12	0.19

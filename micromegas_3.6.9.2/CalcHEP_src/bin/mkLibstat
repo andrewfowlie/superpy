@@ -1,0 +1,26 @@
+: 
+  CALCHEP=  
+#-------------------- 
+
+if(test $# -ne 1) then
+   echo This routine needs one parameter which replace  suffix 'ext'
+   echo in global names and will be  included in the name of generated 
+   echo library: proclib_\$1.a 
+   exit 1
+fi
+
+.  $CALCHEP/FlagsForSh
+
+cp  $CALCHEP/include/num_in.h $CALCHEP/include/num_out.h $CALCHEP/include/sqme.inc .
+
+for FILE in *.c *.h *.inc
+do
+   sed  s/_ext/_$1/g $FILE > buff
+   mv buff  $FILE
+done
+
+$CC -c  $CFLAGS *.c 
+
+ar r proclib_$1.a *.o
+$RANLIB proclib_$1.a 
+rm -f *.o num_in.h num_out.h sqme.inc

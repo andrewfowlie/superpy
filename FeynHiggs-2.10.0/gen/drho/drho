@@ -1,0 +1,133 @@
+#! /bin/sh -x
+
+case "$1" in
+f|sf|ino|gauge)
+	;;
+*)
+	echo "invoke me as $0 f|sf|ino|gauge"
+	exit 1 ;;
+esac
+
+test -d m || mkdir m
+test -d f || mkdir f
+
+mma="math -run tag=\"$1\""
+
+
+$mma << \_EOF_
+AppendTo[$Echo, "stdout"];
+
+<< FeynArts`;
+<< FormCalc`;
+(* << FormCalc`tools`btensor`; *)
+
+CKM = IndexDelta;
+
+sfrulz[t_, ty_] = {
+  MSf[s_,t,g_] -> MSf[s,ty,g],
+  MSf2[s_,t,g_] -> MSf2[s,ty,g],
+  USf[s1_,s2_,t,g_] -> USf[s1,s2,ty,g],
+  USfC[s1_,s2_,t,g_] -> USfC[s1,s2,ty,g],
+  MASf[as_,t] -> MASf[as,ty],
+  MASf2[as_,t] -> MASf2[as,ty],
+  UASf[as1_,as2_,t] -> UASf[as1,as2,ty],
+  UASfC[as1_,as2_,t] -> UASfC[as1,as2,ty],
+  Kf[g__,t] -> Kf[g,ty],
+  KfC[g__,t] -> KfC[g,ty]
+};
+
+$DebugCmd = {"#ifdef DETAILED_DEBUG\n", "#endif\n", "DCONST ", " ENDL"};
+
+NClear[];
+N[sqrt2] = Sqrt[2.];
+
+opt["sf"] := SetOptions[InsertFields,
+  Model -> {FVMSSM (*, Gen3*)},
+(*
+  InsertionLevel -> {Particles},
+  LastSelections -> S[13|14, {_, 3}],
+*)
+  ExcludeParticles -> {V, U, F[1|2|3|4|11|12], S[1|2|3|4|5|6]}];
+
+opt["f"] := SetOptions[InsertFields,
+  Model -> FVMSSM,
+  ExcludeParticles -> {V, U, F[11|12], S} ];
+
+opt["ino"] := SetOptions[InsertFields,
+  Model -> FVMSSM,
+  ExcludeParticles -> {V, U, F[1|2|3|4], S}];
+
+opt["gauge"] := SetOptions[InsertFields,
+  Model -> FVMSSM,
+  ExcludeParticles -> {F, S[11|12|13|14]}];
+
+opt[tag];
+
+
+SetOptions[CalcFeynAmp, Dimension -> 4];
+
+
+(*sm[x_] := (FullSimplify[x /. SW2 -> 1 - CW2 /. CW2 -> MW2/MZ2];*)
+(*, {MW2 == CW2 MZ2, CW2 + SW2 == 1}];*)
+
+sm[x_] := Simplify[x /. {CW2 MZ2 -> MW2, 1/CW2 1/MZ2 -> 1/MW2}]
+
+simp[x_] := Collect[x, {_A0, _B0}, sm];
+
+
+SetOptions[Paint, PaintLevel -> {InsertionLevel}]
+
+MkDir[$PaintSE = "d/"];
+
+(* name = "DeltaRho1L_" <> tag; *)
+name = "DeltaRho_1L";
+
+
+SigZZ = SelfEnergy[V[2], 0];
+
+SigWW = SelfEnergy[V[3], 0];
+
+res = SigZZ/MZ2 - SigWW/MW2 /. ToOldBRules;
+
+Put[res, ToFileName["m", name <> ".raw"]];
+
+res = SplitSums[res /.
+    Alfa -> Sqrt[2]/Pi GF MW2 SW2, simp] /. MW2/(CW2 MZ2) -> 1 /.
+  sfrulz[4, bBR];
+
+
+Put[res, ToFileName["m", name <> ".m"]];
+
+hh = OpenFortran[ToFileName["f", name <> ".F"]];
+
+WriteString[hh, "\
+* " <> name <> ".F\n\
+* generated " <> TimeStamp[] <> "\n\
+* this file is part of FeynHiggs\n\
+* please do not edit directly\n\n\
+#include \"externals.h\"\n\
+#include \"types.h\"\n\
+#include \"debug.h\"\n\n\n\
+\tRealType function " <> name <> "()\n\
+\timplicit none\n\n\
+#include \"FH.h\"\n\
+#include \"looptools.h\"\n\n\
+\tComplexType drho\n"];
+
+WriteExpr[hh,
+  { drho -> res /. {Sqrt[2] -> sqrt2, 1/Sqrt[2] -> 1/sqrt2},
+    name -> Re[drho],
+    "\
+\tif( debuglevel .lt. 3 ) return\n\n\
+\tDCONST '" <> name <> " =', " <> name <> " ENDL\n\
+\tend\n" },
+  Optimize -> True,
+  Expensive -> {_A0, _B0, _B1, _B00, _B11},
+  IndexType -> "integer",
+  (*DebugLines -> True,*)
+  FinalTouch -> sm];
+
+Close[hh];
+
+_EOF_
+

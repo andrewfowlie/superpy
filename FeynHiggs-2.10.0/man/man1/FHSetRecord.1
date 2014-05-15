@@ -1,0 +1,32 @@
+.TH FHSETRECORD 1 "10-May-2011"
+.SH NAME
+.PP
+FHSetRecord \- set the FeynHiggs parameters from a FeynHiggs Record
+.SH SYNOPSIS (Fortran version)
+.PP
+#include "FHRecord.h"
+.sp
+integer error
+.br
+RecordDecl(record)
+.sp
+subroutine FHSetRecord(error, record)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHSetRecord[record]
+.SH DESCRIPTION
+FHSetRecord sets the FeynHiggs parameters from a FeynHiggs Record.
+This subroutine works like a combination of FHSetSMPara, FHSetPara,
+and FHSetNMFV except that the input parameters are taken from the
+FeynHiggs Record.
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in SetRecord.F from
+which the error message was emitted.
+.TP
+.B record (input/output)
+the FeynHiggs Record.
+.SH SEE ALSO
+.PP
+libFH(1)

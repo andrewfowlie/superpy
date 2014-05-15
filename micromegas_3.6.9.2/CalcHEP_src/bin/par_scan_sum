@@ -1,0 +1,58 @@
+:
+
+#======================================
+USR=`pwd`
+bin=`echo $0_A_E_P |sed s/par_scan_sum_A_E_P//`; cd $bin; bin=`pwd`
+export bin
+cd $USR
+#======================================
+
+read NAMES
+echo $NAMES
+
+read VALUES
+while (test -n "$VALUES") 
+do 
+  n=1
+  SUM=  
+  for name in $NAMES 
+  do 
+     val=`echo $VALUES |cut -f$n -d" "` 
+     SUM="$SUM $name $val "
+     n=`expr $n + 1` 
+  done 
+  err=`$bin/set_param  $SUM`
+  if(test $? -eq 0) then 
+
+   strCom="{}0"
+   nOld=1
+   nSub=0
+   CSt=0
+
+   while(test $nSub -ne  $nOld)
+   do
+       nOld=$nSub
+      ./n_calchep -blind "{$strCom" 1>/dev/null 2>/dev/null 
+       err=$?; if(test $err -ne 0) then break; fi
+
+       info=`grep Subprocess  session.dat`
+       nSub=`echo $info|cut -f2 -d" "`
+
+       if(test $nSub -ne $nOld) then
+          CSi=`$bin/run_vegas`
+          err=$?; if(test $err -ne 0) then break; fi   
+          CSt=`$bin/calc "($CSt) + ($CSi)"` 
+          strCom="[$strCom"
+       fi
+   done 
+
+   if(test $err -eq 0) then
+      echo  $VALUES   $CSt
+   else 
+      echo $VALUES  Can not calculate 
+   fi
+  else 
+    echo $VALUES   Wrong parameter set: $err
+  fi 
+  read VALUES 
+done

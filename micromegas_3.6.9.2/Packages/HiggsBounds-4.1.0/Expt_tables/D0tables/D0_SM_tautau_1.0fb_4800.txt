@@ -1,0 +1,10 @@
+#arxiv:0903.4800v3 D0 25 Jun 2009
+#D0_SM_tautau_1.0fb
+#
+#columns: Mh, obs, exp (as ratio to SM cross sections)
+
+105	20	24
+115	29	28
+125	44	40
+135	50	63
+145	82	120

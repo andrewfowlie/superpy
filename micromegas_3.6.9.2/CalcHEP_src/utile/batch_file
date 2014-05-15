@@ -1,0 +1,376 @@
+###############################################
+#  batch_file for CalcHEP                     #
+#  It has to be launched via                  #
+#          ./calchep_batch batch_file         #
+#  Lines beginning with # are ignored.        #
+###############################################
+
+###############################################
+#  Model Info                                 #
+#  Model is the exact model name.             #
+#  Model changed specifies whether a change   #
+#       was made to the model files.  Changes #
+#       to the numerical values of external   #
+#       parameters is ok.  Other changes      #
+#       require that the process library be   #
+#       recreated.  Values are True or False. #
+#  Gauge specifies gauge.  Choices are        #
+#       Feynman or unitary.                   #
+###############################################
+Model:         Standard Model(CKM=1)
+Model changed: False
+Gauge:         Feynman
+
+###############################################
+#  Process Info                               #
+#  Process specifies the process.  More than  #
+#       one process can be specified.  Cuts,  #
+#       regularization and QCD scale should   #
+#       be specified for each one.            #
+#  Decay specifies decays.  As many decays    #
+#       as are necessary are allowed.         #
+#  Composite specifies composite particles    #
+#       present in the processes or decays.   #
+###############################################
+Process:   p,p->W,b,B
+Decay:     W->le,n
+
+Composite: p=u,U,d,D,s,S,c,C,b,B,G
+Composite: W=W+,W-
+Composite: le=e,E,m,M
+Composite: n=ne,Ne,nm,Nm
+Composite: jet=u,U,d,D,s,S,c,C,b,B,G
+
+
+
+##############################################
+#  PDF Info                                  #
+#  Choices are:                              #
+#    cteq6l (anti-proton)                    #
+#    cteq6l (proton)                         #
+#    mrst2002lo (anti-proton)                #
+#    mrst2002lo (proton)                     #
+#    cteq6m (anti-proton)                    #
+#    cteq6m (proton)                         #
+#    cteq5m (anti-proton)                    #
+#    cteq5m (proton)                         #
+#    mrst2002nlo (anti-proton)               #
+#    mrst2002nlo (proton)                    #
+#    ISR                                     #
+#    ISR & Beamstrahlung                     #
+#    Equiv. Photon                           #
+#    Laser photons                           #
+#    Proton Photon                           #
+#    OFF                                    #
+#                                            #
+#  ISR and Beamstrahlung are only available  #
+#    for electrons and positrons, while the  #
+#    others are available for protons and    #
+#    antiprotons.                            #
+#    Default pdf: OFF                       #
+#  Bunch x+y sizes (nm)                      #
+#    Ignored unless ISR & Beam chosen.       #
+#    Default: 560                            #
+#  Bunch length (mm)                         #
+#    Ignored unless ISR & Beam chosen.       #
+#    Default: 0.4                            #
+#  Number of particles                       #
+#    Ignored unless ISR & Beam chosen.       #
+#    Default: 2E+10                          #
+#  Default Beamstrahlung parameters          #
+#    correspond roughly with ILC.            #
+#                                            #
+#  Equiv. Photon, Laser photons and          #
+#    Proton Photon are available for         #
+#    photons.                                #
+#    Default pdf: OFF                       #
+#  Photon particle                           #
+#    Ignored unless Equiv. Photon chosen.    #
+#    Choices are: mu^-,e^-,e^+,mu^+          #
+#    Default: e^+                            #
+#  |Q|max                                    #
+#    Ignored unless Equiv. Photon chosen.    #
+#    Default: 100                            #
+#  Incoming particle mass                    #
+#    Ignored unless Proton Photon chosen.    #
+#    Default: 0.938                          #
+#  Incoming particle charge                  #
+#    Ignored unless Proton Photon chosen.    #
+#    Choices are: 1,-1                       #
+#    Default: 1                              #
+#  |Q^2|max                                  #
+#    Ignored unless Proton Photon chosen.    #
+#    Default: 2                              #
+#  Pt cut of outgoing proton                 #
+#    Ignored unless Proton Photon chosen.    #
+#    Default: 0.1                            #
+##############################################
+pdf1:      cteq6l (proton)
+pdf2:      cteq6l (proton)
+
+#Bunch x+y sizes (nm)      : 202500
+#Bunch length (mm)         : 10
+#Number of particles       : 5E+11
+
+#Photon particle           : e^-
+#|Q|max                    : 250
+#Incoming particle mass    : 0.938
+#Incoming particle charge  : -1
+#|Q^2|max                  : 2.0
+#Pt cut of outgoing proton : 0.15
+
+###############################################
+#  Momentum Info                              #
+#    in GeV                                   #
+###############################################
+p1:        4000
+p2:        4000
+
+###############################################
+#  Parameter Info                             #
+#  Masses and Energies are in GeV             #
+###############################################
+#Parameter: EE=0.31
+
+###############################################
+#  Run Info                                   #
+#  Masses and Energies are in GeV             #
+#  More than one run can be specified at      #
+#     the same time.                          #
+###############################################
+Run parameter: Mh
+Run begin:     120
+Run step size: 5
+Run n steps:   3
+
+###############################################
+#  QCD Running Info                           #
+#  As in the gui:                             #
+#  parton dist. alpha                         #
+#     default: ON                             #
+#  alpha(MZ)                                  #
+#     default: 0.1172                         #
+#  alpha nf                                   #
+#     default: 5                              #
+#  alpha order                                #
+#     choices: LO, NLO, NNLO                  #
+#     default: NLO                            #
+#  mb(mb)                                     #
+#     default: 4.2                            #
+#  Mtop(pole)                                 #
+#     default: 175                            #
+#  alpha Q                                    #
+#     Must be in terms of the final state     #
+#     particles.                              #
+#     default: M12                            #
+#     :n: specifies which process.            #
+#     : means to apply to all processes.      #
+###############################################
+#parton dist. alpha: ON
+#alpha(MZ):          0.118
+#alpha nf:           5
+#alpha order:        NLO
+#mb(mb):             4
+#Mtop(pole):         174
+
+#alpha Q :1:         M34
+#alpha Q :2:         M45
+alpha Q :            M45
+
+
+
+###############################################
+#  Cut Info                                   #
+#  Must be in terms of the (production mode)  #
+#     final state particles.                  #
+#     :n: specifies which process.            #
+#     : means to apply to all processes.      #
+###############################################
+
+Cut parameter:    M(b,B)
+Cut invert:       False
+Cut min:          100
+Cut max:     
+
+Cut parameter:    J(jet,jet)
+Cut invert:       False
+Cut min:          0.5
+Cut max:            
+
+Cut parameter:    T(jet)
+Cut invert:       False
+Cut min:          20
+Cut max:            
+
+Cut parameter:    N(jet)
+Cut invert:	  False
+Cut min:	 -2.5
+Cut max:	  2.5
+
+
+
+###############################################
+#  Kinematics Info                            #
+#  Must be exactly as in CH.                  #
+#     Comment out to use the CH defaults.     #
+#     :n: specifies which process.            #
+#     : means to apply to all processes.      #
+###############################################
+#Kinematics :1:    12 -> 34 , 56
+#Kinematics :1:    34 -> 3 , 4
+#Kinematics :1:    56 -> 5 , 6
+
+Kinematics :      12 -> 3, 45
+Kinematics :      45 -> 4 , 5
+
+
+
+###############################################
+#  Regularization Info                        #
+#  Must be in terms of the final state        #
+#     particles.                              #
+#     :n: specifies which process.            #
+#     : means to apply to all processes.      #
+###############################################
+Regularization momentum:1: 45
+Regularization mass:1:     Mh
+Regularization width:1:    wh
+Regularization power:1:    2
+
+
+###############################################
+#  Distribution Info                          #
+#  Only 1 dimensional distributions are       #
+#     currently supported.                    #
+#  Dist n bins should be one of:              #
+#     300, 150, 100, 75, 60, 50, 30, 25,      #
+#     20, 15, 12, 10, 6, 5, 4, 3, 2           #
+#  Dist title and Dist x-title should be      #
+#     plain text.                             #
+###############################################
+Dist parameter:    M(b,B)
+Dist min:          100
+Dist max:          200
+Dist n bins:       100
+Dist title:        p,p->W,b,B
+Dist x-title:      M(b,B) (GeV)
+
+Dist parameter:    M(W,jet)
+Dist min:	   100
+Dist max:	   200
+Dist n bins:	   100
+Dist title:	   p,p->W,b,B
+Dist x-title:	   M(W,jet) (GeV)
+
+###############################################
+#  Events Generation                          #
+#  Number of events determines how many       #
+#       events to produce for each run.       #
+#  Filename is the name used for the event    #
+#       files.  If no parameter is run over   #
+#       then, -Single.lhe is appended.  If    #
+#       a parameter is run over then its      #
+#       value will be appended as in          #
+#       pp-WW-MW400.lhe.                      #
+#  NTuple determines whether PAW ntuples      #
+#       are created.  This only works if      #
+#       nt_maker is properly compiled and     #
+#       in the bin directory.                 #
+#       Choices are True or False.            #
+#  Cleanup determines whether the             #
+#       individual event files are removed    #
+#       after they are combined.              #
+#       Default: True                         #
+###############################################
+Number of events (per run step): 1000
+Filename:                        test
+NTuple:                          False
+Cleanup:                         False
+
+###############################################
+#  Parallelization Info                       #
+#  Parallelization method choices:            #
+#      local                                  #
+#      pbs                                    #
+#  Que can be left blank if not required      #
+#      on your pbs cluster.                   #
+#  Walltime should be the number              #
+#      of hours necessary for each job.       #
+#      Leave blank if your pbs cluster does   #
+#      not require this and will let a        #
+#      job run until it is finished.          #
+#  Memory is the amount of memory required    #
+#      for each job in gb.  Leave blank       #
+#      if not required on your cluster.       #
+#  email is only used on the pbs cluster      #
+#      if you want it to inform you of        #
+#      problems. email is currently ignored.  #
+#  sleep time determines how often the        #
+#      script updates (in seconds)            #
+#      while waiting for processes to finish. #
+#  nice level is used for the CH jobs in      #
+#      local mode and combining events in     #
+#      all modes.                             #
+#      default: 19                            #
+###############################################
+Parallelization method:      local
+#Que:                         brody_main
+#Walltime:                    0.15
+#Memory:                      1
+#email:                       name@address
+Max number of cpus:          2
+sleep time:                  3
+nice level :                 19
+
+###############################################
+#  Vegas                                      #
+#  The variables are the same as in the gui.  #
+#  If commented out, the default values       #
+#      are used.                              #
+#                                             #
+#  nSess_1 : number of the 1st sessions       #
+#     default: 5                              #
+#  nCalls_1 : number of calls per 1st sessions#
+#     default: 10000                          #
+#  nSess_2 : number of the 2nd sessions       #
+#     default: 0                              #
+#  nCalls_2 : number of calls per 2nd sessions#
+#     default: 10000                          #
+###############################################
+nSess_1:   5
+nCalls_1:  100000
+nSess_2:   5
+nCalls_2:  100000
+
+
+###############################################
+#  Event Generator                            #
+#  The variables are the same as in the gui.  #
+#  If commented out, the default values       #
+#      are used.                              #
+#                                             #
+#  sub-cubes:                                 #
+#     default: 1000                           #
+#  random search:                             #
+#     default: 100                            #
+#  simplex search:                            #
+#     default: 50                             #
+#                                             #
+#  MAX*N: integer to multiply max by          #
+#     default: 2                              #
+#  find new MAX:                              #
+#     default: 100                            #
+###############################################
+#sub-cubes:      100000
+#random search:  100
+#simplex search: 50
+
+#MAX*N:          2
+#find new MAX:   100
+
+
+
+
+
+
+

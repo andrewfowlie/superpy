@@ -1,0 +1,12 @@
+CALCHEP=$1
+
+echo \#define  rootDir \"$CALCHEP\"\ > include/rootDir.h 
+
+for FILE in  bin/mkLibstat bin/mkLibshared bin/make_main mkWORKdir bin/subproc_cycle 
+do
+  echo ": 
+  CALCHEP=$CALCHEP "  > tmp_file
+  sed 1,2d  $FILE >> tmp_file
+  mv tmp_file $FILE
+  chmod 755 $FILE
+done

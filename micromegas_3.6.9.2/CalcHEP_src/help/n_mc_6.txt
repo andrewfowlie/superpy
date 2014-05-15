@@ -1,0 +1,12 @@
+2 5 50
+   CalcHEP uses  the Breit-Wigner formula  for
+propagators of virtual particles with finite 
+width. This trick is needed to avoid the integral
+divergence. From the other side such modification
+of propagators sometimes leads to breaking of 
+gauge invariance which is responsible for mutual 
+cancellation of contributions of different 
+diagrams.
+  This menu function displays the next level menu 
+which control implementation of Breit-Wigner 
+formula. 

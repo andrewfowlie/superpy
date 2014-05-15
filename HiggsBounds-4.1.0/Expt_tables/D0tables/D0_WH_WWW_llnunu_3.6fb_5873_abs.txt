@@ -1,0 +1,10 @@
+#D0 Note 5873 March 13th 2009
+#D0_WH_WWW_llnunu_3.6fb
+#no interpolation
+#columns: Mh(in GeV), obs, exp (in fb) 
+
+120	1.04E+3	0.65E+3
+140	0.91E+3	0.55E+3
+160	0.84E+3	0.49E+3
+180	0.73E+3	0.42E+3
+200	0.62E+3	0.35E+3

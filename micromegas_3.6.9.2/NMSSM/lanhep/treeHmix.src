@@ -1,0 +1,31 @@
+
+% =============   tree level  Zh  mixing
+
+
+parameter hMM11 = (4/EE**2*MW**2*SW**2*cb*cb*la1-6/EE**2*MW**2*SW**2*cb*la6*sb+1*B1/cb*sb+1*aa5/cb*sb*xvev+1*aa6/cb*sb*xvev+1/cb*la4s*sb*xvev**2+1/cb*la5s*sb*xvev**2+1/cb*la6s*sb*xvev**2+2/EE**2*MW**2*SW**2/cb*la7*sb**3).
+parameter hMM12 = (4/EE**2*MW**2*SW**2*cb*la3*sb+4/EE**2*MW**2*SW**2*cb*la4*sb+4/EE**2*MW**2*SW**2*cb*la5*sb-6/EE**2*MW**2*SW**2*cb*cb*la6-6/EE**2*MW**2*SW**2*la7*sb**2-1*la4s*xvev**2-1*la5s*xvev**2-1*la6s*xvev**2-1*aa5*xvev-1*aa6*xvev-1*B1).
+parameter hMM13 = (2/EE*MW*SW*Sqrt2*cb*la1s*xvev-2/EE*MW*SW*Sqrt2*la4s*sb*xvev-2/EE*MW*SW*Sqrt2*la5s*sb*xvev-2/EE*MW*SW*Sqrt2*la6s*sb*xvev+2/EE*MW*SW*Sqrt2*aa1*cb-1/EE*MW*SW*Sqrt2*aa5*sb-1/EE*MW*SW*Sqrt2*aa6*sb).
+parameter hMM22 = (4/EE**2*MW**2*SW**2*la2*sb**2-6/EE**2*MW**2*SW**2*cb*la7*sb+1*B1*cb/sb+1*aa5*cb/sb*xvev+1*aa6*cb/sb*xvev+2/EE**2*MW**2*SW**2*cb**3*la6/sb+1*cb*la4s/sb*xvev**2+1*cb*la5s/sb*xvev**2+1*cb*la6s/sb*xvev**2).
+parameter hMM23 = (2/EE*MW*SW*Sqrt2*la2s*sb*xvev-2/EE*MW*SW*Sqrt2*cb*la4s*xvev-2/EE*MW*SW*Sqrt2*cb*la5s*xvev-2/EE*MW*SW*Sqrt2*cb*la6s*xvev+2/EE*MW*SW*Sqrt2*aa2*sb-1/EE*MW*SW*Sqrt2*aa5*cb-1/EE*MW*SW*Sqrt2*aa6*cb).
+parameter hMM33 = (4*la3s*xvev**2+8*la7s*xvev**2+8*la8s*xvev**2+3*aa3*xvev+3*aa4*xvev-1*X/xvev-2/EE**2*MW**2*SW**2*aa1*cb*cb/xvev-2/EE**2*MW**2*SW**2*aa2*sb**2/xvev+2/EE**2*MW**2*SW**2*aa5*cb*sb/xvev+2/EE**2*MW**2*SW**2*aa6*cb*sb/xvev).
+
+parameter idS=rDiagonal(3,hMM11,hMM12,hMM13,hMM22,hMM23,hMM33).
+
+_i=1-3 in parameter Mh_i_ =sqrt(MassArray(idS,_i)).
+
+_i=1-3 in _j=1-3 in parameter Zh_i_j_=MixMatrix(idS,_i,_j).
+
+
+% =============  tree level Pa mixing
+
+parameter MA11 = (-4/EE**2*MW**2*SW**2*la5+2/EE**2*MW**2*SW**2*cb*la6/sb+2/EE**2*MW**2*SW**2/cb*la7*sb+1*B1/cb/sb+1*aa5/cb/sb*xvev+1*aa6/cb/sb*xvev+1/cb*la4s/sb*xvev**2+1/cb*la5s/sb*xvev**2+1/cb*la6s/sb*xvev**2).
+parameter MA12 = (2*la5s*xvev-2*la6s*xvev+aa5-aa6)*MW*SW*Sqrt2/EE.
+parameter MA22 = ( (4*cb*la5s*sb +4*cb*la6s*sb +(-aa1*cb*cb -aa2*sb**2 +aa5*cb*sb +aa6*cb*sb  )/xvev )*(2/EE**2*MW**2*SW**2)-16*la7s*xvev**2-1*aa3*xvev-9*aa4*xvev-4*B2-1*X/xvev-4*la8s*xvev**2).
+
+parameter idA=rDiagonal(2,MA11,MA12,MA22).
+
+_i=1-2 in _j=1-2 in parameter Pa_i_j_= MixMatrix(idA,_i,_j).
+
+parameter Mha_ =sqrt(MassArray(idA,1)).
+parameter Mhb_ =sqrt(MassArray(idA,2)). 
+

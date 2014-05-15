@@ -1,0 +1,10 @@
+Amp[{{-F[4, {2, Col1}], k[1], 0, {}}, {F[4, {3, Col2}], k[2], 0, {}}} -> 
+   {{-F[4, {3, Col3}], k[3], 0, {}}, {F[4, {2, Col4}], k[4], 0, {}}}][
+ (Alfa2*CKM[3, 3]^2*CKMC[3, 2]^2*(-D00z[MHp2, MHp2, Mf2[tT, 3], Mf2[tT, 3]]/
+      (4*MW2^2*TB2^2) + (-D00z[MHp2, MW2, Mf2[tT, 3], Mf2[tT, 3]]/(2*MW2^2) + 
+       D0z[MHp2, MW2, Mf2[tT, 3], Mf2[tT, 3]]/(2*MW2))/TB2)*Mat[F4*SUN1]*
+    Mf2[tT, 3]^2)/SW2^2 + (Alfa2*CKM[3, 3]^2*CKMC[3, 2]^2*
+    (D00z[MHp2, MHp2, Mf2[tT, 3], Mf2[tT, 3]]/(4*MW2^2*TB2^2) + 
+     (D00z[MHp2, MW2, Mf2[tT, 3], Mf2[tT, 3]]/(2*MW2^2) - 
+       D0z[MHp2, MW2, Mf2[tT, 3], Mf2[tT, 3]]/(2*MW2))/TB2)*Mat[F2*SUN2]*
+    Mf2[tT, 3]^2)/SW2^2]

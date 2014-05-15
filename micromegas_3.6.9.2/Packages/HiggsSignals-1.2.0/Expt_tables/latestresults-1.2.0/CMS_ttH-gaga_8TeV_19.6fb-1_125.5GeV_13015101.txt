@@ -1,0 +1,16 @@
+# Signal contamination are given in CMS note (ttH is about 91%). However,
+# the best-fit was performed holding ggf,VBF,VH fixed at SM prediction, 
+# therefore we cannot implement this result as a composed signal. We thus
+# implement it as a pure ttH channel.
+13015101	1301501		1
+CMS-PAS-HIG-13-015
+LHC, CMS, CMS
+(pp)->tth->tt(gammagamma)
+8	19.6	 0.044
+1	0
+2.0
+125.5 125.5 1.0
+1	-1
+51
+
+125.5	-2.1	-0.2	2.2

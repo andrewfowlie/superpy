@@ -1,0 +1,14 @@
+#! /bin/sh
+
+swap() {
+  while read mh sqrts rest ; do
+    echo $sqrts $mh $rest
+  done
+}
+
+
+for file in ggh-sm-*-*-*.dat ; do
+  [ -f $file.orig ] || mv $file $file.orig
+  swap < $file.orig > $file
+done
+

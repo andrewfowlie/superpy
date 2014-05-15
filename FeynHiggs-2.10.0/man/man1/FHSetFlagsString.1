@@ -1,0 +1,20 @@
+.TH FHSETFLAGSSTRING 1 "5-Apr-2011"
+.SH NAME
+.PP
+FHSetFlagsString \- set the FeynHiggs flags from a string
+.SH SYNOPSIS (Fortran version)
+.PP
+integer error
+.br
+character*9 flags
+.sp
+subroutine FHSetFlagsString(error, flags)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHSetFlagsString[flags]
+.SH DESCRIPTION
+FHSetFlagsString works just like FHSetFlags except that the flags
+are given as a 9-digit character string rather than as 9 integers.
+.SH SEE ALSO
+.PP
+libFH(1)

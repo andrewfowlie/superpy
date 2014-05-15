@@ -1,0 +1,152 @@
+#!/bin/sh
+# configure script for the GNUmakefile
+# this file is part of FormCalc
+# last modified 19 Aug 04 th
+# note: has nothing to do with GNU autoconf
+
+
+if (echo "test\c"; echo 1,2,3) | grep c > /dev/null ; then
+  if (echo -n test; echo 1,2,3) | grep n > /dev/null ; then
+    echo_n=
+    echo_c='
+'
+  else
+    echo_n=-n
+    echo_c=
+  fi
+else
+  echo_n=
+  echo_c='\c'
+fi
+
+
+findprog()
+{
+  echo $echo_n "looking for $1... $echo_c" 1>&2
+  shift
+  for prog in $* ; do
+    full=`which $prog`
+    if [ -x "$full" ] ; then
+      echo $full 1>&2
+      basename $full
+      return 0
+    fi
+  done
+  echo "no $* in your path" 1>&2
+  return 1
+}
+
+
+findpath()
+{
+  echo $echo_n "looking for path to $1... $echo_c" 1>&2
+  file=$2
+  shift 2
+  for path in $* ; do
+    if [ -f "$path/$file" ] ; then
+      (cd $path ; pwd 1>&2 ; pwd)
+      return 0
+    fi
+  done
+  echo "no $file in $*" 1>&2
+  return 1
+}
+
+
+# check the arguments
+
+ARG_MAKEARGS=""
+
+for arg in "$@" ; do
+  case $arg in
+  -*) echo "Unknown option $arg" 1>&2 ;;
+  *) ARG_MAKEARGS="$ARG_MAKEARGS $arg" ;;
+  esac
+done
+
+
+# look for some programs
+
+CONF_MAKE=`findprog make gmake Make make` || exit 1
+
+CONF_CC=`findprog gcc $CC gcc` || exit 1
+
+CONF_CFLAGS="${CFLAGS--O3 -fomit-frame-pointer -ffast-math}"
+
+if [ -z "$FC" ] ; then
+  case $HOSTTYPE in
+  alpha)
+	FC=f77
+	FFLAGS="${FFLAGS--O -extend_source -warn truncated_source}" ;;
+  *sun* | *sparc*)
+	FC=f77
+	FFLAGS="${FFLAGS--fast -e}" ;;
+  hp*)
+	FC=fort77
+	FFLAGS="${FFLAGS--O2 +es +U77}" ;;
+  *86 | *linux)
+#	FC=pgf77
+#	FFLAGS="${FFLAGS--fast -Mextend -g77libs}" ;;
+        FC=f77
+        FFLAGS="${FFLAGS--O0 -ffixed-line-length-none}" 
+  esac
+fi
+
+
+CONF_FC=`findprog f77 $FC f77 fort77 xlf f90 pgf77 g77` || exit 1
+CONF_FFLAGS="$FFLAGS"
+
+
+$CONF_FC -v -c 2>&1 | grep "gcc version" > /dev/null && \
+  CONF_FFLAGS="-O0 -ffixed-line-length-none"
+
+
+# does Fortran append underscores to symbols?
+
+echo $echo_n "does $CONF_FC append underscores... $echo_c" 1>&2
+
+test=test$$
+trap "rm -f $test*" 0 1 2 15
+
+cat > $test.f << _EOF_
+	subroutine uscore
+	end
+_EOF_
+
+$CONF_FC -c $test.f > /dev/null 2>&1
+
+if nm $test.o | grep uscore_ > /dev/null 2>&1 ; then
+  echo "yes" 1>&2
+  CONF_CFLAGS="$CONF_CFLAGS -DHAVE_UNDERSCORE"
+else
+  echo "no" 1>&2
+fi
+
+
+# check for the necessary libraries
+
+
+echo "creating makefile" 1>&2
+
+cat - makefile.in > makefile << _EOF_
+# --- variables defined by configure ---
+
+
+
+FC = $CONF_FC
+FFLAGS = $CONF_FFLAGS
+
+CC = $CONF_CC
+CFLAGS = $CONF_CFLAGS
+
+# --- end defs by configure ---
+
+
+_EOF_
+
+  echo "" 1>&2
+  echo "now you must run $CONF_MAKE" 1>&2
+  echo "" 1>&2
+
+exit 0
+

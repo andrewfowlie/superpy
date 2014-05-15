@@ -1,0 +1,10 @@
+#D0 Note 5845 Aug 14th 2009
+#D0_tautauqq_4.9fb
+#interpolation needed
+#columns: Mh(GeV), obs, exp (fb)
+
+105	21.9	13.4
+115	27.0	15.9
+125	41.9	24.4
+135	37.6	32.2
+145	86.0	61.4

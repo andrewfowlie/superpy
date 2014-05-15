@@ -1,0 +1,6 @@
+1 12 50
+  In each integration session Vegas improves
+integration grid for optimization of integration.
+  This menu function restores original flat
+integration grid. Information obtained for event
+generator will be lost after that too.

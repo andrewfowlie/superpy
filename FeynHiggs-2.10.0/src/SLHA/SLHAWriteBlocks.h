@@ -1,0 +1,173 @@
+#define modse 1
+#define sminp 2
+#define minpa 3
+#define extpa 4
+#define qxtpa 5
+#define nmrun 6
+#define mass 7
+#define tmass 8
+#define nmix 9
+#define umix 10
+#define vmix 11
+#define staum 12
+#define stopm 13
+#define sbotm 14
+#define alfa 15
+#define talfa 16
+#define hmix 17
+#define gauge 18
+#define msoft 19
+#define ae 20
+#define au 21
+#define ad 22
+#define ye 23
+#define yu 24
+#define yd 25
+#define lllei 26
+#define llqdi 27
+#define luddi 28
+#define llle 29
+#define llqd 30
+#define ludd 31
+#define tllei 32
+#define tlqdi 33
+#define tuddi 34
+#define tlle 35
+#define tlqd 36
+#define tudd 37
+#define rki 38
+#define rk 39
+#define rdi 40
+#define rd 41
+#define rvevi 42
+#define rvev 43
+#define rmlhi 44
+#define rmlh 45
+#define rnmix 46
+#define rumix 47
+#define rvmix 48
+#define rhmix 49
+#define ramix 50
+#define rlmix 51
+#define vckmi 52
+#define vckm 53
+#define umnsi 54
+#define umns 55
+#define msl2i 56
+#define mse2i 57
+#define msq2i 58
+#define msu2i 59
+#define msd2i 60
+#define msl2 61
+#define mse2 62
+#define msq2 63
+#define msu2 64
+#define msd2 65
+#define tei 66
+#define tui 67
+#define tdi 68
+#define te 69
+#define tu 70
+#define td 71
+#define snmix 72
+#define slmix 73
+#define usmix 74
+#define tsmix 75
+#define ssmix 76
+#define samix 77
+#define hcmix 78
+#define nnmix 79
+#define nhmix 80
+#define namix 81
+#define prcob 82
+#define spinf 83
+#define tcinf 84
+#define tecys 85
+
+	integer nblocks
+	parameter (nblocks = 85)
+	character*12 blockname(nblocks)
+	data blockname(modse) /"IMMODSEL"/
+	data blockname(sminp) /"IMSMINPUTS"/
+	data blockname(minpa) /"IMMINPAR"/
+	data blockname(extpa) /"IMEXTPAR"/
+	data blockname(qxtpa) /"IMQEXTPAR"/
+	data blockname(nmrun) /"IMNMSSMRUN"/
+	data blockname(mass) /"IMMASS"/
+	data blockname(tmass) /"IMDMASS"/
+	data blockname(nmix) /"IMNMIX"/
+	data blockname(umix) /"IMUMIX"/
+	data blockname(vmix) /"IMVMIX"/
+	data blockname(staum) /"IMSTAUMIX"/
+	data blockname(stopm) /"IMSTOPMIX"/
+	data blockname(sbotm) /"IMSBOTMIX"/
+	data blockname(alfa) /"IMALPHA"/
+	data blockname(talfa) /"IMDALPHA"/
+	data blockname(hmix) /"IMHMIX"/
+	data blockname(gauge) /"IMGAUGE"/
+	data blockname(msoft) /"IMMSOFT"/
+	data blockname(ae) /"IMAE"/
+	data blockname(au) /"IMAU"/
+	data blockname(ad) /"IMAD"/
+	data blockname(ye) /"IMYE"/
+	data blockname(yu) /"IMYU"/
+	data blockname(yd) /"IMYD"/
+	data blockname(lllei) /"IMRVLAMLLEIN"/
+	data blockname(llqdi) /"IMRVLAMLQDIN"/
+	data blockname(luddi) /"IMRVLAMUDDIN"/
+	data blockname(llle) /"IMRVLAMLLE"/
+	data blockname(llqd) /"IMRVLAMLQD"/
+	data blockname(ludd) /"IMRVLAMUDD"/
+	data blockname(tllei) /"IMRVTLLEIN"/
+	data blockname(tlqdi) /"IMRVTLQDIN"/
+	data blockname(tuddi) /"IMRVTUDDIN"/
+	data blockname(tlle) /"IMRVTLLE"/
+	data blockname(tlqd) /"IMRVTLQD"/
+	data blockname(tudd) /"IMRVTUDD"/
+	data blockname(rki) /"IMRVKAPPAIN"/
+	data blockname(rk) /"IMRVKAPPA"/
+	data blockname(rdi) /"IMRVDIN"/
+	data blockname(rd) /"IMRVD"/
+	data blockname(rvevi) /"IMRVSNVEVIN"/
+	data blockname(rvev) /"IMRVSNVEV"/
+	data blockname(rmlhi) /"IMRVM2LH1IN"/
+	data blockname(rmlh) /"IMRVM2LH1"/
+	data blockname(rnmix) /"IMRVNMIX"/
+	data blockname(rumix) /"IMRVUMIX"/
+	data blockname(rvmix) /"IMRVVMIX"/
+	data blockname(rhmix) /"IMRVHMIX"/
+	data blockname(ramix) /"IMRVAMIX"/
+	data blockname(rlmix) /"IMRVLMIX"/
+	data blockname(vckmi) /"IMVCKMIN"/
+	data blockname(vckm) /"IMVCKM"/
+	data blockname(umnsi) /"IMUPMNSIN"/
+	data blockname(umns) /"IMUPMNS"/
+	data blockname(msl2i) /"IMMSL2IN"/
+	data blockname(mse2i) /"IMMSE2IN"/
+	data blockname(msq2i) /"IMMSQ2IN"/
+	data blockname(msu2i) /"IMMSU2IN"/
+	data blockname(msd2i) /"IMMSD2IN"/
+	data blockname(msl2) /"IMMSL2"/
+	data blockname(mse2) /"IMMSE2"/
+	data blockname(msq2) /"IMMSQ2"/
+	data blockname(msu2) /"IMMSU2"/
+	data blockname(msd2) /"IMMSD2"/
+	data blockname(tei) /"IMTEIN"/
+	data blockname(tui) /"IMTUIN"/
+	data blockname(tdi) /"IMTDIN"/
+	data blockname(te) /"IMTE"/
+	data blockname(tu) /"IMTU"/
+	data blockname(td) /"IMTD"/
+	data blockname(snmix) /"IMSNUMIX"/
+	data blockname(slmix) /"IMSELMIX"/
+	data blockname(usmix) /"IMUSQMIX"/
+	data blockname(tsmix) /"IMDSQMIX"/
+	data blockname(ssmix) /"IMSNSMIX"/
+	data blockname(samix) /"IMSNAMIX"/
+	data blockname(hcmix) /"IMCVHMIX"/
+	data blockname(nnmix) /"IMNMNMIX"/
+	data blockname(nhmix) /"IMNMHMIX"/
+	data blockname(namix) /"IMNMAMIX"/
+	data blockname(prcob) /"IMPRECOBS"/
+	data blockname(spinf) /"IMSPINFO"/
+	data blockname(tcinf) /"IMDCINFO"/

@@ -1,0 +1,413 @@
+external_func(aPrintF,*).
+external_func(openAppend,1).
+external_func(System,1).
+external_func(slhaRead,2).
+external_func(slhaVal,*).
+external_func(rDiagonal,*).
+external_func(MixMatrix,3).
+external_func(MassArray,2).
+external_func(MtRun,1).
+external_func(slhaValFormat,3).
+
+
+
+/*========================== Standard Model Parameters ===========================*/
+external_func(initQCD5,4).
+
+parameter EE  =  0.3128529452 : 'Electromagnetic coupling constant',
+	  SW  = 0.482  : 'sin of the Weinberg angle',
+          MZ = 91.2:'Z mass'.
+
+parameter GG  = 1.117   : 'Strong coupling constant'.
+parameter alfSMZ=0.1184.  
+parameter MbMb = 4.5 : 'Mb(Mb)' .
+parameter McMc =1.3: 'Mc(Mc)'.
+parameter Mtp  =173.07: 'pole mass of t-quark' .
+parameter  Ml= 1.777 :'mass of tau-lepton'.
+parameter wt = 1.442:'width of top quark'.
+
+do_if mix2g==on.
+parameter Mq=0.05 : 'mass for light quarks'.
+do_else.
+let Mq=0 .
+end_if.
+/*========================== Standard Model Constraints ===========================*/
+parameter  CW  = sqrt(1-SW**2) : 'cos of the Weinberg angle'.
+parameter  C2W=CW**2-SW**2.
+
+let S2W=2*SW*CW.
+
+parameter  MW=MZ*CW:'W mass'.
+parameter LamQCD=initQCD5(alfSMZ,McMc,MbMb,Mtp).
+	  
+
+/******************** Higgs sector constrains ************************/
+
+do_if scenario==nmhdecay.
+
+   parameter tb=2 :'Tangent beta'.
+   parameter Lambda=0.7:'lambda higgs parameter'.
+   parameter Kappa=0.05:'kappa higgs parameter'.
+   parameter aLambda=1280:'lambda soft higgs parameter'.
+   parameter aKappa=0:'kappa soft higgs parameter'.
+   parameter mu=530.
+   
+   parameter  MG1=100, MG2=200, MG3=600.
+   
+   parameter 
+             At=-2500  : ' ' , 
+             Ab=-2500  : ' ' , 
+             Al=-2500  : ' ' .
+
+
+   
+   /***************** Sleptons sector ****************************/
+   
+   parameter 
+             Ml2=200   :'ML2',
+             Ml3=200   :'ML3',
+             Mr2=202   :'MR2',
+             Mr3=200   :'MR3'.
+   
+   /***************** Squarks sector ****************************/
+   
+   parameter Mq2=1000, Mq3=1000.
+   parameter Mu2=1000, Mu3=1000.
+   parameter Md2=1000, Md3=1000.
+   
+   
+   parameter open=openAppend(str("inp")). 
+   parameter input1=aPrintF(str("Block MODSEL # Select model\\n 3 1 # NMSSM particle content\\n 1 0 # General NMSSM\\n 10 0 # No scan \\n 9 0 #No micrOMEGAs\\n")).
+   parameter input2=aPrintF(str("Block SMINPUTS \\n 5 %E # mb(mb)SM MSbar \\n 6 %E # mtop(pole)\\n"),
+                                                       MbMb,                          Mtp).
+   parameter input3=aPrintF(str("BLOCK MINPAR\\n 3 %E # tb\\n"),tb).
+   parameter input4=aPrintF(str("Block EXTPAR\\n 0 -1 # EWSB scale\\n 1  %E # MG1\\n 2  %E # MG2\\n 3  %E # MG3\\n 11 %E # At\\n 12 %E # Ab\\n 13 %E # AL\\n"),
+                                              MG1,            MG2,           MG3,            At,          Ab,           Al).
+   parameter input5=aPrintF(str(" 31 %E # Ml1\\n 32 %E #Ml2 \\n 33 %E # Ml3\\n 34 %E # Mr1\\n 35 %E # Mr2\\n 36 %E # Mr3\\n"),
+                                          Ml2,          Ml2,            Ml3,           Mr2,           Mr2,           Mr3).  
+   parameter input6=aPrintF(str(" 41 %E # Mq1\\n 42 %E # Mq2\\n 43 %E # Mq3\\n 44 %E # Mu1\\n 45 %E #Mu2 \\n 46 %E # Mu3\\n 47 %E # Md1\\n 48 %E # Md2\\n 49 %E # Md3\\n"),
+                                     Mq2,           Mq2,           Mq3,           Mu2,           Mu2,          Mu3,            Md2,          Md2,           Md3).   
+   parameter input7=aPrintF( str(" 61 %E  #LAMBDA\\n 62 %E #KAPPA\\n 63 %E #ALAMBDA\\n 64 %E #AKAPPA\\n 65 %E #MUEFF\\n"),
+                                  Lambda,           Kappa,           aLambda,             aKappa,              mu).    
+   parameter sysCall=System(str("NMSSM=../../../Packages/NMSSMTools_4.0.0; export EXPCON_PATH=$NMSSM/EXPCON;rm -f spect; $NMSSM/main/nmhdecay")).
+
+   parameter  rd=slhaRead(str("spectr"),0).
+
+
+end_if.
+
+
+
+do_if scenario==nmspec.
+
+   parameter mZero=320     :'common scalar mass at GUT scale',
+             mHalf=600     :'common gaugino mass at GUT scale',
+             A0=-1300      :'trilinear soft breaking parameter at GUT scale',
+             tb=2          :'Tangent beta',
+             Lambda=0.5    :'Lambda parameter at SUSY',
+             aKappaG=-1400 :'aKappa parameter at GUT',  
+             sgn=1         :' sing(mu) +/-1,  sign of Higgsino mass term',
+             aLambdaG=-1300:'at GUT (default aLambda=a0)'.
+
+   
+   parameter open=openAppend(str("inp")). 
+
+   parameter 
+   input1=aPrintF(str(
+           "Block MODSEL       # Select model\\n  1    1            # SUGRA\\n     3    1            # NMSSM PARTICLE CONTENT\\n")),
+   input2=aPrintF(str(
+           "  9    0            # FLAG FOR MICROMEGAS (0=NO)\\n 10    0            # No scan, no ...\\n")),
+   input3 =aPrintF(str( "Block SMINPUTS               # Standard Model inputs\\n")),
+   input4 =aPrintF(str(" 3   %.8E       # alpha_s(MZ) SM MSbar\\n"),alfSMZ),
+   input5 =aPrintF(str(" 5   %.8E       # mb(mb) SM MSbar\\n"), MbMb),
+   input6 =aPrintF(str(" 6   %.8E       # mtop(pole)\\n"),      Mtp),
+   input7 =aPrintF(str("Block MINPAR                 # Input parameters\\n")),
+   input8 =aPrintF(str(" 1   %.8E       # m0\\n"),       mZero), 
+   input10=aPrintF(str(" 2   %.8E       # m1/2\\n"),     mHalf),   
+   input11=aPrintF(str(" 3   %.8E       # tanb\\n"),     tb),
+   input12 =aPrintF(str(" 4   %.0f       # sign(mu)\\n"), sgn),
+   input13=aPrintF(str(" 5   %.8E       # A0\\n"),       A0),
+   input14=aPrintF(str("Block EXTPAR\\n")),
+   input15=aPrintF(str(" 61  %.8E        # L \\n"),  Lambda),
+   input16=aPrintF(str(" 63  %.8E        # A_LAMBDA\\n"), aLambdaG),
+   input17=aPrintF(str(" 64  %.8E        # A_K\\n"), aKappaG).
+
+   parameter sysCall=System(str("NMSSM=../../../Packages/NMSSMTools_4.0.0; export EXPCON_PATH=$NMSSM/EXPCON;rm -f spect; $NMSSM/main/nmspec")).
+
+   parameter  rd=slhaRead(str("spectr"),0).
+
+   parameter  mu=  slhaVal(str("HMIX"),MZ,1,1),
+           Kappa=  slhaVal(str("NMSSMRUN"),MZ,1,2),
+         aLambda=  slhaVal(str("NMSSMRUN"),MZ,1,3),
+          aKappa=  slhaVal(str("NMSSMRUN"),MZ,1,4).
+   parameter  At=  slhaVal(str("Au"),MZ,2,3,3),
+              Ab=  slhaVal(str("Ad"),MZ,2,3,3),
+              Al=  slhaVal(str("Ae"),MZ,2,3,3).
+
+   parameter Ml2=  slhaVal(str("MSOFT"),MZ,1,32),
+             Ml3=  slhaVal(str("MSOFT"),MZ,1,33),
+             Mr2=  slhaVal(str("MSOFT"),MZ,1,35),
+             Mr3=  slhaVal(str("MSOFT"),MZ,1,36),
+             Mq2=  slhaVal(str("MSOFT"),MZ,1,42),
+             Mq3=  slhaVal(str("MSOFT"),MZ,1,43),
+             Mu2=  slhaVal(str("MSOFT"),MZ,1,45),
+             Mu3=  slhaVal(str("MSOFT"),MZ,1,46),
+             Md2=  slhaVal(str("MSOFT"),MZ,1,48),
+             Md3=  slhaVal(str("MSOFT"),MZ,1,49).
+end_if.
+
+do_if scenario==slha.
+
+   parameter  rd=  slhaRead(str("../spectr"),0).
+
+   parameter  mu=  slhaVal(str("HMIX"),MZ,1,1),
+          Lambda=  slhaVal(str("NMSSMRUN"),MZ,1,1), 
+           Kappa=  slhaVal(str("NMSSMRUN"),MZ,1,2),
+         aLambda=  slhaVal(str("NMSSMRUN"),MZ,1,3),
+          aKappa=  slhaVal(str("NMSSMRUN"),MZ,1,4).
+   parameter  At=  slhaVal(str("Au"),MZ,2,3,3),
+              Ab=  slhaVal(str("Ad"),MZ,2,3,3),
+              Al=  slhaVal(str("Ae"),MZ,2,3,3).
+
+   parameter Ml2=  slhaVal(str("MSOFT"),MZ,1,32),
+             Ml3=  slhaVal(str("MSOFT"),MZ,1,33),
+             Mr2=  slhaVal(str("MSOFT"),MZ,1,35),
+             Mr3=  slhaVal(str("MSOFT"),MZ,1,36),
+             Mq2=  slhaVal(str("MSOFT"),MZ,1,42),
+             Mq3=  slhaVal(str("MSOFT"),MZ,1,43),
+             Mu2=  slhaVal(str("MSOFT"),MZ,1,45),
+             Mu3=  slhaVal(str("MSOFT"),MZ,1,46),
+             Md2=  slhaVal(str("MSOFT"),MZ,1,48),
+             Md3=  slhaVal(str("MSOFT"),MZ,1,49).
+end_if.
+
+
+
+let xif=0,MM3=0,MSP=0,xis=0.
+
+do_if slha==on.
+   
+   slhaRead('./spectr.dat').
+   
+   parameter tB=slhaVal(str("HMIX"),MZ,1,2).
+
+   
+   % ==== SUSY MASSES ======
+   
+   parameter  Mx=slhaVal(str(MASS),MZ,1,PDGx) where 
+   Mx=Mh1  , PDGx=       25;
+   Mx=Mh2  , PDGx=       35;
+   Mx=Mh3  , PDGx=       45;
+   Mx=Mha  , PDGx=       36;
+   Mx=Mhb  , PDGx=       46;
+   Mx=MHc  , PDGx=       37;
+   Mx=MNE1 , PDGx=  1000022;
+   Mx=MNE2 , PDGx=  1000023;
+   Mx=MNE3 , PDGx=  1000025;
+   Mx=MNE4 , PDGx=  1000035;
+   Mx=MNE5 , PDGx=  1000045;
+   Mx=MC1  , PDGx=  1000024;
+   Mx=MC2  , PDGx=  1000037;
+   Mx=MSG  , PDGx=  1000021;
+   Mx=MSuL , PDGx=  1000002;
+   Mx=MSuR , PDGx=  2000002;
+   Mx=MSdL , PDGx=  1000001;
+   Mx=MSdR , PDGx=  2000001;
+   Mx=MScL , PDGx=  1000004;
+   Mx=MScR , PDGx=  2000004;
+   Mx=MSsL , PDGx=  1000003;
+   Mx=MSsR , PDGx=  2000003;
+   Mx=MSt1 , PDGx=  1000006;
+   Mx=MSt2 , PDGx=  2000006;
+   Mx=MSb1 , PDGx=  1000005;
+   Mx=MSb2 , PDGx=  2000005.
+   
+   
+   
+   
+   parameter QSUSY=sqrt(MSt1*MSt2).
+   
+   
+   do_if tree_sleptons==off.
+   parameter  Mx=slhaVal(str(MASS),MZ,1,PDGx) where 
+    Mx=MSeL , PDGx=  1000011;
+    Mx=MSeR , PDGx=  2000011;
+    Mx=MSmL , PDGx=  1000013;
+    Mx=MSmR , PDGx=  2000013;
+    Mx=MSl1 , PDGx=  1000015;
+    Mx=MSl2 , PDGx=  2000015;
+    Mx=MSne , PDGx=  1000012;
+    Mx=MSnm , PDGx=  1000014;
+    Mx=MSnl , PDGx=  1000016.
+    _i=1-2 in _j=1-2 in parameter Zl_i_j= slhaVal(str(STAUMIX),QSUSY,2,_i,_j).
+   end_if.
+   
+   
+   
+   
+   % ================ SUSY MIXING ==========
+   
+    _i=1-3 in _j=1-3 in parameter Zh_i_j= slhaVal(str(NMHMIX),QSUSY,2,_i,_j).
+    _i=1-2 in _j=1-3 in parameter Za_i_j= slhaVal(str(NMAMIX),QSUSY,2,_i,_j).
+    _i=1-5 in _j=1-5 in parameter Zn_i_j= slhaVal(str(NMNMIX),QSUSY,2,_i,_j).
+    _i=1-2 in _j=1-2 in parameter Zu_i_j= slhaVal(str(UMIX),   QSUSY,2,_i,_j).
+    _i=1-2 in _j=1-2 in parameter Zv_i_j= slhaVal(str(VMIX),   QSUSY,2,_i,_j).
+    _i=1-2 in _j=1-2 in parameter Zt_i_j= slhaVal(str(STOPMIX),QSUSY,2,_i,_j).
+    _i=1-2 in _j=1-2 in parameter Zb_i_j= slhaVal(str(SBOTMIX),QSUSY,2,_i,_j).
+   
+   %parameter Paa11=Pb12/cb, Paa12=Pb13,Paa21=Pb22/cb,Paa22=Pb23.
+   
+   
+   parameter  XX=slhaValFormat(str(EFFECTIVE_COUPLINGS),QSUSY,str(NX)) where
+   XX=la1   , NX="L1 %lf" ;
+   XX=la2   , NX="L2 %lf";
+   XX=la3   , NX="L3 %lf" ;
+   XX=la4   , NX="L4 %lf" ;
+   XX=la5   , NX="L5 %lf" ;
+   XX=la6   , NX="L6 %lf" ;
+   XX=la7   , NX="L7 %lf" ;
+   XX=la1s  , NX="K1 %lf" ;
+   XX=la2s  , NX="K2 %lf" ;
+   XX=la3s  , NX="K3 %lf" ;
+   XX=la4s  , NX="K4 %lf" ;
+   XX=la5s  , NX="K5 %lf" ;
+   XX=la6s  , NX="K6 %lf" ;
+   XX=la7s  , NX="K7 %lf" ;
+   XX=la8s  , NX="K8 %lf" ;
+   XX=aa1   , NX="A1 %lf" ;
+   XX=aa2   , NX="A2 %lf" ;
+   XX=aa3   , NX="A3 %lf" ;
+   XX=aa4   , NX="A4 %lf" ;
+   XX=aa5   , NX="A5 %lf" ;
+   XX=aa6   , NX="A6 %lf" ;
+   XX=B1    , NX="B1 %lf" ;
+   XX=B2    , NX="B2 %lf" ;
+   XX=X     , NX="X %lf" ; 
+   XX=dMb   , NX="DELMB %lf".
+   
+   
+do_else.
+
+   parameter MG1=0,MG2=0,MG3=0.
+   parameter tb=0,tB=0,mu=0,Lambda=0,Kappa=0,aLambda=0,aKappa=0.
+   parameter At=0,Ab=0,Al=0.
+   
+  /****************** Sleptons sector **************/
+   parameter Ml2=200   :'ML2',
+             Ml3=200   :'ML3',
+             Mr2=202   :'MR2',
+             Mr3=200   :'MR3'.
+   
+   /***************** Squarks sector ***************/
+   
+   parameter Mq2=1000, Mq3=1000.
+   parameter Mu2=1000, Mu3=1000.
+   parameter Md2=1000, Md3=1000.
+
+
+   parameter  Mx=0 where 
+   Mx=Mh1 ;
+   Mx=Mh2 ;
+   Mx=Mh3 ;
+   Mx=Mha ;
+   Mx=Mhb ;
+   Mx=MHc ;
+   Mx=MNE1;
+   Mx=MNE2;
+   Mx=MNE3;
+   Mx=MNE4;
+   Mx=MNE5;
+   Mx=MC1 ;
+   Mx=MC2 ;
+   Mx=MSG ;
+   Mx=MSuL;
+   Mx=MSuR;
+   Mx=MSdL;
+   Mx=MSdR;
+   Mx=MScL;
+   Mx=MScR;
+   Mx=MSsL;
+   Mx=MSsR;
+   Mx=MSt1;
+   Mx=MSt2;
+   Mx=MSb1;
+   Mx=MSb2.
+   
+   parameter  Mx=0 where 
+   Mx=MSeL ;
+   Mx=MSeR ;
+   Mx=MSmL ;
+   Mx=MSmR ;
+   Mx=MSl1 ;
+   Mx=MSl2 ;
+   Mx=MSne ;
+   Mx=MSnm ;
+   Mx=MSnl .
+   
+   
+   % ================ SUSY MIXING ==========
+   
+    _i=1-5 in _j=1-5 in parameter Zn_i_j= 0.
+    _i=1-2 in _j=1-2 in parameter Zu_i_j= 0.
+    _i=1-2 in _j=1-2 in parameter Zv_i_j= 0.
+    _i=1-2 in _j=1-2 in parameter Zt_i_j= 0.
+    _i=1-2 in _j=1-2 in parameter Zb_i_j= 0.
+    _i=1-2 in _j=1-2 in parameter Zl_i_j= 0.
+    _i=1-3 in _j=1-3 in parameter Zh_i_j= 0. 
+    _i=1-2 in _j=1-3 in parameter Za_i_j= 0.
+   
+   parameter  XX=0 where
+   XX=la1  ;
+   XX=la2  ;
+   XX=la3  ;
+   XX=la4  ;
+   XX=la5  ;
+   XX=la6  ;
+   XX=la7  ;
+   XX=la1s ;
+   XX=la2s ;
+   XX=la3s ;
+   XX=la4s ;
+   XX=la5s ;
+   XX=la6s ;
+   XX=la7s ;
+   XX=la8s ;
+   XX=aa1  ;
+   XX=aa2  ;
+   XX=aa3  ;
+   XX=aa4  ;
+   XX=aa5  ;
+   XX=aa6  ;
+   XX=B1   ;
+   XX=B2   ;
+   XX=X    ; 
+   XX=dMb  .
+end_if.
+
+
+
+
+% ============= tb constraints =========
+parameter sb=tB/sqrt(1+tB**2):'Sinus beta', cb=sqrt(1-sb**2):'Cosine beta'.
+parameter t2b=2*tB/(1-tB**2).
+
+parameter xvev=mu/Lambda.
+angle     sin=sb, cos=cb, tan=tB, texname='\\beta'.
+
+let  s2b=2*sb*cb.
+
+parameter Pa12=Za13,
+          Pa22=Za23,
+          Pa11=if(Za11*Pa22,Pa22,-Pa22),
+          Pa21=if(Za21*Pa12,Pa12,-Pa12).
+
+
+parameter Td3=dMb/(1+dMb).
+
+let muP=0.
+
+
+   let hL=Lambda.
+   let hK=Kappa.
+   let hLs=aLambda.
+   let hKs=aKappa.

@@ -1,0 +1,5 @@
+2 2 51 4   Constraints
+ Displays current values of public constraints.
+ For each constraint you have an option to display
+ plot presenting its dependence on chosen 
+ parameter.

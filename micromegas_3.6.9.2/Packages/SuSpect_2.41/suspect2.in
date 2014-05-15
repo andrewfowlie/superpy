@@ -1,0 +1,90 @@
+       SUSPECT2.3 INPUT SAMPLE for unconstrained MSSM
+              ---------------------
+* Initialize various options (choice of models, algorithm  control etc..)
+ICHOICE(1): Choice of the model to be considered:
+            Arbitrary soft-terms at low scale         : 0
+            Arbitrary soft-terms at high scale        : 1
+            SUGRA  (cMSSM)                            : 10
+            GMSB   (cMSSM)                            : 11
+            AMSB   (cMSSM)                            : 12
+	    new: "bottom-up" RGE (arbitrary MSSM input at low energy): 2
+           1
+
+ICHOICE(2): All the RGEs are at 1-loop order (faster) : 11
+            2-loop RGEs for gauge+Yukawas+gauginos    : 21
+          21
+
+ICHOICE(3): GUT scale imposed (HIGH to be given below): 0 
+            GUT (at g_1=g_2) scale derived from input : 1
+          1
+
+ICHOICE(4): Num. RGE sufficiently accurate and fast   : 1
+            RGE very accurate but rather slow         : 2
+          2
+
+ICHOICE(5): No radiative EWSB imposed (only in pMSSM) : 0 
+            Consistent EWSB (automatic in cMSSMs)     : 1 
+          1
+
+ICHOICE(6): M_A, MU input (relevant if non-universality) : 0
+            M_Hu, M_Hd input ("    " )                   : 1
+          1
+
+ICHOICE(7): SUSY radiative corrections to the (s)particles masses: 
+            No radiative corrections at all           : 0 
+            Only in mb,mt,mtau + Yukawas couplings    : 1  
+            For squark/gaugino masses in addition     : 2
+          2
+
+ICHOICE(8): Default EWSB scale=(mt_L*mt_R)^(1/2)      : 1 
+            Arbitrary EWSB scale (to be given below)  : 0 
+          1
+
+ICHOICE(9): Final spectrum accuracy: 1 -> 1% acc.; 2 -> 0.01 % acc. 
+          2
+
+ICHOICE(10): ! calculation options for the Higgs boson masses:
+             A simple approximation (not so bad)                  : 0
+             One-loop calculation                                 : 1
+             One-loop  + dominant DSVZ 2-loop (recommended)       : 2
+          2
+
+ICHOICE(11): !options for higher order Higgs 'scheme' in rad. corr. at mZ:
+              (NB formally a higher (2-loop) order difference)
+          RUNNING DRbar Higgs masses at loop-level at mZ (preferred!): 0
+          POLE          Higgs masses at loop-level at mZ             : 1
+          0
+
+* "SM" parameters (default input here): !MODIFS! mb_pole->mb_mb
+1/alpha(MZ),    alpha_S(MZ),  M_t(pole), mb(mb),   M_tau
+127.934         0.1172       175.       4.25    1.7770
+
+* RGE scales(GeV): HIGH (=GUT scale if imposed); EWSB scale: 
+600.                         1000.
+
+* mSUGRA model input parameters: 
+*  m_0        m_1/2        A_0    tan(beta)   sign(mu)
+   100.      250           -100.     10.         1.
+
+* GMSB model input parameters:
+* MGM_mes     MGM_susy   tan(beta)   sign(mu) Nl_mes    Nq_mes
+  100.d3       200.d3      15.         1.       1         1
+
+* AMSB model input parameters:
+* M_3/2    m_0     tan(beta)   sign(MU)  cQ  cuR  cdR  cL  ceR cHu cHd
+  60.d3    450.    10          1.        1.  1.   1.   1.  1.  1.  1.
+
+* Non-universal MSSM inputs (irrelevant if constrained MSSM chosen): 
+M_Hu^2    M_Hd^2  (V_Higgs mass terms)   tan_beta(mZ)  sign(mu)
+1.d4	  1.d4                           10.           1
+M_1       M_2      M_3                           (gaugino mass terms)
+250.      250.     250.
+M_tauL    M_tauR   M_QL    M_tR    M_bR (3rd gen. L and R mass terms) 
+100.     100.	   100.   100.   100.
+M_eL      M_eR     M_qu    M_uR    M_dR (1/2 gen. L and R mass terms)  
+100.     100.	   100.   100.   100.
+A_tau     A_t      A_b     A_e     A_u    A_d   (trilinear couplings)
+-100.	 -100.     -100.   -100.   -100.  -100.
+
+M_A    mu  if inputs instead of M_Hu, M_Hd (not in constrained MSSM):
+1000.  1000.

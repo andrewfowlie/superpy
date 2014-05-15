@@ -1,0 +1,10 @@
+#D0 Note 5472 Aug 15th 2007
+#D0_WH_lnubb_1.7fb
+#no interpolation
+#columns: Mh(in GeV), obs, exp (in fb)
+
+105	1.42E+3	1.29E+3
+115	1.42E+3	1.16E+3
+125	1.41E+3	1.12E+3
+135	1.16E+3	0.94E+3
+145	1.06E+3	0.84E+3

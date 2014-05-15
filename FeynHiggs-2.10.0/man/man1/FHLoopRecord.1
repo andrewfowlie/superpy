@@ -1,0 +1,53 @@
+.TH FHLOOPRECORD 1 "1-May-2011"
+.SH NAME
+.PP
+FHLoopRecord \- advance the loops contained in a FeynHiggs Record
+.SH SYNOPSIS (Fortran version)
+.PP
+#include "FHRecord.h"
+.sp
+integer error
+.br
+RecordDecl(record)
+.sp
+subroutine FHLoopRecord(error, record)
+.SH SYNOPSIS (Mathematica version)
+.PP
+record = FHLoopRecord[record]
+.SH DESCRIPTION
+FHLoopRecord advances the loops implied by a FeynHiggs Record or else
+signals that all loops have been done.  This subroutine is meant to be
+called in a loop where it updates the record according to its internally
+defined loops.
+.P
+As long as there are further loops in the Record, the Fortran routine
+returns 0 and the Mathematica version returns the update Record.
+Otherwise, -1 indicates that all loops have been done, and -2 that
+the interpolation failed due to too few points.
+.P
+Looping over a record would thus look like
+.sp
+   call FHLoopRecord(error, record)
+   do while( error .eq. 0 )
+     ...
+     call FHLoopRecord(error, record)
+   enddo
+   if( error .gt. 0 ) stop
+.sp
+or in Mathematica,
+.sp
+   While[ Head[record = FHLoopRecord[record]] =!= FHRecord,
+     ...
+   ]
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, -1 if all loops have been done, -2 if the interpolation
+failed due to too few points, otherwise the line number in LoopRecord.F
+from which the error message was emitted.
+.TP
+.B record (input/output)
+the (updated) record.
+.SH SEE ALSO
+.PP
+libFH(1)

@@ -1,0 +1,11 @@
+#CMS PAS HIG-11-031 Dec 13, 2011
+#11031_CMS_VH-bb_BDT_4.7fb-1
+#Limits taken from Tab.14 (BDT results)
+#Columns: Mh, obs, exp (normalized to the SM)
+
+110	 3.14	 2.74
+115	 5.18	 3.12
+120	 4.38	 3.56
+125	 5.72	 4.27
+130	 9.00	 5.28
+135	 7.53	 6.74

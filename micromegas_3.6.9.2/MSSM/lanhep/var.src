@@ -1,0 +1,499 @@
+
+%QCD parameters:
+
+parameter alfSMZ=0.1184 : 'alpha_QCD(MZ)',
+          MZ  = 91.3 :  'Z-boson mass.  PDG value   91.1876 +/- 0.0021',
+          MW  = 80.2 :  'W-boson mass.  PDG valeu   80.385  +/- 0.015',
+          Mtp   =173.07 : 'top quark pole mass',
+          MbMb  =4.23   : 'Mb(Mb) running mass',
+          McMc  =1.27    : 'Mc(Mc) running mass',
+          GG  = 1.117   : 'Drived by CalcHEP', 
+           Q  = 100     : 'QCD scale'.
+
+%Electroweak parameters: 
+parameter EE  = 0.3123  : 'PDG value 4*pi/EE^2=128 corresponds to EE=0.3134'.
+parameter Ml  = 1.777   : 'mass of tau-lepton'.
+
+do_if mix2g==on.
+   parameter Mq=0.05 : 'mass for light quarks'.
+   parameter Au=0,Ad=0.
+do_else.
+   let Mq=0.
+   let Au=0.
+   let Ad=0.
+end_if.
+
+parameter tb=10   :'Tangent beta'.
+
+coeff     EE.
+
+%let Mc=0.	   
+let Mm=0 ,Ms=0.
+
+	  
+coeff   Mt,Mb,Ml,MW,MZ.
+	  	   
+parameter wt = 1.442:'width of top quark'.
+
+
+% External functions
+% external_func(slhaRead,2).
+external_func(initQCD5,4).
+
+
+external_func(McRun,1).
+external_func(MbRun,1).
+external_func(MtRun,1).
+external_func(alphaQCD,1).
+external_func(McEff,1).
+external_func(MbEff,1).
+external_func(MtEff,1).
+external_func(deltaMb,0).
+external_func(deltaMl,0).
+external_func(calcLambdas,0).
+external_func(Lambda1,0).
+external_func(Lambda2,0).
+external_func(Lambda3,0).
+external_func(Lambda4,0).
+external_func(Lambda5,0).
+external_func(Lambda6,0).
+
+parameter  CW  = MW/MZ : 'cos of the Weinberg angle'.
+parameter  SW  = sqrt(1-CW**2) : 'sin of the Weinberg angle'.
+angle sin=SW, cos=CW.
+
+parameter  S2W = 2*SW*CW, C2W=CW**2-SW**2.
+parameter  GF  = EE**2/(2*SW*MW)**2/Sqrt2:' Fermi constant/ 1.166379E-5'.
+%parameter  s2b=2*sb*cb :     'sin(2b)'.
+
+keys SUALSO=off.
+keys RDALL=off.
+
+do_if SLHA==On.
+   external_func(slhaVal,*).
+   external_func(System,*).  
+   external_func(aPrintF,*).    
+   external_func(openAppend,1).
+   external_func (slhaRead,2).
+   do_if scenario==EWSB.
+      keys SUALSO=on.
+      parameter 
+         MH3=1000 :'Odd Higgs Mass',
+         mu=350 : 'mu',
+         MG1=200 :'  ',
+         MG2=400 :'  ',
+         MG3=800 :'  ', 
+         Ml1=500   :'ML1',
+         Ml2=500   :'ML2',
+         Ml3=500   :'ML3',
+         Mr1=200   :'MR1',
+         Mr2=200   :'MR2',
+         Mr3=200   :'MR3'.
+         parameter Mq1=1000, Mq2=1000, Mq3=1000.
+         parameter Mu1=300, Mu2=300, Mu3=300.
+         parameter Md1=300, Md2=300, Md3=300.
+         parameter 
+         At=-1000  : ' ' , 
+         Ab=0      : ' ' , 
+         Al=0      : ' ' .        
+      parameter 
+        open=openAppend(str("suspect2_lha.in")),
+        input0=aPrintF(str("Block MODSEL # Select model\\n 1 0 # EWSM scale input\\n")), 
+        input1=aPrintF(str("Block SMINPUTS \\n  3 % E # alpha_s(MZ)\\n 5 %E # mb(mb)SM MSbar\\n 6 %E # Mtop(Pole)\\n"),alfSMZ,MbMb,Mtp),
+        input2=aPrintF(str("BLOCK MINPAR\\n 3 %E # tb\\n"),tb),
+        input3=aPrintF(str("Block EXTPAR\\n 0 -1 # EWSB scale\\n 1  %E # MG1\\n 2  %E # MG2\\n 3  %E # MG3\\n 11 %E # At\\n 12 %E # Ab\\n 13 %E # AL\\n"),
+                                                                           MG1,            MG2,           MG3,            At,          Ab,           Al),
+        input4=aPrintF(str(" 23 %E # mu  \\n 26 %E # MH3\\n 31 %E # Ml1\\n 32 %E #Ml2 \\n 33 %E # Ml3\\n 34 %E # Mr1\\n 35 %E # Mr2\\n 36 %E # Mr3\\n"),
+                                         mu,           MH3,            Ml1,           Ml2,          Ml3,            Mr1,           Mr2,           Mr3),
+        input5=aPrintF(str(" 41 %E # Mq1\\n 42 %E # Mq2\\n 43 %E # Mq3\\n 44 %E # Mu1\\n 45 %E #Mu2 \\n 46 %E # Mu3\\n 47 %E # Md1\\n 48 %E # Md2\\n 49 %E # Md3\\n"),
+                                        Mq1,     Mq2,     Mq3,     Mu1,     Mu2,    Mu3,      Md1,    Md2,      Md3).
+   end_if.
+   do_if scenario==SUGRA.   
+      keys SUALSO=on.
+      keys RDALL=on.
+      parameter mZero=120,mHalf=500,muSing=1,A0=-350.
+      parameter open=openAppend(str("suspect2_lha.in")). parameter
+      input1=aPrintF(str("Block MODSEL # Select model\\n 1 0 # EWSM scale input\\n")).  
+      parameter input2=aPrintF(str("Block SMINPUTS \\n 1 %E # alpha_em^(-1)(MZ)\\n 2  %E # G_Fermi\\n 3 % E # alpha_s(MZ)\\n 5 %E # mb(mb)SM MSbar\\n 6 %E # Mtop(Pole)\\n"),
+                     1.27908953E+02, 1.16637000E-05,    alfSMZ,   MbMb,Mtp).
+      parameter input3=aPrintF(str("BLOCK MINPAR\\n 1 %E # M0\\n 2 %E # M1/2\\n 3 %E # tb\\n 4 %E # sing(mu)\\n 5 %E # A0 \\n"),mZero,mHalf,tb,muSing,A0).
+   end_if.
+
+   do_if scenario==micro. 
+      parameter 
+         MH3=1000 :'Odd Higgs Mass',
+         mu=350 : 'mu',
+         MG1=200 :'  ',
+         MG2=400 :'  ',
+         MG3=800 :'  ', 
+         Ml1=500   :'ML1',
+         Ml2=500   :'ML2',
+         Ml3=500   :'ML3',
+         Mr1=200   :'MR1',
+         Mr2=200   :'MR2',
+         Mr3=200   :'MR3'.
+         parameter Mq1=1000, Mq2=1000, Mq3=1000.
+         parameter Mu1=300, Mu2=300, Mu3=300.
+         parameter Md1=300, Md2=300, Md3=300.
+         parameter 
+         At=-1000  : ' ' , 
+         Ab=0      : ' ' , 
+         Al=0      : ' ' ,
+         Am=0.
+   end_if.
+
+   do_if SUALSO==on.
+      parameter 
+        input10=aPrintF(str("Block SU_ALGO # ichoice\\n %s\\n %s\\n %s\\n %s\\n %s\\n %s\\n %s\\n %s\\n %s\\n"),  
+          str("2    21  # 2-loop RGE"),
+          str("3    1   # 1: g_1(gut) = g_2(gut) consistently calculated from input"),
+          str("4    2   # RGE accuracy: accurate, but slow"),
+          str("6    0   # MA_pole, MU(EWSB) input"),
+          str("7    2   #  choice for sparticles masses rad. corr. (=/= h)"),
+          str("8    1   # 1 (defaut): EWSB scale=(mt_L*mt_R)^(1/2)"),
+          str("9    2   # Final spectrum accuracy: 1 -> 1% acc.; 2 -> 0.01 % acc."),
+          str("10   2   # Higgs boson masses: One-loop  + dominant DSVZ 2-loop   "),
+          str("11   0   # RUNNING DRbar Higgs masses at loop-level at mZ")),      
+        sys=System(str("../Packages/SuSpect/suspect.exe")),
+        rd=slhaRead(str("suspect2_lha.out"),0).    
+   end_if.
+
+   do_if scenario==slha.
+      keys RDALL=on.
+      parameter rd=slhaRead(str("../slha.in"),0).
+   end_if.
+   slhaRead('./suspect2_lha.out').
+
+   do_if RDALL==on.
+     parameter  
+         MH3= slhaVal(str(MASS),MZ,1,  36),
+         mu = slhaVal(str(HMIX),MZ,1,   1),
+         MG1= slhaVal(str(MSOFT),MZ,1,  1),
+         MG2= slhaVal(str(MSOFT),MZ,1,  2),
+         MG3= slhaVal(str(MSOFT),MZ,1,  3),
+         Ml1= slhaVal(str(MSOFT),MZ,1, 31),
+         Ml2= slhaVal(str(MSOFT),MZ,1, 32),
+         Ml3= slhaVal(str(MSOFT),MZ,1, 33),
+         Mr1= slhaVal(str(MSOFT),MZ,1, 34),
+         Mr2= slhaVal(str(MSOFT),MZ,1, 35),
+         Mr3= slhaVal(str(MSOFT),MZ,1, 36),
+         Mq1= slhaVal(str(MSOFT),MZ,1, 41),
+         Mq2= slhaVal(str(MSOFT),MZ,1, 42),
+         Mq3= slhaVal(str(MSOFT),MZ,1, 43),
+         Mu1= slhaVal(str(MSOFT),MZ,1, 44),
+         Mu2= slhaVal(str(MSOFT),MZ,1, 45),
+         Mu3= slhaVal(str(MSOFT),MZ,1, 46),
+         Md1= slhaVal(str(MSOFT),MZ,1, 47),
+         Md2= slhaVal(str(MSOFT),MZ,1, 48),
+         Md3= slhaVal(str(MSOFT),MZ,1, 49),
+         At = slhaVal(str(Au),   MZ,2,3,3),
+         Ab = slhaVal(str(Ad),   MZ,2,3,3),
+         Al = slhaVal(str(Ae),   MZ,2,3,3).
+   end_if.
+                           
+   parameter  Mh=    slhaVal(str(MASS),MZ,1,     25).
+   parameter  MHH=   slhaVal(str(MASS),MZ,1,     35).
+   parameter  MHc=   slhaVal(str(MASS),MZ,1,     37).
+   parameter  MNE1=  slhaVal(str(MASS),MZ,1,1000022).
+   parameter  MNE2=  slhaVal(str(MASS),MZ,1,1000023).
+   parameter  MNE3=  slhaVal(str(MASS),MZ,1,1000025).
+   parameter  MNE4=  slhaVal(str(MASS),MZ,1,1000035).
+   parameter  MC1=   slhaVal(str(MASS),MZ,1,1000024).
+   parameter  MC2=   slhaVal(str(MASS),MZ,1,1000037).
+   parameter  MSG=   slhaVal(str(MASS),MZ,1,1000021).
+   parameter  MSne=  slhaVal(str(MASS),MZ,1,1000012).
+   parameter  MSnm=  slhaVal(str(MASS),MZ,1,1000014).
+   parameter  MSnl=  slhaVal(str(MASS),MZ,1,1000016).
+   parameter  MSeL=  slhaVal(str(MASS),MZ,1,1000011).
+   parameter  MSeR=  slhaVal(str(MASS),MZ,1,2000011).
+   parameter  MSmL=  slhaVal(str(MASS),MZ,1,1000013).
+   parameter  MSmR=  slhaVal(str(MASS),MZ,1,2000013).
+   parameter  MSl1=  slhaVal(str(MASS),MZ,1,1000015).
+   parameter  MSl2=  slhaVal(str(MASS),MZ,1,2000015).
+   parameter  MSdL=  slhaVal(str(MASS),MZ,1,1000001).
+   parameter  MSdR=  slhaVal(str(MASS),MZ,1,2000001).
+   parameter  MSuL=  slhaVal(str(MASS),MZ,1,1000002).
+   parameter  MSuR=  slhaVal(str(MASS),MZ,1,2000002).
+   parameter  MSsL=  slhaVal(str(MASS),MZ,1,1000003).
+   parameter  MSsR=  slhaVal(str(MASS),MZ,1,2000003).
+   parameter  MScL=  slhaVal(str(MASS),MZ,1,1000004).
+   parameter  MScR=  slhaVal(str(MASS),MZ,1,2000004).
+   parameter  MSb1=  slhaVal(str(MASS),MZ,1,1000005).
+   parameter  MSb2=  slhaVal(str(MASS),MZ,1,2000005).
+   parameter  MSt1=  slhaVal(str(MASS),MZ,1,1000006).
+   parameter  MSt2=  slhaVal(str(MASS),MZ,1,2000006).
+  
+   parameter  QSUSY=sqrt(MSt1*MSt2).
+              
+   _i=1-4 in _j=1-4 in parameter Zn_i_j= slhaVal(str(NMIX),   QSUSY,2,_i,_j).
+   _i=1-2 in _j=1-2 in parameter Zu_i_j= slhaVal(str(UMIX),   QSUSY,2,_i,_j).
+   _i=1-2 in _j=1-2 in parameter Zv_i_j= slhaVal(str(VMIX),   QSUSY,2,_i,_j).
+   _i=1-2 in _j=1-2 in parameter Zt_i_j= slhaVal(str(STOPMIX),QSUSY,2,_i,_j).
+   _i=1-2 in _j=1-2 in parameter Zb_i_j= slhaVal(str(SBOTMIX),QSUSY,2,_i,_j).
+   _i=1-2 in _j=1-2 in parameter Zl_i_j= slhaVal(str(STAUMIX),QSUSY,2,_i,_j).
+   
+   parameter alpha=slhaVal(str(ALPHA),QSUSY,0). 
+   parameter tB=slhaVal(str(HMIX),0,1,2).     
+
+do_else.  % Tree level calculation
+
+   parameter MSG=MG3.
+   
+   external_func(MassArray,2).
+   external_func(MixMatrix,3).
+   external_func(MixMatrixU,3).
+   
+   parameter MSne=sqrt(c2b*MW**2/2+CW**2*Ml1**2)/CW:'e-sNeutrino mass'.
+   
+   parameter MSnm=sqrt(c2b*MW**2/2+CW**2*Ml2**2)/CW:'mu-sneutrino mass',
+             MSnl=sqrt(c2b*MW**2/2+CW**2*Ml3**2)/CW:'tau-sneutrino mass'.
+   
+   parameter MSeL=sqrt(-c2b*(CW**2-SW**2)*MW**2/2+CW**2*Ml1**2)/CW:'1st selectron mass',
+             MSeR=sqrt(-SW**2*c2b*MW**2+CW**2*Mr1**2)/CW:'2nd selectron mass',
+             MSmL=sqrt(-c2b*(CW**2-SW**2)*MW**2/2+CW**2*Ml2**2)/CW:'1st smuon mass',
+             MSmR =sqrt(-SW**2*c2b*MW**2+CW**2*Mr2**2)/CW:'2nd smuon mass'.
+   
+   parameter MSuL = sqrt(Mq1**2+MW**2/CW**2*(1/2-2/3*SW**2)*c2b),
+             MScL = sqrt(Mq2**2+MW**2/CW**2*(1/2-2/3*SW**2)*c2b),
+   	  MSuR = sqrt(Mu1**2+MW**2/CW**2*(    2/3*SW**2)*c2b),
+             MScR = sqrt(Mu2**2+MW**2/CW**2*(    2/3*SW**2)*c2b).
+   
+   parameter MSdL = sqrt(Mq1**2-MW**2/CW**2*(1/2-1/3*SW**2)*c2b),
+             MSsL = sqrt(Mq2**2-MW**2/CW**2*(1/2-1/3*SW**2)*c2b),
+             MSdR = sqrt(Mu1**2+MW**2/CW**2*(   -1/3*SW**2)*c2b),
+             MSsR = sqrt(Mu2**2+MW**2/CW**2*(   -1/3*SW**2)*c2b).
+   
+   external_func(rDiagonal,*).
+   
+   external_func(initDiagonal,0).
+   
+   parameter zero=initDiagonal.
+   %EvalParameter(zero).
+   parameter NeDiag= 
+             rDiagonal(4, MG1, zero   , -MZ*SW*cb,  MZ*SW*sb,
+                                MG2   ,  MZ*CW*cb, -MZ*CW*sb,
+                                           zero  , -mu,
+                                                      zero   ).
+   _i=1-4  in parameter MNE_i=MassArray(NeDiag,_i).
+   _i=1-4  in _j=1-4 in parameter Zn_i_j=MixMatrix(NeDiag,_i,_j).
+   
+   
+   external_func(rDiagonalA, 5).
+   parameter chDiag=rDiagonalA(2,  MG2        ,  Sqrt2*MW*sb,
+                                   Sqrt2*MW*cb,  mu          ).
+   
+   _i=1-2 in parameter MC_i=MassArray(chDiag,_i).
+   _i=1-2 in _j=1-2 in parameter Zu_i_j=MixMatrixU(chDiag,_i,_j).
+   _i=1-2 in _j=1-2 in parameter Zv_i_j=MixMatrix(chDiag,_i,_j).
+   
+   parameter tDiag= rDiagonal(2, Mq3**2 +Mt**2 +(1/2-2/3*SW**2)*MZ**2*c2b,  Mt*(At-mu/tb),   Mu3**2+Mt**2 +2/3* SW**2*MZ**2*c2b).
+   
+   parameter Mtt11=Mq3**2 +Mt**2 +(1/2-2/3*SW**2)*MZ**2*c2b,Mtt12=Mt*(At-mu/tb), Mtt22=Mu3**2+Mt**2 +2/3* SW**2*MZ**2*c2b.
+   
+   %EvalParameter(Mtt11).
+   %EvalParameter(Mtt12).
+   %EvalParameter(Mtt22).
+   
+   _i=1-2 in parameter MSt_i= sqrt(MassArray(tDiag,_i)).
+   _i=1-2 in _j=1-2 in parameter Zt_i_j=MixMatrix(tDiag,_i,_j).
+   
+   %EvalParameter(Zt11).
+   %EvalParameter(Zt12).
+   %EvalParameter(Zt22).
+   %EvalParameter(Zt21).
+   %EvalParameter(MSt1).
+   %EvalParameter(MSt2).
+   
+   
+   parameter bDiag= rDiagonal(2, Mq3**2 +Mb**2 -(1/2-1/3*SW**2)*MZ**2*c2b,  Mb*(Ab-mu*tb),
+                                                                          Md3**2+Mb**2 -1/3* SW**2*MZ**2*c2b).
+                                      
+   _i=1-2  in parameter MSb_i= sqrt(MassArray(bDiag,_i)).
+   _i=1-2 in _j=1-2 in parameter Zb_i_j=MixMatrix(bDiag,_i,_j).
+   
+   
+   parameter lDiag= rDiagonal(2, Ml3**2 +Ml**2 -(1/2-SW**2)*MZ**2*c2b,  Ml*(Al-mu*tb),
+                                                                      Mr3**2+Ml**2- SW**2*MZ**2*c2b).  
+   _i=1-2 in parameter MSl_i= sqrt(MassArray(lDiag,_i)).
+   _i=1-2 in _j=1-2 in  parameter Zl_i_j=MixMatrix(lDiag,_i,_j).
+   
+   
+   %EvalParameter(MSb1).
+   %EvalParameter(MSb2).
+   
+   parameter QSUSY=sqrt(MSt1*MSt2).           
+end_if.
+
+
+    parameter dMb = deltaMb,dMl=deltaMl.
+    parameter calcL=calcLambdas,
+    la1 = Lambda1,
+    la3 = Lambda3,
+    la6 = Lambda6.
+   
+    parameter ca=cos(alpha), sa=sin(alpha).
+   
+    parameter  sb=tB/sqrt(1+tB**2):'Sine beta', cb=sqrt(1-sb**2):'Cosine beta'.
+    angle sin=sb, cos=cb, tan=tB.
+    parameter  c2b=cb**2-sb**2 : 'cos(2b)'.
+   
+   
+   do_if Zhij==On. 
+     parameter Zh11=ca,Zh12=sa,Zh21=-sa,Zh22=ca.
+     OrthMatrix({  {Zh11, Zh12}, {Zh21, Zh22}  }).
+   do_else.
+     alias  Zh11 = ca.
+     alias  Zh12 = sa.
+     alias  Zh21 = (-sa).
+     alias  Zh22 = ca.
+     angle sin=sa, cos=ca.
+   end_if.
+   
+
+   parameter Td3=dMb/(1+dMb). 
+
+   %QCD sector
+   parameter Lqcd=initQCD5(alfSMZ,McMc,MbMb,Mtp).
+   parameter Mb=MbEff(Q).
+   parameter Mt=MtEff(Q).
+   parameter Mc=McEff(Q).
+   %parameter Mt=Mtp.
+
+   parameter PI=acos(-1).
+   parameter Mbp=MbMb*(1+4/3*alphaQCD(MbMb)/PI).
+   parameter Mcp=McMc*(1+4/3*alphaQCD(McMc)/PI).
+%========  calculation of loop correction to Higgs potential. ==============
+keys dlh=Off.
+do_if dlh==On.
+   alias Atop = At.
+   
+   parameter pi=4*atan(1).
+   parameter hMtop=MtRun(QSUSY):'Top mass for Higgs mass calculation',   
+             hMbot=MbRun(QSUSY):'Bottom mass for Higgs mass calculation',  
+             lnMT=log(QSUSY**2/hMtop**2):'ln(QSUSY**2/Mtop**2)',
+             hg3=sqrt(4*pi*alphaQCD(QSUSY)):'g_3 coupling for Higgs mass calculation'.
+   
+   %EvalParameter(QSUSY).
+   %EvalParameter(hg3).
+            
+   parameter htb=tb*(1+3/32/pi**2*(hMtop**2/sb**2-hMbot**2/cb**2)
+                           /MW**2*EE**2/SW**2/2*log(MH3**2/hMtop**2)),
+             hsb=htb/sqrt(1+htb**2):'Sinus beta at MH3',
+             hcb=sqrt(1-hsb**2):'Cosine beta at MH3',
+             hht=hMtop/hsb/MW*EE/SW/Sqrt2,
+             hhb=hMbot/hcb/MW*EE/SW/Sqrt2,
+             hXt=2*At**2/QSUSY**2*(1-At**2/12/QSUSY**2),
+             hXb=2*Ab**2/QSUSY**2*(1-Ab**2/12/QSUSY**2),
+             hAtb=(-6*mu**2/QSUSY**2-(mu**2-Ab*At)**2/QSUSY**4
+                           +3*(Atop+Ab)**2/QSUSY**2)/6.
+   
+     
+   parameter dlh1a=-EE**2*(1/SW**2+1/CW**2)/4*3/8/pi**2*hhb**2*lnMT,
+             dlh1b=lnMT+hXb/2+
+                      (hhb**2*3/2+hht**2/2-8*hg3)*(hXb*lnMT+lnMT**2)/16/pi**2,
+             dlh1c=1+(9*hht**2-5*hhb**2-16*hg3**2)*lnMT/16/pi**2,
+             dlh1=dlh1a+3/8/pi**2*hhb**4*dlh1b
+                       -3/96/pi**2*hht**4*mu**4/QSUSY**4*dlh1c.
+   
+   %EvalParameter(hhb).
+   %EvalParameter(lnMT).
+   %EvalParameter(dlh1c).
+                       
+   parameter dlh2a=-EE**2*(1/SW**2+1/CW**2)/4/8*3/pi**2*hht**2*lnMT,
+             dlh2b=lnMT+hXt/2+
+                      (hht**2*3/2+hhb**2/2-8*hg3)*(hXt*lnMT+lnMT**2)/16/pi**2,
+             dlh2c=1+(9*hhb**2-5*hht**2-16*hg3**2)*lnMT/16/pi**2,
+             dlh2=dlh2a+3/8/pi**2*hht**4*dlh2b
+                       -3/96/pi**2*hhb**4*mu**4/QSUSY**4*dlh1c.
+                       
+   parameter dlh3a=-EE**2*(1/SW**2-1/CW**2)/4/16*3/pi**3*(hhb**2+hht**2)*lnMT,
+             dlh3b=lnMT+hAtb/2
+                    +(hht**2+hhb**2-8*hg3**2)*(hAtb*lnMT+lnMT**2)/16/pi**2,
+             dlh3c=(3*mu**2/QSUSY**2-mu**2*Atop**2/QSUSY**4),
+             dlh3d=1+(6*hht**2-2*hhb**2-16*hg3**2)*lnMT/16/pi**2,
+             dlh3e=(3*mu**2/QSUSY**2-mu**2*Ab**2/QSUSY**4),
+             dlh3f=1+(6*hhb**2-2*hht**2-16*hg3**2)*lnMT/16/pi**2,
+             dlh3=dlh3a+6/16/pi**2*hht**2*hhb**2*dlh3b
+                   +3/96/pi**2*hht**4*dlh3c*dlh3d+3/96/pi**2*hhb**4*dlh3e*dlh3f.
+                   
+   parameter dlh4a=EE**2*3/32/CW**2/pi**2*(hhb**2+hht**2)*lnMT,
+             dlh4=dlh4a-6/16/pi**2*hht**2*hhb**2*dlh3b
+                   +3/96/pi**2*hht**4*dlh3c*dlh3d+3/96/pi**2*hhb**4*dlh3e*dlh3f.
+   
+   parameter dlh5a=1+(6*hht**2-2*hhb**2-16*hg3**2)*lnMT/16/pi**2,
+             dlh5b=1+(6*hhb**2-2*hht**2-16*hg3**2)*lnMT/16/pi**2,
+             dlh5=-3/96/pi**2*mu**2/QSUSY**4*(dlh5a*hht**4*Atop**2+dlh5b*hhb**4*Ab**2).
+   parameter dlh6=0,dlh7=0.
+   
+   %====== Formation of Higgs potential in case of SLHA 
+   %===and Calculation of Higgs sector in case of tree level.
+end_if.
+
+%parameter la1=dlh1.              % For la1 always theoretical value is used.
+
+do_if SLHA==On.
+
+do_if LambdaTH==On.    % Theoretical formulae for la2-la5.  
+
+% parameter  la2=dlh2,la3=dlh3,la4=dlh4,la5=dlh5, la6=dlh6, la7=dlh7.
+
+let la6=0,la7=0.  
+
+do_else.               % Detect  la_i parameters to have mass conditions 
+
+
+                       % replace 'parameter' on 'let'  for symbolical check of mass conditions. 
+
+
+parameter   
+           Mhh11=Mh**2*Zh12**2 + MHH**2*Zh11**2,
+           Mhh12=MHH**2*Zh11*Zh12 + Mh**2*Zh22*Zh21,
+           Mhh22=Mh**2*Zh22**2+MHH**2*Zh21**2,
+
+           la5=  -la1*cb**2/sb**2 +2*la6*cb/sb -EE**2*( -Mhh11      +(MH3*sb)**2   )/(2*MW*SW*sb)**2,
+           la4=   la5                       -(1/2)*EE**2*(  MHc**2     -MH3**2     )/(MW*SW)**2,  
+           la7= cb/sb*(la3+la4 -cb/sb*la6 -(1/4)*EE**2*(  Mhh12/cb/sb +MH3**2    )/(MW*SW)**2 ),
+           la2=  -la5*cb**2/sb**2 +2*la7*cb/sb -EE**2*( -Mhh22      +(MH3*cb)**2   )/(2*MW*SW*sb)**2  
+ .     
+
+end_if.
+
+%do_else.  % Tree level calculation.  
+%
+%parameter la2=dlh2,la3=dlh3,la4=dlh4,la5=dlh5.
+%parameter MHc=sqrt(MW**2+MH3**2+2/EE**2*MW**2*SW**2*(la5-la4)).
+%parameter Mhh11= 1/CW**2*MW**2*cb**2  +4/EE**2*MW**2*SW**2*cb**2*la1 +4/EE**2*MW**2*SW**2*la5*sb**2  +MH3**2*sb**2,
+%          Mhh12=-1/CW**2*MW**2*sb*cb  +4/EE**2*MW**2*SW**2*cb*la3*sb +4/EE**2*MW**2*SW**2*cb*la4*sb  -MH3**2*cb*sb,
+%          Mhh22= 1/CW**2*MW**2*sb**2  +4/EE**2*MW**2*SW**2*la2*sb**2 +4/EE**2*MW**2*SW**2*cb**2*la5  +MH3**2*cb**2.
+%%EvalParameter(la1).
+%%EvalParameter(la2).
+%%EvalParameter(la3).
+%%EvalParameter(la4).
+%%EvalParameter(la5). 
+%parameter hDiag= rDiagonal(2,Mhh11,Mhh12,Mhh22). 
+%parameter Mh= sqrt(MassArray(hDiag,1)), MHH = sqrt(MassArray(hDiag,2)).
+%
+%_j=1-2 in parameter Zh1_j=MixMatrix(hDiag,2,_j).
+%_j=1-2 in parameter Zh2_j=MixMatrix(hDiag,1,_j).
+%
+
+end_if.
+
+
+OrthMatrix({  {Zn11, Zn12,Zn13,Zn14}, 
+              {Zn21, Zn22,Zn23,Zn24},
+              {Zn31, Zn32,Zn33,Zn34},
+              {Zn41, Zn42,Zn43,Zn44}  }).   
+
+do_if SLHA==On.
+do_else.
+OrthMatrix({{Zh11, Zh21}, {Zh12, Zh22}}).
+end_if.
+
+OrthMatrix({{Zv11, Zv21}, {Zv12, Zv22}}).
+OrthMatrix({{Zu11, Zu21}, {Zu12, Zu22}}).
+OrthMatrix({{Zt11, Zt21}, {Zt12, Zt22}}).
+OrthMatrix({{Zl11, Zl21}, {Zl12, Zl22}}).
+OrthMatrix({{Zb11, Zb21}, {Zb12, Zb22}}).
+
+

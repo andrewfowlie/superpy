@@ -1,0 +1,75 @@
+:
+
+
+nFirst=0
+strCom="{}0"
+nOld=1
+nSub=0
+
+CSt=0
+
+while(test $nSub -ne  $nOld)
+do
+  nOld=$nSub
+
+  ./n_calchep -blind "{$strCom" 1>/dev/null 2>/dev/null 
+   err=$?; if(test $err -ne 0) then exit $err; fi
+
+  nSess=`grep Session_number session.dat |cut -f2 -d" "`
+
+  if(test $nFirst -eq 0) then
+     nFirst=$nSess
+  fi
+
+  info=`grep Subprocess  session.dat`
+
+  nSub=`echo $info|cut -f2 -d" "`
+
+  if(test $nSub -ne $nOld) then
+
+    CSi=`$1/run_vegas`
+    err=$?; if(test $err -ne 0) then exit $err; fi   
+    CSt=`$1/calc "$CSt + ($CSi)"` 
+
+    if(test $# -eq 2) then 
+       Nevents=`$1/calc "floor($2*($CSi)*1000)"`
+    else 
+       Nevents=`$1/calc "floor(min($3,$2*($CSi)*1000))"`
+    fi
+
+    if(test $Nevents -gt 0) then 
+    ./n_calchep -blind "[[[[[[[[[{[[[[[[[[[{{$Nevents{[{0" 1>/dev/null 2>/dev/null
+    fi
+    echo  $info  Cross section = $CSi , $Nevents  events 
+
+    strCom="[$strCom"
+  fi
+done 
+
+nLast=`grep Session_number session.dat|cut -f2 -d" "`
+
+
+allDistr=""
+n=$nFirst
+nn=0
+while(test $n -le $nLast )
+do 
+  if(test -r  distr_$n) then 
+    allDistr="$allDistr distr_$n"
+    nn=`expr $nn + 1`
+  fi
+  n=`expr $n + 1`  
+done
+
+
+if(test $nn -gt 1) then 
+   $1/sum_distr $allDistr > distr_"$nFirst"_"$nLast"
+   if(test $? -eq 0) then 
+     echo Sum of distributions is stored in file distr_"$nFirst"_"$nLast"
+   else 
+     echo  ERR
+   fi
+fi
+
+echo Total Cross Section $CSt [pb]
+echo see details in  prt_$nFirst -   prt_$nLast  files

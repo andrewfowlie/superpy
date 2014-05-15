@@ -1,0 +1,14 @@
+# combined SM limits otained with the Bayesian method
+# CDF Note 9998, D0 Note 5983
+# CDF_D0_SM_combined_2.1-5.4fb_highmassonly 
+# Mh(in GeV),obs,exp (normalised to SM values) MH>=160 GeV
+ 
+160    1.09       0.96  
+165    0.94       0.89  	
+170    1.29       1.07  
+175    1.24       1.32  
+180    1.44       1.63  
+185    2.3        2.1 
+190    2.5        2.6 
+195    4.3        3.2 
+200    5.0        3.7 

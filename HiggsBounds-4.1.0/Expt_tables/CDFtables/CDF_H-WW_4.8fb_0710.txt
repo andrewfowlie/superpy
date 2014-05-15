@@ -1,0 +1,19 @@
+#CDF Note ???? Blessed Jul 10, 2009 http://www-cdf.fnal.gov/physics/new/hdg/results/hwwmenn_090710/
+#CDF_H-WW_4.8fb 
+# needs interpolation
+#columns: Mh, obs, exp (as ratio to SM cross sections)
+
+110	36.44	28.23	
+120	9.78	9.45	
+130	5.33	4.63	
+140	3.92	2.97	
+145	2.99	2.59	
+150	2.89	2.15	
+155	1.90	1.74	
+160	1.31	1.32	
+165	1.25	1.28	
+170	1.48	1.48	
+175	1.95	1.78	
+180	2.86	2.09	
+190	3.84	3.39	
+200	6.93	4.61	

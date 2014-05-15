@@ -1,0 +1,16 @@
+# Published at Moriond 2013. Data is taken from CMS-PAS-HIG 13-005
+# Mass resolution: (Gauss: 0.55, linear: 0.7) GeV.
+# This peak observable contains the mass measurement.
+# Efficiencies are chosen such that we have about 5% VBF.
+13002101	1300201		1
+CMS-PAS-HIG-13-002
+LHC, CMS, CMS
+(pp)->h->ZZ->4l (0/1jet)
+8 	24.7	0.044
+1	1
+0.7	CMSZZ
+125.7 125.7 0.1
+4	125.7
+13 23 33 43
+1.00 0.70 0.70 0.70
+125.7	0.600	0.858	1.179

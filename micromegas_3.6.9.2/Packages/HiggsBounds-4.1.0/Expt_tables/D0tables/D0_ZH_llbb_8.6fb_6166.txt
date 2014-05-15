@@ -1,0 +1,17 @@
+#D0 Note 6166 Jul 20, 2011
+#D0_ZH_llbb_8.6fb
+#no interpolation
+#columns: Mh, obs, exp (as ratio to SM cross sections)
+
+100	   2.5   3.4          
+105        2.6   3.7     	
+110	   3.1   4.2          
+115	   4.9   4.8          		
+120	   6.4   5.3          
+125	   8.9   6.5          	
+130	   9.9   8.4          	
+135	   15    11         	
+140	   25    14         
+145	   34    22         	
+150	   50    34         	
+

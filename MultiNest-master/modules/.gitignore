@@ -1,0 +1,5 @@
+# a file is necessary for git to create this build directory.
+# ignore everything here
+*
+# except this file
+!.gitignore

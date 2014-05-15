@@ -1,0 +1,12 @@
+#arXiv: 0802.0432 (hep-ex) 5th Feb, 2008
+#CDF_VH_Metbb_1fb
+#no interpolation
+#columns: Mh, obs, exp (as ratio to SM cross sections)
+
+110	17.9	11.8
+115	20.4	13.9
+120	24.8	16.7
+125	30.2	18.9
+130	38.3	24.2
+135	48.5	31.9
+140	65.8	45.9

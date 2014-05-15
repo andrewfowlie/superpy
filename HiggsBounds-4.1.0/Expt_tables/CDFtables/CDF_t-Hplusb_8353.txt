@@ -1,0 +1,10 @@
+#CDF Note 8353 June 29th 2006
+#CDF_t-Hplusb_8353
+#read in with EasyNData
+#columns: Mh, obs, exp BR(t -> H+ b)*BR(H+ -> tau nu)
+
+   80       0.533           0.293    
+   90       0.612           0.321    
+  100       0.472           0.271    
+  110       0.558           0.307    
+  120       0.738           0.334    

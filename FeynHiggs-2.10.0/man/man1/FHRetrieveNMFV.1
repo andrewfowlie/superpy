@@ -1,0 +1,58 @@
+.TH FHRETRIEVENMFV 1 "30-May-2012"
+.SH NAME
+.PP
+FHRetrieveNMFV \- retrieve the non-minimal flavour-violating parameters
+.SH SYNOPSIS (Fortran version)
+.PP
+integer error
+.br
+double complex deltaQLL12, deltaQLL23, deltaQLL13
+.br
+double complex deltaULR12, deltaULR23, deltaULR13
+.br
+double complex deltaURL12, deltaURL23, deltaURL13
+.br
+double complex deltaURR12, deltaURR23, deltaURR13
+.br
+double complex deltaDLR12, deltaDLR23, deltaDLR13
+.br
+double complex deltaDRL12, deltaDRL23, deltaDRL13
+.br
+double complex deltaDRR12, deltaDRR23, deltaDRR13
+.sp
+subroutine FHRetrieveNMFV(error,
+  deltaQLL12, deltaQLL23, deltaQLL13,
+  deltaULR12, deltaULR23, deltaULR13,
+  deltaURL12, deltaURL23, deltaURL13,
+  deltaURR12, deltaURR23, deltaURR13,
+  deltaDLR12, deltaDLR23, deltaDLR13,
+  deltaDRL12, deltaDRL23, deltaDRL13,
+  deltaDRR12, deltaDRR23, deltaDRR13)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHRetrieveNMFV[]
+.SH DESCRIPTION
+FHRetrieveNMFV retrieves the non-minimal flavour-violating parameters 
+from FeynHiggs.
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in RetrieveFV.F from
+which the error message was emitted
+.TP
+.B deltaFXYij, F = Q,U,D, XY = LL,LR,RL,RR, ij = 12,23,13 (output)
+the off-diagonal entries of the squark mass matrices, divided by the
+corresponding SUSY-breaking parameters.  Some examples:
+.br
+   Md^2(2,3) = deltaQLL23 M2SQ M3SQ
+.br
+   Md^2(1,5) = deltaDLR12 M1SQ M2SD
+.br
+   Md^2(4,6) = deltaDRR13 M1SD M3SD
+.br
+where Md^2 is the down-type sfermion mass matrix.  The up-type matrix
+is filled analogously (with MgSU instead of MgSD) but is finally rotated
+with the CKM matrix.
+.SH SEE ALSO
+.PP
+libFH(1)

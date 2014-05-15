@@ -1,0 +1,14 @@
+{F2 -> DiracChain[Spinor[k[1], 0, -1], 6, Lor[1], Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], 6, Lor[1], Spinor[k[2], 0, 1]], 
+ F1 -> DiracChain[Spinor[k[1], 0, -1], 6, Lor[1], Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[4], 0, 1], 6, Lor[1], Spinor[k[3], 0, -1]], 
+ SUN1 -> SUNT[Col1, Col3]*SUNT[Col4, Col2], 
+ SUN2 -> SUNT[Col1, Col2]*SUNT[Col4, Col3], 
+ Sub1[All5, Cha5] -> -2*MW*SB*UASfC[All5, Ind3, 3]*VCha[Cha5, 1] + 
+   Sqrt[2]*Mf[3, Ind3]*UASfC[All5, 3 + Ind3, 3]*VCha[Cha5, 2], 
+ Sub4[All5, Cha6] -> -2*MW*SB*UASf[All5, Ind1, 3]*VChaC[Cha6, 1] + 
+   Sqrt[2]*Mf[3, Ind1]*UASf[All5, 3 + Ind1, 3]*VChaC[Cha6, 2], 
+ Sub3[All6, Cha5] -> -2*MW*SB*UASf[All6, Ind2, 3]*VChaC[Cha5, 1] + 
+   Sqrt[2]*Mf[3, Ind2]*UASf[All6, 3 + Ind2, 3]*VChaC[Cha5, 2], 
+ Sub2[All6, Cha6] -> -2*MW*SB*UASfC[All6, Ind4, 3]*VCha[Cha6, 1] + 
+   Sqrt[2]*Mf[3, Ind4]*UASfC[All6, 3 + Ind4, 3]*VCha[Cha6, 2]}

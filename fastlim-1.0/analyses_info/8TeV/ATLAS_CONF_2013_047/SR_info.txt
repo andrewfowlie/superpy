@@ -1,0 +1,12 @@
+rootS    lumi    Data      BG     sys         ULnBSM:obs, exp  ULxsecBSM(fb):obs, exp    name   SR                  
+    8    20.3    5333    4700     500              1341.2  -1               66.07  -1   cut_0   A Loose
+    8    20.3     135     122      18                51.3  -1                2.52  -1   cut_1   A Medium
+    8    20.3      29      33       7                14.9  -1                0.73  -1   cut_2   B Medium
+    8    20.3       4     2.4     1.4                 6.7  -1                0.33  -1   cut_3   B Tight
+    8    20.3     228     210      40                81.2  -1                 4.0  -1   cut_4   C Medium
+    8    20.3       0     1.6     1.4                 2.4  -1                0.12  -1   cut_5   C Tight
+    8    20.3      18      15       5                15.5  -1                0.77  -1   cut_6   D
+    8    20.3     166     113      21                92.4  -1                4.55  -1   cut_7   E Loose
+    8    20.3      41      30       8                28.6  -1                1.41  -1   cut_8   E Medium
+    8    20.3       5     2.9     1.8                 8.3  -1                0.41  -1   cut_9   E Tight
+

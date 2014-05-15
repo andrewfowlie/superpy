@@ -1,0 +1,44 @@
+.TH FHFLAVOUR 1 "1-May-2011"
+.SH NAME
+.PP
+FHFlavour \- evaluate flavour observables
+.SH SYNOPSIS (Fortran version)
+.PP
+integer error
+.br
+double precision bsgammaMSSM, bsgammaSM
+.br
+double precision deltaMsMSSM, deltaMsSM
+.br
+double precision bsmumuMSSM, bsmumuSM
+.sp
+subroutine FHFlavour(error,
+.br
+  bsgammaMSSM, bsgammaSM,
+.br
+  deltaMsMSSM, deltaMsSM,
+.br
+  bsmumuMSSM, bsmumuSM)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHFlavour[]
+.SH DESCRIPTION
+FHFlavour evaluates flavour observables which are used as further
+constraints on the MSSM parameter space.
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in Flavour.F from
+which the error message was emitted.
+.TP
+.B bsgammaMSSM, bsgammaSM (output)
+the values of B -> X_s gamma in the MSSM and SM,
+.TP
+.B deltaMsMSSM, deltaMsSM (output)
+the values of Delta Ms in the MSSM and SM.
+.TP
+.B bsmumuMSSM, bsmumuSM
+the values of Bs -> mu+ mu- in the MSSM and SM (coming soon).
+.SH SEE ALSO
+.PP
+libFH(1)

@@ -1,0 +1,19 @@
+#CDF Note ???? Feb 27, 2009 http://www-cdf.fnal.gov/physics/new/hdg/results/hwwmenn_090227/OSPlusSSLimits_newggH.htm
+#CDF_H-WW_3.6fb ('new' ggH cross sections)
+# needs interpolation
+#columns: Mh, obs, exp (as ratio to SM cross sections)
+
+110	51.05	31.48
+120	12.22	10.62
+130	6.06	5.26
+140	3.52	3.40
+145	3.14	2.94
+150	2.39	2.46
+155	1.99	2.02
+160	1.37	1.52
+165	1.33	1.50
+170	1.81	1.73
+175	2.02	2.10
+180	2.23	2.40
+190	3.56	3.84
+200	6.24	5.11

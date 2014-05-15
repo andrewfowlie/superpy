@@ -1,0 +1,437 @@
+#! /bin/sh
+
+if [ $# -ne 1 ] ; then
+  echo 'Usage:  decay tag'
+  echo 'generates the "tag" decay'
+  echo 'will output diagrams if DEBUG=1'
+  exit 1
+fi
+
+tag=`basename $1`
+
+shopt -s nullglob
+
+: ${DEBUG=0}
+
+mkdir -p f m
+rm -fr f/$tag-squaredme f/$tag-renconst m/$tag.*
+[ $DEBUG = 1 ] && rm -f d/$tag-*
+
+math -run tag=\"$tag\" -run debug=$DEBUG << \_EOF_ > m/$tag.log
+<< FeynArts`;
+
+<< FormCalc`;
+
+(*loopopt[1] = LastSelections -> F[15];*)
+_loopopt = Sequence[];
+
+simp = Simplify;
+fsimp = FullSimplify;
+
+NClear[];
+
+N[sqrt2] = Sqrt[2.];
+sqrt2/: sqrt2/2 = 1/sqrt2;
+sqrt2/: sqrt2^2 = 2;
+sqrt2/: sqrt2^-2 = 1/2;
+
+Sq[m1] = m12;
+Sq[m2] = m22;
+Sq[m3] = m32;
+Sq[MHiggs[a_]] = MHiggs2[a];
+MH = MHiggs[hno];
+MH2 = MHiggs2[hno];
+Mh0tree = Mh0;
+Mh0tree2 = Mh02;
+MHHtree = MHH;
+MHHtree2 = MHH2;
+MA0tree = MA0;
+MA0tree2 = MA02;
+
+Sq[GS] =.;
+GS = GSMH;
+Sq[GSMH] = 4 Pi AlfasMH;
+
+Sq[EL] =.;
+EL = EL0;
+Sq[EL0] = 4 Pi Alfa0;
+
+trigrulz = {
+  CA a_ + CA2 b_ -> CA (a + CA b),
+  SA a_ + SA2 b_ -> SA (a + SA b),
+  CB a_ + CB2 b_ -> CB (a + CB b),
+  SB a_ + SB2 b_ -> SB (a + SB b)
+};
+
+frulz[_ -> 0] = {};
+
+frulz[t_ -> ty_] := {
+  Mf[t,g_] -> Mfy[ty,g],
+  Mf2[t,g_] -> Mfy2[ty,g] };
+
+sfrulz[t_ -> 0] := {		(* for SM *)
+  Mqy[t,g_] -> Mf[t,g] };
+
+sfrulz[t_ -> ty_] := {
+  Mqy[t,g_] -> Mfy[ty,g],
+  MSf[s_,t,g_] -> MSf[s,ty,g],
+  MSf2[s_,t,g_] -> MSf2[s,ty,g],
+  USf[s__,t,g_] -> USf[s,ty,g],
+  USfC[s__,t,g_] -> USfC[s,ty,g],
+  MASf[as_,t] -> MASf[as,ty],
+  MASf2[as_,t] -> MASf2[as,ty],
+  UASf[as__,t] -> UASf[as,ty],
+  UASfC[as__,t] -> UASfC[as,ty],
+  Kf[g__,t] -> Kf[g,ty],
+  KfC[g__,t] -> KfC[g,ty] };
+
+massrulz[u_, uy_, d_, dy_] := Flatten[{
+  frulz[3 -> u],
+  sfrulz[3 -> uy],
+  frulz[4 -> d],
+  sfrulz[4 -> dy] }];
+
+final[expr_] := expr /.
+  { _Enh -> 1,
+    (*hff[h:1|2,g_,g_] -> Hff[h,g],*)
+    _hff -> 1,
+    USf[a__] USfC[a__] -> USf2[a],
+    ZHiggs[i_, j_] -> XHiggs[i, j, uzext],
+    IndexDelta -> IDelta,
+    Sqrt[2] -> sqrt2,
+    1/Sqrt[2] -> 1/sqrt2,
+    Re -> DBLE,
+    re[h_[x__]] :> ToSymbol[h, "Re"][x],
+    im[h_[x__]] :> ToSymbol[h, "Im"][x] } /.
+  IDelta -> Delta;
+
+(*Mdy[g_] := Mfy[7, g];*)
+Sq[Mfy[a__]] = Mfy2[a];
+RealQ[_Mfy] = True;
+
+Dim[gno1] = Dim[gno2] = 3;
+
+Format[Mino3, FortranForm] := "M_3";
+Format[Mino3C, FortranForm] := "M_3C";
+
+
+$DebugCmd = {"DETAILED_DEBUG", "DCOUP", " ENDL"};
+
+deepestOnly[{___, l_}] = {l};
+
+SetOptions[Paint,
+  PaintLevel :> deepestOnly[InsertionLevel],
+  ColumnsXRows -> {3, 4}];
+
+paint[ins_, suffix_] := (
+  MkDir["d"];
+  $PaintSE = ToFileName["d", tag <> "-"];
+  Paint[ ins,
+    DisplayFunction -> (Export[$PaintSE <> suffix <> ".ps",
+      #, "PS", ImageSize -> 144 {3, 4} ]&) ]
+) /; debug === 1;
+
+
+SetOptions[WriteExpr, FinalCollect -> True];
+
+
+Attributes[wfok] = {Orderless};
+wfok[] = True;
+wfok[_, S[4]] = wfok[_, V[2]] = True;
+_wfok = False;
+
+
+amprulz[0] = {};
+amprulz[1] = _HffDb -> 1;
+
+amps[loop_, proc_, model_, excl_, foo_, opt___] :=
+Block[ {io, top, ins, insv, insct, amp, vert},
+  SetOptions[InsertFields, Model -> model, opt];
+
+  io = Length[Flatten[{#}]]&/@ proc;
+
+  top = CreateTopologies[loop, io,
+    ExcludeTopologies -> {Tadpoles, WFCorrections[excl]}];
+  ins = InsertFields[top, proc, loopopt[loop]];
+  insv = DiagramSelect[ins, wfok@@ WFCorrectionFields[##] &];
+  paint[insv, "v"];
+
+  top = CreateCTTopologies[loop, io,
+    ExcludeTopologies -> {TadpoleCTs, WFCorrectionCTs[excl]}];
+  ins = InsertFields[top, proc];
+  insct = DiagramSelect[ins, wfok@@ WFCorrectionCTFields[##] &];
+  paint[insct, "ct"];
+
+  amp = CreateFeynAmp[Join[insv, Head[insv]@@ insct]];
+
+  SetOptions[CalcFeynAmp, Dimension -> If[model === SM, D, 4]];
+(*
+  SetOptions[CalcFeynAmp, Dimension -> 4];
+*)
+
+(*
+  If[ !MatchQ[proc, _ -> {_F, -_F}],
+    (* use Mfy (running mass) inside the diagrams, but not in
+       the kinematics *)
+    amp = DeclareProcess[amp] ];
+*)
+  amp = OffShell[amp, 1 -> m1, 2 -> m2, 3 -> m3];
+
+FormSimplify = Identity (*Simplify*);
+  vert = CalcFeynAmp[amp /. amprulz[loop]];
+  vert = final[foo[vert]];
+  vert = Collect[vert, {_Mat, _SumOver, _Den, _Delta}, simp1];
+
+  Abbreviate[vert, 5, Preprocess -> simp1] //elimDiv
+];
+
+
+IDelta/: IDelta[i_, j_] a_ := IDelta[i, j] (a /. j -> i) /; !FreeQ[a, j];
+
+
+fxi[x_] := fsimp[x //. trigrulz] /. trigrulz;
+
+Attributes[fsi] = {Listable};
+fsi[x_] := x /; FreeQ[x, Plus];
+fsi[x_] := fsi[x] = fxi[fxi[x]];
+
+xi[x_] := simp[x //. trigrulz] /. trigrulz;
+
+Attributes[si] = {Listable};
+si[x_] := x /; FreeQ[x, Plus];
+si[x_] := si[x] = xi[xi[x]];
+
+simp1 = OnSize[100, fsi, 250, si, Map];
+simp2 = fsimp;
+
+loopint = _A0 | _B0 | _B1 | _B00 | _B11 | _DB0 | _DB1 | _DB00 | _DB11;
+
+SetOptions[PrepareExpr,
+  Expensive -> List@@ loopint,
+  FinalTouch -> simp2];
+
+
+elimDiv[expr_] := ToIndexIf[ expr /.
+  (d:Den[MHiggs2[i_], MHiggs2[j_]]) -> d IndexDiff[i, j] ];
+
+
+SetOptions[WriteSquaredME,
+  FilePrefix -> tag <> "-",
+  SymbolPrefix -> tag <> "_",
+  Folder -> tag <> "-squaredme",
+  FileIncludes -> "#include \"externals.h\"\n#include \"debug.h\"\n\n\n",
+  FileHeader -> StringInsert[FileHeader /. Options[WriteSquaredME],
+    "* this file is part of FeynHiggs\n", {-2}]];
+
+SetOptions[WriteRenConst,
+  Folder -> tag <> "-renconst"];
+
+job[proc_, model_, excl_, foo_, opt___] :=
+Block[ {v0, v1, col, abbr, sub},
+  v0 = amps[0, proc, model, excl, foo, opt];
+  v1 = amps[1, proc, model, excl, foo, opt];
+
+  col = ColourME[All, All];
+  abbr = OptimizeAbbr[Abbr[]];
+  sub = OptimizeAbbr[Subexpr[]] //fsi;
+
+  Put[{v0, v1, col, abbr, sub}, ToFileName["m", tag <> ".amp"]];
+
+  rcs = FindRenConst[{v0, v1, sub}];
+  SetOptions[WriteSquaredME, SubroutineIncludes ->
+    If[ Length[rcs] === 0,
+      "#include \"Decay.h\"\n",
+      "#include \"Decay.h\"\n#include \"" <> tag <> "-renconst.h\"\n" ]];
+
+  WriteSquaredME[v0, v1, col, abbr, sub, "f",
+    ExtraRules -> ToOldBRules,
+    SymbolPrefix -> tag <> "_",
+    LoopSquare -> True];	(* <<<!!! *)
+
+  If[ Length[rcs] > 0,
+FormSimplify = simp1;
+    rcs = final[foo[CalcRenConst[rcs, loopopt[1]] /. amprulz[1]] /.
+      ToOldBRules];
+    Put[rcs, ToFileName["m", tag <> ".rc"]];
+    WriteRenConst[rcs, "f"] ];
+];
+
+
+Enh[Q, h_, {3, g1_}, {3, g2_}] := Enh[U, h, g1, g2];
+
+Enh[Q, h_, {3, g1_}, {4, g2_}] := Enh[W, h, g1, g2];
+
+Enh[Q, h_, {4, g1_}, {3, g2_}] := Enh[W, h, g2, g1];
+
+Enh[Q, h_, {4, g1_}, {4, g2_}] := Enh[D, h, g1, g2];
+
+Enh[Sq, h__, {t_, g1_}, {t_, g2_}] := Enh[Sq, h, g1, g2];
+
+
+gather/: gather[q_, expr_:1] x_ := gather[q, expr x] /;
+  FreeQ[x, gather];
+
+gather/: gather[q_, a_:1] + gather[q_, b_:1] := gather[q, a + b] /;
+  FreeQ[{a, b}, gather];
+
+split[q_, expr_:1] := re[q] ReTilde[expr] + I im[q] ImTilde[expr];
+
+
+cMSSM = {"MSSMQCD", "dAlfa", "KW", "FV", "Kf", "EnhYuk", "HMixExt"};
+SM = {"SMQCD", "dAlfa", "EnhYuk"};
+(*noEnh[x_] := x /. "EnhYuk" -> "NoEnh";*)
+noEnh[x_] := DeleteCases[x, "EnhYuk"];
+
+
+decay["hgaga"] := job[
+  S[10, {hno}] -> {V[1], V[1]},
+  cMSSM, _,
+  # /. massrulz[6, 6, 0, 8] /. {
+    Enh[U, __] -> hgagaQ,
+    Enh[D, r__] -> hgagaQ hff[r],
+    Enh[Sq, __] -> hgagaSq } &
+];
+
+decay["hgagaSM"] := job[
+  S[1] -> {V[1], V[1]},
+  SM, _,
+  # /. massrulz[6, 6, 0, 0] /. Enh[U|D, __] -> hgagaQ &
+];
+
+
+decay["hgg"] := job[
+  S[10, {hno}] -> {V[5], V[5]},
+  cMSSM, _,
+  simp[# /. massrulz[6, 6, 0, 8] /. {
+    Enh[U, h_, g_, g_] -> hggU[h, g],
+    Enh[D, h_, g_, g_] :> hff[h, g, g] gather[hggD[h, g]],
+    Enh[Sq, h_, __] -> hggSq[h]
+  }] /. gather -> split &
+];
+
+decay["hggSM"] := job[
+  S[1] -> {V[5], V[5]},
+  SM, _,
+  simp[# /. massrulz[6, 6, 0, 0] /. {
+    Enh[U, h_, g_, g_] -> hggU[h, g],
+    Enh[D, h_, g_, g_] :> (*hff[h, g, g]*) gather[hggD[h, g]]
+  }] /. gather -> split &
+];
+
+
+decay["hhh"] := job[
+  S[10, {hno}] -> {S[10, {hno2}], S[10, {hno3}]},
+  DeleteCases[cMSSM, "FV" (* for now, for testing *) ], 2|3,
+  # /. massrulz[6, 6, 7, 7] &,
+  ExcludeParticles -> {U[5], V[5]}
+];
+
+
+Hff[t_] :=
+Block[ {dMWsq1, EL0 = ELMZ, Alfa0 = AlfaMZ},
+  Options[dMWsq1] = {ExcludeParticles -> {}};	(* i.e. V[1] allowed here *)
+  job[ S[10, {hno}] -> {F[t, {gno1}], -F[t, {gno2}]},
+    cMSSM /. "EnhYuk" -> "ResumHbb", 2|3,
+    # /. massrulz[6, 6, 7, 7] &,
+    ExcludeParticles -> {V[1], V[5]} ]
+];
+
+HffSM[t_] :=
+Block[ {dMWsq1, EL0 = ELMZ, Alfa0 = AlfaMZ},
+  Options[dMWsq1] = {ExcludeParticles -> {}};	(* i.e. V[1] allowed here *)
+  job[ S[1] -> {F[t, {gno1}], -F[t, {gno2}]},
+    noEnh[SM], _,
+    # /. massrulz[6, 6, 7, 7] &,
+    ExcludeParticles -> {V[1], V[5]} ]
+];
+
+decay["hee"] := Hff[2];
+
+decay["heeSM"] := HffSM[2];
+
+decay["huu"] := Hff[3];
+
+decay["huuSM"] := HffSM[3];
+
+decay["hdd"] := Hff[4];
+
+decay["hddSM"] := HffSM[4];
+
+
+(*
+decay["hcc"] := write[ CalcFeynAmp @
+  amps[1, S[10, {hno}] -> {-F[12,{c1}], F[12,{c2}]}, "HMix"] ];
+decay["hnn"] := write[ CalcFeynAmp @
+  amps[1, S[10, {hno}] -> {F[11,{n1}], F[11,{c2}]}, "HMix"] ];
+*)
+
+
+_decay := Abort[];
+
+
+decay[tag];
+
+_EOF_
+
+
+# prepare generated code for inclusion in FH
+
+for file in d/*.ps ; do gzip -f $file ; done
+
+cd f
+
+[ -d $tag ] && rm -fr $tag
+mkdir $tag
+
+convert()
+{
+  script="
+/markcache/d
+/restorecache/d
+/LOOP_IF/d
+/LOOP_ENDIF/d
+/RESET_IF/d
+/RESET_ENDIF/d
+/integer flags/d
+s/, flags//
+s/integer\*8/integer/
+/do Hel1 = .*/d
+s/do Hel2 = .*/do Hel2 = -1, 1/
+s/do Hel3 = .*/Hel3 = Hel2/
+s/17-5\*i/10-3*i/
+/HEL_IF([13])/d
+/HEL_ENDIF([13])/ {
+N
+d
+}
+/hdd-BEGIN TREE/a\
+\	sub1L = 0
+/hdd-END TREE/i\
+\\\n\
+\	Ctree(1) = 0\n\
+\n\
+\	sub1L = 1\n\
+\	call hdd_v0\n\
+\n\
+\	result(2) = result(2) + hdd_sumup(Ctree, Ctree)
+/h[eu][eu]-END SQUAREDME/i\
+\	result(2) = result(2) + result(1)
+"
+#  case $tag in
+#  hee* | huu* | hdd*)
+#    script="$script
+#s/^.*(Cloop, Ctree)/\tif( gno1 .eq. gno2 ) then\n&\n\telse/
+#s/^.*(Cloop, Cloop)/&\n\tendif/
+#"
+#  esac
+
+  for file in $1/*.[Fh] ; do
+    f=`basename "$file"`
+    sed "$script" "$file" > $tag/$f
+  done
+  rm -fr $1
+}
+
+convert $tag-squaredme
+convert $tag-renconst
+

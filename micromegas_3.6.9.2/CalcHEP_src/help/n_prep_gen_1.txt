@@ -1,0 +1,10 @@
+1 12 51 3
+  CalcHEP uses the importing sampling algorithm 
+for event generator. To realize it CalcHEP 
+divides the phase volume on sub-cubes and finds 
+a local maximum in each  sub-cube. This menu 
+item specifies the number of these sub-cubes.
+ The increase of this number  leads  to 
+improvement of efficiency of event generator, 
+but, from other side, to increase the time 
+needed to prepare the generator.

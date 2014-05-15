@@ -1,0 +1,287 @@
+SumOver[All5, 6]*SumOver[All6, 6]*SumOver[Cha5, 2]*SumOver[Ind1, 3]*
+  SumOver[Ind2, 3]*SumOver[Ind3, 3]*
+  (-(GF^2*MW2*(1 - 2*SW2)*C00z[MASf2[All5, 3], MASf2[All6, 3], MCha2[Cha5]]*
+      CKM[Ind2, 3]*CKMC[Ind3, 2]*Den[0, MZ2]*Mdy[2]*Mdy[3]*
+      Op[s . Opi[Lor[1], R] . b, lbar . Opi[Lor[1], L] . l]*
+      UASf[All5, Ind2, 3]*((-3 + 4*SW2)*UASf[All6, Ind1, 3]*
+        UASfC[All5, Ind1, 3] + 4*SW2*UASf[All6, 3 + Ind1, 3]*
+        UASfC[All5, 3 + Ind1, 3])*UASfC[All6, Ind3, 3]*UCha[Cha5, 2]*
+      UChaC[Cha5, 2])/(6*CB2*CW2*Pi^2) + 
+   (GF^2*MW2*SW2*C00z[MASf2[All5, 3], MASf2[All6, 3], MCha2[Cha5]]*
+     CKM[Ind2, 3]*CKMC[Ind3, 2]*Den[0, MZ2]*Mdy[2]*Mdy[3]*
+     Op[s . Opi[Lor[1], R] . b, lbar . Opi[Lor[1], R] . l]*
+     UASf[All5, Ind2, 3]*((-3 + 4*SW2)*UASf[All6, Ind1, 3]*
+       UASfC[All5, Ind1, 3] + 4*SW2*UASf[All6, 3 + Ind1, 3]*
+       UASfC[All5, 3 + Ind1, 3])*UASfC[All6, Ind3, 3]*UCha[Cha5, 2]*
+     UChaC[Cha5, 2])/(3*CB2*CW2*Pi^2) - 
+   (GF^2*MW2*(1 - 2*SW2)*C00z[MASf2[All5, 3], MASf2[All6, 3], MCha2[Cha5]]*
+     CKM[Ind1, 3]*CKMC[Ind2, 2]*Den[0, MZ2]*Op[s . Opi[Lor[1], L] . b, 
+      lbar . Opi[Lor[1], L] . l]*((-3 + 4*SW2)*UASf[All6, Ind3, 3]*
+       UASfC[All5, Ind3, 3] + 4*SW2*UASf[All6, 3 + Ind3, 3]*
+       UASfC[All5, 3 + Ind3, 3])*(-2*MW*SB*UASfC[All6, Ind2, 3]*
+       VCha[Cha5, 1] + sqrt2*Mf[3, Ind2]*UASfC[All6, 3 + Ind2, 3]*
+       VCha[Cha5, 2])*(-2*MW*SB*UASf[All5, Ind1, 3]*VChaC[Cha5, 1] + 
+      sqrt2*Mf[3, Ind1]*UASf[All5, 3 + Ind1, 3]*VChaC[Cha5, 2]))/
+    (12*CW2*Pi^2*SB2) + (GF^2*MW2*SW2*C00z[MASf2[All5, 3], MASf2[All6, 3], 
+      MCha2[Cha5]]*CKM[Ind1, 3]*CKMC[Ind2, 2]*Den[0, MZ2]*
+     Op[s . Opi[Lor[1], L] . b, lbar . Opi[Lor[1], R] . l]*
+     ((-3 + 4*SW2)*UASf[All6, Ind3, 3]*UASfC[All5, Ind3, 3] + 
+      4*SW2*UASf[All6, 3 + Ind3, 3]*UASfC[All5, 3 + Ind3, 3])*
+     (-2*MW*SB*UASfC[All6, Ind2, 3]*VCha[Cha5, 1] + 
+      sqrt2*Mf[3, Ind2]*UASfC[All6, 3 + Ind2, 3]*VCha[Cha5, 2])*
+     (-2*MW*SB*UASf[All5, Ind1, 3]*VChaC[Cha5, 1] + 
+      sqrt2*Mf[3, Ind1]*UASf[All5, 3 + Ind1, 3]*VChaC[Cha5, 2]))/
+    (6*CW2*Pi^2*SB2)) + SumOver[All5, 6]*SumOver[Cha5, 2]*SumOver[Ind1, 3]*
+  SumOver[Ind2, 3]*(Op[s . Opi[Lor[1], R] . b, lbar . Opi[Lor[1], R] . l]*
+    (-(GF^2*MB2*MW2*SW2^2*CKM[Ind1, 3]*CKMC[Ind2, 2]*(Den[0, 0]/SW2 + 
+         Den[0, MZ2]/CW2)*Den[MB2, 0]*(A0[MASf2[All5, 3]] + 
+         (-MASf2[All5, 3] - MCha2[Cha5])/2 - 
+         ((-A0[MASf2[All5, 3]] + A0[MCha2[Cha5]])*MCha2[Cha5])/
+          (-MASf2[All5, 3] + MCha2[Cha5]))*Mdy[2]*Mdy[3]*UASf[All5, Ind1, 3]*
+        UASfC[All5, Ind2, 3]*UCha[Cha5, 2]*UChaC[Cha5, 2])/
+      (6*CB2*Pi^2*(-MASf2[All5, 3] + MCha2[Cha5])) + 
+     (2*GF^2*MW2*SW2*CKM[Ind1, 3]*CKMC[Ind2, 2]*Den[0, 0]*Mdy[2]*
+       UASfC[All5, Ind2, 3]*UChaC[Cha5, 2]*
+       (((Finite/4 + (A0[MCha2[Cha5]] + (-MASf2[All5, 3] - MCha2[Cha5])/2 - 
+             ((A0[MASf2[All5, 3]] - A0[MCha2[Cha5]])*MASf2[All5, 3])/
+              (MASf2[All5, 3] - MCha2[Cha5]))/(4*(MASf2[All5, 3] - 
+              MCha2[Cha5])) - (A0[MASf2[All5, 3]] + (-MASf2[All5, 3] - MCha2[
+                Cha5])/2 - ((-A0[MASf2[All5, 3]] + A0[MCha2[Cha5]])*MCha2[
+                Cha5])/(-MASf2[All5, 3] + MCha2[Cha5]))/
+            (6*(-MASf2[All5, 3] + MCha2[Cha5])))*Mdy[3]*UASf[All5, Ind1, 3]*
+          UCha[Cha5, 2])/CB2 + 
+        ((-1/2 - (A0[MCha2[Cha5]] + (-MASf2[All5, 3] - MCha2[Cha5])/2 - 
+             ((A0[MASf2[All5, 3]] - A0[MCha2[Cha5]])*MASf2[All5, 3])/
+              (MASf2[All5, 3] - MCha2[Cha5]))/(2*(MASf2[All5, 3] - 
+              MCha2[Cha5])) + (A0[MASf2[All5, 3]] + (-MASf2[All5, 3] - MCha2[
+                Cha5])/2 - ((-A0[MASf2[All5, 3]] + A0[MCha2[Cha5]])*MCha2[
+                Cha5])/(-MASf2[All5, 3] + MCha2[Cha5]))/
+            (2*(-MASf2[All5, 3] + MCha2[Cha5])))*
+          ((MCha2[Cha5]*Mdy[3]*UASf[All5, Ind1, 3]*UCha[Cha5, 2])/CB2 + 
+           (MB*MCha[Cha5]*(-2*MW*SB*UASf[All5, Ind1, 3]*VChaC[Cha5, 1] + 
+              sqrt2*Mf[3, Ind1]*UASf[All5, 3 + Ind1, 3]*VChaC[Cha5, 2]))/
+            (CB*SB*sqrt2)))/(2*MCha2[Cha5])))/Pi^2) + 
+   Op[s . Opi[Lor[1], R] . b, lbar . Opi[Lor[1], L] . l]*
+    ((2*GF^2*MW2*SW2*CKM[Ind1, 3]*CKMC[Ind2, 2]*Den[MB2, 0]*Mdy[2]*
+       UASfC[All5, Ind2, 3]*(-(MB2*Den[0, 0]*(A0[MASf2[All5, 3]] + 
+            (-MASf2[All5, 3] - MCha2[Cha5])/2 - 
+            ((-A0[MASf2[All5, 3]] + A0[MCha2[Cha5]])*MCha2[Cha5])/
+             (-MASf2[All5, 3] + MCha2[Cha5]))*Mdy[3]*UASf[All5, Ind1, 3]*
+           UCha[Cha5, 2])/(12*CB2*(-MASf2[All5, 3] + MCha2[Cha5])) + 
+        (MB2*(1 - 2*SW2)*Den[0, MZ2]*(A0[MASf2[All5, 3]] + 
+           (-MASf2[All5, 3] - MCha2[Cha5])/2 - 
+           ((-A0[MASf2[All5, 3]] + A0[MCha2[Cha5]])*MCha2[Cha5])/
+            (-MASf2[All5, 3] + MCha2[Cha5]))*Mdy[3]*UASf[All5, Ind1, 3]*
+          UCha[Cha5, 2])/(24*CB2*CW2*(-MASf2[All5, 3] + MCha2[Cha5])))*
+       UChaC[Cha5, 2])/Pi^2 + (2*GF^2*MW2*SW2*CKM[Ind1, 3]*CKMC[Ind2, 2]*
+       Den[0, 0]*Mdy[2]*UASfC[All5, Ind2, 3]*UChaC[Cha5, 2]*
+       (((Finite/4 + (A0[MCha2[Cha5]] + (-MASf2[All5, 3] - MCha2[Cha5])/2 - 
+             ((A0[MASf2[All5, 3]] - A0[MCha2[Cha5]])*MASf2[All5, 3])/
+              (MASf2[All5, 3] - MCha2[Cha5]))/(4*(MASf2[All5, 3] - 
+              MCha2[Cha5])) - (A0[MASf2[All5, 3]] + (-MASf2[All5, 3] - MCha2[
+                Cha5])/2 - ((-A0[MASf2[All5, 3]] + A0[MCha2[Cha5]])*MCha2[
+                Cha5])/(-MASf2[All5, 3] + MCha2[Cha5]))/
+            (6*(-MASf2[All5, 3] + MCha2[Cha5])))*Mdy[3]*UASf[All5, Ind1, 3]*
+          UCha[Cha5, 2])/CB2 + 
+        ((-1/2 - (A0[MCha2[Cha5]] + (-MASf2[All5, 3] - MCha2[Cha5])/2 - 
+             ((A0[MASf2[All5, 3]] - A0[MCha2[Cha5]])*MASf2[All5, 3])/
+              (MASf2[All5, 3] - MCha2[Cha5]))/(2*(MASf2[All5, 3] - 
+              MCha2[Cha5])) + (A0[MASf2[All5, 3]] + (-MASf2[All5, 3] - MCha2[
+                Cha5])/2 - ((-A0[MASf2[All5, 3]] + A0[MCha2[Cha5]])*MCha2[
+                Cha5])/(-MASf2[All5, 3] + MCha2[Cha5]))/
+            (2*(-MASf2[All5, 3] + MCha2[Cha5])))*
+          ((MCha2[Cha5]*Mdy[3]*UASf[All5, Ind1, 3]*UCha[Cha5, 2])/CB2 + 
+           (MB*MCha[Cha5]*(-2*MW*SB*UASf[All5, Ind1, 3]*VChaC[Cha5, 1] + 
+              sqrt2*Mf[3, Ind1]*UASf[All5, 3 + Ind1, 3]*VChaC[Cha5, 2]))/
+            (CB*SB*sqrt2)))/(2*MCha2[Cha5])))/Pi^2) + 
+   (2*GF^2*MW2*SW2*Op[s . Opi[Lor[1], L] . b, lbar . Opi[Lor[1], R] . l]*
+     ((MB2*(3 - 2*SW2)*CKM[Ind1, 3]*CKMC[Ind2, 2]*Den[0, MZ2]*Den[MB2, 0]*
+        (A0[MASf2[All5, 3]] + (-MASf2[All5, 3] - MCha2[Cha5])/2 - 
+         ((-A0[MASf2[All5, 3]] + A0[MCha2[Cha5]])*MCha2[Cha5])/
+          (-MASf2[All5, 3] + MCha2[Cha5]))*(-2*MW*SB*UASfC[All5, Ind2, 3]*
+          VCha[Cha5, 1] + sqrt2*Mf[3, Ind2]*UASfC[All5, 3 + Ind2, 3]*
+          VCha[Cha5, 2])*(-2*MW*SB*UASf[All5, Ind1, 3]*VChaC[Cha5, 1] + 
+         sqrt2*Mf[3, Ind1]*UASf[All5, 3 + Ind1, 3]*VChaC[Cha5, 2]))/
+       (48*CW2*SB2*(-MASf2[All5, 3] + MCha2[Cha5])) + 
+      Den[0, 0]*(-(MB2*CKM[Ind1, 3]*CKMC[Ind2, 2]*Den[MB2, 0]*
+           (A0[MASf2[All5, 3]] + (-MASf2[All5, 3] - MCha2[Cha5])/2 - 
+            ((-A0[MASf2[All5, 3]] + A0[MCha2[Cha5]])*MCha2[Cha5])/
+             (-MASf2[All5, 3] + MCha2[Cha5]))*(-2*MW*SB*UASfC[All5, Ind2, 3]*
+             VCha[Cha5, 1] + sqrt2*Mf[3, Ind2]*UASfC[All5, 3 + Ind2, 3]*
+             VCha[Cha5, 2])*(-2*MW*SB*UASf[All5, Ind1, 3]*VChaC[Cha5, 1] + 
+            sqrt2*Mf[3, Ind1]*UASf[All5, 3 + Ind1, 3]*VChaC[Cha5, 2]))/
+         (24*SB2*(-MASf2[All5, 3] + MCha2[Cha5])) + 
+        (CKM[Ind1, 3]*CKMC[Ind2, 2]*(Finite/8 + (A0[MCha2[Cha5]] + 
+             (-MASf2[All5, 3] - MCha2[Cha5])/2 - ((A0[MASf2[All5, 3]] - 
+                A0[MCha2[Cha5]])*MASf2[All5, 3])/(MASf2[All5, 3] - MCha2[
+                Cha5]))/(8*(MASf2[All5, 3] - MCha2[Cha5])) - 
+           (A0[MASf2[All5, 3]] + (-MASf2[All5, 3] - MCha2[Cha5])/2 - 
+             ((-A0[MASf2[All5, 3]] + A0[MCha2[Cha5]])*MCha2[Cha5])/
+              (-MASf2[All5, 3] + MCha2[Cha5]))/(12*(-MASf2[All5, 3] + 
+              MCha2[Cha5])))*(-2*MW*SB*UASfC[All5, Ind2, 3]*VCha[Cha5, 1] + 
+           sqrt2*Mf[3, Ind2]*UASfC[All5, 3 + Ind2, 3]*VCha[Cha5, 2])*
+          (-2*MW*SB*UASf[All5, Ind1, 3]*VChaC[Cha5, 1] + sqrt2*Mf[3, Ind1]*
+            UASf[All5, 3 + Ind1, 3]*VChaC[Cha5, 2]))/SB2 + 
+        ((-1/2 - (A0[MCha2[Cha5]] + (-MASf2[All5, 3] - MCha2[Cha5])/2 - 
+             ((A0[MASf2[All5, 3]] - A0[MCha2[Cha5]])*MASf2[All5, 3])/
+              (MASf2[All5, 3] - MCha2[Cha5]))/(2*(MASf2[All5, 3] - 
+              MCha2[Cha5])) + (A0[MASf2[All5, 3]] + (-MASf2[All5, 3] - MCha2[
+                Cha5])/2 - ((-A0[MASf2[All5, 3]] + A0[MCha2[Cha5]])*MCha2[
+                Cha5])/(-MASf2[All5, 3] + MCha2[Cha5]))/
+            (2*(-MASf2[All5, 3] + MCha2[Cha5])))*
+          ((MB*sqrt2*CKM[Ind2, 3]*CKMC[Ind1, 2]*MCha[Cha5]*Mdy[3]*
+             UASf[All5, Ind2, 3]*UCha[Cha5, 2]*(-2*MW*SB*UASfC[All5, Ind1, 
+                3]*VCha[Cha5, 1] + sqrt2*Mf[3, Ind1]*UASfC[All5, 3 + Ind1, 
+                3]*VCha[Cha5, 2]))/(CB*SB) + (CKM[Ind1, 3]*CKMC[Ind2, 2]*
+             MCha2[Cha5]*(-2*MW*SB*UASfC[All5, Ind2, 3]*VCha[Cha5, 1] + 
+              sqrt2*Mf[3, Ind2]*UASfC[All5, 3 + Ind2, 3]*VCha[Cha5, 2])*
+             (-2*MW*SB*UASf[All5, Ind1, 3]*VChaC[Cha5, 1] + sqrt2*Mf[3, Ind1]*
+               UASf[All5, 3 + Ind1, 3]*VChaC[Cha5, 2]))/SB2))/
+         (4*MCha2[Cha5]))))/Pi^2 + 
+   (2*GF^2*MW2*SW2^2*Op[s . Opi[Lor[1], L] . b, lbar . Opi[Lor[1], L] . l]*
+     (-(MB2*(1 - 2*SW2)*(3 - 2*SW2)*CKM[Ind1, 3]*CKMC[Ind2, 2]*Den[0, MZ2]*
+         Den[MB2, 0]*(A0[MASf2[All5, 3]] + (-MASf2[All5, 3] - MCha2[Cha5])/
+           2 - ((-A0[MASf2[All5, 3]] + A0[MCha2[Cha5]])*MCha2[Cha5])/
+           (-MASf2[All5, 3] + MCha2[Cha5]))*(-2*MW*SB*UASfC[All5, Ind2, 3]*
+           VCha[Cha5, 1] + sqrt2*Mf[3, Ind2]*UASfC[All5, 3 + Ind2, 3]*
+           VCha[Cha5, 2])*(-2*MW*SB*UASf[All5, Ind1, 3]*VChaC[Cha5, 1] + 
+          sqrt2*Mf[3, Ind1]*UASf[All5, 3 + Ind1, 3]*VChaC[Cha5, 2]))/
+       (96*CW2*SB2*SW2^2*(-MASf2[All5, 3] + MCha2[Cha5])) + 
+      (Den[0, 0]*(-(MB2*CKM[Ind1, 3]*CKMC[Ind2, 2]*Den[MB2, 0]*
+            (A0[MASf2[All5, 3]] + (-MASf2[All5, 3] - MCha2[Cha5])/2 - 
+             ((-A0[MASf2[All5, 3]] + A0[MCha2[Cha5]])*MCha2[Cha5])/
+              (-MASf2[All5, 3] + MCha2[Cha5]))*(-2*MW*SB*UASfC[All5, Ind2, 3]*
+              VCha[Cha5, 1] + sqrt2*Mf[3, Ind2]*UASfC[All5, 3 + Ind2, 3]*
+              VCha[Cha5, 2])*(-2*MW*SB*UASf[All5, Ind1, 3]*VChaC[Cha5, 1] + 
+             sqrt2*Mf[3, Ind1]*UASf[All5, 3 + Ind1, 3]*VChaC[Cha5, 2]))/
+          (24*SB2*(-MASf2[All5, 3] + MCha2[Cha5])) + 
+         (CKM[Ind1, 3]*CKMC[Ind2, 2]*(Finite/8 + (A0[MCha2[Cha5]] + 
+              (-MASf2[All5, 3] - MCha2[Cha5])/2 - ((A0[MASf2[All5, 3]] - 
+                 A0[MCha2[Cha5]])*MASf2[All5, 3])/(MASf2[All5, 3] - 
+                MCha2[Cha5]))/(8*(MASf2[All5, 3] - MCha2[Cha5])) - 
+            (A0[MASf2[All5, 3]] + (-MASf2[All5, 3] - MCha2[Cha5])/2 - 
+              ((-A0[MASf2[All5, 3]] + A0[MCha2[Cha5]])*MCha2[Cha5])/(
+                -MASf2[All5, 3] + MCha2[Cha5]))/(12*(-MASf2[All5, 3] + MCha2[
+                Cha5])))*(-2*MW*SB*UASfC[All5, Ind2, 3]*VCha[Cha5, 1] + 
+            sqrt2*Mf[3, Ind2]*UASfC[All5, 3 + Ind2, 3]*VCha[Cha5, 2])*
+           (-2*MW*SB*UASf[All5, Ind1, 3]*VChaC[Cha5, 1] + sqrt2*Mf[3, Ind1]*
+             UASf[All5, 3 + Ind1, 3]*VChaC[Cha5, 2]))/SB2 + 
+         ((-1/2 - (A0[MCha2[Cha5]] + (-MASf2[All5, 3] - MCha2[Cha5])/2 - 
+              ((A0[MASf2[All5, 3]] - A0[MCha2[Cha5]])*MASf2[All5, 3])/(
+                MASf2[All5, 3] - MCha2[Cha5]))/(2*(MASf2[All5, 3] - MCha2[
+                Cha5])) + (A0[MASf2[All5, 3]] + (-MASf2[All5, 3] - 
+                MCha2[Cha5])/2 - ((-A0[MASf2[All5, 3]] + A0[MCha2[Cha5]])*
+                MCha2[Cha5])/(-MASf2[All5, 3] + MCha2[Cha5]))/
+             (2*(-MASf2[All5, 3] + MCha2[Cha5])))*
+           ((MB*sqrt2*CKM[Ind2, 3]*CKMC[Ind1, 2]*MCha[Cha5]*Mdy[3]*
+              UASf[All5, Ind2, 3]*UCha[Cha5, 2]*(-2*MW*SB*UASfC[All5, Ind1, 
+                 3]*VCha[Cha5, 1] + sqrt2*Mf[3, Ind1]*UASfC[All5, 3 + Ind1, 
+                 3]*VCha[Cha5, 2]))/(CB*SB) + (CKM[Ind1, 3]*CKMC[Ind2, 2]*
+              MCha2[Cha5]*(-2*MW*SB*UASfC[All5, Ind2, 3]*VCha[Cha5, 1] + 
+               sqrt2*Mf[3, Ind2]*UASfC[All5, 3 + Ind2, 3]*VCha[Cha5, 2])*
+              (-2*MW*SB*UASf[All5, Ind1, 3]*VChaC[Cha5, 1] + sqrt2*
+                Mf[3, Ind1]*UASf[All5, 3 + Ind1, 3]*VChaC[Cha5, 2]))/SB2))/
+          (4*MCha2[Cha5])))/SW2))/Pi^2) + SumOver[All5, 6]*SumOver[Cha5, 2]*
+  SumOver[Cha6, 2]*SumOver[Ind1, 3]*SumOver[Ind2, 3]*
+  (Den[0, MZ2]*Op[s . Opi[Lor[1], R] . b, lbar . Opi[Lor[1], R] . l]*
+    ((Finite*GF^2*MW2*SW2*CKM[Ind1, 3]*CKMC[Ind2, 2]*Mdy[2]*Mdy[3]*
+       UASf[All5, Ind1, 3]*UASfC[All5, Ind2, 3]*UCha[Cha5, 2]*
+       (SW2*IndexDelta[Cha5, Cha6] - UCha[Cha6, 1]*UChaC[Cha5, 1] - 
+        (UCha[Cha6, 2]*UChaC[Cha5, 2])/2)*UChaC[Cha6, 2])/(2*CB2*CW2*Pi^2) - 
+     (2*GF^2*MW2*SW2*C00z[MASf2[All5, 3], MCha2[Cha5], MCha2[Cha6]]*
+       CKM[Ind1, 3]*CKMC[Ind2, 2]*Mdy[2]*Mdy[3]*UASf[All5, Ind1, 3]*
+       UASfC[All5, Ind2, 3]*UCha[Cha5, 2]*(SW2*IndexDelta[Cha5, Cha6] - 
+        UCha[Cha6, 1]*UChaC[Cha5, 1] - (UCha[Cha6, 2]*UChaC[Cha5, 2])/2)*
+       UChaC[Cha6, 2])/(CB2*CW2*Pi^2) + 
+     (GF^2*MW2*SW2*C0z[MASf2[All5, 3], MCha2[Cha5], MCha2[Cha6]]*CKM[Ind1, 3]*
+       CKMC[Ind2, 2]*MCha[Cha5]*Mdy[2]*UASfC[All5, Ind2, 3]*UChaC[Cha6, 2]*
+       ((MB*(SW2*IndexDelta[Cha5, Cha6] - UCha[Cha6, 1]*UChaC[Cha5, 1] - 
+           (UCha[Cha6, 2]*UChaC[Cha5, 2])/2)*(-2*MW*SB*UASf[All5, Ind1, 3]*
+            VChaC[Cha5, 1] + sqrt2*Mf[3, Ind1]*UASf[All5, 3 + Ind1, 3]*
+            VChaC[Cha5, 2]))/(CB*SB*sqrt2) + 
+        (MCha[Cha6]*Mdy[3]*UASf[All5, Ind1, 3]*UCha[Cha5, 2]*
+          (SW2*IndexDelta[Cha5, Cha6] - VCha[Cha5, 1]*VChaC[Cha6, 1] - 
+           (VCha[Cha5, 2]*VChaC[Cha6, 2])/2))/CB2))/(CW2*Pi^2)) + 
+   Den[0, MZ2]*Op[s . Opi[Lor[1], L] . b, lbar . Opi[Lor[1], R] . l]*
+    ((Finite*GF^2*MW2*SW2*CKM[Ind1, 3]*CKMC[Ind2, 2]*
+       (-2*MW*SB*UASfC[All5, Ind2, 3]*VCha[Cha6, 1] + sqrt2*Mf[3, Ind2]*
+         UASfC[All5, 3 + Ind2, 3]*VCha[Cha6, 2])*
+       (-2*MW*SB*UASf[All5, Ind1, 3]*VChaC[Cha5, 1] + sqrt2*Mf[3, Ind1]*
+         UASf[All5, 3 + Ind1, 3]*VChaC[Cha5, 2])*
+       (SW2*IndexDelta[Cha5, Cha6] - VCha[Cha5, 1]*VChaC[Cha6, 1] - 
+        (VCha[Cha5, 2]*VChaC[Cha6, 2])/2))/(4*CW2*Pi^2*SB2) - 
+     (GF^2*MW2*SW2*C00z[MASf2[All5, 3], MCha2[Cha5], MCha2[Cha6]]*
+       CKM[Ind1, 3]*CKMC[Ind2, 2]*(-2*MW*SB*UASfC[All5, Ind2, 3]*
+         VCha[Cha6, 1] + sqrt2*Mf[3, Ind2]*UASfC[All5, 3 + Ind2, 3]*
+         VCha[Cha6, 2])*(-2*MW*SB*UASf[All5, Ind1, 3]*VChaC[Cha5, 1] + 
+        sqrt2*Mf[3, Ind1]*UASf[All5, 3 + Ind1, 3]*VChaC[Cha5, 2])*
+       (SW2*IndexDelta[Cha5, Cha6] - VCha[Cha5, 1]*VChaC[Cha6, 1] - 
+        (VCha[Cha5, 2]*VChaC[Cha6, 2])/2))/(CW2*Pi^2*SB2) + 
+     (GF^2*MW2*SW2*C0z[MASf2[All5, 3], MCha2[Cha5], MCha2[Cha6]]*MCha[Cha5]*
+       ((CKM[Ind1, 3]*CKMC[Ind2, 2]*MCha[Cha6]*(SW2*IndexDelta[Cha5, Cha6] - 
+           UCha[Cha6, 1]*UChaC[Cha5, 1] - (UCha[Cha6, 2]*UChaC[Cha5, 2])/2)*
+          (-2*MW*SB*UASfC[All5, Ind2, 3]*VCha[Cha6, 1] + sqrt2*Mf[3, Ind2]*
+            UASfC[All5, 3 + Ind2, 3]*VCha[Cha6, 2])*
+          (-2*MW*SB*UASf[All5, Ind1, 3]*VChaC[Cha5, 1] + sqrt2*Mf[3, Ind1]*
+            UASf[All5, 3 + Ind1, 3]*VChaC[Cha5, 2]))/SB2 + 
+        (MB*sqrt2*CKM[Ind2, 3]*CKMC[Ind1, 2]*Mdy[3]*UASf[All5, Ind2, 3]*
+          UCha[Cha5, 2]*(-2*MW*SB*UASfC[All5, Ind1, 3]*VCha[Cha6, 1] + 
+           sqrt2*Mf[3, Ind1]*UASfC[All5, 3 + Ind1, 3]*VCha[Cha6, 2])*
+          (SW2*IndexDelta[Cha5, Cha6] - VCha[Cha5, 1]*VChaC[Cha6, 1] - 
+           (VCha[Cha5, 2]*VChaC[Cha6, 2])/2))/(CB*SB)))/(2*CW2*Pi^2)) + 
+   (2*GF^2*MW2*Op[s . Opi[Lor[1], L] . b, lbar . Opi[Lor[1], L] . l]*
+     (VCha[Cha5, 1]*((MB*CKM[Ind2, 3]*CKMC[Ind1, 2]*D0z[MASf2[All5, 3], 
+           MCha2[Cha5], MCha2[Cha6], MSf2[1, 1, 2]]*MCha[Cha5]*Mdy[3]*
+          UASf[All5, Ind2, 3]*UCha[Cha5, 2]*(-2*MW*SB*UASfC[All5, Ind1, 3]*
+            VCha[Cha6, 1] + sqrt2*Mf[3, Ind1]*UASfC[All5, 3 + Ind1, 3]*
+            VCha[Cha6, 2]))/(4*CB*SB*sqrt2) - (CKM[Ind1, 3]*CKMC[Ind2, 2]*
+          D00z[MASf2[All5, 3], MCha2[Cha5], MCha2[Cha6], MSf2[1, 1, 2]]*
+          (-2*MW*SB*UASfC[All5, Ind2, 3]*VCha[Cha6, 1] + sqrt2*Mf[3, Ind2]*
+            UASfC[All5, 3 + Ind2, 3]*VCha[Cha6, 2])*
+          (-2*MW*SB*UASf[All5, Ind1, 3]*VChaC[Cha5, 1] + sqrt2*Mf[3, Ind1]*
+            UASf[All5, 3 + Ind1, 3]*VChaC[Cha5, 2]))/(4*SB2))*
+       VChaC[Cha6, 1] + ((1 - 2*SW2)*Den[0, MZ2]*
+        (((-Finite/16 + C00z[MASf2[All5, 3], MCha2[Cha5], MCha2[Cha6]]/4)*
+           CKM[Ind1, 3]*CKMC[Ind2, 2]*(-2*MW*SB*UASfC[All5, Ind2, 3]*
+             VCha[Cha6, 1] + sqrt2*Mf[3, Ind2]*UASfC[All5, 3 + Ind2, 3]*
+             VCha[Cha6, 2])*(-2*MW*SB*UASf[All5, Ind1, 3]*VChaC[Cha5, 1] + 
+            sqrt2*Mf[3, Ind1]*UASf[All5, 3 + Ind1, 3]*VChaC[Cha5, 2])*
+           (SW2*IndexDelta[Cha5, Cha6] - VCha[Cha5, 1]*VChaC[Cha6, 1] - 
+            (VCha[Cha5, 2]*VChaC[Cha6, 2])/2))/SB2 - 
+         (C0z[MASf2[All5, 3], MCha2[Cha5], MCha2[Cha6]]*MCha[Cha5]*
+           ((CKM[Ind1, 3]*CKMC[Ind2, 2]*MCha[Cha6]*(SW2*IndexDelta[Cha5, 
+                 Cha6] - UCha[Cha6, 1]*UChaC[Cha5, 1] - (UCha[Cha6, 2]*
+                 UChaC[Cha5, 2])/2)*(-2*MW*SB*UASfC[All5, Ind2, 3]*
+                VCha[Cha6, 1] + sqrt2*Mf[3, Ind2]*UASfC[All5, 3 + Ind2, 3]*
+                VCha[Cha6, 2])*(-2*MW*SB*UASf[All5, Ind1, 3]*VChaC[Cha5, 1] + 
+               sqrt2*Mf[3, Ind1]*UASf[All5, 3 + Ind1, 3]*VChaC[Cha5, 2]))/
+             SB2 + (MB*sqrt2*CKM[Ind2, 3]*CKMC[Ind1, 2]*Mdy[3]*
+              UASf[All5, Ind2, 3]*UCha[Cha5, 2]*(-2*MW*SB*UASfC[All5, Ind1, 
+                 3]*VCha[Cha6, 1] + sqrt2*Mf[3, Ind1]*UASfC[All5, 3 + Ind1, 
+                 3]*VCha[Cha6, 2])*(SW2*IndexDelta[Cha5, Cha6] - VCha[Cha5, 
+                 1]*VChaC[Cha6, 1] - (VCha[Cha5, 2]*VChaC[Cha6, 2])/2))/
+             (CB*SB)))/8))/CW2))/Pi^2 + 
+   Op[s . Opi[Lor[1], R] . b, lbar . Opi[Lor[1], L] . l]*
+    ((GF^2*MW2*CKM[Ind1, 3]*CKMC[Ind2, 2]*D0z[MASf2[All5, 3], MCha2[Cha5], 
+        MCha2[Cha6], MSf2[1, 1, 2]]*MCha[Cha5]*MCha[Cha6]*Mdy[2]*Mdy[3]*
+       UASf[All5, Ind1, 3]*UASfC[All5, Ind2, 3]*UCha[Cha5, 2]*UChaC[Cha6, 2]*
+       VCha[Cha5, 1]*VChaC[Cha6, 1])/(2*CB2*Pi^2) + 
+     Den[0, MZ2]*(-(Finite*GF^2*MW2*(1 - 2*SW2)*CKM[Ind1, 3]*CKMC[Ind2, 2]*
+          Mdy[2]*Mdy[3]*UASf[All5, Ind1, 3]*UASfC[All5, Ind2, 3]*
+          UCha[Cha5, 2]*(SW2*IndexDelta[Cha5, Cha6] - UCha[Cha6, 1]*
+            UChaC[Cha5, 1] - (UCha[Cha6, 2]*UChaC[Cha5, 2])/2)*
+          UChaC[Cha6, 2])/(4*CB2*CW2*Pi^2) + 
+       (2*GF^2*MW2*(1 - 2*SW2)*CKM[Ind1, 3]*CKMC[Ind2, 2]*Mdy[2]*
+         UASfC[All5, Ind2, 3]*UChaC[Cha6, 2]*
+         ((C00z[MASf2[All5, 3], MCha2[Cha5], MCha2[Cha6]]*Mdy[3]*
+            UASf[All5, Ind1, 3]*UCha[Cha5, 2]*(SW2*IndexDelta[Cha5, Cha6] - 
+             UCha[Cha6, 1]*UChaC[Cha5, 1] - (UCha[Cha6, 2]*UChaC[Cha5, 2])/
+              2))/(2*CB2) - (C0z[MASf2[All5, 3], MCha2[Cha5], MCha2[Cha6]]*
+            MCha[Cha5]*((MB*(SW2*IndexDelta[Cha5, Cha6] - UCha[Cha6, 1]*
+                 UChaC[Cha5, 1] - (UCha[Cha6, 2]*UChaC[Cha5, 2])/2)*(
+                -2*MW*SB*UASf[All5, Ind1, 3]*VChaC[Cha5, 1] + 
+                sqrt2*Mf[3, Ind1]*UASf[All5, 3 + Ind1, 3]*VChaC[Cha5, 2]))/
+              (CB*SB*sqrt2) + (MCha[Cha6]*Mdy[3]*UASf[All5, Ind1, 3]*UCha[
+                Cha5, 2]*(SW2*IndexDelta[Cha5, Cha6] - VCha[Cha5, 1]*
+                 VChaC[Cha6, 1] - (VCha[Cha5, 2]*VChaC[Cha6, 2])/2))/CB2))/
+           4))/(CW2*Pi^2))))

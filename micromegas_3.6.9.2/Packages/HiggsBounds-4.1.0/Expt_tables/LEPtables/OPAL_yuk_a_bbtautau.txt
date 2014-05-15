@@ -1,0 +1,14 @@
+# hep-ex/0111010 OPAL, CP odd Higgs
+# table 8
+# LEP b-b-higgs production cross section as ratio to SM cross section x Br(higgs->tau tau) 
+# columns: Mh (GeV), obs, exp
+
+    4      72.250          90.250    
+    5      121.00          106.09    
+    6      92.160          121.00    
+    7      132.25          123.21    
+    8      114.49          166.41    
+    9      121.00          179.56    
+   10      127.69          207.36    
+   11      151.29          240.25    
+   12      184.96          275.56    

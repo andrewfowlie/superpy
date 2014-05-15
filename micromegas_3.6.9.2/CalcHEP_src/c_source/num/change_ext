@@ -1,0 +1,6 @@
+
+  for FILE in *.c strfun/*.c 
+  do
+     sed  s/num_out.h/interface.h/g $FILE > buff
+     mv buff  $FILE
+  done

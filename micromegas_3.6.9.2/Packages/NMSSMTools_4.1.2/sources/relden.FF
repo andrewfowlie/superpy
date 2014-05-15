@@ -1,0 +1,479 @@
+      SUBROUTINE RELDEN(PAR,PROB)
+
+**********************************************************************
+*   Subroutine for the computation of the dark matter relic density
+*   PROB(26) =/= 0  lightest neutralino is not LSP
+*   PROB(30) =/= 0 excluded by WMAP (checked only if OMGFLAG>=1)
+*   PROB(30)  = -1 LSP is not the lightest neutralino in micrOMEGAs
+*   PROB(30)  = -2 Problem in micrOMEGAs
+*   PROB(31) =/= 0 excluded by Xenon100 (checked only if OMGFLAG=2 or 4)
+*
+**********************************************************************
+
+      IMPLICIT NONE
+
+#include "micromegas/sources/micromegas.fh"
+
+      CHARACTER name*10,mess*20
+
+      INTEGER NORD(5),HORD(3),NBIN,OMGFLAG,MAFLAG
+      INTEGER err,i,j
+
+      DOUBLE PRECISION PAR(*),PROB(*)
+      DOUBLE PRECISION ALSMZ,ALEMMZ,GF,g1,g2,S2TW,PI
+      DOUBLE PRECISION MS,MC,MB,MBP,MT,MTAU,MMUON,MZ,MW
+      DOUBLE PRECISION SMASS(3),AMASS(2),CMASS,SCOMP(3,3),PCOMP(2,2)
+      DOUBLE PRECISION MGL,MCHA(2),UU(2,2),VV(2,2),MNEU(5),NEU(5,5)
+      DOUBLE PRECISION MUR,MUL,MDR,MDL,MLR,MLL,MNL
+      DOUBLE PRECISION MST1,MST2,MSB1,MSB2,MSL1,MSL2,MSNT
+      DOUBLE PRECISION CST,CSB,CSL,MSMU1,MSMU2,MSMUNT,CSMU
+      DOUBLE PRECISION SST,SSB,SSL,COSB,SINB,TANB
+      DOUBLE PRECISION ZHU,ZHD,ZS,H1Q,H2Q,TANBQ
+      DOUBLE PRECISION LQ,KQ,ALQ,AKQ,MUQ,NUQ
+      DOUBLE PRECISION tab(250),OMG,OMGMIN,OMGMAX,Xf
+      DOUBLE PRECISION sigmaV,x(100),dNdx(100),EMIN,LAM,XENON100
+      DOUBLE PRECISION sigmaPiN,sigmaS,csPsi,csNsi,csPsd,csNsd
+      DOUBLE PRECISION Nmass,SCcoeff
+      DOUBLE PRECISION pA0(2),pA5(2),nA0(2),nA5(2)
+      DOUBLE PRECISION PX,PA(6),PB(2),PL(7),PK(8),MH(3),MMH(3)
+      DOUBLE PRECISION DMH(3),MA(2),MMA(2),DMA(2),MHC,MMHC,DMHC
+      DOUBLE PRECISION DELMB,vcsnngg
+      DOUBLE PRECISION BRJJ(5),BRMM(5),BRLL(5),BRSS(5),BRCC(5)
+      DOUBLE PRECISION BRBB(5),BRTT(5),BRWW(3),BRZZ(3),BRGG(5)
+      DOUBLE PRECISION BRZG(5),BRHHH(4),BRHAA(3,3),BRHCHC(3)
+      DOUBLE PRECISION BRHAZ(3,2),BRAHA(3),BRAHZ(2,3),BRHCW(5)
+      DOUBLE PRECISION BRHIGGS(5),BRNEU(5,5,5),BRCHA(5,3)
+      DOUBLE PRECISION BRHSQ(3,10),BRHSL(3,7),BRASQ(2,2),BRASL(2)
+      DOUBLE PRECISION BRSUSY(5),WIDTH(5)
+
+      COMMON/DELMB/DELMB
+      COMMON/GAUGE/ALSMZ,ALEMMZ,GF,g1,g2,S2TW
+      COMMON/SMSPEC/MS,MC,MB,MBP,MT,MTAU,MMUON,MZ,MW
+      COMMON/HIGGSPEC/SMASS,SCOMP,AMASS,PCOMP,CMASS
+      COMMON/SUSYSPEC/MGL,MCHA,UU,VV,MNEU,NEU
+      COMMON/SFSPEC/MUR,MUL,MDR,MDL,MLR,MLL,MNL,
+     .      MST1,MST2,MSB1,MSB2,MSL1,MSL2,MSNT,
+     .      CST,CSB,CSL,MSMU1,MSMU2,MSMUNT,CSMU
+      COMMON/QHIGGS/ZHU,ZHD,ZS,H1Q,H2Q,TANBQ
+      COMMON/QPAR/LQ,KQ,ALQ,AKQ,MUQ,NUQ
+      COMMON/MICROMG/OMG,OMGMIN,OMGMAX,Xf,sigmaV,x,dNdx,EMIN,NBIN
+      COMMON/MICROMG2/sigmaPiN,sigmaS,csPsi,csNsi,csPsd,csNsd
+      COMMON/FLAGS/OMGFLAG,MAFLAG
+      COMMON/LAM/LAM
+      COMMON/EFFHIGM/MH,MMH,DMH,MA,MMA,DMA,MHC,MMHC,DMHC
+      COMMON/EFFCOUP/PX,PA,PB,PL,PK
+
+      COMMON/BRN/BRJJ,BRMM,BRLL,BRSS,BRCC,BRBB,BRTT,BRWW,BRZZ,
+     . BRGG,BRZG,BRHHH,BRHAA,BRHCHC,BRHAZ,BRAHA,BRAHZ,
+     . BRHCW,BRHIGGS,BRNEU,BRCHA,BRHSQ,BRHSL,BRASQ,BRASL,
+     . BRSUSY,WIDTH
+
+      DATA NORD/1,2,4,3,5/
+      DATA HORD/2,1,3/
+      real*8 omg_
+    
+*   Test on LSP
+
+      IF(DABS(MNEU(1)).LT.511.D-6)THEN
+       PROB(26)=-DDIM(1d0,DABS(MNEU(1))/511.D-6)
+      ELSE
+       PROB(26)=DDIM(1d0,MIN(DABS(MGL),DABS(MCHA(1)),MUR,MUL,MDR,
+     .          MDL,MLR,MLL,MNL,MST1,MSB1,MSL1,MSNT)/DABS(MNEU(1)))
+      ENDIF
+
+      IF (OMGFLAG.EQ.0) RETURN
+
+*   Input parameters:
+
+      PI=4d0*DATAN(1d0)
+      TANB=TANBQ
+      COSB=1d0/DSQRT(1d0+TANB**2)
+      SINB=TANB*COSB
+
+      SST=DSQRT(1-CST**2)
+      SSB=DSQRT(1-CSB**2)
+      SSL=DSQRT(1-CSL**2)
+
+      CALL assignValW('alfSMZ',ALSMZ)
+      CALL assignValW('MbMb',MB)
+      CALL assignValW('Mtp',MT)
+
+      CALL assignValW('At',PAR(12))
+      CALL assignValW('Ab',PAR(13))
+      CALL assignValW('Al',PAR(14))
+
+      CALL assignValW('Lambda',PAR(1))
+      CALL assignValW('Kappa',PAR(2))
+      CALL assignValW('aLambda',PAR(5))
+      CALL assignValW('aKappa',PAR(6))
+      CALL assignValW('tB',TANBQ)
+      CALL assignValW('mu',PAR(4))
+
+      CALL assignValW('MG1' ,PAR(20))         
+      CALL assignValW('MG2' ,PAR(21))         
+      CALL assignValW('MG3' ,PAR(22))         
+      CALL assignValW('Ml2' ,DSQRT(PAR(18)))  
+      CALL assignValW('Ml3' ,DSQRT(PAR(10)))  
+      CALL assignValW('Mr2' ,DSQRT(PAR(19)))  
+      CALL assignValW('Mr3' ,DSQRT(PAR(11)))  
+      CALL assignValW('Mq2' ,DSQRT(PAR(15)))  
+      CALL assignValW('Mq3' ,DSQRT(PAR(7)))   
+      CALL assignValW('Mu2' ,DSQRT(PAR(16)))  
+      CALL assignValW('Mu3' ,DSQRT(PAR(8)))   
+      CALL assignValW('Md2' ,DSQRT(PAR(17)))  
+      CALL assignValW('Md3' ,DSQRT(PAR(9)))    
+
+      CALL assignValW('Mha',AMASS(1))
+      CALL assignValW('Mhb',AMASS(2))
+      CALL assignValW('MHc',CMASS)
+      DO i=1,3
+       WRITE(name,fmt='(A2,I1)') 'Mh',i
+       CALL assignValW(name,SMASS(i))
+      ENDDO
+
+      DO i=1,5
+       WRITE(name,fmt='(A3,I1)') 'MNE',i
+       CALL assignValW(name,MNEU(i))
+       DO j=1,5
+         WRITE(name,fmt='(A2,I1,I1)') 'Zn',i,j
+         CALL assignValW(name,NEU(i,NORD(j)))
+        ENDDO
+      ENDDO
+
+      CALL assignValW("Zh11",SCOMP(1,2))
+      CALL assignValW("Zh12",SCOMP(1,1))
+      CALL assignValW("Zh13",SCOMP(1,3))
+      CALL assignValW("Zh21",SCOMP(2,2))
+      CALL assignValW("Zh22",SCOMP(2,1))
+      CALL assignValW("Zh23",SCOMP(2,3))
+      CALL assignValW("Zh31",SCOMP(3,2))
+      CALL assignValW("Zh32",SCOMP(3,1))
+      CALL assignValW("Zh33",SCOMP(3,3))
+
+      CALL assignValW('Za11',SINB*PCOMP(1,1))
+      CALL assignValW('Za12',COSB*PCOMP(1,1))
+      CALL assignValW('Za13',PCOMP(1,2))
+      CALL assignValW('Za21',SINB*PCOMP(2,1))
+      CALL assignValW('Za22',COSB*PCOMP(2,1))
+      CALL assignValW('Za23',PCOMP(2,2)) 
+
+      CALL assignValW('MSl1',MSL1)
+      CALL assignValW('MSl2',MSL2)
+      CALL assignValW('Zl11',CSL)
+      CALL assignValW('Zl12',SSL)
+      CALL assignValW('Zl21',-SSL)
+      CALL assignValW('Zl22',CSL)
+
+      CALL assignValW('MSb1',MSB1)
+      CALL assignValW('MSb2',MSB2)
+      CALL assignValW('Zb11',CSB)
+      CALL assignValW('Zb12',SSB)
+      CALL assignValW('Zb21',-SSB)
+      CALL assignValW('Zb22',CSB)
+
+      CALL assignValW('MSt1',MST1)
+      CALL assignValW('MSt2',MST2)
+      CALL assignValW('Zt11',CST)
+      CALL assignValW('Zt12',SST)
+      CALL assignValW('Zt21',-SST)
+      CALL assignValW('Zt22',CST)
+
+
+      CALL assignValW('Zu11',UU(1,1))
+      CALL assignValW('Zu12',UU(1,2))
+      CALL assignValW('Zu21',UU(2,1))
+      CALL assignValW('Zu22',UU(2,2))
+
+      CALL assignValW('Zv11',VV(1,1))
+      CALL assignValW('Zv12',VV(1,2))
+      CALL assignValW('Zv21',VV(2,1))
+      CALL assignValW('Zv22',VV(2,2))
+
+      CALL assignValW('MSeL',MLL)
+      CALL assignValW('MSeR',MLR)
+      CALL assignValW('MSmL',MLL)
+      CALL assignValW('MSmR',MLR)
+      CALL assignValW('MSne',MNL)
+      CALL assignValW('MSnm',MNL)
+      CALL assignValW('MSnl',MSNT)
+      CALL assignValW('MSuL',MUL)
+      CALL assignValW('MSuR',MUR)
+      CALL assignValW('MSdL',MDL)
+      CALL assignValW('MSdR',MDR)
+      CALL assignValW('MScL',MUL)
+      CALL assignValW('MScR',MUR)
+      CALL assignValW('MSsL',MDL)
+      CALL assignValW('MSsR',MDR)
+      CALL assignValW('MSG',MGL)
+      CALL assignValW('MC1',MCHA(1))
+      CALL assignValW('MC2',MCHA(2))
+
+*   Improved Higgs potential
+
+       CALL assignValW("la1",PL(1))
+       CALL assignValW("la2",PL(2))
+       CALL assignValW("la3",PL(3))
+       CALL assignValW("la4",PL(4))
+       CALL assignValW("la5",PL(5))
+       CALL assignValW("la6",PL(6))
+       CALL assignValW("la7",PL(7))
+       CALL assignValW("la1s",PK(1))
+       CALL assignValW("la2s",PK(2))
+       CALL assignValW("la3s",PK(3))
+       CALL assignValW("la4s",PK(4)) 
+       CALL assignValW("la5s",PK(5))
+       CALL assignValW("la6s",PK(6))
+       CALL assignValW("la7s",PK(7))
+       CALL assignValW("la8s",PK(8))
+       CALL assignValW("aa1",PA(1))
+       CALL assignValW("aa2",PA(2))
+       CALL assignValW("aa3",PA(3))
+       CALL assignValW("aa4",PA(4))
+       CALL assignValW("aa5",PA(5)) 
+       CALL assignValW("aa6",PA(6))
+       CALL assignValW("B1",PB(1))
+       CALL assignValW("B2",PB(2))
+       CALL assignValW("X",PX)
+       CALL assignValW("dMb",DELMB)
+
+*   Sorting sparticles
+
+      err=sortOddParticles(mess)
+!      WRITE(*,*) 'micrOMEGAs : err=', err, ' mess=', mess
+      IF(mess.ne.'~o1') THEN
+        OMG=-1d0
+        PROB(30)=-1d0
+        RETURN
+      ENDIF
+      IF(err.ne.0) THEN
+        OMG=-2d0
+        PROB(30)=-2d0
+        RETURN
+      ENDIF
+
+      call ModelConstIni(2,WIDTH,err)
+
+*   Computing relic density
+
+      call setVVdecay(0) ! set to 1/0 for vitual decays on/off
+      call forceUG(1)    ! set to 1/0 for unitary gauge on/off
+      OMG=darkOmega(Xf,1,1.D-3)
+      IF(OMG.GT.0d0)THEN
+       PROB(30)=DDIM(OMG/OMGMAX,1d0)-DDIM(1d0,OMG/OMGMIN)
+      ELSE
+       PROB(30)=-1d0
+      ENDIF
+      IF (OMGFLAG.EQ.1) RETURN
+      IF (OMGFLAG.EQ.3) GOTO 1
+
+*  Computing WIMP-Nucleon cross sections
+*  Muq/Mdq=0.553d0, Msq/Mdq=18.9d0
+
+      CALL calcScalarQuarkFF(0.553d0,18.9d0,sigmaPiN,sigmaS)
+      err=nucleonAmplitudes(FeScLoop,pA0,pA5,nA0,nA5)
+      Nmass=0.939d0
+      SCcoeff=4/PI*3.8937966d8*(Nmass*Mcdm/(Nmass+Mcdm))**2
+      csPsi=SCcoeff*pA0(1)**2
+      csNsi=SCcoeff*nA0(1)**2
+      csPsd=3*SCcoeff*pA5(1)**2
+      csNsd=3*SCcoeff*nA5(1)**2
+      IF( pA0(1)*nA0(1) .lt. 0) csNsi=-csNsi
+      IF( pA5(1)*nA5(1) .lt. 0) csNsd=-csNsd
+      PROB(31)=DDIM(csPsi/XENON100(DABS(MNEU(1))),1d0)
+
+      IF (OMGFLAG.EQ.2) RETURN
+
+*  Computing indirect detection rate
+ 1    sigmaV=calcSpectrum(0,tab,NULL,NULL,NULL,NULL,NULL,err)
+      IF (err.NE.0) sigmaV=0d0
+      IF (sigmaV.NE.0d0) THEN
+       DO I=1,NBIN
+        dNdx(I)=zInterp(DLOG(10d0)*x(I),tab)*DLOG(10d0)
+       ENDDO
+      ENDIF
+
+      END
+
+
+      DOUBLE PRECISION FUNCTION XENON100(M)
+
+      IMPLICIT NONE
+      INTEGER I,N
+      PARAMETER(N=144)
+      DOUBLE PRECISION X(N),Y(N),M
+     
+      DATA X/6.0028d0,6.0591d0,6.1095d0,6.1568d0,6.2021d0,6.2897d0,
+     .6.2477d0,6.3415d0,6.3907d0,6.4379d0,6.4869d0,6.5286d0,6.5827d0,
+     .6.6337d0,6.6827d0,6.7335d0,6.7768d0,6.8326d0,6.8859d0,6.9367d0,
+     .7.0018d0,7.1004d0,7.2005d0,7.3019d0,7.4048d0,7.5092d0,7.6150d0,
+     .7.7223d0,7.8311d0,7.9415d0,8.0722d0,8.2242d0,8.3791d0,8.5369d0,
+     .8.6977d0,8.8615d0,9.0284d0,9.2409d0,9.4595d0,9.6827d0,9.9112d0,
+     .1.0145d1,1.0433d1,1.0729d1,1.1034d1,1.1347d1,1.1669d1,1.2000d1,
+     .1.2368d1,1.2755d1,1.3115d1,1.3546d1,1.4004d1,1.4504d1,1.5012d1,
+     .1.5558d1,1.6120d1,1.6750d1,1.7419d1,1.8091d1,1.8775d1,1.9483d1,
+     .2.0276d1,2.1150d1,2.2108d1,2.3138d1,2.4213d1,2.5370d1,2.6431d1,
+     .2.7567d1,2.8775d1,3.0149d1,3.1588d1,3.3096d1,3.4922d1,3.6588d1,
+     .3.8604d1,4.0542d1,4.2577d1,4.4610d1,4.6740d1,4.8972d1,5.1430d1,
+     .5.3885d1,5.6458d1,5.9154d1,6.1979d1,6.5090d1,6.8198d1,7.1788d1,
+     .7.5216d1,7.8808d1,8.2571d1,8.6848d1,9.1494d1,9.5863d1,1.0044d2,
+     .1.0551d2,1.1078d2,1.1607d2,1.2206d2,1.2801d2,1.3453d2,1.4118d2,
+     .1.4829d2,1.5567d2,1.6315d2,1.7154d2,1.7994d2,1.8907d2,1.9846d2,
+     .2.0793d2,2.1888d2,2.2933d2,2.4141d2,2.5293d2,2.6625d2,2.7896d2,
+     .2.9228d2,3.0767d2,3.2236d2,3.3933d2,3.5554d2,3.7251d2,3.9030d2,
+     .4.1024d2,4.3047d2,4.5227d2,4.7366d2,4.9860d2,5.2485d2,5.5377d2,
+     .5.8022d2,6.1076d2,6.3993d2,6.7048d2,7.0250d2,7.3571d2,7.7119d2,
+     .8.1075d2,8.5055d2,8.9117d2,9.3590d2,9.8059d2/
+      DATA Y/7.3486d-4,5.9889d-4,4.7866d-4,3.8632d-4,3.1792d-4,
+     .2.6164d-4,2.1532d-4,1.7378d-4,1.4025d-4,1.1542d-4,9.4985d-5,
+     .7.8169d-5,6.3088d-5,5.0917d-5,4.1902d-5,3.4484d-5,2.8378d-5,
+     .2.2904d-5,1.8485d-5,1.5212d-5,1.2519d-5,1.0303d-5,8.4786d-6,
+     .6.9775d-6,5.7422d-6,4.7255d-6,3.8889d-6,3.2004d-6,2.6338d-6,
+     .2.1675d-6,1.7559d-6,1.4466d-6,1.1917d-6,9.8178d-7,8.0890d-7,
+     .6.6653d-7,5.5269d-7,4.5600d-7,3.7572d-7,3.0981d-7,2.5581d-7,
+     .2.1495d-7,1.7671d-7,1.4531d-7,1.1947d-7,9.8252d-8,8.0797d-8,
+     .6.6473d-8,5.6688d-8,4.7201d-8,4.0337d-8,3.3818d-8,2.8397d-8,
+     .2.4052d-8,2.0787d-8,1.7637d-8,1.5317d-8,1.3147d-8,1.1549d-8,
+     .1.0108d-8,8.8089d-9,7.6708d-9,6.7295d-9,6.0012d-9,5.3127d-9,
+     .4.8195d-9,4.3740d-9,3.9018d-9,3.5286d-9,3.2011d-9,2.9585d-9,
+     .2.7658d-9,2.6088d-9,2.4879d-9,2.3437d-9,2.2762d-9,2.1962d-9,
+     .2.1469d-9,2.1194d-9,2.1036d-9,2.0649d-9,2.0504d-9,2.0315d-9,
+     .2.0315d-9,2.0315d-9,2.0315d-9,2.0315d-9,2.0365d-9,2.0693d-9,
+     .2.1362d-9,2.2246d-9,2.3169d-9,2.3803d-9,2.4355d-9,2.5037d-9,
+     .2.5585d-9,2.6306d-9,2.7388d-9,2.8451d-9,2.9529d-9,3.0770d-9,
+     .3.1950d-9,3.3275d-9,3.4560d-9,3.5978d-9,3.7382d-9,3.8797d-9,
+     .4.0425d-9,4.1979d-9,4.3714d-9,4.5406d-9,4.7416d-9,4.9617d-9,
+     .5.1659d-9,5.4023d-9,5.6433d-9,5.8948d-9,6.1487d-9,6.4273d-9,
+     .6.7041d-9,6.9944d-9,7.2915d-9,7.6150d-9,7.9213d-9,8.2526d-9,
+     .8.6451d-9,9.0705d-9,9.5313d-9,1.0008d-8,1.0508d-8,1.1032d-8,
+     .1.1548d-8,1.2076d-8,1.2644d-8,1.3405d-8,1.4060d-8,1.4844d-8,
+     .1.5505d-8,1.6243d-8,1.7097d-8,1.7956d-8,1.8714d-8,1.9129d-8,
+     .1.9602d-8/
+
+      IF(M.LE.X(1))THEN
+       XENON100=Y(1)
+       RETURN
+      ENDIF
+      DO I=1,N-1
+       IF((M.GE.X(I)).AND.(M.LE.X(I+1)))THEN
+        XENON100=Y(I)+(Y(I+1)-Y(I))*(M-X(I))/(X(I+1)-X(I))
+        RETURN
+       ENDIF
+      ENDDO
+      XENON100=Y(N)
+
+      END
+
+
+      subroutine PrintRelDen(PROB, ch)
+
+      IMPLICIT NONE
+      DOUBLE PRECISION PROB(*)
+#include "../sources/micromegas/sources/micromegas.fh"
+
+! Common
+      DOUBLE PRECISION sigmaPiN,sigmaS,csPsi,csNsi,csPsd,csNsd
+      COMMON/MICROMG2/sigmaPiN,sigmaS,csPsi,csNsi,csPsd,csNsd
+      DOUBLE PRECISION tab(250),OMG,OMGMIN,OMGMAX,Xf
+      DOUBLE PRECISION sigmaV,x(100),dNdx(100),EMIN,LAM,XENON100
+      INTEGER  NBIN,OMGFLAG,MAFLAG
+      COMMON/MICROMG/OMG,OMGMIN,OMGMAX,Xf,sigmaV,x,dNdx,EMIN,NBIN
+      COMMON/FLAGS/OMGFLAG,MAFLAG
+      DOUBLE PRECISION MGL,MCHA(2),UU(2,2),VV(2,2),MNEU(5),NEU(5,5)
+      COMMON/SUSYSPEC/MGL,MCHA,UU,VV,MNEU,NEU
+
+! External 
+       real*8 vcsnngg,vcsnngz
+       external vcsnngg,vcsnngz
+!  Local   
+      integer ch,I,pdg(4),err
+      real*8 weightCh,alph_,omgfo,v,nngg,nngz,ccoeff
+      character*50 txt 
+
+
+      IF(OMGFLAG.EQ.0)THEN
+
+       WRITE(ch,900) 4,"# Omega h^2 not computed (OMGFLAG=0)"
+      
+      ELSE
+
+       IF(OMG.GT.0d0)THEN
+        WRITE(ch,899) "#"
+        WRITE(ch,899) "BLOCK ABUNDANCE"
+        WRITE(ch,920) 1, Mcdm/Xf,'T_f[GeV]'
+        WRITE(ch,920) 4, OMG,"omega h^2"
+        WRITE(ch,920) 3, vSigma(Mcdm/Xf,1.D-3,1,alph_)*2.9979d-26,
+     .  'vSigma'
+        WRITE(ch,899)'# contibutions to vSigma in percents'
+        I=1
+1111    err=vSigmaTch(I,weightCh, pdg,txt)
+        if(err.eq.1 .and. weightCh.gt.1.E-2) then
+         write(ch,921)6,I,pdg(1),pdg(2),pdg(3),pdg(4),100*weightCh,txt
+         I=I+1  
+         goto 1111
+        endif
+        omgfo=PRINTCHANNELS(Xf,1.D-3,1.D-4,1,0)
+        WRITE(ch,899)'# contibutions to 1/Omega in percents'
+        I=1
+1112    err=omegaCh(I,weightCh, pdg,txt)
+        if(err.eq.1 .and. weightCh.gt.1.E-2) then
+         write(ch,921)7,I,pdg(1),pdg(2),pdg(3),pdg(4),100*weightCh,txt
+         I=I+1  
+         goto 1112
+        endif
+        WRITE(ch,899) "#"
+        WRITE(ch,899) "BLOCK LSP"
+        WRITE(ch,920) 0, Mcdm,"LSP mass"
+        WRITE(ch,920) 1, dabs(NEU(1,1)), "bino"
+        WRITE(ch,920) 2, dabs(NEU(1,2)), "wino" 
+        WRITE(ch,920) 3, dabs(NEU(1,3)), "higgsino2"
+        WRITE(ch,920) 4, dabs(NEU(1,4)), "higgsino1"
+        WRITE(ch,920) 5, dabs(NEU(1,5)), "singlino"
+        IF(OMGFLAG.EQ.2 .OR. OMGFLAG.EQ.4)THEN
+         WRITE(ch,899) "#"
+         WRITE(ch,899) 'BLOCK NDMCROSSSECT'
+         WRITE(ch,920) 1,csPsi*1d-36,"# csPsi [cm^2]"
+         WRITE(ch,920) 2,csNsi*1d-36,"# csNsi [cm^2]"
+         WRITE(ch,920) 3,csPsd*1d-36,"# csPsd [cm^2]"
+         WRITE(ch,920) 4,csNsd*1d-36,"# csNsd [cm^2]"
+         WRITE(ch,925)"# Values used for sigma_piN,sigma_S",
+     .   " (strange content of the proton)"
+         WRITE(ch,924) "#",sigmapiN,"sigma_piN"
+         WRITE(ch,924) "#",sigmaS,"sigma_S"
+        ENDIF
+        IF(OMGFLAG.EQ.3 .OR. OMGFLAG.EQ.4)THEN
+         WRITE(ch,899) "#"
+         WRITE(ch,899) 'BLOCK ANNIHILATION'
+         v=0.001d0
+         nngg=vcsnngg(v)*2.9979d-26
+         nngz=vcsnngz(v)*2.9979d-26 
+         ccoeff=sigmaV/(sigmaV+nngg+nngz)
+         WRITE(ch,920) 0,sigmaV+nngg+nngz,'sigmaV [cm^2/s]'
+         write(ch,923)1,nngg/(sigmaV+nngg+nngz),2,22,22,'~o1,~o1->A,A'
+         write(ch,923)2,nngz/(sigmaV+nngg+nngz),2,22,23,'~o1,~o1->A,Z'
+         I=3
+1113     err=vSigmach(I-2,weightCh, pdg,txt)
+         if(err.eq.1 .and. weightCh.gt.1.E-3) then
+          write(ch,923) I, weightCh*ccoeff, 2, pdg(3),pdg(4),txt
+          I=I+1
+          goto 1113
+         endif
+        ENDIF
+
+       ELSE
+        WRITE(ch,900) 4,"# Problem in micrOMEGAs"
+       ENDIF
+
+      ENDIF
+
+ 899  FORMAT(A)
+ 900  FORMAT(1X,I5,3X,A)
+ 908  FORMAT(2E16.8)
+ 910  FORMAT(E16.8,3X,A)
+ 920  FORMAT(1x,I3,1x, 1PE12.4,3x,'# ',1x,A) 
+ 921  FORMAT(1x,I3,1x,I3,1x,I9,1x,I9,1x,I9,1x,I9,1x,1PE12.4,3x,'# ',A)
+ 922  FORMAT(1x,I3,1x,1PE12.4,1x,I9,1x,I9,3x,'# ',A)
+ 923  FORMAT(1x,I3,1x,1PE12.4,1x,I2,1x,I9,1x,I9,3x,'# ',A)
+ 924  FORMAT(A,1P,E16.8,1X,A)
+ 925  FORMAT(A,A)
+
+      end

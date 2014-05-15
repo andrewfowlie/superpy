@@ -1,0 +1,88 @@
+Information about the covariance matrices for the branching ratio (BR) uncertainties
+--------------------------------------------------------------------------------------
+The covariance matrix can be evaluated by Toy MC, see the ROOT script 'smearErrorsBR.cpp'.
+Various parametric and theoretical uncertainties on the partial widths are smeared according
+to the estimates from the YR3 (arXiv:1307.1347), Tab. 1.
+
+#------------------ default Covariance matrix  ---------------------#
+The default HiggsSignals choice can be obtained with the setting (in smearErrorsBR.cpp):
+
+ addPUandTHUlin = true;
+ deriveTHUsf = false; 
+ THUshape    = 1;
+ THUBoxErrorScaleFactor = 1.;
+ THU100percCorr = false;
+ THU100percCorrToPU = false;
+
+This corresponds to a
+
+relative error on BR(h->gaga) =   0.0234686
+relative error on BR(h->WW) =     0.0228754
+relative error on BR(h->ZZ) =     0.0230075
+relative error on BR(h->tautau) = 0.0252033
+relative error on BR(h->bb) =     0.0195539
+relative error on BR(h->Zga) =    0.0368504
+relative error on BR(h->cc) =     0.0880989
+relative error on BR(h->mumu) =   0.0255934
+relative error on BR(h->gg) =     0.0594597
+
+The resulting covariance matrix on the BR's is contained in 
+ 
+  BRcovSM.in.HSdefault
+
+#------------------ alternative Covariance matrix ---------------------#
+
+The BR uncertainty estimates of the LHC Higgs Cross Section WG are approximately
+reproduced with the following settings (in smearErrors.cpp):
+
+addPUandTHUlin = true;
+deriveTHUsf = false; 
+THUshape    = 1;
+THUBoxErrorScaleFactor = 5.;
+THU100percCorr = false;
+THU100percCorrToPU = false;
+
+The resulting relative errors are:
+
+relative error on BR(h->gaga) =   0.049463
+relative error on BR(h->WW) =     0.0416186
+relative error on BR(h->ZZ) =     0.0427421
+relative error on BR(h->tautau) = 0.06737
+relative error on BR(h->bb) =     0.0329192
+relative error on BR(h->Zga) =    0.150493
+relative error on BR(h->cc) =     0.109137
+relative error on BR(h->mumu) =   0.0704453
+relative error on BR(h->gg) =     0.103211
+
+The covariance matrix for the BR uncertainties is contained in:
+
+  BRcovSM.in.LHCHXSWG
+	
+If you want to use it in HiggsSignals you should copy this into your
+HiggsSignals main directory (cd ..) and rename it to:
+
+  BRcov.in
+#------------------
+Information about the covariance matrices for the cross section uncertainties
+--------------------------------------------------------------------------------------
+The covariance matrix can be evaluated by Toy MC, see the ROOT script 'smearErrorsXS.cpp'.
+PDF+alpha_s, QCD scale and EW theoretical uncertainties are smeared according
+to the estimates from the YR3 (arXiv:1307.1347), Tab. 1.
+
+#------------------ default Covariance matrix  ---------------------#
+The default HiggsSignals choice can be obtained with the setting (in smearErrorsXS.cpp):
+
+ shape            = 0; 
+ errorScaleFactor = 1.;
+ error100percCorr = false;
+ errorScaleZW100percCorr = true;
+ errorPdf100percCorr = false;
+ errorPdfOnlyProc100percCorr = true;
+
+The resulting relative errors are:
+ 
+relative error on sigma(ggH)/fb = 0.104134
+relative error on sigma(VBF)/fb = 0.0374456
+relative error on sigma(WH)/fb  = 0.0269307
+relative error on sigma(ZH)/fb  = 0.0420296
+relative error on sigma(ttH)/fb = 0.104206

@@ -1,0 +1,28 @@
+MT           173.2
+M3SQ         1000
+M3SU         1000
+M3SD         1000
+M3SL         1000
+M3SE         1000
+Abs(Xt)      2000
+M2SQ         1500
+M2SU         1500
+M2SD         1500
+M2SL         500
+M2SE         500
+M1SQ         1500
+M1SU         1500
+M1SD         1500
+M1SL         500
+M1SE         500
+Abs(Ac)      0
+Abs(As)      0
+Abs(Amu)     0
+Abs(M_3)     1500
+Abs(M_2)     200
+Abs(MUE)     200
+MA0          600
+TB           20
+
+# FeynHiggs example/LHCHXSWG/mhmaxup.in 400242110
+

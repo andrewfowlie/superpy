@@ -1,0 +1,16 @@
+# Published at Moriond 2013. Data is taken from CMS-PAS-HIG 13-005, Fig. 3b.
+# Mass resolution: (Gauss: 0.55, linear: 0.7) GeV.
+# This peak observable contains the mass measurement. Signal measured at 125.7GeV, but
+# best-fit mass implemented here is 125.8GeV.
+13005105	1300505		1
+CMS-PAS-HIG-13-005
+LHC, CMS, CMS
+(pp)->h->ZZ->4l
+8 	24.7	0.044
+1	1
+0.7
+125.8 125.8 0.1
+4	-1
+13 23 33 43
+
+125.8	0.66	0.92	1.23

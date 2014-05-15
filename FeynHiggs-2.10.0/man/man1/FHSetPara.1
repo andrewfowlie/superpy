@@ -1,0 +1,126 @@
+.TH FHSETPARA 1 "10-May-2011"
+.SH NAME
+.PP
+FHSetPara \- sets the FeynHiggs parameters
+.SH SYNOPSIS (Fortran version)
+.PP
+integer error
+.br
+double precision scalefactor
+.br
+double precision MT, TB, MA0, MHp
+.br
+double precision M3SL, M3SE, M3SQ, M3SU, M3SD
+.br
+double precision M2SL, M2SE, M2SQ, M2SU, M2SD
+.br
+double precision M1SL, M1SE, M1SQ, M1SU, M1SD
+.br
+double complex MUE, M_1, M_2, M_3
+.br
+double complex At, Ab, Atau, Ac, As, Amu, Au, Ad, Ae
+.br
+double precision Qtau, Qt, Qb
+.sp
+subroutine FHSetPara(error, scalefactor,
+.br
+  MT, TB, MA0, MHp,
+.br
+  M3SL, M3SE, M3SQ, M3SU, M3SD,
+.br
+  M2SL, M2SE, M2SQ, M2SU, M2SD,
+.br
+  M1SL, M1SE, M1SQ, M1SU, M1SD,
+.br
+  MUE,
+.br
+  Atau, At, Ab, Amu, Ac, As, Ae, Au, Ad,
+.br
+  M_1, M_2, M_3,
+.br
+  Qtau, Qt, Qb)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHSetPara[scalefactor,
+.br
+  MT, TB, MA0, MHp,
+.br
+  M3SL, M3SE, M3SQ, M3SU, M3SD,
+.br
+  M2SL, M2SE, M2SQ, M2SU, M2SD,
+.br
+  M1SL, M1SE, M1SQ, M1SU, M1SD,
+.br
+  MUE,
+.br
+  Atau, At, Ab, Amu, Ac, As, Ae, Au, Ad,
+.br
+  M_1, M_2, M_3,
+.br
+  Qtau, Qt, Qb]
+.SH DESCRIPTION
+FHSetPara sets up the parameters for FeynHiggs.  From the given input 
+values it computes the remaining MSSM parameters (masses and mixing 
+matrices).  The flags must have been set before with FHSetFlags(1).
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in SetPara.F from
+which the error message was emitted.
+.TP
+.B scalefactor (input)
+the renormalization scale is MT times the scalefactor.
+.TP
+.B MT (input)
+the top mass.
+.TP
+.B TB (input)
+tan(beta), the ratio of the vacuum expectation values.
+.TP
+.B MA0, MHp (input)
+the masses of the CP-odd and charged Higgs, respectively.
+Only one should be given: if MA0 >= 0, it is taken as input, otherwise
+MHp is used.
+.TP
+.B MgSL, MgSE, MgSQ, MgSU, MgSD, g = 1..3, (input)
+the soft-SUSY breaking parameters for the g-th generation in the 
+sfermion sector, specifically:
+MgSL for the slepton doublet,
+MgSE for the slepton singlet,
+MgSQ for the squark doublet,
+MgSU for the up-type squark singlet, and
+MgSD for the down-type squark singlet.
+.TP
+.B MUE (input)
+the Higgs mixing parameter.
+.TP
+.B Ae, Amu, Atau, Au, Ac, At, Ad, As, Ab (input)
+the soft-SUSY breaking parameters.
+.br
+To give an example (and thus fix the notation) the stop mass matrix is
+given by (DT1, DT2 are the D-terms):
+.br
+   ( M3SQ^2 + MT^2 + DT1    MT (At^* - MUE/TB)  )
+.br
+   ( MT (At - MUE^*/TB)     M3SU^2 + MT^2 + DT2 ) 
+.TP
+.B M_1, M_2, M_3 (input)
+the gaugino mass parameters.
+If zero is passed for M_1, the GUT relation is used.
+.TP
+.B Qtau, Qt, Qb (input)
+the scales at which the sfermion input parameters M3S[LEQUD] are given.  
+There are two special cases:
+.br
+- The value Q = 0 indicates on-shell parameters.
+.br
+- The value Q = -1 selects the scale sqrt(MStop1 MStop2).
+.br
+The procedure is: compute the sfermion masses from the given input 
+parameter, run them to the on-shell scale, and extract the on-shell 
+input parameters from the latter.
+.br
+Qtau is presently not used.
+.SH SEE ALSO
+.PP
+libFH(1)

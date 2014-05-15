@@ -1,0 +1,42 @@
+#! /bin/sh
+
+xmt=173.3
+xmb=4.8
+
+url=http://theory.fi.infn.it/cgi-bin/higgsres.pl
+in=`basename $url`
+
+out=ggh-sm-tev-$xmt-$xmb.dat
+
+
+masses=`for (( m=100 ; m < 320 ; m+=10 )) ; do echo $m ; done
+        for (( m=320 ; m < 360 ; m+=5  )) ; do echo $m ; done
+        for (( m=360 ; m <= 1000 ; m+=20 )) ; do echo $m ; done`
+
+sqrts=2000
+  for mass in $masses ; do
+    echo "======================= $mass $sqrts"
+    grep "^$mass $sqrts " $out && continue
+    rm -f $in
+    wget --no-proxy --post-data="\
+coll=-1&\
+energy=$sqrts&\
+mass=$mass&\
+icross=0&\
+scren=1&\
+scfac=1&\
+xmt=$xmt&\
+xmb=$xmb&\
+pdfnnlo=92&\
+.cgifields=pdfnnlo" $url
+    nnlo=`grep NNLO $in | sed 's/.* \([^ ]*\) pb/\1/'`
+    nnll=`grep NNLL $in | sed 's/.* \([^ ]*\) pb/\1/'`
+    echo $mass $sqrts $nnlo $nnll
+    case "$nnlo" in
+    [0-9]*) ;;
+    *) break ;;
+    esac
+    echo $mass $sqrts $nnlo $nnll $xmt $xmb >> $out
+  done
+done
+

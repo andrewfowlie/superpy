@@ -1,0 +1,114 @@
+
+let sigma2_11= 'h-'**2.
+let sigma2_12= 'h-'* h0.
+let sigma2_13= Sqrt2*'p--'*'h+' + 	'p-'*h0.
+let sigma2_14= 'h-'*'h+'	+	2*'p--'*'p++'	+	'p-'*'p+'.
+let sigma2_15= 'h-'*h0		+ 	Sqrt2*('p--'*'p+' + 'p-'*p0).
+
+let sigma2_21=  h0*'h-'.
+let sigma2_22=  h0**2.
+let sigma2_23= 'p-'*'h+' 	+	Sqrt2*anti(p0)*h0.
+let sigma2_24=  h0 * 'h+' + Sqrt2*('p-' * 'p++' +  anti(p0) * 'p+').
+let sigma2_25=  h0*h0 +  2*anti(p0)*p0 + 'p-'*'p+'.
+
+
+let sigma2_31=  Sqrt2*'h+'*'p--' + 	h0*'p-'.
+let sigma2_32=  'h+'*'p-' 	+	Sqrt2*h0*anti(p0).
+let sigma2_33=  2*('h+'*'h-'  + h0*h0).
+let sigma2_34=  Sqrt2*'h-'*'p++'       +  h0*'p+' .
+let sigma2_35=  Sqrt2 *h0 * p0   + 'h-'*'p+'.
+
+let sigma2_41= 'h+'*'h-'	+	2*'p++'*'p--'	+	'p+'*'p-'.
+let sigma2_42= 'h+'*h0    + Sqrt2*( 'p++'*'p-'  + 'p+'*anti(p0) ).
+let sigma2_43=  Sqrt2*'p++'*'h-'       +  'p+'*h0 .
+let sigma2_44=  'h+'**2.
+let sigma2_45=  'h+'*h0.
+
+let sigma2_51=  h0*'h-'		+ 	Sqrt2*('p+'*'p--' + p0*'p-').
+let sigma2_52=  h0 * h0   +       2*p0*anti(p0) + 'p+'*'p-'.
+let sigma2_53=  Sqrt2 * p0*h0    +'p+'*'h-'.
+let sigma2_54=  h0*'h+'.
+let sigma2_55=   h0**2.
+
+let sigma2= -{ 
+	       {sigma2_11,sigma2_12,sigma2_13,sigma2_14,sigma2_15},
+               {sigma2_21,sigma2_22,sigma2_23,sigma2_24,sigma2_25},
+               {sigma2_31,sigma2_32,sigma2_33,sigma2_34,sigma2_35},
+               {sigma2_41,sigma2_42,sigma2_43,sigma2_44,sigma2_45},
+               {sigma2_51,sigma2_52,sigma2_53,sigma2_54,sigma2_55}
+	      }.
+	       
+let sigma2_3= -{ 
+		{sigma2_41,sigma2_42,sigma2_43},
+                {sigma2_51,sigma2_52,sigma2_53}
+	       }.
+let csigma2_3= anti(sigma2_3).
+let csigma2= anti(sigma2).
+
+let sigma2_2=-{ 
+		{sigma2_41,sigma2_42},
+                {sigma2_51,sigma2_52}
+	       }.
+let csigma2_2=anti(sigma2_2).
+
+let  sigma2_1=-{sigma2_13,sigma2_23}.	       
+let csigma2_1=anti(sigma2_1).
+	       
+%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+
+let tsigma2_11= 'h-'**2.
+let tsigma2_12= 'h-'* h0.
+let tsigma2_13= -(Sqrt2*'p--'*'h+' + 	'p-'*h0).
+let tsigma2_14= 'h-'*'h+'	+	2*'p--'*'p++'	+	'p-'*'p+'.
+let tsigma2_15= 'h-'*h0		+ 	Sqrt2*('p--'*'p+' + 'p-'*p0).
+
+let tsigma2_21=  h0*'h-'.
+let tsigma2_22=  h0**2.
+let tsigma2_23= -('p-'*'h+' 	+	Sqrt2*anti(p0)*h0).
+let tsigma2_24=  h0 * 'h+' + Sqrt2*('p-' * 'p++' +  anti(p0) * 'p+').
+let tsigma2_25=  h0*h0 +  2*anti(p0)*p0 + 'p-'*'p+'.
+
+
+let tsigma2_31=  -(Sqrt2*'h+'*'p--' + 	h0*'p-').
+let tsigma2_32=  -('h+'*'p-' 	+	Sqrt2*h0*anti(p0)).
+let tsigma2_33=  2*('h+'*'h-'  + h0*h0).
+let tsigma2_34=  -(Sqrt2*'h-'*'p++'       +  h0*'p+') .
+let tsigma2_35=  -(Sqrt2 *h0 * p0   + 'h-'*'p+').
+
+let tsigma2_41= 'h+'*'h-'	+	2*'p++'*'p--'	+	'p+'*'p-'.
+let tsigma2_42= 'h+'*h0    + Sqrt2*( 'p++'*'p-'  + 'p+'*anti(p0) ).
+let tsigma2_43=  -(Sqrt2*'p++'*'h-'       +  'p+'*h0) .
+let tsigma2_44=  'h+'**2.
+let tsigma2_45=  'h+'*h0.
+
+let tsigma2_51=  h0*'h-'		+ 	Sqrt2*('p+'*'p--' + p0*'p-').
+let tsigma2_52=  h0 * h0   +       2*p0*anti(p0) + 'p+'*'p-'.
+let tsigma2_53=  -(Sqrt2 * p0*h0    +'p+'*'h-').
+let tsigma2_54=  h0*'h+'.
+let tsigma2_55=   h0**2.
+
+let tsigma2= -{ 
+	       {tsigma2_11,tsigma2_12,tsigma2_13,tsigma2_14,tsigma2_15},
+               {tsigma2_21,tsigma2_22,tsigma2_23,tsigma2_24,tsigma2_25},
+               {tsigma2_31,tsigma2_32,tsigma2_33,tsigma2_34,tsigma2_35},
+               {tsigma2_41,tsigma2_42,tsigma2_43,tsigma2_44,tsigma2_45},
+               {tsigma2_51,tsigma2_52,tsigma2_53,tsigma2_54,tsigma2_55}
+	      }.
+	       
+let tsigma2_3= -{ 
+		{tsigma2_41,tsigma2_42,tsigma2_43},
+                {tsigma2_51,tsigma2_52,tsigma2_53}
+	       }.
+let ctsigma2_3=anti(tsigma2_3).
+let ctsigma2=anti(tsigma2).
+
+
+let tsigma2_2=-{ 
+		{tsigma2_41,tsigma2_42},
+                {tsigma2_51,tsigma2_52}
+	       }.
+let ctsigma2_2=anti(tsigma2_2).
+
+let  tsigma2_1=-{tsigma2_13,tsigma2_23}.	       
+let ctsigma2_1=anti(tsigma2_1).

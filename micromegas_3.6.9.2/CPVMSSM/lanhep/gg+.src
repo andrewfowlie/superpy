@@ -1,0 +1,151 @@
+
+
+external_func(HggF,1).
+external_func(HggA,1).
+external_func(HggS,1).
+external_func(Hgam1F,1).
+external_func(MbRun,1).
+external_func(McRun,1).
+external_func(MtRun,1).
+external_func(Hgam1S,1).
+external_func(Hgam1A,1).
+external_func(HggV,1).
+external_func(alphaQCD,1).
+
+parameter aQCD =alphaQCD(Q)/PI.
+
+
+% ======== Passarino-Veltman vertex finctions  ============
+
+%         quark and leptons
+ _p=[c,b,t,l] in 
+    parameter rhF__p=creal(HggF((Q/2/M_p)**2)),
+	      ihF__p=cimag(HggF((Q/2/M_p)**2)),
+              rAF__p=creal(HggA((Q/2/M_p)**2)),
+              iAF__p=cimag(HggA((Q/2/M_p)**2)).
+
+
+%         sFermions
+ _p=[eL,eR,mL,mR,l1,l2,uL,uR,cL,cR,t1,t2,dL,dR,sL,sR,b1,b2] in
+    parameter rhS__p=creal(HggS((Q/2/MS_p)**2)),
+	      ihS__p=cimag(HggS((Q/2/MS_p)**2)).
+
+%  Charged Higgs and W 			  
+  parameter rhS_Hc=creal(HggS((Q/2/MHc)**2)),ihS_Hc=cimag(HggS((Q/2/MHc)**2)).
+  parameter rhV_W=creal(HggV((Q/2/MW)**2)),  ihV_W=cimag(HggV((Q/2/MW)**2)).
+
+% charginos 
+ _p=1-2 in 
+    parameter rhF_c_p=creal(HggF((Q/2/MC_p)**2)),
+              ihF_c_p=cimag(HggF((Q/2/MC_p)**2)),
+              rAF_c_p=creal(HggA((Q/2/MC_p)**2)),
+              iAF_c_p=cimag(HggA((Q/2/MC_p)**2)).
+
+% PV functions with 1-loop correstions (for photons)  
+
+parameter McR=Mc*McRun(Q/2)/McRun(Mc), MbR=Mb*MbRun(Q/2)/MbRun(Mb), MtR=Mtp*MtRun(Q/2)/MtRun(Mt).
+
+ alias Mc=McR,Mb=MbR, Mt=MtR.	  
+_p=[c,b,t] in
+ parameter rhF1__p=creal(HggF((Q/2/M_p)**2)*(1+aQCD*Hgam1F((Q/2/M_p)**2))),
+           ihF1__p=cimag(HggF((Q/2/M_p)**2)*(1+aQCD*Hgam1F((Q/2/M_p)**2))),
+           rAF1__p=creal(HggA((Q/2/M_p)**2)*(1+aQCD*Hgam1A((Q/2/M_p)**2))),
+           iAF1__p=cimag(HggA((Q/2/M_p)**2)*(1+aQCD*Hgam1A((Q/2/M_p)**2))).
+unalias Mc, Mb, Mt.
+
+
+ _p=[uL,uR,cL,cR,t1,t2,dL,dR,sL,sR,b1,b2] in
+    parameter 
+           tau2__p=(Q/(2*MS_p*(alphaQCD(Q/2)/alphaQCD(MS_p))**(6/23)))**2,
+           rhS1__p=creal(HggS(tau2__p)*(1+aQCD*Hgam1S(tau2__p))),
+	   ihS1__p=cimag(HggS(tau2__p)*(1+aQCD*Hgam1S(tau2__p))).
+
+
+% Amplitudes 
+
+			  
+_h=[h1,h2,h3], _p=[c,b,t,l] in   parameter a_hF__p=CoefVrt([anti(_p),_p, _h]) /(mass _p).
+
+_h=[h1,h2,h3], _p=[eL,eR,mL,mR,uL,uR,cL,cR,dL,dR,sL,sR,l1,l2,t1,t2,b1,b2] in
+                       parameter a_hS__p=CoefVrt([anti( ~_p), ~_p, _h]) /(mass ~_p)**2/2.
+
+_g=[h1,h2,h3] in 
+     parameter a_gV_W=CoefVrt(['W+','W-', _g]) /MW**2/2,
+               a_gS_Hc=CoefVrt(['H+','H-', _g], [abbr]) /MHc**2/2.
+_h=[h1,h2,h3], _p=1-2 in 
+    parameter a_hF_c_p=CoefVrt(['~_p+','~_p-', _h]) /(mass '~_p+').
+
+_h=[h1, h2, h3], _p=[c,b,t,l] in parameter ima_hF__p=CoefVrt([anti(_p),_p, _h],[gamma5,im]) /(mass _p)/2.
+
+_h=[h1, h2, h3], _p=1-2 in  parameter ima_hF_c_p=CoefVrt(['~_p+','~_p-', _h],[gamma5,im]) /(mass '~_p+')/2.
+
+
+parameter Rqcd=1+ aQCD*(149/12+ aQCD*(68.6482-aQCD*212.447)).
+parameter lnTop=2*log( Mtp/Q).
+parameter Ctop=1+ aQCD*(11/4+  aQCD*((6.1537-2.8542*lnTop)+ aQCD*(10.999-17.93*lnTop+5.47*lnTop**2))).
+parameter Cq =1+11/4*aQCD,Csq =1 +9/2*aQCD.
+parameter alphaE0=1/137.036,Qu=2/3, Qd=-1/3.
+parameter Fodd = 1+aQCD*(221/12+aQCD*(171.5-5*lnTop)).
+
+%parameter ahF_b0=ahF_b*(1+dMb)/(1-dMb*ca/sa/tB),
+%          aHF_b0=aHF_b*(1+dMb)/(1+dMb*sa/ca/tB),
+%          aAF_b0=aAF_b*(1+dMb)/(1-dMb/tB**2).
+
+
+%parameter ahF_l0=ahF_l*(1+dMl)/(1-dMl*ca/sa/tB),
+%          aHF_l0=aHF_l*(1+dMl)/(1+dMl*sa/ca/tB),
+%          aAF_l0=aAF_l*(1+dMl)/(1-dMl/tB**2).
+
+          
+_h=[h1,h2,h3] in  parameter 
+    LGG_h=-aQCD/(8)*1/2*sqrt(Rqcd) *cabs(((rhF_b+i*ihF_b)*a_hF_b +(rhF_c+i*ihF_c)*a_hF_c)*Cq +(rhF_t+i*ihF_t)*a_hF_t*Ctop    % quarks 
+   +((rhS_#sq+i*ihS_#sq)*a_hS_#sq  where sq=[uL,uR,dL,dR,sL,sR,cL,cR,b1,b2,t1,t2])*Csq ): '* public' ,          % squarks 
+
+    LAA_h=-alphaE0/(8*PI)*cabs( 
+   3*Qd**2*(rhF1_b+i*ihF1_b)*a_hF_b +3*Qu**2*((rhF1_t+i*ihF1_t)*a_hF_t +(rhF1_c+i*ihF1_c)*a_hF_c )      %  quarks
+ + 3*Qu**2*((rhS1_#sq +i*ihS1_#sq)*a_hS_#sq   where sq=[uL,uR,cL,cR,t1,t2])         %  upSquarks
+ + 3*Qd**2*((rhS1_#sq +i*ihS1_#sq)*a_hS_#sq   where sq=[dL,dR,sL,sR,b1,b2])         %  dnSquarks
+ + ((rhS_#sq+i*ihS_#sq)*a_hS_#sq            where sq=[eL,eR,mL,mR,l1,l2])         %  sleptons 
+ + (rhF_l+i*ihF_l)*a_hF_l  + (rhF_c1+i*ihF_c1)*a_hF_c1 +(rhF_c2+i*ihF_c2)*a_hF_c2 %  tau, charginos
+ - (rhV_W+i*ihV_W)*a_hV_W                                                         %  W
+ + (rhS_Hc+i*ihS_Hc)*a_hS_Hc                                                       %  H+
+):'* public'.
+
+_h=[h1,h2,h3] in
+parameter  imLGG_h=-aQCD/(8)*(1/2)*sqrt(Fodd)*cabs( (rAF_c+i*iAF_c)*ima_hF_c +  (rAF_b+i*iAF_b)*ima_hF_b +(rAF_t+i*iAF_t)*ima_hF_t ):'*public',
+           imLAA_h=-alphaE0/(8*PI)*cabs( 
+    3*Qd**2*(rAF1_b+i*iAF1_b)*ima_hF_b +3*Qu**2*((rAF1_t+i*iAF1_t)*ima_hF_t + (rAF1_c+i*iAF1_c)*ima_hF_c)   %  quarks
+    +(rAF_l+i*iAF_l)*ima_hF_l  + (rAF_c1+i*iAF_c1)*ima_hF_c1 +(rAF_c2+i*iAF_c2)*ima_hF_c2                   %  tau, charginos
+                                     ): '* public'.
+
+parameter 
+aSMhF_f=-EE/MW/SW/2,
+aSMhV_W=EE/SW/MW/2.
+
+parameter 
+LGGSM= -aQCD/(8)*1/2*sqrt(Rqcd)*fabs(aSMhF_f)*cabs(((rhF_b+i*ihF_b) +(rhF_c+i*ihF_c))*Cq +(rhF_t+i*ihF_t)*Ctop):'* public',      
+
+LAASM= -alphaE0/(8*PI)*cabs(
+   3*Qd**2*(rhF1_b+i*ihF1_b)*aSMhF_f +3*Qu**2*((rhF1_t+i*ihF1_t)*aSMhF_f +(rhF1_c+i*ihF1_c)*aSMhF_f )      %  quarks
++ (rhF_l+i*ihF_l)*aSMhF_f    % tau
+- (rhV_W+i*ihV_W)*aSMhV_W  ): '* public' .                                                       %  W
+
+
+
+let F_A^mu^nu=deriv^mu*A^nu-deriv^nu*A^mu.
+let F_G^mu^nu^a=deriv^mu*G^nu^a-deriv^nu*G^mu^a.
+
+
+_h=[h1,h2,h3] in lterm  LGG_h*(_h)*F_G*F_G + imLGG_h*epsv*F_G*F_G*(_h).
+_h=[h1,h2,h3] in lterm  LAA_h*(_h)*F_A*F_A + imLAA_h*epsv*F_A*F_A*(_h).
+
+
+clear F_G,F_A.
+
+%G    |G    |h    |     |-4*LGGh                                                    |(p1.p2*m1.m2-p1.m2*p2.m1)
+%A    |A    |h    |     |-4*LAAh                                                    |(p1.p2*m1.m2-p1.m2*p2.m1)
+%G    |G    |H    |     |-4*LGGH                                                    |(p1.p2*m1.m2-p1.m2*p2.m1)
+%A    |A    |H    |     |-4*LAAH                                                    |(p1.p2*m1.m2-p1.m2*p2.m1)
+%G    |G    |H3   |     |-8*LGGH3                                                   |eps(p1,m1,p2,m2)
+%A    |A    |H3   |     |-8*LAAH3                                                   |eps(p1,m1,p2,m2)
+

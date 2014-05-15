@@ -1,0 +1,44 @@
+{Amp[{{S[1], k[1], m1, {}}} -> {{V[1], k[2], 0, {}}, {V[1], k[3], 0, {}}}][
+  0], Amp[{{S[1], k[1], m1, {}}} -> {{V[1], k[2], 0, {}}, 
+     {V[1], k[3], 0, {}}}][
+  (Alfa0*EL0*(Mf2[2, Gen4]*Sub2[Gen4] - (hgagaQ*Sub8[Gen4])/6)*
+    SumOver[Gen4, 3])/(MW*Pi*SW), 
+  -((Alfa0*EL0*(Sub12/4 + (MW*Sub11*C0i[cc0, 0, 0, m12, MW2, MW2, MW2])/4 - 
+      (Sub13*C0i[cc2, 0, 0, m12, MW2, MW2, MW2])/2 - 
+      (Sub10*(6*MW2 + MHiggs2[hno]))/MW))/(Pi*SW))], {}, 
+ {Pair1 -> Pair[ec[2], ec[3]], Pair2 -> Pair[ec[2], k[1]], 
+  Pair3 -> Pair[ec[3], k[1]], Abb6 -> -(m12*Pair1) + Pair2*Pair3, 
+  Abb2 -> -(m12*Pair1) + 2*Pair2*Pair3, Abb4 -> m12*Pair1 + 2*Pair2*Pair3, 
+  Abb1 -> -(m12*Pair1) + 4*Pair2*Pair3, Abb3 -> -2*m12*Pair1 + 5*Pair2*Pair3, 
+  Abb5 -> m12*Pair1 + 5*Pair2*Pair3}, 
+ {Sub10 -> Pair2*Pair3*Sub9 + Pair1*C0i[cc00, 0, 0, m12, MW2, MW2, MW2], 
+  Sub9 -> C0i[cc12, 0, 0, m12, MW2, MW2, MW2] + C0i[cc22, 0, 0, m12, MW2, 
+     MW2, MW2], Sub11 -> -2*(Abb3 + Abb6 + 2*Pair2*Pair3) + 
+    Pair1*MHiggs2[hno], Sub12 -> MW*(Abb1 - 4*Pair2*Pair3)*
+     C0i[cc1, 0, 0, m12, MW2, MW2, MW2] + 
+    (Pair1*B0i[bb0, m12, MW2, MW2]*(6*MW2 + MHiggs2[hno]))/MW, 
+  Sub13 -> (2*Abb5 + Abb6)*MW + (Pair2*Pair3*(MW2 + 2*MHiggs2[hno]))/MW, 
+  Sub1[Gen4] -> C0i[cc12, 0, 0, m12, Mf2[2, Gen4], Mf2[2, Gen4], 
+     Mf2[2, Gen4]] + C0i[cc22, 0, 0, m12, Mf2[2, Gen4], Mf2[2, Gen4], 
+     Mf2[2, Gen4]], Sub3[Gen4] -> C0i[cc12, 0, 0, m12, Mf2[4, Gen4], 
+     Mf2[4, Gen4], Mf2[4, Gen4]] + C0i[cc22, 0, 0, m12, Mf2[4, Gen4], 
+     Mf2[4, Gen4], Mf2[4, Gen4]], Sub6[Gen4] -> 
+   C0i[cc12, 0, 0, m12, Mf2[tH, Gen4], Mf2[tH, Gen4], Mf2[tH, Gen4]] + 
+    C0i[cc22, 0, 0, m12, Mf2[tH, Gen4], Mf2[tH, Gen4], Mf2[tH, Gen4]], 
+  Sub8[Gen4] -> Mf2[4, Gen4]*Sub5[Gen4] + 4*Mf2[tH, Gen4]*Sub7[Gen4], 
+  Sub4[Gen4] -> 4*Pair1*C0i[cc00, 0, 0, m12, Mf2[4, Gen4], Mf2[4, Gen4], 
+      Mf2[4, Gen4]] + Abb1*C0i[cc2, 0, 0, m12, Mf2[4, Gen4], Mf2[4, Gen4], 
+      Mf2[4, Gen4]] + 4*Pair2*Pair3*Sub3[Gen4], 
+  Sub5[Gen4] -> -2*Pair1*B0i[bb0, 0, Mf2[4, Gen4], Mf2[4, Gen4]] + 
+    Abb2*C0i[cc0, 0, 0, m12, Mf2[4, Gen4], Mf2[4, Gen4], Mf2[4, Gen4]] + 
+    2*Sub4[Gen4], Sub2[Gen4] -> 
+   Pair1*B0i[bb0, 0, Mf2[2, Gen4], Mf2[2, Gen4]] - 
+    (Abb2*C0i[cc0, 0, 0, m12, Mf2[2, Gen4], Mf2[2, Gen4], Mf2[2, Gen4]])/2 - 
+    4*Pair1*C0i[cc00, 0, 0, m12, Mf2[2, Gen4], Mf2[2, Gen4], Mf2[2, Gen4]] - 
+    Abb1*C0i[cc2, 0, 0, m12, Mf2[2, Gen4], Mf2[2, Gen4], Mf2[2, Gen4]] - 
+    4*Pair2*Pair3*Sub1[Gen4], Sub7[Gen4] -> 
+   -2*Pair1*B0i[bb0, 0, Mf2[tH, Gen4], Mf2[tH, Gen4]] + 
+    Abb2*C0i[cc0, 0, 0, m12, Mf2[tH, Gen4], Mf2[tH, Gen4], Mf2[tH, Gen4]] + 
+    8*Pair1*C0i[cc00, 0, 0, m12, Mf2[tH, Gen4], Mf2[tH, Gen4], 
+      Mf2[tH, Gen4]] + 2*Abb1*C0i[cc2, 0, 0, m12, Mf2[tH, Gen4], 
+      Mf2[tH, Gen4], Mf2[tH, Gen4]] + 8*Pair2*Pair3*Sub6[Gen4]}}

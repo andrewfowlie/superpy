@@ -1,0 +1,161 @@
+.TH FHSETFLAGS 1 "18-Dec-2013"
+.SH NAME
+.PP
+FHSetFlags \- set the FeynHiggs flags
+.SH SYNOPSIS (Fortran version)
+.PP
+integer error
+.br
+integer mssmpart, fieldren, tanbren, higgsmix, p2approx
+.br
+integer looplevel, runningMT, botResum, tlCplxApprox
+.sp
+subroutine FHSetFlags(error,
+.br
+  mssmpart, fieldren, tanbren, higgsmix, p2approx,
+.br
+  looplevel, runningMT, botResum, tlCplxApprox)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHSetFlags[mssmpart, fieldren, tanbren, higgsmix, p2approx,
+.br
+  looplevel, runningMT, botResum, tlCplxApprox]
+.SH DESCRIPTION
+FHSetFlags sets the flags for FeynHiggs.  It must be called before
+any other FeynHiggs function.
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in SetFlags.F from
+which the error message was emitted
+.TP
+.B mssmpart = 0..4 (input)
+specifies the scope of the calculation:
+.br
+0: MT^4-approximation
+.br
+1: top/stop-sector
+.br
+2: top/stop- + bottom/sbottom-sector
+.br
+3: full (s-)quark/lepton-sector
+.br
+4: full MSSM
+.br
+.B recommended: 4
+.TP
+.B fieldren = 0..4 (input)
+determines the 1-loop field-renormalization constants:
+.br
+0: DRbar
+.br
+1: On-Shell, Dabelstein's convention
+.br
+2: On-Shell, 'Goldstone-pole' version
+.br
+3: On-Shell, MF I
+.br
+4: On-Shell, MF II
+.br
+.B strongly recommended: 0
+.TP
+.B tanbren = 0..2 (input)
+determines the 1-loop tan(beta) counter term:
+.br
+0: DRbar
+.br
+1: field renormalization part only (Dabelstein)
+.br
+2: mixed field/On-Shell-renormalization
+.br
+.B strongly recommended: 0
+.TP
+.B higgsmix = 1..3 (input)
+determines the mixing in the Higgs sector:
+.br
+1: All non-diagonal (ND) Self Energies = 0
+.br
+2: All CP-violating ND Self Energies = 0
+.br
+3: Full 3x3 mixing in the neutral sector
+.br
+.B This means:
+.br
+.B 2: evaluation in the rMSSM
+.br
+.B 3: evaluation in the cMSSM
+.TP
+.B p2approx = 0..4 (input)
+determines the approximation for the 1-loop result:
+.br
+0: None, i.e. full determination of the propagator matrices's poles
+   UHiggs is evaluated at p^2 = m^2
+.br
+1: p^2 = 0 approximation
+.br
+2: All self energies are calculated at p^2 = m_tree^2
+.br
+3: imaginary parts of self-energies are discarded
+.br
+4: as 0, but with UHiggs evaluated at p^2 = 0
+.br
+.B recommended: 4
+.TP
+.B looplevel = 0..3 (input)
+determines the inclusion of higher-order corrections:
+.br
+0: tree level
+.br
+1: one-loop contributions only
+.br
+2: include various two-loop contributions
+.br
+3: include resummation of large logs (for large SUSY mass scales)
+.br
+.B recommended: 2 or 3
+.TP
+.B runningMT = 0..1 (input)
+determines which top mass shall be used in the 1-/2-loop corrections:
+.br
+0: pole MT
+.br
+1: running MT
+.br
+.B recommended: 1
+.TP
+.B botResum = 0..1 (input)
+determines whether the O(tan beta^n) corrections shall be resummed:
+.br
+0: no resummation
+.br
+1: resummation
+.br
+.B recommended: 1
+.TP
+.B tlCplxApprox = 0..6 (input)
+determines how the two-loop corrections are treated in the presence of
+complex parameters (cMSSM):
+.br
+0: all corrections are evaluated in the rMSSM
+.br
+1: only the cMSSM a_s a_t corrections are used
+.br
+2: the cMSSM a_s a_t corrections are combined with the remaining 
+   corrections in the rMSSM
+.br
+3: the cMSSM a_s a_t corrections are combined with the remaining
+   corrections, whose complex phases are interpolated in
+   At, Ab, M_3, MUE
+.br
+4: ditto, with interpolation in At, Xb, M_3, MUE
+.br
+5: ditto, with interpolation in Xt, Ab, M_3, MUE
+.br
+6: ditto, with interpolation in Xt, Xb, M_3, MUE
+.br
+.B recommended for evaluation in the rMSSM: 0
+.br
+.B recommended for evaluation in the cMSSM: 3
+.SH SEE ALSO
+.PP
+libFH(1)

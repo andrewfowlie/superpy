@@ -1,0 +1,149 @@
+*----- Fortran functions and subtiutines
+#include "../CalcHEP_src/c_source/SLHAplus/include/SLHAplus.fh"
+
+
+*----- See detailes types of argument  in sources/micromegas_f.h
+       real*8  NULL,Mcdm,ScalarFFPd,ScalarFFPu,ScalarFFPs,
+     > pVectorFFPd,pVectorFFPu,pVectorFFPs,
+     > SigmaFFPd,SigmaFFPu,SigmaFFPs,
+     > ScalarFFNd,ScalarFFNu,ScalarFFNs,
+     > pVectorFFNd,pVectorFFNu,pVectorFFNs,
+     > SigmaFFNd,SigmaFFNu,SigmaFFNs,
+     > Fermi_a,Fermi_b,Fermi_c,Rsun,
+     > rhoDM,Vearth,
+     > K_dif,L_dif,Delta_dif,Tau_dif,Vc_dif,Rdisk,
+     > deltaY,dmAsymm,Vesc,Vrot
+       COMMON/MOCOMMON/ NULL,Mcdm,ScalarFFPd,ScalarFFPu,ScalarFFPs,
+     > pVectorFFPd,pVectorFFPu,pVectorFFPs,
+     > SigmaFFPd,SigmaFFPu,SigmaFFPs,
+     > ScalarFFNd,ScalarFFNu,ScalarFFNs,
+     > pVectorFFNd,pVectorFFNu,pVectorFFNs,
+     > SigmaFFNd,SigmaFFNu,SigmaFFNs,
+     > Fermi_a,Fermi_b,Fermi_c,Rsun,
+     > rhoDM,Vearth,
+     > K_dif,L_dif,Delta_dif,Tau_dif,Vc_dif,Rdisk,
+     > deltaY,dmAsymm,Vesc,Vrot
+
+       
+       real*8  r8Null
+       integer iNull
+       character*2400 cNull
+       COMMON/NULLBUFF/ r8Null,iNull,cNull  
+
+c!     external iargc
+c!      integer iargc
+
+      external sortOddParticles,assignVal,findVal,readVar,
+     >displaySpectrum,nucleonAmplitudes,displayRecoilPlot,
+     >basicSpectra,basicNuSpectra,qNumbers, slhaDecayPrint  
+      integer  sortOddParticles,assignVal,findVal,readVar,
+     >displaySpectrum,nucleonAmplitudes,displayRecoilPlot,
+     >basicSpectra,basicNuSpectra,qNumbers, slhaDecayPrint
+
+      external cs22,pWidth2,decay2Info,findValW,calcSpectrum,
+     >         HaloFactor,RhoQisotermic,RhoMO,RhoMOSq, 
+     >         zInterp, spectdnde, darkOmega,printChannels,
+     >         gammaFlux,pbarFlux,posiFlux, pwidth,findbr,
+     >         hProfileABG, hProfileEinasto,noClamps,pMass,
+     >         darkOmegaFO,oneChannel, vSigma,captureAux
+      real*8   cs22,pWidth2,decay2Info,findValW,calcSpectrum,
+     >         HaloFactor,RhoQisotermic,RhoMO,RhoMOSq,
+     >         zInterp,spectdnde, darkOmega,printChannels,
+     >         gammaFlux,pbarFlux,posiFlux,pwidth,findbr,
+     >         hProfileABG, hProfileEinasto,noClamps,pMass,
+     >         darkOmegaFO, oneChannel, vSigma,captureAux
+C subroutines: newProcess,assignValW,printVar,printMasses,spectrInfo,
+C              procInfo1,procInfo2
+*--------------------- 
+
+      external Maxwell,fDvDelta,nucleusRecoil,nucleusRecoil0,
+     >nucleusRecoilAux,nucleusRecoil0Aux,cutRecoilResult,dNdERecoil
+ 
+      real*8  Maxwell,fDvDelta,nucleusRecoil,nucleusRecoil0,
+     >nucleusRecoilAux,nucleusRecoil0Aux,cutRecoilResult,dNdERecoil
+
+      external FeScLoop, NoLoop
+      real*8   FeScLoop, NoLoop
+
+      external omegaCh, vSigmaTCh,vSigmaCh
+      integer  omegaCh, vSigmaTCh,vSigmaCh 
+
+
+      external SxxF19,SxxNa23,SxxAl27,SxxSi29,SxxK39,SxxGe73,SxxNb93,
+     >SxxTe125,SxxI127,SxxXe129,SxxXe131,SxxPb207,SxxNa23A,SxxSi29A,
+     >SxxTe125A,SxxI127A,SxxXe129A,SxxXe131A,SxxGe73A
+ 
+      external  widthSMh,brSMhGG,brSMhAA
+      real*8    widthSMh,brSMhGG,brSMhAA
+
+      integer neutrinoFlux
+      external neutrinoFlux
+     
+
+
+#define NZ  250      
+
+#define Sp_H1     ( 0.5d0)
+#define Sn_H1       0.d0
+#define Sp_He3    (-0.081d0)
+#define Sn_He3      0.552d0
+#define Sp_F19    ( 0.4751d0)
+#define Sn_F19    (-0.0087d0)
+#define Sp_Na23   ( 0.2477d0)
+#define Sn_Na23   ( 0.0198d0)
+#define Sp_Te125  ( 0.001d0) 
+#define Sn_Te125  ( 0.287d0)
+#define Sp_I127     0.309d0 
+#define Sn_I127     0.075d0
+#define Sp_Xe129    0.028d0  
+#define Sn_Xe129    0.359d0
+#define Sp_Xe131  (-0.009d0)  
+#define Sn_Xe131  (-0.227d0)
+#define Sp_Al27   ( 0.343d0)
+#define Sn_Al27     0.0296d0
+#define Sp_Si29   (-0.0019d0)
+#define Sn_Si29   ( 0.1334d0)
+#define Sp_K39    (-0.184d0) 
+#define Sn_K39    ( 0.054d0)
+#define Sp_Ge73   ( 0.03d0)
+#define Sn_Ge73   ( 0.378d0)
+#define Sp_Nb93   ( 0.46d0)
+#define Sn_Nb93   ( 0.08d0) 
+#define Sp_Cs133  (-0.370d0)
+#define Sn_Cs133  ( 0.003d0)
+#define Sp_Pb207  (-0.010d0)  
+#define Sn_Pb207  (-0.149d0)
+
+#define J_H1    0.5d0
+#define J_He3   0.5d0
+#define J_F19   0.5d0
+#define J_Na23  1.5d0
+#define J_Al27  2.5d0
+#define J_Si29  0.5d0
+#define J_K39   1.5d0
+#define J_Ge73  4.5d0
+#define J_Nb93  4.5d0
+#define J_Te125 0.5d0 
+#define J_I127  2.5d0
+#define J_Xe129 0.5d0
+#define J_Xe131 1.5d0
+#define J_Cs133 3.5d0
+#define J_Pb207 0.5d0
+
+#define Z_H    1
+#define Z_He   2
+#define Z_F    9
+#define Z_Na  11
+#define Z_Al  13
+#define Z_Si  14
+#define Z_K   19
+#define Z_Ge  32
+#define Z_Nb  41
+#define Z_Te  52
+#define Z_I   53
+#define Z_Xe  54
+#define Z_Cs  55
+#define Z_Pb  82
+
+#define NOFF (-12345.d0)
+#define M_PI  3.14159265358979323846d0

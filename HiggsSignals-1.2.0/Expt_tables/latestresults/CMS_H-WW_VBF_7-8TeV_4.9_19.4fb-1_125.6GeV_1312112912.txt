@@ -1,0 +1,14 @@
+# Shape-based result, taken from Fig. 23 in
+# arXiv:1312.1129. Assume roughly 20% ggH, 80% VBF.
+1312112912  131211292  1
+arXiv:1312.1129
+LHC, CMS, CMS
+(pp)->h->WW->2l2nu (VBF)
+8 25.3 0.026
+1 0
+20.0
+125.6 125.6 1.0
+2 125.6
+12 22
+1.0 50.0
+125.6	0.14	0.60	1.17

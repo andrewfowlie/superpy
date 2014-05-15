@@ -1,0 +1,23 @@
+NMSSM(nmspec)
+ Variables 
+ Name   | Value       |>  Comment                                   <|
+EE      |0.312853     |Electromagnetic coupling constant
+SW      |0.482        |sin of the Weinberg angle
+MZ      |91.2         |Z mass
+GG      |1.117        |Strong coupling constant
+alfSMZ  |0.1184       |
+MbMb    |4.5          |Mb(Mb)
+McMc    |1.3          |Mc(Mc)
+Mtp     |173.07       |pole mass of t-quark
+Ml      |1.777        |mass of tau-lepton
+wt      |1.442        |width of top quark
+mZero   |320          |common scalar mass at GUT scale
+mHalf   |600          |common gaugino mass at GUT scale
+A0      |-1300        |trilinear soft breaking parameter at GUT scale
+tb      |2            |Tangent beta
+Lambda  |0.5          |Lambda parameter at SUSY
+aKappaG |-1400        |aKappa parameter at GUT
+sgn     |1            | sing(mu) +/-1,  sign of Higgsino mass term
+aLambdaG|-1300        |at GUT (default aLambda=a0)
+Q       |100          |QCD scale for quark masses
+Maux    |1            |mass of aux particles

@@ -1,0 +1,103 @@
+
+lterm  
+     F * gamma *
+     ( i*deriv   - ga*W_ONE_CL*tau/2- gb*W_TWO_CL*tau/2 - g1p*B_ONE*YONE  - g2p*B_TWO*YTWO ) * PROJ*f        
+      
+      where
+%chen modify "yone and ytwo" for left-handed lepton     
+       F=anti(l1a),	       	f=l1a,	      	PROJ=     PL,      	ga=g1, 	gb=0,          YONE=-3/10,	YTWO=-1/5;
+       F=anti(l1b),	       	f=l1b,	      	PROJ=     PL,      	ga=0,  	gb=g2,         YONE=-1/5,	YTWO=-3/10;
+       F=Ne,		       f=ne,	       PROJ=	 PR,	       ga=0,   gb=0,	       YONE= 0,         YTWO=0;
+       F=E,		       f=e,	       PROJ=	 PR,	       ga=0,   gb=0,	       YONE=-1/2,       YTWO=-1/2;
+       F={'~Ne','~E'},        f={'~ne','~e'},PROJ=	 PR,	       ga=g1/2,gb=g1/2,        YONE=-1/4,       YTWO=-1/4;
+	
+       F=anti(l2a),	       	f=l2a,	      	PROJ=     PL,      	ga=g1, 	gb=0,          YONE=-3/10,	YTWO=-1/5;
+       F=anti(l2b),	       	f=l2b,	      	PROJ=     PL,      	ga=0,  	gb=g2,         YONE=-1/5,	YTWO=-3/10;
+       F=Nm,		       f=nm,	       PROJ=	 PR,	       ga=0,   gb=0,	       YONE= 0,         YTWO=0;
+       F=M,		       f=m,	       PROJ=	 PR,	       ga=0,   gb=0,	       YONE=-1/2,       YTWO=-1/2;
+       F={'~Nm','~M'},        f={'~nm','~m'},PROJ=	 PR,	       ga=g1/2,gb=g1/2,        YONE=-1/4,       YTWO=-1/4;
+ 
+       F=anti(l3a),	       	f=l3a,	      	PROJ=     PL,      	ga=g1, 	gb=0,          YONE=-3/10,	YTWO=-1/5;
+       F=anti(l3b),	       	f=l3b,	      	PROJ=     PL,      	ga=0,  	gb=g2,         YONE=-1/5,	YTWO=-3/10;
+       F=Nl,		       f=nl,	       PROJ=	 PR,	       ga=0,   gb=0,	       YONE= 0,         YTWO=0;
+       F=L,		       f=l,	       PROJ=	 PR,	       ga=0,   gb=0,	       YONE=-1/2,       YTWO=-1/2;
+       F={'~Nl','~L'},        f={'~nl','~l'},PROJ=	 PR,	       ga=g1/2,gb=g1/2,        YONE=-1/4,       YTWO=-1/4;
+
+     F=anti(qd1),	     f=qd1,	   PROJ=  PL,	   ga=g1, gb=0, 	     YONE=1/30,      YTWO=2/15;
+     F=anti(qd2),	     f=qd2,	   PROJ=  PL,	   ga=0,  gb=g2,	     YONE=2/15,      YTWO=1/30;
+     F=U,		     f=u,	   PROJ=   PR,     ga=0, gb=0,  	     YONE=1/3,       YTWO=1/3;
+     F=D,		     f=d,	   PROJ=   PR,     ga=0, gb=0,  	     YONE=-1/6,      YTWO=-1/6;
+     F={'~U','~D'},	     f={'~u','~d'}, PROJ=   PR,     ga=g1/2, gb=g1/2,	     YONE= 1/12,     YTWO=1/12;
+     
+     F=anti(qs1),	     f=qs1,	   PROJ=  PL,	   ga=g1, gb=0,   YONE=1/30,YTWO=2/15;
+     F=anti(qs2),	     f=qs2,	   PROJ=  PL,	   ga=0,  gb=g2,  YONE=2/15,YTWO=1/30;
+     F=C,		     f=c,	   PROJ=   PR,     ga=0, gb=0,    YONE=1/3, YTWO=1/3;
+     F=S,		     f=s,	   PROJ=   PR,     ga=0, gb=0,    YONE=-1/6, YTWO=-1/6;
+     F={'~C','~S'},	     f={'~c','~s'}, PROJ=   PR,     ga=g1/2, gb=g1/2,  YONE= 1/12, YTWO=1/12;
+       
+      
+     F=Q3l1,		     f=q3l1,	     PROJ=  PL,      ga=g1, gb=0,   YONE=1/30,YTWO=2/15;
+     F=Q3l2,		     f=q3l2,	     PROJ=  PL,      ga=0, gb=g2,   YONE=2/15,YTWO=1/30;
+     
+     F=anti('~tl1'),	     f='~tl1',       PROJ=  PL,      ga=0, gb=0,    YONE=8/15,YTWO=2/15;
+     F=anti('~tl2'),	     f='~tl2',       PROJ=  PL,      ga=0, gb=0,    YONE=2/15,YTWO=8/15;
+	
+     F=anti('tr+'),	     f='tr+',	     PROJ=  PR,      ga=0, gb=0,     YONE=1/3 ,YTWO=1/3;
+     F=anti('~tr1'),	     f='~tr1',       PROJ=  PR,      ga=0, gb=0,     YONE=8/15,YTWO=2/15;
+     F=anti('~tr2'),	     f='~tr2',       PROJ=  PR,      ga=0, gb=0,     YONE=2/15,YTWO=8/15;
+       
+     F=B,	    	     f=b,	     PROJ=  PR,      ga=0, gb=0,        YONE=-1/6,YTWO=-1/6;
+     F={'~T2','~B'},	     f={'~t2','~b'}, PROJ=   PR,     ga=g1/2, gb=g1/2,  YONE= 1/12, YTWO=1/12.
+      
+       
+       
+ % let WW = {'W+',W3,'W-'}.
+  
+ % left fermion interaction with gauge fields
+ %lterm      anti(psi)*gamma*(1-g5)/2*(i*deriv+EE/SW*taupm*WW/2-Y*EE/CW*B0)*psi
+ %	     where 
+ %		     psi=l1,  Y=-1/2;
+ %		     psi=l2,  Y=-1/2;
+ %		     psi=l3,  Y=-1/2.
+ %
+ % right fermion interaction with gauge fields
+ 
+ %lterm      anti(psi)*gamma*(1+g5)/2*(i*deriv - Y*EE/CW*B0)*psi
+ %	     where 
+ %		     psi=e1,Y= -1;
+ %		     psi=e2,Y= -1;
+ %		     psi=e3,Y= -1.
+ 
+	
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ % quark-gluon interaction
+ 
+ lterm  GG*F*lambda*gamma*G*f 
+ where
+ 
+      F=U,	    f=u;  
+      F='~U',		    f='~u';  
+     
+      F=D,	    f=d;    
+      F='~D',		    f='~d';  
+      
+      F=C,	    f=c;    
+      F='~C',		    f='~c';  
+     
+      F=S,	    f=s;    
+      F='~S',		    f='~s';  
+      
+      
+      F=T,	    f=t;    
+      F='~T2',  	    f='~t2'; 
+      F=Tp,	    f=tp;    
+      F='~T1',  	    f='~t1'; 
+      
+      F=B,	    f=b;    
+      F='~B',		    f='~b'.    
+ 
+
+
+
+
+

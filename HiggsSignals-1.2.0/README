@@ -1,0 +1,313 @@
+Contents of the present directory are part of the program package 
+	
+	HiggsSignals
+
+by Philip Bechtle, Sven Heinemeyer, Oscar Stål, Tim Stefaniak and Georg Weiglein.
+
+This code is written by Oscar Stål and Tim Stefaniak.
+Please contact oscar.stal@fysik.su.se or tim@th.physik.uni-bonn.de if you have any
+questions/problems/etc with this version.
+
+This README file contains:
+* Journal reference and website address
+* Software license
+* What the program does
+* How to use HiggsSignals
+* Additional requirements 
+* How to install HiggsSignals
+* How to run the examples
+* Additional notes 
+* Contents of this directory
+
+------------------------------------------------------------------
+* Journal References:
+------------------------------------------------------------------
+  If you use the program HiggsSignals please cite
+
+  Philip Bechtle, Sven Heinemeyer, Oscar Stål, Tim Stefaniak, Georg Weiglein, 
+  HiggsSignals: Confronting arbitrary Higgs sectors with measurements at the
+  Tevatron and the LHC
+  e-Print: arXiv:1305.1933 [hep-ph]
+
+  HiggsSignals uses the HiggsBounds library, therefore please also include 
+  a citation to the following references:
+
+  Philip Bechtle, Oliver Brein, Sven Heinemeyer, Georg Weiglein, 
+  Karina E. Williams,
+  HiggsBounds: Confronting Arbitrary Higgs Sectors 
+  with Exclusion Bounds from LEP and the Tevatron,
+  Comput.Phys.Commun.181:138-167,2010
+  e-Print: arXiv:0811.4169 [hep-ph]
+
+  Philip Bechtle, Oliver Brein, Sven Heinemeyer, Georg Weiglein, 
+  Karina E. Williams,
+  HiggsBounds 2.0.0: Confronting Neutral and Charged Higgs Sector 
+  Predictions with Exclusion Bounds from LEP and the Tevatron,
+  e-Print: arXiv:1102.1898 [hep-ph]
+
+  Philip Bechtle, Oliver Brein, Sven Heinemeyer, Oscar Stål, Tim Stefaniak,
+  Georg Weiglein, Karina Williams,
+  Recent Developments in HiggsBounds and a Preview of HiggsSignals,
+  PoS CHARGED2012 (2012) 024,
+  e-Print: arXiv:1301.2345 [hep-ph]
+
+  Philip Bechtle, Oliver Brein, Sven Heinemeyer, Oscar Stål, Tim Stefaniak,
+  Georg Weiglein, Karina E. Williams,
+  HiggsBounds-4: Improved Tests of Extended Higgs Sectors against Exclusion
+  Bounds from LEP, the Tevatron and the LHC
+  e-Print: arXiv:1311.0055 [hep-ph]
+
+* Web site: http://projects.hepforge.org/higgsbounds/
+
+Please have a look at the above paper for detailed information on the program.
+
+------------------------------------------------------------------
+* Software License:
+------------------------------------------------------------------
+
+  HiggsSignals is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  HiggsSignals is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with HiggsSignals.  If not, see http://www.gnu.org/licenses/
+
+------------------------------------------------------------------
+* What the program does:
+------------------------------------------------------------------
+
+HiggsSignals is a computer code that performs a χ2 test of the Higgs sector
+predictions in arbitrary models with any number of Higgs bosons against the
+signal rates and masses measured in Higgs searches by the Tevatron and LHC
+experiments. It features two complementary methods for the χ2 evaluation:
+the peak-centered χ2 method, in which each observable is defined by a Higgs
+signal rate measured at a specific hypothetical Higgs mass, corresponding to
+a tentative Higgs signal. In the second method, the mass-centered χ2 method,
+the χ2 is evaluated by comparing the signal rate measurement to the theory 
+prediction at the Higgs mass predicted by the model. The program allows for 
+the simultaneous use of both methods, which is useful in testing models with 
+multiple Higgs bosons. In the statistical procedure, systematic uncertainties 
+of the signal rate prediction, luminosity and Higgs mass predictions are 
+fully taken into account, including their correlations. The code automatically 
+combines the signal rates of Higgs bosons if their signals cannot be resolved 
+by the experimental analysis. In that case the signal rates of the corresponding 
+Higgs bosons are added incoherently. The model input framework of HiggsSignals 
+is based on the the HiggsBounds input format. It is therefore straightforward 
+to use both codes in parallel, something which is highly recommended to exploit 
+the full constraining power of Higgs search exclusion limits and the measurements 
+of the signal seen at mH ≃ 125.5 GeV.
+
+------------------------------------------------------------------
+* How to use HiggsSignals:
+------------------------------------------------------------------
+
+The code can be invoked on the command line using the command
+	
+    ./HiggsSignals <options>
+
+and a subroutine version of the code can be used in other codes
+by linking the library
+
+    libHS.a .
+
+By running HiggsSignals without options, more detailed 
+information on how to invoke it will be displayed.
+
+------------------------------------------------------------------
+* Additional requirements:
+------------------------------------------------------------------
+
+The program "HiggsSignals" and the FORTRAN library "libHS.a" need
+to be linked to the HiggsBounds (version 4 or higher) library
+
+    libHB.a
+
+The sample program "HBandHSwithFH" demonstrating the use of HiggsSignals and
+HiggsBounds in connection with FeynHiggs needs to link to/include:
+
+    libFH.a 
+    FHCouplings.h 
+
+------------------------------------------------------------------
+* How to install HiggsSignals:
+------------------------------------------------------------------
+
+1. You have to edit the file ./configure in the following way:
+
+   a) You have to specify the command which invokes your FORTRAN 90 compiler
+            F90C           ( e.g. gfortran )
+      and the appropriate flags
+            F90FLAGS       ( e.g. -fbounds-check )
+                
+      Note, that in the case of gfortran, the compiler version 4.2 (or higher) is 
+      required, since HiggsSignals makes use of allocatable arrays.          
+
+   b) You have to specify the location of the HiggsBounds installation, such
+      that the HiggsSignals program can be linked correctly to the HiggsBounds library.
+      Please specify:   
+            HBINCLUDE      ( e.g. $(HOME)/Packages/HiggsBounds-4.0.0/HiggsBounds )
+            HBLIBS         ( e.g. $(HOME)/Packages/HiggsBounds-4.0.0/HiggsBounds )
+
+   b) If you are going to use the FORTRAN 77 example program "HSandHBwithFH"
+      you must specify the FORTRAN 77 compiler
+            F77C           ( e.g. gfortran )
+
+      You also have to specify the variables which tell the linker
+      where to find the additional libraries.
+
+      - For FeynHiggs specify:
+            FHINCLUDE      ( e.g. $(HOME)/Packages/FeynHiggs-2.9.4/i586-linux/include )
+            FHLIBS         ( e.g. $(HOME)/Packages/FeynHiggs-2.9.4/i586-linux/lib -lFH )
+
+      Note that care must be taken to ensure that consistent compilers are used
+      If you get error messages similar to 
+          ... undefined reference to `initialize_higgssignals__'...
+      and the paths to the libraries are correct, it's a good idea to check 
+       that the same compilers were used for each package.
+      (you may be able to work around this 
+      e.g. if FeynHiggs was compiled with g77 it may be possible to compile HiggsBounds
+      and HiggsSignals with gfortran and add -lg2c to the end of the variable FHLIBS)	
+
+2. After these changes, enter
+	
+    ./configure
+
+   at the command line, then
+
+    make
+
+   This will generate the program "HiggsSignals", which is the command-line version of 
+   the code, as well as the library "libHS.a".
+
+   You can also enter specifically:
+
+    make libHS          : This will generate "libHS.a".
+
+    make HSexamples     : This will compile all provided sample programs in the folder
+                          "example_programs" which do not depend on further external 
+                          libraries. These are the programs
+                             HSeffC
+                             HShadr
+                             HSscaleUncertainties
+                             HSwithToys
+                             HSwithSLHA
+                             HBandHSwithSLHA
+                             HS_efficiencies
+                             HS_mass
+
+    make <name of example program> : Each example program (from the list above) can be
+                                     compiled separately.
+
+    make HBandHSwithFH : This will generate the executable "HSandHSwithFH" in the folder
+                         "example_programs". This program requires the correct paths to
+                         the FeynHiggs package (see above).
+
+------------------------------------------------------------------
+* Examples
+------------------------------------------------------------------
+
+ - Example of command-line version of HiggsSignals
+
+   The HiggsSignals package includes some sample input files in the folder example_data.
+   For examples, to run HiggsSignals on the sample input files representing the (mA, tanb)
+   grid of the MSSM mhmax benchmark scenario (stored in "example_data/mhmax/") use,
+   for example:
+	 
+      ./configure
+      make
+
+      ./HiggsSignals latestresults peak 2 part 3 1 example_data/mhmax/mhmax_
+
+   The output files are example_data/mhmax/mhmax_HiggsSignals_results.dat
+
+ - Example of the subroutine version of HiggsSignals
+
+   Several example programs using the subroutines from the HiggsBounds and
+   HiggsSignals libraries are provided in the folder example_programs.
+   
+   ... short description ... (how to execute HSwithSLHA...)
+   
+   
+      
+ - Example of the use of HiggsSignals in conjunction with the publicly available program FeynHiggs 
+ 
+   The example program ./example_programs/HBandHSwithFH.F (fortran 77) uses FeynHiggs 
+   (http://www.feynhiggs.de) to generate the input required by HiggsBounds and 
+   HiggsSignals and then calls the HiggsBounds and HiggsSignals subroutines (please
+   see the comments in this file for more information).
+
+   To use, make sure FeynHiggs is installed on your system and that the paths are
+   correctly set in the HiggsSignals configure file. Then use:
+
+      ./configure
+      make HBandHSwithFH
+
+      cd example_programs
+      ./HBandHSwithFH
+
+   The HiggsBounds and HiggsSignals results are outputted to the screen and the
+   key to the processes considered for for the exclusion limits in HiggsBounds is
+   printed to the file Key.dat.
+
+------------------------------------------------------------------
+
+Please feel free to contact us with feature requests and bug reports.
+
+Enjoy!
+		Tim
+
+--------------------- Contents of directory ----------------------
+
+* ./
+- HiggsSignals.F90 : main program for the command-line version of HiggsSignals
+- HiggsSignals_subroutines.F90 : contains the main HiggsSignals subroutines which are accessible to the user 
+- io.F90 : contains subroutines associated with in- and output
+- pc_chisq.f90 : contains subroutines associated with the peak-centered chi^2 method
+- mc_chisq.f90 : contains subroutines associated with the mass-centered chi^2 method
+- all_chisq.f90 : contains subroutines associated with the simultaneous use of the peak- and mass-centered chi^2 methods
+- datatables.f90 : contains subroutines handling the experimental data
+- combinatorics.f90 : contains subroutines for handling internal combinatorial tasks
+- numberics.f90 : contains subroutines to calculate the p-value and the inverse of the covariance matrices
+- usefulbits_HS.f90 : defines, allocates and deallocates various variables
+- expt_syst.f90 : Module to include correlated experimental systematic uncertainties for certain analyses
+- README : contains information about the code
+- COPYING : The GNU General Public License
+- configure : sets compiler options, paths to data and libraries, creates makefile, runs the script create_store_pathname.bat
+- makefile.in : used by configure to create the makefile
+- create_store_pathname_HS.bat : creates a fortran module which stores the path to the installation directory
+- BRcov.in : covariance matrix for the relative BR theory uncertainties of the model
+- BRcovSM.in : covariance matrix for the relative BR theory uncertainties of the SM
+- XScov.in : covariance matrix for the relative cross section theory uncertainties of the model
+- XScovSM.in : covariance matrix for the relative cross section theory uncertainties of the SM
+- run_tests.bat : Builds HiggsSignals and runs a few checks, using provided example data and programs. Also makes nice plots if gnuplot is installed.
+
+* ./Expt_tables
+Contains subdirectories for the experimental datasets, which contain .txt files defining
+the peak observables and/or mu tables from the Tevatron and LHC experiments. The user
+may create a new directory containing the observables he would like to study. The subdirectory
+   ./Expt_tables/latestresults
+contains the latest measurements at the time of the HiggsSignals version release.  
+
+* ./example_data 
+Contains example input files
+
+* ./example_programs 
+- HSeffC.f90 : Performs a scan over effective Higgs couplings
+- HSwithSLHA.f90 : Runs HiggsSignals on SLHA files
+- HBandHSwithSLHA.f90 : Runs HiggsBounds and HiggsSignals on SLHA files
+- HSwithToys.f90 : Demonstrates how to set toy measurements to the peak observables
+- HSscaleUncertainties.f90 : Demonstrates how to scale the rate uncertainties of peak observables
+- HBandHSwithFH.F : example F77 program showing the use of HiggsBounds and HiggsSignals subroutines with the program FeynHiggs
+- HS_efficiencies.f90: Demonstrates the efficiency interface introduced with version 1.1.0
+- HS_mass.f90: Scans the Higgs mass with the 3 mass pdf options for a SM-like Higgs boson
+- HShadr.f90: 2D scaling of production cross sections using the hadronic XS input
+
+* ./supplements
+Contains root macros to generate the covariance matrices containing relative BR and XS theory
+uncertainties using a toy MC.

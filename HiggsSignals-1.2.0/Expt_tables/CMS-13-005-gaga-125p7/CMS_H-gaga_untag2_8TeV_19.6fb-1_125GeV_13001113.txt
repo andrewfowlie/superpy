@@ -1,0 +1,14 @@
+# Presented at Moriond 2013.
+# Data extracted from the mu plot at 125 GeV, based on the MVA result.
+13001113	1300113		1
+CMS-PAS-HIG-13-001
+LHC, CMS, CMS
+(pp)->h->gamma gamma (untagged 2)
+8	19.6	0.044
+1	0
+1.5	CMSgagacat
+125.7 125.7 1.0
+5	125
+11 21 31 41 51
+1.0 0.6122 0.7143 0.7143 0.660
+125.7	-0.131  0.339  0.839

@@ -1,0 +1,7 @@
+3 5 45   Particles:
+  Information about particle mass, width,
+   quantum numbers and  decay channels. 
+
+   
+
+

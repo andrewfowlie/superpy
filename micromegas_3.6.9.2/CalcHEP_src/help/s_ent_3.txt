@@ -1,0 +1,5 @@
+6 6 62 6   Energy input
+  Enter  the numerical value of the Center of Mass Energy of
+the colliding particles in GeV units. 
+  This value will be used in numerical calculations. Also 
+sub-threshold processes will not be generated.

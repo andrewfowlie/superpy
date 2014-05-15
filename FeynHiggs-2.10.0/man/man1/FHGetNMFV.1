@@ -1,0 +1,36 @@
+.TH FHGETNMFV 1 "31-May-2012"
+.SH NAME
+.PP
+FHGetNMFV \- retrieves the NMFV sfermion parameters
+.SH SYNOPSIS (Fortran version)
+.PP
+integer error
+.br
+double complex MSS2(3,3,5), Kf(3,3,2:4)
+.sp
+subroutine FHGetNMFV(error, MSS2, Kf)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHGetNMFV[]
+.SH DESCRIPTION
+FHGetNMFV returns the NMFV SUSY breaking parameters computed from
+the deltas set by FHSetNMFV(1) and FHSetLFV(1).  In the MFV case,
+the matrices are returned in the same way only that they are diagonal.
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in GetNMFV.F from which
+the error message was emitted
+.TP
+.B MSS2
+the 3x3 sfermion mass parameter matrices, where the last index
+runs over 1 = slepton doublet, 2 = slepton singlet, 3 = squark
+doublet, 4 = up-type squark singlet, 5 = down-type squark singlet.
+.TP
+.B Kf
+the 3x3 trilinear coupling matrices multiplied with the fermion mass,
+i.e. Kf = mf Af, where the last index runs over 2 = slepton,
+3 = up-type squark, 4 = down-type squark.
+.SH SEE ALSO
+.PP
+libFH(1)

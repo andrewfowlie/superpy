@@ -1,0 +1,14 @@
+#arXiv: 0811.0024v1 (D0) Oct 31st 2008
+#D0_bH_btautau_328pb
+#no interpolation
+#columns: Mh(GeV), obs, exp (fb)
+
+90	5.8E+3	7.7E+3
+100	4.2E+3	6.3E+3
+110	3.4E+3	5.2E+3
+120	2.7E+3	4.4E+3
+130	2.7E+3	3.9E+3
+140	2.1E+3	3.1E+3
+150	2.0E+3	3.0E+3
+
+

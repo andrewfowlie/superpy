@@ -1,0 +1,33 @@
+.TH FHRECORDINDEX 1 "1-May-2011"
+.SH NAME
+.PP
+FHRecordIndex \- translate a parameter name to its index in a FeynHiggs
+Record
+.SH SYNOPSIS (Fortran version)
+.PP
+integer ind
+.br
+character*(*) para
+.sp
+subroutine FHRecordIndex(ind, para)
+.SH SYNOPSIS (Mathematica version)
+.PP
+ind = FHRecordIndex[para]
+.SH DESCRIPTION
+FHRecordIndex converts a parameter name into the corresponding index
+in a FeynHiggs Record, or returns zero if no such name is known.  The 
+record has four fields for every index: record(ind,iVar), 
+record(ind,iLower), record(ind,iUpper), and record(ind,iStep).  These
+respectively denote a quantity's current, lower, upper, and step-size
+value, i.e. define a possible loop over the quantity.
+.SH ARGUMENTS
+.TP
+.B ind (output)
+the index into the FeynHiggs Record, or zero if the record contains no 
+parameter of the given name.
+.TP
+.B para (input)
+the parameter name.
+.SH SEE ALSO
+.PP
+libFH(1)

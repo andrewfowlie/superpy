@@ -1,0 +1,14 @@
+# Cut-based result, taken from Fig. 23 in
+# arXiv:1312.1129. Assume roughly 56% ggH, 4.5% VBF, 39.5% VH.
+1312112913  131211293  1
+arXiv:1312.1129
+LHC, CMS, CMS
+(pp)->h->WW->2l2nu (VH)
+8 25.3 0.026
+1 0
+20.0
+125.6 125.6 1.0
+4 125.6
+12 22 32 42
+1.0 1.0 12.8 12.8
+125.6	-1.48	0.39	2.36

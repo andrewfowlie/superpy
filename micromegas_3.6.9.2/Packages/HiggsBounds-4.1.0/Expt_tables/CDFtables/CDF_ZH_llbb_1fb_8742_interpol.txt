@@ -1,0 +1,16 @@
+#CDF/ANAL/EXOTIC/PUBLIC/8742 v1.0, Mar 20, 2007
+#CDF_ZH_llbb_1fb
+#105,125,135,145 are interpolated
+#columns: Mh, obs, exp (as ratio to SM cross sections)
+
+100	12	13
+105	13	13.5
+110	14	14
+115	16	16
+120	18	18
+125	23.5	23
+130 	29	28
+135	47	41
+140	65	54
+145	112.5	97
+150	160	140

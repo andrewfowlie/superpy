@@ -1,0 +1,44 @@
+.TH FHGETTLPARA 1 "19-Apr-2012"
+.SH NAME
+.PP
+FHGetTLPara \- retrieves parameters used in the internal computation
+of the neutral Higgs masses in FeynHiggs
+.SH SYNOPSIS (Fortran version)
+.PP
+integer error
+.br
+double precision MSb(2), MbSL2
+.br
+double complex USb(2,2), Deltab
+.sp
+subroutine FHGetTLPara(error, MSb, USb, MbSL2, Deltab)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHGetTLPara[]
+.SH DESCRIPTION
+FHGetTLPara returns the sfermion parameters used in the one-loop
+computation of the neutral Higgs masses such that these are
+consistent with the two-loop parts.
+.sp
+Do not use this function unless you know precisely what you are doing.
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in GetTLPara.F from
+which the error message was emitted
+.TP
+.B MSb (output)
+the sbottom masses
+.TP
+.B USb (output)
+the sbottom mixing matrix
+.TP
+.B MbSL2 (output)
+the doublet squark soft-breaking mass squared for the sbottom including
+corrections
+.TP
+.B Deltab (output)
+the correction to the bottom Yukawa coupling, Delta_b.
+.SH SEE ALSO
+.PP
+libFH(1)

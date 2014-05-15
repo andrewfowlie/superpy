@@ -1,0 +1,10 @@
+#CMS PAS HIG-11-034 Mar 07, 2012
+#12006_CMS_WH-Wtautau_4.7fb-1
+#Limits taken from Tab.1 of the TWiki page
+#Columns: Mh, obs, exp (normalized to the SM)
+
+100   6.0   8.1
+110   8.0   10.8
+120   8.9   11.7
+130   12.1  16.2
+140   13.4  16.4

@@ -1,0 +1,43 @@
+.TH FHREADRECORD 1 "1-May-2011"
+.SH NAME
+.PP
+FHReadRecord \- read a parameter file into a FeynHiggs Record
+.SH SYNOPSIS (Fortran version)
+.PP
+#include "FHRecord.h"
+.br
+#include "SLHA.h"
+.sp
+integer error
+.br
+RecordDecl(record)
+.br
+double complex slhadata(nslhadata)
+.br
+character*(*) file
+.sp
+subroutine FHReadRecord(error, record, slhadata, file)
+.SH SYNOPSIS (Mathematica version)
+.PP
+record = FHReadRecord[file]
+.SH DESCRIPTION
+FHReadRecord reads a parameter file in SLHA or FeynHiggs' "native" format
+into a FeynHiggs Record.  Possible pre-existing values are overwritten.
+.SH ARGUMENTS
+.TP
+.B error (output)
+0 if successful (SLHA file, slhadata filled),
+.br
+2 if successful (FH file, slhadata not filled),
+.br
+otherwise the line number in ReadRecord.F from which the error 
+message was emitted.
+.TP
+.B record (output)
+the record.
+.TP
+.B file (input)
+the parameter file name.
+.SH SEE ALSO
+.PP
+libFH(1)

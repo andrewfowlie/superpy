@@ -1,0 +1,59 @@
+The MSSM can be treated in 4 different models with input parameters defined either at the GUT scale or the weak scale. To define the model one has to uncomment one of the lines near the top of the main.c/F files,  
+
+#define SUGRA   
+   The parameters of the CMSSM 
+      m0      common scalar mass at GUT scale
+      mhf     common gaugino mass at GUT scale
+      a0      trilinear soft breaking parameter at GUT scale
+      tb      tan(beta) 
+   are specified via a command line:
+               ./main m0 mhf a0 tb 
+   in addition, some auxiliary parameters can be defined to replace the default
+   values:
+      sgn     +/-1,  sign of Higgsino mass term (default 1)
+      Mtp     top quark pole mass
+      MbMb    Mb(Mb) scale independent b-quark mass
+      alfSMZ  strong coupling at MZ
+
+      
+#define SUGRANUH  
+   The parameters of the CMSSM with non-universal Higgs condition include those of the 
+   SUGRA switch as well as two parameters of the Higgs sector defined at the EWSB scale  
+      mu(EWSB)                 
+      MH3 pole mass of all odd Higgs
+             ./main m0 mhf a0 tb  mu MH3 
+
+#define AMSB     
+   The input parameters of the Anomaly-Mediated Symmetry Breaking model are                
+      m0      common scalar mass at GUT scale
+      m3/2    gravitino mass
+      tb      tan(beta) 
+             ./main m0 m3/2 tb 
+      The Auxiliary parameters listed above for SUGRA can also be added to the
+      command line    
+  
+#define EWSB    
+   The input parameters of the pMSSM  are defined at the SUSY scale and read from a file
+   specified in the command line:
+                  ./main mssm1.par
+
+If all these definitions are commented  ./main will read a Les Houches spectrum file (SLHA)
+to be specified  in the command line:
+
+                     ./main suspect2_out.lha
+
+In general ./main launched without parameters explains which parameters are  needed.
+
+By default SuSpect is used to compute the particle spectrum with loop corrections. The SuSpect 
+code is attached to micrOMEGAs  and  located in the  directory Packages.   To use other
+programs (SPHENO, SOFTSUSY, ISAJET) for spectrum generation  one has to define the path
+to the corresponding package in lib/Makefile and  define the  switch RGE in main.c/main.F
+#define RGE  suspect
+     /* choose 'suspect','isajet','softSusy','spheno'*/
+
+1) Djouadi, Abdelhak and Kneur, Jean-Loic and Moultaka, Gilbert,
+   "SuSpect: A Fortran code for the supersymmetric and Higgs  particle spectrum in the MSSM",
+    Comput. Phys. Commun.,176(2007),pp 426-455,   
+   hep-ph/0211331 
+
+

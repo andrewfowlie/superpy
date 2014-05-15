@@ -1,0 +1,17 @@
+#CDF Note 10239 from http://www-cdf.fnal.gov/physics/new/hdg//Results_files/results/whlnubb_jul10/WHNN_main/WHNN_5.7fb_main.html
+#CDF_WH_lnubb_5.7fb
+#no interpolation,read from website 27 Jul 2010 
+#columns: Mh, obs, exp (as ratio to SM cross sections)
+
+100	1.98	2.34
+105	3.02	2.68 
+110	3.74	2.94
+115	4.47	3.48	
+120	5.25	4.07
+125	6.26	4.99
+130	8.87	6.29
+135	12.5	8.54
+140	15.8	12.2
+145 	25.3	17.9	
+150	44.3	28.2
+

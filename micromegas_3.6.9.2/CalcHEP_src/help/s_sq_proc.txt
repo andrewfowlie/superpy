@@ -1,0 +1,14 @@
+10 10 50 PROCESSES
+This is a menu of generated subprocess
+
+Any menu records consists of five parts
+1. a subprocess number,
+2. a subprocess name,
+3. the number of deleted squared  diagrams,
+4. the number of calculated squared  diagrams,
+5. the number of squared diagrams which is not
+ deleted and not yet calculated.
+
+ If you  activate a menu function, the graphic 
+image of squared diagrams for the highlighted 
+subprocess  will be displayed.

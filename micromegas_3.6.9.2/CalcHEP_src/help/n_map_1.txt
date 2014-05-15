@@ -1,0 +1,8 @@
+1 4 50
+ 'Kinematics' gives you a possibility to choose a
+parameterization of phase space. The right choice
+of parameterization is needed for a successful
+work of the 'Regularization' program.
+  The parameterizations used by CalcHEP are 
+defined by the  scheme of recursive  1->2 decays 
+of the incoming state into the outgoing particles.

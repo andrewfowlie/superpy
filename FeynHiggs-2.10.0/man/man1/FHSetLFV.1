@@ -1,0 +1,50 @@
+.TH FHSETLFV 1 "30-May-2012"
+.SH NAME
+.PP
+FHSetLFV \- set the lepton-flavour-violating parameters
+.SH SYNOPSIS (Fortran version)
+.PP
+integer error
+.br
+double complex deltaLLL12, deltaLLL23, deltaLLL13
+.br
+double complex deltaELR12, deltaELR23, deltaELR13
+.br
+double complex deltaERL12, deltaERL23, deltaERL13
+.br
+double complex deltaERR12, deltaERR23, deltaERR13
+.sp
+subroutine FHSetLFV(error,
+  deltaLLL12, deltaLLL23, deltaLLL13,
+  deltaELR12, deltaELR23, deltaELR13,
+  deltaERL12, deltaERL23, deltaERL13,
+  deltaERR12, deltaERR23, deltaERR13)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHSetLFV[
+  deltaLLL12, deltaLLL23, deltaLLL13,
+  deltaELR12, deltaELR23, deltaELR13,
+  deltaERL12, deltaERL23, deltaERL13,
+  deltaERR12, deltaERR23, deltaERR13]
+.SH DESCRIPTION
+FHSetLFV sets the lepton-flavour-violating parameters.
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in SetFV.F from which
+the error message was emitted
+.TP
+.B deltaFXYij, F = L,E, XY = LL,LR,RL,RR, ij = 12,23,13 (input)
+the off-diagonal entries of the slepton mass matrices, divided by the 
+corresponding SUSY-breaking parameters.  Some examples:
+.br
+   Me^2(2,3) = deltaLLL23 M2SL M3SL
+.br
+   Me^2(1,5) = deltaELR12 M1SL M2SE
+.br
+   Me^2(4,6) = deltaERR13 M1SE M3SE
+.br
+where Me^2 is the electron-type sfermion mass matrix.
+.SH SEE ALSO
+.PP
+libFH(1)

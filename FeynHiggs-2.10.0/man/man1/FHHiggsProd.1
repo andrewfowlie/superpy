@@ -1,0 +1,148 @@
+.TH FHHIGGSPROD 1 "21-Nov-2013"
+.SH NAME
+.PP
+FHHiggsProd \- compute Higgs production cross-sections
+.SH SYNOPSIS (Fortran version)
+.PP
+#include "FHCouplings.h"
+.sp
+integer error
+.br
+double precision sqrts, prodxs(nprodxs)
+.sp
+subroutine FHHiggsProd(error, sqrts, prodxs)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHHiggsProd[sqrts]
+.SH DESCRIPTION
+FHHiggsProd computes (approximate) Higgs production cross-sections.  
+FHHiggsProd contains code by
+  F. Maltoni et al. (SM Higgs production cross-sections)
+  http://maltoni.home.cern.ch/maltoni/TeV4LHC
+  T. Plehn et al. (charged Higgs production cross-sections)
+  http://www.ph.ed.ac.uk/~tplehn/charged_higgs
+  R. Harlander et al. (SM bbH production cross-sections)
+  http://arxiv.org/abs/hep-ph/0304035
+  M. Grazzini et al. (SM ggH prediction)
+  http://theory.fi.infn.it/grazzini/hcalculators.html
+
+The SM cross-sections are multiplied with the 
+appropriate MSSM/SM ratio of the couplings involved.  Specifically,
+.sp
+{bbh, btagbh} = Gamma(hbb)/GammaSM(hbb) {bbhSM, btagbhSM},
+.sp
+tth = (|lc|^2 + |rc|^2)/2 tthSM,
+.br
+  where [lr]c = [LR]Coupling(htt)/[LR]CouplingSM(htt)
+.sp
+ggh = |A|^2/|ASM|^2 gghSM
+.br
+  where A = ctopNLO ctopNNLO AtopLO +
+            cbotReNLO Re[AbotLO] + cbotImNLO Im[AbotLO] +
+            csfNLO AsfLO + ArestLO,
+      ASM = ctopNLO AtopLOSM +
+            cbotReNLO Re[AbotLOSM] + cbotImNLO Im[AbotLOSM] +
+            ArestLOSM
+.sp
+ggh2 = |A|^2/|ASM|^2 gghSM
+.br
+  where |A|^2 = (ktopNLO ktopNNLO - kTopBotNLO) |AtopLO|^2 +
+                (kbotNLO - kTopBotNLO) |AbotLO|^2 +
+                (kTopBotNLO - 1) |AtopLO + AbotLO|^2 +
+                |ALO|^2
+      |ASM|^2 = (ktopNLO - kTopBotNLO) |AtopLOSM|^2 +
+                (kbotNLO - kTopBotNLO) |AbotLOSM|^2 +
+                (kTopBotNLO) |AtopLO + AbotLOSM|^2 +
+.sp
+{qqh, Wh} = |Coupling(hWW)|^2/|CouplingSM(hWW)|^2 {qqhSM, WhSM}
+.sp
+Zh = |Coupling(hZZ)|^2/|CouplingSM(hZZ)|^2 ZhSM
+.sp
+All production cross-sections are 4 pi cross-sections, with 
+{btagbhTeV, btagbhLHC} being the only exceptions.  Here p_T(jet) >
+15 GeV and |eta(jet)| < 2.5 has been used.  (The PDFs for these two 
+processes are CTEQ6M.)
+.br
+FHHiggsProd uses the Higgs masses and couplings computed during the 
+last invocation of FHHiggsCorr(1) and FHCouplings(1).  The flags and
+parameters must have been set before with FHSetFlags(1) and
+FHSetPara(1)/FHSetSLHA(1).
+.SH ARGUMENTS
+The prodxs array passed to FHHiggsProd should never be accessed 
+directly, but only through the preprocessor macros defined in 
+FHCouplings.h, which needs to be included once per file.
+.TP
+.B error (output)
+zero if successful, otherwise the line number in HiggsProd.F from
+which the error message was emitted
+.TP
+.B sqrts (input)
+the collider energy at which the cross-sections are to be computed.
+Note that not all cross-sections are currently implemented for
+energies other than 2 TeV (Tevatron) and 14 TeV (LHC).
+.TP
+.B prodxs(i) (output)
+the Higgs production cross-sections.
+This array is indexed with preprocessor macros (see below).
+.SH CROSS-SECTIONS
+.P
+All cross-sections are fully inclusive and given in fb.  They are
+available for the three neutral Higgs bosons:
+.br
+h = 1..3  Higgs: h0, HH, A0
+.TP
+.B bbh(h), bbhSM(h)
+the MSSM and SM bottom-fusion cross-sections, bb -> h + X,
+.TP
+.B btagbh(h), btagbhSM(h)
+the MSSM and SM bottom-fusion cross-sections with one tagged b,
+tagged-b b -> h + X,
+.TP
+.B ggh(h), gghSM(h)
+the MSSM and SM gluon-fusion cross-sections, gg -> h + X, using the
+c-factor (amplitude) method,
+.TP
+.B ggh2(h), ggh2SM(h)
+the MSSM and SM gluon-fusion cross-sections, gg -> h + X, using the
+k-factor (squared-amplitude) method,
+.TP
+.B qqh(h), qqhSM(h)
+the MSSM and SM vector-boson-fusion cross-sections, qq -> qqh + X,
+.TP
+.B tth(h), tthSM(h)
+the MSSM and SM associated top-pair production cross-sections,
+qq,gg -> tth + X,
+.TP
+.B Wh(h), WhSM(h)
+the MSSM and SM associated W production cross-sections, qq -> Wh + X,
+.TP
+.B Zh(h), ZhSM(h)
+the MSSM and SM associated Z production cross-sections, qq -> Zh + X.
+.TP
+.B StSth(h)
+the MSSM production cross-section pp -> Stop_1 Stop_1 h (only h = 1).
+.TP
+.B tHm
+the MSSM production cross-section gb -> tH^-.
+.TP
+.B tHm2, tHm2lo, tHm2hi
+the MSSM production cross-section gb -> tH^- (alternative computation,
+central value + error bounds).
+.SH MATHEMATICA USAGE
+Mathematica and Fortran share the same names for the cross-sections,
+but due to the structure of the Mathematica output, the results 
+have to be accessed in a slightly different way.
+.P
+To access the qqh mode, for example, one would use
+.P
+  {qqh0, qqHH, qqA0} = qqh /. FHHiggsProd[14]
+.P
+in Mathematica, while in Fortran the same is done with
+.P
+  call FHHiggsProd(error, 14D0, prodxs)
+  qqh0 = qqh(1)
+  qqHH = qqh(2)
+  qqA0 = qqh(3)
+.SH SEE ALSO
+.PP
+libFH(1)

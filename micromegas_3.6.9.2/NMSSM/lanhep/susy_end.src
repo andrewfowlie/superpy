@@ -1,0 +1,58 @@
+
+
+SetEM(A,EE).
+CheckHerm.
+
+
+% Neutralino masses and mixing
+
+do_if AutoNeuMass==off.
+
+tail_prm([MNE1, MNE2, MNE3, MNE4]).
+
+clear zNx0, zNxc2, zNxc3a, zNxc3, zNxc4b, zNxc4a, zNxc4, zNxs,
+      zNxu, zNcxd, zNcxa, zNcxb, zNcx1, zNcx2, zNcx3.
+      
+clear zNm05, zNm06, zNm07, zNm08, zNm09, zNm10, zNm11, zNm12, zNm13,
+      zNm15, zNm16, zNm17, zNm20, zNm21, zNm22,
+      zNm24, zNm25, zNm26, zNm27, zNm28, zNm02, zNm03, zNm04.
+
+tail_prm([Zn11, Zn21, Zn31, Zn41, Zn12, Zn22, Zn32, Zn42, 
+          Zn13, Zn23, Zn33, Zn43, Zn14, Zn24, Zn34, Zn44]).
+
+clear zNx1x, zNx12, zNx13, zNx14, zNx2x, zNx22, zNx23, zNx24,
+      zNx3x, zNx32, zNx33, zNx34, zNx4x, zNx42, zNx43, zNx44.
+
+end_if.
+
+% Chargino masses and mixing
+
+do_if AutoChMass==off.
+
+tail_prm([Zv11, Zv21, Zv12, Zv22, Zu11, Zu21, Zu12, Zu22, MC1, MC2]).
+clear Zcsx, Zctx, MC01, MC02, Zcc2v, Zcc2u, Zcsigu, Zcsigv, Zccu,
+      Zcsu, Zccv, Zcsv, Zcsig1, Zcsig2, Zcsig3, Zcsig4.
+end_if.
+
+% Sleptons and squarks masses and mixing
+
+do_if AutoSlq12Mass==off.
+
+tail_prm([MSdL, MSdR, MSsL, MSsR, MSuL, MSuR, MScL, MScR,
+          MSne, MSnm, MSeL, MSeR, MSmL, MSmR]).
+end_if.
+
+do_if AutoSlq3Mass==off.
+
+tail_prm([Zl11, Zl21, Zl12, Zl22,  MSl1, MSl2, MSnl,
+          Zb11, Zb21, Zb12, Zb22,  MSb1, MSb2,
+          Zt11, Zt21, Zt12, Zt22,  MSt1, MSt2]).
+
+end_if.
+
+
+CheckMasses.
+
+
+
+

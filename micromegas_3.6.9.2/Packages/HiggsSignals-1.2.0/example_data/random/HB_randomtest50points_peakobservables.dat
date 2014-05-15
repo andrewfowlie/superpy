@@ -1,0 +1,91 @@
+ # List of peak observables used from latestresults:
+ #
+ # Number        : HS internal numbering of analysis
+ # Analysis-ID   : identity number of analysis
+ # mh_obs        : Mass position of peak observable (hypothetical Higgs mass where signal strength was measured)
+ # mu_obs        : Observed (best-fit) signal strength value
+ # dmu_low       : Lower 1s (cyan band) signal strength value
+ # dmu_high      : Upper 1s (cyan band) signal strength value
+ # dmh_exp       : Experimental mass uncertainty of analysis
+ # collaboration : Exp. collaboration which published the data
+ # energy        : center-of-mass energy of the experiment (TeV)
+ # luminosity    : integrated luminosity used for the measurement (fb-1)
+ # mass-chi2     : Mass measurement entering the Chi^2 (1/0=yes/no)
+ # description   : Higgs process of analysis
+ # reference     : Experimental publication of the data/analysis
+ #
+ # Number Analysis-ID   mh_obs    mu_obs  dmu_low dmu_high  dmh_exp  collaboration  energy  luminosity  mass-chi2                         description     reference
+ #
+  1         130714271   125.50    0.8200   0.3160   0.3300   8.0000       ATL        8.00      25.30     0                (pp)->h->WW->lnulnu(0/1jet)     ATL-CONF-2013-030,arXiv:1307.1427            
+  2         130714272   125.50    1.4200   0.5600   0.7000   8.0000       ATL        8.00      25.30     0                   (pp)->h->WW->lnulnu(VBF)     ATL-CONF-2013-030,arXiv:1307.1427            
+  3         130714274   125.50    1.1800   0.9000   1.6400   1.1000       ATL        8.00      25.30     0               (pp)->h->ZZ->4l(VBF/VH-like)     ATL-CONF-2013-013,arXiv:1307.1427            
+  4         130714273   124.30    1.4500   0.3700   0.4300   1.1000       ATL        8.00      25.30     1                  (pp)->h->ZZ->4l(ggH-like)     ATL-CONF-2013-013,arXiv:1307.1427            
+  5         201301215   126.80    2.6900   1.6600   1.9700   2.0000       ATL        8.00      20.70     0                  (pp)->h->gammagamma(1lep)     ATL-CONF-2013-012                            
+  6         201209110   126.50    2.7200   1.8500   1.8700   1.5700       ATL        7.00       4.80     0                  (pp)->h->gammagamma(2jet)     ATL-CONF-2012-091                            
+  7         201301214   126.80    2.9700   2.1500   2.7100   2.0000       ATL        8.00      20.70     0                (pp)->h->gammagamma(ETmiss)     ATL-CONF-2013-012                            
+  8         201209106   126.50   -4.3600   1.8100   1.8000   1.5000       ATL        7.00       4.80     0   (pp)->h->gammagamma(conv.-central-highPT     ATL-CONF-2012-091                            
+  9         201301207   126.80    1.9800   1.2600   1.5400   2.0000       ATL        8.00      20.70     0   (pp)->h->gammagamma(conv.-central-highPT     ATL-CONF-2013-012                            
+ 10         201209105   126.50    6.1000   2.6200   2.6300   1.6700       ATL        7.00       4.80     0   (pp)->h->gammagamma(conv.-central-lowPTt     ATL-CONF-2012-091                            
+ 11         201301206   126.80    1.3900   0.9500   1.0100   2.0000       ATL        8.00      20.70     0   (pp)->h->gammagamma(conv.-central-lowPTt     ATL-CONF-2013-012                            
+ 12         201209108   126.50   -1.5900   2.9000   2.8900   1.6800       ATL        7.00       4.80     0    (pp)->h->gammagamma(conv.-rest-highPTt)     ATL-CONF-2012-091                            
+ 13         201301209   126.80    1.2700   1.2300   1.3200   2.0000       ATL        8.00      20.70     0    (pp)->h->gammagamma(conv.-rest-highPTt)     ATL-CONF-2013-012                            
+ 14         201209107   126.50    2.7400   2.0100   1.9800   1.9300       ATL        7.00       4.80     0     (pp)->h->gammagamma(conv.-rest-lowPTt)     ATL-CONF-2012-091                            
+ 15         201301208   126.80    2.2300   1.0100   1.1400   2.0000       ATL        8.00      20.70     0     (pp)->h->gammagamma(conv.-rest-lowPTt)     ATL-CONF-2013-012                            
+ 16         201209109   126.50    0.3700   3.7900   3.5800   2.6500       ATL        7.00       4.80     0          (pp)->h->gammagamma(conv.-trans.)     ATL-CONF-2012-091                            
+ 17         201301210   126.80    2.7800   1.5700   1.7200   2.0000       ATL        8.00      20.70     0           (pp)->h->gammagamma(conv.trans.)     ATL-CONF-2013-012                            
+ 18         201301211   126.80    2.7500   1.3800   1.7800   2.0000       ATL        8.00      20.70     0    (pp)->h->gammagamma(highmass2jet,loose)     ATL-CONF-2013-012                            
+ 19         201301212   126.80    1.6100   0.6700   0.8300   2.0000       ATL        8.00      20.70     0    (pp)->h->gammagamma(highmass2jet,tight)     ATL-CONF-2013-012                            
+ 20         201301213   126.80    0.3200   1.4400   1.7200   2.0000       ATL        8.00      20.70     0           (pp)->h->gammagamma(lowmass2jet)     ATL-CONF-2013-012                            
+ 21         201209102   126.50    0.2200   1.9500   1.9400   1.3700       ATL        7.00       4.80     0   (pp)->h->gammagamma(unconv.-central-high     ATL-CONF-2012-091                            
+ 22         201301203   126.80    0.9600   0.9500   1.0700   2.0000       ATL        8.00      20.70     0   (pp)->h->gammagamma(unconv.-central-high     ATL-CONF-2013-012                            
+ 23         201209101   126.50    0.5300   1.4800   1.4100   1.4500       ATL        7.00       4.80     0   (pp)->h->gammagamma(unconv.-central-lowP     ATL-CONF-2012-091                            
+ 24         201301202   126.80    0.8700   0.7000   0.7300   2.0000       ATL        8.00      20.70     0   (pp)->h->gammagamma(unconv.-central-lowP     ATL-CONF-2013-012                            
+ 25         201209104   126.50   10.4400   3.7000   3.6700   1.5100       ATL        7.00       4.80     0   (pp)->h->gammagamma(unconv.-rest-highPTt     ATL-CONF-2012-091                            
+ 26          20130205   126.80    2.6900   1.1700   1.3500   2.0000       ATL        8.00      20.70     0   (pp)->h->gammagamma(unconv.-rest-highPTt     ATL-CONF-2013-012                            
+ 27         201209103   126.50    2.5200   1.6800   1.6800   1.5700       ATL        7.00       4.80     0   (pp)->h->gammagamma(unconv.-rest-lowPTt)     ATL-CONF-2012-091                            
+ 28         201301204   126.80    2.5000   0.7700   0.9200   0.9000       ATL        8.00      20.70     1   (pp)->h->gammagamma(unconv.-rest-lowPTt)     ATL-CONF-2013-012                            
+ 29         201216001   125.00    0.7700   0.6510   0.7000  20.0000       ATL        8.00      17.70     0                            (pp)->h->tautau     ATL-CONF-2012-160                            
+ 30         201307901   125.00    0.4600   0.8600   0.8800  15.0000       ATL        8.00      25.00     0                     (pp)->Vh->Vbb(0lepton)     ATL-CONF-2013-079                            
+ 31         201307902   125.00    0.0900   1.0000   1.0100  15.0000       ATL        8.00      25.00     0                     (pp)->Vh->Vbb(1lepton)     ATL-CONF-2013-079                            
+ 32         201307903   125.00   -0.3600   1.3800   1.4800  15.0000       ATL        8.00      25.00     0                     (pp)->Vh->Vbb(2lepton)     ATL-CONF-2013-079                            
+ 33         201307501   125.00    3.7000   2.0000   1.9000  25.0000       ATL        8.00      25.40     0                              (pp)->Vh->VWW     ATL-CONF-2013-075                            
+ 34         130166683   125.00    0.0000   1.7800   1.7800  30.0000       CDF        1.96       9.70     0                             (ppbar)->h->WW     arXiv:1301.6668                              
+ 35         130166682   125.00    7.8100   4.4200   4.6100   5.0000       CDF        1.96       9.70     0                     (ppbar)->h->gammagamma     arXiv:1301.6668                              
+ 36         130166684   125.00    0.0000   8.4400   8.4400  25.0000       CDF        1.96       9.70     0                         (ppbar)->h->tautau     arXiv:1301.6668                              
+ 37         130166685   125.00    1.7200   0.8700   0.9200  20.0000       CDF        1.96       9.70     0                           (ppbar)->Vh->Vbb     arXiv:1301.6668                              
+ 38         130166681   125.00    9.4900   6.2800   6.6000  30.0000       CDF        1.96       9.70     0                         (ppbar)->tth->ttbb     arXiv:1301.6668                              
+ 39           1300301   125.70    0.7725   0.2445   0.1725  25.0000       CMS        8.00      25.40     0                        (pp)->h->WW(0/1jet)     CMS-PAS-HIG-13-003                           
+ 40           1300201   125.80    0.8580   0.2580   0.3210   0.7000       CMS        8.00      24.70     1                    (pp)->h->ZZ->4l(0/1jet)     CMS-PAS-HIG-13-002                           
+ 41           1300202   125.70    1.2350   0.5830   0.8520   2.0000       CMS        8.00      24.70     0                      (pp)->h->ZZ->4l(2jet)     CMS-PAS-HIG-13-002                           
+ 42           1300105   125.00    0.7800   0.9800   1.1000   2.0000       CMS        8.00      19.60     0            (pp)->h->gammagamma(2jet-loose)     CMS-PAS-HIG-13-001                           
+ 43           1300106   125.00    0.2700   0.5800   0.6900   2.0000       CMS        8.00      19.60     0            (pp)->h->gammagamma(2jet-tight)     CMS-PAS-HIG-13-001                           
+ 44           1201503   125.00    4.1820   1.7810   2.3150   2.0000       CMS        7.00       5.10     0                  (pp)->h->gammagamma(2jet)     CMS-PAS-HIG-12-015                           
+ 45           1300102   125.00    1.8900   2.2800   2.6200   2.0000       CMS        8.00      19.60     0                   (pp)->h->gammagamma(MET)     CMS-PAS-HIG-13-001                           
+ 46           1300103   125.00   -0.6700   1.9500   2.7800   2.0000       CMS        8.00      19.60     0                     (pp)->h->gammagamma(e)     CMS-PAS-HIG-13-001                           
+ 47           1300104   125.00    0.3800   1.3600   1.8400   2.0000       CMS        8.00      19.60     0                    (pp)->h->gammagamma(mu)     CMS-PAS-HIG-13-001                           
+ 48           1300107   125.00    3.8800   1.6800   2.0000   1.5000       CMS        7.00       5.10     0             (pp)->h->gammagamma(untagged0)     CMS-PAS-HIG-13-001                           
+ 49           1300111   125.00    2.2000   0.7800   0.9500   1.5000       CMS        8.00      19.60     0             (pp)->h->gammagamma(untagged0)     CMS-PAS-HIG-13-001                           
+ 50           1300108   125.00    0.2000   0.9300   1.0100   1.5000       CMS        7.00       5.10     0             (pp)->h->gammagamma(untagged1)     CMS-PAS-HIG-13-001                           
+ 51           1300112   125.40    0.0600   0.6700   0.6900   1.1000       CMS        8.00      19.60     1             (pp)->h->gammagamma(untagged1)     CMS-PAS-HIG-13-001                           
+ 52           1300109   125.00    0.0400   1.2400   1.2500   1.5000       CMS        7.00       5.10     0             (pp)->h->gammagamma(untagged2)     CMS-PAS-HIG-13-001                           
+ 53           1300113   125.00    0.3100   0.4700   0.5000   1.5000       CMS        8.00      19.60     0             (pp)->h->gammagamma(untagged2)     CMS-PAS-HIG-13-001                           
+ 54           1300110   125.00    1.4700   2.4700   1.6800   1.5000       CMS        7.00       5.10     0             (pp)->h->gammagamma(untagged3)     CMS-PAS-HIG-13-001                           
+ 55           1300114   125.00   -0.3600   0.8100   0.8800   1.5000       CMS        8.00      19.60     0             (pp)->h->gammagamma(untagged3)     CMS-PAS-HIG-13-001                           
+ 56           1300701   125.70    2.9000   2.7000   2.8000   2.0000       CMS        8.00      25.40     0                              (pp)->h->mumu     CMS-PAS-HIG-13-007                           
+ 57           1300401   125.70    0.7700   0.5510   0.5770  25.0000       CMS        8.00      24.30     0                    (pp)->h->tautau(0/1jet)     CMS-PAS-HIG-13-004                           
+ 58           1302201   125.00    0.6200   0.4700   0.5800  25.0000       CMS        8.00      24.40     0                              (pp)->VBF->WW     CMS-PAS-HIG-13-022                           
+ 59           1300402   125.70    1.4230   0.6370   0.6960  20.0000       CMS        8.00      24.50     0                          (pp)->VBF->tautau     CMS-PAS-HIG-13-004                           
+ 60           1301701   125.00    1.0000   2.0000   2.0000  20.0000       CMS        8.00      25.40     0                   (pp)->Vh->VWW(hadronicV)     CMS-PAS-HIG-13-017                           
+ 61           1301201   125.70    1.0000   0.4857   0.5070  12.5000       CMS        8.00      24.00     0                              (pp)->Vh->Vbb     CMS-PAS-HIG-13-012                           
+ 62           1300403   125.70    0.9810   1.4960   1.6800  20.0000       CMS        8.00      24.30     0                           (pp)->Vh->tautau     CMS-PAS-HIG-13-004                           
+ 63           1300901   125.70    0.5100   0.9420   1.2560  25.0000       CMS        8.00      25.40     0                              (pp)->Wh->WWW     CMS-PAS-HIG-13-009                           
+ 64           1302001   125.70    5.3000   1.8000   2.2000  25.0000       CMS        8.00      19.60     0              (pp)->tth->2leptons(samesign)     CMS-PAS-HIG-13-020                           
+ 65           1302002   125.70    2.7000   1.8000   2.2000  25.0000       CMS        8.00      19.60     0                        (pp)->tth->3leptons     CMS-PAS-HIG-13-020                           
+ 66           1302003   125.70   -4.8000   1.2000   5.0000  25.0000       CMS        8.00      19.60     0                        (pp)->tth->4leptons     CMS-PAS-HIG-13-020                           
+ 67           1301901   125.70    1.0000   2.0000   1.9000  25.0000       CMS        8.00      24.50     0                          (pp)->tth->tt(bb)     CMS-PAS-HIG-13-019                           
+ 68           1301501   125.50   -0.2000   1.9000   2.4000   2.0000       CMS        8.00      19.60     0                  (pp)->tth->tt(gammagamma)     CMS-PAS-HIG-13-015                           
+ 69           1301902   125.70   -1.4000   5.5000   6.3000  25.0000       CMS        8.00      24.50     0                      (pp)->tth->tt(tautau)     CMS-PAS-HIG-13-019                           
+ 70         130308232   125.00    1.9000   1.5200   1.6300  25.0000       D0         1.96       9.70     0                             (ppbar)->h->WW     arXiv:1303.0823                              
+ 71         130308234   125.00    1.2300   1.1700   1.2400  25.0000       D0         1.96       9.70     0                             (ppbar)->h->bb     arXiv:1303.0823                              
+ 72         130308231   125.00    4.2000   4.2000   4.6000   5.0000       D0         1.96       9.70     0                     (ppbar)->h->gammagamma     arXiv:1303.0823                              
+ 73         130308233   125.00    3.9600   3.3800   4.1100  25.0000       D0         1.96       9.70     0                         (ppbar)->h->tautau     arXiv:1303.0823                              

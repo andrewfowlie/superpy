@@ -1,0 +1,150 @@
+.TH LIBFH 1 "30-May-2012"
+.SH NAME
+.PP
+libFH \- the FeynHiggs library
+.SH DESCRIPTION
+libFH is a library of Fortran subroutines for calculating the masses and
+couplings of the Higgs sector in the MSSM.  The FeynHiggs subroutines
+can also be accessed through the command-line frontend FeynHiggs or
+through the Mathematica frontend MFeynHiggs.
+.P
+libFH provides the following subroutines:
+.P
+--- SETUP ---
+.TP
+.B FHSetFlags, FHRetrieveFlags
+sets/retrieves the flags for the computation, e.g. which 
+renormalization scheme to use, or the scope of the calculation.
+.TP
+.B FHSetSMPara, FHRetrieveSMPara
+sets/retrieves the SM input parameters.
+.TP
+.B FHSetPara, FHRetrievePara, FHRetrieveOSPara
+sets/retrieves the numerical parameters for the computation, i.e. the 
+values for MSSM masses and breaking parameters.
+.TP
+.B FHSetSLHA
+extracts the parameters from a SUSY Les Houches Accord data structure.
+.TP
+.B FHSetNMFV, FHRetrieveNMFV, FHSetLFV, FHRetrieveLFV
+sets/retrieves the flavour-violating parameters.
+.TP
+.B FHSetDebug
+sets the FeynHiggs debug level.
+.TP
+.B FHGetSMPara, FHGetPara
+retrieves (some of) the SM and MSSM parameters computed from the input 
+values by FHSet(SM)Para.
+.P
+--- COMPUTATION ---
+.TP
+.B FHHiggsCorr
+calculates the corrected Higgs masses together with the corresponding
+effective mixing angle and mixing matrix.
+.TP
+.B FHUncertainties
+computes estimates for the uncertainties of the Higgs masses and 
+mixings.
+.TP
+.B FHCouplings
+calculates the Higgs couplings to fermions and gauge bosons and the Higgs
+self-couplings for a given mixing matrix.
+.TP
+.B FHSelectUZ
+chooses whether to use UHiggs or ZHiggs for internal and external Higgs
+bosons.
+.TP
+.B FHHiggsProd
+calculates (approximate) Higgs production cross-sections,
+.TP
+.B FHConstraints
+evaluates electroweak precision observables which are used as further
+constraints on the MSSM parameter space.
+.TP
+.B FHOutput
+run FeynHiggs functions and produce output according to a key and
+write the output to a file.
+.TP
+.B FHOutputSLHA
+run FeynHiggs functions and produce output according to a key and
+save the results in an SLHA data structure.
+.P
+--- RECORD AND TABLE HANDLING ---
+.TP
+.B FHClearRecord
+initializes a FeynHiggs Record.
+.TP
+.B FHReadRecord
+read a file into a FeynHiggs Record.
+.TP
+.B FHSLHARecord
+convert an SLHA data structure to a FeynHiggs Record.
+.TP
+.B FHLoopRecord
+advances the loops contained in a FeynHiggs Record.
+.TP
+.B FHSetRecord, FHRetrieveRecord
+sets/retrieves the FeynHiggs parameters from/to a FeynHiggs Record.
+.TP
+.B FHRecordIndex
+translates a parameter names into its index in a FeynHiggs Record.
+.TP
+.B FHLoadTable
+loads a data file into the internal table.
+.TP
+.B FHTableRecord
+associates a FeynHiggs Record with the internal table.
+.SH CALLING SEQUENCE
+General remarks: All FeynHiggs subroutines have an error flag as their 
+first argument, and one should not proceed with the calling sequence if 
+a non-zero error value is returned.
+.P
+The following gives a rough calling sequence, leaving out many of the 
+optional functions.  Before invoking the actual calculation, the flags
+and parameters have to be set up with
+.P
+  call FHSetFlags(...)
+  call FHSetPara(...)
+.P
+Some of the MSSM parameters computed from the input values by FHSetPara 
+can be retrieved using
+.P
+  call FHGetPara(...)
+.P
+Now the main calculation can be invoked with
+.P
+  call FHHiggsCorr(...)
+.P
+This yields the corrected Higgs masses, the sine of the effective 
+mixing angle, and the Higgs mixing and Z-factor matrices.  Estimates
+for the uncertainties of these quantities can be obtained with
+.P
+  call FHUncertainties(...)
+.P
+The Higgs decay rates, branching ratios, and couplings corresponding to
+the most recent values calculated by FHHiggsCorr can be obtained with
+.P
+  #include "FHCouplings.h"
+  call FHCouplings(...)
+.P
+Electroweak precision observables can be obtained with
+.P
+  call FHConstraints(...)
+.SH LINKING
+Just add the path to libFH.a and -lFH to the compiler command line, as 
+in:
+.P
+  f77 myprogram.f -L<fhlib-path> -lFH
+.P
+For example:
+.P
+  f77 myprogram.f -L$HOME/FeynHiggs-2.7.1/i586-linux/lib -lFH
+.SH SEE ALSO
+.PP
+FeynHiggs(1), MFeynHiggs(1), FHSetFlags(1), FHRetrieveFlags(1), 
+FHSetSMPara(1), FHRetrieveSMPara(1), FHSetPara(1), FHRetrievePara(1), 
+FHSetSLHA(1), FHSetNMFV(1), FHRetrieveNMFV(1), FHSetDebug(1), 
+FHGetPara(1), FHGetSelf(1), FHAddSelf(1), FHHiggsCorr(1), 
+FHUncertainties(1), FHCouplings(1), FHSelectUZ(1), FHHiggsProd(1), 
+FHConstraints(1), FGClearRecord(1), FHReadRecord(1), FHLoopRecord(1), 
+FHSetRecord(1), FHRecordIndex(1), FHLoadTable(1), FHTableRecord(1)

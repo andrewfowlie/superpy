@@ -1,0 +1,53 @@
+
+1) Ellwanger, Ulrich and Hugonie, Cyril",
+   "NMHDECAY 2.0: An Updated program for sparticle  masses, Higgs masses, couplings and decay widths in the NMSSM", 
+    Comput.Phys.Commun.,175(2006),pp 290-303,
+    hep-ph/0508022
+
+2) Ellwanger, Ulrich and Hugonie, Cyril,
+   "NMSPEC: A Fortran code for the sparticle and Higgs masses in the NMSSM with GUT scale boundary conditions",
+   Comput.Phys.Commun.,177(2007),pp 399-407,
+   hep-ph/0612134
+
+3)Belanger, G. and Boudjema, F. and Hugonie, C. and Pukhov, A. and Semenov, A.,
+  "Relic density of dark matter in the NMSSM",
+  JCAP,0509(2005),001,
+  hep-ph/0505142
+
+
+The NMSSM can be treated in 2 different models with input parameters defined either at the GUT scale or the weak scale. 
+To define the model one has to uncomment one of the lines near the top of the main.c/F files,  
+
+
+#define EWSB   
+   The input parameters of the pMSSM  are defined at the SUSY scale and read from a file
+   specified in the command line:
+                  ./main data1.par 
+ 
+#define SUGRA  
+   The parameters of the CNMSSM 
+      m0      common scalar mass at GUT scale
+      mHalf   common gaugino mass at GUT scale
+      A0      trilinear soft breaking parameter at GUT scale
+      tb      tan(beta) at MZ
+      aKappa  trilinear soft breaking parameter  at GUT scale
+      Lambda  singlet coupling  at SUSY scale
+      
+   are specified via a command line:
+            ./main  m0 mHalf A0 tb Lambda aKappa 
+
+   in addition, some auxiliary parameters can be defined to replace the default
+   values:
+      sgn     +/-1,  sign of Higgsino mass term (default 1)
+      aLambda trilinear soft breaking parameter at GUT scale (default aLambda=a0)
+      Mtp     top quark pole mass
+      MbMb    Mb(Mb) scale independent b-quark mass
+      alfSMZ  strong coupling at MZ
+
+If all these definitions are commented  ./main will read a Les Houches spectrum file (SLHA)
+to be specified  in the command line:
+             ./main spectr
+
+In general ./main launched without parameters explains which parameters are  needed.
+
+The NMSSMTools_4.0.0 code located in the directory Packages/ is used to compute the particle spectrum with loop corrections. 

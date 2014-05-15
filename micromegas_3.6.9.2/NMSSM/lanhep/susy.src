@@ -1,0 +1,87 @@
+
+
+keys scenario=micro.  % nmhdecay nmspec slha
+
+do_if scenario==micro.
+   keys  mix2g  =   on.
+   keys  slha   =   off.
+end_if.
+
+do_if scenario==nmhdecay.
+   keys  mix2g  =   off .
+   keys  slha   =   on  .
+   model 'NMSSM(nmhdecay)'/1.
+end_if.
+
+do_if scenario==nmspec.
+   keys  mix2g  =   off .
+   keys  slha   =   on  .
+    model 'NMSSM(nmspec)'/2.
+end_if.
+
+do_if scenario==slha.
+   keys  mix2g  =   off .
+   keys  slha   =   on  .
+   model 'NMSSM(../spect)'/3.
+end_if.
+
+
+keys gi_Nmass=on.
+
+keys tree_sleptons=off.
+keys Check3SQmass=on.
+
+/*   Gauge fixing  ('unitary' or 'Feynman') */ 
+keys gauge_fixing=Feynman.
+
+/*  Dimension of sfermion mixing matrices (one of 0, 2, 6) */
+%keys sel_mix=2, usq_mix=2, dsq_mix=2.
+
+/*  Additional supersymmetry breaking terms (by Rosiek) (on/off) */
+%keys  extra_sbt=off.
+
+/*  Mass & mixing matrices calculated from initial parameters */
+keys AutoNeuMass=on, AutoChMass=on, AutoSlq12Mass=on, AutoSlq3Mass=on.
+
+
+
+% =============== Model name and number setup.
+
+%option chepCFWidth=50.
+%option chepLPWidth=5000.
+option chepPDWidth=800.
+
+let g5=gamma5.
+let eps2 = {{0, 1},{-1,0}}.
+special sigma:(spinor2, spinor2, vector).
+
+read "susy_var.src".
+read "treeHmix.src".          
+read "rq_mass.src".
+read "2genDDmix.src". 
+do_if tree_sleptons==on.
+read "treeSlepton.src".
+end_if.
+read "susy_prt.src".
+read "susy_let.src".
+read "improve_squarks.src".
+read "higgsPot.src".      % Higgs potential
+read "susy_tex.src".
+read "susy_ggi.src".     % gauge fields interaction
+read "susy_gmi.src".     % gauge-matter interaction
+read "susy_dd.src".      % DD terms
+read "susy_w.src".       % Terms going from super-potential (FF & Yukawa)
+read "Yukawa.src".       % improve Yukawa: dMb,dMd, Mc without mixiing
+read "gi_Nmass.src".     % neutralino mass matrix is reproduced by Lagrangian.
+read "susy_sbt.src".     % Soft SUSY-breaking terms
+read "susy_fpg.src".     % Faddeev-Popov ghosts
+read "susy_end.src".
+
+%read "susy_tex.src".
+%read "susy_sel.src".     % Vertices selection
+
+read 'gg+.src'.
+
+SetEM(A,EE). 
+CheckHerm.
+CheckMasses.

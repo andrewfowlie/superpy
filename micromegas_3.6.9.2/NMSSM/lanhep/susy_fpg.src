@@ -1,0 +1,33 @@
+% Gauge fixing
+
+lterm  -1/2*(deriv*A)**2.
+
+lterm  -1/2*(deriv*G)**2.
+
+lterm  -1/2*(2*(deriv*'W+'+i*MW*'W+.f')*(deriv*'W-'-i*MW*'W-.f') +
+	(deriv*Z-MW/CW*'Z.f')**2).
+
+
+% Ghost terms
+
+lterm  i*g*eps*deriv*WGh*Wgh*W.
+lterm -i*GG*f_SU3*ccghost(G)*G^mu*deriv^mu*ghost(G).
+
+%gb This term needs to be added -what is the substitution?
+
+%lterm -EE**2/SW**2/4*Sqrt2*{vev1, vev2}*{{ca,sa},{-sa,ca}}*
+%	('Z.C'*'Z.c'/CW**2+'W-.C'*'W+.c'+'W+.C'*'W-.c')*{H,h}
+%      +i*EE*MW/2/SW*(-'W-.C'*'W+.c'+'W+.C'*'W-.c')*'Z.f'.
+
+lterm -EE**2/SW**2/4*Sqrt2*{vev1, vev2}*
+		{Zh11*h1+Zh21*h2+Zh31*h3, Zh12*h1+Zh22*h2+Zh32*h3}*
+	('Z.C'*'Z.c'/CW**2+'W-.C'*'W+.c'+'W+.C'*'W-.c')
+      -i*EE*MW/2/SW*(-'W-.C'*'W+.c'+'W+.C'*'W-.c')*'Z.f'.
+
+lterm EE*MW/2/SW/CW*('Z.C'*'W-.c'-'W-.C'*'Z.c'*(CW**2-SW**2)-
+		'W-.C'*'A.c'*2*SW*CW)*'W+.f'.
+
+lterm EE*MW/2/SW/CW*('Z.C'*'W+.c'-'W+.C'*'Z.c'*(CW**2-SW**2)-
+		'W+.C'*'A.c'*2*SW*CW)*'W-.f'.
+
+

@@ -1,0 +1,75 @@
+Model:         Standard Model(CKM=1)
+Model changed: False
+Gauge:         Feynman
+
+Process:   p,p->W,b,B
+Decay:     W->le,n
+Composite: p=u,U,d,D,s,S,c,C,b,B,G
+Composite: W=W+,W-
+Composite: le=e,E,m,M
+Composite: n=ne,Ne,nm,Nm
+Composite: jet=u,U,d,D,s,S,c,C,b,B,G
+
+pdf1:      cteq6l (proton)
+pdf2:      cteq6l (proton)
+p1:        4000
+p2:        4000
+
+Run parameter: Mh
+Run begin:     120
+Run step size: 5
+Run n steps:   3
+
+alpha Q :            M45
+
+Cut parameter:    M(b,B)
+Cut invert:       False
+Cut min:          100
+Cut max:     
+
+Cut parameter:    J(jet,jet)
+Cut invert:       False
+Cut min:          0.5
+Cut max:            
+
+Cut parameter:    T(jet)
+Cut invert:       False
+Cut min:          20
+Cut max:            
+
+Kinematics :      12 -> 3, 45
+Kinematics :      45 -> 4 , 5
+
+Regularization momentum: 45
+Regularization mass:     Mh
+Regularization width:    wh
+Regularization power:    2
+
+
+Dist parameter:    M(b,B)
+Dist min:          100
+Dist max:          200
+Dist n bins:       100
+Dist title:        p,p->W,b,B
+Dist x-title:      M(b,B) (GeV)
+
+Dist parameter:    M(W,jet)
+Dist min:	   100
+Dist max:	   200
+Dist n bins:	   100
+Dist title:	   p,p->W,b,B
+Dist x-title:	   M(W,jet) (GeV)
+
+Number of events (per run step): 10000
+Filename:                        pp_Wbb_enbb
+
+nSess_1:   5
+nCalls_1:  100000
+nSess_2:   5
+nCalls_2:  100000
+
+
+
+
+
+

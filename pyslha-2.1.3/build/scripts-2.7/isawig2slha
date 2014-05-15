@@ -1,0 +1,44 @@
+#!/usr/bin/python
+
+"""\
+Usage: %prog IN.isa [OUT.spc]
+
+Convert a HERWIG/ISAWIG model/decay spectrum file to an SLHA spectrum input
+file.
+
+Conversion based on the HERWIG SUSY specification format, from
+http://www.hep.phy.cam.ac.uk/~richardn/HERWIG/ISAWIG/file.html
+
+Author:
+  Andy Buckley <andy.buckley@cern.ch>
+  http://insectnation.org/projects/pyslha
+"""
+
+__author__ = "Andy Buckley <andy.buckley@cern.ch"
+
+
+import pyslha
+import sys, optparse
+parser = optparse.OptionParser(usage=__doc__, version=pyslha.__version__)
+opts, args = parser.parse_args()
+if len(args) < 1 or len(args) > 2:
+    parser.print_help()
+    sys.exit(1)
+
+## Choose output file
+import os
+o = os.path.basename(args[0])
+if "." in o:
+    o = o[:o.rindex(".")]
+opts.OUTFILE = o + ".spc"
+if len(args) == 2:
+    opts.OUTFILE = args[1]
+
+## Read spectrum file
+BLOCKS, DECAYS = pyslha.readISAWIGFile(args[0])
+
+## And write it out again!
+if opts.OUTFILE == "-":
+    sys.stdout.write(pyslha.writeSLHA(opts.OUTFILE))
+else:
+    pyslha.writeSLHAFile(opts.OUTFILE, BLOCKS, DECAYS)

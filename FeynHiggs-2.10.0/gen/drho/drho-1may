@@ -1,0 +1,134 @@
+#! /bin/sh -x
+
+case "$1" in
+q|sq)
+	;;
+*)
+	echo "Usage:  $0 q|sq"
+	echo 'will output diagrams & Mma code if DEBUG=1'
+	exit 1 ;;
+esac
+
+#rm -fr m f d
+
+[ -d m ] || mkdir m
+[ -d f ] || mkdir f
+
+rm -f m/$1.* f/$1.*
+
+math -run tag=\"$1\" -run debug=${DEBUG:-0} << \_EOF_
+AppendTo[$Echo, "stdout"];
+
+<< FeynArts`;
+<< FormCalc`;
+<< btensor`;
+
+NClear[];
+N[sqrt2] = Sqrt[2.];
+Clear[CW2];
+
+$DebugCmd = {"DETAILED_DEBUG", "DPOPE", " ENDL"};
+
+SetOptions[Paint, PaintLevel -> {InsertionLevel}];
+
+SetOptions[CalcFeynAmp,
+  FermionChains -> Chiral,
+  FermionOrder -> None,
+  Dimension -> D];
+
+If[ debug === 1, MkDir[$PaintSE = "d/"] ];
+
+CKM = IndexDelta;
+
+ifopt = Sequence@@ Options[InsertFields];
+cfopt = Sequence@@ Options[CalcFeynAmp];
+
+set[opt___] := (
+  SetOptions[InsertFields, ifopt, FilterOptions[InsertFields, opt]];
+  SetOptions[CalcFeynAmp, cfopt, FilterOptions[CalcFeynAmp, opt]];
+  ClearProcess[];
+  ClearSE[] );
+
+
+smsimp[x_] := MSSMReduce[Simplify, SMReduce][x] //Factor;
+
+(*/. MW2 - MZ2 -> -SW2 MZ2 /.
+  {MZ2/MW2 -> 1/CW2, MW2/MZ2 -> CW2}*)
+
+pavesimp[x_] := Simplify @ Collect[x /. ToOldBRules,
+  _A0 | _B0 | _B1 | _B00 | _B11 | _DB0 | _DB1 | _DB00 | _DB11,
+  smsimp ];
+
+simp[x_] := Collect[x, _SumOver, pavesimp];
+
+
+do[name_][expr_] := (save[debug, name, #]; #)& @
+  (expr /. ME|ME2|MM|MM2 -> 0 /. Re -> Identity);
+
+save[1, name_, expr_] :=
+  Put[expr, ToFileName["m", tag <> "-" <> name <> ".m"]];
+
+
+Attributes[mod] = {HoldAll};
+
+mod[m_, excl___, expr_] := Block[{model = m, stdexcl = excl}, expr //simp];
+
+
+write[suffix_, expr_] :=
+Block[ {hh, name = "DeltaRho1L_" <> suffix, fexpr},
+  Put[expr, ToFileName["m", name <> ".m"]];
+
+  hh = OpenFortran[ToFileName["f", name <> ".F"]];
+
+  WriteString[hh, "\
+* " <> name <> ".F\n\
+* generated " <> TimeStamp[] <> "\n\
+* this file is part of FeynHiggs\n\
+* please do not edit directly\n\n\
+#include \"externals.h\"\n\n\n\
+\tdouble complex function " <> name <> "(Alfa_, MW2_)\n\
+\timplicit none\n\
+\tdouble complex drho\n\
+\tdouble precision Alfa_, MW2_\n\n\
+#include \"FH.h\"\n\
+#include \"looptools.h\"\n\n"];
+
+  fexpr = expr /. {
+    Alfa -> "Alfa_", MW2 -> "MW2_",
+    Sqrt[2] -> sqrt2, 1/Sqrt[2] -> 1/sqrt2 };
+
+  If[ !FreeQ[fexpr, MW|SW|CW|SW2|CW2],
+    Print["MW|SW|CW|SW2|CW2 dependence!"] ];
+
+  WriteExpr[hh, {name -> fexpr, "\tend\n"},
+    Optimize -> True,
+    Expensive -> {_A0, _B0, _B1, _B00, _B11, _DB0, _DB1, _DB00, _DB11},
+    (*HornerStyle -> False,*)
+    IndexType -> "integer",
+    DebugLines -> True,
+    FinalTouch -> simp];
+
+  Close[hh]
+];
+
+
+drho[model_, sel_] := (
+  set[Model -> model, LastSelections -> sel];
+  SelfEnergy[V[3], 0]/MW2 - SelfEnergy[V[2], 0]/MZ2 //simp
+);
+
+
+drho["q"] := drho["SM", F[3|4]];
+
+drho["sq"] := drho["MSSM", S[13|14]];
+
+_drho := (Print["UNKNOWN TAG"]; Abort[]);
+
+
+deltarho[t_] := (ClearSE[]; write[t, drho[t]])
+
+
+deltarho[tag]
+
+_EOF_
+

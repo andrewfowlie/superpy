@@ -1,0 +1,11 @@
+1 6 51 
+          On-line calculator.
+All parameters and constraints involved in 
+calculations are permitted in the input. Use the PI
+symbol for the pi constant. The integer numbers are
+treated as decimal ones, so 1/3 is not zero, but 
+3.333333E-01. For real numbers at last one digit 
+before the dot should be written. 
+  The brackets are permitted. Standard mathematical
+functions :sqrt,sin,cos,tan,asin,acos,atan,exp,log,
+fabs,atan2 can be used. Use ^ for power.

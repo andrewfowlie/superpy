@@ -1,0 +1,194 @@
+let sigma4_11=     
+     4*(2*'h-'**3*'h+' + h0**2*'p-'**2 + 2*Sqrt2*h0*'h+'*'p-'*'p--' + 2*'h+'**2*'p--'**2 
+     + 2*Sqrt2*h0*'h-'*(p0*'p-' + 'p--'*'p+') + 2*'h-'**2*(h0*h0 + 'p-'*'p+' + 2*'p--'*'p++')).
+     
+let sigma4_12=    
+     4*(Sqrt2*h0**2*anti(p0)*'p-' + h0*(2*h0**2*'h-' + 'h+'*('p-'**2 + 2*anti(p0)*'p--')) 
+     + Sqrt2*h0**2*(p0*'p-' + 'p--'*'p+') + 2*h0*'h-'*('h-'*'h+' + p0*anti(p0) + 'p-'*'p+' + 'p--'*'p++') + 
+     Sqrt2*('h+'**2*'p-'*'p--' + 'h-'**2*(anti(p0)*'p+' + 'p-'*'p++'))).
+     
+let sigma4_13=     
+     4*(Sqrt2*h0**2*'h-'*p0 + Sqrt2*h0**2*'h-'*anti(p0) + 2*h0*(h0**2*'p-' + Sqrt2*h0*'h+'*'p--' + 'h-'**2*'p+') + 
+     h0*(4*'h-'*'h+'*'p-' + 2*p0*anti(p0)*'p-' + 'p-'**2*'p+' + 2*anti(p0)*'p--'*'p+' + 2*'p-'*'p--'*'p++') + 
+     Sqrt2*('h+'*(p0*'p-'**2 + 3*'h-'*'h+'*'p--' + 2*'p-'*'p--'*'p+') + ('h-'**3 + 2*'h+'*'p--'**2)*'p++')).
+     
+let sigma4_14=      
+     4*(2*'h-'**2*'h+'**2 + 2*p0*anti(p0)*'p-'*'p+' + 'p-'**2*'p+'**2 + 2*anti(p0)*'p--'*'p+'**2 + 
+     Sqrt2*h0*'h+'*(p0*'p-' + 2*'p--'*'p+') + 2*p0*'p-'**2*'p++' + 6*'p-'*'p--'*'p+'*'p++' + 4*'p--'**2*'p++'**2 + 
+     2*'h-'*'h+'*('p-'*'p+' + 3*'p--'*'p++') + h0*(h0*(2*'h-'*'h+' + 'p-'*'p+') + Sqrt2*'h-'*(anti(p0)*'p+' + 2*'p-'*'p++'))).
+     
+let sigma4_15=     
+     4*(2*h0**2*h0*'h-' + Sqrt2*'h-'*'h+'*(p0*'p-' + 2*'p--'*'p+') + h0*(2*'h-'**2*'h+' +
+     Sqrt2*h0*(2*p0*'p-' + 'p--'*'p+') + 'h-'*(2*p0*anti(p0) + 3*'p-'*'p+' + 2*'p--'*'p++')) + 
+     2*(Sqrt2*p0**2*anti(p0)*'p-' + Sqrt2*'p--'*'p+'*('p-'*'p+' + 'p--'*'p++') + p0*(h0*'h+'*'p--' 
+     + Sqrt2*('p-'**2*'p+' + anti(p0)*'p--'*'p+' + 'p-'*'p--'*'p++')))).
+     
+     
+let sigma4_21=      
+     4*(Sqrt2*h0**2*anti(p0)*'p-' + h0*(2*h0**2*'h-' + 'h+'*('p-'**2 + 2*anti(p0)*'p--')) 
+     + Sqrt2*h0**2*(p0*'p-' + 'p--'*'p+') + 2*h0*'h-'*('h-'*'h+' + p0*anti(p0) + 'p-'*'p+' + 'p--'*'p++') + 
+     	  Sqrt2*('h+'**2*'p-'*'p--' + 'h-'**2*(anti(p0)*'p+' + 'p-'*'p++'))).
+	  
+let sigma4_22=      
+     4*(2*h0**2*anti(p0)**2 + 'h+'**2*'p-'**2 + 2*h0*(h0**3 + Sqrt2*'h+'*anti(p0)*'p-') + 
+     2*h0**2*('h-'*'h+' + 2*p0*anti(p0) + 'p-'*'p+') + 
+     	  2*Sqrt2*h0*'h-'*(anti(p0)*'p+' + 'p-'*'p++')).
+let sigma4_23= 	  
+    4*(Sqrt2*h0**3*p0 + 2*h0**2*'h-'*'p+' + Sqrt2*h0*(2*anti(p0)*('h-'*'h+' + p0*anti(p0) + 'p-'*'p+') + 'p-'**2*'p++') + 
+     	  'h+'*(2*'h-'*'h+'*'p-' + 2*p0*anti(p0)*'p-' + 'p-'**2*'p+' + 2*anti(p0)*'p--'*'p+' + 2*'p-'*'p--'*'p++') 
+	  + h0*(3*Sqrt2*h0**2*anti(p0) + 4*h0*'h+'*'p-' + Sqrt2*('h+'**2*'p--' + 'h-'**2*'p++'))).
+let sigma4_24= 	  	  
+    4*(h0*'h+'*(2*'h-'*'h+' + 2*p0*anti(p0) + 3*'p-'*'p+' + 2*'p--'*'p++') + h0*(2*h0**2*'h+' + 2*'h-'*anti(p0)*'p++' 
+    + Sqrt2*h0*(2*anti(p0)*'p+' + 'p-'*'p++')) + 
+    Sqrt2*('h-'*'h+'*(anti(p0)*'p+' + 2*'p-'*'p++') + 2*(anti(p0)*'p+' + 'p-'*'p++')*(p0*anti(p0) + 'p-'*'p+' + 'p--'*'p++'))).
+let sigma4_25=     
+    4*(2*h0**2*h0**2 + 4*p0**2*anti(p0)**2 + 2*p0*'p-'*(Sqrt2*h0*'h+' + 3*anti(p0)*'p+' + 'p-'*'p++') + 
+    'p+'*('h-'*'h+'*'p-' + Sqrt2*h0*'h+'*'p--' + 'p-'**2*'p+' + 2*anti(p0)*'p--'*'p+' + 2*'p-'*'p--'*'p++') + 
+     	  h0*(2*h0*('h-'*'h+' + 3*p0*anti(p0) + 'p-'*'p+') + Sqrt2*'h-'*(2*anti(p0)*'p+' + 'p-'*'p++'))).
+	  
+let sigma4_31=       
+      4*(Sqrt2*h0**2*'h-'*p0 + Sqrt2*h0**2*'h-'*anti(p0) + 2*h0*(h0**2*'p-' + Sqrt2*h0*'h+'*'p--' + 'h-'**2*'p+') 
+      + h0*(4*'h-'*'h+'*'p-' + 2*p0*anti(p0)*'p-' + 'p-'**2*'p+' + 2*anti(p0)*'p--'*'p+' + 2*'p-'*'p--'*'p++') + 
+     	  Sqrt2*('h+'*(p0*'p-'**2 + 3*'h-'*'h+'*'p--' + 2*'p-'*'p--'*'p+') + ('h-'**3 + 2*'h+'*'p--'**2)*'p++')).
+let sigma4_32= 	  
+       4*(Sqrt2*h0**3*p0 + 2*h0**2*'h-'*'p+' + Sqrt2*h0*(2*anti(p0)*('h-'*'h+' + p0*anti(p0) + 'p-'*'p+') 
+       + 'p-'**2*'p++') + 'h+'*(2*'h-'*'h+'*'p-' + 2*p0*anti(p0)*'p-' + 'p-'**2*'p+' + 2*anti(p0)*'p--'*'p+' + 2*'p-'*'p--'*'p++') + 
+     	  h0*(3*Sqrt2*h0**2*anti(p0) + 4*h0*'h+'*'p-' + Sqrt2*('h+'**2*'p--' + 'h-'**2*'p++'))).
+let sigma4_33= 	  
+       8*(2*h0**2*h0**2 + h0*(h0*(4*'h-'*'h+' + 2*p0*anti(p0) + 'p-'*'p+') + Sqrt2*'h-'*(anti(p0)*'p+' + 'p-'*'p++')) 
+       + 'h+'*(2*'h-'**2*'h+' + Sqrt2*h0*(p0*'p-' + 'p--'*'p+') + 'h-'*('p-'*'p+' + 2*'p--'*'p++'))).
+let sigma4_34=       
+       4*(Sqrt2*h0**2*'h+'*anti(p0) + 2*h0*'h+'**2*'p-' + h0**2*(Sqrt2*'h+'*p0 + 2*h0*'p+') + 
+       h0*('p-'*'p+'**2 + 2*(Sqrt2*h0*'h-' + p0*'p-')*'p++' + 2*'p+'*(2*'h-'*'h+' + p0*anti(p0) + 'p--'*'p++')) + 
+     	  Sqrt2*('h+'**3*'p--' + 'h-'*anti(p0)*'p+'**2 + 3*'h-'**2*'h+'*'p++' + 2*'h-'*'p++'*('p-'*'p+' + 'p--'*'p++'))).	  
+let sigma4_35= 	  
+       4*(Sqrt2*h0**3*anti(p0) + 2*h0**2*'h+'*'p-' + 'h-'*'p+'*(2*'h-'*'h+' + 2*p0*anti(p0) + 'p-'*'p+') 
+       + Sqrt2*h0*(2*p0*('h-'*'h+' + p0*anti(p0)) + 2*p0*'p-'*'p+' + 'p--'*'p+'**2) + 2*'h-'*(p0*'p-' + 'p--'*'p+')*'p++' + 
+     	  h0*(3*Sqrt2*h0**2*p0 + 4*h0*'h-'*'p+' + Sqrt2*('h+'**2*'p--' + 'h-'**2*'p++'))).
+
+	  
+let sigma4_41=      
+	4*(2*'h-'**2*'h+'**2 + 2*p0*anti(p0)*'p-'*'p+' + 'p-'**2*'p+'**2 + 2*anti(p0)*'p--'*'p+'**2 
+	+ Sqrt2*h0*'h+'*(p0*'p-' + 2*'p--'*'p+') + 2*p0*'p-'**2*'p++' + 6*'p-'*'p--'*'p+'*'p++' + 4*'p--'**2*'p++'**2 + 
+     	  2*'h-'*'h+'*('p-'*'p+' + 3*'p--'*'p++') + h0*(h0*(2*'h-'*'h+' + 'p-'*'p+') + Sqrt2*'h-'*(anti(p0)*'p+' + 2*'p-'*'p++'))).
+let sigma4_42= 
+       4*(h0*'h+'*(2*'h-'*'h+' + 2*p0*anti(p0) + 3*'p-'*'p+' + 2*'p--'*'p++') + h0*(2*h0**2*'h+' + 2*'h-'*anti(p0)*'p++' 
+       + Sqrt2*h0*(2*anti(p0)*'p+' + 'p-'*'p++')) + 
+     	  Sqrt2*('h-'*'h+'*(anti(p0)*'p+' + 2*'p-'*'p++') + 
+	  2*(anti(p0)*'p+' + 'p-'*'p++')*(p0*anti(p0) + 'p-'*'p+' + 'p--'*'p++'))).
+let sigma4_43= 	  
+       4*(Sqrt2*h0**2*'h+'*anti(p0) + 2*h0*'h+'**2*'p-' + h0**2*(Sqrt2*'h+'*p0 + 2*h0*'p+') 
+       + h0*('p-'*'p+'**2 + 2*(Sqrt2*h0*'h-' + p0*'p-')*'p++' + 2*'p+'*(2*'h-'*'h+' + p0*anti(p0) + 'p--'*'p++')) + 
+     	  Sqrt2*('h+'**3*'p--' + 'h-'*anti(p0)*'p+'**2 + 3*'h-'**2*'h+'*'p++' + 2*'h-'*'p++'*('p-'*'p+' + 'p--'*'p++'))).
+let sigma4_44=        
+       4*(2*'h-'*'h+'**3 + h0**2*'p+'**2 + 2*Sqrt2*h0*'h-'*'p+'*'p++' + 2*'h-'**2*'p++'**2 + 
+       2*Sqrt2*h0*'h+'*(anti(p0)*'p+' + 'p-'*'p++') + 2*'h+'**2*(h0*h0 + 'p-'*'p+' + 2*'p--'*'p++')).
+let sigma4_45=        
+         4*(Sqrt2*h0**2*p0*'p+' + h0*'h-'*('p+'**2 + 2*p0*'p++') + 2*h0*'h+'*('h-'*'h+' + p0*anti(p0) 
+       + 'p-'*'p+' + 'p--'*'p++') + Sqrt2*('h+'**2*(p0*'p-' + 'p--'*'p+') + 'h-'**2*'p+'*'p++') + 
+     	  h0**2*(2*h0*'h+' + Sqrt2*(anti(p0)*'p+' + 'p-'*'p++'))).
+	  
+	 
+let sigma4_51= 	 
+	  4*(2*h0**2*h0*'h-' + Sqrt2*'h-'*'h+'*(p0*'p-' + 2*'p--'*'p+') + 
+     	  h0*(2*'h-'**2*'h+' + Sqrt2*h0*(2*p0*'p-' + 'p--'*'p+') + 'h-'*(2*p0*anti(p0) + 3*'p-'*'p+' + 2*'p--'*'p++')) + 
+     	  2*(Sqrt2*p0**2*anti(p0)*'p-' + Sqrt2*'p--'*'p+'*('p-'*'p+' + 'p--'*'p++') + 
+	  p0*(h0*'h+'*'p--' + Sqrt2*('p-'**2*'p+' + anti(p0)*'p--'*'p+' + 'p-'*'p--'*'p++')))).
+let sigma4_52= 	 
+       4*(2*h0**2*h0**2 + 4*p0**2*anti(p0)**2 + 2*p0*'p-'*(Sqrt2*h0*'h+' + 3*anti(p0)*'p+' + 'p-'*'p++') 
+       + 'p+'*('h-'*'h+'*'p-' + Sqrt2*h0*'h+'*'p--' + 'p-'**2*'p+' + 2*anti(p0)*'p--'*'p+' + 2*'p-'*'p--'*'p++') + 
+     	  h0*(2*h0*('h-'*'h+' + 3*p0*anti(p0) + 'p-'*'p+') + Sqrt2*'h-'*(2*anti(p0)*'p+' + 'p-'*'p++'))).
+let sigma4_53= 	 
+       4*(Sqrt2*h0**3*anti(p0) + 2*h0**2*'h+'*'p-' + 'h-'*'p+'*(2*'h-'*'h+' + 2*p0*anti(p0) + 'p-'*'p+') 
+       + Sqrt2*h0*(2*p0*('h-'*'h+' + p0*anti(p0)) + 2*p0*'p-'*'p+' + 'p--'*'p+'**2) + 2*'h-'*(p0*'p-' + 'p--'*'p+')*'p++' + 
+     	  h0*(3*Sqrt2*h0**2*p0 + 4*h0*'h-'*'p+' + Sqrt2*('h+'**2*'p--' + 'h-'**2*'p++'))).
+let sigma4_54= 	 
+       4*(Sqrt2*h0**2*p0*'p+' + h0*'h-'*('p+'**2 + 2*p0*'p++') + 2*h0*'h+'*('h-'*'h+' + p0*anti(p0) 
+       + 'p-'*'p+' + 'p--'*'p++') + Sqrt2*('h+'**2*(p0*'p-' + 'p--'*'p+') + 'h-'**2*'p+'*'p++') + 
+     	  h0**2*(2*h0*'h+' + Sqrt2*(anti(p0)*'p+' + 'p-'*'p++'))).
+
+let sigma4_55= 	
+        4*(2*h0**3*h0 + 2*h0**2*p0**2 + 2*Sqrt2*h0*'h-'*p0*'p+' + 'h-'**2*'p+'**2
+        + 2*h0**2*('h-'*'h+' + 2*p0*anti(p0) + 'p-'*'p+') 
+        + 
+	2*Sqrt2*h0*'h+'*(p0*'p-' + 'p--'*'p+')  ).
+	  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	  
+	  
+let sigma4= 1/24*
+               { 
+	       {sigma4_11,sigma4_12,sigma4_13,sigma4_14,sigma4_15},
+               {sigma4_21,sigma4_22,sigma4_23,sigma4_24,sigma4_25},
+               {sigma4_31,sigma4_32,sigma4_33,sigma4_34,sigma4_35},
+               {sigma4_41,sigma4_42,sigma4_43,sigma4_44,sigma4_45},
+               {sigma4_51,sigma4_52,sigma4_53,sigma4_54,sigma4_55}
+	      }.
+	       
+let sigma4_3= 1/24*
+              { 
+		{sigma4_41,sigma4_42,sigma4_43},
+                {sigma4_51,sigma4_52,sigma4_53}
+	       }.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+let csigma4_11=anti(sigma4_11).
+let csigma4_12=anti(sigma4_12).
+let csigma4_13=anti(sigma4_13).
+let csigma4_14=anti(sigma4_14).
+let csigma4_15=anti(sigma4_15).
+
+let csigma4_21=anti(sigma4_21).
+let csigma4_22=anti(sigma4_22).
+let csigma4_23=anti(sigma4_23).
+let csigma4_24=anti(sigma4_24).
+let csigma4_25=anti(sigma4_25).
+
+let csigma4_31=anti(sigma4_31).
+let csigma4_32=anti(sigma4_32).
+let csigma4_33=anti(sigma4_33).
+let csigma4_34=anti(sigma4_34).
+let csigma4_35=anti(sigma4_35).
+
+let csigma4_41=anti(sigma4_41).
+let csigma4_42=anti(sigma4_42).
+let csigma4_43=anti(sigma4_43).
+let csigma4_44=anti(sigma4_44).
+let csigma4_45=anti(sigma4_45).
+
+let csigma4_51=anti(sigma4_51).
+let csigma4_52=anti(sigma4_52).
+let csigma4_53=anti(sigma4_53).
+let csigma4_54=anti(sigma4_54).
+let csigma4_55=anti(sigma4_55).
+
+let csigma4= 1/24*
+              { 
+	       {csigma4_11,csigma4_12,csigma4_13,csigma4_14,csigma4_15},
+               {csigma4_21,csigma4_22,csigma4_23,csigma4_24,csigma4_25},
+               {csigma4_31,csigma4_32,csigma4_33,csigma4_34,csigma4_35},
+               {csigma4_41,csigma4_42,csigma4_43,csigma4_44,csigma4_45},
+               {csigma4_51,csigma4_52,csigma4_53,csigma4_54,csigma4_55}
+	      }.
+	       
+let csigma4_3= 1/24*
+              { 
+		{csigma4_41,csigma4_42,csigma4_43},
+                {csigma4_51,csigma4_52,csigma4_53}
+	       }.
+	       	       
+let tsigma4= 1/24*
+              { 
+	       { csigma4_44, csigma4_45,-csigma4_43, csigma4_41, csigma4_42},
+               { csigma4_54, csigma4_55,-csigma4_53, csigma4_51, csigma4_52},
+               {-csigma4_34,-csigma4_35, csigma4_33,-csigma4_31,-csigma4_32},
+               { csigma4_14, csigma4_15,-csigma4_13, csigma4_11, csigma4_12},
+               { csigma4_24, csigma4_25,-csigma4_23, csigma4_21, csigma4_22}
+	      }.
+	       
+let tsigma4_3= 1/24*
+              { 
+		{ csigma4_14, csigma4_15,-csigma4_13},
+                { csigma4_24, csigma4_25,-csigma4_23}
+	       }.
+	  
+let ctsigma4_3=anti(tsigma4_3).	  

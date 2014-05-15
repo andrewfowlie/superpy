@@ -1,0 +1,70 @@
+CPV-MSSM/CPSH
+ Variables 
+ Name  | Value       |>  Comment                                   <|
+alfSMZ |0.1184       |alpha_QCD(MZ)
+Mtp    |173.07       |top quark pole mass
+MbMb   |4.2          |Mb(Mb) running mass
+McMc   |1.3          |Mc(Mc) running mass
+GG     |1.117        |Drived by CalcHEP
+Q      |100          |QCD scale
+mq     |0.1          |light quark mass
+EE     |0.31333      |Electromagnetic coupling constant (<->1/128)
+SW     |0.474        |sin of the Weinberg angle (PDG-94,"on-shell")
+Ml     |1.777        |mass of tau-lepton
+MHc    |200          |Charged Higgs Mass
+aMu    |100          ||mu|
+fiMu   |100          |phase of mu in Degrees
+aM1    |193          |  
+aM2    |400          |  
+aM3    |5000         |  
+fiM1   |0            |  
+fiM2   |0            |  
+fiM3   |0            |  
+Ml1    |800          |ML1
+Ml2    |800          |ML2
+Ml3    |802.65       |ML3
+Mr1    |800          |MR1
+Mr2    |800          |MR2
+Mr3    |804.23       |MR3
+aAt    |100          | 
+fiAt   |0            | 
+aAb    |100          | 
+fiAb   |0            | 
+aAl    |100          | 
+fiAl   |0            |  
+aAm    |100          |  
+fiAm   |0            |  
+aAe    |100          |  
+fiAe   |0            |  
+aAu    |0            |  
+fiAu   |0            |  
+aAd    |0            |  
+fiAd   |0            |  
+Mq1    |800          |
+Mq2    |700          |
+Mq3    |600          |
+Mu1    |800          |
+Mu2    |800          |
+Mu3    |800          |
+Md1    |800          |
+Md2    |800          |
+Md3    |800          |
+wt     |1.442        |width of top quark
+MG1    |0            |
+MG2    |0            |
+MZ     |91.187       |Z mass
+QQ21   |0            |to avoid
+QQ22   |0            |to avoid
+QQ23   |0            |to avoid
+QQ24   |0            |to avoid
+QQ31   |0            |to avoid
+QQ32   |0            |to avoid
+QQ33   |0            |to avoid
+QQ34   |0            |to avoid
+QQ41   |0            |to avoid
+QQ42   |0            |to avoid
+QQ43   |0            |to avoid
+QQ44   |0            |to avoid
+Maux   |1            |mass of aux particles
+tb     |10           |Tangent beta
+MSG    |204.8        |mass of gluino

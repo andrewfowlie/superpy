@@ -1,0 +1,15 @@
+# Published at Moriond 2013. Result taken from CMS-PAS-HIG 13-005:
+# https://twiki.cern.ch/twiki/bin/view/CMSPublic/Hig13005TWiki
+# Assume efficiencies such that we have 20% ggH, 80% VBF in the SM.
+13004102	1300402		1
+CMS-PAS-HIG-13-004
+LHC, CMS, CMS
+(pp)->VBF->tautau
+8	24.5	 0.044
+1	0
+20
+125.7 125.7 1.0
+2	125.7
+14 24
+1.0 50.0
+125.7	0.786	1.423	2.119

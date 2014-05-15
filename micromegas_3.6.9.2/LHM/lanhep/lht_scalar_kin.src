@@ -1,0 +1,43 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% 01 + 10 %%%
+%% THIS IS EXPLICITLY ZERO  %%%%%%%%%%%%
+   lterm   f*1/8*( WSIGMA0 * anti(WSIGMA1) + WSIGMA1 *anti(WSIGMA0) ).
+%%%%%  
+
+%%% 11 %%%%
+    lterm      1/8*(derivp(sigma1)*anti(WSIGMA1)   +  WSIGMA1*derivp(anti(sigma1)) ).
+    lterm      1/8*( WSIGMA1 * (anti(WSIGMA1)) ).
+
+%%% 20 +02 %%%%
+  lterm        1/8*( derivp(sigma2)*anti(WSIGMA0) +  WSIGMA0*derivp(anti(sigma2)) ).     
+  lterm        1/8*( WSIGMA0*anti(WSIGMA2) +  WSIGMA2*anti(WSIGMA0)).
+ 
+%%% 03 +30 %%%%
+  lterm   (del/v) * 1/8*( derivp(sigma3)*anti(WSIGMA0) +  WSIGMA0*derivp(anti(sigma3)) ).	
+  lterm   (del/v) * 1/8*( WSIGMA0*anti(WSIGMA3) +  WSIGMA3*anti(WSIGMA0)).
+
+%%% 04 +40 %%%%
+  lterm   (del/v)**2 * 1/8*( derivp(sigma4)*anti(WSIGMA0) +  WSIGMA0*derivp(anti(sigma4)) ).	
+  lterm   (del/v)**2 * 1/8*( WSIGMA0*anti(WSIGMA4) +  WSIGMA4*anti(WSIGMA0)).
+
+
+%%% 12 +21 %%%%
+  
+  lterm   del/v * 1/8*( derivp(sigma1)*derivp(anti(sigma2)) + derivp(sigma2)*derivp(anti(sigma1)) ).
+  lterm   del/v * 1/8*( derivp(sigma1)*anti(WSIGMA2) +  WSIGMA2*derivp(anti(sigma1)) ).	     
+  lterm   del/v * 1/8*( derivp(sigma2)*anti(WSIGMA1) +  WSIGMA1*derivp(anti(sigma2)) ).	     
+  lterm   del/v * 1/8*( WSIGMA1*anti(WSIGMA2) +  WSIGMA2*anti(WSIGMA1)).
+
+%%% 13 +31 %%%%
+  
+  lterm   (del/v)**2 * 1/8*( derivp(sigma1)*derivp(anti(sigma3)) + derivp(sigma3)*derivp(anti(sigma1)) ).
+  lterm   (del/v)**2 * 1/8*( derivp(sigma1)*anti(WSIGMA3) +  WSIGMA3*derivp(anti(sigma1)) ).	     
+  lterm   (del/v)**2 * 1/8*( derivp(sigma3)*anti(WSIGMA1) +  WSIGMA1*derivp(anti(sigma3)) ).	     
+  lterm   (del/v)**2 * 1/8*( WSIGMA1*anti(WSIGMA3) +  WSIGMA3*anti(WSIGMA1)).
+%%% 22 %%%%
+  
+  lterm   (del/v)**2 * 1/8*( derivp(sigma2)*derivp(anti(sigma2))).
+  lterm   (del/v)**2 * 1/8*( derivp(sigma2)*anti(WSIGMA2)+  WSIGMA2*derivp(anti(sigma2)) ).	     
+  lterm   (del/v)**2 * 1/8*( WSIGMA2*anti(WSIGMA2)).

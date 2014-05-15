@@ -1,0 +1,14 @@
+#arXiv:0712.0598 Dec 4, 2007
+#D0_SM_combined
+#needs interpolation
+#columns: Mh, obs, exp (as ratio to SM cross sections)
+	
+100	5.5	8.7
+110	7.1	10.8
+115	8.5	12.1
+120	10.5	14.3
+130	14.2	15.7
+140	12.8	13.8
+160	10.2	9.0
+180	16.1	12.1
+200	23.7	23.5

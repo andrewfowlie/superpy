@@ -1,0 +1,17 @@
+#Atlas 2011-005 Feb 14, 2011
+#2011005_Atlas_H-WW_35pb-1
+#no interpolation
+#columns: Mh, obs, exp (as ratio to SM cross sections)
+
+120      21.0     18.0  
+130      12.2     7.0  
+140      5.3      4.5 
+150      1.9      3.5 
+160      1.2      2.4 
+165      2.6      2.4 
+170      3.0      2.1 
+180      4.7      2.8 
+190      9.2      5.4
+200      16.2     6.4            
+     
+ 

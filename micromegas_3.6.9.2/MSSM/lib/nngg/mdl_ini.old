@@ -1,0 +1,2126 @@
+*     LanHEP output produced at Thu Sep 16 18:26:00 2004
+*     Model named 'MSSMrc(Feyn. g.)'
+
+      subroutine ModelConstIni(*)
+      implicit none
+      double precision  findValW
+#include "model.h"
+
+c      EE = 0.31345D0
+*      EE=dsqrt(4D0*pi/137D0)
+      EE=findValW('EE')
+*      SW = 0.48076D0
+      SW=findValW('SW')
+      s12 = 0.2229D0
+      s23 = 0.0412D0
+      s13 = 0.0036D0
+      GG = 1.238D0
+*      MZ = 91.1884D0
+      MZ=findValW('MZ')
+      Me = 0.000511D0
+      Mm = 0.1057D0
+      Mu = 0.0056D0
+      Md = 0.00956D0
+      Mtau = 1.777D0
+      Mc = 0.7212D0
+      Ms = 0.1781D0
+*      Mtop = 175D0
+      Mtop=findValW('Mt')
+*      Mb = 4.62D0
+      Mb=findValW('Mb')
+      wtop = 1.7524D0
+      wZ = 2.4944D0
+      wW = 2.08895D0
+*      tb = 10D0 
+      tb=findValW('tb')
+*      mue = 100D0
+      mue=findValW('mu')
+*      MG1 = 100.186D0
+      MG1=findValW('MG1')
+*      MG2 = 200D0
+      MG2=findValW('MG2')
+*      MG3 = 588D0
+      MG3=findValW('MG3')
+      wC1 = 0D0
+      wC2 = 0D0
+      wNE2 = 0D0
+      wNE3 = 0D0
+      wNE4 = 0D0
+      wSG = 0D0
+*      Ml2 = 1000D0
+      Ml2=findValW('Ml2')
+*      Ml3 = 1000D0
+      Ml3=findValW('Ml3') 
+*      Mr2 = 1000D0
+      Mr2=findValW('Mr2')
+*      Mr3 = 1000D0
+      Mr3=findValW('Mr3')
+*      Atau = 0D0
+      Atau=findValW('Al')
+*      Am = 0D0
+      Am=findValW('Am')
+      wSne = 0D0
+      wSnmu = 0D0
+      wSntau = 0D0
+      wSe1 = 0D0
+      wSe2 = 0D0
+      wSmu1 = 0D0
+      wSmu2 = 0D0
+      wStau1 = 0D0
+      wStau2 = 0D0
+*      Mq2 = 1000D0
+      Mq2=findValW('Mq2') 
+*      Mq3 = 1000D0
+      Mq3=findValW('Mq3')
+      write(6,*) 'Mq3',Mq3
+*      Mu2 = 1000D0
+      Mu2=findValW('Mu2')
+*      Mu3 = 1000D0
+      Mu3=findValW('Mu3')
+*      Md2 = 1000D0
+      Md2=findValW('Md2')
+*      Md3 = 1000D0
+      Md3=findValW('Md3')
+*      Atop = 0D0
+      Atop=findValW('At')
+*      Ab = 0D0
+      Ab=findValW('Ab')
+      write(6,*) 'Ab',Ab
+*      MH3 = 900D0
+      MH3=findValW('MH3')          
+      dlh1 = 0D0
+      dlh2 = 0D0
+      dlh3 = 0D0
+      dlh4 = 0D0
+      dlh5 = 0D0
+      dlh6 = 0D0
+      dlh7 = 0D0
+      wh =  findValW('wh')
+      wHh = findValW('wHh')
+      wH3 = findValW('wH3')
+      wHc = 0D0
+      wSu1 = 0D0
+      wSu2 = 0D0
+      wSc1 = 0D0
+      wSc2 = 0D0
+      wStop1 = 0D0
+      wStop2 = 0D0
+      wSd1 = 0D0
+      wSd2 = 0D0
+      wSs1 = 0D0
+      wSs2 = 0D0
+      wSbot1 = 0D0
+      wSbot2 = 0D0
+      nla = -1.0D0
+      nlb = 1.4D0
+      nld1 = 1.22D0
+      nld2 = 2.55D0
+      nlk = 0.876D0
+      nle1 = -1.2D0
+      nle2 = 3.77D0
+      CW = sqrt(1D0-SW**2)
+      S2W = 2D0*SW*CW
+      C2W = CW**2-SW**2
+      MW = MZ*CW
+      c12 = sqrt(1D0-s12**2)
+      c23 = sqrt(1D0-s23**2)
+      c13 = sqrt(1D0-s13**2)
+      sb = tb/sqrt(1D0+tb**2)
+      cb = sqrt(1D0-sb**2)
+      t2b = 2D0*tb/(1D0-tb**2)
+      c2b = cb**2-sb**2
+      s2b = 2D0*sb*cb
+      Zcsx = (MG2**2+mue**2)/2D0+MW**2
+      Zctx = (MG2**2-mue**2)**2/4D0+MW**4*c2b**2+MW**2*(MG2
+     &      **2+mue**2+2D0*mue*MG2*s2b)
+      MC01 = sqrt(Zcsx-sqrt(Zctx))
+      MC02 = sqrt(Zcsx+sqrt(Zctx))
+      Zcc2u = -(MG2**2-mue**2-2D0*MW**2*c2b)/(MC02**2-MC01
+     &      **2)
+      Zcc2v = -(MG2**2-mue**2+2D0*MW**2*c2b)/(MC02**2-MC01
+     &      **2)
+      Zcsigu = -(MG2*cb+mue*sb)/sqrt((MG2*cb+mue*sb)**2)
+      Zcsigv = -(MG2*sb+mue*cb)/sqrt((MG2*sb+mue*cb)**2)
+      Zccu = sqrt((1D0+Zcc2u)/2D0)
+      Zcsu = sqrt((1D0-Zcc2u)/2D0)*Zcsigu
+      Zccv = sqrt((1D0+Zcc2v)/2D0)
+      Zcsv = sqrt((1D0-Zcc2v)/2D0)*Zcsigv
+      Zcsig1 = (mue*MG2-MW**2*s2b)/sqrt((mue*MG2-MW**2*s2b
+     &      )**2)
+      Zcsig2 = MW*Sqrt2*(cb*Zcsu*Zccv+sb*Zccu*Zcsv)+mue*Zcsv
+     &      *Zcsu+MG2*Zccu*Zccv
+      Zcsig3 = Zcsig1*Zcsig2/sqrt(Zcsig2**2)
+      Zcsig4 = -MW*Sqrt2*(cb*Zccu*Zcsv+sb*Zcsu*Zccv)+mue
+     &      *Zccv*Zccu+MG2*Zcsu*Zcsv
+*      MC1 = Zcsig2**2/sqrt(Zcsig2**2)
+*      MC2 = Zcsig4**2/sqrt(Zcsig4**2)
+      MC1=findValW('MC1')
+      MC2=findValW('MC2')
+*      Zm11 = Zccu*Zcsig1*Zcsig3
+*      Zm12 = -Zcsu*Zcsig3
+*      Zm21 = Zcsu*Zcsig1*Zcsig3
+*      Zm22 = Zccu*Zcsig3
+      Zm11=findValW('Zu11')
+      Zm12=findValW('Zu21')
+      Zm21=findValW('Zu12')
+      Zm22=findValW('Zu22')
+*      Zp11 = Zccv
+*      Zp12 = -Zcsv
+*      Zp21 = Zcsv
+*      Zp22 = Zccv
+      Zp11=findValW('Zv11')
+      Zp12=findValW('Zv21')
+      Zp21=findValW('Zv12')
+      Zp22=findValW('Zv22')
+
+      Znx0 = (MG1+MG2)/4D0
+      Znxc2 = MG1*MG2-MZ**2-mue**2-3D0/8D0*(MG1+MG2)**2
+      Znxc3a = -1D0/8D0*(MG1+MG2)**3+1D0/2D0*(MG1+MG2)*(MG1
+     &      *MG2-MZ**2-mue**2)
+      Znxc3 = Znxc3a+(MG1+MG2)*mue**2+(MG1*CW**2+MG2*SW**2
+     &      )*MZ**2-mue*MZ**2*s2b
+      Znxc4b = (MG1*CW**2+MG2*SW**2)*mue*MZ**2*s2b-MG1*MG2
+     &      *mue**2
+      Znxc4a = Znxc4b+Znx0**2*(MG1*MG2-MZ**2-mue**2)-3D0
+     &      /256D0*(MG1+MG2)**4
+      Znxc4 = Znxc4a+Znx0*((MG1+MG2)*mue**2+(MG1*CW**2+MG2
+     &      *SW**2)*MZ**2-mue*MZ**2*s2b)
+      Znxs = -Znxc3**2-2D0/27D0*Znxc2**3+8D0/3D0*Znxc2*Znxc4
+      Znxu = -1D0/3D0*Znxc2**2-4D0*Znxc4
+      Zncxd = -4D0*Znxu**3-27D0*Znxs**2
+      Zncua = atan2(sqrt(Zncxd/27D0)/2D0, -Znxs/2D0)/3D0
+      Zncxa = (Zncxd/108D0+Znxs**2/4D0)**(1D0/6D0)*cos(Zncua
+     &      )
+      Zncxb = 8D0*Zncxa-8D0/3D0*Znxc2
+      Zncx1 = Zncxa/2D0-Znxc2/6D0
+      Zncx2 = -Zncxa/2D0-Znxc2/3D0
+      Zncx3 = Znxc3/sqrt(Zncxb)
+*      MNE1 = Znx0-sqrt(Zncx1)+sqrt(Zncx2+Zncx3)
+      MNE1=findValW('MNE1')
+*      MNE2 = Znx0+sqrt(Zncx1)-sqrt(Zncx2-Zncx3)
+      MNE2=findValW('MNE2')
+*      MNE3 = Znx0-sqrt(Zncx1)-sqrt(Zncx2+Zncx3)
+      MNE3=findValW('MNE3')
+*      MNE4 = Znx0+sqrt(Zncx1)+sqrt(Zncx2-Zncx3)
+      MNE4=findValW('MNE4')
+      Znx12 = -CW/SW*(MG1-MNE1)/(MG2-MNE1)
+      Znx1x = MZ*(MG2-MNE1)*SW*(mue*cb+MNE1*sb)
+      Znx13 = (mue*(MG2-MNE1)*(MG1-MNE1)-MZ**2*sb*cb*((MG1
+     &      -MG2)*CW**2+MG2-MNE1))/Znx1x
+      Znx14 = (-MNE1*(MG2-MNE1)*(MG1-MNE1)-MZ**2*cb*cb*((MG1
+     &      -MG2)*CW**2+MG2-MNE1))/Znx1x
+      Zn11 = 1D0/sqrt(1D0+Znx12**2+Znx13**2+Znx14**2)
+      Zn21 = Zn11*Znx12
+      Zn31 = Zn11*Znx13
+      Zn41 = Zn11*Znx14
+      Znx22 = -CW/SW*(MG1-MNE2)/(MG2-MNE2)
+      Znx2x = MZ*(MG2-MNE2)*SW*(mue*cb+MNE2*sb)
+      Znx23 = (mue*(MG2-MNE2)*(MG1-MNE2)-MZ**2*sb*cb*((MG1
+     &      -MG2)*CW**2+MG2-MNE2))/Znx2x
+      Znx24 = (-MNE2*(MG2-MNE2)*(MG1-MNE2)-MZ**2*cb*cb*((MG1
+     &      -MG2)*CW**2+MG2-MNE2))/Znx2x
+      Zn12 = 1D0/sqrt(1D0+Znx22**2+Znx23**2+Znx24**2)
+      Zn22 = Zn12*Znx22
+      Zn32 = Zn12*Znx23
+      Zn42 = Zn12*Znx24
+      Znx32 = -CW/SW*(MG1-MNE3)/(MG2-MNE3)
+      Znx3x = MZ*(MG2-MNE3)*SW*(mue*cb+MNE3*sb)
+      Znx33 = (mue*(MG2-MNE3)*(MG1-MNE3)-MZ**2*sb*cb*((MG1
+     &      -MG2)*CW**2+MG2-MNE3))/Znx3x
+      Znx34 = (-MNE3*(MG2-MNE3)*(MG1-MNE3)-MZ**2*cb*cb*((MG1
+     &      -MG2)*CW**2+MG2-MNE3))/Znx3x
+      Zn13 = 1D0/sqrt(1D0+Znx32**2+Znx33**2+Znx34**2)
+      Zn23 = Zn13*Znx32
+      Zn33 = Zn13*Znx33
+      Zn43 = Zn13*Znx34
+      Znx42 = -CW/SW*(MG1-MNE4)/(MG2-MNE4)
+      Znx4x = MZ*(MG2-MNE4)*SW*(mue*cb+MNE4*sb)
+      Znx43 = (mue*(MG2-MNE4)*(MG1-MNE4)-MZ**2*sb*cb*((MG1
+     &      -MG2)*CW**2+MG2-MNE4))/Znx4x
+      Znx44 = (-MNE4*(MG2-MNE4)*(MG1-MNE4)-MZ**2*cb*cb*((MG1
+     &      -MG2)*CW**2+MG2-MNE4))/Znx4x
+      Zn14 = 1D0/sqrt(1D0+Znx42**2+Znx43**2+Znx44**2)
+      Zn24 = Zn14*Znx42
+      Zn34 = Zn14*Znx43
+      Zn44 = Zn14*Znx44
+
+      Zn11=findValW('Zn11')
+      Zn12=findValW('Zn21')
+      Zn13=findValW('Zn31')
+      Zn14=findValW('Zn41')
+      Zn21=findValW('Zn12')
+      Zn22=findValW('Zn22')
+      Zn23=findValW('Zn32')
+      Zn24=findValW('Zn42')
+      Zn31=findValW('Zn13')
+      Zn32=findValW('Zn23')
+      Zn33=findValW('Zn33')
+      Zn34=findValW('Zn43')
+      Zn41=findValW('Zn14')
+      Zn42=findValW('Zn24')
+      Zn43=findValW('Zn34')
+      Zn44=findValW('Zn44')
+
+      MSG = findValW('MSG')
+
+      ls3 = Mtau*Atau/Sqrt2*EE/SW/MW/cb
+      ls2 = Mm*Am/Sqrt2*EE/SW/MW/cb
+
+*      MSne = sqrt(c2b*MW**2/2D0+CW**2*Ml2**2)/CW
+*      MSnmu = sqrt(c2b*MW**2/2D0+CW**2*Ml2**2)/CW
+*      MSntau = sqrt(c2b*MW**2/2D0+CW**2*Ml3**2)/CW
+      
+      MSne=findValW('MSne')
+      MSnmu=findValW('MSnm')
+      MSntau=findValW('MSnl')
+
+      MSeLL = Ml2**2+Me**2-MW**2/CW**2*(1D0/2D0-SW**2)*c2b
+      MSeRR = Mr2**2+Me**2-MW**2/CW**2*SW**2*c2b
+      MSeLR = -Me*mue*tb
+*      MSe1 = sqrt((MSeLL+MSeRR-sqrt((MSeLL-MSeRR)**2+4D0
+*     &      *MSeLR**2))/2D0)
+*      MSe2 = sqrt((MSeLL+MSeRR+sqrt((MSeLL-MSeRR)**2+4D0
+*     &      *MSeLR**2))/2D0)
+
+      MSe1=findValW('MSeL')
+      MSe2=findValW('MSeR')
+
+*      MSeth = atan2(-2D0*MSeLR, -MSeLL+MSeRR)/2D0
+      MSeth=0
+      seth = sin(MSeth)
+      ceth = cos(MSeth)
+      MSmuLL = Ml2**2+Mm**2-MW**2/CW**2*(1D0/2D0-SW**2)*c2b
+      MSmuLR = MW*SW*Sqrt2*cb*ls2/EE-Mm*mue*tb
+      MSmuRR = Mr2**2+Mm**2-MW**2/CW**2*SW**2*c2b
+*      MSmu1 = sqrt((MSmuLL+MSmuRR-sqrt((MSmuLL-MSmuRR)**2
+*     &      +4D0*MSmuLR**2))/2D0)
+*      MSmu2 = sqrt((MSmuLL+MSmuRR+sqrt((MSmuLL-MSmuRR)**2
+*     &      +4D0*MSmuLR**2))/2D0)
+*      MSmuth = atan2(-2D0*MSmuLR, -MSmuLL+MSmuRR)/2D0
+      MSmu1 = findValW('MSmL')
+      MSmu2 = findValW('MSmR')
+      MSmuth =0.
+      smuth = sin(MSmuth)
+      cmuth = cos(MSmuth)
+      MSlLL = Ml3**2+Mtau**2-MW**2/CW**2*(1D0/2D0-SW**2)*c2b
+      MSlLR = MW*SW*Sqrt2*cb*ls3/EE-Mtau*mue*tb
+      MSlRR = Mr3**2+Mtau**2-MW**2/CW**2*SW**2*c2b
+*      MStau1 = sqrt((MSlLL+MSlRR-sqrt((MSlLL-MSlRR)**2+4D0
+*     &      *MSlLR**2))/2D0)
+      MStau1=findValW('MSl1')
+*      MStau2 = sqrt((MSlLL+MSlRR+sqrt((MSlLL-MSlRR)**2+4D0
+*     &      *MSlLR**2))/2D0)
+      MStau2=findValW('MSl2')
+*      MSlth = atan2(-2D0*MSlLR, -MSlLL+MSlRR)/2D0
+      MSlth = atan2(findValW('Zl12'),findValW('Zl11'))
+      clth = cos(MSlth)
+      slth = sin(MSlth)
+      MtopS = Mtop
+      ds3 = Mb*Ab*EE/SW/MW/Sqrt2/cb
+      us3 = -Atop*MtopS*EE/SW/MW/Sqrt2/sb
+      MSuLL = Mq2**2+Mu**2+MW**2/CW**2*(1D0/2D0-2D0/3D0*SW
+     &      **2)*c2b
+      MSuLR = -Mu*mue/tb
+      MSuRR = Mu2**2+Mu**2+2D0/3D0*MW**2/CW**2*SW**2*c2b
+*      MSu1 = sqrt((MSuLL+MSuRR-sqrt((MSuLL-MSuRR)**2+4D0
+*     &      *MSuLR**2))/2D0)
+*      MSu2 = sqrt((MSuLL+MSuRR+sqrt((MSuLL-MSuRR)**2+4D0
+*     &      *MSuLR**2))/2D0)
+*      MSuth = atan2(-2D0*MSuLR, -MSuLL+MSuRR)/2D0
+      MSu1=findValW('MSuL')
+      MSu2=findValW('MSuR')
+      MSuth=0
+      cuth = cos(MSuth)
+      suth = sin(MSuth)
+      MScLL = Mq2**2+Mc**2+MW**2/CW**2*(1D0/2D0-2D0/3D0*SW
+     &      **2)*c2b
+      MScLR = -Mc*mue/tb
+      MScRR = Mu2**2+Mc**2+2D0/3D0*MW**2/CW**2*SW**2*c2b
+*      MSc1 = sqrt((MScLL+MScRR-sqrt((MScLL-MScRR)**2+4D0
+*     &      *MScLR**2))/2D0)
+*      MSc2 = sqrt((MScLL+MScRR+sqrt((MScLL-MScRR)**2+4D0
+*     &      *MScLR**2))/2D0)
+*      MScth = atan2(-2D0*MScLR, -MScLL+MScRR)/2D0
+      MSc1=findValW('MScL')
+      MSc2=findValW('MScR')
+      MScth =0.
+      ccth = cos(MScth)
+      scth = sin(MScth)
+      MStLL = Mq3**2+MtopS**2+MW**2/CW**2*(1D0/2D0-2D0/3D0
+     &      *SW**2)*c2b
+      MStLR = -MW*SW*Sqrt2*sb*us3/EE-MtopS*mue/tb
+      MStRR = Mu3**2+MtopS**2+2D0/3D0*MW**2/CW**2*SW**2*c2b
+c      MStop1 = sqrt((MStLL+MStRR-sqrt((MStLL-MStRR)**2+4D0
+c     &      *MStLR**2))/2D0)
+      MStop1=findValW('MSt1')
+c      MStop2 = sqrt((MStLL+MStRR+sqrt((MStLL-MStRR)**2+4D0
+c     &      *MStLR**2))/2D0)
+      MStop2=findValW('MSt2')
+*      MStth = atan2(-2D0*MStLR, -MStLL+MStRR)/2D0
+      MStth = atan2(findValW('Zt12'), findValW('Zt11'))
+      ctth = cos(MStth)
+      stth = sin(MStth)
+      MSdLL = Mq2**2+Md**2-MW**2/CW**2*(1D0/2D0-1D0/3D0*SW
+     &      **2)*c2b
+      MSdLR = -Md*mue*tb
+      MSdRR = Md2**2+Md**2-1D0/3D0*MW**2/CW**2*SW**2*c2b
+*      MSd1 = sqrt((MSdLL+MSdRR-sqrt((MSdLL-MSdRR)**2+4D0
+*     &      *MSdLR**2))/2D0)
+*      MSd2 = sqrt((MSdLL+MSdRR+sqrt((MSdLL-MSdRR)**2+4D0
+*     &      *MSdLR**2))/2D0)
+*      MSdth = atan2(-2D0*MSdLR, -MSdLL+MSdRR)/2D0
+      MSd1=findValW('MSdL')
+      MSd2=findValW('MSdR')
+      MSdth=0
+      cdth = cos(MSdth)
+      sdth = sin(MSdth)
+      MSsLL = Mq2**2+Ms**2-MW**2/CW**2*(1D0/2D0-1D0/3D0*SW
+     &      **2)*c2b
+      MSsLR = -Ms*mue*tb
+      MSsRR = Md2**2+Ms**2-1D0/3D0*MW**2/CW**2*SW**2*c2b
+*      MSs1 = sqrt((MSsLL+MSsRR-sqrt((MSsLL-MSsRR)**2+4D0
+*     &      *MSsLR**2))/2D0)
+*      MSs2 = sqrt((MSsLL+MSsRR+sqrt((MSsLL-MSsRR)**2+4D0
+*     &      *MSsLR**2))/2D0)
+*      MSsth = atan2(-2D0*MSsLR, -MSsLL+MSsRR)/2D0
+
+      MSs1=findValW('MSsL')
+      MSs2=findValW('MSsR') 
+      MSsth=0
+      csth = cos(MSsth)
+      ssth = sin(MSsth)
+      MSbLL = Mq3**2+Mb**2-MW**2/CW**2*(1D0/2D0-1D0/3D0*SW
+     &      **2)*c2b
+      MSbLR = MW*SW*Sqrt2*cb*ds3/EE-Mb*mue*tb
+      MSbRR = Md3**2+Mb**2-1D0/3D0*MW**2/CW**2*SW**2*c2b
+
+*      MSbot1 = sqrt((MSbLL+MSbRR-sqrt((MSbLL-MSbRR)**2+4D0
+*     &      *MSbLR**2))/2D0)
+      MSbot1=findValW('MSb1')
+*      MSbot2 = sqrt((MSbLL+MSbRR+sqrt((MSbLL-MSbRR)**2+4D0
+*     &      *MSbLR**2))/2D0)
+      MSbot2=findValW('MSb2')
+
+*      MSbth = atan2(-2D0*MSbLR, -MSbLL+MSbRR)/2D0
+      MSbth=atan2(findValW('Zb12'),findValW('Zb11'))
+      cbth = cos(MSbth)
+      sbth = sin(MSbth)
+      write(6,*) 'cosb,sinb',cbth,sbth
+      write(6,*) 'cbt,sbt',cos(atan2(-2D0*MSbLR,-MSbLL+MSbRR)/2D0),
+     *sin(atan2(-2D0*MSbLR, -MSbLL+MSbRR)/2D0)
+      write(6,*) 'msb1,msb2',MSbot1,MSbot2
+      write(6,*) 'tree',sqrt((MSbLL+MSbRR-sqrt((MSbLL-MSbRR)**2+4D0
+     & *MSbLR**2))/2D0),sqrt((MSbLL+MSbRR+sqrt((MSbLL-MSbRR)**2+4D0
+     &      *MSbLR**2))/2D0)
+     
+      vevv = 2D0*MW**2*SW**2/EE**2
+      t2a1 = MH3**2*s2b+MZ**2*s2b-2D0*vevv*(s2b*(dlh3+dlh4
+     &      )-2D0*cb**2*dlh6-2D0*sb**2*dlh7)
+      t2a2 = MH3**2*c2b-MZ**2*c2b-2D0*vevv*(dlh1*cb**2-dlh2
+     &      *sb**2-dlh5*c2b-(dlh6-dlh7)*s2b)
+      hha2 = atan2(-t2a1, -t2a2)
+*      ca = cos(hha2/2D0)
+      ca=cos(findValW('alpha'))
+*      sa = sin(hha2/2D0)
+      sa=sin(findValW('alpha'))
+      sapb = sa*cb+ca*sb
+      samb = sa*cb-ca*sb
+      capb = ca*cb-sa*sb
+      camb = ca*cb+sa*sb
+      s2a = 2D0*sa*ca
+      c2a = ca**2-sa**2
+      dMHH1 = dlh1*ca**2*cb**2+dlh2*sa**2*sb**2+2D0*(dlh3
+     &      +dlh4)*ca*cb*sa*sb
+      dMHH2 = (ca**2*sb**2+sa**2*cb**2)*dlh5-2D0*sapb*(dlh6
+     &      *ca*cb+dlh7*sa*sb)
+      MHH = sqrt(MZ**2*capb**2+MH3**2*samb**2+2D0*vevv*(dMHH1
+     &      +dMHH2))
+      dMh1 = dlh1*sa**2*cb**2+dlh2*ca**2*sb**2-2D0*(dlh3
+     &      +dlh4)*ca*sa*cb*sb
+      dMh2 = (ca**2*cb**2+sa**2*sb**2)*dlh5+2D0*capb*(dlh6
+     &      *cb*sa-dlh7*ca*sb)
+*      Mh = sqrt(MZ**2*sapb**2+MH3**2*camb**2+2D0*vevv*(dMh1
+*     &      +dMh2))
+      Mh=findValW('Mh') 
+*      MHc = sqrt(MH3**2+MW**2-vevv*(dlh4-dlh5))
+      MHc=findValW('MHc')
+      SW2 = SW**2
+      CW2 = CW**2
+      MW2 = MW**2
+      MZ2 = MZ**2
+      EE2 = EE**2
+      GG2 = GG**2
+      Mesq = Me**2
+      Mmsq = Mm**2
+      Mtausq = Mtau**2
+      Musq = Mu**2
+      Mdsq = Md**2
+      Mcsq = Mc**2
+      Mssq = Ms**2
+      Mbsq = Mb**2
+      Mtopsq = Mtop**2
+      MC1sq = MC1**2
+      MC2sq = MC2**2
+      MNE1sq = MNE1**2
+      MNE2sq = MNE2**2
+      MNE3sq = MNE3**2
+      MNE4sq = MNE4**2
+      MSe1sq = MSe1**2
+      MSe2sq = MSe2**2
+      MSmu1sq = MSmu1**2
+      MSmu2sq = MSmu2**2
+      MStau1sq = MStau1**2
+      MStau2sq = MStau2**2
+      MSu1sq = MSu1**2
+      MSu2sq = MSu2**2
+      MSd1sq = MSd1**2
+      MSd2sq = MSd2**2
+      MSc1sq = MSc1**2
+      MSc2sq = MSc2**2
+      MSs1sq = MSs1**2
+      MSs2sq = MSs2**2
+      MStop1sq = MStop1**2
+      MStop2sq = MStop2**2
+      MSbot1sq = MSbot1**2
+      MSbot2sq = MSbot2**2
+      MSnesq = MSne**2
+      MSnmusq = MSnmu**2
+      MSntausq = MSntau**2
+      Alfa = EE**2/4D0/pi
+      Alfa2 = Alfa**2
+      A00001 = MW**2/CW**2
+      A00002 = MW**2
+      A00003 = 1D0/CW**2
+      A00004 = MW**2/CW**4*SW
+      A00005 = EE*MW
+      A00006 = EE*MW/SW*camb-EE*MW/SW*camb*nld2
+      A00007 = EE*MW/SW+EE*MW/SW*nlk
+      A00008 = EE*MW/SW*samb-EE*MW/SW*nld1*samb
+      A00009 = C2W*EE*MW/S2W-EE*MW/S2W*nlk
+      A00010 = EE*MW/S2W
+      A00011 = EE/CW**2*MW/SW*camb+EE/CW**2*MW/SW*camb*nle2
+      A00012 = EE/CW**2*MW/SW*samb+EE/CW**2*MW/SW*nle1*samb
+      A00013 = EE*nla
+      A00014 = CW*EE/SW
+      A00015 = CW*EE/SW*nlb
+      A00016 = 2D0*EE/CW**2*MW/SW*c2a*capb+8D0*MW/EE*SW*ca
+     &      **3*cb*dlh1+8D0*MW/EE*SW*dlh2*sa**3*sb-2D0*MW
+     &      /CW**2/EE*S2W**2/SW*ca**3*dlh6*sb-2D0*MW/CW**2
+     &      /EE*S2W**2/SW*cb*dlh7*sa**3+MW/CW**2/EE*S2W**2
+     &      /SW*dlh3*s2a*sapb+MW/CW**2/EE*S2W**2/SW*dlh4
+     &      *s2a*sapb+MW/CW**2/EE*S2W**2/SW*dlh5*s2a*sapb
+     &      -6D0*MW/CW**2/EE*S2W**2/SW*ca*dlh7*sa**2*sb-6D0
+     &      *MW/CW**2/EE*S2W**2/SW*ca**2*cb*dlh6*sa
+      A00017 = 4D0*EE/CW**2*MW/SW*samb+6D0*EE/CW**2*MW/SW
+     &      *c2a*sapb-MW/CW**2/EE*S2W**2/SW*dlh3*samb-MW
+     &      /CW**2/EE*S2W**2/SW*dlh4*samb-MW/CW**2/EE*S2W
+     &      **2/SW*dlh5*samb-24D0*MW/EE*SW*ca*dlh2*sa**2
+     &      *sb+24D0*MW/EE*SW*ca**2*cb*dlh1*sa-3D0*MW/CW
+     &      **2/EE*S2W**2/SW*c2a*dlh3*sapb-3D0*MW/CW**2/EE
+     &      *S2W**2/SW*c2a*dlh4*sapb-3D0*MW/CW**2/EE*S2W
+     &      **2/SW*c2a*dlh5*sapb+6D0*MW/CW**2/EE*S2W**2/SW
+     &      *ca*cb*dlh6+12D0*MW/CW**2/EE*S2W**2/SW*dlh7*sa
+     &      *sb-18D0*MW/CW**2/EE*S2W**2/SW*dlh7*sa**3*sb
+     &      -18D0*MW/CW**2/EE*S2W**2/SW*ca*cb*dlh6*sa**2
+     &      +6D0*MW/CW**2/EE*S2W**2/SW*ca*cb*dlh7*sa**2-6D0
+     &      *MW/CW**2/EE*S2W**2/SW*ca**2*dlh6*sa*sb
+      A00018 = 2D0*C2W/CW**2*EE*MW/SW*camb+2D0*EE/CW**2*MW
+     &      /SW*s2b*sapb+2D0*(ca*cb**3+sa*sb**3)/CW**2/EE
+     &      *MW*S2W**2/SW*dlh3+8D0*MW/EE*SW*ca*cb*dlh1*sb
+     &      **2+8D0*MW/EE*SW*cb**2*dlh2*sa*sb+4D0*MW/CW**2
+     &      /EE*S2W**2/SW*ca*dlh6*sb-6D0*MW/CW**2/EE*S2W
+     &      **2/SW*ca*dlh6*sb**3-2D0*MW/CW**2/EE*S2W**2/SW
+     &      *cb*dlh7*sa-MW/CW**2/EE*S2W**2/SW*dlh4*s2b*sapb
+     &      -MW/CW**2/EE*S2W**2/SW*dlh5*s2b*sapb-2D0*MW/CW
+     &      **2/EE*S2W**2/SW*ca*cb**2*dlh7*sb-2D0*MW/CW**2
+     &      /EE*S2W**2/SW*cb*dlh6*sa*sb**2+6D0*MW/CW**2/EE
+     &      *S2W**2/SW*cb*dlh7*sa*sb**2
+      A00019 = 2D0*EE/CW**2*MW*SW*samb-2D0*EE/CW**2*MW/SW
+     &      *c2b*sapb-8D0*MW/EE*SW*ca*cb**2*dlh1*sb+8D0*MW
+     &      /EE*SW*cb*dlh2*sa*sb**2+MW/CW**2/EE*S2W**2/SW
+     &      *c2b*dlh4*sapb+MW/CW**2/EE*S2W**2/SW*c2b*dlh5
+     &      *sapb-2D0*MW/CW**2/EE*S2W**2/SW*ca*cb*dlh6+MW
+     &      /CW**2/EE*S2W**2/SW*capb*dlh3*s2b-4D0*MW/CW**2
+     &      /EE*S2W**2/SW*dlh7*sa*sb+6D0*MW/CW**2/EE*S2W
+     &      **2/SW*dlh7*sa*sb**3+6D0*MW/CW**2/EE*S2W**2/SW
+     &      *ca*cb*dlh6*sb**2-2D0*MW/CW**2/EE*S2W**2/SW*ca
+     &      *cb*dlh7*sb**2+2D0*MW/CW**2/EE*S2W**2/SW*cb**2
+     &      *dlh6*sa*sb
+      A00020 = 2D0*EE/CW**2*MW/SW*c2b*capb-2D0*(ca*cb**3
+     &      +sa*sb**3)/CW**2/EE*MW*S2W**2/SW*dlh3-2D0*(ca
+     &      *cb**3+sa*sb**3)/CW**2/EE*MW*S2W**2/SW*dlh4+2D0
+     &      *MW/CW**2/EE*S2W**2/SW*camb*dlh5-8D0*MW/EE*SW
+     &      *ca*cb*dlh1*sb**2-8D0*MW/EE*SW*cb**2*dlh2*sa
+     &      *sb-4D0*MW/CW**2/EE*S2W**2/SW*ca*dlh6*sb+6D0
+     &      *MW/CW**2/EE*S2W**2/SW*ca*dlh6*sb**3+2D0*MW/CW
+     &      **2/EE*S2W**2/SW*cb*dlh7*sa+MW/CW**2/EE*S2W**2
+     &      /SW*dlh5*s2b*sapb+2D0*MW/CW**2/EE*S2W**2/SW*ca
+     &      *cb**2*dlh7*sb+2D0*MW/CW**2/EE*S2W**2/SW*cb*dlh6
+     &      *sa*sb**2-6D0*MW/CW**2/EE*S2W**2/SW*cb*dlh7*sa
+     &      *sb**2
+      A00021 = 2D0*EE/CW**2*MW/SW*capb*s2b-2D0*(sa*cb**3
+     &      -ca*sb**3)/CW**2/EE*MW*S2W**2/SW*dlh5+8D0*MW
+     &      /EE*SW*ca*cb**2*dlh1*sb-8D0*MW/EE*SW*cb*dlh2
+     &      *sa*sb**2+2D0*MW/CW**2/EE*S2W**2/SW*ca*cb*dlh6
+     &      -MW/CW**2/EE*S2W**2/SW*capb*dlh3*s2b-MW/CW**2
+     &      /EE*S2W**2/SW*capb*dlh4*s2b+4D0*MW/CW**2/EE*S2W
+     &      **2/SW*dlh7*sa*sb-6D0*MW/CW**2/EE*S2W**2/SW*dlh7
+     &      *sa*sb**3-6D0*MW/CW**2/EE*S2W**2/SW*ca*cb*dlh6
+     &      *sb**2+2D0*MW/CW**2/EE*S2W**2/SW*ca*cb*dlh7*sb
+     &      **2-2D0*MW/CW**2/EE*S2W**2/SW*cb**2*dlh6*sa*sb
+      A00022 = 4D0*EE*MW/SW*camb*nld2-2D0*EE/CW**2*MW/SW
+     &      *c2b*capb-8D0*MW/EE*SW*ca*cb**3*dlh1-8D0*MW/EE
+     &      *SW*dlh2*sa*sb**3+2D0*MW/CW**2/EE*S2W**2/SW*ca
+     &      *dlh7*sb**3+2D0*MW/CW**2/EE*S2W**2/SW*cb**3*dlh6
+     &      *sa-MW/CW**2/EE*S2W**2/SW*dlh3*s2b*sapb-MW/CW
+     &      **2/EE*S2W**2/SW*dlh4*s2b*sapb-MW/CW**2/EE*S2W
+     &      **2/SW*dlh5*s2b*sapb+6D0*MW/CW**2/EE*S2W**2/SW
+     &      *ca*cb**2*dlh6*sb+6D0*MW/CW**2/EE*S2W**2/SW*cb
+     &      *dlh7*sa*sb**2
+      A00023 = 2D0*EE/CW**2*MW/SW*c2b*capb+4D0*EE/CW**2*MW
+     &      /SW*camb*nle2+8D0*MW/EE*SW*ca*cb**3*dlh1+8D0
+     &      *MW/EE*SW*dlh2*sa*sb**3-2D0*MW/CW**2/EE*S2W**2
+     &      /SW*ca*dlh7*sb**3-2D0*MW/CW**2/EE*S2W**2/SW*cb
+     &      **3*dlh6*sa+MW/CW**2/EE*S2W**2/SW*dlh3*s2b*sapb
+     &      +MW/CW**2/EE*S2W**2/SW*dlh4*s2b*sapb+MW/CW**2
+     &      /EE*S2W**2/SW*dlh5*s2b*sapb-6D0*MW/CW**2/EE*S2W
+     &      **2/SW*ca*cb**2*dlh6*sb-6D0*MW/CW**2/EE*S2W**2
+     &      /SW*cb*dlh7*sa*sb**2
+      A00024 = 2D0*EE/CW**2*MW/SW*camb-6D0*EE/CW**2*MW/SW
+     &      *s2a*sapb-2D0*MW/CW**2/EE*S2W**2/SW*camb*dlh3
+     &      -2D0*MW/CW**2/EE*S2W**2/SW*camb*dlh4-2D0*MW/CW
+     &      **2/EE*S2W**2/SW*camb*dlh5-24D0*MW/EE*SW*ca*cb
+     &      *dlh1*sa**2-24D0*MW/EE*SW*ca**2*dlh2*sa*sb+6D0
+     &      *MW/CW**2/EE*S2W**2/SW*ca*dlh7*sb-12D0*MW/CW
+     &      **2/EE*S2W**2/SW*cb*dlh6*sa+18D0*MW/CW**2/EE
+     &      *S2W**2/SW*cb*dlh6*sa**3+3D0*MW/CW**2/EE*S2W
+     &      **2/SW*dlh3*s2a*sapb+3D0*MW/CW**2/EE*S2W**2/SW
+     &      *dlh4*s2a*sapb+3D0*MW/CW**2/EE*S2W**2/SW*dlh5
+     &      *s2a*sapb+6D0*MW/CW**2/EE*S2W**2/SW*ca*dlh6*sa
+     &      **2*sb-18D0*MW/CW**2/EE*S2W**2/SW*ca*dlh7*sa
+     &      **2*sb+6D0*MW/CW**2/EE*S2W**2/SW*ca**2*cb*dlh7
+     &      *sa
+      A00025 = 3D0*EE/CW**2*MW/SW*capb-2D0*EE/CW**2*MW*SW
+     &      *capb-3D0*EE/CW**2*MW/SW*capb*sbth**2+4D0*EE
+     &      /CW**2*MW*SW*capb*sbth**2-6D0*EE/MW*Mb**2/SW
+     &      *ca/cb-6D0*Ab*EE/MW*Mb/SW*ca/cb*cbth*sbth+6D0
+     &      *EE/MW*Mb/SW/cb*cbth*mue*sa*sbth
+      A00026 = 3D0*Ab*EE/MW*Mb/SW*ca/cb+3D0*EE/CW**2*MW/SW
+     &      *capb*cbth*sbth-4D0*EE/CW**2*MW*SW*capb*cbth
+     &      *sbth-3D0*EE/MW*Mb/SW/cb*mue*sa-6D0*Ab*EE/MW
+     &      *Mb/SW*ca/cb*sbth**2+6D0*EE/MW*Mb/SW/cb*mue*sa
+     &      *sbth**2
+      A00027 = 2D0*EE/CW**2*MW*SW*capb+3D0*EE/CW**2*MW/SW
+     &      *capb*sbth**2-4D0*EE/CW**2*MW*SW*capb*sbth**2
+     &      -6D0*EE/MW*Mb**2/SW*ca/cb+6D0*Ab*EE/MW*Mb/SW
+     &      *ca/cb*cbth*sbth-6D0*EE/MW*Mb/SW/cb*cbth*mue
+     &      *sa*sbth
+      A00028 = 3D0*EE/CW**2*MW/SW*capb-4D0*EE/CW**2*MW*SW
+     &      *capb-3D0*EE/CW**2*MW/SW*capb*scth**2+8D0*EE
+     &      /CW**2*MW*SW*capb*scth**2+6D0*EE/MW*Mc**2/SW
+     &      *sa/sb-6D0*EE/MW*Mc/SW*ca*ccth*mue/sb*scth
+      A00029 = 3D0*EE/CW**2*MW/SW*capb*ccth*scth-8D0*EE/CW
+     &      **2*MW*SW*capb*ccth*scth+3D0*EE/MW*Mc/SW*ca*mue
+     &      /sb-6D0*EE/MW*Mc/SW*ca*mue/sb*scth**2
+      A00030 = 4D0*EE/CW**2*MW*SW*capb+3D0*EE/CW**2*MW/SW
+     &      *capb*scth**2-8D0*EE/CW**2*MW*SW*capb*scth**2
+     &      +6D0*EE/MW*Mc**2/SW*sa/sb+6D0*EE/MW*Mc/SW*ca
+     &      *ccth*mue/sb*scth
+      A00031 = 3D0*EE/CW**2*MW/SW*capb-2D0*EE/CW**2*MW*SW
+     &      *capb-3D0*EE/CW**2*MW/SW*capb*sdth**2+4D0*EE
+     &      /CW**2*MW*SW*capb*sdth**2-6D0*EE/MW*Md**2/SW
+     &      *ca/cb+6D0*EE/MW*Md/SW/cb*cdth*mue*sa*sdth
+      A00032 = 3D0*EE/CW**2*MW/SW*capb*cdth*sdth-4D0*EE/CW
+     &      **2*MW*SW*capb*cdth*sdth-3D0*EE/MW*Md/SW/cb*mue
+     &      *sa+6D0*EE/MW*Md/SW/cb*mue*sa*sdth**2
+      A00033 = 2D0*EE/CW**2*MW*SW*capb+3D0*EE/CW**2*MW/SW
+     &      *capb*sdth**2-4D0*EE/CW**2*MW*SW*capb*sdth**2
+     &      -6D0*EE/MW*Md**2/SW*ca/cb-6D0*EE/MW*Md/SW/cb
+     &      *cdth*mue*sa*sdth
+      A00034 = C2W/CW**2*EE*MW/SW*capb-EE/CW**2*MW/SW*capb
+     &      *seth**2+4D0*EE/CW**2*MW*SW*capb*seth**2-2D0
+     &      *EE/MW*Me**2/SW*ca/cb+2D0*EE/MW*Me/SW/cb*ceth
+     &      *mue*sa*seth
+      A00035 = EE/CW**2*MW/SW*capb*ceth*seth-4D0*EE/CW**2
+     &      *MW*SW*capb*ceth*seth-EE/MW*Me/SW/cb*mue*sa+2D0
+     &      *EE/MW*Me/SW/cb*mue*sa*seth**2
+      A00036 = 2D0*EE/CW**2*MW*SW*capb+EE/CW**2*MW/SW*capb
+     &      *seth**2-4D0*EE/CW**2*MW*SW*capb*seth**2-2D0
+     &      *EE/MW*Me**2/SW*ca/cb-2D0*EE/MW*Me/SW/cb*ceth
+     &      *mue*sa*seth
+      A00037 = C2W/CW**2*EE*MW/SW*capb-EE/CW**2*MW/SW*capb
+     &      *slth**2+4D0*EE/CW**2*MW*SW*capb*slth**2-2D0
+     &      *EE/MW*Mtau**2/SW*ca/cb-2D0*Atau*EE/MW*Mtau/SW
+     &      *ca/cb*clth*slth+2D0*EE/MW*Mtau/SW/cb*clth*mue
+     &      *sa*slth
+      A00038 = Atau*EE/MW*Mtau/SW*ca/cb+EE/CW**2*MW/SW*capb
+     &      *clth*slth-4D0*EE/CW**2*MW*SW*capb*clth*slth
+     &      -EE/MW*Mtau/SW/cb*mue*sa-2D0*Atau*EE/MW*Mtau
+     &      /SW*ca/cb*slth**2+2D0*EE/MW*Mtau/SW/cb*mue*sa
+     &      *slth**2
+      A00039 = 2D0*EE/CW**2*MW*SW*capb+EE/CW**2*MW/SW*capb
+     &      *slth**2-4D0*EE/CW**2*MW*SW*capb*slth**2-2D0
+     &      *EE/MW*Mtau**2/SW*ca/cb+2D0*Atau*EE/MW*Mtau/SW
+     &      *ca/cb*clth*slth-2D0*EE/MW*Mtau/SW/cb*clth*mue
+     &      *sa*slth
+      A00040 = C2W/CW**2*EE*MW/SW*capb-EE/CW**2*MW/SW*capb
+     &      *smuth**2+4D0*EE/CW**2*MW*SW*capb*smuth**2-2D0
+     &      *EE/MW*Mm**2/SW*ca/cb-2D0*Am*EE/MW*Mm/SW*ca/cb
+     &      *cmuth*smuth+2D0*EE/MW*Mm/SW/cb*cmuth*mue*sa
+     &      *smuth
+      A00041 = Am*EE/MW*Mm/SW*ca/cb+EE/CW**2*MW/SW*capb*cmuth
+     &      *smuth-4D0*EE/CW**2*MW*SW*capb*cmuth*smuth-EE
+     &      /MW*Mm/SW/cb*mue*sa-2D0*Am*EE/MW*Mm/SW*ca/cb
+     &      *smuth**2+2D0*EE/MW*Mm/SW/cb*mue*sa*smuth**2
+      A00042 = 2D0*EE/CW**2*MW*SW*capb+EE/CW**2*MW/SW*capb
+     &      *smuth**2-4D0*EE/CW**2*MW*SW*capb*smuth**2-2D0
+     &      *EE/MW*Mm**2/SW*ca/cb+2D0*Am*EE/MW*Mm/SW*ca/cb
+     &      *cmuth*smuth-2D0*EE/MW*Mm/SW/cb*cmuth*mue*sa
+     &      *smuth
+      A00043 = EE/CW**2*MW/SW*capb
+      A00044 = 3D0*EE/CW**2*MW/SW*capb-2D0*EE/CW**2*MW*SW
+     &      *capb-3D0*EE/CW**2*MW/SW*capb*ssth**2+4D0*EE
+     &      /CW**2*MW*SW*capb*ssth**2-6D0*EE/MW*Ms**2/SW
+     &      *ca/cb+6D0*EE/MW*Ms/SW/cb*csth*mue*sa*ssth
+      A00045 = 3D0*EE/CW**2*MW/SW*capb*csth*ssth-4D0*EE/CW
+     &      **2*MW*SW*capb*csth*ssth-3D0*EE/MW*Ms/SW/cb*mue
+     &      *sa+6D0*EE/MW*Ms/SW/cb*mue*sa*ssth**2
+      A00046 = 2D0*EE/CW**2*MW*SW*capb+3D0*EE/CW**2*MW/SW
+     &      *capb*ssth**2-4D0*EE/CW**2*MW*SW*capb*ssth**2
+     &      -6D0*EE/MW*Ms**2/SW*ca/cb-6D0*EE/MW*Ms/SW/cb
+     &      *csth*mue*sa*ssth
+      A00047 = 3D0*EE/CW**2*MW/SW*capb-4D0*EE/CW**2*MW*SW
+     &      *capb-3D0*EE/CW**2*MW/SW*capb*stth**2+8D0*EE
+     &      /CW**2*MW*SW*capb*stth**2+6D0*EE/MW*MtopS**2
+     &      /SW*sa/sb+6D0*Atop*EE/MW*MtopS/SW*ctth*sa/sb
+     &      *stth-6D0*EE/MW*MtopS/SW*ca*ctth*mue/sb*stth
+      A00048 = 3D0*Atop*EE/MW*MtopS/SW*sa/sb-3D0*EE/CW**2
+     &      *MW/SW*capb*ctth*stth+8D0*EE/CW**2*MW*SW*capb
+     &      *ctth*stth-3D0*EE/MW*MtopS/SW*ca*mue/sb-6D0*Atop
+     &      *EE/MW*MtopS/SW*sa/sb*stth**2+6D0*EE/MW*MtopS
+     &      /SW*ca*mue/sb*stth**2
+      A00049 = 4D0*EE/CW**2*MW*SW*capb+3D0*EE/CW**2*MW/SW
+     &      *capb*stth**2-8D0*EE/CW**2*MW*SW*capb*stth**2
+     &      +6D0*EE/MW*MtopS**2/SW*sa/sb-6D0*Atop*EE/MW*MtopS
+     &      /SW*ctth*sa/sb*stth+6D0*EE/MW*MtopS/SW*ca*ctth
+     &      *mue/sb*stth
+      A00050 = 3D0*EE/CW**2*MW/SW*capb-4D0*EE/CW**2*MW*SW
+     &      *capb-3D0*EE/CW**2*MW/SW*capb*suth**2+8D0*EE
+     &      /CW**2*MW*SW*capb*suth**2+6D0*EE/MW*Mu**2/SW
+     &      *sa/sb-6D0*EE/MW*Mu/SW*ca*cuth*mue/sb*suth
+      A00051 = 3D0*EE/CW**2*MW/SW*capb*cuth*suth-8D0*EE/CW
+     &      **2*MW*SW*capb*cuth*suth+3D0*EE/MW*Mu/SW*ca*mue
+     &      /sb-6D0*EE/MW*Mu/SW*ca*mue/sb*suth**2
+      A00052 = 4D0*EE/CW**2*MW*SW*capb+3D0*EE/CW**2*MW/SW
+     &      *capb*suth**2-8D0*EE/CW**2*MW*SW*capb*suth**2
+     &      +6D0*EE/MW*Mu**2/SW*sa/sb+6D0*EE/MW*Mu/SW*ca
+     &      *cuth*mue/sb*suth
+      A00053 = 4D0*EE*MW/SW*samb-2D0*EE/CW**2*MW/SW*c2b*sapb
+     &      +2D0*(sa*cb**3-ca*sb**3)/CW**2/EE*MW*S2W**2/SW
+     &      *dlh3-8D0*MW/EE*SW*ca*cb**2*dlh2*sb+8D0*MW/EE
+     &      *SW*cb*dlh1*sa*sb**2+2D0*MW/CW**2/EE*S2W**2/SW
+     &      *ca*cb*dlh7+MW/CW**2/EE*S2W**2/SW*capb*dlh4*s2b
+     &      +MW/CW**2/EE*S2W**2/SW*capb*dlh5*s2b+4D0*MW/CW
+     &      **2/EE*S2W**2/SW*dlh6*sa*sb-6D0*MW/CW**2/EE*S2W
+     &      **2/SW*dlh6*sa*sb**3+2D0*MW/CW**2/EE*S2W**2/SW
+     &      *ca*cb*dlh6*sb**2-6D0*MW/CW**2/EE*S2W**2/SW*ca
+     &      *cb*dlh7*sb**2-2D0*MW/CW**2/EE*S2W**2/SW*cb**2
+     &      *dlh7*sa*sb
+      A00054 = EE*MW/SW-2D0*MW/EE*SW*dlh4+2D0*MW/EE*SW*dlh5
+      A00055 = 2D0*EE*MW/SW*camb-2D0*EE/CW**2*MW/SW*s2b*sapb
+     &      -8D0*MW/EE*SW*ca*cb*dlh2*sb**2-8D0*MW/EE*SW*cb
+     &      **2*dlh1*sa*sb-MW/CW**2/EE*S2W**2/SW*c2b*capb
+     &      *dlh4-MW/CW**2/EE*S2W**2/SW*c2b*capb*dlh5+4D0
+     &      *MW/CW**2/EE*S2W**2/SW*ca*dlh7*sb-6D0*MW/CW**2
+     &      /EE*S2W**2/SW*ca*dlh7*sb**3-2D0*MW/CW**2/EE*S2W
+     &      **2/SW*cb*dlh6*sa+MW/CW**2/EE*S2W**2/SW*dlh3
+     &      *s2b*sapb-2D0*MW/CW**2/EE*S2W**2/SW*ca*cb**2
+     &      *dlh6*sb+6D0*MW/CW**2/EE*S2W**2/SW*cb*dlh6*sa
+     &      *sb**2-2D0*MW/CW**2/EE*S2W**2/SW*cb*dlh7*sa*sb
+     &      **2
+      A00056 = EE/MW*Mc/SW*Sqrt2*csth*mue*scth+EE/MW*Ms/SW
+     &      *Sqrt2*ccth*mue*ssth+2D0*EE/MW*Mc*Ms/SW*Sqrt2
+     &      /s2b*scth*ssth+2D0*EE/MW*Mc**2/SW*Sqrt2*cb**2
+     &      *ccth*csth/s2b+2D0*EE/MW*Ms**2/SW*Sqrt2*ccth
+     &      *csth/s2b*sb**2-4D0*EE*MW/SW*Sqrt2*cb**2*ccth
+     &      *csth/s2b*sb**2
+      A00057 = EE/MW*Mc/SW*Sqrt2*mue*scth*ssth-EE/MW*Ms/SW
+     &      *Sqrt2*ccth*csth*mue-2D0*EE/MW*Mc*Ms/SW*Sqrt2
+     &      *csth/s2b*scth+2D0*EE/MW*Mc**2/SW*Sqrt2*cb**2
+     &      *ccth/s2b*ssth+2D0*EE/MW*Ms**2/SW*Sqrt2*ccth
+     &      /s2b*sb**2*ssth-4D0*EE*MW/SW*Sqrt2*cb**2*ccth
+     &      /s2b*sb**2*ssth
+      A00058 = EE/MW*Mc/SW*Sqrt2*ccth*csth*mue-EE/MW*Ms/SW
+     &      *Sqrt2*mue*scth*ssth+2D0*EE/MW*Mc*Ms/SW*Sqrt2
+     &      *ccth/s2b*ssth-2D0*EE/MW*Mc**2/SW*Sqrt2*cb**2
+     &      *csth/s2b*scth-2D0*EE/MW*Ms**2/SW*Sqrt2*csth
+     &      /s2b*sb**2*scth+4D0*EE*MW/SW*Sqrt2*cb**2*csth
+     &      /s2b*sb**2*scth
+      A00059 = EE/MW*Mc/SW*Sqrt2*ccth*mue*ssth+EE/MW*Ms/SW
+     &      *Sqrt2*csth*mue*scth-2D0*EE/MW*Mc*Ms/SW*Sqrt2
+     &      *ccth*csth/s2b-2D0*EE/MW*Mc**2/SW*Sqrt2*cb**2
+     &      /s2b*scth*ssth-2D0*EE/MW*Ms**2/SW*Sqrt2/s2b*sb
+     &      **2*scth*ssth+4D0*EE*MW/SW*Sqrt2*cb**2/s2b*sb
+     &      **2*scth*ssth
+      A00060 = EE/MW*Me/SW*Sqrt2*mue*seth-2D0*EE*MW/SW*Sqrt2
+     &      *cb*ceth*sb+EE/MW*Me**2/SW*Sqrt2/cb*ceth*sb
+      A00061 = EE/MW*Me/SW*Sqrt2*ceth*mue+2D0*EE*MW/SW*Sqrt2
+     &      *cb*sb*seth-EE/MW*Me**2/SW*Sqrt2/cb*sb*seth
+      A00062 = EE/MW*Mtau/SW*Sqrt2*mue*slth-2D0*EE*MW/SW
+     &      *Sqrt2*cb*clth*sb+EE/MW*Mtau**2/SW*Sqrt2/cb*clth
+     &      *sb+Atau*EE/MW*Mtau/SW*Sqrt2/cb*sb*slth
+      A00063 = EE/MW*Mtau/SW*Sqrt2*clth*mue+2D0*EE*MW/SW
+     &      *Sqrt2*cb*sb*slth-EE/MW*Mtau**2/SW*Sqrt2/cb*sb
+     &      *slth+Atau*EE/MW*Mtau/SW*Sqrt2/cb*clth*sb
+      A00064 = EE/MW*Mm/SW*Sqrt2*mue*smuth-2D0*EE*MW/SW*Sqrt2
+     &      *cb*cmuth*sb+EE/MW*Mm**2/SW*Sqrt2/cb*cmuth*sb
+     &      +Am*EE/MW*Mm/SW*Sqrt2/cb*sb*smuth
+      A00065 = EE/MW*Mm/SW*Sqrt2*cmuth*mue+2D0*EE*MW/SW*Sqrt2
+     &      *cb*sb*smuth-EE/MW*Mm**2/SW*Sqrt2/cb*sb*smuth
+     &      +Am*EE/MW*Mm/SW*Sqrt2/cb*cmuth*sb
+      A00066 = EE/MW*Mb/SW*Sqrt2*ctth*mue*sbth+EE/MW*MtopS
+     &      /SW*Sqrt2*cbth*mue*stth+2D0*EE/MW*Mb*MtopS/SW
+     &      *Sqrt2/s2b*sbth*stth+2D0*EE/MW*Mb**2/SW*Sqrt2
+     &      *cbth*ctth/s2b*sb**2+2D0*EE/MW*MtopS**2/SW*Sqrt2
+     &      *cb**2*cbth*ctth/s2b-4D0*EE*MW/SW*Sqrt2*cb**2
+     &      *cbth*ctth/s2b*sb**2+2D0*Ab*EE/MW*Mb/SW*Sqrt2
+     &      *ctth/s2b*sb**2*sbth+2D0*Atop*EE/MW*MtopS/SW
+     &      *Sqrt2*cb**2*cbth/s2b*stth
+      A00067 = EE/MW*Mb/SW*Sqrt2*cbth*ctth*mue-EE/MW*MtopS
+     &      /SW*Sqrt2*mue*sbth*stth+2D0*EE/MW*Mb*MtopS/SW
+     &      *Sqrt2*cbth/s2b*stth-2D0*EE/MW*Mb**2/SW*Sqrt2
+     &      *ctth/s2b*sb**2*sbth-2D0*EE/MW*MtopS**2/SW*Sqrt2
+     &      *cb**2*ctth/s2b*sbth+4D0*EE*MW/SW*Sqrt2*cb**2
+     &      *ctth/s2b*sb**2*sbth+2D0*Ab*EE/MW*Mb/SW*Sqrt2
+     &      *cbth*ctth/s2b*sb**2-2D0*Atop*EE/MW*MtopS/SW
+     &      *Sqrt2*cb**2/s2b*sbth*stth
+      A00068 = EE/MW*Mb/SW*Sqrt2*mue*sbth*stth-EE/MW*MtopS
+     &      /SW*Sqrt2*cbth*ctth*mue-2D0*EE/MW*Mb*MtopS/SW
+     &      *Sqrt2*ctth/s2b*sbth+2D0*EE/MW*Mb**2/SW*Sqrt2
+     &      *cbth/s2b*sb**2*stth+2D0*EE/MW*MtopS**2/SW*Sqrt2
+     &      *cb**2*cbth/s2b*stth-4D0*EE*MW/SW*Sqrt2*cb**2
+     &      *cbth/s2b*sb**2*stth+2D0*Ab*EE/MW*Mb/SW*Sqrt2
+     &      /s2b*sb**2*sbth*stth-2D0*Atop*EE/MW*MtopS/SW
+     &      *Sqrt2*cb**2*cbth*ctth/s2b
+      A00069 = EE/MW*Mb/SW*Sqrt2*cbth*mue*stth+EE/MW*MtopS
+     &      /SW*Sqrt2*ctth*mue*sbth-2D0*EE/MW*Mb*MtopS/SW
+     &      *Sqrt2*cbth*ctth/s2b-2D0*EE/MW*Mb**2/SW*Sqrt2
+     &      /s2b*sb**2*sbth*stth-2D0*EE/MW*MtopS**2/SW*Sqrt2
+     &      *cb**2/s2b*sbth*stth+4D0*EE*MW/SW*Sqrt2*cb**2
+     &      /s2b*sb**2*sbth*stth+2D0*Ab*EE/MW*Mb/SW*Sqrt2
+     &      *cbth/s2b*sb**2*stth+2D0*Atop*EE/MW*MtopS/SW
+     &      *Sqrt2*cb**2*ctth/s2b*sbth
+      A00070 = EE/MW*Md/SW*Sqrt2*cuth*mue*sdth+EE/MW*Mu/SW
+     &      *Sqrt2*cdth*mue*suth+2D0*EE/MW*Md*Mu/SW*Sqrt2
+     &      /s2b*sdth*suth+2D0*EE/MW*Md**2/SW*Sqrt2*cdth
+     &      *cuth/s2b*sb**2+2D0*EE/MW*Mu**2/SW*Sqrt2*cb**2
+     &      *cdth*cuth/s2b-4D0*EE*MW/SW*Sqrt2*cb**2*cdth
+     &      *cuth/s2b*sb**2
+      A00071 = EE/MW*Md/SW*Sqrt2*cdth*cuth*mue-EE/MW*Mu/SW
+     &      *Sqrt2*mue*sdth*suth+2D0*EE/MW*Md*Mu/SW*Sqrt2
+     &      *cdth/s2b*suth-2D0*EE/MW*Md**2/SW*Sqrt2*cuth
+     &      /s2b*sb**2*sdth-2D0*EE/MW*Mu**2/SW*Sqrt2*cb**2
+     &      *cuth/s2b*sdth+4D0*EE*MW/SW*Sqrt2*cb**2*cuth
+     &      /s2b*sb**2*sdth
+      A00072 = EE/MW*Md/SW*Sqrt2*mue*sdth*suth-EE/MW*Mu/SW
+     &      *Sqrt2*cdth*cuth*mue-2D0*EE/MW*Md*Mu/SW*Sqrt2
+     &      *cuth/s2b*sdth+2D0*EE/MW*Md**2/SW*Sqrt2*cdth
+     &      /s2b*sb**2*suth+2D0*EE/MW*Mu**2/SW*Sqrt2*cb**2
+     &      *cdth/s2b*suth-4D0*EE*MW/SW*Sqrt2*cb**2*cdth
+     &      /s2b*sb**2*suth
+      A00073 = EE/MW*Md/SW*Sqrt2*cdth*mue*suth+EE/MW*Mu/SW
+     &      *Sqrt2*cuth*mue*sdth-2D0*EE/MW*Md*Mu/SW*Sqrt2
+     &      *cdth*cuth/s2b-2D0*EE/MW*Md**2/SW*Sqrt2/s2b*sb
+     &      **2*sdth*suth-2D0*EE/MW*Mu**2/SW*Sqrt2*cb**2
+     &      /s2b*sdth*suth+4D0*EE*MW/SW*Sqrt2*cb**2/s2b*sb
+     &      **2*sdth*suth
+      A00074 = 2D0*EE/CW**2*MW/SW*c2b*sapb-2D0*(sa*cb**3
+     &      -ca*sb**3)/CW**2/EE*MW*S2W**2/SW*dlh3-2D0*(sa
+     &      *cb**3-ca*sb**3)/CW**2/EE*MW*S2W**2/SW*dlh4+3D0
+     &      *MW/CW**2/EE*S2W**2/SW*dlh5*samb+8D0*MW/EE*SW
+     &      *ca*cb**2*dlh2*sb-8D0*MW/EE*SW*cb*dlh1*sa*sb
+     &      **2-MW/CW**2/EE*S2W**2/SW*c2b*dlh5*sapb-2D0*MW
+     &      /CW**2/EE*S2W**2/SW*ca*cb*dlh7-4D0*MW/CW**2/EE
+     &      *S2W**2/SW*dlh6*sa*sb+6D0*MW/CW**2/EE*S2W**2
+     &      /SW*dlh6*sa*sb**3-2D0*MW/CW**2/EE*S2W**2/SW*ca
+     &      *cb*dlh6*sb**2+6D0*MW/CW**2/EE*S2W**2/SW*ca*cb
+     &      *dlh7*sb**2+2D0*MW/CW**2/EE*S2W**2/SW*cb**2*dlh7
+     &      *sa*sb
+      A00075 = 2D0*EE/CW**2*MW/SW*s2b*sapb+2D0*(ca*cb**3
+     &      +sa*sb**3)/CW**2/EE*MW*S2W**2/SW*dlh5+8D0*MW
+     &      /EE*SW*ca*cb*dlh2*sb**2+8D0*MW/EE*SW*cb**2*dlh1
+     &      *sa*sb-4D0*MW/CW**2/EE*S2W**2/SW*ca*dlh7*sb+6D0
+     &      *MW/CW**2/EE*S2W**2/SW*ca*dlh7*sb**3+2D0*MW/CW
+     &      **2/EE*S2W**2/SW*cb*dlh6*sa-MW/CW**2/EE*S2W**2
+     &      /SW*dlh3*s2b*sapb-MW/CW**2/EE*S2W**2/SW*dlh4
+     &      *s2b*sapb+2D0*MW/CW**2/EE*S2W**2/SW*ca*cb**2
+     &      *dlh6*sb-6D0*MW/CW**2/EE*S2W**2/SW*cb*dlh6*sa
+     &      *sb**2+2D0*MW/CW**2/EE*S2W**2/SW*cb*dlh7*sa*sb
+     &      **2
+      A00076 = EE/MW*Mb/SW*mue+Ab*EE/MW*Mb/SW/cb*sb
+      A00077 = EE/MW*Mc/SW*mue
+      A00078 = EE/MW*Md/SW*mue
+      A00079 = EE/MW*Me/SW*mue
+      A00080 = EE/MW*Mtau/SW*mue+Atau*EE/MW*Mtau/SW/cb*sb
+      A00081 = EE/MW*Mm/SW*mue+Am*EE/MW*Mm/SW/cb*sb
+      A00082 = EE/MW*Ms/SW*mue
+      A00083 = EE/MW*MtopS/SW*mue+Atop*EE/MW*MtopS/SW*cb/sb
+      A00084 = EE/MW*Mu/SW*mue
+      A00085 = 4D0*EE*MW/SW*nld1*samb-2D0*EE/CW**2*MW/SW
+     &      *c2b*sapb+8D0*MW/EE*SW*ca*dlh2*sb**3-8D0*MW/EE
+     &      *SW*cb**3*dlh1*sa-2D0*MW/CW**2/EE*S2W**2/SW*ca
+     &      *cb**3*dlh6+MW/CW**2/EE*S2W**2/SW*capb*dlh3*s2b
+     &      +MW/CW**2/EE*S2W**2/SW*capb*dlh4*s2b+MW/CW**2
+     &      /EE*S2W**2/SW*capb*dlh5*s2b+2D0*MW/CW**2/EE*S2W
+     &      **2/SW*dlh7*sa*sb**3-6D0*MW/CW**2/EE*S2W**2/SW
+     &      *ca*cb*dlh7*sb**2+6D0*MW/CW**2/EE*S2W**2/SW*cb
+     &      **2*dlh6*sa*sb
+      A00086 = EE/MW*Mc**2/SW*Sqrt2*ccth*csth-EE/MW*Ms**2
+     &      /SW*Sqrt2*ccth*csth+EE*MW/SW*Sqrt2*c2b*ccth*csth
+     &      -2D0*EE/MW*Mc/SW*Sqrt2*cb**2*csth*mue/s2b*scth
+     &      +2D0*EE/MW*Ms/SW*Sqrt2*ccth*mue/s2b*sb**2*ssth
+      A00087 = EE/MW*Mc**2/SW*Sqrt2*ccth*ssth-EE/MW*Ms**2
+     &      /SW*Sqrt2*ccth*ssth+EE*MW/SW*Sqrt2*c2b*ccth*ssth
+     &      -2D0*EE/MW*Mc/SW*Sqrt2*cb**2*mue/s2b*scth*ssth
+     &      -2D0*EE/MW*Ms/SW*Sqrt2*ccth*csth*mue/s2b*sb**2
+      A00088 = EE/MW*Mc**2/SW*Sqrt2*csth*scth-EE/MW*Ms**2
+     &      /SW*Sqrt2*csth*scth+EE*MW/SW*Sqrt2*c2b*csth*scth
+     &      +2D0*EE/MW*Mc/SW*Sqrt2*cb**2*ccth*csth*mue/s2b
+     &      +2D0*EE/MW*Ms/SW*Sqrt2*mue/s2b*sb**2*scth*ssth
+      A00089 = EE/MW*Mc**2/SW*Sqrt2*scth*ssth-EE/MW*Ms**2
+     &      /SW*Sqrt2*scth*ssth+EE*MW/SW*Sqrt2*c2b*scth*ssth
+     &      +2D0*EE/MW*Mc/SW*Sqrt2*cb**2*ccth*mue/s2b*ssth
+     &      -2D0*EE/MW*Ms/SW*Sqrt2*csth*mue/s2b*sb**2*scth
+      A00090 = EE/MW*Me**2/SW*Sqrt2*ceth-EE*MW/SW*Sqrt2*c2b
+     &      *ceth-EE/MW*Me/SW*Sqrt2/cb*mue*sb*seth
+      A00091 = EE/MW*Me**2/SW*Sqrt2*seth-EE*MW/SW*Sqrt2*c2b
+     &      *seth+EE/MW*Me/SW*Sqrt2/cb*ceth*mue*sb
+      A00092 = EE/MW*Mtau**2/SW*Sqrt2*clth-EE*MW/SW*Sqrt2
+     &      *c2b*clth+Atau*EE/MW*Mtau/SW*Sqrt2*slth-EE/MW
+     &      *Mtau/SW*Sqrt2/cb*mue*sb*slth
+      A00093 = EE/MW*Mtau**2/SW*Sqrt2*slth-EE*MW/SW*Sqrt2
+     &      *c2b*slth-Atau*EE/MW*Mtau/SW*Sqrt2*clth+EE/MW
+     &      *Mtau/SW*Sqrt2/cb*clth*mue*sb
+      A00094 = EE/MW*Mm**2/SW*Sqrt2*cmuth-EE*MW/SW*Sqrt2
+     &      *c2b*cmuth+Am*EE/MW*Mm/SW*Sqrt2*smuth-EE/MW*Mm
+     &      /SW*Sqrt2/cb*mue*sb*smuth
+      A00095 = EE/MW*Mm**2/SW*Sqrt2*smuth-EE*MW/SW*Sqrt2
+     &      *c2b*smuth-Am*EE/MW*Mm/SW*Sqrt2*cmuth+EE/MW*Mm
+     &      /SW*Sqrt2/cb*cmuth*mue*sb
+      A00096 = EE/MW*Mb**2/SW*Sqrt2*cbth*ctth-EE/MW*MtopS
+     &      **2/SW*Sqrt2*cbth*ctth-EE*MW/SW*Sqrt2*c2b*cbth
+     &      *ctth+Ab*EE/MW*Mb/SW*Sqrt2*ctth*sbth-Atop*EE
+     &      /MW*MtopS/SW*Sqrt2*cbth*stth-2D0*EE/MW*Mb/SW
+     &      *Sqrt2*ctth*mue/s2b*sb**2*sbth+2D0*EE/MW*MtopS
+     &      /SW*Sqrt2*cb**2*cbth*mue/s2b*stth
+      A00097 = EE/MW*Mb**2/SW*Sqrt2*ctth*sbth-EE/MW*MtopS
+     &      **2/SW*Sqrt2*ctth*sbth-EE*MW/SW*Sqrt2*c2b*ctth
+     &      *sbth-Ab*EE/MW*Mb/SW*Sqrt2*cbth*ctth-Atop*EE
+     &      /MW*MtopS/SW*Sqrt2*sbth*stth+2D0*EE/MW*Mb/SW
+     &      *Sqrt2*cbth*ctth*mue/s2b*sb**2+2D0*EE/MW*MtopS
+     &      /SW*Sqrt2*cb**2*mue/s2b*sbth*stth
+      A00098 = EE/MW*Mb**2/SW*Sqrt2*cbth*stth-EE/MW*MtopS
+     &      **2/SW*Sqrt2*cbth*stth-EE*MW/SW*Sqrt2*c2b*cbth
+     &      *stth+Ab*EE/MW*Mb/SW*Sqrt2*sbth*stth+Atop*EE
+     &      /MW*MtopS/SW*Sqrt2*cbth*ctth-2D0*EE/MW*Mb/SW
+     &      *Sqrt2*mue/s2b*sb**2*sbth*stth-2D0*EE/MW*MtopS
+     &      /SW*Sqrt2*cb**2*cbth*ctth*mue/s2b
+      A00099 = EE/MW*Mb**2/SW*Sqrt2*sbth*stth-EE/MW*MtopS
+     &      **2/SW*Sqrt2*sbth*stth-EE*MW/SW*Sqrt2*c2b*sbth
+     &      *stth-Ab*EE/MW*Mb/SW*Sqrt2*cbth*stth+Atop*EE
+     &      /MW*MtopS/SW*Sqrt2*ctth*sbth+2D0*EE/MW*Mb/SW
+     &      *Sqrt2*cbth*mue/s2b*sb**2*stth-2D0*EE/MW*MtopS
+     &      /SW*Sqrt2*cb**2*ctth*mue/s2b*sbth
+      A00100 = EE/MW*Md**2/SW*Sqrt2*cdth*cuth-EE/MW*Mu**2
+     &      /SW*Sqrt2*cdth*cuth-EE*MW/SW*Sqrt2*c2b*cdth*cuth
+     &      -2D0*EE/MW*Md/SW*Sqrt2*cuth*mue/s2b*sb**2*sdth
+     &      +2D0*EE/MW*Mu/SW*Sqrt2*cb**2*cdth*mue/s2b*suth
+      A00101 = EE/MW*Md**2/SW*Sqrt2*cuth*sdth-EE/MW*Mu**2
+     &      /SW*Sqrt2*cuth*sdth-EE*MW/SW*Sqrt2*c2b*cuth*sdth
+     &      +2D0*EE/MW*Md/SW*Sqrt2*cdth*cuth*mue/s2b*sb**2
+     &      +2D0*EE/MW*Mu/SW*Sqrt2*cb**2*mue/s2b*sdth*suth
+      A00102 = EE/MW*Md**2/SW*Sqrt2*cdth*suth-EE/MW*Mu**2
+     &      /SW*Sqrt2*cdth*suth-EE*MW/SW*Sqrt2*c2b*cdth*suth
+     &      -2D0*EE/MW*Md/SW*Sqrt2*mue/s2b*sb**2*sdth*suth
+     &      -2D0*EE/MW*Mu/SW*Sqrt2*cb**2*cdth*cuth*mue/s2b
+      A00103 = EE/MW*Md**2/SW*Sqrt2*sdth*suth-EE/MW*Mu**2
+     &      /SW*Sqrt2*sdth*suth-EE*MW/SW*Sqrt2*c2b*sdth*suth
+     &      +2D0*EE/MW*Md/SW*Sqrt2*cdth*mue/s2b*sb**2*suth
+     &      -2D0*EE/MW*Mu/SW*Sqrt2*cb**2*cuth*mue/s2b*sdth
+      A00104 = 2D0*EE/CW**2*MW/SW*c2b*sapb+4D0*EE/CW**2*MW
+     &      /SW*nle1*samb-8D0*MW/EE*SW*ca*dlh2*sb**3+8D0
+     &      *MW/EE*SW*cb**3*dlh1*sa+2D0*MW/CW**2/EE*S2W**2
+     &      /SW*ca*cb**3*dlh6-MW/CW**2/EE*S2W**2/SW*capb
+     &      *dlh3*s2b-MW/CW**2/EE*S2W**2/SW*capb*dlh4*s2b
+     &      -MW/CW**2/EE*S2W**2/SW*capb*dlh5*s2b-2D0*MW/CW
+     &      **2/EE*S2W**2/SW*dlh7*sa*sb**3+6D0*MW/CW**2/EE
+     &      *S2W**2/SW*ca*cb*dlh7*sb**2-6D0*MW/CW**2/EE*S2W
+     &      **2/SW*cb**2*dlh6*sa*sb
+      A00105 = Ab*EE/MW*Mb/SW-EE/MW*Mb/SW/cb*mue*sb
+      A00106 = EE/MW*Mc/SW*mue/tb
+      A00107 = EE/MW*Md/SW*mue*tb
+      A00108 = EE/MW*Me/SW*mue*tb
+      A00109 = Atau*EE/MW*Mtau/SW-EE/MW*Mtau/SW/cb*mue*sb
+      A00110 = Am*EE/MW*Mm/SW-EE/MW*Mm/SW/cb*mue*sb
+      A00111 = EE/MW*Ms/SW*mue*tb
+      A00112 = Atop*EE/MW*MtopS/SW-EE/MW*MtopS/SW*cb*mue/sb
+      A00113 = EE/MW*Mu/SW*mue/tb
+      A00114 = 2D0*EE/CW**2*MW/SW*c2a*sapb+8D0*MW/EE*SW*ca
+     &      **3*dlh2*sb-8D0*MW/EE*SW*cb*dlh1*sa**3-2D0*MW
+     &      /CW**2/EE*S2W**2/SW*ca**3*cb*dlh7-MW/CW**2/EE
+     &      *S2W**2/SW*capb*dlh3*s2a-MW/CW**2/EE*S2W**2/SW
+     &      *capb*dlh4*s2a-MW/CW**2/EE*S2W**2/SW*capb*dlh5
+     &      *s2a+2D0*MW/CW**2/EE*S2W**2/SW*dlh6*sa**3*sb
+     &      -6D0*MW/CW**2/EE*S2W**2/SW*ca*cb*dlh6*sa**2+6D0
+     &      *MW/CW**2/EE*S2W**2/SW*ca**2*dlh7*sa*sb
+      A00115 = 3D0*EE/CW**2*MW/SW*sapb-2D0*EE/CW**2*MW*SW
+     &      *sapb-3D0*EE/CW**2*MW/SW*sapb*sbth**2+4D0*EE
+     &      /CW**2*MW*SW*sapb*sbth**2-6D0*EE/MW*Mb**2/SW
+     &      /cb*sa-6D0*Ab*EE/MW*Mb/SW/cb*cbth*sa*sbth-6D0
+     &      *EE/MW*Mb/SW*ca/cb*cbth*mue*sbth
+      A00116 = 3D0*Ab*EE/MW*Mb/SW/cb*sa+3D0*EE/CW**2*MW/SW
+     &      *cbth*sapb*sbth-4D0*EE/CW**2*MW*SW*cbth*sapb
+     &      *sbth+3D0*EE/MW*Mb/SW*ca/cb*mue-6D0*Ab*EE/MW
+     &      *Mb/SW/cb*sa*sbth**2-6D0*EE/MW*Mb/SW*ca/cb*mue
+     &      *sbth**2
+      A00117 = 2D0*EE/CW**2*MW*SW*sapb+3D0*EE/CW**2*MW/SW
+     &      *sapb*sbth**2-4D0*EE/CW**2*MW*SW*sapb*sbth**2
+     &      -6D0*EE/MW*Mb**2/SW/cb*sa+6D0*Ab*EE/MW*Mb/SW
+     &      /cb*cbth*sa*sbth+6D0*EE/MW*Mb/SW*ca/cb*cbth*mue
+     &      *sbth
+      A00118 = 3D0*EE/CW**2*MW/SW*sapb-4D0*EE/CW**2*MW*SW
+     &      *sapb-3D0*EE/CW**2*MW/SW*sapb*scth**2+8D0*EE
+     &      /CW**2*MW*SW*sapb*scth**2-6D0*EE/MW*Mc**2/SW
+     &      *ca/sb-6D0*EE/MW*Mc/SW*ccth*mue*sa/sb*scth
+      A00119 = 3D0*EE/CW**2*MW/SW*ccth*sapb*scth-8D0*EE/CW
+     &      **2*MW*SW*ccth*sapb*scth+3D0*EE/MW*Mc/SW*mue
+     &      *sa/sb-6D0*EE/MW*Mc/SW*mue*sa/sb*scth**2
+      A00120 = 4D0*EE/CW**2*MW*SW*sapb+3D0*EE/CW**2*MW/SW
+     &      *sapb*scth**2-8D0*EE/CW**2*MW*SW*sapb*scth**2
+     &      -6D0*EE/MW*Mc**2/SW*ca/sb+6D0*EE/MW*Mc/SW*ccth
+     &      *mue*sa/sb*scth
+      A00121 = 3D0*EE/CW**2*MW/SW*sapb-2D0*EE/CW**2*MW*SW
+     &      *sapb-3D0*EE/CW**2*MW/SW*sapb*sdth**2+4D0*EE
+     &      /CW**2*MW*SW*sapb*sdth**2-6D0*EE/MW*Md**2/SW
+     &      /cb*sa-6D0*EE/MW*Md/SW*ca/cb*cdth*mue*sdth
+      A00122 = 3D0*EE/CW**2*MW/SW*cdth*sapb*sdth-4D0*EE/CW
+     &      **2*MW*SW*cdth*sapb*sdth+3D0*EE/MW*Md/SW*ca/cb
+     &      *mue-6D0*EE/MW*Md/SW*ca/cb*mue*sdth**2
+      A00123 = 2D0*EE/CW**2*MW*SW*sapb+3D0*EE/CW**2*MW/SW
+     &      *sapb*sdth**2-4D0*EE/CW**2*MW*SW*sapb*sdth**2
+     &      -6D0*EE/MW*Md**2/SW/cb*sa+6D0*EE/MW*Md/SW*ca
+     &      /cb*cdth*mue*sdth
+      A00124 = C2W/CW**2*EE*MW/SW*sapb-EE/CW**2*MW/SW*sapb
+     &      *seth**2+4D0*EE/CW**2*MW*SW*sapb*seth**2-2D0
+     &      *EE/MW*Me**2/SW/cb*sa-2D0*EE/MW*Me/SW*ca/cb*ceth
+     &      *mue*seth
+      A00125 = EE/CW**2*MW/SW*ceth*sapb*seth-4D0*EE/CW**2
+     &      *MW*SW*ceth*sapb*seth+EE/MW*Me/SW*ca/cb*mue-2D0
+     &      *EE/MW*Me/SW*ca/cb*mue*seth**2
+      A00126 = 2D0*EE/CW**2*MW*SW*sapb+EE/CW**2*MW/SW*sapb
+     &      *seth**2-4D0*EE/CW**2*MW*SW*sapb*seth**2-2D0
+     &      *EE/MW*Me**2/SW/cb*sa+2D0*EE/MW*Me/SW*ca/cb*ceth
+     &      *mue*seth
+      A00127 = C2W/CW**2*EE*MW/SW*sapb-EE/CW**2*MW/SW*sapb
+     &      *slth**2+4D0*EE/CW**2*MW*SW*sapb*slth**2-2D0
+     &      *EE/MW*Mtau**2/SW/cb*sa-2D0*Atau*EE/MW*Mtau/SW
+     &      /cb*clth*sa*slth-2D0*EE/MW*Mtau/SW*ca/cb*clth
+     &      *mue*slth
+      A00128 = Atau*EE/MW*Mtau/SW/cb*sa+EE/CW**2*MW/SW*clth
+     &      *sapb*slth-4D0*EE/CW**2*MW*SW*clth*sapb*slth
+     &      +EE/MW*Mtau/SW*ca/cb*mue-2D0*Atau*EE/MW*Mtau
+     &      /SW/cb*sa*slth**2-2D0*EE/MW*Mtau/SW*ca/cb*mue
+     &      *slth**2
+      A00129 = 2D0*EE/CW**2*MW*SW*sapb+EE/CW**2*MW/SW*sapb
+     &      *slth**2-4D0*EE/CW**2*MW*SW*sapb*slth**2-2D0
+     &      *EE/MW*Mtau**2/SW/cb*sa+2D0*Atau*EE/MW*Mtau/SW
+     &      /cb*clth*sa*slth+2D0*EE/MW*Mtau/SW*ca/cb*clth
+     &      *mue*slth
+      A00130 = C2W/CW**2*EE*MW/SW*sapb-EE/CW**2*MW/SW*sapb
+     &      *smuth**2+4D0*EE/CW**2*MW*SW*sapb*smuth**2-2D0
+     &      *EE/MW*Mm**2/SW/cb*sa-2D0*Am*EE/MW*Mm/SW/cb*cmuth
+     &      *sa*smuth-2D0*EE/MW*Mm/SW*ca/cb*cmuth*mue*smuth
+      A00131 = Am*EE/MW*Mm/SW/cb*sa+EE/CW**2*MW/SW*cmuth
+     &      *sapb*smuth-4D0*EE/CW**2*MW*SW*cmuth*sapb*smuth
+     &      +EE/MW*Mm/SW*ca/cb*mue-2D0*Am*EE/MW*Mm/SW/cb
+     &      *sa*smuth**2-2D0*EE/MW*Mm/SW*ca/cb*mue*smuth**2
+      A00132 = 2D0*EE/CW**2*MW*SW*sapb+EE/CW**2*MW/SW*sapb
+     &      *smuth**2-4D0*EE/CW**2*MW*SW*sapb*smuth**2-2D0
+     &      *EE/MW*Mm**2/SW/cb*sa+2D0*Am*EE/MW*Mm/SW/cb*cmuth
+     &      *sa*smuth+2D0*EE/MW*Mm/SW*ca/cb*cmuth*mue*smuth
+      A00133 = EE/CW**2*MW/SW*sapb
+      A00134 = 3D0*EE/CW**2*MW/SW*sapb-2D0*EE/CW**2*MW*SW
+     &      *sapb-3D0*EE/CW**2*MW/SW*sapb*ssth**2+4D0*EE
+     &      /CW**2*MW*SW*sapb*ssth**2-6D0*EE/MW*Ms**2/SW
+     &      /cb*sa-6D0*EE/MW*Ms/SW*ca/cb*csth*mue*ssth
+      A00135 = 3D0*EE/CW**2*MW/SW*csth*sapb*ssth-4D0*EE/CW
+     &      **2*MW*SW*csth*sapb*ssth+3D0*EE/MW*Ms/SW*ca/cb
+     &      *mue-6D0*EE/MW*Ms/SW*ca/cb*mue*ssth**2
+      A00136 = 2D0*EE/CW**2*MW*SW*sapb+3D0*EE/CW**2*MW/SW
+     &      *sapb*ssth**2-4D0*EE/CW**2*MW*SW*sapb*ssth**2
+     &      -6D0*EE/MW*Ms**2/SW/cb*sa+6D0*EE/MW*Ms/SW*ca
+     &      /cb*csth*mue*ssth
+      A00137 = 3D0*EE/CW**2*MW/SW*sapb-4D0*EE/CW**2*MW*SW
+     &      *sapb-3D0*EE/CW**2*MW/SW*sapb*stth**2+8D0*EE
+     &      /CW**2*MW*SW*sapb*stth**2-6D0*EE/MW*MtopS**2
+     &      /SW*ca/sb-6D0*Atop*EE/MW*MtopS/SW*ca*ctth/sb
+     &      *stth-6D0*EE/MW*MtopS/SW*ctth*mue*sa/sb*stth
+      A00138 = 3D0*Atop*EE/MW*MtopS/SW*ca/sb+3D0*EE/CW**2
+     &      *MW/SW*ctth*sapb*stth-8D0*EE/CW**2*MW*SW*ctth
+     &      *sapb*stth+3D0*EE/MW*MtopS/SW*mue*sa/sb-6D0*Atop
+     &      *EE/MW*MtopS/SW*ca/sb*stth**2-6D0*EE/MW*MtopS
+     &      /SW*mue*sa/sb*stth**2
+      A00139 = 4D0*EE/CW**2*MW*SW*sapb+3D0*EE/CW**2*MW/SW
+     &      *sapb*stth**2-8D0*EE/CW**2*MW*SW*sapb*stth**2
+     &      -6D0*EE/MW*MtopS**2/SW*ca/sb+6D0*Atop*EE/MW*MtopS
+     &      /SW*ca*ctth/sb*stth+6D0*EE/MW*MtopS/SW*ctth*mue
+     &      *sa/sb*stth
+      A00140 = 3D0*EE/CW**2*MW/SW*sapb-4D0*EE/CW**2*MW*SW
+     &      *sapb-3D0*EE/CW**2*MW/SW*sapb*suth**2+8D0*EE
+     &      /CW**2*MW*SW*sapb*suth**2-6D0*EE/MW*Mu**2/SW
+     &      *ca/sb-6D0*EE/MW*Mu/SW*cuth*mue*sa/sb*suth
+      A00141 = 3D0*EE/CW**2*MW/SW*cuth*sapb*suth-8D0*EE/CW
+     &      **2*MW*SW*cuth*sapb*suth+3D0*EE/MW*Mu/SW*mue
+     &      *sa/sb-6D0*EE/MW*Mu/SW*mue*sa/sb*suth**2
+      A00142 = 4D0*EE/CW**2*MW*SW*sapb+3D0*EE/CW**2*MW/SW
+     &      *sapb*suth**2-8D0*EE/CW**2*MW*SW*sapb*suth**2
+     &      -6D0*EE/MW*Mu**2/SW*ca/sb+6D0*EE/MW*Mu/SW*cuth
+     &      *mue*sa/sb*suth
+      A00143 = EE/SW*samb
+      A00144 = EE/CW/SW*samb
+      A00145 = EE/SW*camb
+      A00146 = EE/SW*camb*nld2
+      A00147 = EE/CW/SW*camb
+      A00148 = EE/CW/SW*camb*nle2
+      A00149 = C2W/CW*EE/SW
+      A00150 = EE/SW
+      A00151 = EE/SW*nlk
+      A00152 = EE/SW*nld1*samb
+      A00153 = EE/CW/SW*nle1*samb
+      A00154 = 3D0*EE/CW/SW-2D0*EE/CW*SW-3D0*EE/CW/SW*sbth
+     &      **2
+      A00155 = EE/CW/SW*cbth*sbth
+      A00156 = EE/SW*Sqrt2*cbth*ctth
+      A00157 = EE/SW*Sqrt2*cbth*stth
+      A00158 = 2D0*EE/CW*SW-3D0*EE/CW/SW*sbth**2
+      A00159 = EE/SW*Sqrt2*ctth*sbth
+      A00160 = EE/SW*Sqrt2*sbth*stth
+      A00161 = 3D0*EE/CW/SW-4D0*EE/CW*SW-3D0*EE/CW/SW*scth
+     &      **2
+      A00162 = EE/CW/SW*ccth*scth
+      A00163 = EE/SW*Sqrt2*ccth*csth
+      A00164 = EE/SW*Sqrt2*ccth*ssth
+      A00165 = 4D0*EE/CW*SW-3D0*EE/CW/SW*scth**2
+      A00166 = EE/SW*Sqrt2*csth*scth
+      A00167 = EE/SW*Sqrt2*scth*ssth
+      A00168 = 3D0*EE/CW/SW-2D0*EE/CW*SW-3D0*EE/CW/SW*sdth
+     &      **2
+      A00169 = EE/CW/SW*cdth*sdth
+      A00170 = EE/SW*Sqrt2*cdth*cuth
+      A00171 = EE/SW*Sqrt2*cdth*suth
+      A00172 = 2D0*EE/CW*SW-3D0*EE/CW/SW*sdth**2
+      A00173 = EE/SW*Sqrt2*cuth*sdth
+      A00174 = EE/SW*Sqrt2*sdth*suth
+      A00175 = C2W/CW*EE/SW-EE/CW/SW*seth**2
+      A00176 = EE/CW/SW*ceth*seth
+      A00177 = EE/SW*Sqrt2*ceth
+      A00178 = 2D0*EE/CW*SW-EE/CW/SW*seth**2
+      A00179 = EE/SW*Sqrt2*seth
+      A00180 = C2W/CW*EE/SW-EE/CW/SW*slth**2
+      A00181 = EE/CW/SW*clth*slth
+      A00182 = EE/SW*Sqrt2*clth
+      A00183 = 2D0*EE/CW*SW-EE/CW/SW*slth**2
+      A00184 = EE/SW*Sqrt2*slth
+      A00185 = C2W/CW*EE/SW-EE/CW/SW*smuth**2
+      A00186 = EE/CW/SW*cmuth*smuth
+      A00187 = EE/SW*Sqrt2*cmuth
+      A00188 = 2D0*EE/CW*SW-EE/CW/SW*smuth**2
+      A00189 = EE/SW*Sqrt2*smuth
+      A00190 = EE/CW/SW
+      A00191 = 3D0*EE/CW/SW-2D0*EE/CW*SW-3D0*EE/CW/SW*ssth
+     &      **2
+      A00192 = EE/CW/SW*csth*ssth
+      A00193 = 2D0*EE/CW*SW-3D0*EE/CW/SW*ssth**2
+      A00194 = 3D0*EE/CW/SW-4D0*EE/CW*SW-3D0*EE/CW/SW*stth
+     &      **2
+      A00195 = EE/CW/SW*ctth*stth
+      A00196 = 4D0*EE/CW*SW-3D0*EE/CW/SW*stth**2
+      A00197 = 3D0*EE/CW/SW-4D0*EE/CW*SW-3D0*EE/CW/SW*suth
+     &      **2
+      A00198 = EE/CW/SW*cuth*suth
+      A00199 = 4D0*EE/CW*SW-3D0*EE/CW/SW*suth**2
+      A00200 = EE*MW/SW*camb
+      A00201 = EE/CW**2*MW/SW*camb
+      A00202 = EE*MW+EE*MW*nla
+      A00203 = EE/CW*MW*SW-CW*EE*MW/SW*nlb
+      A00204 = EE*MW/SW*samb
+      A00205 = EE/CW**2*MW/SW*samb
+      A00206 = EE/MW*Mb/SW*ca/cb
+      A00207 = EE/MW*Mb/SW*tb
+      A00208 = EE/MW*Mb/SW
+      A00209 = EE/MW*Mb/SW/cb*sa
+      A00210 = EE/MW*Mtop/SW*Sqrt2*cb**2/s2b
+      A00211 = EE/MW*Mb/SW*Sqrt2/s2b*sb**2
+      A00212 = EE/MW*Mtop/SW*Sqrt2
+      A00213 = EE/MW*Mb/SW*Sqrt2
+      A00214 = EE/SW*Zp11*ctth-EE/MW*Mtop/SW*Sqrt2*Zp21*cb
+     &      /s2b*stth
+      A00215 = EE/MW*Mb/SW*Sqrt2*Zm21*ctth/s2b*sb
+      A00216 = EE/SW*Zp11*stth+EE/MW*Mtop/SW*Sqrt2*Zp21*cb
+     &      *ctth/s2b
+      A00217 = EE/MW*Mb/SW*Sqrt2*Zm21/s2b*sb*stth
+      A00218 = EE/SW*Zp12*ctth-EE/MW*Mtop/SW*Sqrt2*Zp22*cb
+     &      /s2b*stth
+      A00219 = EE/MW*Mb/SW*Sqrt2*Zm22*ctth/s2b*sb
+      A00220 = EE/SW*Zp12*stth+EE/MW*Mtop/SW*Sqrt2*Zp22*cb
+     &      *ctth/s2b
+      A00221 = EE/MW*Mb/SW*Sqrt2*Zm22/s2b*sb*stth
+      A00222 = GG*Sqrt2*cbth
+      A00223 = GG*Sqrt2*sbth
+      A00224 = EE/CW*Sqrt2*Zn11*cbth-3D0*EE/SW*Sqrt2*Zn21
+     &      *cbth+3D0*EE/MW*Mb/SW*Sqrt2*Zn31/cb*sbth
+      A00225 = 2D0*EE/CW*Sqrt2*Zn11*sbth+3D0*EE/MW*Mb/SW
+     &      *Sqrt2*Zn31/cb*cbth
+      A00226 = EE/CW*Sqrt2*Zn11*sbth-3D0*EE/SW*Sqrt2*Zn21
+     &      *sbth-3D0*EE/MW*Mb/SW*Sqrt2*Zn31/cb*cbth
+      A00227 = 2D0*EE/CW*Sqrt2*Zn11*cbth-3D0*EE/MW*Mb/SW
+     &      *Sqrt2*Zn31/cb*sbth
+      A00228 = EE/CW*Sqrt2*Zn12*cbth-3D0*EE/SW*Sqrt2*Zn22
+     &      *cbth+3D0*EE/MW*Mb/SW*Sqrt2*Zn32/cb*sbth
+      A00229 = 2D0*EE/CW*Sqrt2*Zn12*sbth+3D0*EE/MW*Mb/SW
+     &      *Sqrt2*Zn32/cb*cbth
+      A00230 = EE/CW*Sqrt2*Zn12*sbth-3D0*EE/SW*Sqrt2*Zn22
+     &      *sbth-3D0*EE/MW*Mb/SW*Sqrt2*Zn32/cb*cbth
+      A00231 = 2D0*EE/CW*Sqrt2*Zn12*cbth-3D0*EE/MW*Mb/SW
+     &      *Sqrt2*Zn32/cb*sbth
+      A00232 = EE/CW*Sqrt2*Zn13*cbth-3D0*EE/SW*Sqrt2*Zn23
+     &      *cbth+3D0*EE/MW*Mb/SW*Sqrt2*Zn33/cb*sbth
+      A00233 = 2D0*EE/CW*Sqrt2*Zn13*sbth+3D0*EE/MW*Mb/SW
+     &      *Sqrt2*Zn33/cb*cbth
+      A00234 = EE/CW*Sqrt2*Zn13*sbth-3D0*EE/SW*Sqrt2*Zn23
+     &      *sbth-3D0*EE/MW*Mb/SW*Sqrt2*Zn33/cb*cbth
+      A00235 = 2D0*EE/CW*Sqrt2*Zn13*cbth-3D0*EE/MW*Mb/SW
+     &      *Sqrt2*Zn33/cb*sbth
+      A00236 = EE/CW*Sqrt2*Zn14*cbth-3D0*EE/SW*Sqrt2*Zn24
+     &      *cbth+3D0*EE/MW*Mb/SW*Sqrt2*Zn34/cb*sbth
+      A00237 = 2D0*EE/CW*Sqrt2*Zn14*sbth+3D0*EE/MW*Mb/SW
+     &      *Sqrt2*Zn34/cb*cbth
+      A00238 = EE/CW*Sqrt2*Zn14*sbth-3D0*EE/SW*Sqrt2*Zn24
+     &      *sbth-3D0*EE/MW*Mb/SW*Sqrt2*Zn34/cb*cbth
+      A00239 = 2D0*EE/CW*Sqrt2*Zn14*cbth-3D0*EE/MW*Mb/SW
+     &      *Sqrt2*Zn34/cb*sbth
+      A00240 = EE/MW*Mc/SW*sa/sb
+      A00241 = EE/MW*Mc/SW/tb
+      A00242 = EE/MW*Mc/SW
+      A00243 = EE/MW*Mc/SW*ca/sb
+      A00244 = EE/MW*Mc/SW*Sqrt2*cb**2/s2b
+      A00245 = EE/MW*Ms/SW*Sqrt2/s2b*sb**2
+      A00246 = EE/MW*Mc/SW*Sqrt2
+      A00247 = EE/MW*Ms/SW*Sqrt2
+      A00248 = EE/SW*Zm11*csth-EE/MW*Ms/SW*Sqrt2*Zm21/s2b
+     &      *sb*ssth
+      A00249 = EE/MW*Mc/SW*Sqrt2*Zp21*cb*csth/s2b
+      A00250 = EE/SW*Zm11*ssth+EE/MW*Ms/SW*Sqrt2*Zm21*csth
+     &      /s2b*sb
+      A00251 = EE/MW*Mc/SW*Sqrt2*Zp21*cb/s2b*ssth
+      A00252 = EE/SW*Zm12*csth-EE/MW*Ms/SW*Sqrt2*Zm22/s2b
+     &      *sb*ssth
+      A00253 = EE/MW*Mc/SW*Sqrt2*Zp22*cb*csth/s2b
+      A00254 = EE/SW*Zm12*ssth+EE/MW*Ms/SW*Sqrt2*Zm22*csth
+     &      /s2b*sb
+      A00255 = EE/MW*Mc/SW*Sqrt2*Zp22*cb/s2b*ssth
+      A00256 = GG*Sqrt2*ccth
+      A00257 = GG*Sqrt2*scth
+      A00258 = EE/CW*Sqrt2*Zn11*ccth+3D0*EE/SW*Sqrt2*Zn21
+     &      *ccth+3D0*EE/MW*Mc/SW*Sqrt2*Zn41/sb*scth
+      A00259 = 4D0*EE/CW*Sqrt2*Zn11*scth-3D0*EE/MW*Mc/SW
+     &      *Sqrt2*Zn41*ccth/sb
+      A00260 = EE/CW*Sqrt2*Zn11*scth+3D0*EE/SW*Sqrt2*Zn21
+     &      *scth-3D0*EE/MW*Mc/SW*Sqrt2*Zn41*ccth/sb
+      A00261 = 4D0*EE/CW*Sqrt2*Zn11*ccth+3D0*EE/MW*Mc/SW
+     &      *Sqrt2*Zn41/sb*scth
+      A00262 = EE/CW*Sqrt2*Zn12*ccth+3D0*EE/SW*Sqrt2*Zn22
+     &      *ccth+3D0*EE/MW*Mc/SW*Sqrt2*Zn42/sb*scth
+      A00263 = 4D0*EE/CW*Sqrt2*Zn12*scth-3D0*EE/MW*Mc/SW
+     &      *Sqrt2*Zn42*ccth/sb
+      A00264 = EE/CW*Sqrt2*Zn12*scth+3D0*EE/SW*Sqrt2*Zn22
+     &      *scth-3D0*EE/MW*Mc/SW*Sqrt2*Zn42*ccth/sb
+      A00265 = 4D0*EE/CW*Sqrt2*Zn12*ccth+3D0*EE/MW*Mc/SW
+     &      *Sqrt2*Zn42/sb*scth
+      A00266 = EE/CW*Sqrt2*Zn13*ccth+3D0*EE/SW*Sqrt2*Zn23
+     &      *ccth+3D0*EE/MW*Mc/SW*Sqrt2*Zn43/sb*scth
+      A00267 = 4D0*EE/CW*Sqrt2*Zn13*scth-3D0*EE/MW*Mc/SW
+     &      *Sqrt2*Zn43*ccth/sb
+      A00268 = EE/CW*Sqrt2*Zn13*scth+3D0*EE/SW*Sqrt2*Zn23
+     &      *scth-3D0*EE/MW*Mc/SW*Sqrt2*Zn43*ccth/sb
+      A00269 = 4D0*EE/CW*Sqrt2*Zn13*ccth+3D0*EE/MW*Mc/SW
+     &      *Sqrt2*Zn43/sb*scth
+      A00270 = EE/CW*Sqrt2*Zn14*ccth+3D0*EE/SW*Sqrt2*Zn24
+     &      *ccth+3D0*EE/MW*Mc/SW*Sqrt2*Zn44/sb*scth
+      A00271 = 4D0*EE/CW*Sqrt2*Zn14*scth-3D0*EE/MW*Mc/SW
+     &      *Sqrt2*Zn44*ccth/sb
+      A00272 = EE/CW*Sqrt2*Zn14*scth+3D0*EE/SW*Sqrt2*Zn24
+     &      *scth-3D0*EE/MW*Mc/SW*Sqrt2*Zn44*ccth/sb
+      A00273 = 4D0*EE/CW*Sqrt2*Zn14*ccth+3D0*EE/MW*Mc/SW
+     &      *Sqrt2*Zn44/sb*scth
+      A00274 = EE/MW*Md/SW*ca/cb
+      A00275 = EE/MW*Md/SW*tb
+      A00276 = EE/MW*Md/SW
+      A00277 = EE/MW*Md/SW/cb*sa
+      A00278 = EE/MW*Mu/SW*Sqrt2*cb**2/s2b
+      A00279 = EE/MW*Md/SW*Sqrt2/s2b*sb**2
+      A00280 = EE/MW*Mu/SW*Sqrt2
+      A00281 = EE/MW*Md/SW*Sqrt2
+      A00282 = EE/SW*Zp11*cuth-EE/MW*Mu/SW*Sqrt2*Zp21*cb
+     &      /s2b*suth
+      A00283 = EE/MW*Md/SW*Sqrt2*Zm21*cuth/s2b*sb
+      A00284 = EE/SW*Zp11*suth+EE/MW*Mu/SW*Sqrt2*Zp21*cb
+     &      *cuth/s2b
+      A00285 = EE/MW*Md/SW*Sqrt2*Zm21/s2b*sb*suth
+      A00286 = EE/SW*Zp12*cuth-EE/MW*Mu/SW*Sqrt2*Zp22*cb
+     &      /s2b*suth
+      A00287 = EE/MW*Md/SW*Sqrt2*Zm22*cuth/s2b*sb
+      A00288 = EE/SW*Zp12*suth+EE/MW*Mu/SW*Sqrt2*Zp22*cb
+     &      *cuth/s2b
+      A00289 = EE/MW*Md/SW*Sqrt2*Zm22/s2b*sb*suth
+      A00290 = GG*Sqrt2*cdth
+      A00291 = GG*Sqrt2*sdth
+      A00292 = EE/CW*Sqrt2*Zn11*cdth-3D0*EE/SW*Sqrt2*Zn21
+     &      *cdth+3D0*EE/MW*Md/SW*Sqrt2*Zn31/cb*sdth
+      A00293 = 2D0*EE/CW*Sqrt2*Zn11*sdth+3D0*EE/MW*Md/SW
+     &      *Sqrt2*Zn31/cb*cdth
+      A00294 = EE/CW*Sqrt2*Zn11*sdth-3D0*EE/SW*Sqrt2*Zn21
+     &      *sdth-3D0*EE/MW*Md/SW*Sqrt2*Zn31/cb*cdth
+      A00295 = 2D0*EE/CW*Sqrt2*Zn11*cdth-3D0*EE/MW*Md/SW
+     &      *Sqrt2*Zn31/cb*sdth
+      A00296 = EE/CW*Sqrt2*Zn12*cdth-3D0*EE/SW*Sqrt2*Zn22
+     &      *cdth+3D0*EE/MW*Md/SW*Sqrt2*Zn32/cb*sdth
+      A00297 = 2D0*EE/CW*Sqrt2*Zn12*sdth+3D0*EE/MW*Md/SW
+     &      *Sqrt2*Zn32/cb*cdth
+      A00298 = EE/CW*Sqrt2*Zn12*sdth-3D0*EE/SW*Sqrt2*Zn22
+     &      *sdth-3D0*EE/MW*Md/SW*Sqrt2*Zn32/cb*cdth
+      A00299 = 2D0*EE/CW*Sqrt2*Zn12*cdth-3D0*EE/MW*Md/SW
+     &      *Sqrt2*Zn32/cb*sdth
+      A00300 = EE/CW*Sqrt2*Zn13*cdth-3D0*EE/SW*Sqrt2*Zn23
+     &      *cdth+3D0*EE/MW*Md/SW*Sqrt2*Zn33/cb*sdth
+      A00301 = 2D0*EE/CW*Sqrt2*Zn13*sdth+3D0*EE/MW*Md/SW
+     &      *Sqrt2*Zn33/cb*cdth
+      A00302 = EE/CW*Sqrt2*Zn13*sdth-3D0*EE/SW*Sqrt2*Zn23
+     &      *sdth-3D0*EE/MW*Md/SW*Sqrt2*Zn33/cb*cdth
+      A00303 = 2D0*EE/CW*Sqrt2*Zn13*cdth-3D0*EE/MW*Md/SW
+     &      *Sqrt2*Zn33/cb*sdth
+      A00304 = EE/CW*Sqrt2*Zn14*cdth-3D0*EE/SW*Sqrt2*Zn24
+     &      *cdth+3D0*EE/MW*Md/SW*Sqrt2*Zn34/cb*sdth
+      A00305 = 2D0*EE/CW*Sqrt2*Zn14*sdth+3D0*EE/MW*Md/SW
+     &      *Sqrt2*Zn34/cb*cdth
+      A00306 = EE/CW*Sqrt2*Zn14*sdth-3D0*EE/SW*Sqrt2*Zn24
+     &      *sdth-3D0*EE/MW*Md/SW*Sqrt2*Zn34/cb*cdth
+      A00307 = 2D0*EE/CW*Sqrt2*Zn14*cdth-3D0*EE/MW*Md/SW
+     &      *Sqrt2*Zn34/cb*sdth
+      A00308 = EE/MW*Me/SW*ca/cb
+      A00309 = EE/MW*Me/SW*tb
+      A00310 = EE/MW*Me/SW
+      A00311 = EE/MW*Me/SW/cb*sa
+      A00312 = EE/MW*Me/SW*Sqrt2*tb
+      A00313 = EE/MW*Me/SW*Sqrt2
+      A00314 = EE/SW*Zp11
+      A00315 = EE/MW*Me/SW*Sqrt2*Zm21/cb
+      A00316 = EE/SW*Zp12
+      A00317 = EE/MW*Me/SW*Sqrt2*Zm22/cb
+      A00318 = EE/CW*Sqrt2*Zn11*ceth+EE/SW*Sqrt2*Zn21*ceth
+     &      -EE/MW*Me/SW*Sqrt2*Zn31/cb*seth
+      A00319 = 2D0*EE/CW*Sqrt2*Zn11*seth+EE/MW*Me/SW*Sqrt2
+     &      *Zn31/cb*ceth
+      A00320 = EE/CW*Sqrt2*Zn11*seth+EE/SW*Sqrt2*Zn21*seth
+     &      +EE/MW*Me/SW*Sqrt2*Zn31/cb*ceth
+      A00321 = 2D0*EE/CW*Sqrt2*Zn11*ceth-EE/MW*Me/SW*Sqrt2
+     &      *Zn31/cb*seth
+      A00322 = EE/CW*Sqrt2*Zn12*ceth+EE/SW*Sqrt2*Zn22*ceth
+     &      -EE/MW*Me/SW*Sqrt2*Zn32/cb*seth
+      A00323 = 2D0*EE/CW*Sqrt2*Zn12*seth+EE/MW*Me/SW*Sqrt2
+     &      *Zn32/cb*ceth
+      A00324 = EE/CW*Sqrt2*Zn12*seth+EE/SW*Sqrt2*Zn22*seth
+     &      +EE/MW*Me/SW*Sqrt2*Zn32/cb*ceth
+      A00325 = 2D0*EE/CW*Sqrt2*Zn12*ceth-EE/MW*Me/SW*Sqrt2
+     &      *Zn32/cb*seth
+      A00326 = EE/CW*Sqrt2*Zn13*ceth+EE/SW*Sqrt2*Zn23*ceth
+     &      -EE/MW*Me/SW*Sqrt2*Zn33/cb*seth
+      A00327 = 2D0*EE/CW*Sqrt2*Zn13*seth+EE/MW*Me/SW*Sqrt2
+     &      *Zn33/cb*ceth
+      A00328 = EE/CW*Sqrt2*Zn13*seth+EE/SW*Sqrt2*Zn23*seth
+     &      +EE/MW*Me/SW*Sqrt2*Zn33/cb*ceth
+      A00329 = 2D0*EE/CW*Sqrt2*Zn13*ceth-EE/MW*Me/SW*Sqrt2
+     &      *Zn33/cb*seth
+      A00330 = EE/CW*Sqrt2*Zn14*ceth+EE/SW*Sqrt2*Zn24*ceth
+     &      -EE/MW*Me/SW*Sqrt2*Zn34/cb*seth
+      A00331 = 2D0*EE/CW*Sqrt2*Zn14*seth+EE/MW*Me/SW*Sqrt2
+     &      *Zn34/cb*ceth
+      A00332 = EE/CW*Sqrt2*Zn14*seth+EE/SW*Sqrt2*Zn24*seth
+     &      +EE/MW*Me/SW*Sqrt2*Zn34/cb*ceth
+      A00333 = 2D0*EE/CW*Sqrt2*Zn14*ceth-EE/MW*Me/SW*Sqrt2
+     &      *Zn34/cb*seth
+      A00334 = EE/MW*Mtau/SW*ca/cb
+      A00335 = EE/MW*Mtau/SW*tb
+      A00336 = EE/MW*Mtau/SW
+      A00337 = EE/MW*Mtau/SW/cb*sa
+      A00338 = EE/MW*Mtau/SW*Sqrt2*tb
+      A00339 = EE/MW*Mtau/SW*Sqrt2
+      A00340 = EE/MW*Mtau/SW*Sqrt2*Zm21/cb
+      A00341 = EE/MW*Mtau/SW*Sqrt2*Zm22/cb
+      A00342 = EE/CW*Sqrt2*Zn11*clth+EE/SW*Sqrt2*Zn21*clth
+     &      -EE/MW*Mtau/SW*Sqrt2*Zn31/cb*slth
+      A00343 = 2D0*EE/CW*Sqrt2*Zn11*slth+EE/MW*Mtau/SW*Sqrt2
+     &      *Zn31/cb*clth
+      A00344 = EE/CW*Sqrt2*Zn11*slth+EE/SW*Sqrt2*Zn21*slth
+     &      +EE/MW*Mtau/SW*Sqrt2*Zn31/cb*clth
+      A00345 = 2D0*EE/CW*Sqrt2*Zn11*clth-EE/MW*Mtau/SW*Sqrt2
+     &      *Zn31/cb*slth
+      A00346 = EE/CW*Sqrt2*Zn12*clth+EE/SW*Sqrt2*Zn22*clth
+     &      -EE/MW*Mtau/SW*Sqrt2*Zn32/cb*slth
+      A00347 = 2D0*EE/CW*Sqrt2*Zn12*slth+EE/MW*Mtau/SW*Sqrt2
+     &      *Zn32/cb*clth
+      A00348 = EE/CW*Sqrt2*Zn12*slth+EE/SW*Sqrt2*Zn22*slth
+     &      +EE/MW*Mtau/SW*Sqrt2*Zn32/cb*clth
+      A00349 = 2D0*EE/CW*Sqrt2*Zn12*clth-EE/MW*Mtau/SW*Sqrt2
+     &      *Zn32/cb*slth
+      A00350 = EE/CW*Sqrt2*Zn13*clth+EE/SW*Sqrt2*Zn23*clth
+     &      -EE/MW*Mtau/SW*Sqrt2*Zn33/cb*slth
+      A00351 = 2D0*EE/CW*Sqrt2*Zn13*slth+EE/MW*Mtau/SW*Sqrt2
+     &      *Zn33/cb*clth
+      A00352 = EE/CW*Sqrt2*Zn13*slth+EE/SW*Sqrt2*Zn23*slth
+     &      +EE/MW*Mtau/SW*Sqrt2*Zn33/cb*clth
+      A00353 = 2D0*EE/CW*Sqrt2*Zn13*clth-EE/MW*Mtau/SW*Sqrt2
+     &      *Zn33/cb*slth
+      A00354 = EE/CW*Sqrt2*Zn14*clth+EE/SW*Sqrt2*Zn24*clth
+     &      -EE/MW*Mtau/SW*Sqrt2*Zn34/cb*slth
+      A00355 = 2D0*EE/CW*Sqrt2*Zn14*slth+EE/MW*Mtau/SW*Sqrt2
+     &      *Zn34/cb*clth
+      A00356 = EE/CW*Sqrt2*Zn14*slth+EE/SW*Sqrt2*Zn24*slth
+     &      +EE/MW*Mtau/SW*Sqrt2*Zn34/cb*clth
+      A00357 = 2D0*EE/CW*Sqrt2*Zn14*clth-EE/MW*Mtau/SW*Sqrt2
+     &      *Zn34/cb*slth
+      A00358 = EE/MW*Mm/SW*ca/cb
+      A00359 = EE/MW*Mm/SW*tb
+      A00360 = EE/MW*Mm/SW
+      A00361 = EE/MW*Mm/SW/cb*sa
+      A00362 = EE/MW*Mm/SW*Sqrt2*tb
+      A00363 = EE/MW*Mm/SW*Sqrt2
+      A00364 = EE/MW*Mm/SW*Sqrt2*Zm21/cb
+      A00365 = EE/MW*Mm/SW*Sqrt2*Zm22/cb
+      A00366 = EE/CW*Sqrt2*Zn11*cmuth+EE/SW*Sqrt2*Zn21*cmuth
+     &      -EE/MW*Mm/SW*Sqrt2*Zn31/cb*smuth
+      A00367 = 2D0*EE/CW*Sqrt2*Zn11*smuth+EE/MW*Mm/SW*Sqrt2
+     &      *Zn31/cb*cmuth
+      A00368 = EE/CW*Sqrt2*Zn11*smuth+EE/SW*Sqrt2*Zn21*smuth
+     &      +EE/MW*Mm/SW*Sqrt2*Zn31/cb*cmuth
+      A00369 = 2D0*EE/CW*Sqrt2*Zn11*cmuth-EE/MW*Mm/SW*Sqrt2
+     &      *Zn31/cb*smuth
+      A00370 = EE/CW*Sqrt2*Zn12*cmuth+EE/SW*Sqrt2*Zn22*cmuth
+     &      -EE/MW*Mm/SW*Sqrt2*Zn32/cb*smuth
+      A00371 = 2D0*EE/CW*Sqrt2*Zn12*smuth+EE/MW*Mm/SW*Sqrt2
+     &      *Zn32/cb*cmuth
+      A00372 = EE/CW*Sqrt2*Zn12*smuth+EE/SW*Sqrt2*Zn22*smuth
+     &      +EE/MW*Mm/SW*Sqrt2*Zn32/cb*cmuth
+      A00373 = 2D0*EE/CW*Sqrt2*Zn12*cmuth-EE/MW*Mm/SW*Sqrt2
+     &      *Zn32/cb*smuth
+      A00374 = EE/CW*Sqrt2*Zn13*cmuth+EE/SW*Sqrt2*Zn23*cmuth
+     &      -EE/MW*Mm/SW*Sqrt2*Zn33/cb*smuth
+      A00375 = 2D0*EE/CW*Sqrt2*Zn13*smuth+EE/MW*Mm/SW*Sqrt2
+     &      *Zn33/cb*cmuth
+      A00376 = EE/CW*Sqrt2*Zn13*smuth+EE/SW*Sqrt2*Zn23*smuth
+     &      +EE/MW*Mm/SW*Sqrt2*Zn33/cb*cmuth
+      A00377 = 2D0*EE/CW*Sqrt2*Zn13*cmuth-EE/MW*Mm/SW*Sqrt2
+     &      *Zn33/cb*smuth
+      A00378 = EE/CW*Sqrt2*Zn14*cmuth+EE/SW*Sqrt2*Zn24*cmuth
+     &      -EE/MW*Mm/SW*Sqrt2*Zn34/cb*smuth
+      A00379 = 2D0*EE/CW*Sqrt2*Zn14*smuth+EE/MW*Mm/SW*Sqrt2
+     &      *Zn34/cb*cmuth
+      A00380 = EE/CW*Sqrt2*Zn14*smuth+EE/SW*Sqrt2*Zn24*smuth
+     &      +EE/MW*Mm/SW*Sqrt2*Zn34/cb*cmuth
+      A00381 = 2D0*EE/CW*Sqrt2*Zn14*cmuth-EE/MW*Mm/SW*Sqrt2
+     &      *Zn34/cb*smuth
+      A00382 = 2D0*EE/SW*Zm11*ceth-EE/MW*Me/SW*Sqrt2*Zm21
+     &      /cb*seth
+      A00383 = 2D0*EE/SW*Zm11*seth+EE/MW*Me/SW*Sqrt2*Zm21
+     &      /cb*ceth
+      A00384 = 2D0*EE/SW*Zm12*ceth-EE/MW*Me/SW*Sqrt2*Zm22
+     &      /cb*seth
+      A00385 = 2D0*EE/SW*Zm12*seth+EE/MW*Me/SW*Sqrt2*Zm22
+     &      /cb*ceth
+      A00386 = EE/CW*Sqrt2*Zn11-EE/SW*Sqrt2*Zn21
+      A00387 = EE/CW*Sqrt2*Zn12-EE/SW*Sqrt2*Zn22
+      A00388 = EE/CW*Sqrt2*Zn13-EE/SW*Sqrt2*Zn23
+      A00389 = EE/CW*Sqrt2*Zn14-EE/SW*Sqrt2*Zn24
+      A00390 = 2D0*EE/SW*Zm11*clth-EE/MW*Mtau/SW*Sqrt2*Zm21
+     &      /cb*slth
+      A00391 = 2D0*EE/SW*Zm11*slth+EE/MW*Mtau/SW*Sqrt2*Zm21
+     &      /cb*clth
+      A00392 = 2D0*EE/SW*Zm12*clth-EE/MW*Mtau/SW*Sqrt2*Zm22
+     &      /cb*slth
+      A00393 = 2D0*EE/SW*Zm12*slth+EE/MW*Mtau/SW*Sqrt2*Zm22
+     &      /cb*clth
+      A00394 = 2D0*EE/SW*Zm11*cmuth-EE/MW*Mm/SW*Sqrt2*Zm21
+     &      /cb*smuth
+      A00395 = 2D0*EE/SW*Zm11*smuth+EE/MW*Mm/SW*Sqrt2*Zm21
+     &      /cb*cmuth
+      A00396 = 2D0*EE/SW*Zm12*cmuth-EE/MW*Mm/SW*Sqrt2*Zm22
+     &      /cb*smuth
+      A00397 = 2D0*EE/SW*Zm12*smuth+EE/MW*Mm/SW*Sqrt2*Zm22
+     &      /cb*cmuth
+      A00398 = EE/MW*Ms/SW*ca/cb
+      A00399 = EE/MW*Ms/SW*tb
+      A00400 = EE/MW*Ms/SW
+      A00401 = EE/MW*Ms/SW/cb*sa
+      A00402 = EE/SW*Zp11*ccth-EE/MW*Mc/SW*Sqrt2*Zp21*cb
+     &      /s2b*scth
+      A00403 = EE/MW*Ms/SW*Sqrt2*Zm21*ccth/s2b*sb
+      A00404 = EE/SW*Zp11*scth+EE/MW*Mc/SW*Sqrt2*Zp21*cb
+     &      *ccth/s2b
+      A00405 = EE/MW*Ms/SW*Sqrt2*Zm21/s2b*sb*scth
+      A00406 = EE/SW*Zp12*ccth-EE/MW*Mc/SW*Sqrt2*Zp22*cb
+     &      /s2b*scth
+      A00407 = EE/MW*Ms/SW*Sqrt2*Zm22*ccth/s2b*sb
+      A00408 = EE/SW*Zp12*scth+EE/MW*Mc/SW*Sqrt2*Zp22*cb
+     &      *ccth/s2b
+      A00409 = EE/MW*Ms/SW*Sqrt2*Zm22/s2b*sb*scth
+      A00410 = GG*Sqrt2*csth
+      A00411 = GG*Sqrt2*ssth
+      A00412 = EE/CW*Sqrt2*Zn11*csth-3D0*EE/SW*Sqrt2*Zn21
+     &      *csth+3D0*EE/MW*Ms/SW*Sqrt2*Zn31/cb*ssth
+      A00413 = 2D0*EE/CW*Sqrt2*Zn11*ssth+3D0*EE/MW*Ms/SW
+     &      *Sqrt2*Zn31/cb*csth
+      A00414 = EE/CW*Sqrt2*Zn11*ssth-3D0*EE/SW*Sqrt2*Zn21
+     &      *ssth-3D0*EE/MW*Ms/SW*Sqrt2*Zn31/cb*csth
+      A00415 = 2D0*EE/CW*Sqrt2*Zn11*csth-3D0*EE/MW*Ms/SW
+     &      *Sqrt2*Zn31/cb*ssth
+      A00416 = EE/CW*Sqrt2*Zn12*csth-3D0*EE/SW*Sqrt2*Zn22
+     &      *csth+3D0*EE/MW*Ms/SW*Sqrt2*Zn32/cb*ssth
+      A00417 = 2D0*EE/CW*Sqrt2*Zn12*ssth+3D0*EE/MW*Ms/SW
+     &      *Sqrt2*Zn32/cb*csth
+      A00418 = EE/CW*Sqrt2*Zn12*ssth-3D0*EE/SW*Sqrt2*Zn22
+     &      *ssth-3D0*EE/MW*Ms/SW*Sqrt2*Zn32/cb*csth
+      A00419 = 2D0*EE/CW*Sqrt2*Zn12*csth-3D0*EE/MW*Ms/SW
+     &      *Sqrt2*Zn32/cb*ssth
+      A00420 = EE/CW*Sqrt2*Zn13*csth-3D0*EE/SW*Sqrt2*Zn23
+     &      *csth+3D0*EE/MW*Ms/SW*Sqrt2*Zn33/cb*ssth
+      A00421 = 2D0*EE/CW*Sqrt2*Zn13*ssth+3D0*EE/MW*Ms/SW
+     &      *Sqrt2*Zn33/cb*csth
+      A00422 = EE/CW*Sqrt2*Zn13*ssth-3D0*EE/SW*Sqrt2*Zn23
+     &      *ssth-3D0*EE/MW*Ms/SW*Sqrt2*Zn33/cb*csth
+      A00423 = 2D0*EE/CW*Sqrt2*Zn13*csth-3D0*EE/MW*Ms/SW
+     &      *Sqrt2*Zn33/cb*ssth
+      A00424 = EE/CW*Sqrt2*Zn14*csth-3D0*EE/SW*Sqrt2*Zn24
+     &      *csth+3D0*EE/MW*Ms/SW*Sqrt2*Zn34/cb*ssth
+      A00425 = 2D0*EE/CW*Sqrt2*Zn14*ssth+3D0*EE/MW*Ms/SW
+     &      *Sqrt2*Zn34/cb*csth
+      A00426 = EE/CW*Sqrt2*Zn14*ssth-3D0*EE/SW*Sqrt2*Zn24
+     &      *ssth-3D0*EE/MW*Ms/SW*Sqrt2*Zn34/cb*csth
+      A00427 = 2D0*EE/CW*Sqrt2*Zn14*csth-3D0*EE/MW*Ms/SW
+     &      *Sqrt2*Zn34/cb*ssth
+      A00428 = EE/MW*Mtop/SW*sa/sb
+      A00429 = EE/MW*Mtop/SW/tb
+      A00430 = EE/MW*Mtop/SW
+      A00431 = EE/MW*Mtop/SW*ca/sb
+      A00432 = EE/SW*Zm11*cbth-EE/MW*Mb/SW*Sqrt2*Zm21/s2b
+     &      *sb*sbth
+      A00433 = EE/MW*Mtop/SW*Sqrt2*Zp21*cb*cbth/s2b
+      A00434 = EE/SW*Zm11*sbth+EE/MW*Mb/SW*Sqrt2*Zm21*cbth
+     &      /s2b*sb
+      A00435 = EE/MW*Mtop/SW*Sqrt2*Zp21*cb/s2b*sbth
+      A00436 = EE/SW*Zm12*cbth-EE/MW*Mb/SW*Sqrt2*Zm22/s2b
+     &      *sb*sbth
+      A00437 = EE/MW*Mtop/SW*Sqrt2*Zp22*cb*cbth/s2b
+      A00438 = EE/SW*Zm12*sbth+EE/MW*Mb/SW*Sqrt2*Zm22*cbth
+     &      /s2b*sb
+      A00439 = EE/MW*Mtop/SW*Sqrt2*Zp22*cb/s2b*sbth
+      A00440 = GG*Sqrt2*ctth
+      A00441 = GG*Sqrt2*stth
+      A00442 = EE/CW*Sqrt2*Zn11*ctth+3D0*EE/SW*Sqrt2*Zn21
+     &      *ctth+3D0*EE/MW*Mtop/SW*Sqrt2*Zn41/sb*stth
+      A00443 = 4D0*EE/CW*Sqrt2*Zn11*stth-3D0*EE/MW*Mtop/SW
+     &      *Sqrt2*Zn41*ctth/sb
+      A00444 = EE/CW*Sqrt2*Zn11*stth+3D0*EE/SW*Sqrt2*Zn21
+     &      *stth-3D0*EE/MW*Mtop/SW*Sqrt2*Zn41*ctth/sb
+      A00445 = 4D0*EE/CW*Sqrt2*Zn11*ctth+3D0*EE/MW*Mtop/SW
+     &      *Sqrt2*Zn41/sb*stth
+      A00446 = EE/CW*Sqrt2*Zn12*ctth+3D0*EE/SW*Sqrt2*Zn22
+     &      *ctth+3D0*EE/MW*Mtop/SW*Sqrt2*Zn42/sb*stth
+      A00447 = 4D0*EE/CW*Sqrt2*Zn12*stth-3D0*EE/MW*Mtop/SW
+     &      *Sqrt2*Zn42*ctth/sb
+      A00448 = EE/CW*Sqrt2*Zn12*stth+3D0*EE/SW*Sqrt2*Zn22
+     &      *stth-3D0*EE/MW*Mtop/SW*Sqrt2*Zn42*ctth/sb
+      A00449 = 4D0*EE/CW*Sqrt2*Zn12*ctth+3D0*EE/MW*Mtop/SW
+     &      *Sqrt2*Zn42/sb*stth
+      A00450 = EE/CW*Sqrt2*Zn13*ctth+3D0*EE/SW*Sqrt2*Zn23
+     &      *ctth+3D0*EE/MW*Mtop/SW*Sqrt2*Zn43/sb*stth
+      A00451 = 4D0*EE/CW*Sqrt2*Zn13*stth-3D0*EE/MW*Mtop/SW
+     &      *Sqrt2*Zn43*ctth/sb
+      A00452 = EE/CW*Sqrt2*Zn13*stth+3D0*EE/SW*Sqrt2*Zn23
+     &      *stth-3D0*EE/MW*Mtop/SW*Sqrt2*Zn43*ctth/sb
+      A00453 = 4D0*EE/CW*Sqrt2*Zn13*ctth+3D0*EE/MW*Mtop/SW
+     &      *Sqrt2*Zn43/sb*stth
+      A00454 = EE/CW*Sqrt2*Zn14*ctth+3D0*EE/SW*Sqrt2*Zn24
+     &      *ctth+3D0*EE/MW*Mtop/SW*Sqrt2*Zn44/sb*stth
+      A00455 = 4D0*EE/CW*Sqrt2*Zn14*stth-3D0*EE/MW*Mtop/SW
+     &      *Sqrt2*Zn44*ctth/sb
+      A00456 = EE/CW*Sqrt2*Zn14*stth+3D0*EE/SW*Sqrt2*Zn24
+     &      *stth-3D0*EE/MW*Mtop/SW*Sqrt2*Zn44*ctth/sb
+      A00457 = 4D0*EE/CW*Sqrt2*Zn14*ctth+3D0*EE/MW*Mtop/SW
+     &      *Sqrt2*Zn44/sb*stth
+      A00458 = EE/MW*Mu/SW*sa/sb
+      A00459 = EE/MW*Mu/SW/tb
+      A00460 = EE/MW*Mu/SW
+      A00461 = EE/MW*Mu/SW*ca/sb
+      A00462 = EE/SW*Zm11*cdth-EE/MW*Md/SW*Sqrt2*Zm21/s2b
+     &      *sb*sdth
+      A00463 = EE/MW*Mu/SW*Sqrt2*Zp21*cb*cdth/s2b
+      A00464 = EE/SW*Zm11*sdth+EE/MW*Md/SW*Sqrt2*Zm21*cdth
+     &      /s2b*sb
+      A00465 = EE/MW*Mu/SW*Sqrt2*Zp21*cb/s2b*sdth
+      A00466 = EE/SW*Zm12*cdth-EE/MW*Md/SW*Sqrt2*Zm22/s2b
+     &      *sb*sdth
+      A00467 = EE/MW*Mu/SW*Sqrt2*Zp22*cb*cdth/s2b
+      A00468 = EE/SW*Zm12*sdth+EE/MW*Md/SW*Sqrt2*Zm22*cdth
+     &      /s2b*sb
+      A00469 = EE/MW*Mu/SW*Sqrt2*Zp22*cb/s2b*sdth
+      A00470 = GG*Sqrt2*cuth
+      A00471 = GG*Sqrt2*suth
+      A00472 = EE/CW*Sqrt2*Zn11*cuth+3D0*EE/SW*Sqrt2*Zn21
+     &      *cuth+3D0*EE/MW*Mu/SW*Sqrt2*Zn41/sb*suth
+      A00473 = 4D0*EE/CW*Sqrt2*Zn11*suth-3D0*EE/MW*Mu/SW
+     &      *Sqrt2*Zn41*cuth/sb
+      A00474 = EE/CW*Sqrt2*Zn11*suth+3D0*EE/SW*Sqrt2*Zn21
+     &      *suth-3D0*EE/MW*Mu/SW*Sqrt2*Zn41*cuth/sb
+      A00475 = 4D0*EE/CW*Sqrt2*Zn11*cuth+3D0*EE/MW*Mu/SW
+     &      *Sqrt2*Zn41/sb*suth
+      A00476 = EE/CW*Sqrt2*Zn12*cuth+3D0*EE/SW*Sqrt2*Zn22
+     &      *cuth+3D0*EE/MW*Mu/SW*Sqrt2*Zn42/sb*suth
+      A00477 = 4D0*EE/CW*Sqrt2*Zn12*suth-3D0*EE/MW*Mu/SW
+     &      *Sqrt2*Zn42*cuth/sb
+      A00478 = EE/CW*Sqrt2*Zn12*suth+3D0*EE/SW*Sqrt2*Zn22
+     &      *suth-3D0*EE/MW*Mu/SW*Sqrt2*Zn42*cuth/sb
+      A00479 = 4D0*EE/CW*Sqrt2*Zn12*cuth+3D0*EE/MW*Mu/SW
+     &      *Sqrt2*Zn42/sb*suth
+      A00480 = EE/CW*Sqrt2*Zn13*cuth+3D0*EE/SW*Sqrt2*Zn23
+     &      *cuth+3D0*EE/MW*Mu/SW*Sqrt2*Zn43/sb*suth
+      A00481 = 4D0*EE/CW*Sqrt2*Zn13*suth-3D0*EE/MW*Mu/SW
+     &      *Sqrt2*Zn43*cuth/sb
+      A00482 = EE/CW*Sqrt2*Zn13*suth+3D0*EE/SW*Sqrt2*Zn23
+     &      *suth-3D0*EE/MW*Mu/SW*Sqrt2*Zn43*cuth/sb
+      A00483 = 4D0*EE/CW*Sqrt2*Zn13*cuth+3D0*EE/MW*Mu/SW
+     &      *Sqrt2*Zn43/sb*suth
+      A00484 = EE/CW*Sqrt2*Zn14*cuth+3D0*EE/SW*Sqrt2*Zn24
+     &      *cuth+3D0*EE/MW*Mu/SW*Sqrt2*Zn44/sb*suth
+      A00485 = 4D0*EE/CW*Sqrt2*Zn14*suth-3D0*EE/MW*Mu/SW
+     &      *Sqrt2*Zn44*cuth/sb
+      A00486 = EE/CW*Sqrt2*Zn14*suth+3D0*EE/SW*Sqrt2*Zn24
+     &      *suth-3D0*EE/MW*Mu/SW*Sqrt2*Zn44*cuth/sb
+      A00487 = 4D0*EE/CW*Sqrt2*Zn14*cuth+3D0*EE/MW*Mu/SW
+     &      *Sqrt2*Zn44/sb*suth
+      A00488 = 2D0*EE/SW*Zm11*Zn31*sb-EE/CW*Sqrt2*Zm21*Zn11
+     &      *sb-EE/SW*Sqrt2*Zm21*Zn21*sb
+      A00489 = 2D0*EE/SW*Zn41*Zp11*cb+EE/CW*Sqrt2*Zn11*Zp21
+     &      *cb+EE/SW*Sqrt2*Zn21*Zp21*cb
+      A00490 = 2D0*EE/SW*Zm11*Zn31*cb-EE/CW*Sqrt2*Zm21*Zn11
+     &      *cb-EE/SW*Sqrt2*Zm21*Zn21*cb
+      A00491 = 2D0*EE/SW*Zn41*Zp11*sb+EE/CW*Sqrt2*Zn11*Zp21
+     &      *sb+EE/SW*Sqrt2*Zn21*Zp21*sb
+      A00492 = 2D0*EE/SW*Zm11*Zn32*sb-EE/CW*Sqrt2*Zm21*Zn12
+     &      *sb-EE/SW*Sqrt2*Zm21*Zn22*sb
+      A00493 = 2D0*EE/SW*Zn42*Zp11*cb+EE/CW*Sqrt2*Zn12*Zp21
+     &      *cb+EE/SW*Sqrt2*Zn22*Zp21*cb
+      A00494 = 2D0*EE/SW*Zm11*Zn32*cb-EE/CW*Sqrt2*Zm21*Zn12
+     &      *cb-EE/SW*Sqrt2*Zm21*Zn22*cb
+      A00495 = 2D0*EE/SW*Zn42*Zp11*sb+EE/CW*Sqrt2*Zn12*Zp21
+     &      *sb+EE/SW*Sqrt2*Zn22*Zp21*sb
+      A00496 = 2D0*EE/SW*Zm11*Zn33*sb-EE/CW*Sqrt2*Zm21*Zn13
+     &      *sb-EE/SW*Sqrt2*Zm21*Zn23*sb
+      A00497 = 2D0*EE/SW*Zn43*Zp11*cb+EE/CW*Sqrt2*Zn13*Zp21
+     &      *cb+EE/SW*Sqrt2*Zn23*Zp21*cb
+      A00498 = 2D0*EE/SW*Zm11*Zn33*cb-EE/CW*Sqrt2*Zm21*Zn13
+     &      *cb-EE/SW*Sqrt2*Zm21*Zn23*cb
+      A00499 = 2D0*EE/SW*Zn43*Zp11*sb+EE/CW*Sqrt2*Zn13*Zp21
+     &      *sb+EE/SW*Sqrt2*Zn23*Zp21*sb
+      A00500 = 2D0*EE/SW*Zm11*Zn34*sb-EE/CW*Sqrt2*Zm21*Zn14
+     &      *sb-EE/SW*Sqrt2*Zm21*Zn24*sb
+      A00501 = 2D0*EE/SW*Zn44*Zp11*cb+EE/CW*Sqrt2*Zn14*Zp21
+     &      *cb+EE/SW*Sqrt2*Zn24*Zp21*cb
+      A00502 = 2D0*EE/SW*Zm11*Zn34*cb-EE/CW*Sqrt2*Zm21*Zn14
+     &      *cb-EE/SW*Sqrt2*Zm21*Zn24*cb
+      A00503 = 2D0*EE/SW*Zn44*Zp11*sb+EE/CW*Sqrt2*Zn14*Zp21
+     &      *sb+EE/SW*Sqrt2*Zn24*Zp21*sb
+      A00504 = EE/SW*Sqrt2*Zm11*Zp21*sa+EE/SW*Sqrt2*Zm21
+     &      *Zp11*ca
+      A00505 = EE/SW*Sqrt2*Zm11*Zp21*cb+EE/SW*Sqrt2*Zm21
+     &      *Zp11*sb
+      A00506 = EE/SW*Sqrt2*Zm11*Zp21*sb-EE/SW*Sqrt2*Zm21
+     &      *Zp11*cb
+      A00507 = EE/SW*Sqrt2*Zm11*Zp21*ca-EE/SW*Sqrt2*Zm21
+     &      *Zp11*sa
+      A00508 = EE/SW*Sqrt2*Zm11*Zp22*sa+EE/SW*Sqrt2*Zm21
+     &      *Zp12*ca
+      A00509 = EE/SW*Sqrt2*Zm12*Zp21*sa+EE/SW*Sqrt2*Zm22
+     &      *Zp11*ca
+      A00510 = EE/SW*Sqrt2*Zm11*Zp22*cb+EE/SW*Sqrt2*Zm21
+     &      *Zp12*sb
+      A00511 = EE/SW*Sqrt2*Zm12*Zp21*cb+EE/SW*Sqrt2*Zm22
+     &      *Zp11*sb
+      A00512 = EE/SW*Sqrt2*Zm11*Zp22*sb-EE/SW*Sqrt2*Zm21
+     &      *Zp12*cb
+      A00513 = EE/SW*Sqrt2*Zm12*Zp21*sb-EE/SW*Sqrt2*Zm22
+     &      *Zp11*cb
+      A00514 = EE/SW*Sqrt2*Zm11*Zp22*ca-EE/SW*Sqrt2*Zm21
+     &      *Zp12*sa
+      A00515 = EE/SW*Sqrt2*Zm12*Zp21*ca-EE/SW*Sqrt2*Zm22
+     &      *Zp11*sa
+      A00516 = 2D0*EE/SW*Zm12*Zn31*sb-EE/CW*Sqrt2*Zm22*Zn11
+     &      *sb-EE/SW*Sqrt2*Zm22*Zn21*sb
+      A00517 = 2D0*EE/SW*Zn41*Zp12*cb+EE/CW*Sqrt2*Zn11*Zp22
+     &      *cb+EE/SW*Sqrt2*Zn21*Zp22*cb
+      A00518 = 2D0*EE/SW*Zm12*Zn31*cb-EE/CW*Sqrt2*Zm22*Zn11
+     &      *cb-EE/SW*Sqrt2*Zm22*Zn21*cb
+      A00519 = 2D0*EE/SW*Zn41*Zp12*sb+EE/CW*Sqrt2*Zn11*Zp22
+     &      *sb+EE/SW*Sqrt2*Zn21*Zp22*sb
+      A00520 = 2D0*EE/SW*Zm12*Zn32*sb-EE/CW*Sqrt2*Zm22*Zn12
+     &      *sb-EE/SW*Sqrt2*Zm22*Zn22*sb
+      A00521 = 2D0*EE/SW*Zn42*Zp12*cb+EE/CW*Sqrt2*Zn12*Zp22
+     &      *cb+EE/SW*Sqrt2*Zn22*Zp22*cb
+      A00522 = 2D0*EE/SW*Zm12*Zn32*cb-EE/CW*Sqrt2*Zm22*Zn12
+     &      *cb-EE/SW*Sqrt2*Zm22*Zn22*cb
+      A00523 = 2D0*EE/SW*Zn42*Zp12*sb+EE/CW*Sqrt2*Zn12*Zp22
+     &      *sb+EE/SW*Sqrt2*Zn22*Zp22*sb
+      A00524 = 2D0*EE/SW*Zm12*Zn33*sb-EE/CW*Sqrt2*Zm22*Zn13
+     &      *sb-EE/SW*Sqrt2*Zm22*Zn23*sb
+      A00525 = 2D0*EE/SW*Zn43*Zp12*cb+EE/CW*Sqrt2*Zn13*Zp22
+     &      *cb+EE/SW*Sqrt2*Zn23*Zp22*cb
+      A00526 = 2D0*EE/SW*Zm12*Zn33*cb-EE/CW*Sqrt2*Zm22*Zn13
+     &      *cb-EE/SW*Sqrt2*Zm22*Zn23*cb
+      A00527 = 2D0*EE/SW*Zn43*Zp12*sb+EE/CW*Sqrt2*Zn13*Zp22
+     &      *sb+EE/SW*Sqrt2*Zn23*Zp22*sb
+      A00528 = 2D0*EE/SW*Zm12*Zn34*sb-EE/CW*Sqrt2*Zm22*Zn14
+     &      *sb-EE/SW*Sqrt2*Zm22*Zn24*sb
+      A00529 = 2D0*EE/SW*Zn44*Zp12*cb+EE/CW*Sqrt2*Zn14*Zp22
+     &      *cb+EE/SW*Sqrt2*Zn24*Zp22*cb
+      A00530 = 2D0*EE/SW*Zm12*Zn34*cb-EE/CW*Sqrt2*Zm22*Zn14
+     &      *cb-EE/SW*Sqrt2*Zm22*Zn24*cb
+      A00531 = 2D0*EE/SW*Zn44*Zp12*sb+EE/CW*Sqrt2*Zn14*Zp22
+     &      *sb+EE/SW*Sqrt2*Zn24*Zp22*sb
+      A00532 = EE/SW*Sqrt2*Zm12*Zp22*sa+EE/SW*Sqrt2*Zm22
+     &      *Zp12*ca
+      A00533 = EE/SW*Sqrt2*Zm12*Zp22*cb+EE/SW*Sqrt2*Zm22
+     &      *Zp12*sb
+      A00534 = EE/SW*Sqrt2*Zm12*Zp22*sb-EE/SW*Sqrt2*Zm22
+     &      *Zp12*cb
+      A00535 = EE/SW*Sqrt2*Zm12*Zp22*ca-EE/SW*Sqrt2*Zm22
+     &      *Zp12*sa
+      A00536 = EE/CW*Zn11*Zn31*ca-EE/CW*Zn11*Zn41*sa-EE/SW
+     &      *Zn21*Zn31*ca+EE/SW*Zn21*Zn41*sa
+      A00537 = EE/CW*Zn11*Zn31*sb-EE/CW*Zn11*Zn41*cb-EE/SW
+     &      *Zn21*Zn31*sb+EE/SW*Zn21*Zn41*cb
+      A00538 = EE/CW*Zn11*Zn31*cb+EE/CW*Zn11*Zn41*sb-EE/SW
+     &      *Zn21*Zn31*cb-EE/SW*Zn21*Zn41*sb
+      A00539 = EE/CW*Zn11*Zn31*sa+EE/CW*Zn11*Zn41*ca-EE/SW
+     &      *Zn21*Zn31*sa-EE/SW*Zn21*Zn41*ca
+      A00540 = EE/CW*Zn11*Zn32*ca-EE/CW*Zn11*Zn42*sa+EE/CW
+     &      *Zn12*Zn31*ca-EE/CW*Zn12*Zn41*sa-EE/SW*Zn21*Zn32
+     &      *ca+EE/SW*Zn21*Zn42*sa-EE/SW*Zn22*Zn31*ca+EE
+     &      /SW*Zn22*Zn41*sa
+      A00541 = EE/CW*Zn11*Zn32*sb-EE/CW*Zn11*Zn42*cb+EE/CW
+     &      *Zn12*Zn31*sb-EE/CW*Zn12*Zn41*cb-EE/SW*Zn21*Zn32
+     &      *sb+EE/SW*Zn21*Zn42*cb-EE/SW*Zn22*Zn31*sb+EE
+     &      /SW*Zn22*Zn41*cb
+      A00542 = EE/CW*Zn11*Zn32*cb+EE/CW*Zn11*Zn42*sb+EE/CW
+     &      *Zn12*Zn31*cb+EE/CW*Zn12*Zn41*sb-EE/SW*Zn21*Zn32
+     &      *cb-EE/SW*Zn21*Zn42*sb-EE/SW*Zn22*Zn31*cb-EE
+     &      /SW*Zn22*Zn41*sb
+      A00543 = EE/CW*Zn11*Zn32*sa+EE/CW*Zn11*Zn42*ca+EE/CW
+     &      *Zn12*Zn31*sa+EE/CW*Zn12*Zn41*ca-EE/SW*Zn21*Zn32
+     &      *sa-EE/SW*Zn21*Zn42*ca-EE/SW*Zn22*Zn31*sa-EE
+     &      /SW*Zn22*Zn41*ca
+      A00544 = EE/CW*Zn11*Zn33*ca-EE/CW*Zn11*Zn43*sa+EE/CW
+     &      *Zn13*Zn31*ca-EE/CW*Zn13*Zn41*sa-EE/SW*Zn21*Zn33
+     &      *ca+EE/SW*Zn21*Zn43*sa-EE/SW*Zn23*Zn31*ca+EE
+     &      /SW*Zn23*Zn41*sa
+      A00545 = EE/CW*Zn11*Zn33*sb-EE/CW*Zn11*Zn43*cb+EE/CW
+     &      *Zn13*Zn31*sb-EE/CW*Zn13*Zn41*cb-EE/SW*Zn21*Zn33
+     &      *sb+EE/SW*Zn21*Zn43*cb-EE/SW*Zn23*Zn31*sb+EE
+     &      /SW*Zn23*Zn41*cb
+      A00546 = EE/CW*Zn11*Zn33*cb+EE/CW*Zn11*Zn43*sb+EE/CW
+     &      *Zn13*Zn31*cb+EE/CW*Zn13*Zn41*sb-EE/SW*Zn21*Zn33
+     &      *cb-EE/SW*Zn21*Zn43*sb-EE/SW*Zn23*Zn31*cb-EE
+     &      /SW*Zn23*Zn41*sb
+      A00547 = EE/CW*Zn11*Zn33*sa+EE/CW*Zn11*Zn43*ca+EE/CW
+     &      *Zn13*Zn31*sa+EE/CW*Zn13*Zn41*ca-EE/SW*Zn21*Zn33
+     &      *sa-EE/SW*Zn21*Zn43*ca-EE/SW*Zn23*Zn31*sa-EE
+     &      /SW*Zn23*Zn41*ca
+      A00548 = EE/CW*Zn11*Zn34*ca-EE/CW*Zn11*Zn44*sa+EE/CW
+     &      *Zn14*Zn31*ca-EE/CW*Zn14*Zn41*sa-EE/SW*Zn21*Zn34
+     &      *ca+EE/SW*Zn21*Zn44*sa-EE/SW*Zn24*Zn31*ca+EE
+     &      /SW*Zn24*Zn41*sa
+      A00549 = EE/CW*Zn11*Zn34*sb-EE/CW*Zn11*Zn44*cb+EE/CW
+     &      *Zn14*Zn31*sb-EE/CW*Zn14*Zn41*cb-EE/SW*Zn21*Zn34
+     &      *sb+EE/SW*Zn21*Zn44*cb-EE/SW*Zn24*Zn31*sb+EE
+     &      /SW*Zn24*Zn41*cb
+      A00550 = EE/CW*Zn11*Zn34*cb+EE/CW*Zn11*Zn44*sb+EE/CW
+     &      *Zn14*Zn31*cb+EE/CW*Zn14*Zn41*sb-EE/SW*Zn21*Zn34
+     &      *cb-EE/SW*Zn21*Zn44*sb-EE/SW*Zn24*Zn31*cb-EE
+     &      /SW*Zn24*Zn41*sb
+      A00551 = EE/CW*Zn11*Zn34*sa+EE/CW*Zn11*Zn44*ca+EE/CW
+     &      *Zn14*Zn31*sa+EE/CW*Zn14*Zn41*ca-EE/SW*Zn21*Zn34
+     &      *sa-EE/SW*Zn21*Zn44*ca-EE/SW*Zn24*Zn31*sa-EE
+     &      /SW*Zn24*Zn41*ca
+      A00552 = EE/CW*Zn12*Zn32*ca-EE/CW*Zn12*Zn42*sa-EE/SW
+     &      *Zn22*Zn32*ca+EE/SW*Zn22*Zn42*sa
+      A00553 = EE/CW*Zn12*Zn32*sb-EE/CW*Zn12*Zn42*cb-EE/SW
+     &      *Zn22*Zn32*sb+EE/SW*Zn22*Zn42*cb
+      A00554 = EE/CW*Zn12*Zn32*cb+EE/CW*Zn12*Zn42*sb-EE/SW
+     &      *Zn22*Zn32*cb-EE/SW*Zn22*Zn42*sb
+      A00555 = EE/CW*Zn12*Zn32*sa+EE/CW*Zn12*Zn42*ca-EE/SW
+     &      *Zn22*Zn32*sa-EE/SW*Zn22*Zn42*ca
+      A00556 = EE/CW*Zn12*Zn33*ca-EE/CW*Zn12*Zn43*sa+EE/CW
+     &      *Zn13*Zn32*ca-EE/CW*Zn13*Zn42*sa-EE/SW*Zn22*Zn33
+     &      *ca+EE/SW*Zn22*Zn43*sa-EE/SW*Zn23*Zn32*ca+EE
+     &      /SW*Zn23*Zn42*sa
+      A00557 = EE/CW*Zn12*Zn33*sb-EE/CW*Zn12*Zn43*cb+EE/CW
+     &      *Zn13*Zn32*sb-EE/CW*Zn13*Zn42*cb-EE/SW*Zn22*Zn33
+     &      *sb+EE/SW*Zn22*Zn43*cb-EE/SW*Zn23*Zn32*sb+EE
+     &      /SW*Zn23*Zn42*cb
+      A00558 = EE/CW*Zn12*Zn33*cb+EE/CW*Zn12*Zn43*sb+EE/CW
+     &      *Zn13*Zn32*cb+EE/CW*Zn13*Zn42*sb-EE/SW*Zn22*Zn33
+     &      *cb-EE/SW*Zn22*Zn43*sb-EE/SW*Zn23*Zn32*cb-EE
+     &      /SW*Zn23*Zn42*sb
+      A00559 = EE/CW*Zn12*Zn33*sa+EE/CW*Zn12*Zn43*ca+EE/CW
+     &      *Zn13*Zn32*sa+EE/CW*Zn13*Zn42*ca-EE/SW*Zn22*Zn33
+     &      *sa-EE/SW*Zn22*Zn43*ca-EE/SW*Zn23*Zn32*sa-EE
+     &      /SW*Zn23*Zn42*ca
+      A00560 = EE/CW*Zn12*Zn34*ca-EE/CW*Zn12*Zn44*sa+EE/CW
+     &      *Zn14*Zn32*ca-EE/CW*Zn14*Zn42*sa-EE/SW*Zn22*Zn34
+     &      *ca+EE/SW*Zn22*Zn44*sa-EE/SW*Zn24*Zn32*ca+EE
+     &      /SW*Zn24*Zn42*sa
+      A00561 = EE/CW*Zn12*Zn34*sb-EE/CW*Zn12*Zn44*cb+EE/CW
+     &      *Zn14*Zn32*sb-EE/CW*Zn14*Zn42*cb-EE/SW*Zn22*Zn34
+     &      *sb+EE/SW*Zn22*Zn44*cb-EE/SW*Zn24*Zn32*sb+EE
+     &      /SW*Zn24*Zn42*cb
+      A00562 = EE/CW*Zn12*Zn34*cb+EE/CW*Zn12*Zn44*sb+EE/CW
+     &      *Zn14*Zn32*cb+EE/CW*Zn14*Zn42*sb-EE/SW*Zn22*Zn34
+     &      *cb-EE/SW*Zn22*Zn44*sb-EE/SW*Zn24*Zn32*cb-EE
+     &      /SW*Zn24*Zn42*sb
+      A00563 = EE/CW*Zn12*Zn34*sa+EE/CW*Zn12*Zn44*ca+EE/CW
+     &      *Zn14*Zn32*sa+EE/CW*Zn14*Zn42*ca-EE/SW*Zn22*Zn34
+     &      *sa-EE/SW*Zn22*Zn44*ca-EE/SW*Zn24*Zn32*sa-EE
+     &      /SW*Zn24*Zn42*ca
+      A00564 = EE/CW*Zn13*Zn33*ca-EE/CW*Zn13*Zn43*sa-EE/SW
+     &      *Zn23*Zn33*ca+EE/SW*Zn23*Zn43*sa
+      A00565 = EE/CW*Zn13*Zn33*sb-EE/CW*Zn13*Zn43*cb-EE/SW
+     &      *Zn23*Zn33*sb+EE/SW*Zn23*Zn43*cb
+      A00566 = EE/CW*Zn13*Zn33*cb+EE/CW*Zn13*Zn43*sb-EE/SW
+     &      *Zn23*Zn33*cb-EE/SW*Zn23*Zn43*sb
+      A00567 = EE/CW*Zn13*Zn33*sa+EE/CW*Zn13*Zn43*ca-EE/SW
+     &      *Zn23*Zn33*sa-EE/SW*Zn23*Zn43*ca
+      A00568 = EE/CW*Zn13*Zn34*ca-EE/CW*Zn13*Zn44*sa+EE/CW
+     &      *Zn14*Zn33*ca-EE/CW*Zn14*Zn43*sa-EE/SW*Zn23*Zn34
+     &      *ca+EE/SW*Zn23*Zn44*sa-EE/SW*Zn24*Zn33*ca+EE
+     &      /SW*Zn24*Zn43*sa
+      A00569 = EE/CW*Zn13*Zn34*sb-EE/CW*Zn13*Zn44*cb+EE/CW
+     &      *Zn14*Zn33*sb-EE/CW*Zn14*Zn43*cb-EE/SW*Zn23*Zn34
+     &      *sb+EE/SW*Zn23*Zn44*cb-EE/SW*Zn24*Zn33*sb+EE
+     &      /SW*Zn24*Zn43*cb
+      A00570 = EE/CW*Zn13*Zn34*cb+EE/CW*Zn13*Zn44*sb+EE/CW
+     &      *Zn14*Zn33*cb+EE/CW*Zn14*Zn43*sb-EE/SW*Zn23*Zn34
+     &      *cb-EE/SW*Zn23*Zn44*sb-EE/SW*Zn24*Zn33*cb-EE
+     &      /SW*Zn24*Zn43*sb
+      A00571 = EE/CW*Zn13*Zn34*sa+EE/CW*Zn13*Zn44*ca+EE/CW
+     &      *Zn14*Zn33*sa+EE/CW*Zn14*Zn43*ca-EE/SW*Zn23*Zn34
+     &      *sa-EE/SW*Zn23*Zn44*ca-EE/SW*Zn24*Zn33*sa-EE
+     &      /SW*Zn24*Zn43*ca
+      A00572 = EE/CW*Zn14*Zn34*ca-EE/CW*Zn14*Zn44*sa-EE/SW
+     &      *Zn24*Zn34*ca+EE/SW*Zn24*Zn44*sa
+      A00573 = EE/CW*Zn14*Zn34*sb-EE/CW*Zn14*Zn44*cb-EE/SW
+     &      *Zn24*Zn34*sb+EE/SW*Zn24*Zn44*cb
+      A00574 = EE/CW*Zn14*Zn34*cb+EE/CW*Zn14*Zn44*sb-EE/SW
+     &      *Zn24*Zn34*cb-EE/SW*Zn24*Zn44*sb
+      A00575 = EE/CW*Zn14*Zn34*sa+EE/CW*Zn14*Zn44*ca-EE/SW
+     &      *Zn24*Zn34*sa-EE/SW*Zn24*Zn44*ca
+      A00576 = EE/S2W*SW**2
+      A00577 = EE/S2W
+      A00578 = EE/CW*SW
+      A00579 = 4D0*EE/CW**3-3D0*EE/CW**3/SW**2
+      A00580 = 3D0*EE/CW/SW-2D0*EE/CW*SW
+      A00581 = EE/CW**3
+      A00582 = EE/SW*Sqrt2
+      A00583 = EE/SW**2*Sqrt2
+      A00584 = 2D0*EE/CW**3-3D0*EE/CW**3/SW**2
+      A00585 = 3D0*EE/CW/SW-4D0*EE/CW*SW
+      A00586 = C2W*EE/S2W
+      A00587 = EE/CW**3/SW**2
+      A00588 = C2W/CW**3*EE/SW**2
+      A00589 = 2D0*EE/SW*Zm11*Zn21+EE/SW*Sqrt2*Zm21*Zn31
+      A00590 = 2D0*EE/SW*Zn21*Zp11-EE/SW*Sqrt2*Zn41*Zp21
+      A00591 = 2D0*EE/SW*Zm11*Zn22+EE/SW*Sqrt2*Zm21*Zn32
+      A00592 = 2D0*EE/SW*Zn22*Zp11-EE/SW*Sqrt2*Zn42*Zp21
+      A00593 = 2D0*EE/SW*Zm11*Zn23+EE/SW*Sqrt2*Zm21*Zn33
+      A00594 = 2D0*EE/SW*Zn23*Zp11-EE/SW*Sqrt2*Zn43*Zp21
+      A00595 = 2D0*EE/SW*Zm11*Zn24+EE/SW*Sqrt2*Zm21*Zn34
+      A00596 = 2D0*EE/SW*Zn24*Zp11-EE/SW*Sqrt2*Zn44*Zp21
+      A00597 = EE/CW**3/SW*Zm21**2-3D0*EE/CW**3*SW*Zm21**2
+     &      +2D0*C2W/CW**3*EE/SW*Zm11**2
+      A00598 = EE/CW**3/SW*Zp21**2-3D0*EE/CW**3*SW*Zp21**2
+     &      +2D0*C2W/CW**3*EE/SW*Zp11**2
+      A00599 = EE/CW**3*SW**3
+      A00600 = EE/CW**3/SW*Zm21*Zm22-3D0*EE/CW**3*SW*Zm21
+     &      *Zm22+2D0*C2W/CW**3*EE/SW*Zm11*Zm12
+      A00601 = EE/CW**3/SW*Zp21*Zp22-3D0*EE/CW**3*SW*Zp21
+     &      *Zp22+2D0*C2W/CW**3*EE/SW*Zp11*Zp12
+      A00602 = 2D0*EE/SW*Zm12*Zn21+EE/SW*Sqrt2*Zm22*Zn31
+      A00603 = 2D0*EE/SW*Zn21*Zp12-EE/SW*Sqrt2*Zn41*Zp22
+      A00604 = 2D0*EE/SW*Zm12*Zn22+EE/SW*Sqrt2*Zm22*Zn32
+      A00605 = 2D0*EE/SW*Zn22*Zp12-EE/SW*Sqrt2*Zn42*Zp22
+      A00606 = 2D0*EE/SW*Zm12*Zn23+EE/SW*Sqrt2*Zm22*Zn33
+      A00607 = 2D0*EE/SW*Zn23*Zp12-EE/SW*Sqrt2*Zn43*Zp22
+      A00608 = 2D0*EE/SW*Zm12*Zn24+EE/SW*Sqrt2*Zm22*Zn34
+      A00609 = 2D0*EE/SW*Zn24*Zp12-EE/SW*Sqrt2*Zn44*Zp22
+      A00610 = EE/CW**3/SW*Zm22**2-3D0*EE/CW**3*SW*Zm22**2
+     &      +2D0*C2W/CW**3*EE/SW*Zm12**2
+      A00611 = EE/CW**3/SW*Zp22**2-3D0*EE/CW**3*SW*Zp22**2
+     &      +2D0*C2W/CW**3*EE/SW*Zp12**2
+      A00612 = EE/CW/SW*Zn31**2-EE/CW/SW*Zn41**2
+      A00613 = EE/CW/SW*Zn31*Zn32-EE/CW/SW*Zn41*Zn42
+      A00614 = EE/CW/SW*Zn31*Zn33-EE/CW/SW*Zn41*Zn43
+      A00615 = EE/CW/SW*Zn31*Zn34-EE/CW/SW*Zn41*Zn44
+      A00616 = EE/CW/SW*Zn32**2-EE/CW/SW*Zn42**2
+      A00617 = EE/CW/SW*Zn32*Zn33-EE/CW/SW*Zn42*Zn43
+      A00618 = EE/CW/SW*Zn32*Zn34-EE/CW/SW*Zn42*Zn44
+      A00619 = EE/CW/SW*Zn33**2-EE/CW/SW*Zn43**2
+      A00620 = EE/CW/SW*Zn33*Zn34-EE/CW/SW*Zn43*Zn44
+      A00621 = EE/CW/SW*Zn34**2-EE/CW/SW*Zn44**2
+      A00622 = EE/CW/SW**2
+      A00623 = EE**2*nla
+      A00624 = CW*EE**2/SW*nlb
+      A00625 = EE**2*nla+CW**2*EE**2/SW**2*nlb
+      A00626 = CW*EE**2/SW*nla+CW*EE**2/SW*nlb
+      A00627 = CW**2*EE**2/SW**2*nlb
+      A00628 = CW*EE**2/SW*nla
+      A00629 = EE**2/SW**2
+      A00630 = EE**2/CW**2/SW**2
+      A00631 = EE**2/CW*S2W/SW**2*samb
+      A00632 = EE**2/CW*samb
+      A00633 = EE**2/CW*S2W/SW**2*camb-EE**2/CW*S2W/SW**2
+     &      *camb*nla*nld2
+      A00634 = EE**2/CW**3*S2W**2/SW**2*camb+4D0*CW*EE**2
+     &      /SW**2*camb*nlb*nld2
+      A00635 = EE**2
+      A00636 = C2W/CW*EE**2/SW
+      A00637 = C2W**2/CW**2*EE**2/SW**2
+      A00638 = EE**2/CW*S2W/SW**2
+      A00639 = EE**2/CW
+      A00640 = EE**2/CW*S2W/SW**2*camb
+      A00641 = EE**2/CW*camb
+      A00642 = EE**2/CW*S2W/SW**2-EE**2/CW*S2W/SW**2*nla*nlk
+      A00643 = EE**2/CW+CW*EE**2/SW**2*nlb*nlk
+      A00644 = EE**2/CW*S2W/SW**2*samb-EE**2/CW*S2W/SW**2
+     &      *nla*nld1*samb
+      A00645 = EE**2/CW**3*S2W**2/SW**2*samb+4D0*CW*EE**2
+     &      /SW**2*nlb*nld1*samb
+      A00646 = EE*GG
+      A00647 = 3D0*EE**2/CW/SW-2D0*EE**2/CW*SW-3D0*EE**2
+     &      /CW/SW*sbth**2
+      A00648 = 3D0*EE/CW*GG/SW-2D0*EE/CW*GG*SW-3D0*EE/CW
+     &      *GG/SW*sbth**2
+      A00649 = EE**2/SW**2*cbth**2
+      A00650 = 12D0*EE**2/CW**2-9D0*EE**2/CW**2/SW**2-4D0
+     &      *EE**2/CW**2*SW**2-12D0*EE**2/CW**2*sbth**2+9D0
+     &      *EE**2/CW**2/SW**2*sbth**2
+      A00651 = EE**2/CW/SW*cbth*sbth
+      A00652 = EE/CW*GG/SW*cbth*sbth
+      A00653 = EE**2/SW**2*cbth*sbth
+      A00654 = 4D0*EE**2/CW**2*cbth*sbth-3D0*EE**2/CW**2
+     &      /SW**2*cbth*sbth
+      A00655 = EE**2/CW*S2W/SW**2*Sqrt2*cbth*ctth
+      A00656 = EE*GG/SW*Sqrt2*cbth*ctth
+      A00657 = EE**2/CW*Sqrt2*cbth*ctth
+      A00658 = EE**2/CW*S2W/SW**2*Sqrt2*cbth*stth
+      A00659 = EE*GG/SW*Sqrt2*cbth*stth
+      A00660 = EE**2/CW*Sqrt2*cbth*stth
+      A00661 = 2D0*EE**2/CW*SW-3D0*EE**2/CW/SW*sbth**2
+      A00662 = 2D0*EE/CW*GG*SW-3D0*EE/CW*GG/SW*sbth**2
+      A00663 = EE**2/SW**2*sbth**2
+      A00664 = 4D0*EE**2/CW**2*SW**2-12D0*EE**2/CW**2*sbth
+     &      **2+9D0*EE**2/CW**2/SW**2*sbth**2
+      A00665 = EE**2/CW*S2W/SW**2*Sqrt2*ctth*sbth
+      A00666 = EE*GG/SW*Sqrt2*ctth*sbth
+      A00667 = EE**2/CW*Sqrt2*ctth*sbth
+      A00668 = EE**2/CW*S2W/SW**2*Sqrt2*sbth*stth
+      A00669 = EE*GG/SW*Sqrt2*sbth*stth
+      A00670 = EE**2/CW*Sqrt2*sbth*stth
+      A00671 = 3D0*EE**2/CW/SW-4D0*EE**2/CW*SW-3D0*EE**2
+     &      /CW/SW*scth**2
+      A00672 = 3D0*EE/CW*GG/SW-4D0*EE/CW*GG*SW-3D0*EE/CW
+     &      *GG/SW*scth**2
+      A00673 = EE**2/SW**2*ccth**2
+      A00674 = 24D0*EE**2/CW**2-9D0*EE**2/CW**2/SW**2-16D0
+     &      *EE**2/CW**2*SW**2-24D0*EE**2/CW**2*scth**2+9D0
+     &      *EE**2/CW**2/SW**2*scth**2
+      A00675 = EE**2/CW/SW*ccth*scth
+      A00676 = EE/CW*GG/SW*ccth*scth
+      A00677 = EE**2/SW**2*ccth*scth
+      A00678 = 8D0*EE**2/CW**2*ccth*scth-3D0*EE**2/CW**2
+     &      /SW**2*ccth*scth
+      A00679 = EE**2/CW*S2W/SW**2*Sqrt2*ccth*csth
+      A00680 = EE*GG/SW*Sqrt2*ccth*csth
+      A00681 = EE**2/CW*Sqrt2*ccth*csth
+      A00682 = EE**2/CW*S2W/SW**2*Sqrt2*ccth*ssth
+      A00683 = EE*GG/SW*Sqrt2*ccth*ssth
+      A00684 = EE**2/CW*Sqrt2*ccth*ssth
+      A00685 = 4D0*EE**2/CW*SW-3D0*EE**2/CW/SW*scth**2
+      A00686 = 4D0*EE/CW*GG*SW-3D0*EE/CW*GG/SW*scth**2
+      A00687 = EE**2/SW**2*scth**2
+      A00688 = 16D0*EE**2/CW**2*SW**2-24D0*EE**2/CW**2*scth
+     &      **2+9D0*EE**2/CW**2/SW**2*scth**2
+      A00689 = EE**2/CW*S2W/SW**2*Sqrt2*csth*scth
+      A00690 = EE*GG/SW*Sqrt2*csth*scth
+      A00691 = EE**2/CW*Sqrt2*csth*scth
+      A00692 = EE**2/CW*S2W/SW**2*Sqrt2*scth*ssth
+      A00693 = EE*GG/SW*Sqrt2*scth*ssth
+      A00694 = EE**2/CW*Sqrt2*scth*ssth
+      A00695 = 3D0*EE**2/CW/SW-2D0*EE**2/CW*SW-3D0*EE**2
+     &      /CW/SW*sdth**2
+      A00696 = 3D0*EE/CW*GG/SW-2D0*EE/CW*GG*SW-3D0*EE/CW
+     &      *GG/SW*sdth**2
+      A00697 = EE**2/SW**2*cdth**2
+      A00698 = 12D0*EE**2/CW**2-9D0*EE**2/CW**2/SW**2-4D0
+     &      *EE**2/CW**2*SW**2-12D0*EE**2/CW**2*sdth**2+9D0
+     &      *EE**2/CW**2/SW**2*sdth**2
+      A00699 = EE**2/CW/SW*cdth*sdth
+      A00700 = EE/CW*GG/SW*cdth*sdth
+      A00701 = EE**2/SW**2*cdth*sdth
+      A00702 = 4D0*EE**2/CW**2*cdth*sdth-3D0*EE**2/CW**2
+     &      /SW**2*cdth*sdth
+      A00703 = EE**2/CW*S2W/SW**2*Sqrt2*cdth*cuth
+      A00704 = EE*GG/SW*Sqrt2*cdth*cuth
+      A00705 = EE**2/CW*Sqrt2*cdth*cuth
+      A00706 = EE**2/CW*S2W/SW**2*Sqrt2*cdth*suth
+      A00707 = EE*GG/SW*Sqrt2*cdth*suth
+      A00708 = EE**2/CW*Sqrt2*cdth*suth
+      A00709 = 2D0*EE**2/CW*SW-3D0*EE**2/CW/SW*sdth**2
+      A00710 = 2D0*EE/CW*GG*SW-3D0*EE/CW*GG/SW*sdth**2
+      A00711 = EE**2/SW**2*sdth**2
+      A00712 = 4D0*EE**2/CW**2*SW**2-12D0*EE**2/CW**2*sdth
+     &      **2+9D0*EE**2/CW**2/SW**2*sdth**2
+      A00713 = EE**2/CW*S2W/SW**2*Sqrt2*cuth*sdth
+      A00714 = EE*GG/SW*Sqrt2*cuth*sdth
+      A00715 = EE**2/CW*Sqrt2*cuth*sdth
+      A00716 = EE**2/CW*S2W/SW**2*Sqrt2*sdth*suth
+      A00717 = EE*GG/SW*Sqrt2*sdth*suth
+      A00718 = EE**2/CW*Sqrt2*sdth*suth
+      A00719 = C2W/CW*EE**2/SW-EE**2/CW/SW*seth**2
+      A00720 = EE**2/SW**2*ceth**2
+      A00721 = 4D0*EE**2/CW**2*seth**2+C2W**2/CW**2*EE**2
+     &      /SW**2-EE**2/CW**2/SW**2*seth**2
+      A00722 = EE**2/CW/SW*ceth*seth
+      A00723 = EE**2/SW**2*ceth*seth
+      A00724 = 4D0*EE**2/CW**2*ceth*seth-EE**2/CW**2/SW**2
+     &      *ceth*seth
+      A00725 = EE**2/CW*S2W/SW**2*Sqrt2*ceth
+      A00726 = EE**2/CW*Sqrt2*ceth
+      A00727 = 2D0*EE**2/CW*SW-EE**2/CW/SW*seth**2
+      A00728 = EE**2/SW**2*seth**2
+      A00729 = 4D0*EE**2/CW**2*SW**2-4D0*EE**2/CW**2*seth
+     &      **2+EE**2/CW**2/SW**2*seth**2
+      A00730 = EE**2/CW*S2W/SW**2*Sqrt2*seth
+      A00731 = EE**2/CW*Sqrt2*seth
+      A00732 = C2W/CW*EE**2/SW-EE**2/CW/SW*slth**2
+      A00733 = EE**2/SW**2*clth**2
+      A00734 = 4D0*EE**2/CW**2*slth**2+C2W**2/CW**2*EE**2
+     &      /SW**2-EE**2/CW**2/SW**2*slth**2
+      A00735 = EE**2/CW/SW*clth*slth
+      A00736 = EE**2/SW**2*clth*slth
+      A00737 = 4D0*EE**2/CW**2*clth*slth-EE**2/CW**2/SW**2
+     &      *clth*slth
+      A00738 = EE**2/CW*S2W/SW**2*Sqrt2*clth
+      A00739 = EE**2/CW*Sqrt2*clth
+      A00740 = 2D0*EE**2/CW*SW-EE**2/CW/SW*slth**2
+      A00741 = EE**2/SW**2*slth**2
+      A00742 = 4D0*EE**2/CW**2*SW**2-4D0*EE**2/CW**2*slth
+     &      **2+EE**2/CW**2/SW**2*slth**2
+      A00743 = EE**2/CW*S2W/SW**2*Sqrt2*slth
+      A00744 = EE**2/CW*Sqrt2*slth
+      A00745 = C2W/CW*EE**2/SW-EE**2/CW/SW*smuth**2
+      A00746 = EE**2/SW**2*cmuth**2
+      A00747 = 4D0*EE**2/CW**2*smuth**2+C2W**2/CW**2*EE**2
+     &      /SW**2-EE**2/CW**2/SW**2*smuth**2
+      A00748 = EE**2/CW/SW*cmuth*smuth
+      A00749 = EE**2/SW**2*cmuth*smuth
+      A00750 = 4D0*EE**2/CW**2*cmuth*smuth-EE**2/CW**2/SW
+     &      **2*cmuth*smuth
+      A00751 = EE**2/CW*S2W/SW**2*Sqrt2*cmuth
+      A00752 = EE**2/CW*Sqrt2*cmuth
+      A00753 = 2D0*EE**2/CW*SW-EE**2/CW/SW*smuth**2
+      A00754 = EE**2/SW**2*smuth**2
+      A00755 = 4D0*EE**2/CW**2*SW**2-4D0*EE**2/CW**2*smuth
+     &      **2+EE**2/CW**2/SW**2*smuth**2
+      A00756 = EE**2/CW*S2W/SW**2*Sqrt2*smuth
+      A00757 = EE**2/CW*Sqrt2*smuth
+      A00758 = 3D0*EE**2/CW/SW-2D0*EE**2/CW*SW-3D0*EE**2
+     &      /CW/SW*ssth**2
+      A00759 = 3D0*EE/CW*GG/SW-2D0*EE/CW*GG*SW-3D0*EE/CW
+     &      *GG/SW*ssth**2
+      A00760 = EE**2/SW**2*csth**2
+      A00761 = 12D0*EE**2/CW**2-9D0*EE**2/CW**2/SW**2-4D0
+     &      *EE**2/CW**2*SW**2-12D0*EE**2/CW**2*ssth**2+9D0
+     &      *EE**2/CW**2/SW**2*ssth**2
+      A00762 = EE**2/CW/SW*csth*ssth
+      A00763 = EE/CW*GG/SW*csth*ssth
+      A00764 = EE**2/SW**2*csth*ssth
+      A00765 = 4D0*EE**2/CW**2*csth*ssth-3D0*EE**2/CW**2
+     &      /SW**2*csth*ssth
+      A00766 = 2D0*EE**2/CW*SW-3D0*EE**2/CW/SW*ssth**2
+      A00767 = 2D0*EE/CW*GG*SW-3D0*EE/CW*GG/SW*ssth**2
+      A00768 = EE**2/SW**2*ssth**2
+      A00769 = 4D0*EE**2/CW**2*SW**2-12D0*EE**2/CW**2*ssth
+     &      **2+9D0*EE**2/CW**2/SW**2*ssth**2
+      A00770 = 3D0*EE**2/CW/SW-4D0*EE**2/CW*SW-3D0*EE**2
+     &      /CW/SW*stth**2
+      A00771 = 3D0*EE/CW*GG/SW-4D0*EE/CW*GG*SW-3D0*EE/CW
+     &      *GG/SW*stth**2
+      A00772 = EE**2/SW**2*ctth**2
+      A00773 = 24D0*EE**2/CW**2-9D0*EE**2/CW**2/SW**2-16D0
+     &      *EE**2/CW**2*SW**2-24D0*EE**2/CW**2*stth**2+9D0
+     &      *EE**2/CW**2/SW**2*stth**2
+      A00774 = EE**2/CW/SW*ctth*stth
+      A00775 = EE/CW*GG/SW*ctth*stth
+      A00776 = EE**2/SW**2*ctth*stth
+      A00777 = 8D0*EE**2/CW**2*ctth*stth-3D0*EE**2/CW**2
+     &      /SW**2*ctth*stth
+      A00778 = 4D0*EE**2/CW*SW-3D0*EE**2/CW/SW*stth**2
+      A00779 = 4D0*EE/CW*GG*SW-3D0*EE/CW*GG/SW*stth**2
+      A00780 = EE**2/SW**2*stth**2
+      A00781 = 16D0*EE**2/CW**2*SW**2-24D0*EE**2/CW**2*stth
+     &      **2+9D0*EE**2/CW**2/SW**2*stth**2
+      A00782 = 3D0*EE**2/CW/SW-4D0*EE**2/CW*SW-3D0*EE**2
+     &      /CW/SW*suth**2
+      A00783 = 3D0*EE/CW*GG/SW-4D0*EE/CW*GG*SW-3D0*EE/CW
+     &      *GG/SW*suth**2
+      A00784 = EE**2/SW**2*cuth**2
+      A00785 = 24D0*EE**2/CW**2-9D0*EE**2/CW**2/SW**2-16D0
+     &      *EE**2/CW**2*SW**2-24D0*EE**2/CW**2*suth**2+9D0
+     &      *EE**2/CW**2/SW**2*suth**2
+      A00786 = EE**2/CW/SW*cuth*suth
+      A00787 = EE/CW*GG/SW*cuth*suth
+      A00788 = EE**2/SW**2*cuth*suth
+      A00789 = 8D0*EE**2/CW**2*cuth*suth-3D0*EE**2/CW**2
+     &      /SW**2*cuth*suth
+      A00790 = 4D0*EE**2/CW*SW-3D0*EE**2/CW/SW*suth**2
+      A00791 = 4D0*EE/CW*GG*SW-3D0*EE/CW*GG/SW*suth**2
+      A00792 = EE**2/SW**2*suth**2
+      A00793 = 16D0*EE**2/CW**2*SW**2-24D0*EE**2/CW**2*suth
+     &      **2+9D0*EE**2/CW**2/SW**2*suth**2
+      A00794 = CW*EE**2/SW
+      A00795 = EE**2-EE**2*nla**2
+      A00796 = CW**2*EE**2/SW**2
+      A00797 = CW*EE**2/SW-CW*EE**2/SW*nla*nlb
+      A00798 = EE**2/CW/SW**2
+      A00799 = EE**2/SW**3
+      A00800 = CW**2*EE**2/SW**2-CW**2*EE**2/SW**2*nlb**2
+
+      end
+

@@ -1,0 +1,76 @@
+.TH FHGETSELF 1 "5-Jul-2010"
+.SH NAME
+.PP
+FHGetSelf \- calculate the renormalized Higgs self-energies
+.SH SYNOPSIS (Fortran version)
+.PP
+integer error
+.br
+double precision k2
+.br
+integer key, dkey
+.br
+double complex sig(13), dsig(13)
+.sp
+integer h0h0, HHHH, A0A0, HmHp
+.br
+integer h0HH, h0A0, HHA0
+.br
+integer G0G0, h0G0, HHG0, A0G0
+.br
+integer GmGp, HmGp
+.br
+parameter (h0h0 = 1, HHHH = 2, A0A0 = 3, HmHp = 4)
+.br
+parameter (h0HH = 5, h0A0 = 6, HHA0 = 7)
+.br
+parameter (G0G0 = 8, h0G0 = 9, HHG0 = 10, A0G0 = 11)
+.br
+parameter (GmGp = 12, HmGp = 13)
+.br
+#define Key(se) 2**(se-1)
+.sp
+subroutine FHGetSelf(error, k2, key, sig, dkey, dsig)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHGetSelf[k2, key, dkey]
+.SH DESCRIPTION
+FHGetSelf returns the renormalized Higgs self-energies at momentum-squared
+k2.  The flags and parameters must have been set before with FHSetFlags(1)
+and FHSetPara(1).
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in GetSelf.F from which
+the error message was emitted
+.TP
+.B k2 (input)
+the momentum-squared k^2 at which the self-energies are evaluated.
+.TP
+.B key (input)
+a flag determining which of the self-energies are actually evaluated,
+e.g. to evaluate the h0-h0 self-energy, add Key(h0h0) to key.
+.TP
+.B sig(h0h0), sig(HHHH), sig(A0A0), sig(HmHp) (output)
+the h0, HH, A0, and Hp self-energies at k^2 = k2.
+.TP
+.B sig(h0HH), sig(h0A0), sig(HHA0) (output)
+the h0-HH, h0-A0, and HH-A0 mixing self-energies at k^2 = k2.
+.TP
+.B sig(G0G0), sig(h0G0), sig(HHG0), sig(A0G0) (output)
+the neutral Goldstone self-energies at k^2 = k2.
+.TP
+.B sig(GmGp), sig(HmGp) (output)
+the charged Goldstone self-energies at k^2 = k2.
+.TP
+.B dkey (input)
+a flag determining which of the derivatives of the self-energies
+are actually evaluated, e.g. to evaluate the derivative of the h0-h0
+self-energy, add Key(h0h0) to dkey.
+.TP
+.B dsig(i) (output)
+the derivatives of the self-energies with respect to k^2 at k^2 = k2,
+where the index i runs as for the sig(i).
+.SH SEE ALSO
+.PP
+libFH(1)

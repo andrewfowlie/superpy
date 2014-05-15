@@ -1,0 +1,16 @@
+#CDF Note 10485 Apr 18, 2011
+#CDF_SM_Hgaga_7.0fb
+#no interpolation
+#columns: Mh, obs, exp (as ratio to SM cross sections)
+
+100	14.9    16.2
+105   13.5    14.6
+110	8.3     14.0    
+115   14.1    13.5
+120	28.2    13.0    
+125   18.8    13.5
+130	19.0    13.9
+135   14.8    15.3
+140	22.9    17.5    
+145   21.9    20.7
+150	21.5    27.2

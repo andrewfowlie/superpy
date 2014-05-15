@@ -1,0 +1,85 @@
+(GF^2*MW2*CKM[3, 3]*CKMC[3, 2]*
+  ((MT2*(((4*CW2*SW2*Den[0, 0] + (3 + 4*(-2 + SW2)*SW2)*Den[0, MZ2])*
+        Den[MB2, 0]*((MB2*((-MHp2 - MT2)/2 - (MHp2*(A0[MHp2] - A0[MT2]))/
+             (MHp2 - MT2) + A0[MT2]))/(2*(MHp2 - MT2)) - 
+         (MB*TB2*(A0[MHp2] - A0[MT2])*Mdy[3])/(MHp2 - MT2) + 
+         ((A0[MHp2] - A0[MT2])*(MB2 + MB*TB2*Mdy[3]))/(MHp2 - MT2)))/CW2 - 
+      4*SW2*Den[0, 0]*(Finite + ((-MHp2 - MT2)/2 - 
+          (MHp2*(A0[MHp2] - A0[MT2]))/(MHp2 - MT2) + A0[MT2])/(MHp2 - MT2) - 
+        (3*((-MHp2 - MT2)/2 + A0[MHp2] - (MT2*(-A0[MHp2] + A0[MT2]))/
+            (-MHp2 + MT2)))/(2*(-MHp2 + MT2)) + 
+        (2*(-1/2 - ((-MHp2 - MT2)/2 - (MHp2*(A0[MHp2] - A0[MT2]))/
+              (MHp2 - MT2) + A0[MT2])/(2*(MHp2 - MT2)) + 
+           ((-MHp2 - MT2)/2 + A0[MHp2] - (MT2*(-A0[MHp2] + A0[MT2]))/
+              (-MHp2 + MT2))/(2*(-MHp2 + MT2)))*(MT2 + MB*TB2*Mdy[3]))/MT2) + 
+      ((-1 + 2*SW2)*Den[0, MZ2]*(-2*Finite*SW2 - 
+         (2*SW2*((-MHp2 - MT2)/2 - (MHp2*(A0[MHp2] - A0[MT2]))/(MHp2 - MT2) + 
+            A0[MT2]))/(MHp2 - MT2) - (3*(CW2 - SW2)*((-MHp2 - MT2)/2 + 
+            A0[MHp2] - (MT2*(-A0[MHp2] + A0[MT2]))/(-MHp2 + MT2)))/
+          (2*(-MHp2 + MT2)) - ((-3 + 4*SW2)*(-1/2 - 
+            ((-MHp2 - MT2)/2 - (MHp2*(A0[MHp2] - A0[MT2]))/(MHp2 - MT2) + 
+              A0[MT2])/(2*(MHp2 - MT2)) + ((-MHp2 - MT2)/2 + A0[MHp2] - 
+              (MT2*(-A0[MHp2] + A0[MT2]))/(-MHp2 + MT2))/(2*(-MHp2 + MT2)))*
+           (MT2 + MB*TB2*Mdy[3]))/MT2))/CW2)*Op[s . Opi[Lor[1], L] . b, 
+      lbar . Opi[Lor[1], L] . l])/TB2 + 
+   (2*MT2*SW2*(((2*CW2*Den[0, 0] + (-3 + 2*SW2)*Den[0, MZ2])*Den[MB2, 0]*
+        ((MB2*((-MHp2 - MT2)/2 - (MHp2*(A0[MHp2] - A0[MT2]))/(MHp2 - MT2) + 
+            A0[MT2]))/(2*(MHp2 - MT2)) - (MB*TB2*(A0[MHp2] - A0[MT2])*Mdy[3])/
+          (MHp2 - MT2) + ((A0[MHp2] - A0[MT2])*(MB2 + MB*TB2*Mdy[3]))/
+          (MHp2 - MT2)))/CW2 - 2*Den[0, 0]*(Finite + 
+        ((-MHp2 - MT2)/2 - (MHp2*(A0[MHp2] - A0[MT2]))/(MHp2 - MT2) + 
+          A0[MT2])/(MHp2 - MT2) - (3*((-MHp2 - MT2)/2 + A0[MHp2] - 
+           (MT2*(-A0[MHp2] + A0[MT2]))/(-MHp2 + MT2)))/(2*(-MHp2 + MT2)) + 
+        (2*(-1/2 - ((-MHp2 - MT2)/2 - (MHp2*(A0[MHp2] - A0[MT2]))/
+              (MHp2 - MT2) + A0[MT2])/(2*(MHp2 - MT2)) + 
+           ((-MHp2 - MT2)/2 + A0[MHp2] - (MT2*(-A0[MHp2] + A0[MT2]))/
+              (-MHp2 + MT2))/(2*(-MHp2 + MT2)))*(MT2 + MB*TB2*Mdy[3]))/MT2) + 
+      (Den[0, MZ2]*(-2*Finite*SW2 - (2*SW2*((-MHp2 - MT2)/2 - 
+            (MHp2*(A0[MHp2] - A0[MT2]))/(MHp2 - MT2) + A0[MT2]))/
+          (MHp2 - MT2) - (3*(CW2 - SW2)*((-MHp2 - MT2)/2 + A0[MHp2] - 
+            (MT2*(-A0[MHp2] + A0[MT2]))/(-MHp2 + MT2)))/(2*(-MHp2 + MT2)) - 
+         ((-3 + 4*SW2)*(-1/2 - ((-MHp2 - MT2)/2 - (MHp2*(A0[MHp2] - A0[MT2]))/
+               (MHp2 - MT2) + A0[MT2])/(2*(MHp2 - MT2)) + 
+            ((-MHp2 - MT2)/2 + A0[MHp2] - (MT2*(-A0[MHp2] + A0[MT2]))/(
+                -MHp2 + MT2))/(2*(-MHp2 + MT2)))*(MT2 + MB*TB2*Mdy[3]))/MT2))/
+       CW2)*Op[s . Opi[Lor[1], L] . b, lbar . Opi[Lor[1], R] . l])/TB2 + 
+   4*Mdy[2]*(SW2*Den[0, 0]*
+      (TB2*(-Finite - ((-MHp2 - MT2)/2 - (MHp2*(A0[MHp2] - A0[MT2]))/
+            (MHp2 - MT2) + A0[MT2])/(MHp2 - MT2) + 
+         (3*((-MHp2 - MT2)/2 + A0[MHp2] - (MT2*(-A0[MHp2] + A0[MT2]))/
+             (-MHp2 + MT2)))/(2*(-MHp2 + MT2)) + 
+         MB2*((A0[MHp2] - A0[MT2])/(MHp2 - MT2) + 
+           ((-MHp2 - MT2)/2 - (MHp2*(A0[MHp2] - A0[MT2]))/(MHp2 - MT2) + 
+             A0[MT2])/(2*(MHp2 - MT2)))*Den[MB2, 0])*Mdy[3] - 
+       2*(-1/2 - ((-MHp2 - MT2)/2 - (MHp2*(A0[MHp2] - A0[MT2]))/
+            (MHp2 - MT2) + A0[MT2])/(2*(MHp2 - MT2)) + 
+         ((-MHp2 - MT2)/2 + A0[MHp2] - (MT2*(-A0[MHp2] + A0[MT2]))/
+            (-MHp2 + MT2))/(2*(-MHp2 + MT2)))*(MB + TB2*Mdy[3])) + 
+     ((-1 + 2*SW2)*Den[0, MZ2]*(TB2*(Finite*(3 - 4*SW2) - 
+          ((-3 + 4*SW2)*((-MHp2 - MT2)/2 - (MHp2*(A0[MHp2] - A0[MT2]))/
+              (MHp2 - MT2) + A0[MT2]))/(MHp2 - MT2) - 
+          (3*(CW2 - SW2)*((-MHp2 - MT2)/2 + A0[MHp2] - 
+             (MT2*(-A0[MHp2] + A0[MT2]))/(-MHp2 + MT2)))/(-MHp2 + MT2) + 
+          4*MB2*SW2*((A0[MHp2] - A0[MT2])/(MHp2 - MT2) + 
+            ((-MHp2 - MT2)/2 - (MHp2*(A0[MHp2] - A0[MT2]))/(MHp2 - MT2) + 
+              A0[MT2])/(2*(MHp2 - MT2)))*Den[MB2, 0])*Mdy[3] - 
+        8*SW2*(-1/2 - ((-MHp2 - MT2)/2 - (MHp2*(A0[MHp2] - A0[MT2]))/
+             (MHp2 - MT2) + A0[MT2])/(2*(MHp2 - MT2)) + 
+          ((-MHp2 - MT2)/2 + A0[MHp2] - (MT2*(-A0[MHp2] + A0[MT2]))/
+             (-MHp2 + MT2))/(2*(-MHp2 + MT2)))*(MB + TB2*Mdy[3])))/(8*CW2))*
+    Op[s . Opi[Lor[1], R] . b, lbar . Opi[Lor[1], L] . l] + 
+   (SW2*Mdy[2]*(TB2*(Finite*(-4*CW2*Den[0, 0] + (3 - 4*SW2)*Den[0, MZ2]) + 
+        (3*((-MHp2 - MT2)/2 + A0[MHp2] - (MT2*(-A0[MHp2] + A0[MT2]))/
+            (-MHp2 + MT2))*(2*CW2*Den[0, 0] + (-CW2 + SW2)*Den[0, MZ2]))/
+         (-MHp2 + MT2) - (((-MHp2 - MT2)/2 - (MHp2*(A0[MHp2] - A0[MT2]))/
+            (MHp2 - MT2) + A0[MT2])*(4*CW2*Den[0, 0] + (-3 + 4*SW2)*
+            Den[0, MZ2]))/(MHp2 - MT2) + 
+        4*MB2*((A0[MHp2] - A0[MT2])/(MHp2 - MT2) + 
+          ((-MHp2 - MT2)/2 - (MHp2*(A0[MHp2] - A0[MT2]))/(MHp2 - MT2) + 
+            A0[MT2])/(2*(MHp2 - MT2)))*(CW2*Den[0, 0] + SW2*Den[0, MZ2])*
+         Den[MB2, 0])*Mdy[3] - 
+      8*(-1/2 - ((-MHp2 - MT2)/2 - (MHp2*(A0[MHp2] - A0[MT2]))/(MHp2 - MT2) + 
+          A0[MT2])/(2*(MHp2 - MT2)) + ((-MHp2 - MT2)/2 + A0[MHp2] - 
+          (MT2*(-A0[MHp2] + A0[MT2]))/(-MHp2 + MT2))/(2*(-MHp2 + MT2)))*
+       (CW2*Den[0, 0] + SW2*Den[0, MZ2])*(MB + TB2*Mdy[3]))*
+     Op[s . Opi[Lor[1], R] . b, lbar . Opi[Lor[1], R] . l])/CW2))/(12*Pi^2)

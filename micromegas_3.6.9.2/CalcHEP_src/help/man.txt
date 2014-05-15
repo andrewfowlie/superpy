@@ -1,0 +1,72 @@
+2 1 76 22  CalcHEP service
+    This is an explanation of CalcHEP interface facilities.
+
+  You can toggle on/off color and sound for the CalcHEP session as well as
+choose the most appropriate fonts for your X-terminal. Just edit the
+'comphep.ini' file. We hope that syntax there is self-explanatory.
+
+  There are the following elements of the user interface in the CalcHEP
+package: On-line Help, Menu, Message, String Editor, Table Editor and
+Diagram Viewer. You can control them using Arrow, Enter, Esc, Backspace,
+PgUp/PgDn (on some keyboards there are Prev/Next instead of PgUp/PgDn) keys
+and/or mouse. CalcHEP is sensitive to the left mouse button release.
+
+                I. On-line Help.  
+  At almost every point when CalcHEP is waiting for your input, you can
+press the F1 key to get a context sensitive help information. If the screen
+height in not enough to display the full help message, you will see PgDn
+mark in the right-bottom corner of the help window. To get next page of the
+message press the PgDn key or click on the mark. To close the help window,
+press the Esc key or click the asterisk in the upper-left corner of the
+help border.
+  
+                II. Menu.
+  The menu program displays a list of menu functions. One of them is
+highlighted. Use the arrow keys or a mouse click to highlight
+a desired function. Press the Enter key or click on the highlighted
+function to activate it. 
+   If the menu is too large - you will see only a part of it. Use the
+PgDn/PgUp buttons or click on the corresponding marks in the menu corners
+to scroll.
+   In order to get back to the previous menu level press the Esc key or
+click the asterisk in the top-left corner of the menu border.
+   The menu program is also sensitive to the functional keys. The list of
+active function keys depends on the program point and is displayed on the
+bottom line of the screen. Generally the function keys activate the
+following programs:
+ F1 Help    : displays a help message about the highlighted menu function.
+ F2 Manu    : browses this text.
+ F3 Models  : displays the contents of the current model of particles 
+              interaction. 
+ F4 Diagrams: browses generated Feynman diagrams. 
+ F6 Results : views and deletes CalcHEP output files and renames the output
+              directory.
+ F9  Ref.   : shows references on CalcHEP and its components.     
+ F10 Quit   : quits CalcHEP session. 
+To call one of these programs just press the functional key or click on the
+corresponding symbol on the bottom line of the screen.
+  Menu program also is sensitive to the 'F/f' key, that starts search 
+of menu item for given sample. It can be useful for long menus.
+
+                III. Message.
+  CalcHEP writes informative and dialogue messages during the session. 
+  The informative messages finish with the 'Press any key' record. You can
+continue your work either following this instruction or by clicking the 
+mouse on the message area. 
+  The dialogue message has a label '(Y/N?)'. You can press the 'Y' or 'N' 
+key or just click on them in the message window to answer 'Yes' or 'No'.
+
+                IV. String Editor. 
+   If you would like to enter a new process or change a value of parameter,
+CalcHEP calls the String Editor.  As a rule, a previous information about
+this item is available and the foregoing string is displayed.  If you would
+like to edit the foregoing string, use left/right arrow keys or the mouse
+click to put the cursor on the desired position. Otherwise, if the fist
+input character is a printing symbol, the foregoing string will be deleted. 
+The backspace key must work as usually.  To terminate input, you can press
+the Enter key to accept resulting string or the Esc key to get back and
+forget your input.
+
+                V. Table Editor.  VI.  Diagram Viewer.
+Press the F2 key inside of the corresponding program to get the needed
+information.

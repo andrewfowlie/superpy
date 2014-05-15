@@ -1,0 +1,16 @@
+# Result taken from an updated version of CMS-PAS-HIG 13-004 (Dec. 2013):
+# https://twiki.cern.ch/twiki/bin/view/CMSPublic/Hig13004TWikiUpdate
+# Data taken from Fig. 27b.
+# This is the VBF result. Assume 17% ggH, 83% VBF
+13004104	1300404		1
+CMS-PAS-HIG-13-004
+LHC, CMS, CMS
+(pp)->h->tautau (VBF)
+8	24.5	 0.026
+1	0
+20
+125.0 125.0 1.0
+2	125.0
+14 24 34 44
+1.0 60.0
+125.0	0.52	0.93	1.34

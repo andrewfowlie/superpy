@@ -1,0 +1,69 @@
+#! /bin/sh
+
+in1=f-mfv
+in2=f-nmfv
+out=f
+
+test -d $out || mkdir $out
+
+test -f $out/OneLoop.h || cp -p static/OneLoop.h $out/
+
+for file in $in1/${1:-*.F} ; do
+  se=`basename $file .F`
+  case $se in
+  se* | dse*)	arg="k2" ;;
+  td*)		arg=""   ;;
+  esac
+
+  echo "$in1/$se.F + $in2/$se.F -> $out/$se.F"
+
+  ( 
+    cat - << _EOF_
+* $se.F
+* this file is part of FeynHiggs
+* generated `date +"%d %b %Y %H:%M"`
+
+#include "externals.h"
+#include "types.h"
+#include "debug.h"
+
+
+	ComplexType function $se($arg${arg:+, }bX)
+	implicit none
+${arg:+	RealType $arg
+}	integer bX
+
+
+#include "FH.h"
+
+	ComplexType ${se}_mfv, ${se}_nmfv
+	external ${se}_mfv, ${se}_nmfv
+
+	if( ibits(fv, 3, 2) .eq. 0 ) then
+	  $se = ${se}_mfv($arg${arg:+, }bX)
+	else
+	  $se = ${se}_nmfv($arg${arg:+, }bX)
+	endif
+
+#ifdef DEBUG
+${arg:+	DHIGGS 'k2 =', k2 ENDL
+}	DHIGGS '$se =', $se ENDL
+#endif
+	end
+
+_EOF_
+
+    sed "s/$se/${se}_mfv/g
+/^#include .externals.h./ c\\
+************************************************************************
+/^#include .types.h./ d
+/^*/ d" $in1/$se.F
+
+    sed "s/$se/${se}_nmfv/g
+/^#include .externals.h./ c\\
+************************************************************************
+/^#include .types.h./ d
+/^*/ d" $in2/$se.F
+  ) > $out/$se.F
+done
+

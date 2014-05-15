@@ -1,0 +1,10 @@
+{F1 -> DiracChain[Spinor[k[1], 0, -1], 6, k[2], Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], 6, k[1], Spinor[k[2], 0, 1]], 
+ F3 -> DiracChain[Spinor[k[1], 0, -1], 6, k[3], Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[4], 0, 1], 6, k[1], Spinor[k[3], 0, -1]], 
+ F2 -> DiracChain[Spinor[k[1], 0, -1], 6, Lor[1], Spinor[k[3], 0, -1]]*
+   DiracChain[Spinor[k[4], 0, 1], 6, Lor[1], Spinor[k[2], 0, 1]], 
+ F4 -> DiracChain[Spinor[k[1], 0, -1], 6, Lor[1], Spinor[k[2], 0, 1]]*
+   DiracChain[Spinor[k[4], 0, 1], 6, Lor[1], Spinor[k[3], 0, -1]], 
+ SUN2 -> SUNT[Col1, Col3]*SUNT[Col4, Col2], 
+ SUN1 -> SUNT[Col1, Col2]*SUNT[Col4, Col3]}

@@ -1,0 +1,16 @@
+# Published at Moriond 2013.
+# Efficiencies are assumed such that we have 95% ggH, 5% VBF in the SM.
+# Data is taken from https://twiki.cern.ch/twiki/bin/view/CMSPublic/Hig13005TWiki.
+13003101	1300301		1
+CMS-PAS-HIG-13-003
+LHC, CMS, CMS
+(pp)->h->WW (0/1jet)
+8	25.4 0.044
+1	0
+25.0
+125.7 125.7 1.0
+2	125.7
+12 22
+1. 0.655
+125.7	0.528	0.7725	0.945
+

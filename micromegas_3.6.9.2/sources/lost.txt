@@ -1,0 +1,46 @@
+static double   Ha     = 20.;
+static double   Halpha = 1;
+static double   Hgam   = 1;
+static double   Hbeta  = 3;
+static double   RSUN   = 8;
+static double   rhoAtSun  =0.3;
+static double   clumpBoost=1;
+
+double RhoMO(double r){
+  double rhomax,rho,a1,a2,a3;
+
+   a1=pow((RSUN/r),Hgam);
+   a2=1+pow(RSUM/Ha,Halpha);
+   a3=1+pow(r/Ha,Halpha);
+   rho = rhoAtSun * a1 * pow(a2/a3,(Hbeta-Hgam)/Halpha );
+   
+  rhomax = 1e10;
+    
+  if(rho >= rhomax){
+    return rhomax;  // [ GeV.cm{-3} ]
+  }
+  else{
+    return rho;  // [ GeV.cm{-3} ]
+  } 
+}
+
+double RhoMO
+
+void setHaloProfile(double Ha_n,   double Halpha_n, double Hgam_n,
+                    double Hbeta_n,double RSUN_n,   double clumpBoost_n)
+{
+   Ha        =  Ha_n;
+   Halpha    =  Halpha_n;
+   Hgam      =  Hgam_n;
+   Hbeta     =  Hbeta_n;
+   RSUN      =  RSUN_n;
+   clumpBoost=  clumpBoost_n;
+}
+
+
+
+
+/*********************************************************************************/
+/*  End of definition of the halo profile */
+/*********************************************************************************/
+

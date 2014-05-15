@@ -1,0 +1,61 @@
+.TH FHGETSELF 1 "9-Jul-2010"
+.SH NAME
+.PP
+FHAddSelf \- register user-defined shifts for the Higgs self-energies
+.SH SYNOPSIS (Fortran version)
+.PP
+integer error, rotate
+.br
+double complex sig(13)
+.sp
+integer h0h0, HHHH, A0A0, HmHp
+.br
+integer h0HH, h0A0, HHA0
+.br
+integer G0G0, h0G0, HHG0, A0G0
+.br
+integer GmGp, HmGp
+.br
+parameter (h0h0 = 1, HHHH = 2, A0A0 = 3, HmHp = 4)
+.br
+parameter (h0HH = 5, h0A0 = 6, HHA0 = 7)
+.br
+parameter (G0G0 = 8, h0G0 = 9, HHG0 = 10, A0G0 = 11)
+.br
+parameter (GmGp = 12, HmGp = 13)
+.sp
+subroutine FHAddSelf(error, sig, rotate)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHAddSelf[{sig[h0h0], ..., sig[HmGp]}, rotate]
+.SH DESCRIPTION
+FHAddSelf allows the user to register shifts in the Higgs self-energies,
+to be used in the computation of the Higgs masses and mixings in
+FHHiggsCorr(1).  The flags and parameters must have been set before
+with FHSetFlags(1) and FHSetPara(1).
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in AddSelf.F from which
+the error message was emitted
+.TP
+.B sig(h0h0), sig(HHHH), sig(A0A0), sig(HmHp) (input)
+the h0, HH, A0, and Hp self-energy shifts.
+.TP
+.B sig(h0HH), sig(h0A0), sig(HHA0) (input)
+the h0-HH, h0-A0, and HH-A0 mixing self-energy shifts.
+.TP
+.B sig(G0G0), sig(h0G0), sig(HHG0), sig(A0G0) (input)
+the neutral Goldstone self-energy shifts.
+.TP
+.B sig(GmGp), sig(HmGp) (input)
+the charged Goldstone self-energy shifts.
+.TP
+.B rotate (input)
+a flag determining whether to rotate the CP-even self-energies with
+the (tree-level) angle alpha, i.e. if rotate != 0, the h0h0, HHHH,
+and h0HH elements of the input array sig are respectively assumed to
+contain the Phi1-Phi1, Phi2-Phi2, and Phi1-Phi2 shifts.
+.SH SEE ALSO
+.PP
+libFH(1)

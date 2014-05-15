@@ -1,0 +1,11 @@
+<< FeynArts`
+
+top = CreateTopologies[1, 1 -> 3, BoxesOnly];
+
+ins = InsertFields[top,
+  F[2,{2}] -> {F[2,{1}], -F[1,{1}], F[1,{2}]},
+  Model -> "MSSM", 
+  ExcludeParticles -> {S[1|2|3|4|5|6], U, F[3|4], V[1]}];
+
+Paint[ins, PaintLevel -> {Classes}]
+

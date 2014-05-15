@@ -1,0 +1,13 @@
+{"cVLLCha" -> -(GF^2*CKM[Ind1, 3]*CKM[Ind2, 3]*CKMC[Ind3, 2]*CKMC[Ind4, 2]*
+     D00z[MASf2[All5, 3], MASf2[All6, 3], MCha2[Cha5], MCha2[Cha6]]*
+     SumOver[All5, 6]*SumOver[All6, 6]*SumOver[Cha5, 2]*SumOver[Cha6, 2]*
+     SumOver[Ind1, 3]*SumOver[Ind2, 3]*SumOver[Ind3, 3]*SumOver[Ind4, 3]*
+     (-2*MW*SB*UASfC[All5, Ind3, 3]*VCha[Cha5, 1] + 
+      sqrt2*Mf[3, Ind3]*UASfC[All5, 3 + Ind3, 3]*VCha[Cha5, 2])*
+     (-2*MW*SB*UASfC[All6, Ind4, 3]*VCha[Cha6, 1] + 
+      sqrt2*Mf[3, Ind4]*UASfC[All6, 3 + Ind4, 3]*VCha[Cha6, 2])*
+     (-2*MW*SB*UASf[All6, Ind2, 3]*VChaC[Cha5, 1] + 
+      sqrt2*Mf[3, Ind2]*UASf[All6, 3 + Ind2, 3]*VChaC[Cha5, 2])*
+     (-2*MW*SB*UASf[All5, Ind1, 3]*VChaC[Cha6, 1] + 
+      sqrt2*Mf[3, Ind1]*UASf[All5, 3 + Ind1, 3]*VChaC[Cha6, 2]))/
+   (4*Pi^2*SB2^2)}

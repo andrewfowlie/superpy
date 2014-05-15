@@ -1,0 +1,10 @@
+{dZZA1 -> 
+  (2*((Alfa0*(-((5*CW2 - SW2)*Re[A0[MW2]])/4 + (MW2*Re[B0[0, MW2, MW2]])/2 + 
+        ((5*CW2 - SW2)*Re[B00[0, MW2, MW2]])/2))/(CW*Pi*SW) - 
+     (Alfa0*(-((1 - 4*SW2)*Re[A0[Mf2[2, Gen3]]])/4 - 
+        ((3 - 4*SW2)*Re[A0[Mf2[4, Gen3]]])/12 - 
+        ((3 - 8*SW2)*Re[A0[Mf2[tH, Gen3]]])/6 + 
+        ((1 - 4*SW2)*Re[B00[0, Mf2[2, Gen3], Mf2[2, Gen3]]])/2 + 
+        ((3 - 4*SW2)*Re[B00[0, Mf2[4, Gen3], Mf2[4, Gen3]]])/6 + 
+        ((3 - 8*SW2)*Re[B00[0, Mf2[tH, Gen3], Mf2[tH, Gen3]]])/3)*
+       SumOver[Gen3, 3])/(CW*Pi*SW)))/MZ2}

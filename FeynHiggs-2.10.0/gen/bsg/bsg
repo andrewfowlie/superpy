@@ -1,0 +1,211 @@
+#! /bin/sh -x
+
+me=`basename $0`
+name=m/$me-$1
+
+echo "$name" | grep -E '^m/(bsgamma|bsglu)-(Hp|Cha|Neu|Glu|SM)$' || {
+  echo 'Usage:  bsgamma|bsglu Hp|Cha|Neu|Glu|SM' ;
+  echo 'will output diagrams & Mathematica code if DEBUG=1'
+  exit 1
+}
+
+test -d m || mkdir m
+
+mma="math -run me=\"$me\" -run tag=\"$1\" -run name=\"$name\" -run debug=${DEBUG:-0}"
+
+
+### STEP 1: GENERATE B -> S GAMMA AMPLITUDES
+
+$mma << \_EOF_
+AppendTo[$Echo, "stdout"];
+
+<< FeynArts`
+
+$ShapeDataDir = "./ShapeData";
+
+<< FormCalc`
+
+MD = MD2 = Mdy[1] = 0;
+MS = MS2 = Mdy[2] = 0;
+MU = MU2 = 0;
+MC = MC2 = 0;
+MT = MTr;
+MT2 = MTr2;
+Sq[MTr] = MTr2;
+
+Sq[Alfas] =.;
+Alfas = asMW;
+
+(*_USf = VCha = UCha = IndexDelta;*)
+
+vec["bsgamma"] = V[1];
+vec["bsglu"] = V[5];
+
+opt["Hp"] = LastSelections -> S[5];
+opt["Cha"] = LastSelections -> F[12];
+opt["Neu"] = LastSelections -> F[11];
+opt["Glu"] = LastSelections -> F[15];
+opt["SM"] = ExcludeParticles -> {F[11|12|15],S[5]};
+
+tops = CreateTopologies[1, 1 -> 2];
+
+ins = InsertFields[tops,
+  F[4,{3}] -> {F[4,{2}], vec[me]},
+  InsertionLevel -> {Classes},
+  opt[tag],
+  Model -> myMSSMQCD];
+
+If[ debug === 1, Paint[ins,
+  ColumnsXRows -> {3, 4},
+  DisplayFunction ->
+    (Export[ToFileName[MkDir["d"], name <> ".ps"], #,
+      ImageSize -> 72 {6,8}]&)] ];
+
+vert = CalcFeynAmp[CreateFeynAmp[ins],
+  MomElim -> 2,
+  FermionChains -> Chiral,
+  FermionOrder -> None];
+
+abbr = Join[ Abbr[] /.
+    DiracChain[s2_Spinor, om_, mu_, s1:Spinor[p1_, m1_, _]] ->
+      1/m1 (I/2 DiracChain[sigmunu[om]] +
+            2 Pair[mu, p1] DiracChain[s2, om, s1]),
+  Subexpr[] ];
+
+mat[p_Plus] := mat/@ p;
+
+mat[t_Times] := DeleteCases[t, _DiracChain | _SUNT] *
+  mat@@ Cases[t, _DiracChain | _SUNT];
+
+mat[DiracChain[sigmunu[om_]], SUNT[Col1, Col2]] :=
+  Mat[O7[om]]/(EL MB/(16 Pi^2));
+
+mat[DiracChain[sigmunu[om_]], SUNT[Glu3, Col2, Col1]] :=
+  Mat[O8[om]]/(GS MB/(16 Pi^2));
+
+coeff = Plus@@ (vert /. ToOldBRules) //. abbr /.
+  Mat[p_] :> mat[Expand[p]] /.
+  Den[p_, m_] -> 1/(p - m) /.
+  SUNT -> sunt;
+
+(*Put[coeff, name <> ".coeff"];*)
+
+Lagpre = 4 GF/Sqrt[2] ckm[3][3,2];
+
+CKM/: CKM[i_, j_] CKMC[i_, k_] := ckm[i][j,k];
+
+ckm[1][i__] := -ckm[2][i] - ckm[3][i];
+
+FeynCalcPut[
+  Collect[coeff/Lagpre, _mat | _Mat, Simplify],
+  name <> ".fc"]
+_EOF_
+
+gzip $name.ps
+
+
+### STEP 2: REDUCE & CANONICALLY ORDER THE TENSOR INTEGRALS
+
+$mma << \_EOF_
+AppendTo[$Echo, "stdout"];
+
+<< FeynCalc`
+
+test = Get[name <> ".fc"];
+
+pave = Cases[test, _PaVe, Infinity] //Union;
+
+pave = Thread[pave -> PaVeReduce[pave]];
+
+test = test /. pave //PaVeOrder;
+
+Put[test, name <> ".fc.red"]
+_EOF_
+
+
+### STEP 3: SIMPLIFY
+
+$mma << \_EOF_
+AppendTo[$Echo, "stdout"];
+
+<< FormCalc`
+
+<< FormCalc`tools`btensor`
+
+NClear[];
+N[sqrt2] = Sqrt[2.];
+sqrt2/: sqrt2/2 = 1/sqrt2;
+sqrt2/: sqrt2^2 = 2;
+sqrt2/: sqrt2^-2 = 1/2;
+
+Format[Mino3, FortranForm] := "M_3";
+Format[Mino3C, FortranForm] := "M_3C";
+
+Mdy[g_] := Mf[bTR, g];
+MSf[s_,4,g_] := MSf[s,bTR,g];
+MSf2[s_,4,g_] := MSf2[s,bTR,g];
+USf[s__,4,g_] := USf[s,bTR,g];
+USfC[s__,4,g_] := USfC[s,bTR,g];
+MASf[as_,4] := MASf[as,bTR];
+MASf2[as_,4] := MASf2[as,bTR];
+UASf[as__,4] := UASf[as,bTR];
+UASfC[as__,4] := UASfC[as,bTR];
+Kf[g__,4] := Kf[g,bTR];
+KfC[g__,4] := KfC[g,bTR];
+
+Sq[MTr] = MTr2;
+
+ckmtest[SumOver[g_, 3] ckm[g_][i_, j_] r_] := 0 /; FreeQ[r, g];
+
+ckmtest[other_] = other;
+
+
+test = Get[name <> ".fc.red"];
+
+zero = ckmtest[Simplify[test /. _Mat -> 0]]
+
+If[ zero =!= 0,
+  Print["WARNING: REMAINDER NOT ZERO"];
+  Put[zero, name <> ".ZERO"] ];
+
+
+Alfa = Sqrt[2]/Pi GF MW2 SW2;
+ckm[i_][j_, k_] := CKM[i, j] CKMC[i, k];
+
+test = Collect[test /. _mat -> 0, _SumOver, simp];
+
+(*Put[test, name <> ".pre"];*)
+
+test = test /. simp -> FullSimplify;
+
+Put[test, name <> ".m"];
+
+coeff = {
+  ToSymbol[C7L, tag] -> SplitSums[Coefficient[test, Mat[O7[6]]]/I],
+  ToSymbol[C8L, tag] -> SplitSums[Coefficient[test, Mat[O8[6]]]/I],
+  ToSymbol[C7R, tag] -> SplitSums[Coefficient[test, Mat[O7[7]]]/I],
+  ToSymbol[C8R, tag] -> SplitSums[Coefficient[test, Mat[O8[7]]]/I]
+} /. {Sqrt[2] -> sqrt2, 1/Sqrt[2] -> 1/sqrt2};
+
+coeff = DeleteCases[coeff, _ -> {0}];
+
+hh = OpenFortran[name <> ".F"];
+
+SetOptions[PrepareExpr,
+  Expensive -> {_A0, _B0, _C0}];
+
+SetOptions[WriteExpr,
+  RealArgs -> {A0, B0, C0},
+  HornerStyle -> False];
+
+$DebugCmd = {"#ifdef DETAILED_DEBUG\n", "#endif\n", "DCONST ", " ENDL"};
+
+WriteExpr[hh, coeff,
+  TmpType -> False,
+  Optimize -> True,
+  DebugLines -> True,
+  FinalCollect -> True];
+
+Close[hh];
+_EOF_
+

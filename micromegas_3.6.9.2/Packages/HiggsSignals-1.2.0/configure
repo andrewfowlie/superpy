@@ -1,0 +1,97 @@
+#! /bin/sh
+#configure script for HiggsSignals
+#last modified 16.07.12 TS
+
+# this tells the fortran program where to look to read in tables of experimental data
+chmod u+x ./create_store_pathname_HS.bat
+./create_store_pathname_HS.bat > store_pathname_HS.f90
+
+echo 'running configure script...' 1>&2
+
+echo '   *   *   *   '
+echo 'Reminder: You must enter manually the correct path to HiggsBounds in the '
+echo 'configure script. Also, you may need/wish to change the fortran compiler used. '
+echo 'The default is gfortran.'
+echo '   *   *   *   '
+
+#----------------------------
+
+cat - makefile.in > makefile << _EOF_
+
+# --- variables defined by configure ---
+# If you want to edit these variables, change ./configure, not ./makefile
+
+#----------------------------
+# Put you favourite compiler and compiler options in here:
+
+F90C = gfortran
+F77C = gfortran
+F90FLAGS = -fbounds-check -ffixed-line-length-none
+# F90FLAGS = -fbounds-check -ffixed-line-length-none -fPIC
+#F90FLAGS = -fbounds-check -Wall -W  
+
+# Please specify the path to your HiggsBounds (version 4.1.0 or higher) distribution.
+# Note that you have to build HiggsBounds successfully BEFORE you build HiggsSignals. 
+
+HiggsBounds = ../HiggsBounds-4.1.0
+HBLIBS =-L../HiggsBounds-4.1.0
+HBINCLUDE =-I../HiggsBounds-4.1.0
+
+#other useful gfortran flags:
+# -pg           can then use gprof ./programname to look at how efficient program is
+# -fopenmp      switches on parallel processing (see HiggsBounds.F90)
+# -O3           sets a high level of optimisation 
+
+
+#F90C = g95
+#F77C = g95
+#F90FLAGS = -fbounds-check -ffree-line-length-huge
+
+#F90C = pgf90
+#F77C = pgf90
+#F90FLAGS = -C -Ktrap=fp -Mbounds
+
+#F90C = f95
+#F77C = f95
+#F90FLAGS = -C 
+
+#F90C = ifort
+#F77C = ifort
+#F90FLAGS = -C 
+
+#if using the NAG compiler, you need the compiler flag -DNAGf90Fortran
+#because the subroutines flush,iargc,getarg need to use modules
+#caution: the use of the NAG compiler is unsupported
+
+#------------------------------
+
+# If you wish to use HiggsSignals in conjunction with FeynHiggs,
+# make sure these paths indicate where you've stored these packages on your system,
+
+# for example:
+
+FHINCLUDE = -I/blah/blah/FeynHiggs-2.x.x/i586-linux/include
+FHLIBS = -L/blah/blah/FeynHiggs-2.x.x/i586-linux/lib -lFH
+
+# Note that care must be taken to ensure that consistent compilers are used
+# If you get error messages similar to 
+#   ... undefined reference to initialize_higgsbounds__...
+# and the paths the libraries are correct, it's a good idea to check 
+# that the same compilers are used for each package.
+# (you may be able to work around this 
+#   e.g. if FeynHiggs was compiled with g77 it may be possible to compile HiggsBounds
+#  with gfortran and add -lg2c to the end of the variable FHLIBS)
+
+#-----------------------------
+
+
+HSLIBS = -L./ -lHS
+
+EXE = HiggsSignals
+
+#-----------------------------
+
+
+_EOF_
+
+echo 'finished configure script' 1>&2

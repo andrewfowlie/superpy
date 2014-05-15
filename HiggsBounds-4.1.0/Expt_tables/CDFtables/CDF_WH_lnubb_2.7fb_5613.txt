@@ -1,0 +1,16 @@
+#arXiv:0906.5613 Jun 30th 2009
+#CDF_WH_lnubb_2.7fb
+#no interpolation
+#columns: Mh, obs, exp (as ratio to SM cross sections)
+
+100	3.3	3.5		
+105	3.6	3.8
+110	4.9	4.1	
+115	5.6	4.8
+120	5.9	5.9		
+125	8.0	7.2
+130	8.9	8.7				
+135	13.2	12.2
+140	26.5	17.5		
+145	42.1	25.6
+150	75.5	40.5

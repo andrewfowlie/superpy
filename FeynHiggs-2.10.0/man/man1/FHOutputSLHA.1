@@ -1,0 +1,56 @@
+.TH FHOUTPUTSLHA 1 "14-May-2011"
+.SH NAME
+.PP
+FHOutputSLHA \- fill SLHA data structure from FeynHiggs inputs and outputs
+.SH SYNOPSIS (Fortran version)
+.PP
+#include "SLHA.h"
+.sp
+integer error
+.br
+double complex slhadata(nslhadata)
+.br
+integer key
+.sp
+subroutine FHOutputSLHA(error, slhadata, key)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHOutputSLHA[slhafile, key]
+.SH DESCRIPTION
+FHOutputSLHA adds FeynHiggs inputs and outputs to the given SLHA data,
+depending on the bits set in key.
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in OutputSLHA.F from
+which the error message was emitted.
+.TP
+.B slhadata (input/output)
+the SLHA data
+.TP
+.B slhafile (input)
+the name of the file to which to write the SLHA data.
+.TP
+.B key (input)
+a bit-wise encoding of which parts to fill:
+.br
+bit 0 (1) = input parameters (FHRetrievePara),
+.br
+bit 1 (2) = derived parameters (FHGetPara),
+.br
+bit 2 (4) = Higgs masses and mixings (FHHiggsCorr),
+.br
+bit 3 (8) = uncertainties (FHUncertainties),
+.br
+bit 4 (16) = decay widths and branching ratios (FHCouplings),
+.br
+bit 5 (32) = the 'fast' flag of FHCouplings,
+.br
+bit 6 (64) = electroweak constraints (FHConstraints),
+.br
+bit 7 (128) = flavour observables (FHFlavour).
+.br
+In case of doubt put key = -1.
+.SH SEE ALSO
+.PP
+libFH(1)

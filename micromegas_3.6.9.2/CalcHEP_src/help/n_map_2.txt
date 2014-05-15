@@ -1,0 +1,19 @@
+2 5 50 
+  In the general case a squared matrix element is
+too singular for the Monte Carlo integration.
+  Singularities of the matrix element are caused 
+by denominators of virtual particle propagators.
+  You can point out the dangerous propagators
+to smooth the sharp peaks of the squared matrix
+element.
+
+ Note
+1. If you would like to set regularization for a
+singularity which leads to infinite cross section
+(width), use the cut for the corresponding squared
+momentum ( 'S'or'M' - type of cut). The 
+regularization program is sensitive only to this 
+type of cuts  because only they actually reduce 
+the phase space.
+2. The efficiency  of regularization program
+depends on the choice of kinematic. 

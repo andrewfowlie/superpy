@@ -1,0 +1,14 @@
+# Exact values are taken from
+# https://twiki.cern.ch/twiki/bin/view/CMSPublic/Hig13005TWiki
+1303076311	130307631		1
+arXiv:1303.0763
+LHC, CMS, CMS
+(pp)->tth->ttbb
+8	10.1	 0.044
+1	0
+25.0
+125.7 125.7 1.0
+1	-1
+55
+
+125.7	-3.053	-0.150	2.970

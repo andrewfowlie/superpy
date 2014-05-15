@@ -1,0 +1,14 @@
+# Published at Moriond 2013. Data taken from CMS-13-005:
+# https://twiki.cern.ch/twiki/bin/view/CMSPublic/Hig13005TWiki
+13004103	1300403		1
+CMS-PAS-HIG-13-004
+LHC, CMS, CMS
+(pp)->Vh->tautau
+8	24.3	 0.044
+1	0
+20
+125.7 125.7 1.0
+4	125.7
+34 44 32 42
+1 1 0.1 0.1
+125.7	-0.515	0.981	2.661

@@ -1,0 +1,122 @@
+:
+
+# $1  name of library, $1.so should be generated
+# $2  name of directory to store libraries
+# $3  option
+# $4  Gauge  
+# $5  process name
+# $6  exclude virtual particles
+# $7  list particle to exclude if process contains N*x 
+
+echo PROCESS: $5
+
+
+
+# DelVirtualUsr - an option for testing. For example:
+# DelVirtualUsr="Z,h,H,H3,~dL,~dR,~uL,~uR,~sL,~sR,~cL,~cR,~b1,~b2,~t1,~t2"
+DelVirtualUsr=
+
+DelVirtual=$6
+if(test "$DelVirtualUsr") then
+   if(test "$DelVirtual") then
+      DelVirtual="$DelVirtual , $DelVirtualUsr"
+   else 
+      DelVirtual="$DelVirtualUsr"
+   fi
+fi
+
+if(test "$DelVirtual") then 
+   echo Delete diagrams with $DelVirtual
+fi
+
+
+if(test $4 = "F") then 
+    Gauge=
+else 
+    Gauge="[{]"
+fi
+
+#echo Gauge = $Gauge
+
+
+### check  N*x
+noStar=`echo "$5"|grep -vi '1\*x'|grep -vi '2\*x'|grep -vi '3\*x'` 
+
+if(test -z "$noStar") then 
+#echo number of parameters $#
+   if(test $# -ge 7) then  EXCLUDE="$7"; else EXCLUDE=; fi
+   if(test -n "$EXCLUDE") then
+     echo "         " excluding from final state: $EXCLUDE
+   fi 
+   EXCLUDE="$EXCLUDE{"
+else 
+   EXCLUDE=
+fi 
+
+#define path to CalcHEP
+USR=`pwd`
+bin=`echo $0_A_E_P |sed s/newProcess_A_E_P//`
+cd $bin/..
+CALCHEP=`pwd`
+cd $USR
+
+export CALCHEP
+
+### clean all and launch CalcHEP
+  for FILE in results/* safe/*
+  do 
+    if(test ! -d $FILE) then 
+       rm  -f $FILE
+    fi 
+  done 
+
+  $CALCHEP/bin/s_calchep -blind "$3{$Gauge{$5{$DelVirtual{$EXCLUDE[{[{{0"
+  err=$?
+
+if(test $err -eq 0) then
+  if(test -r results/sqme.c) then 
+    cp $CALCHEP/include/num_in.h $CALCHEP/include/nType.h $CALCHEP/include/num_out.h $CALCHEP/include/sqme.inc results 
+  else 
+    rm -f results/*
+    cp $CALCHEP/include/sqme0_c results/sqme0.c
+  fi
+elif(test $err -eq 111) then 
+  rm -f results/*.c results/*.h results/*.a results/*.inc
+  cp $CALCHEP/include/sqme0_c results/sqme0.c
+else 
+  exit -1
+fi
+
+
+### check the presence of shared user library
+
+### read compiler flags
+
+. $CALCHEP/FlagsForSh
+
+  cd results
+###  replace external names
+  for FILE in *.c *.h *.inc
+  do 
+    if(test -r $FILE) then 
+       sed  s/_ext/_$1/g $FILE > buff
+       mv buff  $FILE  
+     fi 
+  done 
+
+### compilation
+
+ LIBS="$CALCHEP/lib/sqme_aux.$SO"
+
+  $CC -c $CFLAGS  *.c 
+  err=$? 
+  if(test $err -eq 0) then
+    $CC $CFLAGS  $SHARED  -o  $1.so *.o $LIBS -lm
+    err=$?
+  fi
+  if( test $err -eq 0) then
+     mv $1.so  $2/$1.so
+  else 
+    echo "$Process"  problem in compilation!
+    exit -1
+  fi

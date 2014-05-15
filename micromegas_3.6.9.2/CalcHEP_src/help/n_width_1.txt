@@ -1,0 +1,19 @@
+2 2 50
+This menu sets value R which defines range of 
+implementation of  Breit-Wigner formula. Namely
+it is used in the region where  
+         |p^2-m^2|< R*m*w 
+For region 
+         |p^2-m^2|> sqrt(R^2+1)*m*w
+we use  zero width propagator. In the intermediate
+region constant propagator interpolates both 
+formulas. 
+   In general  Breit-Wigner leads to breaking of 
+gauge invariance. In its turn  it can lead to the 
+lost of diagram cancellation. From the other side
+just in the point p^2=m^2 the contribution of pole 
+diagram  have to be gauge invariant. Thus at this  
+pont cancellation between pole and non-pole diagrams 
+is not expected. We assume that close to pole the 
+problem also is not so serious. But far from the pole
+we ignore width and restore gauge invariance.

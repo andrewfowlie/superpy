@@ -1,0 +1,88 @@
+
+% Choise of gauge fixing: default is t'Hooft-Feynman.
+
+
+do_if gauge_fixing==Feynman.
+vector
+	A/A: (photon, gauge),
+	Z/Z:('Z boson', mass MZ , width wZ=auto, gauge),
+	'W+'/'W-': ('W boson', mass MW, width wW=auto, gauge).
+
+do_else_if gauge_fixing==unitary.
+vector
+	A/A: (photon),
+	Z/Z:('Z boson', mass MZ , width wZ=auto),
+	'W+'/'W-': ('W boson', mass MW, width wW=auto).
+	
+let     'Z.c'=0, 'Z.C'=0, 'W+.c'=0, 'W+.C'=0, 'W-.c'=0, 'W-.C'=0,
+	'A.c'=0, 'A.C'=0, 'Z.f'=0, 'W+.f'=0, 'W-.f'=0.
+
+do_else.
+
+write('Error: gauge_fixing must be either Feynman or unitary').
+quit.
+end_if.
+
+
+vector  G/G:(gluon, color c8, gauge, pdg 21 ).
+
+spinor e:(electron,              pdg 11),     ne/Ne:(neutrino,left,       pdg 12 ), 	
+       m:(muon,                  pdg 13),     nm/Nm:('mu-neutrino',left,  pdg 14 ),   
+       l:('tau-lepton', mass Ml, pdg 15),     nl/Nl:('tau-neutrino',left, pdg 16 ).
+
+
+do_if mix2g==on.
+spinor  u:('u-quark',pdg 2, color c3, mass Mq),
+        d:('d-quark',pdg 1, color c3, mass Mq),
+        s:('s-quark',pdg 3, color c3, mass Mq).
+do_else.
+spinor  u:('u-quark',pdg 2, color c3),
+        d:('d-quark',pdg 1, color c3),
+        s:('s-quark',pdg 3, color c3).
+end_if.
+
+spinor	c:('c-quark',color c3, mass Mc, pdg 4),
+	b:('b-quark',color c3, mass Mb ,pdg 5),
+	t:('t-quark',color c3, mass Mt, width wt, pdg 6).
+
+
+scalar h1/h1:(' Higgs 1', mass Mh1, width wh1=auto,pdg 25),
+       h2/h2:(' Higgs 2', mass Mh2, width wh2=auto,pdg 35),
+       h3/h3:(' Higgs 3', mass Mh3, width wh3=auto,pdg 36),
+      'H+'/'H-':('Charged Higgs', mass MHc, width wHc=auto,pdg 37).
+
+
+spinor '~1+'/'~1-':('chargino 1', mass MC1, width wC1=auto, pdg 1000024),
+       '~2+'/'~2-':('chargino 2', mass MC2, width wC2=auto, pdg 1000037).
+
+spinor ~o1 / ~o1:('neutralino 1', mass MNE1,              pdg 1000022),
+       ~o2 / ~o2:('neutralino 2', mass MNE2, width wNE2=auto,  pdg 1000023),
+       ~o3 / ~o3:('neutralino 3', mass MNE3, width wNE3=auto,  pdg 1000025),
+       ~o4 / ~o4:('neutralino 4', mass MNE4, width wNE4=auto,  pdg 1000035).
+
+spinor ~g / ~g:(gluino, color c8, mass aM3, width wSG=auto,    pdg  1000021).
+
+scalar ~eL / ~EL:('L-selectron',   mass MSeL, width wSeL=auto, pdg 1000011),
+       ~eR / ~ER:('R-selectron',   mass MSeR, width wSeR=auto, pdg 2000011),
+       ~mL / ~ML:('left smuon',    mass MSmL, width wSmL=auto, pdg 1000013),
+       ~mR / ~MR:('right smuon',   mass MSmR, width wSmR=auto, pdg 2000013),
+       ~l1 / ~L1:('1st stau',      mass MSl1, width wSl1=auto, pdg 1000015),
+       ~l2 / ~L2:('2nd stau',      mass MSl2, width wSl2=auto, pdg 2000015),
+       ~ne / ~Ne:('e-sneutrino',   mass MSne, width wSne=auto, pdg 1000012),
+       ~nm / ~Nm:('m-sneutrino',   mass MSnm, width wSnm=auto, pdg 1000014),
+       ~nl / ~Nl:('l-sneutrino',   mass MSnl, width wSnl=auto, pdg 1000016).
+
+
+scalar ~dL / ~DL : ('d-squark L', color c3, mass MSdL,  width wSdL=auto, pdg 1000001 ),
+       ~dR / ~DR : ('d-squark R', color c3, mass MSdR,  width wSdR=auto, pdg 2000001),
+       ~uL / ~UL : ('u-squark L', color c3, mass MSuL,  width wSuL=auto, pdg 1000002),
+       ~uR / ~UR : ('u-squark R', color c3, mass MSuR,  width wSuR=auto, pdg 2000002),
+       ~sL / ~SL : ('s-squark L', color c3, mass MSsL,  width wSsL=auto, pdg 1000003),
+       ~sR / ~SR : ('s-squark R', color c3, mass MSsR,  width wSsR=auto, pdg 2000003),
+       ~cL / ~CL : ('c-squark L', color c3, mass MScL,  width wScL=auto, pdg 1000004),
+       ~cR / ~CR : ('c-squark R', color c3, mass MScR,  width wScR=auto, pdg 2000004),
+       ~b1 / ~B1 : ('b-squark 1', color c3, mass MSb1,  width wSb1=auto, pdg 1000005),
+       ~b2 / ~B2 : ('b-squark 2', color c3, mass MSb2,  width wSb2=auto, pdg 2000005),
+       ~t1 / ~T1 : ('t-squark 1', color c3, mass MSt1,  width wSt1=auto, pdg 1000006),
+       ~t2 / ~T2 : ('t-squark 2', color c3, mass MSt2,  width wSt2=auto, pdg 2000006).
+

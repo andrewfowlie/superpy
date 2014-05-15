@@ -1,0 +1,22 @@
+2 7 75 
+  This table is attended for the list of dangerous propagators. CalcHEP
+performs regularization of the squared  matrix element according to  the 
+contents of this table.
+  It is expected that  singularities of squared matrix element have one of
+the following  forms:
+  a)        1/(P^2 - Mass^2);
+  b)        1/(P^2 - Mass^2)^2;
+  c)        1/( (P^2-Mass^2)^2 + (Mass*Width)^2) ,
+where P, Mass and Width are the virtual particle momentum, mass, and width
+correspondingly.  
+  Momentum of virtual particle is a sum of incoming and outgoing particles
+momenta. Just type the number of these particles in the 'Momentum" field. 
+For example,
+  12  is treated as  (p1+p2),
+  134 is treated as  (p1-p3-p4) .
+  In the 'Mass' and 'Width' fields any algebraic formula is 
+accepted. This formula can contain numbers and the identifiers enumerated
+in the "Model parameters" menu. 
+  The 'Power' field defines the power of the propagator. Acceptable values
+are 1 and 2. If the 'Width' field is not equal to '0', CalcHEP uses value 
+2 for the power,  ignoring the user input.

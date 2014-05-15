@@ -1,0 +1,6 @@
+5 8 40 8
+  The differential cross section
+dsigma/dcos(theta) is calculated at a
+number of points defined by the user.
+The plot dsigma/dcos(theta)is displayed
+on the screen.

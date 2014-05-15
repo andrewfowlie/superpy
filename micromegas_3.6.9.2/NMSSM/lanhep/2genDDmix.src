@@ -1,0 +1,44 @@
+external_func(alphaQCD,1).
+
+do_if mix2g==on.
+
+parameter  xH2 =MSsL**2/MSG**2 .
+parameter  yH2  =MSsR**2/MSG**2 .
+parameter  dMd  =(-3/2*alphaQCD(MSG)/3.1415*tB*mu/MSG*(xH2*log(xH2)/(1-xH2)-yH2*log(yH2)/(1-yH2))/(xH2-yH2)).
+parameter  Td2  =dMd/(1+dMd).
+
+parameter  Au=0.
+parameter  Ad=0.
+parameter  fiuu =atan(-2*Mq*(Au-mu/tB)/(MSuR**2-MSuL**2))/2   .
+parameter  fidd =atan(-2*Mq*(1-Td2)*(Ad-mu*tB)/(MSdR**2-MSdL**2))/2   .
+parameter  ficc =atan(-2*Mc*(Au-mu/tB)/(MScR**2-MScL**2))/2   .
+parameter  fiss =atan(-2*Mq*(1-Td2)*(Ad-mu*tB)/(MSsR**2-MSsL**2))/2   .
+parameter  Zuu11= cos(fiuu)   .
+parameter  Zuu12= sin(fiuu)   .
+parameter  Zuu21= -sin(fiuu)  .
+parameter  Zuu22= cos(fiuu)   .
+parameter  Zdd11= cos(fidd)   .
+parameter  Zdd12= sin(fidd)   .
+parameter  Zdd21=-sin(fidd)   .
+parameter  Zdd22= cos(fidd)   .
+parameter  Zcc11= cos(ficc)   .
+parameter  Zcc12= sin(ficc)   .
+parameter  Zcc21=-sin(ficc)   .
+parameter  Zcc22= cos(ficc)   .
+parameter  Zss11= cos(fiss)   .
+parameter  Zss12= sin(fiss)   .
+parameter  Zss21=-sin(fiss)   .
+parameter  Zss22= cos(fiss)   .
+
+
+
+OrthMatrix({{Zdd11, Zdd21}, {Zdd12, Zdd22}}).
+OrthMatrix({{Zuu11, Zuu21}, {Zuu12, Zuu22}}).
+OrthMatrix({{Zcc11, Zcc21}, {Zcc12, Zcc22}}).
+OrthMatrix({{Zss11, Zss21}, {Zss12, Zss22}}).
+
+do_else.
+  let Au=0,Ad=0.
+  let  Zuu11=1,Zuu12=0,Zuu21=0,Zuu22=1,Zdd11=1,Zdd12=0,Zdd21=0,Zdd22=1,Zcc11=1,Zcc12=0,Zcc21=0,Zcc22=1,Zss11=1,Zss12=0,Zss21=0,Zss22=1.
+  let Td2=0.
+end_if.

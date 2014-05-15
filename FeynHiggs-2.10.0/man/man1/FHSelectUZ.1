@@ -1,0 +1,43 @@
+.TH FHSELECTUZ 1 "19-Jun-2012"
+.SH NAME
+.PP
+FHSelectUZ \- chooses Higgs mixing and use of resummed masses
+.SH SYNOPSIS (Fortran version)
+.PP
+integer error, uzint, uzext, mfeff
+.sp
+subroutine FHSelectUZ(error, uzint, uzext, mfeff)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHSelectUZ[uzint, uzext, mfeff]
+.SH DESCRIPTION
+FHSelectUZ chooses which Higgs mixing to use for internal and
+external Higgs bosons, \ie in the couplings and the decay rates,
+and whether resummed masses should be used in the couplings.
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in SelectUZ.F from which
+the error message was emitted.
+.TP
+.B uzint (input)
+whether to use no mixing (0), UHiggs (1), or ZHiggs (2) for internal
+Higgs bosons, i.e. in the couplings.  Default: 1.
+.TP
+.B uzext (input)
+whether to use no mixing (0), UHiggs (1), or ZHiggs (2) for external
+Higgs bosons, i.e. in the decay rates.  Default: 2.
+.TP
+.B mfeff (input)
+which effective bottom mass to use in the H0FF, HpFF, H0SfSf, HpSfSf 
+couplings:
+.br
+0: m_b(m_b),			m_t(pole),
+.br
+1: m_b(m_b)/|1 + Delta_b|,	m_t(pole)  (default),
+.br
+2: m_b(m_H)/|1 + Delta_b|,	m_t(m_H).
+.br
+.SH SEE ALSO
+.PP
+libFH(1)

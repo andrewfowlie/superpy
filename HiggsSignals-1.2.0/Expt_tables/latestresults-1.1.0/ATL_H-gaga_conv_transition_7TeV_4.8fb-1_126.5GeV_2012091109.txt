@@ -1,0 +1,15 @@
+# Published on July 7, 2012.
+# Data read in from 14a from ATLAS-CONF-2012-091.
+# Efficiencies are matched with values in Tab. 5.
+2012091109	201209109	1
+ATL-CONF-2012-091
+LHC, ATL, ATL
+(pp)->h->gammagamma (conv.-trans.)
+7 	4.8	0.039
+1	0
+2.65	ATLgagacat
+126.5 126.5 1.0
+5	126.5
+11 21 31 41 51
+101.59	72.22	115.84	106.25	96.77
+126.5	-3.42  0.37  3.95

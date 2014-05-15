@@ -1,0 +1,16 @@
+#CDF Note 7307 May 2, 2008
+#CDF_WH_WWW_1.9fb
+#no interpolation
+#columns: Mh, obs, exp_median (as ratio to SM cross sections) 
+
+110	281.8	281.8	
+120	115.7	115.7	
+130	60.2	60.2	
+140	40.8	40.8	
+150	34.9	34.9	
+160	33.1	33.1	
+170	38.3	38.3	
+180	47.2	47.2	
+190	54.1	54.1	
+200	64.2	64.2	
+

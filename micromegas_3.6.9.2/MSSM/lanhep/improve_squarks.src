@@ -1,0 +1,29 @@
+parameter MtMM=MtRun(sqrt(MSt1*MSt2)).
+EvalParameter(MtMM).
+parameter MbMM=MbRun(sqrt(MSb1*MSb2)).  
+
+_i=1-2 in _j=_i-2 in parameter StMM_i_j=
+                Zt1_i*MSt1**2*Zt1_j
+               +Zt2_i*MSt2**2*Zt2_j.
+
+_i=1-2 in _j=_i-2 in parameter SbMM_i_j=
+                Zb1_i*MSb1**2*Zb1_j
+               +Zb2_i*MSb2**2*Zb2_j.
+
+parameter AT=(StMM12+mu*cb/sb*MtMM)/MtMM.
+EvalParameter(AT).
+parameter AB=(SbMM12+mu*sb/cb*MbMM)/MbMM.
+EvalParameter(AB).
+
+parameter dX3 = -(StMM11-SbMM11+MbMM**2-MtMM**2-c2b*MW**2)/(MW**2*sb**2).
+EvalParameter(dX3).
+lterm  -dX3*(EE/SW)**2*(s_H2*tau*s_h2)*(s_Q3*tau*s_q3)/4.
+
+parameter dX2 = -(MScL**2-MSsL**2-c2b*MW**2)/(MW**2*sb**2).
+EvalParameter(dX2).
+lterm -dX2*(EE/SW)**2*(s_H2*tau*s_h2)*(s_Q2*tau*s_q2)/4.
+
+
+parameter dX1 = -(MSuL**2 - MSdL**2 - c2b*MW**2)/(MW**2*sb**2).
+EvalParameter(dX1).
+lterm -dX1*(EE/SW)**2*(s_H2*tau*s_h2)*(s_Q1*tau*s_q1)/4.

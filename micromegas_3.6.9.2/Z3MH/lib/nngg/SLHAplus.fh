@@ -1,0 +1,47 @@
+
+       real*8 alphaQCD,initQCD,MassArray,MbEff,MbRun,McEff,McRun,
+     > MixMatrix,MixMatrixU,MtEff,MtRun,slhaBranch,slhaWidth,
+     > slhaVal0,slhaVal1,slhaVal2,slhaVal3
+
+       external alphaQCD,initQCD,MassArray,MbEff,MbRun,McEff,McRun,
+     > MixMatrix,MixMatrixU,MtEff,MtRun,slhaBranch,slhaWidth,
+     > slhaVal0,slhaVal1,slhaVal2,slhaVal3
+
+       Complex*16 cMixMatrix,cMixMatrixU,
+     > cslhaVal0,cslhaVal1,cslhaVal2,cslhaVal3
+       external cMixMatrix,cMixMatrixU,
+     > cslhaVal0,cslhaVal1,cslhaVal2,cslhaVal3       
+ 
+       INTEGER rJacobi, rJacobiA, cJacobiH, cJacobiS, cJacobiA
+       external rJacobi, rJacobiA, cJacobiH, cJacobiS, cJacobiA  
+
+       INTEGER initDiagonal,slhaReadStream,allQnumbers,findQnumbers,
+     > allDecays,allBlocks,
+     > rDiagonal2,rDiagonal3,rDiagonal4,rDiagonal5,
+     > rDiagonalA2,rDiagonalA3,rDiagonalA4,rDiagonalA5,
+     > cDiagonalH2,cDiagonalH3,cDiagonalH4,cDiagonalH5,
+     > cDiagonalS2,cDiagonalS3,cDiagonalS4,cDiagonalS5,
+     > cDiagonalA2,cDiagonalA3,cDiagonalA4,cDiagonalA5,
+     > slhaValExists0,slhaValExists1,slhaValExists2,slhaValExists3,
+     > slhaDecayExists,slhaRead,slhaWarnings,slhaWrite
+
+       external initDiagonal,slhaReadStream,allQnumbers,findQnumbers,
+     > allDecays,allBlocks,  
+     > rDiagonal2,rDiagonal3,rDiagonal4,rDiagonal5,
+     > rDiagonalA2,rDiagonalA3,rDiagonalA4,rDiagonalA5,
+     > cDiagonalH2,cDiagonalH3,cDiagonalH4,cDiagonalH5,
+     > cDiagonalS2,cDiagonalS3,cDiagonalS4,cDiagonalS5,
+     > cDiagonalA2,cDiagonalA3,cDiagonalA4,cDiagonalA5,
+     > slhaValExists0,slhaValExists1,slhaValExists2,slhaValExists3,     
+     > slhaDecayExists, slhaRead,slhaWarnings,slhaWrite
+         
+       integer System1,System2,aPintF0,aPintF1,aPintF2,aPintF3,
+     > aPintF4,aPintF5,openAppend
+
+       external System1,System2,aPintF0,aPintF1,aPintF2,aPintF3, 
+     > aPintF4,aPintF5,openAppend 
+       
+       INTEGER FERROR
+       COMMON/FERROR/FERROR
+       CHARACTER*100 slhaComment
+       COMMON/SLHACOMMENT/slhaComment 

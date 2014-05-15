@@ -1,0 +1,164 @@
+
+% Gauge bosons & gaugino ( for MSSM)
+
+let Vud=1, Vus=0, Vub=0, Vcd=0,Vcs=1,Vcb=0, Vtd=0,Vts=0,Vtb=1.
+
+let B0 = -SW*Z+CW*A,
+    W3 =  CW*Z+SW*A.
+% gb include complex matrix
+
+let f_B0 = i*(Zn11*  up(~o1)+Zn21*  up(~o2)+Zn31*  up(~o3)+Zn41*  up(~o4)).
+let f_B0b=-i*(Zn11 *down(~o1)+Zn21 *down(~o2)+Zn31 *down(~o3)+Zn41 *down(~o4)).
+
+let W  =  {'W+',W3,'W-'},
+    Wc =  {'W-',W3,'W+'}.
+
+let f_Wp = i*(Zv11*up('~1+')+Zv21*up('~2+')).
+let f_W3 = i*(Zn12*up(~o1)  +Zn22*up(~o2) +Zn32*up(~o3) +Zn42*up(~o4)).
+let f_Wm = i*(Zu11*up('~1-')+Zu21*up('~2-')).
+
+let f_Wpb =-i*(Zv11*down('~1-')+Zv21*down('~2-')).
+let f_W3b =-i*(Zn12*down(~o1)  +Zn22*down(~o2)+Zn32*down(~o3)+Zn42*down(~o4)).
+let f_Wmb =-i*(Zu11*down('~1+')+Zu21*down('~2+')).
+
+let f_W = { f_Wp , f_W3 , f_Wm },
+    f_Wb= { f_Wpb, f_W3b, f_Wmb},
+    f_Wc= { f_Wmb, f_W3b, f_Wpb}.
+
+let f_G = -i*up(~g), f_Gb = i*down(~g).
+
+
+let vev1=Sqrt2*MW*SW/EE*cb, vev2=Sqrt2*MW*SW/EE*sb.
+
+/*
+let s_h1 = { vev(vev1) + ((ca*H-sa*h) + i*(-cb*'Z.f'+sb*H3 ))/Sqrt2, 
+		         (-cb*'W-.f' + sb*'H-') },
+    s_H1 = anti(s_h1).
+
+let s_h2 = {              (sb*'W+.f'+cb*'H+'),
+            vev(vev2) + ((sa*H+ca*h) + i*(cb*H3+sb*'Z.f'))/Sqrt2 },
+    s_H2 = anti(s_h2).
+*/
+let s_h1 = { vev(vev1) + ((H*Zh11+h*Zh21) + i*(-cb*'Z.f'+sb*H3 ))/Sqrt2, 
+		         (-cb*'W-.f' + sb*'H-') },
+    s_H1 = anti(s_h1).
+
+% !!!  sa=-Zh21
+
+let s_h2 = {              (sb*'W+.f'+cb*'H+'),
+            vev(vev2) + ((H*Zh12+h*Zh22) + i*(cb*H3+sb*'Z.f'))/Sqrt2 },
+    s_H2 = anti(s_h2).
+
+
+let f_h1 = { Zn13*up(~o1)+Zn23*up(~o2)+Zn33*up(~o3)+Zn43*up(~o4),
+	      Zu12*up('~1-')+Zu22*up('~2-') },
+    f_h1b= anti(f_h1).
+
+let f_h2 = { Zv12*up('~1+')+Zv22*up('~2+'),
+              Zn14*up(~o1)+Zn24*up(~o2)+Zn34*up(~o3)+Zn44*up(~o4) },	      
+    f_h2b= anti(f_h2).
+
+
+% Leptons & sleptons
+
+let f_l1={up(ne), up(e)}, f_l1b=anti(f_l1),
+    f_l2={up(nm), up(m)}, f_l2b=anti(f_l2),
+    f_l3={up(nl), up(l)}, f_l3b=anti(f_l3).
+
+let f_r1=up(E), f_r1b=anti(f_r1),
+    f_r2=up(M), f_r2b=anti(f_r2),
+    f_r3=up(L), f_r3b=anti(f_r3).
+
+
+let s_l1 = { ~ne, ~eL},
+    s_L1 = anti(s_l1).
+let s_l2 = { ~nm, ~mL},
+    s_L2 = anti(s_l2).
+let s_l3 = { ~nl, ~l1*Zl11+ ~l2*Zl21},
+    s_L3 = anti(s_l3).
+
+let s_R1 = ~eR,
+    s_r1 = anti(s_R1).
+let s_R2 =  ~mR,
+    s_r2 = anti(s_R2).
+let s_R3 =  ~l1*Zl12+ ~l2*Zl22,
+    s_r3 = anti(s_R3).
+
+% Quarks & squarks
+
+let f_q1={up(u), Vud*up(d)+Vus*up(s)+Vub*up(b) },
+    f_q2={up(c), Vcd*up(d)+Vcs*up(s)+Vcb*up(b) },
+    f_q3={up(t), Vtd*up(d)+Vts*up(s)+Vtb*up(b) },
+    
+    f_q1b=anti(f_q1),
+    f_q2b=anti(f_q2),
+    f_q3b=anti(f_q3).
+    
+let f_u1 =up(U),   f_u1b=anti(f_u1),
+    f_u2 =up(C),   f_u2b=anti(f_u2),
+    f_u3 =up(T),   f_u3b=anti(f_u3).
+
+let f_d1 =up(D),   f_d1b=anti(f_d1),
+    f_d2 =up(S),   f_d2b=anti(f_d2),
+    f_d3 =up(B),   f_d3b=anti(f_d3).
+
+
+
+let _u = ~uL*Zuu11 + ~uR*Zuu21,
+    _d = ~dL*Zdd11 + ~dR*Zdd21.
+
+let _c = ~cL*Zcc11 + ~cR*Zcc21,
+    _s = ~sL*Zss11 + ~sR*Zss21.
+
+%let _u = ~uL,
+%    _d = ~dL.
+
+%let _c = ~cL,
+%    _s = ~sL.
+
+
+let _t =  ~t1*Zt11+ ~t2*Zt21,
+    _b =  ~b1*Zb11+ ~b2*Zb21.
+
+let s_q1  = {_u, _d*Vud+ _s*Vus+ _b*Vub}, s_Q1 = anti(s_q1),
+    s_q2  = {_c, _d*Vcd+ _s*Vcs+ _b*Vcb}, s_Q2 = anti(s_q2),
+    s_q3  = {_t, _d*Vtd+ _s*Vts+ _b*Vtb}, s_Q3 = anti(s_q3).
+
+clear _u, _d, _c, _s, _t, _b.
+
+let _u =  ~uL*Zuu12 + ~uR*Zuu22,
+    _d =  ~dL*Zdd12 + ~dR*Zdd22.
+
+let _c = ~cL*Zcc12 + ~cR*Zcc22,
+    _s = ~sL*Zss12 + ~sR*Zss22.
+
+
+
+%let _u =  ~uR,
+%    _d =  ~dR.
+
+%let _c = ~cR,
+%    _s = ~sR.
+
+let _t =   ~t1*Zt12+ ~t2*Zt22,
+    _b =   ~b1*Zb12+ ~b2*Zb22.
+ 
+let s_U1 = _u, s_u1 = anti(s_U1),
+    s_U2 = _c, s_u2 = anti(s_U2),
+    s_U3 = _t, s_u3 = anti(s_U3),
+    s_D1 = _d, s_d1 = anti(s_D1),
+    s_D2 = _s, s_d2 = anti(s_D2),
+    s_D3 = _b, s_d3 = anti(s_D3).
+
+clear _u, _d, _c, _s, _t, _b.
+
+
+let Wgh={'W+.c', CW*'Z.c'+SW*'A.c', 'W-.c'},
+    WGh={'W+.C', CW*'Z.C'+SW*'A.C', 'W-.C'}.
+
+let g=EE/SW, g1=EE/CW.
+
+let     vvev1= 1/(Sqrt2*MW*SW/EE).
+
+    
+

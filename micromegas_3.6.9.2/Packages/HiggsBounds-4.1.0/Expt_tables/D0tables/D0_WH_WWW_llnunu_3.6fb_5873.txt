@@ -1,0 +1,10 @@
+#D0 Note 5873 March 13th 2009
+#D0_WH_WWW_llnunu_3.6fb
+#no interpolation
+#columns: Mh(in GeV), obs, exp  (as ratio to SM cross sections)
+
+120	51.6	32.2	
+140	21.7	13.2	
+160	18.4	10.7	
+180	25.5	14.6	
+200	43.0	24.4	

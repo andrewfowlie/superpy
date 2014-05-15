@@ -1,0 +1,18 @@
+# Presented at Moriond 2013.
+# Data extracted from the mu plot at 125 GeV, based on the MVA result.
+# This measurement and the associated category measurements were not performed
+# at the best-fit mass of 125.4GeV. 
+# However, we still want to implement the mass measurement of
+# 125.4 +- 0.5(stat) +- 0.6(syst) GeV.
+13001112	1300112		1
+CMS-PAS-HIG-13-001
+LHC, CMS, CMS
+(pp)->h->gamma gamma (untagged 1)
+8	19.6	0.044
+1	1
+1.1	CMSgagacat
+125.4 125.4 0.1
+5	125.4
+11 21 31 41 51
+1.0 1.2523 1.5437 1.5437 1.808
+125.4	-0.61	0.06	0.75

@@ -1,0 +1,8 @@
+2 2 50 3  Check Constraints
+
+ This menu item gives you an option to check 
+ numerically physical constraints for different
+ values of physical parameters. In particular  
+ you can check particle masses, widths, decay 
+ modes and  branching rations.   
+

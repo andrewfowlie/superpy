@@ -1,0 +1,36 @@
+.TH FHTABLERECORD 1 "1-May-2011"
+.SH NAME
+.PP
+FHTableRecord \- associate a FeynHiggs Record with the internal table 
+for interpolation
+.SH SYNOPSIS (Fortran version)
+.PP
+#include "FHRecord.h"
+.sp
+integer error, i1, i2
+.br
+RecordDecl(record)
+.sp
+subroutine FHTableRecord(error, record, i1, i2)
+.SH SYNOPSIS (Mathematica version)
+.PP
+record = FHTableRecord[record, i1, i2]
+.SH DESCRIPTION
+FHTableRecord associates a FeynHiggs Record with the internal table, 
+i.e. the two given parameters (e.g. iTB and iMA0) are used as inputs for
+interpolating table data in the next FHLoopRecord cycle.
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in TableRecord.F from
+which the error message was emitted.
+.TP
+.B record (input/output)
+the FeynHiggs Record.
+.TP
+.B i1, i2 (input)
+the record entries used as inputs for interpolating the internal table, 
+e.g. i1 = iTB and i2 = iMA0.
+.SH SEE ALSO
+.PP
+libFH(1)

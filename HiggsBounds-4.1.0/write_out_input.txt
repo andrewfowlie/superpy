@@ -1,0 +1,260 @@
+! this code has been generated with the perl script generatefortran.pl
+
+   write(*,*)"theo(n)%particle(Hneut)%M(i)"
+   write(*,*)(theo(n)%particle(Hneut)%M(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%particle(Hneut)%GammaTot(i)"
+   write(*,*)(theo(n)%particle(Hneut)%GammaTot(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%CP_value(i)"
+   write(*,*)(theo(n)%CP_value(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%particle(Hplus)%M(i)"
+   write(*,*)(theo(n)%particle(Hplus)%M(i),i=1,np(Hplus))
+
+   write(*,*)"theo(n)%particle(Hplus)%GammaTot(i)"
+   write(*,*)(theo(n)%particle(Hplus)%GammaTot(i),i=1,np(Hplus))
+
+   write(*,*)"g2(n)%hjss_s(i)"
+   write(*,*)(g2(n)%hjss_s(i),i=1,np(Hneut))
+
+   write(*,*)"g2(n)%hjss_p(i)"
+   write(*,*)(g2(n)%hjss_p(i),i=1,np(Hneut))
+
+   write(*,*)"g2(n)%hjcc_s(i)"
+   write(*,*)(g2(n)%hjcc_s(i),i=1,np(Hneut))
+
+   write(*,*)"g2(n)%hjcc_p(i)"
+   write(*,*)(g2(n)%hjcc_p(i),i=1,np(Hneut))
+
+   write(*,*)"g2(n)%hjbb_s(i)"
+   write(*,*)(g2(n)%hjbb_s(i),i=1,np(Hneut))
+
+   write(*,*)"g2(n)%hjbb_p(i)"
+   write(*,*)(g2(n)%hjbb_p(i),i=1,np(Hneut))
+
+   write(*,*)"g2(n)%hjtoptop_s(i)"
+   write(*,*)(g2(n)%hjtoptop_s(i),i=1,np(Hneut))
+
+   write(*,*)"g2(n)%hjtoptop_p(i)"
+   write(*,*)(g2(n)%hjtoptop_p(i),i=1,np(Hneut))
+
+   write(*,*)"g2(n)%hjmumu_s(i)"
+   write(*,*)(g2(n)%hjmumu_s(i),i=1,np(Hneut))
+
+   write(*,*)"g2(n)%hjmumu_p(i)"
+   write(*,*)(g2(n)%hjmumu_p(i),i=1,np(Hneut))
+
+   write(*,*)"g2(n)%hjtautau_s(i)"
+   write(*,*)(g2(n)%hjtautau_s(i),i=1,np(Hneut))
+
+   write(*,*)"g2(n)%hjtautau_p(i)"
+   write(*,*)(g2(n)%hjtautau_p(i),i=1,np(Hneut))
+
+   write(*,*)"g2(n)%hjWW(i)"
+   write(*,*)(g2(n)%hjWW(i),i=1,np(Hneut))
+
+   write(*,*)"g2(n)%hjZZ(i)"
+   write(*,*)(g2(n)%hjZZ(i),i=1,np(Hneut))
+
+   write(*,*)"g2(n)%hjZga(i)"
+   write(*,*)(g2(n)%hjZga(i),i=1,np(Hneut))
+
+   write(*,*)"g2(n)%hjgaga(i)"
+   write(*,*)(g2(n)%hjgaga(i),i=1,np(Hneut))
+
+   write(*,*)"g2(n)%hjgg(i)"
+   write(*,*)(g2(n)%hjgg(i),i=1,np(Hneut))
+
+   write(*,*)"g2(n)%hjggZ(i)"
+   write(*,*)(g2(n)%hjggZ(i),i=1,np(Hneut))
+
+   write(*,*) "g2(n)%hjhiZ(j,i)" 
+   do j=1,np(Hneut)
+    write(*,*)(g2(n)%hjhiZ(j,i),i=1,np(Hneut))
+   enddo 
+
+   write(*,*)"theo(n)%lep%XS_hjZ_ratio(i)"
+   write(*,*)(theo(n)%lep%XS_hjZ_ratio(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%lep%XS_bbhj_ratio(i)"
+   write(*,*)(theo(n)%lep%XS_bbhj_ratio(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%lep%XS_tautauhj_ratio(i)"
+   write(*,*)(theo(n)%lep%XS_tautauhj_ratio(i),i=1,np(Hneut))
+
+   write(*,*) "theo(n)%lep%XS_hjhi_ratio(j,i)" 
+   do j=1,np(Hneut)
+    write(*,*)(theo(n)%lep%XS_hjhi_ratio(j,i),i=1,np(Hneut))
+   enddo 
+
+   write(*,*)"theo(n)%lep%XS_HpjHmj_ratio(i)"
+   write(*,*)(theo(n)%lep%XS_HpjHmj_ratio(i),i=1,np(Hplus))
+
+   write(*,*)"partR(n)%bg_hjb(i)"
+   write(*,*)(partR(n)%bg_hjb(i),i=1,np(Hneut))
+
+   write(*,*)"partR(n)%qq_hjWp(1,i)"
+   write(*,*)(partR(n)%qq_hjWp(1,i),i=1,np(Hneut))
+
+   write(*,*)"partR(n)%qq_hjWp(2,i)"
+   write(*,*)(partR(n)%qq_hjWp(2,i),i=1,np(Hneut))
+
+   write(*,*)"partR(n)%qq_hjWm(1,i)"
+   write(*,*)(partR(n)%qq_hjWm(1,i),i=1,np(Hneut))
+
+   write(*,*)"partR(n)%qq_hjWm(2,i)"
+   write(*,*)(partR(n)%qq_hjWm(2,i),i=1,np(Hneut))
+
+   write(*,*)"partR(n)%gg_hj(i)"
+   write(*,*)(partR(n)%gg_hj(i),i=1,np(Hneut))
+
+   write(*,*)"partR(n)%qq_hj(5,i)"
+   write(*,*)(partR(n)%qq_hj(5,i),i=1,np(Hneut))
+
+   write(*,*)"partR(n)%qq_hjZ(1,i)"
+   write(*,*)(partR(n)%qq_hjZ(1,i),i=1,np(Hneut))
+
+   write(*,*)"partR(n)%qq_hjZ(2,i)"
+   write(*,*)(partR(n)%qq_hjZ(2,i),i=1,np(Hneut))
+
+   write(*,*)"partR(n)%qq_hjZ(3,i)"
+   write(*,*)(partR(n)%qq_hjZ(3,i),i=1,np(Hneut))
+
+   write(*,*)"partR(n)%qq_hjZ(4,i)"
+   write(*,*)(partR(n)%qq_hjZ(4,i),i=1,np(Hneut))
+
+   write(*,*)"partR(n)%qq_hjZ(5,i)"
+   write(*,*)(partR(n)%qq_hjZ(5,i),i=1,np(Hneut))
+
+   write(*,*)"partR(n)%gg_hjZ(i)"
+   write(*,*)(partR(n)%gg_hjZ(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%tev%XS_hj_ratio(i)"
+   write(*,*)(theo(n)%tev%XS_hj_ratio(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%tev%XS_hjb_ratio(i)"
+   write(*,*)(theo(n)%tev%XS_hjb_ratio(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%tev%XS_hjW_ratio(i)"
+   write(*,*)(theo(n)%tev%XS_hjW_ratio(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%tev%XS_hjZ_ratio(i)"
+   write(*,*)(theo(n)%tev%XS_hjZ_ratio(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%tev%XS_vbf_ratio(i)"
+   write(*,*)(theo(n)%tev%XS_vbf_ratio(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%tev%XS_tthj_ratio(i)"
+   write(*,*)(theo(n)%tev%XS_tthj_ratio(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%lhc7%XS_hj_ratio(i)"
+   write(*,*)(theo(n)%lhc7%XS_hj_ratio(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%lhc7%XS_hjb_ratio(i)"
+   write(*,*)(theo(n)%lhc7%XS_hjb_ratio(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%lhc7%XS_hjW_ratio(i)"
+   write(*,*)(theo(n)%lhc7%XS_hjW_ratio(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%lhc7%XS_hjZ_ratio(i)"
+   write(*,*)(theo(n)%lhc7%XS_hjZ_ratio(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%lhc7%XS_vbf_ratio(i)"
+   write(*,*)(theo(n)%lhc7%XS_vbf_ratio(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%lhc7%XS_tthj_ratio(i)"
+   write(*,*)(theo(n)%lhc7%XS_tthj_ratio(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%BR_hjss(i)"
+   write(*,*)(theo(n)%BR_hjss(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%BR_hjcc(i)"
+   write(*,*)(theo(n)%BR_hjcc(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%BR_hjbb(i)"
+   write(*,*)(theo(n)%BR_hjbb(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%BR_hjmumu(i)"
+   write(*,*)(theo(n)%BR_hjmumu(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%BR_hjtautau(i)"
+   write(*,*)(theo(n)%BR_hjtautau(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%BR_hjWW(i)"
+   write(*,*)(theo(n)%BR_hjWW(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%BR_hjZZ(i)"
+   write(*,*)(theo(n)%BR_hjZZ(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%BR_hjZga(i)"
+   write(*,*)(theo(n)%BR_hjZga(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%BR_hjgaga(i)"
+   write(*,*)(theo(n)%BR_hjgaga(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%BR_hjgg(i)"
+   write(*,*)(theo(n)%BR_hjgg(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%BR_hjinvisible(i)"
+   write(*,*)(theo(n)%BR_hjinvisible(i),i=1,np(Hneut))
+
+   write(*,*)"theo(n)%BR_hjhihi(j,i)"
+   do j=1,np(Hneut)
+    write(*,*)(theo(n)%BR_hjhihi(j,i),i=1,np(Hneut))
+   enddo
+
+   write(*,*)"theo(n)%BR_tHpjb(i)"
+   write(*,*)(theo(n)%BR_tHpjb(i),i=1,np(Hplus))
+
+   write(*,*)"theo(n)%BR_tWpb"
+   write(*,*)theo(n)%BR_tWpb
+
+   write(*,*)"theo(n)%BR_Hpjcs(i)"
+   write(*,*)(theo(n)%BR_Hpjcs(i),i=1,np(Hplus))
+
+   write(*,*)"theo(n)%BR_Hpjcb(i)"
+   write(*,*)(theo(n)%BR_Hpjcb(i),i=1,np(Hplus))
+
+   write(*,*)"theo(n)%BR_Hpjtaunu(i)"
+   write(*,*)(theo(n)%BR_Hpjtaunu(i),i=1,np(Hplus))
+
+   write(*,*)"theo(n)%particle(Chineut)%M(i)"
+   write(*,*)(theo(n)%particle(Chineut)%M(i),i=1,np(Chineut))
+
+   write(*,*)"theo(n)%particle(Chiplus)%M(i)"
+   write(*,*)(theo(n)%particle(Chiplus)%M(i),i=1,np(Chiplus))
+
+   write(*,*)"theo(n)%lep%XS_CpjCmj(i)"
+   write(*,*)(theo(n)%lep%XS_CpjCmj(i),i=1,np(Chiplus))
+
+   write(*,*) "theo(n)%lep%XS_NjNi(j,i)" 
+   do j=1,np(Chineut)
+    write(*,*)(theo(n)%lep%XS_NjNi(j,i),i=1,np(Chineut))
+   enddo 
+
+   write(*,*)"theo(n)%BR_NjqqNi(j,i)"
+   do j=1,np(Chineut)
+    write(*,*)(theo(n)%BR_NjqqNi(j,i),i=1,np(Chineut))
+   enddo
+
+   write(*,*)"theo(n)%BR_NjZNi(j,i)"
+   do j=1,np(Chineut)
+    write(*,*)(theo(n)%BR_NjZNi(j,i),i=1,np(Chineut))
+   enddo
+
+   write(*,*)"theo(n)%BR_CjqqNi(j,i)"
+   do j=1,np(Chiplus)
+    write(*,*)(theo(n)%BR_CjqqNi(j,i),i=1,np(Chineut))
+   enddo
+
+   write(*,*)"theo(n)%BR_CjlnuNi(j,i)"
+   do j=1,np(Chiplus)
+    write(*,*)(theo(n)%BR_CjlnuNi(j,i),i=1,np(Chineut))
+   enddo
+
+   write(*,*)"theo(n)%BR_CjWNi(j,i)"
+   do j=1,np(Chiplus)
+    write(*,*)(theo(n)%BR_CjWNi(j,i),i=1,np(Chineut))
+   enddo
+

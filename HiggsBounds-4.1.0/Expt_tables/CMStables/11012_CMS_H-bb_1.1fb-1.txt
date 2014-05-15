@@ -1,0 +1,11 @@
+#CMS PAS HIG-11-012 August 28, 2011
+#11012_CMS_H-bb_1.1fb-1
+#read from Tab.16 (BDT)
+#columns: Mh, obs, exp (normalised to the SM)
+
+110.  8.0   5.8
+115   8.3   5.7
+120   9.5   7.7
+125   15.3  9.6
+130   16.3  11.0
+135   22.5  14.4

@@ -1,0 +1,17 @@
+# Published at Moriond 2013. Data is taken from CMS-PAS-HIG 13-005:
+# https://twiki.cern.ch/twiki/bin/view/CMSPublic/Hig13005TWiki
+# Mass resolution: (Gauss: 0.55, linear: 0.7) GeV. Best-fit mass: 125.8GeV.
+# This peak observable contains the mass measurement.
+# Efficiencies are chosen such that we have about 10% VBF.
+13002101	1300201		1
+CMS-PAS-HIG-13-002
+LHC, CMS, CMS
+(pp)->h->ZZ->4l (0/1jet)
+8 	24.7	0.044
+1	1
+0.7	CMSZZ
+125.8 125.8 0.1
+2	125.8
+13 23 
+1.00 1.40
+125.8	0.600	0.858	1.179

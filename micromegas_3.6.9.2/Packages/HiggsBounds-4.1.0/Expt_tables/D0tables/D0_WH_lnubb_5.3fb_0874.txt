@@ -1,0 +1,16 @@
+#arxiv:1012.0874 Dec 4th 2010
+#D0_WH_lnubb_5.3fb
+#no interpolation
+#columns: Mh(in GeV), obs, exp (as ratio to SM cross sections)
+
+100   2.7       3.3  
+105   4.0       3.6   
+110   4.3       4.2   	
+115   4.5       4.8   
+120   5.8       5.6   	
+125   6.6       6.8   
+130   7.0       8.5   
+135   7.6       11.5   
+140   12.2      16.5    
+145   15.0      23.6    
+150   30.4      36.8    

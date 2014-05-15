@@ -1,0 +1,32 @@
+10 10 65
+  MRS - structure functions.
+
+  MRS  group presents  two sets of  parton distribution
+functions which describe the densities of quarks and gluons in
+proton/anti-proton. They are MRS(A') and MRS(G).
+
+   For the A' case it is supposed that sea quarks and gluon
+densities are parameterized at small x by the x^(-Lambda)
+function, where Lambda is the same as for gluon as for see
+quarks. This suggestion is motivated by the QCD theory.
+
+  The G set use two different  Lambda parameters  for see quarks
+and for gluon . It can't be explained by the QCD theory, but the
+fit of an experimental data for the G set becomes better.
+     
+ The next-to-leading order calculations  and the MSbar factorization scheme
+are  used  for the Q^2  structure  function evaluation .
+
+  Alpha_s(MZ)=0.113/0.114 for A'/G case correspondingly.
+
+The available applied range is
+                  10^-5 < x < 1. 
+                  5 < Q^2 < 1310720 Gev^2 
+
+See complete explanation in 
+
+   A.D. Martin, R.G. Roberts and W.J. Stirling.   Phys. Lett.  B354
+(1995) 155.
+
+The type of distribution and name of the initial particle  is written in 
+brackets and may be changed by the user. 

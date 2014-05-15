@@ -1,0 +1,13 @@
+# Published at Moriond 2013. Result taken from CMS-PAS-HIG 13-005, Fig. 3b.
+13005102	1300502		1
+CMS-PAS-HIG-13-005
+LHC, CMS, CMS
+(pp)->h->tautau
+8	24.3	 0.044
+1	0
+20
+125.7 125.7 1.0
+4	-1
+14 24 34 44
+
+125.7	0.69	1.10	1.54

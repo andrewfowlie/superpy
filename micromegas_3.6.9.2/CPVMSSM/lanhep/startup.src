@@ -1,0 +1,58 @@
+
+
+keys scenario=calchep.   %  micro  calchep
+
+do_if scenario==micro.
+   keys mix2g=on.
+   keys gi_Nmass=on.
+   model 'CPV-MSSM/CPSH'/1.
+end_if.
+
+do_if scenario==calchep.
+   keys mix2g=off.
+   keys gi_Nmass=on.
+   model 'CPV-MSSM/CPSH'/1.
+end_if.
+
+
+/*   Gauge fixing  ('unitary' or 'Feynman') */ 
+keys gauge_fixing=Feynman.
+
+/*  Dimension of sfermion mixing matrices (one of 0, 2, 6) */
+keys sel_mix=2, usq_mix=2, dsq_mix=2.
+
+/*  Additional supersymmetry breaking terms (by Rosiek) (on/off) */
+keys  extra_sbt=off.
+
+/*  Mass & mixing matrices calculated from initial parameters */
+keys AutoNeuMass=on, AutoChMass=on, AutoSlq12Mass=on, AutoSlq3Mass=on.
+
+
+% =============== Model name and number setup.
+
+
+option chepCFWidth=50.
+option chepLPWidth=100.
+option chepPDWidth=800.
+
+let g5=gamma5.
+let eps2 = {{0,1},{-1,0}}.
+special sigma:(spinor2, spinor2, vector).
+
+read 'var.src'.
+read 'func.src'.
+read 'prtcls.src'.
+read 'Let.src'.
+%read 'latex.src'.
+read 'ggi.src'.         % gauge fields interaction
+read 'gmi.src'.    % gauge-matter interaction
+read 'DD.src'.          % DD terms
+read 'W.src'.           % Terms going from super-potential (FF & Yukawa)
+read 'softsbt.src'.     % Soft SUSY-breaking terms
+read 'fgauge.src'.      % Faddeev-Popov ghosts
+read 'end.src'.
+
+read 'gg+.src'.
+%read susy_tex.
+%read susy_sel.     % Vertices selection
+

@@ -1,0 +1,604 @@
+HOW TO USE NMSSMTOOLS:
+
+After the download of NMSSMTools_x.tgz (where x is the version
+number), type "tar zxvf NMSSMTools_x.tgz". This will create a directory
+named NMSSMTools_x.
+Go into this directory. 
+There you find the directories 
+-- "sources", "main" and "micromegas_2.2", which contain source files;
+-- "EXPCON", which contains data files corresponding to experimental
+    constraints;
+-- "SAMPLES", which contains sample input and output files; 
+-- "BMPSUGRA" contains mSUGRA-like benchmark points as in
+    A. Djouadi et al., arXiv:0801.4321 [hep-ph];
+-- "BMPGMSB" contains GMSB-like benchmark points as in  
+    U. Ellwanger et al., arXiv:0803.2962 [hep-ph].
+-- "BMPLHC" contains benchmark points with a SM-like Higgs with a mass
+    around 125 GeV
+
+ 
+COMPILATION:
+    
+To compile, type first "make init", then "make". A first compilation
+may take a while, since all subroutines of micromegas_2.2 are compiled.
+The following 8 executable routines are created in the directory
+"main": nmhdecay, nmhdecay_rand, nmhdecay_grid, nmspec, nmspec_rand,
+nmspec_grid, nmgmsb and nmgmsb_rand.
+If a subroutine in the directory "sources" was modified, one has to
+type "make init" and "make" again. If a routine in the directory "main"
+was modified, it suffices to type "make" again.
+To delete all the already compiled codes type "make clean".
+
+INPUT FILES:
+
+From the version 2.0.0 onwards, the task to be performed by an input
+file is independent from its name. Any name is allowed, provided it
+contains the three letters "inp"; it can be of the general form
+PREFIXinpSUFFIX where PREFIX and SUFFIX can contain dots etc..
+
+The input file can be located in any directory specified by a PATH.
+
+To run any input file PREFIXinpSUFFIX, type "run PATH/PREFIXinpSUFFIX".
+(PATH is optional; if absent, the input file has to be located in the
+same directory as the script file "run".)
+
+The output files are located in the directory specified by PATH.
+They have the following format: 
+If one single point in the parameter space is evaluated:
+   PREFIXspectrSUFFIX, PREFIXdecaySUFFIX, and
+   PREFIXomegaSUFFIX (if the relic density is computed, see below)
+If scans are performed:
+   PREFIXerrSUFFIX as well as PREFIXoutSUFFIX 
+
+However, the task to be performed by an input file must be specified in
+the BLOCK MODSEL at the beginning (see the SLHA2 conventions in 
+B. Allanach et al., SUSY Les Houches Accord 2, arXiv:0801.0045
+[hep-ph]).
+
+The BLOCK MODSEL should contain the following four lines:
+
+BLOCK MODSEL
+	3	1		# NMSSM PARTICLE CONTENT
+	1	I1		# IMOD (0=general NMSSM, 1=mSUGRA, 2=GMSB)
+	10	I2		# ISCAN (0=no scan, 1=grid scan, 2=random scan, 3=MCMC)
+	9	I3		# Call micrOmegas (default 0=no, 1=relic density only,
+#				  2=dir. det. rate, 3=indir. det. rate, 4=both det. rates)
+	8       I4		# Precision for Higgs masses (default 0: as before,
+#				  1: full 1 loop + full 2 loop from top/bot Yukawas
+#				  2: as 1 + pole masses - 1&2 by courtesy of P. Slavich)
+	13      I5		# 1: Sparticle decays via NMSDECAY
+
+The meaning of the five integers I1, I2, I3, I4 and I5 is as follows:
+
+I1=0: general NMSSM with parameters specified at the SUSY breaking scale
+      (an average of the squark masses, unless specified by the user).
+      As in the previous versions of NMSSMTools, the input parameters
+      have to be given in the BLOCK EXTPAR following the SLHA2
+      conventions.
+      See the example in SAMPLES/inp.dat.
+
+I1=1: mSUGRA-like boundary conditions at the GUT scale with universal
+      scalar masses m0, gaugino masses M12 and trilinear couplings A0
+      (to be specified in the BLOCK MINPAR).
+      See the example in SAMPLES/inpsp.dat.
+
+I1=2: GMSB-like boundary conditions as in the paper U. Ellwanger et al.,
+      arXiv:0803.2962 [hep-ph].
+      See the example in SAMPLES/inpgm.dat.
+
+I2=0: One single point in parameter space is evaluated. Detailed
+      informations on the spectrum, mixing angles, the satisfaction of
+      theoretical and experimental constraints are given in the output
+      file PREFIXspectrSUFFIX, detailed informations on the partial
+      decay widths of all six Higgs states in PREFIXdecaySUFFIX.
+
+I2=1: A scan over a grid in parameter space is performed. The
+      boundaries in parameter space as well as the corresponding
+      numbers of steps have to be specified. 
+      For possible scans in the general NMSSM see the example
+      SAMPLES/gridinp.dat.
+      For possible scans with mSUGRA-like boundary conditions see the
+      example SAMPLES/gridinpsp.dat.
+      For possible scans with GMSB-like boundary conditions see the
+      example SAMPLES/gridinpgm.dat
+      
+      The output file PREFIXerrSUFFIX gives the number of points which
+      have passed all constraints, and the corresponding range of input
+      parameters.
+      The output file PREFIXoutSUFFIX contains details of points which
+      have passed constraints; the latter can be modified by the user
+      by editing the corresponding routines in the directory "main":
+      
+      The output file PREFIXoutSUFFIX is created in the subroutine
+      OUTPUT near the end of the file nmhdecay_grid.f (general NMSSM),
+      or nmspec_grid.f (mSUGRA) or nmgmsb_grid.f (GMSB). 
+      If the first line in the subroutine OUTPUT reads
+      "IF(IFAIL.EQ.0)THEN", properties of points with phenomenological
+      problems are not written into PREFIXoutSUFFIX.
+      If this line reads "IF(IFAIL.EQ.0 .OR. IFAIL.EQ.10)THEN", points
+      with phenomenological problems are written as well. 
+      The properties which are listed in PREFIXoutSUFFIX depend on the
+      second argument of the array RES(IDIM,I) and should be specified
+      by the user.
+      The meaning of the various arrays containing Higgs and sparticle
+      masses and mixing angles, Higgs branching ratios is given at the
+      beginning of the file nmhdecay_grid.f (general NMSSM), 
+      nmspec_grid.f (mSUGRA) or nmspec_grid.f (GMSB). For convenience,
+      we list the content of the array PAR(I) (the couplings and soft
+      terms at the SUSY scale) as well as the content of the array
+      PROB(I) (phenomenological and some theoretical constraints)
+      below.
+
+I2=2: A random scan in parameter space is performed. The boundaries in
+      parameter space as well as the total number of steps have to be
+      specified. 
+      For possible scans in the general NMSSM see the example
+      SAMPLES/randinp.dat.
+      For possible scans with mSUGRA-like boundary conditions see the
+      example SAMPLES/randinpsp.dat.
+      For possible scans with GMSB-like boundary conditions see the
+      example SAMPLES/randinpgm.dat
+      
+      For the content of the output files PREFIXerrSUFFIX and
+      PREFIXoutSUFFIX (and the treatment of the latter) see the
+      description of the case I2=2 above; the corresponding MAIN
+      routines for random scans in the directory "main" are denoted by
+      nmhdecay_rand.f, nmspec_rand.f and nmgmsb_rand.f.
+      
+I2=3: A Markov Chain Monte Carlo scan in parameter space is performed.
+      The boundaries as well as the relative size of each step for all
+      parameters and the total number of steps have to be specified.
+      For possible scans in the general NMSSM see the example
+      SAMPLES/mcmcinp.dat.
+      For possible scans with mSUGRA-like boundary conditions see the
+      example SAMPLES/mcmcinpsp.dat.
+      For possible scans with GMSB-like boundary conditions see the
+      examples SAMPLES/mcmcinpgm.dat.
+      
+      For the content of the output files PREFIXerrSUFFIX and
+      PREFIXoutSUFFIX (and the treatment of the latter) see the
+      description of the case I2=2 above; the corresponding MAIN
+      routine for a MCMC scans in the directory "main" are denoted by
+      nmhdecay_mcmc.f, nmspec_mcmc.f and nmgmsb_mcmc.f.
+      
+I3=0: The dark matter relic density is not computed.
+
+I3=1: The dark matter relic density is computed and checked via a call
+      of micromegas. This option is not possible for GMSB-like
+      boundary conditions. A first call of micromegas provokes the
+      compilation of additional subroutines, which may take a while.
+      
+      In the case of a single point in parameter space (I2=0), the
+      relic density Omega*h^2 is given in the output files
+      PREFIXspectrSUFFIX as well as PREFIXomegaSUFFIX. The latter
+      contains in addition informations on the decomposition of the
+      LSP and the relevant annihilation/coannihilation processes.
+      The names of particles in the final states of the annihilation
+      and coannihilation processes are the same as in micrOMEGAS and
+      can be found in: G. Belanger, F. Boudjema, A. Pukhov and A. Semenov,
+      micrOMEGAs: A program for calculating the relic density
+      in the MSSM, Comput. Phys. Commun. 149 (2002) 103
+      [arXiv:hep-ph/0112278].
+      
+I3=2: Same as I3=1 + direct detection cross sections are computed.
+      In the case of a single point in parameter space (I2=0), the
+      BLOCK NDMCROSSSECT in PREFIXomegaSUFFIX contains:
+      csPsi = proton  spin-independent cross section in [pb]
+      csNsi = neutron spin-independent cross section in [pb]
+      csPsd = proton  spin-dependent   cross section in [pb]
+      csNsd = neutron spin-dependent   cross section in [pb]
+
+I3=3: Same as I3=1 + the thermally averaged LSP annihilation cross section
+      as well as the resulting photon spectrum are computed. In the case of
+      a single point in parameter space (I2=0), these are written in the
+      BLOCK ANNIHILATION of PREFIXomegaSUFFIX:
+      sigmaV = LSP annihilation cross section,
+
+I3=4: Same as I3=2+3.
+
+Precision of the CP-even/odd/charged Higgs masses:
+
+I4=0: 1-loop: complete contributions ~ top/bottom Yukawas
+              contributions ~ g1, g2, lambda and kappa to LLA
+	      for the SM-like CP-even Higgs only
+      2-loop: top/bottom Yukawa contributions to LLA
+I4=1: as in G. Degrassi, P. Slavich, Nucl.Phys.B825:119-150,2010, 
+      arXiv:0907.4682 (with special thanks to P. Slavich);
+      corrections to the charged Higgs mass from K.H.Phan and P. Slavich:
+      1-loop: complete contributions ~ top/bottom Yukawas
+              complete contributions ~g1, g2, lambda and kappa
+	      (except for pole masses)
+      2-loop: complete contributions ~ top/bottom Yukawas
+I4=2: 1-loop: complete contributions ~ top/bottom Yukawas
+              complete contributions ~g1, g2, lambda and kappa
+	      including pole masses (slow!)
+      2-loop: complete contributions ~ top/bottom Yukawas
+
+Sparticle total widths and branching ratios:
+
+I5=0: Not computed
+
+I5=1: NMSDECAY is called, which computes sparticle 2-body and 3-body
+      branching ratios as in
+      SDECAY: A Fortran code for the decays of the supersymmetric 
+	 particles in the MSSM
+      by M. Muhlleitner (Karlsruhe, Inst. Technol.),
+        A. Djouadi (Orsay, LPT & CERN, Theory Division),
+        Y. Mambrini (Orsay, LPT),
+      Comput.Phys.Commun.168:46-70 (2005), hep-ph/0311167.
+     SDECAY should be cited whenever NMSDECAY is used.
+     In NMSDECAY.f in the directory sources, the flags 
+        "flagmulti" (3-body decays)
+        "flagqcd" (QCD corrections to 2-body decays)
+        "flagloop" (loop decays)
+     can be switched off; otherwise a call of NMSDECAY takes about 2-3 seconds
+     per point in parameter space.
+     In the versions nmhdecay.f and nmspec.f, the sparticle widths and BR's are
+     appended to the output file PREFIXdecaySUFFIX in SLHA2 format. If scans are
+     performed, the user can use the arguments of the COMMON statements in the
+     subroutines OUTPUT in order to define the content of the output file.
+
+Content of the array PAR(I) (couplings and soft parameters at the SUSY scale):
+
+      PAR(1) = lambda
+      PAR(2) = kappa
+      PAR(3) = tan(beta)
+      PAR(4) = mu (effective mu term = lambda*s)
+      PAR(5) = Alambda (if MA is not an input)
+      PAR(6) = Akappa
+      PAR(7) = mQ3**2
+      PAR(8) = mU3**2
+      PAR(9) = mD3**2
+      PAR(10) = mL3**2
+      PAR(11) = mE3**2
+      PAR(12) = AU3
+      PAR(13) = AD3
+      PAR(14) = AE3
+      PAR(15) = mQ2**2
+      PAR(16) = mU2**2
+      PAR(17) = mD2**2
+      PAR(18) = mL2**2
+      PAR(19) = mE2**2
+      PAR(20) = M1
+      PAR(21) = M2
+      PAR(22) = M3
+      PAR(23) = MA (diagonal doublet CP-odd mass matrix element)
+      PAR(24) = MP (diagonal singlet CP-odd mass matrix element)
+      PAR(25) = AE2
+
+Content of the array PROB(I) (phenomenological and theoretical constraints):
+
+      PROB(I)  = 0, I = 1..45: OK
+	    
+      PROB(1) =/= 0   chargino too light
+      PROB(2) =/= 0   excluded by Z -> neutralinos
+      PROB(3) =/= 0   charged Higgs too light
+      PROB(4) =/= 0   excluded by ee -> hZ 
+      PROB(5) =/= 0   excluded by ee -> hZ, h -> bb
+      PROB(6) =/= 0   excluded by ee -> hZ, h -> tautau
+      PROB(7) =/= 0   excluded by ee -> hZ, h -> invisible 
+      PROB(8) =/= 0   excluded by ee -> hZ, h -> 2jets
+      PROB(9) =/= 0   excluded by ee -> hZ, h -> 2photons
+      PROB(10) =/= 0  excluded by ee -> hZ, h -> AA -> 4bs
+      PROB(11) =/= 0  excluded by ee -> hZ, h -> AA -> 4taus
+      PROB(12) =/= 0  excluded by ee -> hZ, h -> AA -> 2bs 2taus
+      PROB(13) =/= 0  excluded by Z -> hA (Z width)
+      PROB(14) =/= 0  excluded by ee -> hA -> 4bs
+      PROB(15) =/= 0  excluded by ee -> hA -> 4taus
+      PROB(16) =/= 0  excluded by ee -> hA -> 2bs 2taus
+      PROB(17) =/= 0  excluded by ee -> hA -> AAA -> 6bs
+      PROB(18) =/= 0  excluded by ee -> hA -> AAA -> 6taus
+      PROB(19) =/= 0  excluded by ee -> Zh -> ZAA -> Z + light pairs
+      PROB(20) =/= 0  excluded by stop -> b l sneutrino
+      PROB(21) =/= 0  excluded by stop -> neutralino c
+      PROB(22) =/= 0  excluded by sbottom -> neutralino b
+      PROB(23) =/= 0  squark/gluino too light
+      PROB(24) =/= 0  selectron/smuon too light
+      PROB(25) =/= 0  stau too light
+      PROB(26) =/= 0  lightest neutralino is not LSP
+      PROB(27) =/= 0  Landau Pole in l, k, ht, hb below MGUT
+      PROB(28) =/= 0  unphysical global minimum
+      PROB(29) =/= 0  Higgs soft masses >> Msusy
+      PROB(30) =/= 0  excluded by WMAP (checked only if OMGFLAG>=1)
+      PROB(31) =/= 0  excluded by Xenon100 (checked only if OMGFLAG=2 or 4)
+      PROB(32) =/= 0  b->s gamma more than 2 sigma away
+      PROB(33) =/= 0  Delta M_s more than 2 sigma away
+      PROB(34) =/= 0  Delta M_d more than 2 sigma away
+      PROB(35) =/= 0  B_s->mu+mu- more than 2 sigma away
+      PROB(36) =/= 0  B+-> tau+nu_tau more than 2 sigma away
+      PROB(37) =/= 0  (g-2)_muon more than 2 sigma away
+      PROB(38) =/= 0  excluded by Upsilon(1S) -> A gamma
+      PROB(39) =/= 0  excluded by eta_b(1S) mass measurement
+      PROB(40) =/= 0  BR(B-->X_s mu+ mu-) more than 2 sigma away
+      PROB(41) =/= 0  excluded by ee -> hZ, h -> AA -> 4taus (new ALEPH analysis)
+      PROB(42) =/= 0  excluded by top -> b H+, H+ -> c s (CDF, D0)
+      PROB(43) =/= 0  excluded by top -> b H+, H+ -> tau nu_tau (D0)
+      PROB(44) =/= 0  excluded by top -> b H+, H+ -> W+ A1, A1 -> 2taus (CDF)
+      PROB(45) =/= 0  excluded by t -> bH+ (LHC)
+      PROB(46) =/= 0  No Higgs in the MHmin-MHmax GeV range
+      PROB(47) =/= 0  chi2gam > chi2max
+      PROB(48) =/= 0  chi2bb > chi2max
+      PROB(49) =/= 0  chi2zz > chi2max
+
+Output parameters:
+
+     SMASS(1-3): CP-even masses (ordered)
+
+     SCOMP(1-3,1-3): Mixing angles: if HB(I) are the bare states,
+       HB(I) = Re(H1), Re(H2), Re(S), and HM(I) are the mass eigenstates,
+       the convention is HB(I) = SUM_(J=1,3) SCOMP(J,I)*HM(J)
+       which is equivalent to HM(I) = SUM_(J=1,3) SCOMP(I,J)*HB(J)
+
+     PMASS(1-2): CP-odd masses (ordered)
+
+     PCOMP(1-2,1-2): Mixing angles: if AB(I) are the bare states,
+       AB(I) = Im(H1), Im(H2), Im(S), and AM(I) are the mass eigenstates,
+       the convention is
+       AM(I) = PCOMP(I,1)*(COSBETA*AB(1)+SINBETA*AB(2))
+        	     + PCOMP(I,2)*AB(3)
+
+     CMASS: Charged Higgs mass
+
+     CU,CD,CV,CJ,CG(i)       Reduced couplings of h1,h2,h3 (i=1,2,3) or
+        		     a1,a2 (i=4,5) to up type fermions, down type
+        		     fermions, gauge bosons, gluons and photons
+        		     Note: CV(4)=CV(5)=0
+
+     WIDTH(i) Total decay width of h1,h2,h3,a1,a2 (i=1..5)
+             with the following branching ratios:
+     BRJJ(i)  h1,h2,h3,a1,a2 -> gluon gluon
+     BRMM(i)	     "       -> mu mu
+     BRLL(i)	     "       -> tau tau
+     BRSS(i)	     "       -> ss
+     BRCC(i)	     "       -> cc
+     BRBB(i)	     "       -> bb
+     BRTT(i)	     "       -> tt
+     BRWW(i)	     "       -> WW (BRWW(4)=BRWW(5)=0)
+     BRZZ(i)	     "       -> ZZ (BRZZ(4)=BRZZ(5)=0)
+     BRGG(i)	     "       -> gamma gamma
+     BRZG(i)	     "       -> Z gamma
+     BRHIGGS(i) (i=1..5)     -> other Higgses, including:
+       BRHAA(i,j)	  hi -> a1a1, a1a2, a2a2 (i=1..3, j=1..3)
+       BRHCHC(i)	  hi -> h+h- (i=1..3)
+       BRHAZ(i,j)	  hi -> Zaj  (i=1..3)
+       BRHCW(i)     h1,h2,h3 -> h+W- (i=1..3), a1,a2 -> h+W- (i=4,5)
+       BRHHH(i) 	  h2 -> h1h1, h3-> h1h1, h1h2, h2h2 (i=1..4)
+       BRAHA(i) 	  a2 -> a1hi (i=1..3)
+       BRAHZ(i,j)	  ai -> Zhj  (i=1,2, j=1..3)
+     BRSUSY(i) (i=1..5)      -> susy particles, including:
+       BRNEU(i,j,k)	     -> neutralinos j,k (i=1..5, j,k=1..5)
+       BRCHA(i,j)	     -> charginos 11, 12, 22 (i=1..5, j=1..3)
+       BRHSQ(i,j)	  hi -> uLuL, uRuR, dLdL, dRdR, t1t1, t2t2,
+        			t1t2, b1b1, b2b2, b1b2 (i=1..3, j=1..10)
+       BRASQ(i,j)	  ai -> t1t2, b1b2 (i=1,2, j=1,2)
+       BRHSL(i,j)	  hi -> lLlL, lRlR, nLnL, l1l1, l2l2, l1l2,
+        			ntnt (i=1..3, j=1..7)
+       BRASL(i) 	  ai -> l1l2 (i=1,2)
+
+     HCWIDTH	     Total decay width of the charged Higgs
+        	     with the following branching ratios:
+     HCBRM	  h+ -> mu nu_mu
+     HCBRL	  "  -> tau nu_tau
+     HCBRSU	  "  -> s u
+     HCBRBU	  "  -> b u
+     HCBRSC	  "  -> s c
+     HCBRBC	  "  -> b c
+     HCBRBT	  "  -> b t
+     HCBRWHT	  "  -> neutral Higgs W+, including:
+       HCBRWH(i)  "  -> H1W+, H2W+, h3W+, a1W+, a2W+ (i=1..5)
+     HCBRSUSY	  "  -> susy particles,including
+       HCBRNC(i,j)"  -> neutralino i chargino j (i=1..5, j=1,2)
+       HCBRSQ(i)  "  -> uLdL, t1b1, t1b2, t2b1, t2b2 (i=1..5)
+       HCBRSL(i)  "  -> lLnL, t1nt, t2nt (i=1..3)
+
+     MNEU(i)  Mass of neutralino chi_i (i=1,5, ordered in mass)
+     NEU(i,j) chi_i components of bino, wino, higgsino u&d, singlino 
+              (i,j=1..5)
+
+     MCHA(i)	     Chargino masses
+     U(i,j),V(i,j)   Chargino mixing matrices
+
+
+INPUT OPTIONS:
+
+The definitions of the parameters XIF, XIS, MU', MS'^2, M3H^2 in the
+general NMSSM (GNMSSM) can be found in Phys.Rept. 496 (2010) 1
+(arXiv:0910.1785).
+
+INPUT OPTIONS FOR NMHDECAY:
+
+Sparticles: M2, AU3, AD3, AE3, ML3, ME3, MQ3, MU3, MD3 have to be
+given. Unless specified otherwise, the code assumes
+M1=M2/2, M3=3*M2, AE1=AE2=AE3.
+
+NMSSM-specific parameters in the Higgs sector:
+
+The soft Higgs mass terms MHU^2, MHD^2 and MS^2 are always computed in
+terms of MZ, TANB and MUEFF.
+
+Always to specify: TANB, LAMBDA and MUEFF
+
+Note: values of commented parameters (including KAPPA) are assumed = 0,
+unless they are computed as output.
+
+Options for the parameter set "ALAMBDA, MA, XIF" where
+MA=diagonal doublet-doublet entry in the CP-odd mass matrix:
+Two out of these three parameters have to be specified,
+the remaining one is computed.
+(If all are commented, MA is computed assuming ALAMBDA=XIF=0,
+if only MA is input, ALAMBDA is computed assuming XIF=0,
+if only ALAMBDA is input, MA is computed assuming XIF=0,
+if only XIF is input, MA is computed assuming ALMBDA=0)
+
+Options for the parameter set "AKAPPA, MP, XIS" where
+MP=diagonal singlet-singlet entry in the CP-odd mass matrix:
+Two out of these three parameters have to be specified,
+the remaining one is computed.
+(If all are commented, MP is computed assuming AKAPPA=XIS=0,
+if only MP is input, AKAPPA is computed assuming XIS=0,
+if only AKAPPA is input, MP is computed assuming XIS=0,
+if only XIS is input, MP is computed assuming AKAPPA=0)
+
+Note: If KAPPA=0, AKAPPA must be =0
+
+In the output file, the values of the computed parameters are
+shown in the BLOCK EXTPAR, but commented.
+
+PARTICULAR CASES:
+
+Z_3-invariant NMSSM:
+Always to specify: TANB, LAMBDA, MUEFF, KAPPA, and in addition
+- either ALAMBDA or MA, and
+- either AKAPPA or MP.
+If too many of these latter parameters are specified, XIF and/or XIS
+are computed and indicated in the output.
+
+nMSSM (kappa=Akappa=0, but XIF, XIS non-vanishing):
+Always to specify: TANB, LAMBDA, MUEFF, and in addition
+- two parameters of the set (XIF, ALAMBDA, MA), the remaining parameter
+is computed, and
+- MP or XIS, the remaining parameter is computed.
+
+INPUT OPTIONS FOR NMHDECAY_RAND:
+
+Scans can be performed over all independent parameters of the Higgs
+sector (see above), and the gaugino masses M1, M2 and M3. If M1 and/or
+M3 are not specified, M1=M2/2 and M3=3*M2.
+
+For each parameter "P", P_max=P_min if P_max is not specified.
+P_min=0 by default, except for TANB, LAMBDA and MUEFF which have to be
+specified, and except for the parameters which are computed.
+Unless P_min=0 by default, P_max cannot be given if P_min is not known.
+(If KAPPA=0, AKAPPA is set = 0.)
+
+The user has to specify the total number of points.
+
+INPUT OPTIONS FOR NMHDECAY_GRID:
+
+The choice of independent parameters is as above.
+The user has to specify the number of points "NP" for each parameter
+to be scanned. By default NP=1. If P_max > P_min and NP=1, P_min is
+used. If P_max=P_min and NP>1, the user is alerted by a warning.
+
+
+INPUT OPTIONS FOR NMSPEC:
+
+The user has to specify TANB, LAMBDA, M0, M12 (unless all M1, M2 and M3
+are specified separately) and A0.
+ALAMBDA and AKAPPA (both at MGUT) can be specified independently from
+A0, if desired.
+MHD^2 and MHU^2 (both at MGUT) can be specified independently from m0,
+if MUEFF is NOT specified.
+
+Default values for all other parameters (unless computed in terms of
+others) are =0.
+
+By default, KAPPA is computed in terms of the other parameters. If KAPPA
+is input: XIF is computed and hence =/= 0 in general. If neither KAPPA
+nor XIF are given as inputs then KAPPA is computed assuming XIF=0. Both
+parameters cannot be simultaneously inputs.
+
+By default, the singlet soft mass MS^2 at MGUT is computed in terms of
+the other parameters and hence =/= m0 in general. If MS^2 is input, XIS
+is computed instead and hence =/= 0 in general. If neither MS^2 nor XIS
+are given as inputs then MS^2 is computed assuming XIS=0. Both
+parameters cannot be simultaneously inputs.
+
+By default, MUEFF is computed in terms of the other parameters, but then
+its sign SIGMU (FLOAT, not INTEGER) must be given.
+
+If MUEFF is an input parameter, KAPPA, XIF and XIS are also interpreted
+as input parameter (with default value =0 unless specified otherwise).
+Then the Higgs soft masses MHD^2, MHU^2 and MS^2 at MGUT are computed in
+terms of the other parameters and hence =/= m0 in general.
+
+By default, XIF=XIS=MU'=MS'^2=M3H^2=0, but can be specified otherwise
+(at MGUT).
+Exceptions: If MUEFF is NOT an input parameter and
+- if KAPPA is input: XIF is computed and hence =/= 0 in general;
+- if MS^2 is input: XIS is computed and hence =/= 0 in general.
+
+PARTICULAR CASES:
+
+cNMSSM (fully constrained Z_3-invariant NMSSM): Not possible as input;
+at least MS^2 at MGUT is an output
+
+sNMSSM (semi-constrained Z_3-invariant NMSSM, with non-universal singlet
+sector):
+Inputs TANB, LAMBDA, M0, M12, A0, ALAMBDA, AKAPPA
+-> KAPPA, MUEFF and MS^2 are computed.
+
+NUH-NMSSM (Z_3-invariant NMSSM with non-universal Higgs masses MS^2,
+MHD^2 and MHU^2 at MGUT):
+Inputs TANB, LAMBDA, KAPPA, M0, M12, A0 (possibly also ALAMBDA, AKAPPA),
+MUEFF
+-> MS^2, MHD^2 and MHU^2 are computed.
+
+nMSSM (no self coupling for the singlet): 
+Inputs TANB, LAMBDA, KAPPA=AKAPPA=0, M0, M12, A0 (possibly also ALAMBDA), XIS
+-> XIF, MUEFF, MS^2 are computed;
+or
+Inputs TANB, LAMBDA, KAPPA=AKAPPA=0, M0, M12, A0 (possibly also ALAMBDA), MS^2
+-> XIF, MUEFF, XIS are computed.
+Inputs TANB, LAMBDA, KAPPA=AKAPPA=0, M0, M12, A0 (possibly also ALAMBDA), MUEFF, XIF, XIS
+-> MHU^2, MHD^2, MS^2 are computed.
+
+INPUT OPTIONS FOR NMSPEC_RAND:
+
+Scans can be performed over all independent parameters (as above).
+For each parameter "P", P_max=P_min if P_max is not specified,
+P_max cannot be given if P_min is not known.
+Same default value assumed for P_min as for P.
+The user has to specify the total number of points.
+
+INPUT OPTIONS FOR NMSPEC_GRID:
+
+The choice of independent parameters is as above.
+The user has to specify the number of points "NP" for each parameter
+to be scanned. By default NP=1. If P_max > P_min and NP=1, P_min is
+used. If P_max=P_min and NP>1, the user is alerted by a warning.
+
+
+INPUT OPTIONS FOR NMGMSB:
+
+The definitions of the parameters specific to GMSB models
+can be found in JHEP 0805 (2008) 044 (arXiv:0803.2962).
+
+The user has to specify TANB, LAMBDA, MSUSY (SUSY scale), MMESS
+(messenger scale) N5 (number of 5-plets) and SIGMU (sign of MUEFF which
+is always computed). ALAMBDA (at MMESS) can be specified if =/=0. AKAPPA
+is always =3*ALAMBDA.
+
+Default values for all other parameters (unless computed in terms of
+others) are =0.
+
+By default, KAPPA is computed in terms of the other parameters. If KAPPA
+is input: XIF is computed and hence =/= 0 in general. If neither KAPPA
+nor XIF are given as inputs then KAPPA is computed assuming XIF=0. Both
+parameters cannot be simultaneously inputs.
+
+By default, the singlet soft mass MS^2 at MGUT is computed in terms of
+the other parameters. If MS^2 is input, XIS is computed instead and
+hence =/= 0 in general. If neither MS^2 nor XIS are given as inputs then
+MS^2 is computed assuming XIS=0. Both parameters cannot be
+simultaneously inputs.
+
+By default, XIF=XIS=MU'=MS'^2=DELTA_H=0, but can be specified otherwise (at MMESS).
+- if KAPPA is input: XIF is computed and hence =/= 0 in general;
+- if MS^2 is input: XIS is computed and hence =/= 0 in general.
+
+INPUT OPTIONS FOR NMGMSB_RAND:
+
+Scans can be performed over all independent parameters (as above).
+For each parameter "P", P_max=P_min if P_max is not specified,
+P_max cannot be given if P_min is not known.
+Same default value assumed for P_min as for P.
+The user has to specify the total number of points.
+
+INPUT OPTIONS FOR NMGMSB_GRID:
+
+The choice of independent parameters is as above.
+The user has to specify the number of points "NP" for each parameter
+to be scanned. By default NP=1. If P_max > P_min and NP=1, P_min is
+used. If P_max=P_min and NP>1, the user is alerted by a warning.
+

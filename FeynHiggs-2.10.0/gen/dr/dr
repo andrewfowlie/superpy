@@ -1,0 +1,181 @@
+#! /bin/sh -x
+
+case "$1" in
+ferm|sm|susy)
+	;;
+*)
+	echo "Usage:  $0 ferm|sm|susy"
+	echo 'will output diagrams & Mma code if DEBUG=1'
+	exit 1 ;;
+esac
+
+[ -d m ] || mkdir m
+[ -d f ] || mkdir f
+
+rm -f m/$1.* f/$1.*
+
+math -run tag=\"$1\" -run debug=${DEBUG:-0} << \_EOF_
+AppendTo[$Echo, "stdout"];
+
+<< FeynArts`;
+<< FormCalc`;
+<< btensor`;
+
+NClear[];
+Clear[CW2];
+
+$DebugCmd = {"#ifdef DETAILED_DEBUG\n", "#endif\n", "DPOPE ", " ENDL"};
+
+SetOptions[Paint, PaintLevel -> {InsertionLevel}];
+
+SetOptions[CalcFeynAmp,
+  FermionChains -> Chiral,
+  FermionOrder -> None,
+  Dimension -> D];
+
+If[ debug === 1, MkDir[$PaintSE = "d/"] ];
+
+CKM = IndexDelta;
+
+ifopt = Sequence@@ Options[InsertFields];
+cfopt = Sequence@@ Options[CalcFeynAmp];
+
+set[opt___] := (
+  SetOptions[InsertFields, ifopt, FilterOptions[InsertFields, opt]];
+  SetOptions[CalcFeynAmp, cfopt, FilterOptions[CalcFeynAmp, opt]];
+  ClearProcess[];
+  ClearSE[] );
+
+
+smsimp[x_] := MSSMSimplify[Simplify][x] //FullSimplify;
+
+pavesimp[x_] := Simplify @ Collect[x /. ToOldBRules,
+  _A0 | _B0 | _B1 | _B00 | _B11 | _DB0 | _DB1 | _DB00 | _DB11,
+  smsimp ];
+
+simp[x_] := Collect[x, _SumOver, pavesimp];
+
+
+do[name_][expr_] := (save[debug, name, #]; #)& @
+  (expr /. ME|ME2|MM|MM2 -> 0 /. Re -> Identity);
+
+save[1, name_, expr_] :=
+  Put[expr, ToFileName["m", tag <> "-" <> name <> ".m"]];
+
+
+Attributes[mod] = {HoldAll};
+
+mod[m_, excl___, expr_] := Block[{model = m, stdexcl = excl}, expr //simp];
+
+
+write[suffix_, expr_] :=
+Block[ {hh, name = "DeltaR1L_" <> suffix, fexpr},
+  Put[expr, ToFileName["m", name <> ".m"]];
+
+  hh = OpenFortran[ToFileName["f", name <> ".F"]];
+
+  WriteString[hh, "\
+* " <> name <> ".F\n\
+* generated " <> TimeStamp[] <> "\n\
+* this file is part of FeynHiggs\n\
+* please do not edit directly\n\n\
+#include \"externals.h\"\n\n\n\
+\tsubroutine " <> name <> "(dr)\n\
+\timplicit none\n\
+\tdouble complex dr\n\n\
+#include \"FH.h\"\n\
+#include \"looptools.h\"\n\n"];
+
+  fexpr = expr /. {
+    Alfa -> Alfa0,
+    Sqrt[2] -> sqrt2, 1/Sqrt[2] -> 1/sqrt2 };
+
+  WriteExpr[hh, {RuleAdd[dr, fexpr], "\tend\n"},
+    Optimize -> True,
+    Expensive -> {_A0, _B0, _B1, _B00, _B11, _DB0, _DB1, _DB00, _DB11},
+    (*HornerStyle -> False,*)
+    IndexType -> "integer",
+    DebugLines -> True,
+    FinalTouch -> simp];
+
+  Close[hh]
+];
+
+
+ffvl[mu_] := NonCommutative[ChiralityProjector[-1], DiracMatrix[mu]];
+
+mudecay[tag_, opt_, excl___] :=
+Block[ {top, ins, amp},
+  set[Model -> model,
+    InsertionLevel -> {Classes (*Particles*)},
+    ExcludeParticles -> {S[1|2|3|4|5|6], U, (*F[1|2,{3}],*) F[3|4],
+      excl, stdexcl}];
+  top = CreateTopologies[1, 1 -> 3, opt];
+  ins = InsertFields[top, F[2,{2}] -> {F[2,{1}], -F[1,{1}], F[1,{2}]}];
+  OptPaint[ins, $PaintSE, "-", tag];
+  amp = CreateFeynAmp[ins] /. ME|MM -> 0 /.
+    FourMomentum[Incoming|Outgoing, _] -> 0 /.
+    FermionChain[_, a__, _] FermionChain[_, b__, _] :>
+      MatrixTrace[a, ffvl[Index[Lorentz4, mu]]] *
+      MatrixTrace[b, ffvl[Index[Lorentz4, nu]]] *
+      MetricTensor[Index[Lorentz4, mu], Index[Lorentz4, nu]];
+  do[tag][-1/D*(2 SW2 MW2)/EL^2 1/2 1/2 *
+    Plus@@ CalcFeynAmp[amp, Dimension -> 0]]
+];
+
+vertex := mudecay["vertex", TrianglesOnly];
+
+box := mudecay["box", BoxesOnly, V[1]];
+
+counter := do["counter"][
+  set[Model -> model,
+    ExcludeParticles -> {V[1], stdexcl},
+    Dimension -> D];
+  Sum[DZfL1[t, g], {t, 2}, {g, 2}]/2 ];
+
+
+DZAA1[heavy] := do["dZAA1heavy"][ FieldRC[V[1]] ];
+DZAA1[light] := do["dZAA1light"][ -ReTilde[SelfEnergy[V[1], MZ]]/MZ2 ];
+DZZA1 := do["dZZA1"][ FieldRC[V[2], V[1]] ];
+DZe1 := do["dZe1"][ -1/2 (DZAA1[aaflag] - $HKSign SW/CW DZZA1) ];
+DSWsq1 := do["dSWsq1"][ CW2 (DMZsq1/MZ2 - DMWsq1/MW2) ];
+DMZsq1 := do["dMZsq1"][ MassRC[V[2]] ];
+DMWsq1 := do["dMWsq1"][ MassRC[V[3]] ];
+DZfL1[t_, g_] := do["dZfL1-" <> ToString[t] <> ToString[g]][ FieldRC[F[t,{g}]][[1]] ];
+
+
+dW[excl_, aa_:heavy] :=
+Block[ {aaflag = aa},
+  set[Model -> model, ExcludeParticles -> Flatten[{excl, stdexcl}]];
+  SelfEnergy[V[3], 0]/MW2 - DMWsq1/MW2 + 2 DZe1 - DSWsq1/SW2 /.
+    HoldPattern[$HKSign] -> -1 (* default for SM.mod *)
+];
+
+dWtop := (
+  set[Model -> model,
+    InsertionLevel -> {Particles},
+    ExcludeParticles -> {S, V, U, F[1|2|4], F[3,{1|2}], stdexcl}];
+  DZAA1[light] - DZAA1[heavy]
+);
+
+
+drbos := do["dWbos"][ dW[F[1|2|3|4]] ] + counter +
+  UVSeries[vertex + box + Alfa/(4 Pi) (2 - 4/D A0[MW2]/MW2), 0]
+
+
+dr["ferm"] := mod["SM", dW[{S, V, U}, light] + dWtop];
+
+dr["sm"] := mod["SM", drbos];
+
+dr["susy"] := mod["MSSM", drbos];
+
+_dr := (Print["UNKNOWN TAG"]; Abort[]);
+
+
+deltar[t_] := (ClearSE[]; write[t, dr[t]])
+
+
+deltar[tag]
+
+_EOF_
+

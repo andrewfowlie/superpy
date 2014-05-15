@@ -1,0 +1,113 @@
+# Input file for NMSSMTools
+# Based on SUSY LES HOUCHES ACCORD II
+
+BLOCK MODSEL
+	3	1		# NMSSM particle content
+	1	1		# IMOD (0=general NMSSM, 1=mSUGRA, 2=GMSB)
+	10	1		# ISCAN (0=no scan, 1=grid scan, 2=random scan, 3=MCMC)
+	9	0		# Call micrOmegas (default 0=no, 1=relic density only,
+#				  2=dir. det. rate, 3=indir. det. rate, 4=both det. rates)
+	8       0               # Precision for Higgs masses (default 0: as before,
+#                                 1: full 1 loop + full 2 loop from top/bot Yukawas
+#				  2: as 1 + pole masses - 1&2 by courtesy of P. Slavich)
+	13      0               # 1: Sparticle decays via NMSDECAY (default 0)
+	11      1               # Constraints on (g-2)_muon (1=yes, 0=no, default=1)
+
+BLOCK SMINPUTS
+	1	127.92D0	# ALPHA_EM^-1(MZ)
+	2	1.16639D-5	# GF
+	3	.1172D0		# ALPHA_S(MZ)
+	4	91.187D0	# MZ
+	5	4.214D0		# MB(MB) (running mass)
+	6	171.4D0		# MTOP (pole mass)
+	7	1.777D0		# MTAU
+
+BLOCK MINPAR
+#	0	1000.D0		# MSUSY (If =/= SQRT(2*MQ1+MU1+MD1)/2)
+	17	1000.D0		# M0_min
+#	18	1000.D0		# M0_max (If =/= min)
+	27	500.D0		# M12_min
+#	28	500.D0		# M12_max (If =/= min)
+	37	6.D0		# TANB_min at MZ
+	38	10.D0		# TANB_max at MZ (If =/= min)
+	4	1.D0		# SIGMU (If MUEFF is not an input)
+	57	-900.D0		# A0_min
+#	58	-900.D0		# A0_max (If =/= min)
+
+BLOCK EXTPAR
+#	107	250.D0		# M1_min at MGUT (If =/= M12)
+#	108	250.D0		# M1_max at MGUT (If =/= min)
+#	207	250.D0		# M2_min at MGUT (If =/= M12)
+#	208	250.D0		# M2_max at MGUT (If =/= min)
+#	307	250.D0		# M3_min at MGUT (If =/= M12)
+#	308	250.D0		# M3_max at MGUT (If =/= min)
+#	217	9.D4		# MHD^2_min at MGUT (If =/= M0^2 and MUEFF is not an input)
+#	218	9.D4		# MHD^2_max at MGUT (If =/= min and MUEFF is not an input)
+#	227	9.D4		# MHU^2_min at MGUT (If =/= M0^2 and MUEFF is not an input)
+#	228	9.D4		# MHU^2_max at MGUT (If =/= min and MUEFF is not an input)
+	617	1.D-1		# LAMBDA_min at MSUSY
+	618	1.5D-1		# LAMBDA_max at MSUSY (If =/= min)
+#	627	.12D0		# KAPPA_min at MSUSY
+#	628	.17D0		# KAPPA_max at MSUSY (If =/= min)
+#				  If MUEFF is input: KAPPA_min default value is 0
+#				  Else either KAPPA or XIF are inputs:
+#                                      if only KAPPA is input: XIF computed
+#				       if only XIF is input: KAPPA computed
+#				       if KAPPA+XIF are not inputs: XIF=0 and KAPPA computed
+#	637	-900.D0		# ALAMBDA_min at MGUT (If =/= A0)
+#	638	-900.D0		# ALAMBDA_max at MGUT (If =/= min)
+	647	-150.D0		# AKAPPA_min at MGUT (If =/= A0 and KAPPA =/=0)
+#	648	-150.D0		# AKAPPA_max at MGUT (If =/= min and KAPPA =/=0)
+#	657	540.D0		# MUEFF_min at MSUSY
+#	658	550.D0		# MUEFF_max at MSUSY (If =/= min)
+#                                 Then MHU, MHD, MS are computed and cannot be inputs
+#                                 If MUEFF is not an input it is computed
+#	667	0.D0		# XIF_min at MGUT in GeV^2
+#	668	0.D0		# XIF_max at MGUT in GeV^2 (If =/= min)
+#				  If MUEFF is input: XIF_min default value is 0
+#				  Else either KAPPA or XIF are inputs:
+#                                      if only KAPPA is input: XIF  computed
+#				       if only XIF is input: KAPPA computed
+#				       if KAPPA+XIF are not inputs: XIF=0 and KAPPA computed
+#	677	0.D0	 	# XIS_min at MGUT in GeV^3
+#	678	0.D0	 	# XIS_max at MGUT in GeV^3 (If =/= min)
+#				  If MUEFF is input: XIS_min default value is 0
+#				  Else either MS or XIS are inputs:
+#                                      if only MS is input: XIS computed
+#				       if only XIS is input: MS computed
+#				       if MS+XIS are not inputs: XIS=0 and MS computed
+#	687	0.D0		# MU'_min at MGUT (If =/= 0)
+#	688	0.D0		# MU'_max at MGUT (If =/= min)
+#	697	0.D0		# MS'^2_min at MGUT (If =/= 0)
+#	698	0.D0		# MS'^2_max at MGUT (If =/= min)
+#	707	0.D0		# MS^2_min at MGUT
+#	708	0.D0		# MS^2_max at MGUT (If =/= min)
+#				  Only if MUEFF is not an input
+#				  Either MS or XIS are inputs:
+#                                      if only MS is input: XIS computed
+#				       if only XIS is input: MS computed
+#				       if MS+XIS are not inputs: XIS=0 and MS computed
+#	727	0.D0		# M3H^2_min at MGUT (If =/= 0)
+#	728	0.D0		# M3H^2_max at MGUT (If =/= min)
+
+BLOCK STEPS
+#	19	1		# NM0 (If =/= 1)
+#	29	1		# NM12 (If =/= 1)
+	39	10		# NTB (If =/= 1)
+#	59	1		# NA0 (If =/= 1)
+#	109	1		# NM1 (If =/= 1)
+#	209	1		# NM2 (If =/= 1)
+#	309	1		# NM3 (If =/= 1)
+#	219	1		# NMHD (If =/= 1)
+#	229	1		# NMHU (If =/= 1)
+	619	10		# NL (If =/= 1)
+#	629	1		# NK (If =/= 1)
+#	639	1		# NAL (If =/= 1)
+#	649	1		# NAK (If =/= 1)
+#	659	1		# NMU (If =/= 1)
+#	669	1		# NXIF (If =/= 1)
+#	679	1		# NXIS (If =/= 1)
+#	689	1		# NMUP (If =/= 1)
+#	699	1		# NMSP (If =/= 1)
+#	709	1		# NMS (If =/= 1)
+#	729	1		# NM3H (If =/= 1)

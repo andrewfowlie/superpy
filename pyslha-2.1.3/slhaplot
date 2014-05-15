@@ -1,0 +1,620 @@
+#! /usr/bin/env python
+
+"""\
+Usage: %prog [options] <spcfile> [<spcfile2> ...]
+
+Make a SUSY mass spectrum plot from an SLHA or ISAWIG spectrum file. If the
+filename ends with .isa, it will be assumed to be an ISAWIG file, otherwise
+it will be assumed to be an SLHA file (for which the normal extension is .spc).
+
+Output is currently rendered via the LaTeX PGF/TikZ graphics package: this may
+be obtained as PDF (by default), EPS, PNG or as LaTeX source which can be edited or
+compiled into any LaTeX-supported form. By default the output file name(s) are
+the same as the input names but with the file extension replaced with one appropriate
+to the output file format.
+
+Please cite the PySLHA paper: http://arxiv.org/abs/1305.4194
+
+Author:
+  Andy Buckley <andy.buckley@cern.ch>
+  http://insectnation.org/projects/pyslha
+
+TODOs:
+  * Fix a rendering or pdfcrop bug which can make the upper border hit the PDF/PNG plot edge.
+  * Allow users to fix the y-axis range. Requires some detailed treatment of what to
+    do with decay arrows that would go outside the range. Eliminate --maxmass?
+  * Allow user to provide a file which defines the particle line x-positions, labels, etc.
+  * Use unit scaling to allow the y coordinates to be in units of 100 GeV in TikZ output.
+  * Merge labels if shifting fails (cf. "poi" test spectrum file).
+  * Allow use of --outname to specify a list of output base names for multiple inputs.
+  * Use proper distinction between physical, plot-logical, and plot output coords.
+  * Allow more user control over the output geometry.
+  * Distribute decay arrow start/end positions along mass lines rather than always
+    to/from their centres?
+"""
+
+class XEdges(object):
+    def __init__(self, left, offset=0.0, width=2.0):
+        self.offset = offset
+        self.left = left + offset
+        self.width = width
+    @property
+    def right(self):
+        return self.left + self.width
+    @property
+    def centre(self):
+        return (self.left + self.right)/2.0
+
+
+class Label(object):
+    def __init__(self, text, offset=None):
+        self.text = text
+        self.offset = None
+    def __str__(self):
+        return self.text
+
+
+## Details classes for representing decided positions in a way independent of output format
+
+
+class ParticleDetails(object):
+    def __init__(self, label, xnom, xoffset, color="black", labelpos="L", mass=None):
+        self.label = label
+        self.mass = mass
+        self.xedges = XEdges(xnom, xoffset)
+        self.color = color
+        self.labelpos = labelpos
+
+
+class DecayDetails(object):
+    def __init__(self, pidfrom, xyfrom, pidto, xyto, br, color="gray"): #, thickness=1px, label=None):
+        self.pidfrom = pidfrom
+        self.xyfrom = xyfrom
+        self.pidto = pidto
+        self.xyto = xyto
+        self.br = br
+        self.color = color
+        #self.label = label
+
+
+class LabelDetails(object):
+    def __init__(self, xy, texlabel, anchor="l", color="black"):
+        self.xy = xy
+        self.texlabel = texlabel
+        ## Add non-TeX-based label rendering via this property, if needed
+        self.textlabel = texlabel
+        self.anchor = anchor
+        self.color = color
+
+
+# ## Python version workaround
+# if not "any" in dir():
+#     def any(*args):
+#         for i in args:
+#             if i: return True
+#         return False
+
+
+class OutputFormatSpec(object):
+    """Object to abstract translation of semi-arbitrary format strings into
+    something more semantically queryable."""
+
+    def __init__(self, fmtstr):
+        self.textformats = ("tex",  "texfrag")
+        self.graphicsformats = ("pdf",  "eps", "ps", "png", "jpg")
+        self.formats = fmtstr.lower().split(",")
+        ## Remove duplicates and check for unknown formats
+        tmp = []
+        for f in self.formats:
+            if f in tmp:
+                continue
+            if f not in self.textformats + self.graphicsformats:
+                logging.error("Requested output format '%s' is not known" % f)
+                sys.exit(1)
+            tmp.append(f)
+        self.formats = tmp
+        ## You can't currently use texfrag format in combination with any other
+        if "texfrag" in self.formats and len(self.formats) > 1:
+            logging.error("Oops! You can't currently use LaTeX fragment output together with either "
+                          "full LaTeX or graphics output since the graphics can't be built from the "
+                          "incomplete LaTeX file. We'll fix this, but for now you will have to run slhaplot twice: "
+                          "once for the LaTeX fragment, and again time for the other formats. Exiting...")
+            sys.exit(1)
+
+    def needs_compilation(self):
+        return any(f in self.formats for f in self.graphicsformats)
+
+    def file_extensions(self):
+        if "texfrag" in self.formats:
+            return ["frag.tex"]
+        else:
+            return self.formats
+
+
+
+import pyslha
+import sys, optparse, logging
+parser = optparse.OptionParser(usage=__doc__, version=pyslha.__version__)
+parser.add_option("-o", "--outname", metavar="NAME",
+                  help="write output to NAME.suffix, i.e. the suffix will be automatically "
+                  "generated and the argument to this command now just specifies the base "
+                  "of the output to which the extension is appended: this allows multiple "
+                  "formats to be written simultaneously. If you provide a file extension "
+                  "as part of the NAME argument, it will be treated as part of the base "
+                  "name and another extension will be automatically added. Note that this "
+                  "option can only be used if only processing a single input file, as you "
+                  "presumably don't want all the input spectra to overwrite each other!",
+                  dest="OUTNAME", default=None)
+parser.add_option("-f", "--format", metavar="FORMAT",
+                  help="format in which to write output. 'tex' produces LaTeX source using the "
+                  "TikZ graphics package to render the plot, 'texfrag' produces the same but "
+                  "with the LaTeX preamble and document lines commented out to make it directly "
+                  "includeable as a code fragment in LaTeX document source. The supported graphics "
+                  "formats are PDF, EPS, PS, PNG, and JPEG via the 'pdf', 'eps', 'ps', 'png' and "
+                  "'jpg' values respectively. Multiple formats can be created by listing them "
+                  "comma-separated in the format string, e.g. 'png,pdf,tex' (default: %default)",
+                  dest="FORMAT", default="pdf")
+parser.add_option("--aspect-ratio", metavar="RATIO", type=float,
+                  help="Override the default plot geometry with a custom y/x length ratio (default=%default)",
+                  dest="ASPECTRATIO", default=0.7) #0.618
+parser.add_option("--preamble", metavar="FILE",
+                  help="specify a file to be inserted into LaTeX output as a special preamble",
+                  dest="PREAMBLE", default=None)
+parser.add_option("--include", metavar="FILE",
+                  help="specify a file to be inserted into the TikZ picture code of the LaTeX "
+                  "output. An example file content would be '\draw (10,12) node[left] {\Large FOO};' "
+                  "to place a label 'FOO' at position (10,12) on the plot. The plot coordinates "
+                  "currently run from (0,0) for bottom-left to ~(22,15) for top right.",
+                  dest="INCLUDE", default=None)
+parser.add_option("--minbr", "--br", metavar="BR",
+                  help="show decay lines for decays with a branching ratio of > BR, as either a "
+                  "fraction or percentage (default: show none)",
+                  dest="DECAYS_MINBR", default="1.1")
+parser.add_option("--decaystyle", choices=["const", "brwidth", "brcolor", "brwidth+brcolor"], metavar="STYLE",
+                  help="drawing style of decay arrows, from const/brwidth. The 'const' style draws "
+                  "all decay lines with the same width, 'brwidth' linearly scales the width of the "
+                  "decay arrow according to the decay branching ratio. Other modes such as BR-dependent "
+                  "colouring may be added later. (default: %default)",
+                  dest="DECAYS_STYLE", default="brwidth+brcolor")
+parser.add_option("--labels", choices=["none", "merge", "shift"], metavar="MODE",
+                  help="treatment of labels for particle IDs, from none/merge/shift. 'none' shows "
+                  "no labels at all, 'merge' combines would-be-overlapping labels into a single "
+                  "comma-separated list, and 'shift' vertically shifts the clashing labels to avoid "
+                  "collisions (default: %default)",
+                  dest="PARTICLES_LABELS", default="shift")
+parser.add_option("--maxmass", type="float", metavar="MASS",
+                  help="don't show particles or decays with masses higher than this, "
+                  "in GeV (default: %default)", dest="MAXMASS", default=10000)
+
+verbgroup = optparse.OptionGroup(parser, "Verbosity control")
+parser.add_option("-l", dest="NATIVE_LOG_STRS", action="append",
+                  default=[], help="set a log level in the Rivet library")
+verbgroup.add_option("-v", "--verbose", action="store_const", const=logging.DEBUG, dest="LOGLEVEL",
+                     default=logging.INFO, help="print debug (very verbose) messages")
+verbgroup.add_option("-q", "--quiet", action="store_const", const=logging.WARNING, dest="LOGLEVEL",
+                     default=logging.INFO, help="be very quiet")
+parser.add_option_group(verbgroup)
+
+
+## Run parser and configure the logging level
+opts, args = parser.parse_args()
+logging.basicConfig(level=opts.LOGLEVEL, format="%(message)s")
+
+## Create some boolean flags from the chosen particle label clash-avoidance scheme
+opts.PARTICLES_LABELS_SHOW = (opts.PARTICLES_LABELS != "none")
+opts.PARTICLES_LABELS_MERGE = (opts.PARTICLES_LABELS == "merge")
+opts.PARTICLES_LABELS_SHIFT = (opts.PARTICLES_LABELS == "shift")
+
+## Parsing the branching ratio string
+if opts.DECAYS_MINBR.endswith("%"):
+    opts.DECAYS_MINBR = float(opts.DECAYS_MINBR[:-1]) / 100.0
+else:
+    opts.DECAYS_MINBR = float(opts.DECAYS_MINBR)
+
+## Output format handling: convert string arg to a more semantically queryable type
+opts.FORMAT = OutputFormatSpec(opts.FORMAT)
+
+
+## Check non-optional arguments
+INFILES = args
+if len(INFILES) == 0:
+    parser.print_help()
+    sys.exit(1)
+if len(INFILES) > 1 and opts.OUTNAME is not None:
+    logging.error("Multiple input files specified with --outname... not a good plan! Exiting for your own good...")
+    sys.exit(1)
+
+
+## Test for external packages (including tex2pix)
+if opts.FORMAT.needs_compilation():
+    try:
+        import tex2pix
+    except:
+        logging.error("Python package tex2pix could not be found: graphical output cannot work... exiting")
+        sys.exit(1)
+    if not tex2pix.check_latex_pkg("tikz.sty"):
+        logging.error("LaTeX tikz.sty could not be found: graphical output cannot work... exiting")
+        sys.exit(1)
+
+
+## Loop over input spectrum files
+for infile in INFILES:
+
+    ## Choose output file
+    outname = opts.OUTNAME
+    if outname is None:
+        import os
+        o = os.path.basename(infile)
+        if o == "-":
+            o = "out"
+        elif "." in o:
+            o = o[:o.rindex(".")]
+        outname = o
+
+    ## Info for the user
+    extlist = opts.FORMAT.file_extensions()
+    extstr = ",".join(extlist)
+    if len(extlist) > 1:
+        extstr = "{" + extstr + "}"
+    logging.info("Plotting %s -> %s.%s" % (infile, outname, extstr))
+
+
+    ## Read spectrum file
+    BLOCKS, DECAYS = None, None
+    try:
+        if infile == "-":
+            intext = sys.stdin.read()
+            BLOCKS, DECAYS = pyslha.readSLHA(intext)
+        elif infile.endswith(".isa"):
+            BLOCKS, DECAYS = pyslha.readISAWIGFile(infile)
+        else:
+            BLOCKS, DECAYS = pyslha.readSLHAFile(infile)
+    except pyslha.ParseError, pe:
+        logging.error(str(pe) + "... exiting")
+        sys.exit(1)
+
+
+    ## Define particle rendering details (may be adapted based on input file, so it *really*
+    ## does need to be redefined in each loop over spectrum files!)
+    XHIGGS = 0.0
+    XSLEPTON = 5.0
+    XGAUGINO = 10.0
+    XSUSYQCD = 15.0
+    PDETAILS = {
+        25 : ParticleDetails(Label(r"$h^0$"), XHIGGS, -0.2, color="blue"),
+        35 : ParticleDetails(Label(r"$H^0$"), XHIGGS, -0.2, color="blue"),
+        36 : ParticleDetails(Label(r"$A^0$"), XHIGGS, -0.2, color="blue"),
+        37 : ParticleDetails(Label(r"$H^\pm$"), XHIGGS, 0.2, color="red"),
+        1000011 : ParticleDetails(Label(r"$\tilde{\ell}_\text{L}$"), XSLEPTON, -0.2, color="blue"),
+        2000011 : ParticleDetails(Label(r"$\tilde{\ell}_\text{R}$"), XSLEPTON, -0.2, color="blue"),
+        1000015 : ParticleDetails(Label(r"$\tilde{\tau}_1$"), XSLEPTON, 0.2, color="red"),
+        2000015 : ParticleDetails(Label(r"$\tilde{\tau}_2$"), XSLEPTON, 0.2, color="red"),
+        1000012 : ParticleDetails(Label(r"$\tilde{\nu}_\text{L}$"), XSLEPTON, -0.2, color="blue"),
+        1000016 : ParticleDetails(Label(r"$\tilde{\nu}_\tau$"), XSLEPTON, 0.2, color="red"),
+        1000022 : ParticleDetails(Label(r"$\tilde{\chi}_1^0$"), XGAUGINO, -0.2, color="blue"),
+        1000023 : ParticleDetails(Label(r"$\tilde{\chi}_2^0$"), XGAUGINO, -0.2, color="blue"),
+        1000025 : ParticleDetails(Label(r"$\tilde{\chi}_3^0$"), XGAUGINO, -0.2, color="blue"),
+        1000035 : ParticleDetails(Label(r"$\tilde{\chi}_4^0$"), XGAUGINO, -0.2, color="blue"),
+        1000024 : ParticleDetails(Label(r"$\tilde{\chi}_1^\pm$"), XGAUGINO, 0.2, color="red"),
+        1000037 : ParticleDetails(Label(r"$\tilde{\chi}_2^\pm$"), XGAUGINO, 0.2, color="red"),
+        1000039 : ParticleDetails(Label(r"$\tilde{G}$"), XGAUGINO,  0.15, color="black!50!blue!30!green"),
+        1000021 : ParticleDetails(Label(r"$\tilde{g}$"), XSUSYQCD, -0.3, color="black!50!blue!30!green"),
+        1000001 : ParticleDetails(Label(r"$\tilde{q}_\text{L}$"), XSUSYQCD, -0.1, color="blue"),
+        2000001 : ParticleDetails(Label(r"$\tilde{q}_\text{R}$"), XSUSYQCD, -0.1, color="blue"),
+        1000005 : ParticleDetails(Label(r"$\tilde{b}_1$"), XSUSYQCD, 0.2, color="black!50!blue!30!green"),
+        2000005 : ParticleDetails(Label(r"$\tilde{b}_2$"), XSUSYQCD, 0.2, color="black!50!blue!30!green"),
+        1000006 : ParticleDetails(Label(r"$\tilde{t}_1$"), XSUSYQCD, 0.2, color="red"),
+        2000006 : ParticleDetails(Label(r"$\tilde{t}_2$"), XSUSYQCD, 0.2, color="red")
+    }
+
+
+    ## Set mass values in PDETAILS
+    massblock = BLOCKS["MASS"]
+    for pid in PDETAILS.keys():
+        if massblock.has_key(pid) and abs(massblock[pid]) < opts.MAXMASS:
+            PDETAILS[pid].mass = abs(massblock[pid])
+        else:
+            del PDETAILS[pid]
+
+
+    ## Decays
+    DDETAILS = {}
+    for pid, detail in sorted(PDETAILS.iteritems()):
+        if DECAYS.has_key(pid):
+            DDETAILS.setdefault(pid, {})
+            xyfrom = (detail.xedges.centre, detail.mass)
+            for d in DECAYS[pid].decays:
+                if d.br > opts.DECAYS_MINBR:
+                    for pid2 in d.ids:
+                        if PDETAILS.has_key(pid2):
+                            xyto = (PDETAILS[pid2].xedges.centre, PDETAILS[pid2].mass)
+                            DDETAILS[pid][pid2] = DecayDetails(pid, xyfrom, pid2, xyto, d.br)
+        if DDETAILS.has_key(pid) and not DDETAILS[pid]:
+            del DDETAILS[pid]
+
+    ## Warn if decays should be drawn but none were found in the spectrum file
+    if opts.DECAYS_MINBR <= 1.0 and not DECAYS:
+        logging.warning("Decay drawing enabled, but no decays found in file %s" % infile)
+
+
+    ## Labels
+    PLABELS = []
+    if opts.PARTICLES_LABELS_SHOW:
+        class MultiLabel(object):
+            def __init__(self, label=None, x=None, y=None, anchor=None):
+                self.labels = [(label, x, y)] or []
+                self.anchor = anchor or "l"
+
+            def __len__(self):
+                return len(self.labels)
+
+            @property
+            def joinedlabel(self):
+                return r",\,".join(l[0] for l in self.labels)
+
+            @property
+            def avgx(self):
+                return sum(l[1] for l in self.labels)/float(len(self))
+            @property
+            def minx(self):
+                return min(l[1] for l in self.labels)
+            @property
+            def maxx(self):
+                return max(l[1] for l in self.labels)
+
+            @property
+            def avgy(self):
+                return sum(l[2] for l in self.labels)/float(len(self))
+            @property
+            def miny(self):
+                return min(l[2] for l in self.labels)
+            @property
+            def maxy(self):
+                return max(l[2] for l in self.labels)
+
+            def add(self, label, x, y):
+                self.labels.append((label, x, y))
+                self.labels = sorted(self.labels, key=lambda l : l[2])
+                return self
+            def get(self):
+                for i in self.labels:
+                    yield i
+
+        def rel_err(a, b):
+            return abs((a-b)/(a+b)/2.0)
+
+        ## Use max mass to work out the height of a text line in mass units
+        maxmass = None
+        for pid, pdetail in sorted(PDETAILS.iteritems()):
+            maxmass = max(pdetail.mass, maxmass)
+        text_height_in_mass_units = maxmass/22.0
+        ##
+        ## Merge colliding labels
+        reallabels = []
+        for pid, pdetail in sorted(PDETAILS.iteritems()):
+            labelx = None
+            offset = pdetail.label.offset or 0.2
+            anchor = None
+            if pdetail.xedges.offset <= 0:
+                labelx = pdetail.xedges.left - offset
+                anchor = "r"
+            else:
+                labelx = pdetail.xedges.right + offset
+                anchor = "l"
+            labely = pdetail.mass
+            ## Avoid hitting the 0 mass line/border
+            if labely < 0.6*text_height_in_mass_units:
+                labely = 0.6*text_height_in_mass_units
+
+            text = pdetail.label.text
+            ## Check for collisions
+            collision = False
+            if opts.PARTICLES_LABELS_SHIFT or opts.PARTICLES_LABELS_MERGE:
+                for i, rl in enumerate(reallabels):
+                    if anchor == rl.anchor and abs(labelx - rl.avgx) < 0.5:
+                        import math
+                        if labely > rl.miny - text_height_in_mass_units and labely < rl.maxy + text_height_in_mass_units:
+                            reallabels[i] = rl.add(text, labelx, labely)
+                            collision = True
+                            break
+            if not collision:
+                reallabels.append(MultiLabel(text, labelx, labely, anchor))
+        ## Calculate position shifts and fill PLABELS
+        for rl in reallabels:
+            if len(rl) == 1 or opts.PARTICLES_LABELS_MERGE:
+                PLABELS.append(LabelDetails((rl.avgx, rl.avgy), rl.joinedlabel, anchor=rl.anchor))
+            else:
+                num_gaps = len(rl)-1
+                yrange_old = rl.maxy - rl.miny
+                yrange_nom = num_gaps * text_height_in_mass_units
+                yrange = max(yrange_old, yrange_nom)
+                ydiff = yrange - yrange_old
+                for i, (t, x, y) in enumerate(rl.get()):
+                    ydiff_per_line = ydiff/num_gaps
+                    # TODO: Further improvement using relative or average positions?
+                    newy = y + (i - num_gaps/2.0) * ydiff_per_line
+                    PLABELS.append(LabelDetails((x, newy), t, anchor=rl.anchor))
+
+
+    ## Function for writing out the generated source
+    def writeout(out, outfile):
+        f = sys.stdout
+        if outfile != "-":
+            f = open(outfile, "w")
+        f.write(out)
+        if f is not sys.stdout:
+            f.close()
+
+    out = ""
+
+
+    ## Comment out the preamble etc. if only the TikZ fragment is wanted
+    c = ""
+    if "texfrag" in opts.FORMAT.formats:
+        c = "%"
+
+    ## Write LaTeX header
+    # TODO: Need to sort out the geometry of the page vs. the plot, margin interactions, etc.
+    lx = 15.2
+    ly = 0.93 * opts.ASPECTRATIO * lx # was 9.8
+    out += "%% http://pypi.python.org/pypi/pyslha\n\n"
+    out += c + "\\documentclass[11pt]{article}\n"
+    out += c + "\\usepackage{amsmath,amssymb}\n"
+    out += c + "\\usepackage[margin=0cm,paperwidth=%.1fcm,paperheight=%.1fcm]{geometry}\n" % (lx, ly)
+    out += c + "\\usepackage{tikz}\n"
+    out += c + "\\pagestyle{empty}\n"
+    out += c + "\n"
+    ## Insert user-specified preamble file
+    if opts.PREAMBLE is not None:
+        out += c + "%% User-supplied preamble\n"
+        try:
+            fpre = open(opts.PREAMBLE, "r")
+            for line in fpre:
+                out += c + line
+        except:
+            logging.warning("Could not read preamble file %s -- fallback to using \\input" % opts.PREAMBLE)
+            out += c + "\\input{%s}\n" % opts.PREAMBLE.replace(".tex", "")
+    else:
+        out += c + "%% Default preamble\n"
+        if "tex2pix" in dir() and tex2pix.check_latex_pkg("mathpazo.sty"):
+            out += c + "\\usepackage[osf]{mathpazo}\n"
+    #
+    out += c + "\n"
+    out += c + "\\begin{document}\n"
+    out += c + "\\thispagestyle{empty}\n\n"
+
+    ## Get coord space size: horizontal range is fixed by make-plots
+    xmin = -3.0
+    xmax = 19.0
+    if opts.PARTICLES_LABELS_MERGE:
+        ## Need more space if labels are to be merged horizontally
+        xmin -= 1.0
+        xmax += 1.0
+    xdiff = xmax - xmin
+    XWIDTH = 22.0
+    def scalex(x):
+        return x * XWIDTH/xdiff
+
+    ydiff = opts.ASPECTRATIO * XWIDTH
+    ymin = 0.0
+    ymax = ymin + ydiff
+    # TODO: y-height is not fully stable... fix
+
+    ## Get range of masses needed (quite application-specific at the moment)
+    # TODO: support user-forced min/max y-axis values
+    maxmass = max(pd.mass for pid, pd in PDETAILS.iteritems())
+    maxdisplaymass = maxmass * 1.1
+    if maxdisplaymass % 100 != 0:
+        maxdisplaymass = ((maxdisplaymass + 100) // 100) * 100
+    yscale = (ymax-ymin)/maxdisplaymass
+
+    ## Write TikZ header
+    out += "\\centering\n"
+    out += "\\begin{tikzpicture}[scale=0.6]\n"
+
+    out += "  %% y-scalefactor (GeV -> coords) = %e\n\n" % yscale
+
+    ## Draw the plot boundary and y-ticks
+    out += "  %% Frame\n"
+    out += "  \\draw (%f,%f) rectangle (%f,%f);\n" % (scalex(xmin), ymin, scalex(xmax), ymax)
+    out += "  %% y-ticks\n"
+
+    def calc_tick_vals(vmax, vdiff_nominal=100, max_num_ticks=12):
+        """Calculate a display-optimised list of values at which tick marks will be drawn.
+
+        TODO: Generalize:
+         1. Scale by powers of 10 to bring smallest tick val into 1-10 range. (Handling 0?)
+         2. Calculate ticks vector by incrementing in units of {1, 2, 5}
+         3. If #ticks > max (determined by available space on plot, i.e. vdiff_plot),
+            multiply increment factor by 10 and goto 2.
+        """
+        ok = False
+        vticks = None
+        vdiff_scalefactor = 1
+        while not ok:
+            vticks = xrange(0, int(vmax)+1, vdiff_nominal*vdiff_scalefactor) # the +1 ensures that vmax is included
+            if len(vticks) <= max_num_ticks:
+                ok = True
+            vdiff_scalefactor *= 2
+        return vticks
+
+    for mtick in calc_tick_vals(maxdisplaymass):
+        ytick = mtick * yscale
+        out += "  \\draw (%f,%f) node[left] {%d};\n" % (scalex(xmin), ytick, mtick)
+        if mtick > 0 and mtick < maxdisplaymass:
+            ## The 0.3 needs to be in the (arbitrary) plot coords
+            out += "  \\draw (%f,%f) -- (%f,%f);\n" % (scalex(xmin+0.3), ytick, scalex(xmin), ytick)
+    out += "  \\draw (%f,%f) node[left,rotate=90] {Mass / GeV};\n" % (scalex(xmin-2.2), ymax)
+
+    ## Decay arrows
+    if DDETAILS:
+        out += "\n  %% Decay arrows\n"
+        for pidfrom, todict in sorted(DDETAILS.iteritems()):
+            for pidto, dd in sorted(todict.iteritems()):
+                out += "  %% decay_%d_%d, BR=%0.1f%%\n" % (dd.pidfrom, dd.pidto, dd.br*100)
+
+                def scalethickness(br):
+                    if opts.DECAYS_STYLE in ["const", "brcolor"]:
+                        return 0.8
+                    elif "brwidth" in opts.DECAYS_STYLE:
+                        return 1.0 * br
+                    else:
+                        raise Exception("Unexpected problem with unknown decay line style option: please contact the PySLHA authors!")
+
+                def scalecolor(br):
+                    if opts.DECAYS_STYLE in ["const", "brwidth"]:
+                        return None
+                    elif "brcolor" in opts.DECAYS_STYLE:
+                        return "black!"+str(60*dd.br + 10)
+                    else:
+                        raise Exception("Unexpected problem with unknown decay line style option: please contact the PySLHA authors!")
+
+                out += "  \\draw[-stealth,line width=%0.2fpt,dashed,color=%s] (%f,%f) -- (%f,%f);\n" % \
+                    (scalethickness(dd.br), scalecolor(dd.br) or dd.color,
+                     scalex(dd.xyfrom[0]), yscale*dd.xyfrom[1], scalex(dd.xyto[0]), yscale*dd.xyto[1])
+
+    ## Draw mass lines
+    if PDETAILS:
+        out += "\n  %% Particle lines\n"
+        for pid, pdetail in sorted(PDETAILS.iteritems()):
+            y = pdetail.mass*yscale
+            out += "  %% pid%s\n" % str(pid)
+            out += "  \\draw[color=%s,thick] (%f,%f) -- (%f,%f);\n" % \
+                (pdetail.color, scalex(pdetail.xedges.left), y, scalex(pdetail.xedges.right), y)
+
+    ## Particle labels
+    if PLABELS:
+        out += "\n  %% Particle labels\n"
+        for ld in PLABELS:
+            anchors_pstricks_tikz = { "r" : "left", "l" : "right" }
+            out += "  \\draw (%f,%f) node[%s] {\small %s};\n" % \
+                (scalex(ld.xy[0]), yscale*ld.xy[1], anchors_pstricks_tikz[ld.anchor], ld.texlabel)
+
+    ## Insert user-specified include file
+    if opts.INCLUDE is not None:
+        out += "%% User-supplied include\n"
+        try:
+            finc = open(opts.INCLUDE, "r")
+            for line in finc:
+                out += line
+        except:
+            logging.warning("Could not read include file %s -- fallback to using \\input" % opts.INCLUDE)
+            out += c + "\\input{%s}\n" % opts.INCLUDE.replace(".tex", "")
+
+    ## Write TikZ footer
+    out += "\\end{tikzpicture}\n\n"
+
+    ## Write LaTeX footer
+    out += c + "\\end{document}\n"
+
+    ## Write output
+    if "tex" in opts.FORMAT.formats:
+        writeout(out, outname+".tex")
+    if "texfrag" in opts.FORMAT.formats:
+        writeout(out, outname+".frag.tex")
+    if opts.FORMAT.needs_compilation():
+        import tex2pix
+        r = tex2pix.Renderer(out)
+        for f in opts.FORMAT.file_extensions():
+            if f not in ("tex", "frag.tex"):
+                r.mk(outname+"."+f)

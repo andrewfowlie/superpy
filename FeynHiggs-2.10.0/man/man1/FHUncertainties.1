@@ -1,0 +1,50 @@
+.TH FHUNCERTAINTIES 1 "2-Oct-2007"
+.SH NAME
+.PP
+FHUncertainties \- estimate the uncertainties for the Higgs masses and 
+mixings
+.SH SYNOPSIS (Fortran version)
+.PP
+integer error
+.br
+double precision DeltaMHiggs(4)
+.br
+double complex DeltaSAeff, DeltaUHiggs(3,3), DeltaZHiggs(3,3)
+.sp
+subroutine FHUncertainties(error, DeltaMHiggs, DeltaSAeff,
+.br
+  DeltaUHiggs, DeltaZHiggs)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHUncertainties[]
+.SH DESCRIPTION
+FHUncertainties computes estimates for the Higgs masses and mixings.
+Currently, three effects are taken into account:
+.br
+a) the variation of the renormalization scale from MT/2 to 2 MT,
+.br
+b) the use of MTpole instead of MTrun in the two-loop corrections (only 
+   if the tl_running_mt flag is set, of course), and
+.br
+c) the exclusion of higher-order resummation effects in MB.
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in Uncertainties.F from
+which the error message was emitted.
+.TP
+.B DeltaMHiggs (output)
+the uncertainties of the Higgs masses,
+.TP
+.B DeltaSAeff (output)
+the uncertainty of the sine of the effective Higgs mixing angle, 
+alpha_eff,
+.TP
+.B DeltaUHiggs (output)
+the (component-wise) uncertainties of the Higgs mixing matrix,
+.TP
+.B DeltaZHiggs (output)
+the (component-wise) uncertainties of the Z-factor matrix,
+.SH SEE ALSO
+.PP
+libFH(1)

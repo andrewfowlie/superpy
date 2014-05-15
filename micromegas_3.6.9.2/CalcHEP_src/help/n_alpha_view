@@ -1,0 +1,21 @@
+1 11 51
+The first two functions of this menu allow to set
+limits of Feynman 'x' variable for the plot. The
+permitted input must satisfy the condition
+               0 <= x-Min < xMax <=1
+ The third position allows  to define the number
+of points which will be used to draw the plot. The
+hight limit for this input is 150.
+ The next menu position allows to set a value of
+QCD scale, which is a hidden parameter of hadron
+structure functions.
+  At last, the 'Display plot' menu function draws
+plot on the screen.
+
+Note,that the first and the last points of the plot
+will have Feynman 'x' parameter equal to x_Min + dx
+and x_Max-dx correspondingly, where 
+dx=(x_Max-x_Min)/2/Npoints. Consequently, the
+dangerous points x=0 and x=1 will never appear on 
+the plot. 
+ 

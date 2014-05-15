@@ -1,0 +1,224 @@
+#! /bin/sh -x
+
+me=`basename $0`
+name=m/$me-$1
+#name=m/$me
+
+echo "$name" | grep -E '^m/bsll-(Hp|Cha|Neu|Glu|SM|All)$' || {
+  echo "invoke me as bsll Hp|Cha|Neu|Glu|SM|All" ;
+  exit 1
+}
+
+test -d m || mkdir m
+
+mma="math -run me=\"$me\" -run tag=\"$1\" -run name=\"$name\""
+
+rm -f $name.*
+#trap "rm -f $name.fc*" 0
+
+
+$mma << \_EOF_
+AppendTo[$Echo, "stdout"];
+
+<< FeynArts`
+
+<< FormCalc`
+
+NClear[];
+N[sqrt2] = Sqrt[2.];
+sqrt2/: sqrt2/2 = 1/sqrt2;
+sqrt2/: sqrt2^2 = 2;
+sqrt2/: sqrt2^-2 = 1/2;
+
+Neglect[Mq] = Neglect[Mq2] = 0;
+Sq[Mq] = Mq2;
+
+MU = MU2 = 0;
+MC = MC2 = 0;
+MS = MS2 = 0;
+MT = Mf[tT,3]; MT2 = Mf2[tT,3];
+(*
+MD = MD2 = Mdy[1] = 0;
+MS = MS2 = Mdy[2] = 0;
+MB = MB2 = Mdy[3] = 0;
+*)
+MM = MM2 = 0;
+
+Mdy[g_] := 0 (* Mfy[4, g] *);
+(*
+Sq[Mfy[a__]] = Mfy2[a];
+RealQ[_Mfy] = RealQ[_Mfy2] = True;
+*)
+
+Sq[Alfas] =.;
+Alfas = asMT;
+
+(*_USf = VCha = UCha = IndexDelta;*)
+
+fs = 2;
+fl["bsll"] = 2;
+
+proc = F[4, {3}] -> {F[4, {fs}], -F[2, {fl[me]}], F[2, {fl[me]}]};
+
+opt["All"] = Sequence[];
+opt["Hp"] = LastSelections -> S[5];
+opt["Cha"] = LastSelections -> F[12];
+opt["Neu"] = Sequence[ExcludeParticles -> F[15], LastSelections -> F[11]];
+opt["Glu"] = LastSelections -> F[15];
+opt["SM"] = ExcludeParticles -> {F[11|12|15], S[5]};
+
+Attributes[C0z] = Attributes[C00z] =
+Attributes[D0z] = Attributes[D00z] = {Orderless};
+
+(**)
+C0i[LoopTools`cc0, 0, 0, 0, m__] := C0z[m];
+C0i[LoopTools`cc00, 0, 0, 0, m__] := C00z[m];
+D0i[LoopTools`dd0, 0, 0, 0, 0, 0, 0, m__] := D0z[m];
+D0i[LoopTools`dd00, 0, 0, 0, 0, 0, 0, m__] := D00z[m];
+(**)
+
+
+simp[ins_, opt___] :=
+Block[ {amp},
+  Paint[ins,
+    ColumnsXRows -> {4, 5},
+    (*PaintLevel -> {Classes},*)
+    DisplayFunction -> (Export[name <> ".ps", #, ImageSize -> 72 2 {4, 5}]&)];
+
+  amp = CreateFeynAmp[ins];
+
+  amp = CalcFeynAmp[ amp, opt,
+(*RetainFile -> True,*)
+(*PaVeReduce -> True,*)
+    FermionChains -> Chiral,
+    FermionOrder -> Colour[1, 4, 2, 3] ];
+
+  Put[amp, name <> ".raw"];
+
+(*
+  amp = amp /.
+    C0i[Except[LoopTools`cc0 | LoopTools`cc00], __] -> 0 /.
+    D0i[Except[LoopTools`dd0 | LoopTools`dd00], __] -> 0 /.
+    (#1 -> 0 &)@@@ Select[Abbr[], !FreeQ[#, DiracChain[__, _k, __]] &] /.
+    FormCalc`S23|FormCalc`T12|FormCalc`T13 -> 0 /.
+    {MB2 Den[MB2, 0] -> 1, MB2 Den[0, MB2] -> -1};
+
+  amp = ApplyUnitarity[amp, CKM, 3];
+
+  Put[amp, name <> ".test"];
+*)
+
+  amp = amp /.
+    B0i[Except[LoopTools`bb0 | LoopTools`bb00], __] -> 0 /.
+    C0i[Except[LoopTools`cc0 | LoopTools`cc00], __] -> 0 /.
+    D0i[Except[LoopTools`dd0 | LoopTools`dd00], __] -> 0 /.
+    (#1 -> 0 &)@@@ Select[Abbr[], !FreeQ[#, DiracChain[__, _k, __]] &] /.
+    FormCalc`S23|FormCalc`T12|FormCalc`T13 -> 0 /.
+    {MB2 Den[MB2, 0] -> 1, MB2 Den[0, MB2] -> -1} /.
+    MD|MD2|MS|MS2|MB|MB2 -> 0;
+
+  amp = ApplyUnitarity[amp, CKM, 3];
+
+  Put[amp, name <> ".amp"];
+  Put[Abbr[], name <> ".abbr"];
+
+  Plus@@ amp //. Abbr[]
+];
+
+tops = CreateTopologies[1, 1 -> 3 (**), BoxesOnly(**)];
+
+ins = InsertFields[tops,
+  proc, opt[tag],
+  InsertionLevel -> {Particles},
+Restrictions -> NoLightFHCoupling,
+  Model -> myMSSMQCD];
+
+amp = simp[ins];
+
+
+(**) Alfa2 = (Alfa = Sqrt[2]/Pi GF MW2 SW2)^2; (**)
+
+Attributes[ColorDelta] = {Orderless};
+
+dc = amp /.
+  {Col1 -> 1, Col3 -> 3,
+   Col2 -> 2, Col4 -> 4,
+   Spinor[_[1], __] -> b[1],
+   Spinor[_[2], __] -> s[2],
+   Spinor[_[3], __] -> mu[3],
+   Spinor[_[4], __] -> mu[4]} /.
+  SUNT[i_, j_] -> ColorDelta[i, j] /.
+  Mat[ DiracChain[b[1], g1__, s[2]] ColorDelta[1, 2] *
+       DiracChain[mu[3], g2__, mu[4]] ] :>
+    Op[{g1}, {g2}] /.
+  {Sqrt[2] -> sqrt2, 1/Sqrt[2] -> 1/sqrt2};
+
+Put[dc, name <> ".dc"];
+
+(* due to vanishing of the corresponding hadronic matrix elements: *)
+Op[g1_, {6, mu_Lor}] := -Op[g1, {mu, 5}];
+Op[g1_, {7, mu_Lor}] := +Op[g1, {mu, 5}];
+Op[{_, mu_Lor, nu_Lor}, {_, mu_, nu_}] = 0;
+
+Op[g1_, {6}] := Op[g1, {1}] + Op[g1, {5}];
+Op[g1_, {7}] := Op[g1, {1}] - Op[g1, {5}];
+
+dc = Simplify[dc /. S|T|U -> 0];
+
+Put[dc, name <> ".dc2"];
+
+OpName[{7, mu_Lor}, {mu_, 5}] = "CAL";
+OpName[{6, mu_Lor}, {mu_, 5}] = "CAR";
+
+OpName[{6}, {1}] = "CSR";
+OpName[{7}, {1}] = "CSL";
+
+OpName[{6}, {5}] = "CPR";
+OpName[{7}, {5}] = "CPL";
+
+
+ops = Union[Cases[dc, _Op, Infinity]];
+
+coeff = ((OpName@@ #) <> tag -> Coefficient[dc, #])&/@ ops;
+
+(*Put[coeff, name <> ".coeff.raw"];*)
+
+chk = dc /. Thread[ops -> 0];
+If[ chk =!= 0,
+  Print["WARNING: REMAINDER NOT ZERO"];
+  Put[chk, name <> ".ZERO"] ];
+
+fin[var_ -> expr_] := (Print[var]; var -> fin[expr]);
+
+fin[expr_] := Simplify @
+  Collect[expr, {_SumOver, _Log}, FullSimplify];
+
+coeff = fin/@ coeff /. S|T|U -> 0;
+
+Put[coeff, name <> ".coeff"];
+
+If[ !FreeQ[coeff, Den[0, 0]],
+  Print["WARNING: REMAINING Den[0, 0]"] ];
+
+Mino3 = "M_3";
+Mino3C = "M_3C";
+
+hh = OpenFortran[name <> ".F"];
+
+$DebugCmd = {"#ifdef DETAILED_DEBUG\n", "#endif\n", "DCONST ", " ENDL"};
+
+WriteExpr[hh, coeff,
+  (*HornerStyle -> False,*)
+  TmpType -> False,
+  Expensive -> {_B0i, _C0z, _C00z, _D0z, _D00z},
+  RealArgs -> {B0i, C0z, C00z, D0z, D00z},
+  Optimize -> True,
+  DebugLines -> True,
+  FinalCollect -> True];
+
+Close[hh];
+_EOF_
+
+gzip -f $name*.ps
+
+

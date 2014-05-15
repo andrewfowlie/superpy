@@ -1,0 +1,2 @@
+0 leptons + 2-6 jets + Etmiss [Incl. squarks & gluinos] at 8TeV with $20.3fb^{-1}$
+http://cds.cern.ch/record/1547563

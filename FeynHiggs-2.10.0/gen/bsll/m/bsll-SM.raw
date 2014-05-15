@@ -1,0 +1,258 @@
+Amp[{{F[4, {3, Col1}], k[1], MB, {}}} -> {{F[4, {2, Col2}], k[2], 0, {}}, 
+    {F[2, {2}], k[3], 0, {}}, {-F[2, {2}], k[4], 0, {}}}][
+ (((Alfa2*((Finite*Sub11)/6 + Sub1*(-6*C0i[cc00, 0, T12, MB2, Mq2, MW2, 
+             MW2] + (4*C0i[cc00, T12, MB2, 0, Mq2, Mq2, MW2])/3 + 
+           (-MB2 + T12)*(C0i[cc1, 0, T12, MB2, Mq2, MW2, MW2] + 
+             C0i[cc12, 0, T12, MB2, Mq2, MW2, MW2]) - 
+           ((3*MB2 - 2*T12)*C0i[cc2, 0, T12, MB2, Mq2, MW2, MW2])/2 + 
+           (2*(T12*C0i[cc1, T12, MB2, 0, Mq2, Mq2, MW2] + (-MB2 + T12)*(
+                C0i[cc12, T12, MB2, 0, Mq2, Mq2, MW2] + C0i[cc2, T12, MB2, 0, 
+                 Mq2, Mq2, MW2])))/3 - MB2*C0i[cc22, 0, T12, MB2, Mq2, MW2, 
+             MW2]) + (MT2*(C0i[cc0, 0, T12, MB2, MT2, MW2, MW2] - 
+             (Sub8*C0i[cc0, T12, MB2, 0, MT2, MT2, MW2])/3) - 
+           (6 + MT2/MW2)*C0i[cc00, 0, T12, MB2, MT2, MW2, MW2] + 
+           (2 + MT2/MW2)*((2*C0i[cc00, T12, MB2, 0, MT2, MT2, MW2])/3 + 
+             (T12*C0i[cc1, T12, MB2, 0, MT2, MT2, MW2])/3) + 
+           (-MB2 + T12)*(C0i[cc1, 0, T12, MB2, MT2, MW2, MW2] + 
+             C0i[cc12, 0, T12, MB2, MT2, MW2, MW2]) + 
+           ((2 + MT2/MW2)*(-MB2 + T12)*C0i[cc12, T12, MB2, 0, MT2, MT2, MW2])/
+            3 - (MB2 - T12)*C0i[cc2, 0, T12, MB2, MT2, MW2, MW2] + 
+           (2*(-MB2 + T12)*C0i[cc2, T12, MB2, 0, MT2, MT2, MW2])/3 - 
+           MB2*C0i[cc22, 0, T12, MB2, MT2, MW2, MW2])*CKM[3, 3]*CKMC[3, 2]))/
+       SW2 + ((Alfa2*MB2*(-(Finite*Sub2)/6 - (Sub1*B0i[bb1, MB2, Mq2, MW2])/
+            3 + (MT2*B0i[bb0, 0, MT2, MW2]*CKM[3, 3]*CKMC[3, 2])/(6*MW2)))/
+         SW2 + (-((Alfa2*MB2*MT2*B0i[bb0, MB2, MT2, MW2]*CKM[3, 3]*
+             CKMC[3, 2])/(MW2*SW2)) - (Alfa2*MB2*(2 + MT2/MW2)*
+            B0i[bb1, MB2, MT2, MW2]*CKM[3, 3]*CKMC[3, 2])/SW2)/6)*
+       Den[MB2, 0])*Den[T12, 0] + 
+    Alfa2*(((2*Sub1*C0i[cc11, T12, MB2, 0, Mq2, Mq2, MW2])/3 + 
+        ((2 + MT2/MW2)*C0i[cc11, T12, MB2, 0, MT2, MT2, MW2]*CKM[3, 3]*
+          CKMC[3, 2])/3)/SW2 + 
+      (((MT2*(C0i[cc0, 0, T12, MB2, MT2, MW2, MW2] - (Sub10*C0i[cc0, T12, 
+                 MB2, 0, MT2, MT2, MW2])/12) - 
+            (Sub15*C0i[cc1, T12, MB2, 0, MT2, MT2, MW2])/12 + 
+            Sub9*(C0i[cc00, T12, MB2, 0, MT2, MT2, MW2]/3 + ((-MB2 + T12)*
+                C0i[cc12, T12, MB2, 0, MT2, MT2, MW2])/6))/CW2 + 
+          (Sub12*C0i[cc2, 0, T12, MB2, MT2, MW2, MW2])/2 + 
+          (-(Sub4*C0i[cc00, 0, T12, MB2, MT2, MW2, MW2])/2 + 
+            (-MB2 + T12)*(-C0i[cc1, 0, T12, MB2, MT2, MW2, MW2] - 
+              C0i[cc12, 0, T12, MB2, MT2, MW2, MW2] - ((3 - 4*SW2)*
+                C0i[cc2, T12, MB2, 0, MT2, MT2, MW2])/(6*CW2)) + 
+            MB2*C0i[cc22, 0, T12, MB2, MT2, MW2, MW2])/SW2)*CKM[3, 3]*
+         CKMC[3, 2] + (Finite*Sub14 + (Sub9*T12*C0i[cc11, T12, MB2, 0, MT2, 
+             MT2, MW2]*CKM[3, 3]*CKMC[3, 2])/CW2)/6 + 
+        (Sub1*(6*C0i[cc00, 0, T12, MB2, Mq2, MW2, MW2] - (-MB2 + T12)*
+             (C0i[cc1, 0, T12, MB2, Mq2, MW2, MW2] + C0i[cc12, 0, T12, MB2, 
+               Mq2, MW2, MW2]) + ((3*MB2 - 2*T12)*C0i[cc2, 0, T12, MB2, Mq2, 
+               MW2, MW2])/2 + ((3 - 4*SW2)*(-C0i[cc00, T12, MB2, 0, Mq2, Mq2, 
+                  MW2]/3 + (-(T12*C0i[cc1, T12, MB2, 0, Mq2, Mq2, MW2]) - 
+                 T12*C0i[cc11, T12, MB2, 0, Mq2, Mq2, MW2])/6 - ((-MB2 + T12)*
+                 (C0i[cc12, T12, MB2, 0, Mq2, Mq2, MW2] + C0i[cc2, T12, MB2, 
+                   0, Mq2, Mq2, MW2]))/6))/CW2 + MB2*C0i[cc22, 0, T12, MB2, 
+              Mq2, MW2, MW2]) + (MB2*(3 - 2*SW2)*
+            ((Sub1*B0i[bb1, MB2, Mq2, MW2])/6 - (MT2*B0i[bb0, 0, MT2, MW2]*
+               CKM[3, 3]*CKMC[3, 2])/(12*MW2) + (Finite*Sub2 + 
+               ((MT2*B0i[bb0, MB2, MT2, MW2])/MW2 + (2 + MT2/MW2)*
+                  B0i[bb1, MB2, MT2, MW2])*CKM[3, 3]*CKMC[3, 2])/12)*
+            Den[MB2, 0])/CW2)/SW2)*Den[T12, MZ2]))*Mat[F1*SUN1] + 
+  (Alfa2*(Sub1*(D0i[dd1, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2] + 
+       D0i[dd11, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2] + 
+       D0i[dd12, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2] + 
+       D0i[dd13, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2]) + 
+     CKM[3, 3]*CKMC[3, 2]*(D0i[dd1, T, 0, T12, 0, 0, MB2, 0, MT2, MW2, MW2] + 
+       D0i[dd11, T, 0, T12, 0, 0, MB2, 0, MT2, MW2, MW2] + 
+       D0i[dd12, T, 0, T12, 0, 0, MB2, 0, MT2, MW2, MW2] + 
+       D0i[dd13, T, 0, T12, 0, 0, MB2, 0, MT2, MW2, MW2]))*Mat[F10*SUN1])/
+   (2*SW2^2) - (2*Alfa2*(Sub1*D0i[dd23, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, 
+       MW2] + CKM[3, 3]*CKMC[3, 2]*D0i[dd23, T, 0, T12, 0, 0, MB2, 0, MT2, 
+       MW2, MW2])*Mat[F11*SUN1])/SW2^2 + 
+  (Alfa2*(((2*Sub1*C0i[cc11, T12, MB2, 0, Mq2, Mq2, MW2])/3 + 
+        ((2 + MT2/MW2)*C0i[cc11, T12, MB2, 0, MT2, MT2, MW2]*CKM[3, 3]*
+          CKMC[3, 2])/3)/SW2 - (Sub1*D0i[dd00, T, 0, T12, 0, 0, MB2, 0, Mq2, 
+         MW2, MW2])/SW2^2 - (CKM[3, 3]*CKMC[3, 2]*D0i[dd00, T, 0, T12, 0, 0, 
+         MB2, 0, MT2, MW2, MW2])/SW2^2 + 
+      (3*Sub1*(MB2 - T)*D0i[dd1, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2])/
+       (4*SW2^2) - (3*(-MB2 + T)*CKM[3, 3]*CKMC[3, 2]*D0i[dd1, T, 0, T12, 0, 
+         0, MB2, 0, MT2, MW2, MW2])/(4*SW2^2) + 
+      (3*Sub1*(MB2 - T)*(D0i[dd11, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2] + 
+         D0i[dd12, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2]))/(4*SW2^2) + 
+      (3*(MB2 - T)*CKM[3, 3]*CKMC[3, 2]*(D0i[dd11, T, 0, T12, 0, 0, MB2, 0, 
+          MT2, MW2, MW2] + D0i[dd12, T, 0, T12, 0, 0, MB2, 0, MT2, MW2, 
+          MW2]))/(4*SW2^2) - (3*Sub1*(-MB2 + T)*D0i[dd13, T, 0, T12, 0, 0, 
+         MB2, 0, Mq2, MW2, MW2])/(4*SW2^2) - 
+      (3*(-MB2 + T)*CKM[3, 3]*CKMC[3, 2]*D0i[dd13, T, 0, T12, 0, 0, MB2, 0, 
+         MT2, MW2, MW2])/(4*SW2^2) + (Sub1*(-MB2 + S23 + T12)*
+        D0i[dd2, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2])/(2*SW2^2) + 
+      ((-MB2 + S23 + T12)*CKM[3, 3]*CKMC[3, 2]*D0i[dd2, T, 0, T12, 0, 0, MB2, 
+         0, MT2, MW2, MW2])/(2*SW2^2) + 
+      (Sub1*(S23 + T12)*D0i[dd23, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2])/
+       SW2^2 + ((S23 + T12)*CKM[3, 3]*CKMC[3, 2]*D0i[dd23, T, 0, T12, 0, 0, 
+         MB2, 0, MT2, MW2, MW2])/SW2^2 - 
+      (Sub1*(-MB2 + T)*D0i[dd3, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2])/
+       (2*SW2^2) - ((-MB2 + T)*CKM[3, 3]*CKMC[3, 2]*D0i[dd3, T, 0, T12, 0, 0, 
+         MB2, 0, MT2, MW2, MW2])/(2*SW2^2)) + 
+    ((Alfa2*((Finite*Sub11)/6 + Sub1*(-6*C0i[cc00, 0, T12, MB2, Mq2, MW2, 
+             MW2] + (4*C0i[cc00, T12, MB2, 0, Mq2, Mq2, MW2])/3 + 
+           (-MB2 + T12)*(C0i[cc1, 0, T12, MB2, Mq2, MW2, MW2] + 
+             C0i[cc12, 0, T12, MB2, Mq2, MW2, MW2]) - 
+           ((3*MB2 - 2*T12)*C0i[cc2, 0, T12, MB2, Mq2, MW2, MW2])/2 + 
+           (2*(T12*C0i[cc1, T12, MB2, 0, Mq2, Mq2, MW2] + (-MB2 + T12)*(
+                C0i[cc12, T12, MB2, 0, Mq2, Mq2, MW2] + C0i[cc2, T12, MB2, 0, 
+                 Mq2, Mq2, MW2])))/3 - MB2*C0i[cc22, 0, T12, MB2, Mq2, MW2, 
+             MW2]) + (MT2*(C0i[cc0, 0, T12, MB2, MT2, MW2, MW2] - 
+             (Sub8*C0i[cc0, T12, MB2, 0, MT2, MT2, MW2])/3) - 
+           (6 + MT2/MW2)*C0i[cc00, 0, T12, MB2, MT2, MW2, MW2] + 
+           (2 + MT2/MW2)*((2*C0i[cc00, T12, MB2, 0, MT2, MT2, MW2])/3 + 
+             (T12*C0i[cc1, T12, MB2, 0, MT2, MT2, MW2])/3) + 
+           (-MB2 + T12)*(C0i[cc1, 0, T12, MB2, MT2, MW2, MW2] + 
+             C0i[cc12, 0, T12, MB2, MT2, MW2, MW2]) + 
+           ((2 + MT2/MW2)*(-MB2 + T12)*C0i[cc12, T12, MB2, 0, MT2, MT2, MW2])/
+            3 - (MB2 - T12)*C0i[cc2, 0, T12, MB2, MT2, MW2, MW2] + 
+           (2*(-MB2 + T12)*C0i[cc2, T12, MB2, 0, MT2, MT2, MW2])/3 - 
+           MB2*C0i[cc22, 0, T12, MB2, MT2, MW2, MW2])*CKM[3, 3]*CKMC[3, 2]))/
+       SW2 + ((Alfa2*MB2*(-(Finite*Sub2)/6 - (Sub1*B0i[bb1, MB2, Mq2, MW2])/
+            3 + (MT2*B0i[bb0, 0, MT2, MW2]*CKM[3, 3]*CKMC[3, 2])/(6*MW2)))/
+         SW2 + (-((Alfa2*MB2*MT2*B0i[bb0, MB2, MT2, MW2]*CKM[3, 3]*
+             CKMC[3, 2])/(MW2*SW2)) - (Alfa2*MB2*(2 + MT2/MW2)*
+            B0i[bb1, MB2, MT2, MW2]*CKM[3, 3]*CKMC[3, 2])/SW2)/6)*
+       Den[MB2, 0])*Den[T12, 0] + 
+    (Alfa2*(1 - 2*SW2)*((Sub1*(-3*C0i[cc00, 0, T12, MB2, Mq2, MW2, MW2] + 
+           ((-MB2 + T12)*(C0i[cc1, 0, T12, MB2, Mq2, MW2, MW2] + 
+              C0i[cc12, 0, T12, MB2, Mq2, MW2, MW2]))/2 - 
+           ((3*MB2 - 2*T12)*C0i[cc2, 0, T12, MB2, Mq2, MW2, MW2])/4 + 
+           ((3 - 4*SW2)*(C0i[cc00, T12, MB2, 0, Mq2, Mq2, MW2]/6 + 
+              (T12*(C0i[cc1, T12, MB2, 0, Mq2, Mq2, MW2] + C0i[cc11, T12, 
+                   MB2, 0, Mq2, Mq2, MW2]) + (-MB2 + T12)*(C0i[cc12, T12, 
+                   MB2, 0, Mq2, Mq2, MW2] + C0i[cc2, T12, MB2, 0, Mq2, Mq2, 
+                   MW2]))/12))/CW2 - (MB2*C0i[cc22, 0, T12, MB2, Mq2, MW2, 
+              MW2])/2))/SW2^2 + 
+        (((MT2*Sub10*C0i[cc0, T12, MB2, 0, MT2, MT2, MW2])/24 - 
+            (Sub9*T12*C0i[cc11, T12, MB2, 0, MT2, MT2, MW2])/12)/(CW2*SW2) + 
+          ((Sub4*C0i[cc00, 0, T12, MB2, MT2, MW2, MW2])/4 + 
+            (-MB2 + T12)*((C0i[cc1, 0, T12, MB2, MT2, MW2, MW2] + 
+                C0i[cc12, 0, T12, MB2, MT2, MW2, MW2])/2 + ((3 - 4*SW2)*
+                C0i[cc2, T12, MB2, 0, MT2, MT2, MW2])/(12*CW2)) - 
+            (MB2*C0i[cc22, 0, T12, MB2, MT2, MW2, MW2])/2)/SW2^2)*CKM[3, 3]*
+         CKMC[3, 2] + (((-(MT2*C0i[cc0, 0, T12, MB2, MT2, MW2, MW2])/2 - 
+              (Sub9*C0i[cc00, T12, MB2, 0, MT2, MT2, MW2])/6 + 
+              (Sub15*C0i[cc1, T12, MB2, 0, MT2, MT2, MW2])/24)/CW2 - 
+            (Sub12*C0i[cc2, 0, T12, MB2, MT2, MW2, MW2])/4)*CKM[3, 3]*
+           CKMC[3, 2] + (-(Finite*Sub14) - (Sub9*(-MB2 + T12)*
+              C0i[cc12, T12, MB2, 0, MT2, MT2, MW2]*CKM[3, 3]*CKMC[3, 2])/
+             CW2)/12)/SW2) + ((Alfa2*MB2*(1 - 2*SW2)*(3 - 2*SW2)*
+          (-(Finite*Sub2)/24 - (Sub1*B0i[bb1, MB2, Mq2, MW2])/12 + 
+           (MT2*B0i[bb0, 0, MT2, MW2]*CKM[3, 3]*CKMC[3, 2])/(24*MW2)))/
+         (CW2*SW2^2) + (-((Alfa2*MB2*MT2*(1 - 2*SW2)*(3 - 2*SW2)*
+             B0i[bb0, MB2, MT2, MW2]*CKM[3, 3]*CKMC[3, 2])/(CW2*MW2*SW2^2)) - 
+          (Alfa2*MB2*(2 + MT2/MW2)*(1 - 2*SW2)*(3 - 2*SW2)*B0i[bb1, MB2, MT2, 
+             MW2]*CKM[3, 3]*CKMC[3, 2])/(CW2*SW2^2))/24)*Den[MB2, 0])*
+     Den[T12, MZ2])*Mat[F2*SUN1] + 
+  Alfa2*MB*(((Sub1*(C0i[cc1, 0, T12, MB2, Mq2, MW2, MW2] + 
+         (4*(C0i[cc12, T12, MB2, 0, Mq2, Mq2, MW2] + C0i[cc2, T12, MB2, 0, 
+             Mq2, Mq2, MW2]))/3 - 2*(C0i[cc12, 0, T12, MB2, Mq2, MW2, MW2] + 
+           C0i[cc22, 0, T12, MB2, Mq2, MW2, MW2])) + 
+       ((MT2*(-C0i[cc0, 0, T12, MB2, MT2, MW2, MW2] - 
+            (2*C0i[cc0, T12, MB2, 0, MT2, MT2, MW2])/3 - 
+            2*C0i[cc2, 0, T12, MB2, MT2, MW2, MW2]))/MW2 + 
+         (2 - MT2/MW2)*(C0i[cc1, 0, T12, MB2, MT2, MW2, MW2] + 
+           (2*C0i[cc2, T12, MB2, 0, MT2, MT2, MW2])/3) + 
+         (2 + MT2/MW2)*(-C0i[cc12, 0, T12, MB2, MT2, MW2, MW2] + 
+           (2*C0i[cc12, T12, MB2, 0, MT2, MT2, MW2])/3 - C0i[cc22, 0, T12, 
+            MB2, MT2, MW2, MW2]))*CKM[3, 3]*CKMC[3, 2])*Den[T12, 0])/SW2 + 
+    ((Sub1*(-C0i[cc1, 0, T12, MB2, Mq2, MW2, MW2] - 
+         ((3 - 4*SW2)*(C0i[cc12, T12, MB2, 0, Mq2, Mq2, MW2] + 
+            C0i[cc2, T12, MB2, 0, Mq2, Mq2, MW2]))/(3*CW2) + 
+         2*(C0i[cc12, 0, T12, MB2, Mq2, MW2, MW2] + C0i[cc22, 0, T12, MB2, 
+            Mq2, MW2, MW2])))/SW2 + 
+      (((MT2*((-((-CW2 + SW2)*C0i[cc0, 0, T12, MB2, MT2, MW2, MW2])/2 + 
+              ((3 - 4*SW2)*C0i[cc0, T12, MB2, 0, MT2, MT2, MW2])/6)/SW2 + 
+            (Sub3*C0i[cc1, T12, MB2, 0, MT2, MT2, MW2])/6))/MW2 + 
+         (Sub9*C0i[cc12, T12, MB2, 0, MT2, MT2, MW2])/3 + 
+         (-((MT2*(-CW2 + SW2)*C0i[cc2, 0, T12, MB2, MT2, MW2, MW2])/MW2) - 
+           ((2 - MT2/MW2)*(3 - 4*SW2)*C0i[cc2, T12, MB2, 0, MT2, MT2, MW2])/
+            6)/SW2)*CKM[3, 3]*CKMC[3, 2])/CW2 + 
+      (-(Sub7*C0i[cc1, 0, T12, MB2, MT2, MW2, MW2]*CKM[3, 3]*CKMC[3, 2]) - 
+        (Sub5*(C0i[cc12, 0, T12, MB2, MT2, MW2, MW2] + C0i[cc22, 0, T12, MB2, 
+            MT2, MW2, MW2])*CKM[3, 3]*CKMC[3, 2])/SW2)/2)*Den[T12, MZ2])*
+   Mat[F3*SUN1] + 
+  (-((Alfa2*MB*Sub1*(D0i[dd1, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2] + 
+        D0i[dd11, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2] + 
+        D0i[dd12, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2]))/SW2^2) - 
+    (Alfa2*MB*CKM[3, 3]*CKMC[3, 2]*(D0i[dd1, T, 0, T12, 0, 0, MB2, 0, MT2, 
+        MW2, MW2] + D0i[dd11, T, 0, T12, 0, 0, MB2, 0, MT2, MW2, MW2] + 
+       D0i[dd12, T, 0, T12, 0, 0, MB2, 0, MT2, MW2, MW2]))/SW2^2 + 
+    ((Alfa2*MB*Sub1*C0i[cc1, 0, T12, MB2, Mq2, MW2, MW2])/SW2 + 
+      (4*Alfa2*MB*Sub1*(C0i[cc12, T12, MB2, 0, Mq2, Mq2, MW2] + 
+         C0i[cc2, T12, MB2, 0, Mq2, Mq2, MW2]))/(3*SW2) - 
+      (2*Alfa2*MB*Sub1*(C0i[cc12, 0, T12, MB2, Mq2, MW2, MW2] + 
+         C0i[cc22, 0, T12, MB2, Mq2, MW2, MW2]))/SW2 - 
+      (Alfa2*MB*MT2*C0i[cc0, 0, T12, MB2, MT2, MW2, MW2]*CKM[3, 3]*
+        CKMC[3, 2])/(MW2*SW2) - (2*Alfa2*MB*MT2*C0i[cc0, T12, MB2, 0, MT2, 
+         MT2, MW2]*CKM[3, 3]*CKMC[3, 2])/(3*MW2*SW2) + 
+      (Alfa2*MB*(2 - MT2/MW2)*C0i[cc1, 0, T12, MB2, MT2, MW2, MW2]*CKM[3, 3]*
+        CKMC[3, 2])/SW2 + (2*Alfa2*MB*(2 + MT2/MW2)*C0i[cc12, T12, MB2, 0, 
+         MT2, MT2, MW2]*CKM[3, 3]*CKMC[3, 2])/(3*SW2) - 
+      (2*Alfa2*MB*MT2*C0i[cc2, 0, T12, MB2, MT2, MW2, MW2]*CKM[3, 3]*
+        CKMC[3, 2])/(MW2*SW2) + (2*Alfa2*MB*(2 - MT2/MW2)*
+        C0i[cc2, T12, MB2, 0, MT2, MT2, MW2]*CKM[3, 3]*CKMC[3, 2])/(3*SW2) - 
+      (Alfa2*MB*(2 + MT2/MW2)*(C0i[cc12, 0, T12, MB2, MT2, MW2, MW2] + 
+         C0i[cc22, 0, T12, MB2, MT2, MW2, MW2])*CKM[3, 3]*CKMC[3, 2])/SW2)*
+     Den[T12, 0] + ((Alfa2*MB*Sub1*(1 - 2*SW2)*C0i[cc1, 0, T12, MB2, Mq2, 
+         MW2, MW2])/(2*SW2^2) + (Alfa2*MB*Sub1*(3 - 4*SW2)*(1 - 2*SW2)*
+        (C0i[cc12, T12, MB2, 0, Mq2, Mq2, MW2] + C0i[cc2, T12, MB2, 0, Mq2, 
+          Mq2, MW2]))/(6*CW2*SW2^2) - (Alfa2*MB*Sub1*(1 - 2*SW2)*
+        (C0i[cc12, 0, T12, MB2, Mq2, MW2, MW2] + C0i[cc22, 0, T12, MB2, Mq2, 
+          MW2, MW2]))/SW2^2 + (Alfa2*MB*MT2*(1 - 2*SW2)*(-CW2 + SW2)*
+        C0i[cc0, 0, T12, MB2, MT2, MW2, MW2]*CKM[3, 3]*CKMC[3, 2])/
+       (4*CW2*MW2*SW2^2) - (Alfa2*MB*MT2*(3 - 4*SW2)*(1 - 2*SW2)*
+        C0i[cc0, T12, MB2, 0, MT2, MT2, MW2]*CKM[3, 3]*CKMC[3, 2])/
+       (12*CW2*MW2*SW2^2) + (Alfa2*MB*Sub7*(1 - 2*SW2)*C0i[cc1, 0, T12, MB2, 
+         MT2, MW2, MW2]*CKM[3, 3]*CKMC[3, 2])/(4*SW2) - 
+      (Alfa2*MB*MT2*Sub3*(1 - 2*SW2)*C0i[cc1, T12, MB2, 0, MT2, MT2, MW2]*
+        CKM[3, 3]*CKMC[3, 2])/(12*CW2*MW2*SW2) - 
+      (Alfa2*MB*Sub9*(1 - 2*SW2)*C0i[cc12, T12, MB2, 0, MT2, MT2, MW2]*
+        CKM[3, 3]*CKMC[3, 2])/(6*CW2*SW2) + 
+      (Alfa2*MB*MT2*(1 - 2*SW2)*(-CW2 + SW2)*C0i[cc2, 0, T12, MB2, MT2, MW2, 
+         MW2]*CKM[3, 3]*CKMC[3, 2])/(2*CW2*MW2*SW2^2) + 
+      (Alfa2*MB*(2 - MT2/MW2)*(3 - 4*SW2)*(1 - 2*SW2)*C0i[cc2, T12, MB2, 0, 
+         MT2, MT2, MW2]*CKM[3, 3]*CKMC[3, 2])/(12*CW2*SW2^2) + 
+      (Alfa2*MB*Sub5*(1 - 2*SW2)*(C0i[cc12, 0, T12, MB2, MT2, MW2, MW2] + 
+         C0i[cc22, 0, T12, MB2, MT2, MW2, MW2])*CKM[3, 3]*CKMC[3, 2])/
+       (4*SW2^2))*Den[T12, MZ2])*Mat[F4*SUN1] + 
+  ((-((Alfa2*Sub1*(D0i[dd1, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2] + 
+         D0i[dd11, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2] + 
+         D0i[dd12, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2] + 
+         D0i[dd13, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2]))/SW2^2) - 
+     (Alfa2*CKM[3, 3]*CKMC[3, 2]*(D0i[dd1, T, 0, T12, 0, 0, MB2, 0, MT2, MW2, 
+         MW2] + D0i[dd11, T, 0, T12, 0, 0, MB2, 0, MT2, MW2, MW2] + 
+        D0i[dd12, T, 0, T12, 0, 0, MB2, 0, MT2, MW2, MW2] + 
+        D0i[dd13, T, 0, T12, 0, 0, MB2, 0, MT2, MW2, MW2]))/SW2^2)*
+    Mat[F5*SUN1])/4 + 
+  (Alfa2*MB*(Sub1*(D0i[dd23, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2] + 
+       D0i[dd3, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2]/2) + 
+     CKM[3, 3]*CKMC[3, 2]*(D0i[dd23, T, 0, T12, 0, 0, MB2, 0, MT2, MW2, 
+        MW2] + D0i[dd3, T, 0, T12, 0, 0, MB2, 0, MT2, MW2, MW2]/2))*
+    Mat[F6*SUN1])/SW2^2 + 
+  (Alfa2*(Sub1*(D0i[dd1, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2] + 
+       D0i[dd11, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2] + 
+       D0i[dd12, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2] + 
+       D0i[dd13, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2]) + 
+     CKM[3, 3]*CKMC[3, 2]*(D0i[dd1, T, 0, T12, 0, 0, MB2, 0, MT2, MW2, MW2] + 
+       D0i[dd11, T, 0, T12, 0, 0, MB2, 0, MT2, MW2, MW2] + 
+       D0i[dd12, T, 0, T12, 0, 0, MB2, 0, MT2, MW2, MW2] + 
+       D0i[dd13, T, 0, T12, 0, 0, MB2, 0, MT2, MW2, MW2]))*Mat[F7*SUN1])/
+   (2*SW2^2) + 
+  (Alfa2*MB*(Sub1*(D0i[dd23, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2] + 
+       D0i[dd3, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2]/2) + 
+     CKM[3, 3]*CKMC[3, 2]*(D0i[dd23, T, 0, T12, 0, 0, MB2, 0, MT2, MW2, 
+        MW2] + D0i[dd3, T, 0, T12, 0, 0, MB2, 0, MT2, MW2, MW2]/2))*
+    Mat[F8*SUN1])/SW2^2 + 
+  ((-((Alfa2*Sub1*(D0i[dd1, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2] + 
+         D0i[dd11, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2] + 
+         D0i[dd12, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2] + 
+         D0i[dd13, T, 0, T12, 0, 0, MB2, 0, Mq2, MW2, MW2]))/SW2^2) - 
+     (Alfa2*CKM[3, 3]*CKMC[3, 2]*(D0i[dd1, T, 0, T12, 0, 0, MB2, 0, MT2, MW2, 
+         MW2] + D0i[dd11, T, 0, T12, 0, 0, MB2, 0, MT2, MW2, MW2] + 
+        D0i[dd12, T, 0, T12, 0, 0, MB2, 0, MT2, MW2, MW2] + 
+        D0i[dd13, T, 0, T12, 0, 0, MB2, 0, MT2, MW2, MW2]))/SW2^2)*
+    Mat[F9*SUN1])/2]

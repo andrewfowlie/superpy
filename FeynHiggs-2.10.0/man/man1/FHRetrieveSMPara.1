@@ -1,0 +1,63 @@
+.TH FHRETRIEVESMFLAGS 1 "2-May-2011"
+.SH NAME
+.PP
+FHRetrieveSMPara \- retrieve the FeynHiggs SM input parameters
+.SH SYNOPSIS (Fortran version)
+.PP
+integer error
+.br
+
+double precision invAlfa, AlfasMZ, GF
+.br
+double precision ME, MU, MD, MM, MC, MS, ML, MB
+.br
+double precision MW, MZ
+.br
+double precision CKMlambda, CKMA, CKMrhobar, CKMetabar
+.sp
+subroutine FHRetrieveSMPara(error,
+.br
+  invAlfa, AlfasMZ, GF,
+.br
+  ME, MU, MD, MM, MC, MS, ML, MB,
+.br
+  MW, MZ
+.br
+  CKMlambda, CKMA, CKMrhobar, CKMetabar)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHRetrieveSMPara[]
+.SH DESCRIPTION
+FHRetrieveSMPara retrieves the SM inputs from FeynHiggs.
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in SetPara.F from
+which the error message was emitted.
+.TP
+.B invAlfa (output)
+the inverse electromagnetic coupling constant.
+.TP
+.B AlfasMZ (output)
+the strong coupling constant at MZ.
+.TP
+.B GF (output)
+the Fermi constant.
+.TP
+.B ME, MM, ML (output)
+the on-shell electron, muon, tauon mass.
+.TP
+.B MU, MD, MS (output)
+the up, down, and strange quark masses at 2 GeV.
+.TP
+.B MC, MB (output)
+the charm mass at MC and bottom mass at MB.
+.TP
+.B MW, MZ (output)
+the W and Z masses.
+.TP
+.B CKMlambda, CKMA, CKMrhobar, CKMetabar (output)
+the CKM input parameters in Wolfenstein parameterization.
+.SH SEE ALSO
+.PP
+libFH(1)

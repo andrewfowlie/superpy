@@ -1,0 +1,31 @@
+2c2,3
+< HBLIBS =-L$(HiggsBounds)   
+---
+> 
+> HBLIBS =-L$(HiggsBounds)
+4a6
+> 
+6c8
+< 	   numerics.mod io.mod expt_syst.mod pc_chisq.mod mc_chisq.mod all_chisq.mod
+---
+> 	   numerics.mod io.mod pc_chisq.mod	mc_chisq.mod all_chisq.mod
+40c42
+< .mod.o: $(HiggsBounds)/libHB.a
+---
+> .mod.o:  $(HiggsBounds)/libHB.a
+48a51,54
+> $(HiggsBounds)/libHB.a:
+> 	cd $(HiggsBounds); ./configure; $(MAKE)
+>         
+> 
+55,58d60
+< $(HiggsBounds)/libHB.a:
+< 	cd $(HiggsBounds); ./configure; $(MAKE)
+< 
+< 
+98,100c100
+< 	rm -f store_pathname_HS.f90	
+< 
+< hyperclean:
+---
+> 	rm -f store_pathname_HS.f90

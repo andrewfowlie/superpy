@@ -1,0 +1,8 @@
+5 5 50 
+  This menu function provides the user a
+possibility to change the numerical value of any
+parameter involved in squared matrix element
+evaluation.
+ The only exception is the QCD strong coupling
+parameter GG which is driven by means of the 
+"QCD scale" menu function.

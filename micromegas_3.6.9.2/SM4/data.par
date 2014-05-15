@@ -1,0 +1,5 @@
+# file to improve default parameters
+MN 1000
+MN 6
+ML 4000
+Mh 125

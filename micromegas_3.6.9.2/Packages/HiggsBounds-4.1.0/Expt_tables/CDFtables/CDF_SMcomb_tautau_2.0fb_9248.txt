@@ -1,0 +1,11 @@
+#CDF Note 9248 Mar 25, 2008
+#CDF_SMcomb_tautau_2.0fb
+#NEEDS INTERPOLATION
+#columns: Mh, obs, exp (as ratio to SM)
+
+110	32.5	25.8
+115	30.5	24.8
+120	30.0	24.2
+130	39.5	32.3
+140	67.5	52.8
+150	159.0	111.7

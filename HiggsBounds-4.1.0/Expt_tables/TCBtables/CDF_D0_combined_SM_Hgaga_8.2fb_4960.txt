@@ -1,0 +1,16 @@
+#arxiv:1107.4960 CDF Note 10510, D0 Note 6203, Jul 25, 2011
+#CDF_D0_combined_SM_Hgaga_8.2fb
+#no interpolation, bayesian
+#columns: Mh, obs, exp (as ratio to SM cross sections)
+
+100     7.2    10.6     
+105    11.7    9.2    
+110     7.6    8.7    
+115    10.5    8.5    
+120    13.4    8.3    
+125    11.3    8.2    
+130    13.3    8.9    
+135    11.0    9.6     
+140    11.1    10.8    
+145    10.4    12.7     
+150    13.0    16.4    

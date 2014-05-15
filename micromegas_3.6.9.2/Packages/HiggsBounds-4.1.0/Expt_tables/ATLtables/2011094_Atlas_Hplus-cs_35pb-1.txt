@@ -1,0 +1,9 @@
+#ATLAS-CONF 2011-094, Jul 14, 2011
+#2011094_Atlas_Hplus-cs_35pb-1
+#numbers from table 3
+#columns: Mh, obs, exp (Br(t->H+b), assuming H+ -> c sbar)
+
+90  0.25  0.30
+110 0.15  0.18
+130 0.14  0.17
+

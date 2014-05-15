@@ -1,0 +1,30 @@
+RH neutrino(RS-insp)
+ Particles 
+ Full  name  |A  |A+ | number |2*spin| mass |width |color|aux|>LaTex(A)<|>LaTeX(A+)   <|
+photon       |A  |A  |22      |2     |0     |0     |1    |G  |\gamma    |\gamma
+gluon        |G  |G  |21      |2     |0     |0     |8    |G  |g         |g
+electron     |e  |E  |11      |1     |0     |0     |1    |   |e         |\bar{e}
+e-neutrino   |ne |Ne |12      |1     |0     |0     |1    |L  |\nu_e     |\bar{\nu}_e
+muon         |m  |M  |13      |1     |Mm    |0     |1    |   |\mu       |\bar{\mu}
+m-neutrino   |nm |Nm |14      |1     |0     |0     |1    |L  |\nu_\mu   |\bar{\nu}_\mu
+tau-lepton   |l  |L  |15      |1     |Ml    |0     |1    |   |\tau      |\bar{\tau}
+t-neutrino   |nl |Nl |16      |1     |0     |0     |1    |L  |\nu_\tau  |\bar{\nu}_\tau
+u-quark      |u  |U  |2       |1     |Mu    |0     |3    |   |u         |\bar{u}
+d-quark      |d  |D  |1       |1     |Md    |0     |3    |   |d         |\bar{d}
+c-quark      |c  |C  |4       |1     |Mc    |0     |3    |   |c         |\bar{c}
+s-quark      |s  |S  |3       |1     |Ms    |0     |3    |   |s         |\bar{s}
+t-quark      |t  |T  |6       |1     |Mtp   |wtp   |3    |   |t         |\bar{t}
+b-quark      |b  |B  |5       |1     |Mb    |0     |3    |   |b         |\bar{b}
+Higgs        |H  |H  |25      |0     |MH    |!wH   |1    |   |H         |H
+W-boson      |W+ |W- |24      |2     |MW    |!wW   |1    |   |W^+       |W^-
+Z-boson      |Z  |Z  |23      |2     |MZ    |!wZ   |1    |   |Z         |Z
+KK t_L       |tl |TL |101006  |1     |Mtl   |!wtl  |3    |2  |          |
+KK b_L       |bl |BL |101005  |1     |Mbl   |!wbl  |3    |   |          |
+LZP          |~n4|~N4|100000  |1     |MLZP  |!wn4  |1    |   |          |
+KK b_R       |br |BR |102005  |1     |Mbr   |!wbr  |3    |   |          |
+KK tau_R     |~ur|~UR|102015  |1     |Mur   |!wur  |1    |-3 |          |
+KK tau_L     |~ul|~UL|101015  |1     |Mul   |!wul  |1    |-3 |          |
+KK nu_L      |~n5|~N5|100016  |1     |Mn5   |!wn5  |1    |   |          |
+KK Zp-boson  |Zp |Zp |100023  |2     |MZp   |!wZp  |1    |   |Z'        |
+KK Wp-boson  |Y+ |Y- |100024  |2     |MWp   |!wWp  |1    |   |W'^+      |W'^-
+========================================================================================

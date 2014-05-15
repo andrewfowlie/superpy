@@ -1,0 +1,5 @@
+5 8 40 8
+  You can specify the minimal value
+of cosine of scattering angle between
+first and third particles in the CM 
+reference  frame.

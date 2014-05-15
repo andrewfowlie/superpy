@@ -1,0 +1,39 @@
+2 5 76    Lagrangian                 
+  This table contains interaction vertices. The first four fields
+(A1,A2,A3,A4) are the names of the interacting particles.  These fields
+must contain particle names in CalcHEP notation.  A4 may be empty.  The
+last two fields 'Factor' and 'LorentzPart' define the vertex itself.  Let S
+be the action, then
+                    dS
+-------------------------------------------------------------- = 1/(2* pi)^4
+dA1(p1,[m1]) dA2(p2,[m2]) dA3(p3,[m3]) [dA4(p4,[m4])/(2*pi)^4]
+
+*delta(p1+p2+p3 [+p4])*[gamma_0]*Color_Structure*Factor*LorentzPart
+
+  Here 'p' and 'm' denote 4-momenta and  Lorentz indexes.  The brackets []
+are used to mark the optional parts of the expression.  So terms containing
+A4,p4,m4 appear for the case of four particle interaction vertex only. For
+the case of anticommuting fields the RIGHT derivatives are assumed. The
+gamma_0 term appears in a vertex with fermion fields.
+ 'Factor' must be a rational  monomial constructed from the model
+identifiers, integer numbers and imagery unit.
+  The  'LorentzPart' must be  a tensor or  Dirac gamma-matrix expression.
+Coefficients of this expression are polynomials of the model identifiers
+and scalar products of momenta. To construct the scalar product we use the
+dot "." symbol. The division '/' operation in the 'LorentzPart' is
+forbidden. It must be moved to the 'Factor' field.
+  To build a tensor expression  you can  construct the following
+expressions by means of the dot product: m1.m2  -  the metric tensor;
+p2.m4   -  momentum components.
+  To build a Dirac gamma-matrix  with index 'm' we use symbol G(m). G(p)
+denotes the Lorentz product of the gamma matrices with the 4-momentum.
+The gamma_5 matrix  is denoted by G5.
+  The 'ColorStructure' is substituted by CalcHEP automatically. For a
+colorless particle vertex it is equal to 1.  For (3x3-bar) and for
+(8x8) vertex the Kroneker delta is substituted. If CalcHEP meets vertex
+with three particles in adjoint representation (8x8x8), it substitutes
+           i*f(a1,a2,a3), 
+where f represents a structure constant of SU(3). For  (3x3-barx8)  vertex
+CalcHEP substitutes the Gell-Mann lambda matrixes
+           lambda(i-bar,i,a)/2  
+See Manual for details.

@@ -1,0 +1,30 @@
+Model:         Standard Model
+Model changed: False
+Gauge:         Feynman
+Process:       e,E->Z,h
+
+pdf1:      ISR & Beamstrahlung
+pdf2:      ISR & Beamstrahlung
+Bunch x+y sizes (nm)	  : 560
+Bunch length (mm)	  : 0.4
+Number of particles	  : 2E+10
+
+p1:        500
+p2:        500
+
+Parameter: Mh=125
+
+Dist parameter:    E1
+Dist min:	   30
+Dist max:	   499
+Dist n bins:	   100
+Dist title:	   e,E->Z,h
+Dist x-title:	   E1 (GeV)
+
+Number of events (per run step): 10000
+Filename:                        ee_zh
+
+nSess_1:   5
+nCalls_1:  100000
+nSess_2:   5
+nCalls_2:  100000

@@ -1,0 +1,15 @@
+# combined SM limits
+# CDF Note 9465, D0 Note 5754
+# CDF_D0_SM_combined_3.0fb arXiv:0808.0534 [hep-ex]
+# Mh(in GeV),obs,exp (normalised to SM values)
+
+155	1.7	1.7
+160	1.4	1.3		
+165	1.2	1.2
+170	1.0	1.4
+175	1.3	1.7
+180	1.6	2.0
+185	2.5	2.8
+190	3.3	3.3
+195	4.8	4.2
+200	5.1	4.6

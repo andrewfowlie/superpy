@@ -1,0 +1,58 @@
+.TH FHOUTPUT 1 "14-May-2011"
+.SH NAME
+.PP
+FHOutput \- write FeynHiggs inputs and outputs to a file
+.SH SYNOPSIS (Fortran version)
+.PP
+integer error
+.br
+character*(*) filename
+.br
+integer key
+.br
+double precision sqrts
+.sp
+subroutine FHOutput(error, filename, key, sqrts)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHOutput[filename, key, sqrts]
+.SH DESCRIPTION
+FHOutput runs the FeynHiggs functions encoded in key and writes
+the output to the given file.
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in Output.F from which
+the error message was emitted.
+.TP
+.B filename (input)
+the name of the output file, "stdout" and "stderr" are recognized
+as special filenames.
+.TP
+.B key (input)
+a bit-wise encoding of which output to give:
+.br
+bit 0 (1) = input parameters (FHRetrievePara),
+.br
+bit 1 (2) = derived parameters (FHGetPara),
+.br
+bit 2 (4) = Higgs masses and mixings (FHHiggsCorr),
+.br
+bit 3 (8) = uncertainties (FHUncertainties),
+.br
+bit 4 (16) = decay widths and branching ratios (FHCouplings),
+.br
+bit 5 (32) = the 'fast' flag of FHCouplings,
+.br
+bit 6 (64) = electroweak constraints (FHConstraints),
+.br
+bit 7 (128) = flavour observables (FHFlavour).
+.br
+In case of doubt put key = -1.
+.TP
+.B sqrts (input)
+the value of sqrts for running FHHiggsProd.  FHHiggsProd is run only
+if a positive value of sqrts is given.
+.SH SEE ALSO
+.PP
+libFH(1)

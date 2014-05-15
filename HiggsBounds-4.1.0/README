@@ -1,0 +1,362 @@
+Contents of the present directory are part of the program package 
+	
+	HiggsBounds
+
+by Philip Bechtle, Oliver Brein, Sven Heinemyer, Oscar Stål, Tim Stefaniak, 
+   Georg Weiglein and Karina E. Williams.
+
+This is the FORTRAN 90 version of the code, written by Karina Williams,
+Tim Stefaniak and Oscar Stål. Please contact tim@th.physik.uni-bonn.de
+or oscar.stal@fysik.su.se if you have any questions/problems/etc with this version.
+
+This README file contains:
+* Journal reference and website address
+* Software license
+* What the program does
+* How to use HiggsBounds
+* Additional requirements 
+* How to install HiggsBounds
+* How to run the examples
+* Additional notes 
+  - changing the values of deltaMh_LEP, deltaMh_TEV or eps 
+  - parallel processing
+* Contents of this directory
+
+------------------------------------------------------------------
+
+* Journal References:
+
+  Philip Bechtle, Oliver Brein, Sven Heinemeyer, Georg Weiglein, 
+  Karina E. Williams,
+  HiggsBounds: Confronting Arbitrary Higgs Sectors 
+  with Exclusion Bounds from LEP and the Tevatron,
+  Comput.Phys.Commun.181:138-167,2010
+  e-Print: arXiv:0811.4169 [hep-ph]
+
+  Philip Bechtle, Oliver Brein, Sven Heinemeyer, Georg Weiglein, 
+  Karina E. Williams,
+  HiggsBounds 2.0.0: Confronting Neutral and Charged Higgs Sector 
+  Predictions with Exclusion Bounds from LEP and the Tevatron,
+  Comput.Phys.Commun. 182:2605-2631,2011
+  e-Print: arXiv:1102.1898 [hep-ph]
+
+  Philip Bechtle, Oliver Brein, Sven Heinemeyer, Oscar Stal,
+  Tim Stefaniak, Georg Weiglein, Karina Williams,
+  Recent Developments in HiggsBounds and a Preview of HiggsSignals,
+  PoS CHARGED2012 (2012) 024
+  e-Print: arXiv:1301.2345 [hep-ph]
+
+  Philip Bechtle, Oliver Brein, Sven Heinemeyer, Oscar Stal,
+  Tim Stefaniak, Georg Weiglein, Karina Williams,
+  HiggsBounds-4: Improved Tests of Extended Higgs Sectors against 
+  Exclusion Bounds from LEP, the Tevatron and the LHC
+  e-Print: arXiv:1311.0055 [hep-ph]
+  
+* Web site: http://higgsbounds.hepforge.org
+
+Please have a look at the above paper for detailed information
+on the program.
+
+
+* Software License:
+  HiggsBounds is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  HiggsBounds is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with HiggsBounds.  If not, see http://www.gnu.org/licenses/
+
+
+* What the program does:
+HiggsBounds tests theoretical predictions of models 
+with arbitrary Higgs sectors against the exclusion bounds
+obtained from the Higgs searches at LEP, the Tevatron and the LHC.
+The included experimental information comprises exclusion bounds 
+at 95% C.L. on topological cross sections. In order to determine 
+which search topology has the highest exclusion power, the program 
+also includes, for each topology, information from the experiments 
+on the expected exclusion bound, which would have been observed in 
+case of a pure background distribution. Using the predictions of 
+the desired model provided by the user as input, HiggsBounds
+determines the most sensitive channel and tests whether the
+considered parameter point is excluded at the 95% C.L.
+
+
+* How to use HiggsBounds:
+The code can be invoked on the command line using the command
+	
+	./HiggsBounds <options>
+
+and a subroutine version of the code can be used in other codes
+by linking the library
+
+	libHB.a .
+
+An online version version can be reached via the URL:
+
+	http://projects.hepforge.org/higgsbounds/
+
+By running HiggsBounds without options, more detailed 
+information on how to invoke it will be displayed.
+
+
+* Additional requirements:
+The program "HiggsBounds" and the FORTRAN library "libHB.a" do not
+need to link to other libraries.
+
+The sample program "HBwithFH" demonstrating the use of HiggsBounds
+in connection with FeynHiggs needs to link to/include:
+
+	libFH.a 
+    FHCouplings.h 
+
+The sample program "HBwithCPsuperH" demonstrating the use of HiggsBounds
+in connection with CPsuperH 2.0 needs to link to:
+
+    libcpsuperh2.a
+ 
+* How to install it:
+
+1. You have to edit the file ./configure in the following way:
+
+   a) You have to specify the command which invokes your FORTRAN 90 compiler
+                F90C           ( e.g. gfortran )
+      and the appropriate flags
+                F90FLAGS       ( e.g. -fbounds-check )
+
+   b) If you are going to use the FORTRAN 77 sample programs 
+      "HBwithFH" and "HBwithCPsuperH", you must specify the FORTRAN 77 compiler
+                F77C           ( e.g. gfortran )
+
+      You also have to specify the variables which tell the linker
+      where to find the additional libraries.
+
+      - For FeynHiggs specify:
+                FHINCLUDE      ( e.g. $(HOME)/Packages/FeynHiggs-2.6.4/i586-linux/include )
+                FHLIBS         ( e.g. $(HOME)/Packages/FeynHiggs-2.6.4/i586-linux/lib -lFH )
+
+      - For CPsuperH specify:
+                CPSUPERHLIBS   ( e.g. $(HOME)/Packages/ -lcpsuperh2 )
+
+      Note that care must be taken to ensure that consistent compilers are used
+      If you get error messages similar to 
+          ... undefined reference to `initialize_higgsbounds__'...
+      and the paths to the libraries are correct, it's a good idea to check 
+       that the same compilers were used for each package.
+      (you may be able to work around this 
+      e.g. if FeynHiggs was compiled with g77 it may be possible to compile HiggsBounds
+      with gfortran and add -lg2c to the end of the variable FHLIBS)	
+
+2. After these changes, enter
+	
+	./configure
+
+   at the command line, then
+
+	make
+
+   This will generate the program "HiggsBounds", which is the command-line version of 
+   the code.
+
+   You can also enter:
+
+	make libHB          : This will generate "libHB.a".
+
+	make HBwithFH       : This will generate the executable "HBwithFH" in the folder
+                              "example_programs"
+
+	make HBwithCPsuperH : This will generate the executable "HBwithCPsuperH" in the folder
+                              "example_programs"
+
+* Examples
+
+ - Example of command-line version of HiggsBounds
+   The HiggsBounds package includes some sample input files in the folder example_data.
+   For examples, to run HiggsBounds with the sample input files starting with 
+   'HB_randomtest50points_' use, for example:
+	 
+      ./configure
+      make
+
+      ./HiggsBounds LandH part 3 1 'example_data/HB_randomtest50points_'
+
+   The output files are example_data/HB_randomtest50points_HiggsBounds_results.dat
+                        example_data/HB_randomtest50points_Key.dat
+
+   For convenience, we have put these commands into the script
+      example_programs/demonstrateHiggsBounds_commandline.bat
+
+   The HiggsBounds package also includes the sample output files: 
+                        example_data/HB_randomtest50points_HiggsBounds_results.dat-for-comparison
+                        example_data/HB_randomtest50points_Key.dat-for-comparison 
+   These should be identical to the output files generated from running this example.
+
+ - Example of the subroutine version of HiggsBounds
+   The HiggsBounds package includes a example program example_programs/example-SM_vs_4thGen.F
+   (written in fortran 77) which demonstrates the use of the HiggsBounds subroutines 
+   contained in the HiggsBounds library.
+
+   To use, enter the commands:
+
+      ./configure
+      make libHB
+
+      cd example_programs
+
+      gfortran example-SM_vs_4thGen.F -o example-SM_vs_4thGen -L.. -lHB
+      ./example-SM_vs_4thGen
+
+   The output files are example-SM-results.dat
+                        example-4thGen-results.dat
+                        Key.dat
+
+   Note that when compiling example-SM_vs_4thGen.F, it is best to use the same compiler
+   as was used to compile the HiggsBounds library.
+
+   For convenience, we have put these commands into the script
+      example_programs/demonstrateHiggsBounds_SM_vs_4thGen.bat
+
+   The HiggsBounds package also includes the sample output files: 
+                        example-SM-results.dat-for-comparison
+                        example-4thGen-results.dat-for-comparison
+                        Key.dat-for-comparison-SM_vs_4thGen
+
+   These should be identical to the output files generated from running this example.
+
+ - Example of the use of HiggsBounds in conjunction with the publicly available program
+   CPsuperH 
+   The example program ./example_programs/HBwithCPsuperH.f (fortran 77) uses CPsuperH 
+   (http://www.hep.man.ac.uk/u/jslee/CPsuperH.html) to generate the input required by 
+   HiggsBounds and then calls the HiggsBounds subroutines 
+   (please see the comments in this file for more information). 
+   The file ./example_programs/HBwithCPsuperH.input contains the input for CPsuperH.
+
+   To use, make sure CPsuperH is installed on your system and that the paths are
+   correctly set in the HiggsBounds configure file. Then use:
+
+      ./configure
+      make HBwithCPsuperH
+
+      cd example_programs
+      ./HBwithCPsuperH < HBwithCPsuperH.input
+
+   The HiggsBounds results are outputted to the screen and key to the processes is printed to
+   the file Key.dat
+
+   Note that it is best to use consistent compilers for both the HiggsBounds
+   and the CPsuperH libraries. (although you may be able to work around this e.g. by 
+   using compiler flags such as -lg2c or -lgfortran)
+
+   For convenience, we have put these commands into the script
+      example_programs/demonstrateHiggsBounds_HBwithCPsuperH.bat
+   
+ - Example of the use of HiggsBounds in conjunction with the publicly available program
+   FeynHiggs 
+   The example program ./example_programs/HBwithFH.f (fortran 77) uses FeynHiggs 
+   (http://www.feynhiggs.de) to generate the input required by HiggsBounds and then calls the 
+   HiggsBounds subroutines (please see the comments in this file for more information) .
+
+   To use, make sure FeynHiggs is installed on your system and that the paths are
+   correctly set in the HiggsBounds configure file. Then use:
+
+      ./configure
+      make HBwithFH
+
+      cd example_programs
+      ./HBwithFH
+
+   The HiggsBounds results are outputted to the screen and key to the processes is printed to
+   the file Key.dat
+
+   For convenience, we have put these commands into the script
+      example_programs/demonstrateHiggsBounds_HBwithFH.bat
+
+   Note that it is best to use consistent compilers for both the HiggsBounds
+   and the FeynHiggs libraries. (although you may be able to work around this e.g. by 
+   using compiler flags as such-lg2c or -lgfortran)
+
+Please feel free to contact us with feature requests and bug reports.
+
+Enjoy!
+
+Karina
+
+---------------------- Additional notes: ------------------------------
+
+The values of the variables 
+
+ *  deltaMh_LEP, deltaMh_TEV (determines how similar the neutral Higgs masses should be for their
+    cross sections to be combined.) Note that cross sections are not combined for processes
+    which require the parameter point to be SM-like.
+
+ *  eps (Determines how strict the SM-like test is.)
+
+ (see arXiv:0811.4169 for more precise definitions)
+
+are set at the beginning of the file S95tables.f90. These can be changed if desired.
+
+The command-line version of HiggsBounds is suitable for parallel processing during the 
+most CPU intensive part of the program (the comparison of the theoretical predictions and
+experimental results for each data set). OpenMP directives are contained in the file 
+HiggsBounds.F90. They can be activated by a compiler flag e.g. for gfortran, use -fopenmp 
+
+
+----------- Contents of directory (fortran 90 version) -----------------
+
+* ./
+- HiggsBounds.F90 : main program for the command-line version of HiggsBounds
+- HiggsBounds_subroutines.F90 : contains the main HiggsBounds subroutines which are accessible to the user 
+- input.F90 : contains subroutines associated with input
+- write_out_input.txt : ('#include'd into input.F90) writes input for debugging purposes
+- output.F90 : contains subroutines associated with output
+- theo_manip.f90 : contains subroutines for the initial manipulation of the input data
+- channels.F90 : contains subroutines involving the list of channels
+- S95tables.f90 : contains subroutines involving individual channels/topologies
+- S95tables_type1.f90 : fills the array S95_t1, which contains the data from the 1D experimental tables
+- S95tables_type2.f90 : fills the array S95_t2, which contains the data from the 2D experimental tables
+- interpolate.f90 : contains routines for interpolating the tables 
+- theory_BRfunctions.f90 : contains SM branching ratios used internally by HiggsBounds
+- theory_tevSfunctions.F90 : contains SM cross section ratios used internally by HiggsBounds
+- theory_XS_SM_functions.F90 : contains SM cross section used internally by HiggsBounds
+- access_SM.f90 : SM functions which are accessible to the user
+- usefulbits.f90 : defines, allocates and deallocates various variables (in particular, the command-line input, the array of input data and the output array)
+- extra_bits_for_web.F90 : extra subroutines required by the website version of the code
+- read_commandline_from_web.txt : ('#include'd into extra_bits_for_web.F90) reads numbers from command line given by web cgi script
+- no_SLHA.f90 : contains dummy subroutine which is used when input is not in SLHA format
+- extra_bits_for_SLHA.f90, SLHA_manip.f90, PDGnumbering.f90, string_manip.f90
+	 : files associated with input in SLHA format (unsupported option)
+- README : contains information about the code
+- COPYING : The GNU General Public License
+- configure : sets compiler options, paths to data and libraries, creates makefile, runs the script create_store_pathname.bat
+- makefile.in : used by configure to create the makefile
+- create_store_pathname.bat : creates a fortran module which stores the path to the installation directory
+- create_package.bat : simple shell script to create the tar.gz file 
+- extract_SM_results_for_web.f90 : script to make the SM functions accessible on the website
+
+* ./Expt_tables
+Contains tables of limits from LEP, CDF and D0 experiments as a function of Higgs mass
+
+* ./Theory_tables
+Contains tables of SM branching ratios and total decay width as a function of Higgs mass, generated using the program HDecay.
+
+* ./cs-ratios_sigma-bg-Hb
+Contains functions for Tevatron SM partonic cross-sections and cross-section ratios
+
+* ./example_data 
+Contains example input and output files
+
+* ./example_programs 
+- demonstrateHiggsBounds_commandline.bat : short shell script to demonstrate how to compile and run the command-line version of HiggsBounds
+- example-SM_vs_4thGen.F : example fortran program, showing the use of HiggsBounds subroutines
+- demonstrateHiggsBounds_SM_vs_4thGen.bat : short shell script to compile and run example-SM_vs_4thGen.F
+- HBwithCPsuperH.f : example fortran program, showing the use of HiggsBounds subroutines with the program CPsuperH
+- HBwithCPsuperH.input : input for HBwithCPsuperH.f
+- demonstrateHiggsBounds_HBwithFH.bat : shortshell script to compile and run HBwithFH.f
+- HBwithFH.F : example fortran program, showing the use of HiggsBounds subroutines with the program FeynHiggs
+

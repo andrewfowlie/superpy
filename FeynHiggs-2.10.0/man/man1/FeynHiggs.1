@@ -1,0 +1,430 @@
+.TH FEYNHIGGS 1 "1-Jun-2012"
+.SH NAME
+.PP
+FeynHiggs \- the FeynHiggs command-line frontend
+.SH SYNOPSIS
+FeynHiggs parameterfile [flags]
+.SH DESCRIPTION
+FeynHiggs calculates the masses and couplings of the Higgs sector in the 
+MSSM.  FeynHiggs provides a convenient way of invoking the subroutines 
+of the FeynHiggs library from the command line.  The input parameters are 
+read from a file and the output is displayed in a human-readable form on 
+screen, but can be piped through a utility program to yield
+machine-readable data files, e.g. for plotting.
+.SH PARAMETER FILES
+The input parameters for FeynHiggs are read from a file.  FeynHiggs
+attempts to read an SLHA file first and if that fails, falls back onto 
+its native format (description follows below).  Output-wise, the default 
+is to write out an SLHA file (original filename + .fh-NNN) if the input 
+was one, and write the output to screen otherwise.  Output style can be
+changed by appending #SLHA to the filename to force SLHA output, and
+#FH to force screen output.
+
+Description of the native FeynHiggs format: comments begin with a #
+and continue to the end of the line.  Apart from a possible comment,
+each line has the format
+.P
+  var  lower  [upper]  [*][/][step]
+.P
+and declares a loop over
+.I var
+from
+.I lower
+to
+.I upper
+in steps of
+.I step.
+A "*" in front of 
+.I step
+results in a logarithmic stepping, i.e.
+.I var
+is multiplied by
+.I step
+in each iteration.  A prefix of "/" indicates that
+.I step
+is to be interpreted as the number of steps, rather than the step size.
+.P
+Simple assignments of the form
+.I name lower
+(i.e. no loop) are just a special case of this since the items in 
+brackets may be omitted.
+.P
+.I var
+is the name of the parameter, which is one of
+.br
+-------------------+--------------------------------------
+.br
+invAlfa            | the inverse of the electromagnetic
+.br
+                   | coupling constant
+.br
+-------------------+--------------------------------------
+.br
+AlfasMZ            | the strong coupling constant at MZ
+.br
+-------------------+--------------------------------------
+.br
+GF                 | the Fermi constant
+.br
+-------------------+--------------------------------------
+.br
+MS, MC, MT, MB     | the strange, charm, top, bottom masses
+.br
+-------------------+--------------------------------------
+.br
+MW, MZ             | the W and Z masses
+.br
+-------------------+--------------------------------------
+.br
+TB                 | tan(beta)
+.br
+-------------------+--------------------------------------
+.br
+MA0, MHp           | the CP-odd and charged Higgs mass
+.br
+                   | (only one should be specified)
+.br
+-------------------+--------------------------------------
+.br
+MSusy              | a generic soft-SUSY breaking mass
+.br
+                   | used as a default value for all
+.br
+                   | MgSL, MgSE, MgSQ, MgSU, MgSD.
+.br
+-------------------+--------------------------------------
+.br
+MgSL, MgSQ         | individual soft-SUSY breaking masses
+.br
+MgSE, MgSU, MgSD   | for the slepton and squark doublets
+.br
+g = 1..3           | and singlets.
+.br
+                   | Default: all MgSx = MSusy.
+.br
+-------------------+--------------------------------------
+.br
+Abs(MUE), Re(MUE)  | the Higgs mixing parameter
+.br
+Arg(MUE), Im(MUE)  |
+.br
+-------------------+--------------------------------------
+.br
+Abs(Af), Re(Af)    | the sfermion mixing parameters
+.br
+Arg(Af), Im(Af)    |
+.br
+f = e,mu,tau,      |
+.br
+    u,c,t,         |
+.br
+    d,s,b          |
+.br
+-------------------+--------------------------------------
+.br
+Abs(Xf), Re(Xf)    | alternative sfermion mixing parameter;
+.br
+Arg(Xf), Im(Xf)    | since Xf and Af are not independent,
+.br
+f = tau,t,b        | only one should be specified
+.br
+-------------------+--------------------------------------
+.br
+Abs(M_1), Re(M_1)  | the U1 gaugino mass parameter
+.br
+Arg(M_1), Im(M_1)  |
+.br
+-------------------+--------------------------------------
+.br
+Abs(M_2), Re(M_2)  | the SU2 gaugino mass parameter
+.br
+Arg(M_2), Im(M_2)  |
+.br
+-------------------+--------------------------------------
+.br
+Abs(M_3), Re(M_3)  | the gluino mass parameter
+.br
+Arg(M_3), Im(M_3)  |
+.br
+-------------------+--------------------------------------
+.br
+Qtau, Qt, Qb       | the scales at which the stau, stop,
+.br
+                   | and sbottom DRbar masses are defined
+.br
+                   | Default: all 0 (= on-shell masses)
+.br
+-------------------+--------------------------------------
+.br
+CKMlambda          | the CKM parameters
+.br
+CKMA               |
+.br
+CKMrhobar          |
+.br
+CKMetabar          | Default: all -1 (= use PDG values)
+.br
+-------------------+--------------------------------------
+.br
+Abs(deltaFXYij)    | the flavour-violating
+.br
+Arg(deltaFXYij)    | parameters
+.br
+Re(deltaFXYij)     |
+.br
+Im(deltaFXYij)     |
+.br
+F = L,E,Q,U,D      |
+.br
+XY = LL,LR,RL,RR   |
+.br
+ij = 12,23,13,     | Default: all 0
+.br
+-------------------+--------------------------------------
+.br
+scalefactor        | the ren. scale is MT*scalefactor
+.br
+-------------------+--------------------------------------
+.br
+prodSqrts          | sqrt(s) for the production x-sections
+.br
+-------------------+--------------------------------------
+.P
+Needless to add that complex quantities should be specified EITHER
+through Abs and Arg OR through Re and Im.  In conflicting
+cases a warning is issued and the Abs/Arg value takes
+precedence.
+.SH FLAGS
+The flags are given as an optional 9-digit string on the command line,
+where the default is 400202110.  The positions in the string are as
+follows:
+.TP
+#1: mssmpart = 0..4
+specifies the scope of the 1-loop part:
+.br
+0: MT^4-approximation
+.br
+1: top/stop-sector
+.br
+2: top/stop- + bottom/sbottom-sector
+.br
+3: full (s-)quark/lepton-sector
+.br
+4: full MSSM
+.br
+.B recommended: 4
+.TP
+#2: fieldren = 0..4
+determines the 1-loop field-renormalization constants:
+.br
+0: DRbar
+.br
+1: On-Shell, Dabelstein's convention
+.br
+2: On-Shell, 'Goldstone-pole' version
+.br
+3: On-Shell, MF I
+.br
+4: On-Shell, MF II
+.br
+.B strongly recommended: 0
+.TP
+#3: tanbren = 0..2
+determines the 1-loop tan(beta) counter term:
+.br
+0: DRbar
+.br
+1: field renormalization part only (Dabelstein)
+.br
+2: mixed field/On-Shell-renormalization
+.br
+.B strongly recommended: 0
+.TP
+#4: higgsmix = 1..3
+determines the mixing in the Higgs sector:
+.br
+1: All non-diagonal (ND) Self Energies = 0
+.br
+2: All CP-violating ND Self Energies = 0
+.br
+3: Full 3x3 mixing in the neutral sector
+.br
+.B This means:
+.br
+.B 2: evaluation in the rMSSM
+.br
+.B 3: evaluation in the cMSSM
+.TP
+#5: p2approx = 0..4
+determines the approximation for the 1-loop result:
+.br
+0: None, i.e. full determination of the propagator matrices's poles,
+   UHiggs is evaluated at p^2 = m^2
+.br
+1: p^2 = 0 approximation
+.br
+2: All self energies are calculated at p^2 = m_tree^2
+.br
+3: imaginary parts of self-energies are discarded
+.br
+4: as 0, but with UHiggs evaluated at p^2 = 0
+.br
+.B recommended: 4
+.TP
+#6: looplevel = 0..2
+determines the inclusion of higher-order corrections:
+.br
+0: tree level
+.br
+1: one-loop contributions only
+.br
+2: include various two-loop contributions
+.br
+.B recommended: 2
+.TP
+#7: runningMT = 0..1
+determines which top mass shall be used in the 1-/2-loop corrections:
+.br
+0: pole MT
+.br
+1: running MT
+.br
+.B recommended: 1
+.TP
+#8: botResum = 0..1
+determines whether the O(tan beta^n) corrections shall be resummed:
+.br
+0: no resummation
+.br
+1: resummation of MB
+.br
+.B recommended: 1
+.TP
+#9: tlCplxApprox = 0..6
+determines how the two-loop corrections are treated in the presence of
+complex parameters (cMSSM):
+.br
+0: all corrections (asat, asab, atat, atab) are computed in
+   the rMSSM
+.br
+1: only the cMSSM asat corrections are used
+.br
+2: the cMSSM asat corrections are combined with the remaining
+   corrections in the rMSSM
+.br
+3: the cMSSM a_s a_t corrections are combined with the remaining
+   corrections, whose complex phases are interpolated in
+   At, Ab, M_3, MUE
+.br
+4: ditto, with interpolation in At, Xb, M_3, MUE
+.br
+5: ditto, with interpolation in Xt, Ab, M_3, MUE
+.br
+6: ditto, with interpolation in Xt, Xb, M_3, MUE
+.SH EXAMPLE
+Using the example parameter file that comes with FeynHiggs, the
+command
+.P
+  FeynHiggs example/var.in
+.P
+should result in the following Higgs masses and mixings:
+.P
+| Mh0           =     113.89008624
+.br
+| MHH           =     195.87658697
+.br
+| MA0           =     200.00000000
+.br
+| MHp           =     213.63955069
+.br
+| SAeff         =    -0.35592463    0.00000000
+.br
+| UHiggsRe      =     0.99672973    0.08080741    0.00000000
+.br
+|                    -0.08080741    0.99672973    0.00000000
+.br
+|                     0.00000000    0.00000000    1.00000000
+.P
+and the following widths and branching ratios:
+.P
+| h0-b-b        =    6.018044E-03   0.825117       0.725474    
+.br
+| HH-b-b        =    5.165486E-02   0.559950       2.526224E-03
+.br
+| A0-b-b        =    5.896187E-02   0.848461       2.280889E-03
+.br
+| Hp-t-b        =    6.224386E-02   0.781530    
+.P
+Before the results, FeynHiggs lists the parameters of the calculation.
+.P
+With all the detailed information on widths and branching ratios, the 
+screen can become rather crowded.  To mask off this detailed output, 
+type
+.P
+  FeynHiggs ... | grep -v %
+.SH CONVERSION TO MACHINE-READABLE OUTPUT
+The output of FeynHiggs can be converted into a format more amenable to 
+further processing, e.g. plotting, by the "table" utility.  This works as 
+follows:
+.P
+  FeynHiggs ... | table TB Mh0 > var.out
+.P
+var.out then contains two columns listing TB and Mh0 for each pass of 
+the loop.
+.SH SPS BENCHMARK SCENARIOS
+The SPS benchmark scenarios are predefined.  The input files can be 
+found in example/SPS/.  To run a scenario, type e.g.
+.P
+  FeynHiggs example/SPS/SPS1a.in
+.P
+For more information on the SPS, see
+.P
+  http://www.ippp.dur.ac.uk/~georg/sps/
+.SH LES HOUCHES BENCHMARK SCENARIOS
+The Les Houches benchmark scenarios for Higgs boson searches at hadron
+colliders are predefined.  The input files can be found in 
+example/LHBMS/.  To run a scenario, type e.g.
+.P
+  FeynHiggs example/SPS/mhmax.in
+.P
+For more information on the Les Houches Benchmark scenarios, see
+Eur. Phys. J. C26 (2003) 601 [hep-ph/0202167].
+.SH SUSY LES HOUCHES ACCORD DATA
+FeynHiggs can handle data files in the SUSY Les Houches Accord (SLHA) 
+format.  If the input file is in SLHA format, the results (masses,
+widths, etc.) are equally written out in SLHA format, to a file named as 
+the source file suffixed by ".fh".  For example:
+.P
+  FeynHiggs example/SLHA/TestEXTPAR.spc
+.P
+produces example/SLHA/TestEXTPAR.spc.fh.  FeynHiggs can process SLHA
+files in which the input parameters are given (Block EXTPAR) as well as 
+files in which the masses and mixings is given (Blocks MASS, STOPMIX, 
+etc.), where in the latter case the input parameters are reconstructed
+from the mass spectrum.  For instance, try:
+.P
+  FeynHiggs example/SLHA/SphenoRP.spc
+.P
+For more information on the SLHA, see
+.P
+  http://home.fnal.gov/~skands/slha/
+.SH ENVIRONMENT
+The FeynHiggs debug level can be set using the FHDEBUG environment 
+variable, e.g.
+.P
+  setenv FHDEBUG 1   (in tcsh)
+.br
+  export FHDEBUG=1   (in bash)
+.P
+The pager spawned to view FeynHiggs output is taken from the environment 
+variable PAGER and defaults to "less" if PAGER is not set.  Should a 
+program abort occur with FeynHiggs, it is advisable to set PAGER to an 
+empty string, e.g.
+.P
+  setenv PAGER
+.P
+This prevents a pager from being started and ensures that the output
+is shown right up to the point where the abort occurs.
+.SH SEE ALSO
+.PP
+libFH(1), MFeynHiggs(1)
