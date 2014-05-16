@@ -1,0 +1,17 @@
+#Model 1
+#ForceUG 0
+#nIn 0
+#nOut 0
+#Process e,E -> m,M
+#nTot 0
+#Remove_Virtual 
+#Remove_X 
+#nSubproc(ampl) 0
+#nSubproc(squared) 0
+#Nc==inf  0
+#NoColorChains 0
+#NoDiagrams  0
+#T-widths    0
+#VVdecays    1
+#NewCodes  0
+#ExitCode 2

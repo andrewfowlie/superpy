@@ -3,9 +3,15 @@ Block FCINFO  # Program information
      1     SUPERISO         # flavour calculator
      2     3.3              # version number
 Block MODSEL  # Model selection
-     1    1   # sugra
+     3  1   # NMSSM particle content
+     1  1   # IMOD
+     10  0   # ISCAN
+     9  0   # Call micrOmegas
+     8  0   # Precision for Higgs masses
+     13  1   # Sparticle decays via NMSDECAY
+     14  0   # H-> VV,VV*,(V*V*)
 Block SMINPUTS  # Standard Model inputs
-     1     1.27944000e+02   # alpha_em^(-1)
+     1     1.27920000e+02   # alpha_em^(-1)
      2     1.16637000e-05   # G_Fermi
      3     1.18500000e-01   # alpha_s(M_Z)
      4     9.11876000e+01   # m_{Z}(pole)
@@ -39,22 +45,22 @@ Block FCONSTRATIO  # Ratio of decay constants
    321     211    1   1   1.19300000e+00     0      0   # f_K/f_pi
 Block FOBS  # Flavour observables
 # ParentPDG type  value       q   NDA   ID1   ID2  ID3 ... comment
-    5    1   1.38162324e-04   0     2     3    22        # BR(b->s gamma)
-  521    4   1.92594329e-01   0     2   313    22        # Delta0(B->K* gamma)
-  531    1   3.52683994e-09   0     2    13   -13        # BR(B_s->mu+ mu-)
-  521    1   8.00016916e-05   0     2   -15    16        # BR(B_u->tau nu)
-  521    2   9.98092171e-01   0     2   -15    16        # R(B_u->tau nu)
-  431    1   5.10225106e-02   0     2   -15    16        # BR(D_s->tau nu)
-  431    1   5.23584501e-03   0     2   -13    14        # BR(D_s->mu nu)
-  521    1   6.75193310e-03   0     3   421   -15    16  # BR(B+->D0 tau nu)
-  521   11   2.97284132e-01   0     3   421   -15    16  # BR(B+->D0 tau nu)/BR(B+-> D0 e nu)
-  321   11   6.34234533e-01   0     2   -13    14        # BR(K->mu nu)/BR(pi->mu nu)
-  321   12   9.99991691e-01   0     2   -13    14        # R_mu23
+    5    1   1.30843845e-04   0     2     3    22        # BR(b->s gamma)
+  521    4   1.95912965e-01   0     2   313    22        # Delta0(B->K* gamma)
+  531    1   8.21400173e-09   0     2    13   -13        # BR(B_s->mu+ mu-)
+  521    1   7.05583271e-05   0     2   -15    16        # BR(B_u->tau nu)
+  521    2   8.80277810e-01   0     2   -15    16        # R(B_u->tau nu)
+  431    1   5.09512721e-02   0     2   -15    16        # BR(D_s->tau nu)
+  431    1   5.22853464e-03   0     2   -13    14        # BR(D_s->mu nu)
+  521    1   6.56021282e-03   0     3   421   -15    16  # BR(B+->D0 tau nu)
+  521   11   2.88842788e-01   0     3   421   -15    16  # BR(B+->D0 tau nu)/BR(B+-> D0 e nu)
+  321   11   6.33569624e-01   0     2   -13    14        # BR(K->mu nu)/BR(pi->mu nu)
+  321   12   9.99467375e-01   0     2   -13    14        # R_mu23
 Block FOBSSM  # SM predictions for flavour observables
 # ParentPDG type  value       q   NDA   ID1   ID2  ID3 ... comment
-    5    1   1.35944066e-04   0     2     3    22        # BR(b->s gamma)
-  521    4   1.94245668e-01   0     2   313    22        # Delta0(B->K* gamma)
-  531    1   3.53465359e-09   0     2    13   -13        # BR(B_s->mu+ mu-)
+    5    1   1.35940060e-04   0     2     3    22        # BR(b->s gamma)
+  521    4   1.94250203e-01   0     2   313    22        # Delta0(B->K* gamma)
+  531    1   3.53496705e-09   0     2    13   -13        # BR(B_s->mu+ mu-)
   521    1   8.01546129e-05   0     2   -15    16        # BR(B_u->tau nu)
   521    2   1.00000000e+00   0     2   -15    16        # R(B_u->tau nu)
   431    1   5.10235109e-02   0     2   -15    16        # BR(D_s->tau nu)

@@ -1,6 +1,6 @@
-      SUBROUTINE FTPAR(PAR,FLAG) 
+      SUBROUTINE FTPAR(PAR,FLAG)
 
-************************************************************************   
+************************************************************************
 *   Subroutine extracting the fine-tuning
 *
 *   At the SUSY scale FTSUSY(i)=d(ln MZ^2)/d(ln PSi^2)
@@ -34,35 +34,35 @@
 *
 *     where lh=l**2/g**2, kh=k/l, xfh=l*xif, xsh = l*xis, b=al+kh*mu
 *     ct0 = (3*ht**4)/(8*pi**2*g**2)*ln(mt**2/QSTSB)
-* 
+*
 *   At the GUT scale FTGUT(i)=d(ln MZ^2)/d(ln PGi^2)
 *
-*     FTGUT(1) --> PG=m_Hu
-*     FTGUT(2) --> PG=m_Hd
-*     FTGUT(3) --> PG=m_S
-*     FTGUT(4) --> PG=m0
-*     FTGUT(5) --> PG=M1
-*     FTGUT(6) --> PG=M2
-*     FTGUT(7) --> PG=M3
-*     FTGUT(8) --> PG=M12
-*     FTGUT(9) --> PG=A_lambda
-*     FTGUT(10) --> PG=A_kappa
-*     FTGUT(11) --> PG=A0
-*     FTGUT(12) --> PG=XiF
-*     FTGUT(13) --> PG=XiS
-*     FTGUT(14) --> PG=MUP
-*     FTGUT(15) --> PG=MSP
-*     FTGUT(16) --> PG=M3H
-*     FTGUT(17) --> PG=lambda
-*     FTGUT(18) --> PG=kappa
-*     FTGUT(19) --> PG=htop
-*     FTGUT(20) --> PG=g
-*     FTGUT(21) --> PG=MGUT
-*     FTGUT(22) --> MAX(FTGUT(i))
-*     FTGUT(23) --> i FOR FTMAX
+! *     FTGUT(1) --> PG=m_Hu
+! *     FTGUT(2) --> PG=m_Hd
+! *     FTGUT(3) --> PG=m_S
+! *     FTGUT(4) --> PG=m0
+! *     FTGUT(5) --> PG=M1
+! *     FTGUT(6) --> PG=M2
+! *     FTGUT(7) --> PG=M3
+! *     FTGUT(8) --> PG=M12
+! *     FTGUT(9) --> PG=A_lambda
+! *     FTGUT(10) --> PG=A_kappa
+! *     FTGUT(11) --> PG=A0
+! *     FTGUT(12) --> PG=XiF
+! *     FTGUT(13) --> PG=XiS
+! *     FTGUT(14) --> PG=MUP
+! *     FTGUT(15) --> PG=MSP
+! *     FTGUT(16) --> PG=M3H
+! *     FTGUT(17) --> PG=lambda
+! *     FTGUT(18) --> PG=kappa
+! *     FTGUT(19) --> PG=htop
+! *     FTGUT(20) --> PG=g
+! *     FTGUT(21) --> PG=MGUT
+! *     FTGUT(22) --> MAX(FTGUT(i))
+! *     FTGUT(23) --> i FOR FTMAX
 *
 *   JACG(j,i) is the Jacobian defined as d(ln PSj^2)/d(ln PGi^2)
-* 
+*
 *   At the MESS scale FTMES(i)=d(ln MZ^2)/d(ln PMi^2)
 *
 *     FTMES(1) --> PM=M_susyeff
@@ -84,11 +84,11 @@
 *     FTMES(17) --> i FOR FTMAX
 *
 *   JACM(j,i) is the Jacobian defined as d(ln PSj^2)/d(ln PMi^2)
-* 
+*
 *
 ************************************************************************
- 
-      IMPLICIT NONE 
+
+      IMPLICIT NONE
 
       INTEGER I,J,FLAG,M1FLAG,M2FLAG,M3FLAG,MHDFLAG,MHUFLAG
       INTEGER MSFLAG,AKFLAG,ALFLAG,NSUSY,NGUT,NMES
@@ -101,7 +101,7 @@
       DOUBLE PRECISION LH,KH,XFH,XSH,CT
       DOUBLE PRECISION A1,A2,A3,D1Z,D2Z,D3Z
       DOUBLE PRECISION D1T,D2T,D3T,D1M,D2M,D3M,D
-      DOUBLE PRECISION MS,MC,MB,MBP,MT,MTAU,MMUON,MZ,MW      
+      DOUBLE PRECISION MS,MC,MB,MBP,MT,MTAU,MMUON,MZ,MW
       DOUBLE PRECISION G,G1,G2,G3,HT,HB,HL
       DOUBLE PRECISION XIF,XIS,MUP,MSP,M3H
       DOUBLE PRECISION MHU2,MHD2,MS2,M0,M12,A0
@@ -140,7 +140,8 @@
       COMMON/MESEXT/XIFMES,XISMES,MSMES,MUPMES,MSPMES,M3HMES
       COMMON/MESCAL/MSUSYEFF,MMESS,N5
       COMMON/MESCOUP/G1MES,G2MES,G3MES,LMES,KMES,HTMES,HBMES,HLMES
-      COMMON/FINETUN/FTSUSY,FTGUT,FTMES
+      ! SuperPy - added for naturalness priors.
+      COMMON/FINETUN/FTSUSY,FTGUT,FTMES,PG,PS,JACG,D1T,D2T,D3T
 
       PI=4d0*DATAN(1d0)
 
@@ -162,7 +163,7 @@
       XSH=L*XIS
       TB2=TB**2
       CT=3d0*HT**4/(8d0*PI**2*G)*DLOG(MTOPQ**2/QSTSB)
-    
+
 *   DiT = d(i)/d(tb)
 
       D1T = 2d0*MZ**2*TB/(1d0+TB2)**2*(1d0-LH-CT)
@@ -417,12 +418,15 @@
 
       ENDIF
 
+      ! SuperPy - call once more so that parameters are correct.
+      CALL RGESVAR(NGUT,NSUSY,PG,PS)
+
       END
 
 
       SUBROUTINE JACOBIAN(M,N,PG,PS,JACG)
 
-      IMPLICIT NONE 
+      IMPLICIT NONE
 
       INTEGER N,M,I,J
       DOUBLE PRECISION JACG(N,M),PG(M),PS(N),PP(N),T,H,EPS
@@ -492,7 +496,7 @@
       COMMON/GUTCOUP/G1,G2,G3,L,K,HT,HB,HL
       COMMON/RENSCALE/Q2
       COMMON/SCANFLAGS/M1,M2,M3,MHD,MHU,MS,AK,AL
- 
+
       EXTERNAL DERIVSS,RKQSS
 
       EPS=1.d-8
@@ -587,13 +591,13 @@
       PS(12)=Y(5)
       PS(13)=Y(6)
       PS(14)=(Y(1)+Y(2))/2d0
-      
+
       END
 
 
       SUBROUTINE JACOBIANGM(M,N,PM,PS,N5,JACM)
 
-      IMPLICIT NONE 
+      IMPLICIT NONE
 
       INTEGER N,M,I,J
       DOUBLE PRECISION JACM(N,M),PM(M),PS(N),PP(N),N5,T,H,EPS
@@ -663,7 +667,7 @@
 
       COMMON/MESCOUP/G1,G2,G3,L,K,HT,HB,HL
       COMMON/RENSCALE/Q2
- 
+
       EXTERNAL DERIVSS,RKQSS
 
       EPS=1.d-8
@@ -703,7 +707,7 @@
       ALP1=PM(12)/(4d0*PI)
       ALP2=PM(13)/(4d0*PI)
       ALP3=PM(14)/(4d0*PI)
-      
+
       Y(9)=5d0/3d0*ALP1*N5*PM(1)*F1/(4d0*PI)
       Y(10)=ALP2*N5*PM(1)*F1/(4d0*PI)
       Y(11)=ALP3*N5*PM(1)*F1/(4d0*PI)

@@ -1,7 +1,7 @@
 # SuperPy
-*SuperPy* is a Python code that scans the CMSSM's parameter space to find the regions that best agree with experimental data with Bayesian statistics.
+*SuperPy* is a Python code that scans the CMSSM or CNMSSM's parameter space to find the regions that best agree with experimental data with Bayesian statistics.
 
-1. Draws a model from the CMSSM with your priors, with MultiNest.
+1. Draws a model from the CMSSM or CNMSSM with your priors, with MultiNest.
 2. Calculates predictions for the model with SoftSUSY, SuperISO, microMEGAs and FeynHiggs.
 3. Calculates the chi-squared by comparing these predictions with experimental data.
 4. Returns this chi-squared to MultiNest, which explores the parameter space with an efficient algorithm.
@@ -55,7 +55,9 @@ My changes are marked "SuperPy". I made minor modifications to:
 * ./susyhit/sdcay.f  (read SLHA filename from comand line)
 * ./softsusy-3.4.0/src/softpoint.cpp (to call fine-tuning functions)
 * ./softsusy-3.4.0/src/softsusy.cpp (to print derivatives for naturalness priors)
-
+* ./NMSSMTools_4.2.1/main/makefile
+* ./NMSSMTools_4.2.1/sources/ftpar.f
 I added:
 * ./FeynHiggs-2.10.0/example/SuperPy.F
 * ./HiggsSignals-1.2.0/example_programs/SuperPy.f90
+* ./NMSSMTools_4.2.1/main/pyspec.f

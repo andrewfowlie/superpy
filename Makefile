@@ -29,6 +29,7 @@ feynhiggs:
 micromegas:
 	make -C micromegas_*
 	make -C micromegas_*/MSSM main=main.c
+	make -C micromegas_*/NMSSM main=main.c
 
 superiso:
 	make -C superiso_v*

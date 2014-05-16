@@ -1,1 +1,11 @@
-
+CC = gcc
+CFLAGS = -O3 -pipe -fomit-frame-pointer
+MAKE = make
+AR = ar
+SOFTSUSY = /home/andrew/softsusy/softpoint.x
+ISAJET = /home/andrew/isajet/isasugra.x
+SPHENO = /home/andrew/spheno/bin/SPheno
+SUSPECT = /home/andrew/suspect/suspect2
+THDMC = /home/andrew/2HDMC
+HBwithFH = /home/andrew/higgsbounds/HiggsBounds-f90/example_programs/HBwithFH
+NMSSMTools = /home/andrew/nmssmtools/main

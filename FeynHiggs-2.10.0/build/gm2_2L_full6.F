@@ -1,0 +1,1 @@
+/home/andrew/WORKING/git-superpy/superpy/FeynHiggs-2.10.0/src/Constraints/gm2_2L_full6.F

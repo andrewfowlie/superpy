@@ -1,3 +1,5 @@
+# SuperPy - added commands to make SuperPy interface.
+
 .PHONY: clean
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -14,10 +16,10 @@ LIB =  ../sources/nmhdecay.a $(micrOr)/lib/aLib.a $(micrOr)/lib/nngg/nngg.a  $(m
       $(micrOr)/lib/LoopTools-2.1/libooptools.a
 
 ALIB =  ../sources/nmhdecay.a $(micrOr)/lib/aLib.a   $(micrO)/sources/micromegas.a $(micrOr)/work/work_aux.a \
-     $(cLib)/sqme_aux.so  $(cLib)/dynamic_me.a  $(cLib)/libSLHAplus.a $(cLib)/num_c.a  $(cLib)/ntools.a  $(cLib)/serv.a 
+     $(cLib)/sqme_aux.so  $(cLib)/dynamic_me.a  $(cLib)/libSLHAplus.a $(cLib)/num_c.a  $(cLib)/ntools.a  $(cLib)/serv.a
 
 
-EXEC = nmhdecay nmspec nmgmsb nmhdecay_grid nmhdecay_rand nmspec_grid nmspec_rand nmgmsb_grid nmgmsb_rand nmProcessSpec
+EXEC = nmhdecay nmspec nmgmsb nmhdecay_grid nmhdecay_rand nmspec_grid nmspec_rand nmgmsb_grid nmgmsb_rand pyspec
 
 all: $(EXEC)
 
@@ -51,9 +53,8 @@ nmgmsb_grid: 	nmgmsb_grid.o $(LIB)
 nmgmsb_rand: 	nmgmsb_rand.o $(LIB)
 	$(FC) $(FFLAGS) -o $@ $^ $(lDL) $(LX11)
 
-nmProcessSpec: nmProcessSpec.o $(LIB)
+pyspec: 	pyspec.o $(LIB)
 	$(FC) $(FFLAGS) -o $@ $^ $(lDL) $(LX11)
 
 clean:
 	rm -f *.o $(EXEC)
-

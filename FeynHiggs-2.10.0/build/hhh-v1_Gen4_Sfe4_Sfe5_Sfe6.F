@@ -1,0 +1,1 @@
+/home/andrew/WORKING/git-superpy/superpy/FeynHiggs-2.10.0/src/Decays/hhh/hhh-v1_Gen4_Sfe4_Sfe5_Sfe6.F

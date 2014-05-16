@@ -1,0 +1,1 @@
+/home/andrew/WORKING/git-superpy/superpy/FeynHiggs-2.10.0/src/Decays/hgaga/hgaga-v1_All4_Ind1_Ind2.F

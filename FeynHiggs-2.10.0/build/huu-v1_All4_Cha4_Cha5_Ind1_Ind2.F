@@ -1,0 +1,1 @@
+/home/andrew/WORKING/git-superpy/superpy/FeynHiggs-2.10.0/src/Decays/huu/huu-v1_All4_Cha4_Cha5_Ind1_Ind2.F

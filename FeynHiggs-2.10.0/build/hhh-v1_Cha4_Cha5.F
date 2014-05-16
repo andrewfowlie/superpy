@@ -1,0 +1,1 @@
+/home/andrew/WORKING/git-superpy/superpy/FeynHiggs-2.10.0/src/Decays/hhh/hhh-v1_Cha4_Cha5.F

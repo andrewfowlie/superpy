@@ -4,8 +4,6 @@
 *.class
 *.dll
 *.exe
-*.o
-*.so
 *.pyc
 
 # Packages #

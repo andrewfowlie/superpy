@@ -1,0 +1,22 @@
+# compiler Flags
+CC = gcc
+CFLAGS = -g -fsigned-char -Wstrict-prototypes -Wimplicit  -Wmissing-prototypes -fPIC
+HX11 = 
+LX11 = 
+lDL = -rdynamic -ldl 
+SHARED = -shared
+SONAME = 
+SO = so
+SNUM = -DNUM_LONG_LONG
+
+FC = gfortran 
+FFLAGS = -fno-automatic
+RANLIB = ranlib
+lFort = -lgfortran
+CXX=g++    
+CXXFLAGS = -g -fPIC 
+CALCHEP = /home/andrew/WORKING/git-superpy/superpy/NMSSMTools_4.2.1/sources/micromegas/CalcHEP_src
+UNAME = Linux
+export CC CFLAGS  lDL LX11 SHARED SONAME SO FC FFLAGS RANLIB CXX CXXFLAGS lFort
+
+
