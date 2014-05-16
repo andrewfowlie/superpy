@@ -29,8 +29,9 @@ n_dims = len(Priors.CNMSSMModelTracker().param)
 # This is model parameters + constraints + chi2 from constraints + 33
 # sparticle/particle masses + mu + neutralino mixing.
 # For NMSSM, neutralino mixing matrix is 5 by 5.
+# For NMSSM, 2 extra masses for singlet and singlino.
 n_params = n_dims + 2 * \
-    len(Likelihood.CNMSSMConstraintTracker().constraint) + 33 + 1 + 25
+    len(Likelihood.CNMSSMConstraintTracker().constraint) + 33 + 2 + 1 + 25
 # Which parameters to mode cluster, first n.
 n_clustering_params = 2
 # Should be a vector of 1s and 0s - 1 = wrapped, 0 = unwrapped.
