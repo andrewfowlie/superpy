@@ -10,7 +10,7 @@
 
 default: all
 
-all: multinest softsusy python micromegas superiso feynhiggs higgsbounds higgssignals susyhit
+all: multinest softsusy python micromegas superiso feynhiggs higgsbounds higgssignals susyh nmssm
 
 multinest:
 	cd MultiNest-master/build/; cmake .. && make
@@ -45,8 +45,12 @@ higgssignals:
 	# Paths for HiggsBounds *should* be picked up automatically.
 	cd ./HiggsSignals-*; make superpy
 
-susyhit:
+susyh:
 	make -C susyhit
+
+nmssm:
+	make -C NMSSMTools_* init
+	make -C NMSSMTools_*
 
 # Build the Python libraries. You might need to sudo these commands.
 # Also, if you have your own machine, rather than a networked machine,
@@ -66,4 +70,7 @@ clean:
 	make -C HiggsBounds-* clean
 	make -C HiggsSignals-* clean
 	make -C susyhit clean
+	make -C NMSSMTools_*
 	-rm *~ *.pyc ./SuperPlot/*.pyc ./SuperPlot/*~ ./fastlim-1.0/*pyc *.out
+
+
