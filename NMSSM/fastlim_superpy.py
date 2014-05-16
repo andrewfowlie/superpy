@@ -60,7 +60,7 @@ def excluded(infile):
         #logging.info("Use correct command: (e.g.) ./fastlim.py slha_files/testspectrum.slha")
         #exit()
 
-    options = {'fastlimdir' : os.path.join(os.path.dirname(os.path.realpath(__file__)),"fastlim-1.0"), \
+    options = {'fastlimdir' : os.path.join(os.path.dirname(os.path.realpath(__file__),),"../fastlim-1.0"), \
                'version_major' : ((__version__).split("."))[0],
                'version_minor' : ((__version__).split("."))[1],
                'authors' : __author__,
