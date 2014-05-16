@@ -140,8 +140,7 @@
       COMMON/MESEXT/XIFMES,XISMES,MSMES,MUPMES,MSPMES,M3HMES
       COMMON/MESCAL/MSUSYEFF,MMESS,N5
       COMMON/MESCOUP/G1MES,G2MES,G3MES,LMES,KMES,HTMES,HBMES,HLMES
-      ! SuperPy - added for naturalness priors.
-      COMMON/FINETUN/FTSUSY,FTGUT,FTMES,PG,PS,JACG,D1T,D2T,D3T
+      COMMON/FINETUN/FTSUSY,FTGUT,FTMES
 
       PI=4d0*DATAN(1d0)
 
@@ -417,9 +416,6 @@
        ENDDO
 
       ENDIF
-
-      ! SuperPy - call once more so that parameters are correct.
-      CALL RGESVAR(NGUT,NSUSY,PG,PS)
 
       END
 

@@ -1017,11 +1017,7 @@
       INTEGER NSUSY,NGUT,NMES
       PARAMETER (NSUSY=14,NGUT=21,NMES=15)
 
-      ! SuperPy - added for naturalness priors.
-      DOUBLE PRECISION PS(NSUSY),PG(NGUT),JACG(NSUSY,NGUT),D1T,D2T,D3T
       DOUBLE PRECISION mS2_tanbeta, kappa_tanbeta
-      ! SuperPy  - for loops.
-      INTEGER j
       DOUBLE PRECISION PAR(*),PROB(*),SIG(3,10)
       DOUBLE PRECISION SMASS(3),AMASS(2),CMASS,SCOMP(3,3),PCOMP(2,2)
       DOUBLE PRECISION MGL,MCHA(2),U(2,2),V(2,2),MNEU(5),NEU(5,5)
@@ -1120,8 +1116,7 @@
       COMMON/SUSYEXT/XIFSUSY,XISSUSY,MUPSUSY,MSPSUSY,M3HSUSY
       COMMON/MICROMG/OMG,OMGMIN,OMGMAX,Xf,sigmaV,x,dNdx,EMIN,NBIN
       COMMON/MICROMG2/sigmaPiN,sigmaS,csPsi,csNsi,csPsd,csNsd
-      ! SuperPy - added for naturalness priors.
-      COMMON/FINETUN/FTSUSY,FTGUT,FTMES,PG,PS,JACG,D1T,D2T,D3T
+      COMMON/FINETUN/FTSUSY,FTGUT,FTMES
       COMMON/EFFHIGM/MH,MMH,DMH,MA,MMA,DMA,MHC,MMHC,DMHC
       COMMON/EFFCOUP/PX,PA,PB,PL,PK
       COMMON/DELMB/DELMB
@@ -1840,18 +1835,6 @@
       WRITE(*,901) 21,FTGUT(21),"PG=MGUT"
       WRITE(*,901) 22,FTGUT(22),"MAX"
       WRITE(*,914) 23,INT(FTGUT(23)),"IMAX"
-
-      ! SuperPy - naturalness priors.
-      WRITE(*,899) "BLOCK SUPERPY"
-      ! D3T = d(m_S^2(SUSY))/d(tan beta).
-      ! Change of variables with Jacobian.
-      mS2_tanbeta=(D1T/JACG(1,3)/PS(1)+D2T/JACG(2,3)/PS(2)
-     .        +D3T/JACG(3,3)/PS(3)) * PG(4)
-      kappa_tanbeta=(D1T/JACG(1,18)/PS(1)+D2T/JACG(2,18)
-     .        /PS(2)+D3T/JACG(3,18)/PS(3))* PG(18)
-
-      WRITE(*,901) 1, mS2_tanbeta, "d(m_S^2)/d(tan beta)"
-      WRITE(*,901) 2, kappa_tanbeta, "d(kappa)/d(tan beta)"
 
       WRITE(*,899) "# "
       WRITE(*,899) "# REDUCED CROSS SECTIONS AT LHC"

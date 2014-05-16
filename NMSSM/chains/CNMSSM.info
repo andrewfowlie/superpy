@@ -111,9 +111,9 @@ oh2 Likelihood.GaussConstraintFractionalTau (0.1199, 0.0027, 0.1)
 bsmumu Likelihood.GaussConstraintFractionalTau (3.2e-09, 1.5e-09, 0.14)
 # MultiNest options.
 IS True
-Likelihood <module 'Likelihood' from '/home/andrew/WORKING/git-superpy/superpy/NMSSM/Likelihood.pyc'>
-LogLikelihood <function myloglike at 0x1c137d0>
-Prior <function myprior at 0x171ef50>
+Likelihood <module 'Likelihood' from '/home/andrew/WORKING/git-superpy/superpy/NMSSM/Likelihood.py'>
+LogLikelihood <function myloglike at 0x188c938>
+Prior <function myprior at 0x1397140>
 Priors <module 'Priors' from '/home/andrew/WORKING/git-superpy/superpy/NMSSM/Priors.pyc'>
 const_efficiency_mode False
 context 0

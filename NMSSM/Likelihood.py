@@ -307,7 +307,7 @@ Block QEXTPAR
                 param['signmu']), str(
                 param['a0']), str(
                 param['lambda'])
-                ))
+             ))
 
         # Close file so that output is flushed.
         SLHAIN.close()
@@ -338,7 +338,8 @@ Block QEXTPAR
             # Still need to return data of correct length.
             self.masses = [0] * 33
             self.mu = 0.
-            self.neutralino = [0] * 25  # NB neutralino mixing matrix is 5 by 5.
+            # NB neutralino mixing matrix is 5 by 5.
+            self.neutralino = [0] * 25
         else:
             # Save the mass block.
             self.masses = self.blocks['MASS'].entries
@@ -347,7 +348,7 @@ Block QEXTPAR
             # Pick out neutralino mixing.
             self.neutralino = self.blocks['NMNMIX'].entries
 
-    def naturalness(self, MZ=9.11876000e+01):
+    def naturalness(self, MZ=9.11876000e+01, epsilon=1E-1):
         """ Calculate the naturalness priors.
 
         We are calculating the Jacobain for (kappa, m_S^2) -> (tan beta, MZ).
@@ -356,24 +357,32 @@ Block QEXTPAR
 
         Arguments:
         MZ -- Value of the Z-boson mass.
+        epsilon -- Infinitesimal for numerical derivatives.
 
         """
-        # Relevant parameters.
+        # Parameters from NMSSMTools.
         mS2 = self.blocks['NMSSMRUN'][10]
         kappa = self.blocks['NMSSMRUN'][2]
 
         # NMSSM returns d(ln MZ^2)/d(ln m_S^2).
         # d(m_S^2)/d(MZ) = 1. / d(ln MZ^2)/d(ln m_S^2) * m_S^2 * 2. / MZ
         mS2_MZ = 1. / self.blocks['FINETUNING'][3] * mS2 * 2. / MZ
-        mS2_tanb = self.blocks['SUPERPY'][1]
-
         # NMSSM returns d(ln MZ^2)/d(ln kappa^2).
         # d(kappa)/d(MZ) = 1. / d(ln MZ^2)/d(ln kappa^2) * kappa / MZ
         kappa_MZ = 1. / self.blocks['FINETUNING'][18] * kappa / MZ
-        kappa_tanb = self.blocks['SUPERPY'][2]
+
+        # Tan beta derivatives - not in NMSSMTools.
+        # Calculate the derivatives numerically.
+        kappa_physical, kappa_tanb = self.SLHADerive(
+            'tanbeta', 'GUTNMSSMRUN', 2)
+        mS2_physical, mS2_tanb = self.SLHADerive('tanbeta', 'GUTNMSSMRUN', 10)
+
+        # If either derivative was problematic, make the
+        # point unphysical.
+        self.physical = kappa_physical and mS2_physical
 
         # Jacobian of transformation (kappa, m_S^2) -> (tan beta, MZ).
-        # d(kappa) d (m_S^2) = J d(tan beta) d(MZ)
+        # d(kappa) d (m_S^2) = J d(tan beta) d(MZ).
         J = abs(kappa_tanb * mS2_MZ - kappa_MZ * mS2_tanb)
 
         # Set the "likelihood" associated with naturalness.
@@ -381,6 +390,40 @@ Block QEXTPAR
         # But it is convenient to treat it as such.
         # It is NOT dimensionless.
         self.constraint['Natural'].loglike = NP.log10(abs(J / mS2))
+
+    def SLHADerive(self, name, block, key, epsilon=1E-2):
+        """ Find the derivative of an input parameter wrt
+        an output parameter.
+
+        Arguments:
+        name -- Name of input parameter, e.g. "tanbeta".
+        block -- Block of ouput parameter in SLHA.
+        key -- Key of output parameter in SLHA.
+        epsilon -- Numerical infinitesiam for numerical derivative.
+
+        Return:
+        Whether succesful, numerical derivative, d(input)/d(output).
+
+        """
+        try:
+            # Find output parameter for the variation of input parameter.
+            output = {}
+            for i, e in enumerate([-epsilon, epsilon]):
+                param = self.param
+                param[name] += e
+                SLHAIN = self.writeslha(param)
+                SLHA = RunProgram(
+                    './pyspec',
+                    '../NMSSMTools_4.2.1/main',
+                    SLHAIN)
+                blocks, decays = pyslha.readSLHAFile(SLHA)
+                output[i] = blocks[block][key]
+        except:
+            # This ought to make the effective prior small.
+            return False, 999.
+        else:
+            # Return the numerical derivative.
+            return True, 2. * epsilon / (output[1] - output[0])
 
     def fastlim(self):
         """ Call Fast-Lim and note whether point rejected.
@@ -418,7 +461,10 @@ Block QEXTPAR
         Returns:
 
         """
-        filename = RunProgram('./main', '../micromegas_3.6.9.2/NMSSM', self.SLHA)
+        filename = RunProgram(
+            './main',
+            '../micromegas_3.6.9.2/NMSSM',
+            self.SLHA)
         self.physical = CheckProgram(filename, ["error"])
         if self.physical:
             self.constraint['oh2'].theory = ReadParameter(
@@ -511,7 +557,10 @@ Block QEXTPAR
         # Create SLHA input file.
         self.SLHAIN = self.writeslha(self.param)
 
-        filename = RunProgram('./pyspec', '../NMSSMTools_4.2.1/main', self.SLHAIN)
+        filename = RunProgram(
+            './pyspec',
+            '../NMSSMTools_4.2.1/main',
+            self.SLHAIN)
         self.physical = CheckProgram(filename, ["ERROR"])
         if self.physical:
             self.SLHA = filename
