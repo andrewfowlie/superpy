@@ -1,0 +1,37 @@
+
+1. ============  Spectrum Calculation ======================
+For computing the spectrum we rely on NMSSMTools.
+Two options are available,  mSUGRA and LowScaleInput depending whether input 
+parameters are defined at the GUT scale or at the EWSB scale. 
+To work with LowScaleInput comment the
+    #define SUGRA 
+instruction at the  top of main.c [main.F].
+
+Example of SUGRA call 
+   ./main 1000 130 -1500 10 0.1 -50 1 171.4
+and for  LowScaleInput
+   ./main data1.par
+
+In both cases if you launch 'main' without parameters, the parameters needed are
+specified on the screen. 
+
+2. ======= Special citations ========
+  
+  %\cite{Belanger:2005kh}
+\ \bibitem{Belanger:2005kh}
+  G.~Belanger, F.~Boudjema, C.~Hugonie, A.~Pukhov and A.~Semenov,
+  %``Relic density of dark matter in the NMSSM,''
+  JCAP {\bf 0509} (2005) 001
+  [arXiv:hep-ph/0505142].
+  %%CITATION = JCAPA,0509,001;%%
+
+
+  %\cite{Ellwanger:2006rn}
+  \bibitem{Ellwanger:2006rn}
+  U.~Ellwanger and C.~Hugonie,
+  %``NMSPEC: A Fortran code for the sparticle and Higgs masses in the NMSSM with
+  %GUT scale boundary conditions,''
+  Comput.\ Phys.\ Commun.\  {\bf 177} (2007) 399
+  [arXiv:hep-ph/0612134].
+  %%CITATION = CPHCB,177,399;%%
+

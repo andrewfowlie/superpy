@@ -1,0 +1,13 @@
+3 5 50 Plot
+  This menu function provides the user a
+possibility to save current graphical image of
+the plot in the LaTeX format. We use Axodraw
+commands to write axes, lines and curves.
+   The Axodraw syntax is very easy and you can
+alter the CalcHEP output to get some local
+correction in picture if any.
+    Before the file writing CalcHEP gives you a
+possibility to change the picture and letter
+sizes.
+  After  the file writing CalcHEP informs you
+about the file name used for the output.

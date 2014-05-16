@@ -1,0 +1,7 @@
+5 5 50 
+ The same as previous "Parameter dependence"
+function. But cross section is multiplied on 
+relative velocity. It is done to check sigma*v
+asymptotic for neutralino annihilation at 
+threshold.
+ 

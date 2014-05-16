@@ -1,0 +1,11 @@
+3 15 75  Constraints                 
+1. "Name" is  an identifier of the variable. See the Help for the
+"Parameter" table for more detailed information.
+2. Expression -  must be an algebraic formula, which composed of integer
+numbers, identifiers defined above in this table, identifiers enumerated
+in the "Parameters" table, parentheses '(',')', arithmetic operators
+'+'.'-','/','*','^' and the sqrt( ) function. For raising to a power the
+second operand must be an integer. Also external C-functions which 
+return 'double' and have 'double' arguments can be used. The library 
+of these functions  has to be described in the 'extlib' table.
+A  comment to function can be added after % symbol.

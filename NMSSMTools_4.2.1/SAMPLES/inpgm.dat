@@ -1,0 +1,42 @@
+# Input file for NMSSMTools
+# Based on SUSY LES HOUCHES ACCORD II
+#
+BLOCK MODSEL
+	3	1		# NMSSM particle content
+	1	2		# IMOD (0=general NMSSM, 1=mSUGRA, 2=GMSB)
+	10	0		# ISCAN (0=no scan, 1=grid scan, 2=random scan)
+	8       0               # Precision for Higgs masses (default 0: as before,
+#                                 1: full 1 loop + full 2 loop from top/bot Yukawas
+#				  2: as 1 + pole masses - 1&2 by courtesy of P. Slavich)
+	12      0               # scenario 2 of ArXiv:0803.2962 (1=yes, 0=no, default=0)
+	14      0               # 0: H-> VV,VV* (default); 1: H->VV,VV*,V*V*
+#
+BLOCK SMINPUTS
+	1	127.92d0	# ALPHA_EM^-1(MZ)
+	2	1.16639d-5	# GF
+	3	.1172d0		# ALPHA_S(MZ)
+	4	91.187d0	# MZ
+	5	4.214d0		# MB(MB) (running mass)
+	6	171.4d0		# MTOP (pole mass)
+	7	1.777d0		# MTAU
+#
+BLOCK MINPAR
+#	0	1000d0		# MSUSY (If =/= SQRT(2*MQ1+MU1+MD1)/2)
+	1	8d4		# MSUSYEFF = m^2/MMESS
+	2	1d6		# MMESS
+	3	1.4d0		# TANB at MZ
+	4	1d0		# SIGMU
+	5	1		# N5 = number of messenger 5-plets
+#
+BLOCK EXTPAR
+	61	6d-1		# LAMBDA at MSUSY
+#	62	4.68d-1		# KAPPA at MSUSY (If XIF is not an input)
+#	63	0d0	 	# ALAMBDA at MMESS (If =/= 0)
+	66      3d4		# XIF in GeV^2 at MMESS (If =/= 0 and KAPPA is not an input)
+#				  If KAPPA+XIF are not inputs: XIF=0 and KAPPA is computed
+#	67	-1.04d9 	# XIS in GeV^3 at MMESS (If =/= 0 and MS^2 is not an input)
+#				  If MS^2+XIS are not inputs: XIS=0 and MS^2 is computed
+#	68	0d0		# MU' at MMESS (If =/= 0)
+#	69	0d0		# MS'^2 at MMESS (If =/= 0)
+	70	0d0		# MS^2 at MMESS (If XIS is not an input)
+#	71	0d0		# DH, Shift in mH at MMESS, |DH|<1 (If =/= 0)

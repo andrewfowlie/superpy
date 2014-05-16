@@ -1,0 +1,14 @@
+
+This directory is intended for generation of shared library  $CALCHEP/lib/ch_root.so
+that can be downloaded in Root graphical system for automatic generation of
+matrix elements.  See ch_class.h and ch_class.cc for structure of CalcHEP
+ch_class for Root and its realization. In general ch_class can be enlarged
+to include other CalcHEP functions presented in Section 10 of arXiv:1207.6082. 
+
+To create file ch_root.so open Makefile, define ROOT variable which has to
+contain path to Root and call 'make'. 
+In case of problem check Root compilation flags  presented in variable
+MAKESHAREDLIB defined in file root/include/compiledata.h. 
+
+
+ 

@@ -1,0 +1,46 @@
+# --- variables defined by configure ---
+
+
+
+FC = f77
+FFLAGS = -O0 -ffixed-line-length-none
+
+CC = gcc
+CFLAGS = -O3 -fomit-frame-pointer -ffast-math -DHAVE_UNDERSCORE
+
+# --- end defs by configure ---
+
+
+
+.PHONY: force squared_me_gg squared_me_gz  renconst util
+
+export VPATH := $(PWD):$(PWD)/renconst
+
+INCLUDE := $(patsubst %,-I%,$(subst :, ,$(VPATH)))
+
+FFLAGS += $(INCLUDE)
+
+ifdef DEBUG
+FFLAGS += -g -DDEBUG
+endif
+
+export FC
+export FFLAGS
+export CC
+export CFLAGS
+
+
+subdir = squared_me_gg squared_me_gz renconst  util
+
+nngg.a : $(subdir) nngg.a(run_gg.o run_gz.o mdl_ini.o interface.o interfacegz.o nmssmf.o)
+
+nngg.a(run.o): 2to2.h renconst.h looptools.h model.h
+
+nngg.a(mdl_ini.o):model.h
+
+$(subdir) : 
+	$(MAKE) -C  $@
+
+clean:
+	rm nngg.a makefile
+

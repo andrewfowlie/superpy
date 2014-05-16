@@ -1,0 +1,34 @@
+do_if gi_Nmass==on.
+
+
+_i=1-5 in _j=_i-5 in parameter NMM_i_j= 
+                Zn1_i*MNE1*Zn1_j
+               +Zn2_i*MNE2*Zn2_j
+               +Zn3_i*MNE3*Zn3_j 
+               +Zn4_i*MNE4*Zn4_j 
+               +Zn5_i*MNE5*Zn5_j.
+parameter MG1I=NMM11.
+parameter MG2I=NMM22.
+
+ lterm  eps2*hL*s_n*f_h1*f_h2 +AddHermConj.
+ lterm  eps2*hL*f_N*f_h1*s_h2 +AddHermConj.
+ lterm  eps2*hL*f_N*s_h1*f_h2 +AddHermConj.
+
+ lterm  (hK*s_n*f_N*f_N + AddHermConj). 
+ lterm  -i*Sqrt2*(  (g*taump*f_W/2 -g1*f_B0/2 )*f_h1*s_H1
+                 +(g*taump*f_W/2 +g1*f_B0/2 )*f_h2*s_H2  ) + AddHermConj.
+%=====================
+ lterm  eps2*NMM34*s_n/xvev*f_h1*f_h2 +AddHermConj.
+ lterm  eps2*NMM45/(vev1)*f_N*s_h1*f_h2 +AddHermConj.
+ lterm  eps2*NMM35/(vev2)*f_N*f_h1*s_h2 +AddHermConj.
+
+ lterm  -(NMM55)/(2*xvev)*(s_n*f_N*f_N + AddHermConj). 
+
+ lterm   2*i*(  ( NMM23*taump*f_W/2 + NMM13*f_B0/2 )*f_h1*s_H1/vev1
+             +(-NMM24*taump*f_W/2 +NMM14*f_B0/2 )*f_h2*s_H2/vev2  ) + AddHermConj.
+do_else. 
+
+  let MG1I=MG1.
+  let MG2I=MG2.
+
+end_if.

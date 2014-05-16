@@ -1,0 +1,7 @@
+5 5 50 
+ This menu function provides you a possibility 
+to calculates integrated cross section as a 
+function of a chosen parameter and displays the
+corresponding plot on the screen.
+  The range of the parameter  and the number of
+steps are input in the standard way.

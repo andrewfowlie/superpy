@@ -1,0 +1,15 @@
+1 5 51
+  To prepare event generator with high efficiency
+CalcHEP devide integration volume on small cubes 
+and define function maximums in each cube. The 
+more cubes are used, the lager efficiency is 
+expected. From the other side search of maximums in
+sub-cubes needs computer time. As a rule one needs 
+about 10 - 1000 randon test points for earch sub
+-cubes to get a reasonable estimation of maximum.
+During Vegas integration with "Freeze grid ON" 
+option about mSess*nCalls random point will be 
+tested. So, if user would like to prepare generator
+during Vegas integration session, he needs
+     (Event Cubes)  << nSess*nCalls
+   

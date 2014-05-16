@@ -1,0 +1,2605 @@
+%!PS-Adobe-3.0
+%%Title: constr.c
+%%For: Alexander PUKHOV
+%%Creator: a2ps version 4.13
+%%CreationDate: Thu Oct 16 00:02:05 2003
+%%BoundingBox: 24 24 571 818
+%%DocumentData: Clean7Bit
+%%Orientation: Landscape
+%%Pages: 8
+%%PageOrder: Ascend
+%%DocumentMedia: A4 595 842 0 () ()
+%%DocumentNeededResources: font Courier
+%%+ font Courier-Bold
+%%+ font Courier-BoldOblique
+%%+ font Courier-Oblique
+%%+ font Helvetica
+%%+ font Helvetica-Bold
+%%+ font Symbol
+%%+ font Times-Bold
+%%+ font Times-Roman
+%%DocumentProcessColors: Black 
+%%DocumentSuppliedResources: procset a2ps-a2ps-hdr
+%%+ procset a2ps-black+white-Prolog
+%%+ encoding ISO-8859-1Encoding
+%%EndComments
+/a2psdict 200 dict def
+a2psdict begin
+%%BeginProlog
+%%Copyright: (c) 1988, 89, 90, 91, 92, 93 Miguel Santana
+%%Copyright: (c) 1995, 96, 97, 98 Akim Demaille, Miguel Santana
+% Check PostScript language level.
+/languagelevel where {
+  pop /gs_languagelevel languagelevel def
+} {
+  /gs_languagelevel 1 def
+} ifelse
+
+% EPSF import as in the Red Book
+/BeginInclude {
+  /b4_Inc_state save def    		% Save state for cleanup
+  /dict_count countdictstack def	% Count objects on dict stack
+  /op_count count 1 sub def		% Count objects on operand stack 
+  userdict begin
+    0 setgray 0 setlinecap
+    1 setlinewidth 0 setlinejoin
+    10 setmiterlimit [ ] 0 setdash newpath
+    gs_languagelevel 1 ne {
+      false setstrokeadjust false setoverprint 
+    } if
+} bind def
+
+/EndInclude {
+  count op_count sub { pos } repeat	% Clean up stacks
+  countdictstack dict_count sub { end } repeat
+  b4_Inc_state restore
+} bind def
+
+/BeginEPSF {
+  BeginInclude
+  /showpage { } def
+} bind def
+
+/EndEPSF {
+  EndInclude
+} bind def
+
+% Page prefeed
+/page_prefeed {         % bool -> -
+  statusdict /prefeed known {
+    statusdict exch /prefeed exch put
+  } {
+    pop
+  } ifelse
+} bind def
+
+/deffont {
+  findfont exch scalefont def
+} bind def
+
+/reencode_font {
+  findfont reencode 2 copy definefont pop def
+} bind def
+
+% Function c-show (str => -)
+% centers text only according to x axis.
+/c-show { 
+  dup stringwidth pop
+  2 div neg 0 rmoveto
+  show
+} bind def
+
+% Function l-show (str => -)
+% prints texts so that it ends at currentpoint
+/l-show {
+  dup stringwidth pop neg 
+  0 
+  rmoveto show
+} bind def
+
+% center-fit show (str w => -)
+% show centered, and scale currentfont so that the width is less than w
+/cfshow {
+  exch dup stringwidth pop
+  % If the title is too big, try to make it smaller
+  3 2 roll 2 copy
+  gt
+  { % if, i.e. too big
+    exch div
+    currentfont exch scalefont setfont
+  } { % ifelse
+    pop pop 
+  }
+  ifelse
+  c-show			% center title
+} bind def
+
+% Return the y size of the current font
+% - => fontsize
+/currentfontsize {
+  currentfont /FontMatrix get 3 get 1000 mul
+} bind def
+
+% reencode the font
+% <encoding-vector> <fontdict> -> <newfontdict>
+/reencode { %def
+  dup length 5 add dict begin
+    { %forall
+      1 index /FID ne 
+      { def }{ pop pop } ifelse
+    } forall
+    /Encoding exch def
+
+    % Use the font's bounding box to determine the ascent, descent,
+    % and overall height; don't forget that these values have to be
+    % transformed using the font's matrix.
+    % We use `load' because sometimes BBox is executable, sometimes not.
+    % Since we need 4 numbers an not an array avoid BBox from being executed
+    /FontBBox load aload pop
+    FontMatrix transform /Ascent exch def pop
+    FontMatrix transform /Descent exch def pop
+    /FontHeight Ascent Descent sub def
+
+    % Define these in case they're not in the FontInfo (also, here
+    % they're easier to get to.
+    /UnderlinePosition 1 def
+    /UnderlineThickness 1 def
+    
+    % Get the underline position and thickness if they're defined.
+    currentdict /FontInfo known {
+      FontInfo
+      
+      dup /UnderlinePosition known {
+	dup /UnderlinePosition get
+	0 exch FontMatrix transform exch pop
+	/UnderlinePosition exch def
+      } if
+      
+      dup /UnderlineThickness known {
+	/UnderlineThickness get
+	0 exch FontMatrix transform exch pop
+	/UnderlineThickness exch def
+      } if
+      
+    } if
+    currentdict 
+  end 
+} bind def
+
+% Function print line number (<string> # -)
+/# {
+  gsave
+    sx cw mul neg 2 div 0 rmoveto
+    f# setfont
+    c-show
+  grestore
+} bind def
+
+% -------- Some routines to enlight plain b/w printings ---------
+
+% Underline
+% width --
+/dounderline {
+  currentpoint
+  gsave
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    0 rlineto
+    stroke
+  grestore
+} bind def
+
+% Underline a string
+% string --
+/dounderlinestring {
+  stringwidth pop
+  dounderline
+} bind def
+
+/UL {
+  /ul exch store
+} bind def
+
+% Draw a box of WIDTH wrt current font
+% width --
+/dobox {
+  currentpoint
+  gsave
+    newpath
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    dup 0 rlineto
+    0 currentfont /FontHeight get currentfontsize mul rlineto
+    neg 0 rlineto
+    closepath
+    stroke
+  grestore
+} bind def
+
+/BX {
+  /bx exch store
+} bind def
+
+% Box a string
+% string --
+/doboxstring {
+  stringwidth pop
+  dobox
+} bind def
+
+%
+% ------------- Color routines ---------------
+%
+/FG /setrgbcolor load def
+
+% Draw the background
+% width --
+/dobackground {
+  currentpoint
+  gsave
+    newpath
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    dup 0 rlineto
+    0 currentfont /FontHeight get currentfontsize mul rlineto
+    neg 0 rlineto
+    closepath
+    bgcolor aload pop setrgbcolor
+    fill
+  grestore
+} bind def
+
+% Draw bg for a string
+% string --
+/dobackgroundstring {
+  stringwidth pop
+  dobackground
+} bind def
+
+
+/BG {
+  dup /bg exch store
+  { mark 4 1 roll ] /bgcolor exch store } if
+} bind def
+
+
+/Show {
+  bg { dup dobackgroundstring } if
+  ul { dup dounderlinestring } if
+  bx { dup doboxstring } if
+  show
+} bind def
+
+% Function T(ab), jumps to the n-th tabulation in the current line
+/T {
+  cw mul x0 add
+  bg { dup currentpoint pop sub dobackground } if
+  ul { dup currentpoint pop sub dounderline } if
+  bx { dup currentpoint pop sub dobox } if
+  y0 moveto
+} bind def
+
+% Function n: move to the next line
+/n {
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+% Function N: show and move to the next line
+/N {
+  Show
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+/S {
+  Show
+} bind def
+
+%%BeginResource: procset a2ps-a2ps-hdr 2.0 2
+%%Copyright: (c) 1988, 89, 90, 91, 92, 93 Miguel Santana
+%%Copyright: (c) 1995, 96, 97, 98 Akim Demaille, Miguel Santana
+% Function title: prints page header.
+% <ct> <rt> <lt> are passed as argument
+/title { 
+  % 1. Draw the background
+  x v get y v get moveto
+  gsave
+    0 th 2 div neg rmoveto 
+    th setlinewidth
+    0.95 setgray
+    pw 0 rlineto stroke
+  grestore
+  % 2. Border it
+  gsave
+    0.7 setlinewidth
+    pw 0 rlineto
+    0 th neg rlineto
+    pw neg 0 rlineto
+    closepath stroke
+  grestore
+  % stk: ct rt lt
+  x v get y v get th sub 1 add moveto
+%%IncludeResource: font Helvetica
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  % 3. The left title
+  gsave
+    dup stringwidth pop fnfs 0.8 mul add exch % leave space took on stack
+    fnfs 0.8 mul hm rmoveto
+    show			% left title
+  grestore
+  exch
+  % stk: ct ltw rt
+  % 4. the right title
+  gsave
+    dup stringwidth pop fnfs 0.8 mul add exch % leave space took on stack
+    dup
+    pw exch stringwidth pop fnfs 0.8 mul add sub
+    hm
+    rmoveto
+    show			% right title
+  grestore
+  % stk: ct ltw rtw
+  % 5. the center title
+  gsave
+    pw 3 1 roll
+    % stk: ct pw ltw rtw
+    3 copy 
+    % Move to the center of the left room
+    sub add 2 div hm rmoveto
+    % What is the available space in here?
+    add sub fnfs 0.8 mul sub fnfs 0.8 mul sub
+    % stk: ct space_left
+%%IncludeResource: font Helvetica-Bold
+  fHelvetica-Bold fnfs scalefont setfont
+    cfshow
+  grestore
+} bind def
+
+% Function border: prints virtual page border
+/border { %def
+  gsave				% print four sides
+    0 setgray
+    x v get y v get moveto
+    0.7 setlinewidth		% of the square
+    pw 0 rlineto
+    0 ph neg rlineto
+    pw neg 0 rlineto
+    closepath stroke
+  grestore
+} bind def
+
+% Function water: prints a water mark in background
+/water { %def
+  gsave
+    scx scy moveto rotate
+%%IncludeResource: font Times-Bold
+  fTimes-Bold 100 scalefont setfont
+    .97 setgray
+    dup stringwidth pop 2 div neg -50 rmoveto
+    show
+  grestore
+} bind def
+
+% Function rhead: prints the right header
+/rhead {  %def
+  lx ly moveto
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  l-show
+} bind def
+
+% Function footer (cf rf lf -> -)
+/footer {
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  dx dy moveto
+  show
+
+  snx sny moveto
+  l-show
+  
+  fnx fny moveto
+  c-show
+} bind def
+%%EndResource
+%%BeginResource: procset a2ps-black+white-Prolog 2.0 1
+
+% Function T(ab), jumps to the n-th tabulation in the current line
+/T { 
+  cw mul x0 add y0 moveto
+} bind def
+
+% Function n: move to the next line
+/n { %def
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+% Function N: show and move to the next line
+/N {
+  Show
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+}  bind def
+
+/S {
+  Show
+} bind def
+
+/p {
+  false UL
+  false BX
+  fCourier bfs scalefont setfont
+  Show
+} bind def
+
+/sy {
+  false UL
+  false BX
+  fSymbol bfs scalefont setfont
+  Show
+} bind def
+
+/k {
+  false UL
+  false BX
+  fCourier-Oblique bfs scalefont setfont
+  Show
+} bind def
+
+/K {
+  false UL
+  false BX
+  fCourier-Bold bfs scalefont setfont
+  Show
+} bind def
+
+/c {
+  false UL
+  false BX
+  fCourier-Oblique bfs scalefont setfont
+  Show
+} bind def
+
+/C {
+  false UL
+  false BX
+  fCourier-BoldOblique bfs scalefont setfont
+  Show 
+} bind def
+
+/l {
+  false UL
+  false BX
+  fHelvetica bfs scalefont setfont
+  Show
+} bind def
+
+/L {
+  false UL
+  false BX
+  fHelvetica-Bold bfs scalefont setfont
+  Show 
+} bind def
+
+/str{
+  false UL
+  false BX
+  fTimes-Roman bfs scalefont setfont
+  Show
+} bind def
+
+/e{
+  false UL
+  true BX
+  fHelvetica-Bold bfs scalefont setfont
+  Show
+} bind def
+
+%%EndResource
+%%EndProlog
+%%BeginSetup
+%%IncludeResource: font Courier
+%%IncludeResource: font Courier-Oblique
+%%IncludeResource: font Courier-Bold
+%%IncludeResource: font Times-Roman
+%%IncludeResource: font Symbol
+%%IncludeResource: font Courier-BoldOblique
+%%BeginResource: encoding ISO-8859-1Encoding
+/ISO-8859-1Encoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/space /exclam /quotedbl /numbersign /dollar /percent /ampersand /quoteright 
+/parenleft /parenright /asterisk /plus /comma /minus /period /slash 
+/zero /one /two /three /four /five /six /seven 
+/eight /nine /colon /semicolon /less /equal /greater /question 
+/at /A /B /C /D /E /F /G 
+/H /I /J /K /L /M /N /O 
+/P /Q /R /S /T /U /V /W 
+/X /Y /Z /bracketleft /backslash /bracketright /asciicircum /underscore 
+/quoteleft /a /b /c /d /e /f /g 
+/h /i /j /k /l /m /n /o 
+/p /q /r /s /t /u /v /w 
+/x /y /z /braceleft /bar /braceright /asciitilde /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/space /exclamdown /cent /sterling /currency /yen /brokenbar /section 
+/dieresis /copyright /ordfeminine /guillemotleft /logicalnot /hyphen /registered /macron 
+/degree /plusminus /twosuperior /threesuperior /acute /mu /paragraph /bullet 
+/cedilla /onesuperior /ordmasculine /guillemotright /onequarter /onehalf /threequarters /questiondown 
+/Agrave /Aacute /Acircumflex /Atilde /Adieresis /Aring /AE /Ccedilla 
+/Egrave /Eacute /Ecircumflex /Edieresis /Igrave /Iacute /Icircumflex /Idieresis 
+/Eth /Ntilde /Ograve /Oacute /Ocircumflex /Otilde /Odieresis /multiply 
+/Oslash /Ugrave /Uacute /Ucircumflex /Udieresis /Yacute /Thorn /germandbls 
+/agrave /aacute /acircumflex /atilde /adieresis /aring /ae /ccedilla 
+/egrave /eacute /ecircumflex /edieresis /igrave /iacute /icircumflex /idieresis 
+/eth /ntilde /ograve /oacute /ocircumflex /otilde /odieresis /divide 
+/oslash /ugrave /uacute /ucircumflex /udieresis /yacute /thorn /ydieresis 
+] def
+%%EndResource
+% Initialize page description variables.
+/sh 595 def
+/sw 842 def
+/llx 24 def
+/urx 818 def
+/ury 571 def
+/lly 24 def
+/#copies 1 def
+/th 15.000000 def
+/fnfs 11 def
+/bfs 8.005733 def
+/cw 4.803440 def
+
+% Dictionary for ISO-8859-1 support
+/iso1dict 8 dict begin
+  /fCourier ISO-8859-1Encoding /Courier reencode_font
+  /fCourier-Bold ISO-8859-1Encoding /Courier-Bold reencode_font
+  /fCourier-BoldOblique ISO-8859-1Encoding /Courier-BoldOblique reencode_font
+  /fCourier-Oblique ISO-8859-1Encoding /Courier-Oblique reencode_font
+  /fHelvetica ISO-8859-1Encoding /Helvetica reencode_font
+  /fHelvetica-Bold ISO-8859-1Encoding /Helvetica-Bold reencode_font
+  /fTimes-Bold ISO-8859-1Encoding /Times-Bold reencode_font
+  /fTimes-Roman ISO-8859-1Encoding /Times-Roman reencode_font
+currentdict end def
+/bgcolor [ 0 0 0 ] def
+/bg false def
+/ul false def
+/bx false def
+% The font for line numbering
+/f# /Helvetica findfont bfs .6 mul scalefont def
+/fSymbol /Symbol findfont def
+/hm fnfs 0.25 mul def
+/pw
+   cw 81.400000 mul
+def
+/ph
+   501.959430 th add
+def
+/pmw urx llx sub pw 2 mul sub 1 div def
+/pmh 0 def
+/v 0 def
+/x [
+  0
+  dup pmw add pw add
+] def
+/y [
+  pmh ph add 0 mul ph add
+  dup
+] def
+/scx sw 2 div def
+/scy sh 2 div def
+/snx urx def
+/sny lly 2 add def
+/dx llx def
+/dy sny def
+/fnx scx def
+/fny dy def
+/lx snx def
+/ly ury fnfs 0.8 mul sub def
+/sx 0 def
+/tab 8 def
+/x0 0 def
+/y0 0 def
+%%EndSetup
+
+%%Page: (1-2) 1
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(/*) c n
+( Copyright \(C\) 1997, Alexander Pukhov, e-mail pukhov@theory.npi.msu.su ) N
+(*/) N
+(#include) K
+(") p
+(chep_crt.h) str
+(") p n
+(#include) K
+( ") p
+(syst2.h) str
+(") p n
+(#include) K
+( ") p
+(physics.h) str
+(") p n
+(#include) K
+( ") p
+(s_files.h) str
+(") p n
+(#include) K
+( ") p
+(sortarr.h) str
+(") p n
+(#include) K
+( ") p
+(process.h) str
+(") p n
+(#include) K
+( <unistd.h>) p n
+() N
+() N
+(#include) K
+( ") p
+(constr.h) str
+(") p n
+() N
+(#define) K
+( maxref   \(MAXINOUT - 2\)) p n
+(#define) K
+( lref     \(2 * maxref - 2\)) p n
+() N
+(#define) K
+( indexlink ) p
+(struct) k
+( indexStruct *) p n
+(     ) S
+(typedef) K
+( ) p
+(struct) k
+( indexStruct {) p n
+(                 particleNumType  outlist[MAXINOUT];) N
+(                 ) S
+(unsigned) k
+(         num;) p n
+(                 indexlink    ilink;) N
+(                          } indexStruct;) N
+(#undef) K
+( indexlink) p n
+(     ) S
+(typedef) K
+( ) p
+(struct) k
+( indexStruct *indexlink;) p n
+() N
+(     ) S
+(typedef) K
+( particleNumType listprtcl[lref];) p n
+() N
+(#define) K
+( elementlink ) p
+(struct) k
+( element *) p n
+(     ) S
+(typedef) K
+( ) p
+(struct) k
+( element {) p n
+(                listprtcl    prtcl;) N
+(                elementlink  next;) N
+(                            } element;) N
+(#undef) K
+( elementlink) p n
+(     ) S
+(typedef) K
+( ) p
+(struct) k
+( element *elementlink; ) p n
+() N
+(static) K
+(  ) p
+(FILE) k
+( *       bufres;   ) p n
+(static) K
+(  ) p
+(int) k
+(          nprimary, n_two;) p n
+(static) K
+(  ) p
+(unsigned) k
+(     kmenu; ) p n
+(static) K
+(  indexlink    head; ) p n
+(static) K
+(  ) p
+(int) k
+(          ndecay; ) p n
+(static) K
+(  ) p
+(unsigned) k
+(     n_diagram; ) p n
+(static) K
+(  ) p
+(unsigned) k
+(     m_diagram; ) p n
+(static) K
+(  elementlink  first, zero; ) p n
+() N
+(static) K
+(  whohow     inclp;) p n
+( ) N
+() N
+(typedef) K
+( ) p
+(struct) k
+( procListStr) p n
+({ ) S
+(struct) k
+( procListStr *  next;) p n
+(  ) S
+(short) k
+(  p[MAXINOUT];) p n
+(}procListStr;) N
+( ) N
+(static) K
+( procListStr*  genList=) p
+(NULL) K
+(;) p n
+() N
+(static) K
+( ) p
+(int) k
+( errorcode=0;) p n
+() N
+(static) K
+( ) p
+(void) k
+(   addprtcl\(whohow p_list,) p
+(int) k
+( n\)) p n
+({) S
+(int) k
+( i;) p n
+(   ) S
+(for) K
+( \(i = 0; i < whohowMAX-1; i++\)) p n
+(   {) N
+(      ) S
+(if) K
+( \(p_list[i].who == n\) { p_list[i].how++; ) p
+(return) K
+(; } ) p n
+(constr.c) (Page 1/15) (Oct 14, 03 14:19) title
+border
+/v 1 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(      ) p
+(if) K
+( \(!p_list[i].who\)  ) p n
+(      { p_list[i].who = n;  p_list[i].how = 1; p_list[i+1].who = 0; ) S
+(return) K
+(; }) p n
+(   }) N
+(}) N
+() N
+() N
+(static) K
+( ) p
+(void) k
+(   delprtcl\(whohow p_list,) p
+(int) k
+( n\)) p n
+({) S
+(int) k
+(  i=1;) p n
+(   ) S
+(while) K
+( \(p_list[i-1].who != 0\)) p n
+(   {) N
+(      ) S
+(if) K
+( \(p_list[i-1].who == n\)) p n
+() S 8 T () S 16 T ({) N
+(         ) S
+(if) K
+( \(--p_list[i-1].how == 0\)) p n
+(         ) S
+(do) K
+( {) p n
+(               p_list[i-1].who = p_list[i].who;) N
+(               p_list[i-1].how = p_list[i].how;) N
+() S 8 T () S 16 T () S 24 T () S 32 T () S 40 T (i++;) N
+() S 8 T () S 16 T () S 24 T () S 32 T (}  ) S
+(while) K
+( \(!\(p_list[i-1].who == 0\)\);) p n
+(         ) S
+(return) K
+(;) p n
+(      }) N
+(      i++;) N
+(   } ) N
+(} ) N
+() N
+() N
+(static) K
+( ) p
+(void) k
+( cleanProcList\() p
+(void) k
+(\)) p n
+({ ) S
+(while) K
+(\(genList\){procListStr*run=genList;genList=genList->next;free\(run\);} }) p n
+() N
+() N
+(static) K
+( ) p
+(int) k
+( checkGenList\() p
+(short) k
+( * out_x\)) p n
+({ procListStr* run;) N
+(  ) S
+(short) k
+( new[MAXINOUT]; ) p n
+(  ) S
+(int) k
+( i,j,k;) p n
+( ) N
+(  ) S
+(if) K
+(\(!n_x\) ) p
+(return) K
+( 1;) p n
+(  ) S
+(if) K
+(\(nin==1\)) p n
+(  { ) S
+(for) K
+(\(i=0;i<n_x;i++\) ) p n
+(    ) S
+(if) K
+(\(out_x[i]==nprimary || out_x[i]==prtclbase[nprimary-1].anti\) ) p
+(return) K
+( 0;) p n
+(  }) N
+() N
+(  new[0]=nprimary;) N
+(  ) S
+(if) K
+(\(nin==2\) new[1]=prtclbase[n_two-1].anti;) p n
+(  i=nin; ) N
+(  ) S
+(for) K
+(\(k=0;inclp[k].how;k++\) ) p
+(for) K
+(\(j=0;j<inclp[k].how;j++\) new[i++]=inclp[k].who;) p n
+(  ) S
+(for) K
+(\(j=0; j<n_x;j++\) new[i++]=out_x[j];) p n
+(  { ) S
+(short) k
+( * q=new+nin;) p n
+(     SORTARR\(q,nout\);) N
+(  }) N
+() N
+(  ) S
+(if) K
+(\(genList\)) p n
+(  ) S
+(for) K
+(\(i=0;i<nin;i++\) ) p
+(if) K
+(\(genList->p[i]!=new[i]\){cleanProcList\(\); ) p
+(break) K
+(;} ) p n
+(  ) N
+(  ) S
+(if) K
+(\(!genList\) ) p n
+(  { genList=malloc\() S
+(sizeof) K
+(\(procListStr\)\);) p n
+(    genList->next=) S
+(NULL) K
+(;) p n
+(    ) S
+(for) K
+(\(i=0;i<nin+nout; i++\) genList->p[i]=new[i];) p n
+(    ) S
+(return) K
+( 1;) p n
+(  }) N
+(  ) N
+(  ) S
+(for) K
+(\(run=genList;run;run=run->next\)) p n
+(  { ) N
+(    ) S
+(for) K
+(\(i=0;i<nin+nout;i++\) ) p
+(if) K
+(\(run->p[i]!=new[i]\)) p
+(break) K
+(;) p n
+(constr.c) (Page 2/15) (Oct 14, 03 14:19) title
+border
+grestore
+(Printed by Alexander PUKHOV) rhead
+(constr.c) (1/8) (Thursday October 16, 2003) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (3-4) 2
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(    ) p
+(if) K
+(\(i==nin+nout\) ) p
+(return) K
+( 0;) p n
+(  }) N
+(  run=genList;) N
+(  genList=malloc\() S
+(sizeof) K
+(\(procListStr\)\);) p n
+(  genList->next=run;) N
+(  ) S
+(for) K
+(\(i=0;i<nin+nout;i++\)genList->p[i]=new[i];) p n
+(  ) S
+(return) K
+( 1;) p n
+(}) N
+() N
+() N
+(/* static  elementlink  ref[127][maxref];   */) c n
+() p n
+(typedef) K
+(  elementlink  ref_arr[maxref];  ) p n
+(static) K
+(  ref_arr * ref;) p n
+() N
+(static) K
+( ) p
+(void) k
+( clearref\() p
+(void) k
+(\)) p n
+({ ) N
+(   elementlink  e1, e2; ) N
+(   ) S
+(int) k
+(          i, j; ) p n
+() N
+(   ) S
+(for) K
+( \(j = 1; j <= nparticles; j++\) ) p n
+(   { ) N
+(      ref[j-1][0] = ) S
+(NULL) K
+(; ) p n
+(      ) S
+(for) K
+( \(i = 2; i <= ndecay - 1; i++\) ) p n
+(      { ) N
+(         e1 = ref[j-1][i-1]; ) N
+(         ref[j-1][i-1] = ) S
+(NULL) K
+(; ) p n
+(         ) S
+(if) K
+( \(e1 != zero\) ) p n
+(             ) S
+(while) K
+( \(e1 != ) p
+(NULL) K
+(\) ) p n
+(             { ) N
+(                e2 = e1; ) N
+(                e1 = e1->next; ) N
+(                free\(e2\); ) N
+(             } ) N
+(      } ) N
+(   } ) N
+(} ) N
+() N
+(static) K
+( ) p
+(int) k
+(  testin\() p
+(int) k
+( l,decayDiagram restmp\)) p n
+({) N
+(   ) S
+(int) k
+(     nneed, np;) p n
+(   ) S
+(int) k
+(     i, j;) p n
+(   ) S
+(int) k
+(     copyincl[whohowMAX];) p n
+(   ) S
+(int) k
+(     copyins[whohowMAX];) p n
+(   ) S
+(int) k
+(     copyout[whohowMAX];    ) p n
+() N
+(   nneed = l - n_x;   ) S
+(/*  N_x  number of unknoun inclusev particles) c n
+(         L   number of decay paticles */) N
+() p n
+(   ) S
+(for) K
+(\(j=0; inclp[j].who; j++\)  copyincl[j] = inclp[j].how;) p n
+(   ) S
+(for) K
+(\(j=0; liminsp[j].who; j++\) copyins[j] = liminsp[j].how;) p n
+(   ) S
+(for) K
+(\(j=0; limout[j].who; j++\) copyout[j] =  limout[j].how;) p n
+(   ) N
+(   ) S
+(for) K
+( \(i = 1; i <= 2 * \(l - 1\); i++\)) p n
+(   {) N
+(      np = restmp[i-1];) N
+(      ) S
+(if) K
+( \(np > 0\)) p n
+(      {  ) S
+(if) K
+( \(pseudop\(np\)\) ) p
+(return) K
+( 0;) p n
+(         j = 1;) N
+(         ) S
+(while) K
+( \(inclp[j-1].who != 0 && inclp[j-1].who != np\) j++;) p n
+(         ) S
+(if) K
+( \(inclp[j-1].who == 0 || copyincl[j-1] == 0\)) p n
+(         { ) S
+(int) k
+( k;) p n
+(constr.c) (Page 3/15) (Oct 14, 03 14:19) title
+border
+/v 1 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(           ) p
+(for) K
+(\(k=0;limout[k].who;k++\)) p n
+(           ) S
+(if) K
+(\(limout[k].who==np\) ) p n
+(           { copyout[k]--;) N
+(             ) S
+(if) K
+(\(copyout[k]==0\) ) p
+(return) K
+( 0; ) p
+(else) K
+( ) p
+(break) K
+(;) p n
+(           } ) N
+() S 8 T ( }) N
+(         ) S
+(else) K
+( { copyincl[j-1]--; nneed--; }) p n
+(      }) N
+(      ) S
+(if) K
+( \(np < 0\)) p n
+(      {) N
+(         np = -np;) N
+(         ) S
+(if) K
+( \(np > prtclbase[np-1].anti\) np = prtclbase[np-1].anti;) p n
+(         j = 1;) N
+(         ) S
+(while) K
+( \(liminsp[j-1].who != 0 && liminsp[j-1].who != np\) j++;) p n
+(         ) S
+(if) K
+( \(liminsp[j-1].who != 0\)) p n
+(            ) S
+(if) K
+( \(copyins[j-1] == 1\) ) p
+(return) K
+( 0; ) p
+(else) K
+( copyins[j-1]--;) p n
+(      }) N
+(   }) N
+(   ) S
+(return) K
+( \(nneed <= 0\);) p n
+(}) N
+() N
+(static) K
+( ) p
+(void) k
+(  conon\(decayDiagram diagram,) p
+(int) k
+( k\)) p n
+({ ) N
+(   decayDiagram     m_diagram; ) N
+(   ) S
+(int) k
+(     c; ) p n
+(   ) S
+(int) k
+(         l, li, i, length, shift; ) p n
+() N
+(   l = 1; ) N
+(   ) S
+(do) K n
+(   {  ) p n
+(      li = l; ) N
+(      c = 0; ) N
+(      ) S
+(do) K
+( ) p n
+(      {   ) N
+(         ) S
+(if) K
+( \(++li == k\) ) p
+(goto) K
+( label_1;) p n
+(         ) S
+(if) K
+( \(diagram[li-1] > 0\) c++; ) p
+(else) K
+( c--; ) p n
+(      }  ) S
+(while) K
+( \(c != 1\);) p n
+(      ) S
+(for) K
+( \(i = l + 1; i <= li; i++\) m_diagram[i - l-1] = diagram[i-1]; ) p n
+(      length = li - l; ) N
+(      ) S
+(if) K
+( \(diagram[li] != 0\) ) p n
+(      {  ) S
+(/*  3 - particle  vertex  */) c
+( ) p n
+(         k -= length; ) N
+(         c = 0; ) N
+(         ) S
+(do) K
+( ) p n
+(         {  ) S
+(/*  until c=1  */) c
+( ) p n
+(            ) S
+(if) K
+( \(diagram[++li-1] > 0\) c++; ) p
+(else) K
+( c--; ) p n
+(            diagram[li - length-1] = diagram[li-1]; ) N
+(         } ) S
+(while) K
+( \(c != 1\); ) p n
+(         li -= length; ) N
+(         ) S
+(for) K
+( \(i = 1; i <= length; i++\) diagram[li + i-1] = m_diagram[i-1]; ) p n
+(      } ) N
+(      ) S
+(else) K
+(   ) p n
+(      {  ) S
+(/*  4 - particle vertex  */) c
+( ) p n
+(         li++; ) N
+(         c = 0; ) N
+(         ) S
+(do) K
+( ) p
+(/*  until c=1  */) c
+( ) p n
+(            ) S
+(if) K
+( \(diagram[++li-1] > 0\) c++; ) p
+(else) K
+( c--; ) p n
+(         ) S
+(while) K
+( \(c != 1\);) p n
+() N
+(         ) S
+(if) K
+( \(li >= k\)) p n
+(         {  ) S
+(/*  K in Fragment N 2  */) c
+(  ) p n
+(            shift = length + 1; ) N
+(constr.c) (Page 4/15) (Oct 14, 03 14:19) title
+border
+grestore
+(Printed by Alexander PUKHOV) rhead
+(constr.c) (2/8) (Thursday October 16, 2003) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (5-6) 3
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(            k -= shift; ) p n
+(            ) S
+(for) K
+( \(i = l + 1 + shift; i <= li; i++\) ) p n
+(               diagram[i - shift-1] = diagram[i-1]; ) N
+(            li += - shift + 1; ) N
+(            diagram[li-1] = 0; ) N
+(            ) S
+(for) K
+( \(i = 1; i <= length; i++\) diagram[li + i-1] = m_diagram[i-1]; ) p n
+(         } ) N
+(         ) S
+(else) K n
+(         {  ) p
+(/*  K in Fragment  N 3  */) c
+(  ) p n
+(            ) S
+(for) K
+( \(i = l + 2 + length; i <= li; i++\) ) p n
+(            m_diagram[i - l - 2] = diagram[i-1]; ) N
+(            shift = li - l; ) N
+(            k -= shift; ) N
+(            c = 0; ) N
+(            ) S
+(do) K
+( ) p n
+(            {  ) S
+(/*  until c=1  */) c
+( ) p n
+(               ) S
+(if) K
+( \(diagram[++li-1] > 0\) c++; ) p
+(else) K
+( c--;) p n
+(               diagram[li - shift-1] = diagram[li-1]; ) N
+(            }  ) S
+(while) K
+( \(c != 1\); ) p n
+(            li += - shift + 1; ) N
+(            diagram[li-1] = 0; ) N
+(            ) S
+(for) K
+( \(i = 1; i <= shift - 1; i++\) ) p n
+(            diagram[li + i-1] = m_diagram[i-1]; ) N
+(         } ) S
+(/* end if */) c
+( ) p n
+(      } ) N
+() N
+(      label_1: l++;) N
+(   }  ) S
+(while) K
+( \(k != l\);) p n
+(}) N
+() N
+(static) K
+( ) p
+(void) k
+( dooutres\(decayDiagram res\)) p n
+({) N
+(   ) S
+(int) k
+(         lmax, m, k, l, i;) p n
+(   ) S
+(int) k
+(      cond;) p n
+(   decayDiagram     copyres;) N
+(   decayDiagram     tmplist[MAXINOUT];) N
+() N
+() N
+(   ) S
+(if) K
+( \(nin == 2 \)) p n
+(   {) N
+(      lmax = 2 * ndecay - 1;) N
+(      m = 0;) N
+(      ) S
+(for) K
+( \(k = 2; k <= lmax; k++\)) p n
+(      {) N
+(         ) S
+(if) K
+( \(res[k-1] == n_two\)) p n
+(         {) N
+(            memcpy\(copyres,res,) S
+(sizeof) K
+(\(copyres\)\);) p n
+(            conon\(copyres,k\);) N
+(            ) S
+(if) K
+( \(m != 0\) ) p
+(for) K
+( \(l = 1; l <= m; l++\)) p n
+(            {) N
+(               cond = 1;) N
+(               ) S
+(for) K
+( \(i = 1; i < lmax; i++\)) p n
+(                  cond = cond && \(copyres[i] == tmplist[l-1][i]\);) N
+(               ) S
+(if) K
+( \(cond\) ) p
+(goto) K
+( label_1;) p n
+(            }) N
+(            n_diagram++;) N
+(            FWRITE1\(copyres,bufres\);) N
+(            m++;) N
+(            memcpy\(tmplist[m-1],copyres,) S
+(sizeof) K
+(\(*tmplist\)\);) p n
+(            label_1: ;) N
+(         }) N
+(      }) N
+(constr.c) (Page 5/15) (Oct 14, 03 14:19) title
+border
+/v 1 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(   }) p n
+(   ) S
+(else) K n
+(   {) p n
+(      n_diagram++;) N
+(      f_write\(res,) S
+(sizeof) K
+(\(decayDiagram\),1,bufres\);) p n
+(   }) N
+(}) N
+() N
+() N
+(static) K
+( ) p
+(void) k
+( dtc\() p
+(int) k
+(* incond,) p
+(int) k
+( l,decayDiagram restmp\)) p n
+({) N
+(   ) S
+(int) k
+(         i;) p n
+(   decayDiagram    res; ) N
+() N
+(   *incond = testin\(l,restmp\);) N
+(   ) S
+(if) K
+( \(!\(*incond\) || l < ndecay\) ) p
+(return) K
+(;) p n
+() N
+(   *incond = 0;) N
+(   res[0] = -nprimary;) N
+(   ) S
+(for) K
+( \(i = 1; i <= 2 * \(ndecay - 1\); i++\) res[i] = restmp[i-1];) p n
+(   dooutres\(res\);) N
+() S 8 T (goto_xy\(1,24\);  print\(") S
+(%u) str
+(",n_diagram\); refresh_scr\(\);) p n
+(   ) S
+(if) K
+( \(n_diagram > m_diagram\)) p n
+(       ) S
+(if) K
+( \( mess_y_n\(35,15,") p
+(Continue) str
+("\)\) m_diagram += 500;) p n
+(      ) S
+(else) K
+(  errorcode = -1;) p n
+(}) N
+() N
+() N
+(static) K
+( ) p
+(void) k
+( decay\() p
+(int) k
+( n_part, ) p
+(int) k
+( l\)) p n
+({) N
+(   decayDiagram     restmp; ) S
+(/* Used in testin,dtc */) c n
+(   ) p
+(int) k
+(      existence, equalcond, incond;) p n
+(   decaylink    pp;) N
+(   ) S
+(int) k
+(     pk, d, c;) p n
+(   ) S
+(int) k
+(         m, ni, li, k, jk, ik, i1, i2, i3,) p n
+(                i2_min, i2_max, i3_min, i3_max,) N
+(                i[3], j[3];) N
+(   elementlink  el1, el2, el3, elk, newelement, oldelement;) N
+(   elementlink  el[3];) N
+(  ) S
+(/* * * * * * * * * * * * * * * * */) c n
+() p n
+(   ) S
+(if) K
+( \(l == 1\)) p n
+(   {) N
+(/*      k = 1;) c n
+(      while \(inclp[k-1].who != 0 && inclp[k-1].who != n_part\) k++;) N
+() S 8 T (if \(inclp[k-1].who == 0 && missingmass - prtclbase[n_part-1].mass < 1.0E) N
+(-5\)) N
+(         ref[n_part-1][0] = zero;) N
+(      else) N
+(*/) S
+(      ) p n
+(       ref[n_part-1][0] = first;) N
+(      ) S
+(return) K
+(;) p n
+(   }) N
+(   existence = 0;) N
+(   pp=prtclbase[n_part-1].top;) N
+() N
+(   ) S
+(while) K
+( \(pp != ) p
+(NULL) K
+(\)) p n
+(   {) N
+(      ) S
+(if) K
+( \(pp->part[2] == 0\)) p n
+(        { i3_min = 0; i3_max = 0; }) N
+(      ) S
+(else) K n
+(      {) p n
+(constr.c) (Page 6/15) (Oct 14, 03 14:19) title
+border
+grestore
+(Printed by Alexander PUKHOV) rhead
+(constr.c) (3/8) (Thursday October 16, 2003) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (7-8) 4
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(         ) p
+(if) K
+( \(l == 2\) ) p
+(goto) K
+( label_100;) p n
+(         i3_min = 1;) N
+(         i3_max = l - 2;) N
+(      }) N
+(      ) S
+(for) K
+( \(i3 = i3_min; i3 <= i3_max; i3++\)) p n
+(      {) N
+(         i2_max = l - i3 - 1; ) N
+(         ) S
+(if) K
+( \(pp->part[1] == pp->part[2] && i2_max > i3\) ) p n
+(            i2_max = i3; ) N
+(         ) S
+(if) K
+( \(pp->part[1] == pp->part[0]\) ) p n
+(            i2_min = \(l + 1 - i3\) / 2;) N
+(         ) S
+(else) K
+( i2_min = 1; ) p n
+(         ) S
+(for) K
+( \(i2 = i2_min; i2 <= i2_max; i2++\) ) p n
+(         { ) N
+(            i1 = l - i2 - i3; ) N
+(            ) S
+(if) K
+( \(i3 == 0\) ni = 2; ) p n
+(            ) S
+(else) K
+( ni = 3; ) p n
+(            i[2] = i3; i[1] = i2; i[0] = i1; ) N
+() N
+(     ) S
+(/*  New REORDER    beg  */) c
+( ) p n
+(            ) S
+(for) K
+( \(k = 1; k <= 3; k++\) j[k-1] = k; ) p n
+(            k = 1;) N
+(            ) S
+(while) K
+( \(k < ni\) ) p n
+(            { ) N
+(               d = i[j[k-1]-1] - i[j[k]-1]; ) N
+(               ) S
+(if) K
+(\(d > 0 || \(d == 0 && ) p n
+(                  pp->part[j[k-1]-1]<pp->part[j[k-1]-1]\)\) ) N
+(               { ) N
+(                  c = j[k-1]; ) N
+(                  j[k-1] = j[k]; ) N
+(                  j[k] = c; ) N
+(                  ) S
+(if) K
+( \(k == 1\) ++\(k\); ) p
+(else) K
+( --\(k\); ) p n
+(               } ) N
+(               ) S
+(else) K
+( ++\(k\); ) p n
+(            } ) N
+(     ) S
+(/*  New REORDER     end  */) c
+( ) p n
+(            ) S
+(for) K
+( \(k = 1; k <= ni; k++\) ) p n
+(            { ) N
+(               jk = j[k-1]; ) N
+(               ik = i[jk-1]; ) N
+(               pk = pp->part[jk-1]; ) N
+(               ) S
+(if) K
+(\(ref[pk-1][ik-1] == ) p
+(NULL) K
+(\)  decay\(pk,ik\);) p n
+(               ) S
+(if) K
+(\(ref[pk-1][ik-1] == zero\) ) p
+(goto) K
+( label_101;) p n
+(            } ) N
+(            ) S
+(if) K
+( \(i3 == 0\) el3 = ) p
+(NULL) K
+(; ) p n
+(            ) S
+(else) K
+( el3 = ref[\(pp->part[2]\)-1][i3-1]; ) p n
+(            ) S
+(do) K
+( ) p n
+(            {  ) S
+(/* until El3=NULL */) c
+( ) p n
+(               el2 = ref[\(pp->part[1]\)-1][i2-1]; ) N
+(               ) S
+(do) K
+( ) p n
+(               {  ) S
+(/*  until El2=NULL  */) c
+( ) p n
+(                  el1 = ref[\(pp->part[0]\)-1][i1-1]; ) N
+(                  ) S
+(do) K
+( ) p n
+(                  {  ) S
+(/* until El1=NULL */) c
+( ) p n
+(                     el[0] = el1; el[1] = el2; el[2] = el3; ) N
+(                     li = 1; ) N
+(                     ) S
+(for) K
+( \(k = 1; k <= ni; k++\) ) p n
+(                     { ) N
+(                        jk = j[k-1]; ) N
+(                        pk = pp->part[jk-1]; ) N
+(                        ik = i[jk-1]; ) N
+(                        ) S
+(if) K
+( \(ik == 1\) restmp[li++-1] = pk; ) p n
+(constr.c) (Page 7/15) (Oct 14, 03 14:19) title
+border
+/v 1 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(                        ) p
+(else) K
+( ) p n
+(                        {) N
+(                           restmp[li++-1] = -pk; ) N
+(                           elk = el[jk-1]; ) N
+(                           ) S
+(for) K
+( \(m = 1; m <= 2 * ik - 2; m++\) ) p n
+(                              restmp[li++-1] = elk->prtcl[m-1]; ) N
+(                        } ) N
+(                        ) S
+(if) K
+( \(ni == 3 && k == 1\) restmp[li++-1] = 0; ) p n
+(                     } ) N
+(                     dtc\(&incond,l,restmp\); ) N
+(                     ) S
+(if) K
+( \(errorcode != 0\) ) p
+(goto) K
+( label_102;) p n
+(                     ) S
+(if) K
+( \(incond\) ) p n
+(                     { ) N
+(                        newelement = \(elementlink\)m_alloc\() S
+(sizeof) K
+(\(element\)\);) p n
+(                        ) S
+(for) K
+( \(m = 1; m <= 2 * \(l - 1\); m++\) ) p n
+(                           newelement->prtcl[m-1] = restmp[m-1]; ) N
+(                        ) S
+(if) K
+( \(existence\) ) p n
+(                           oldelement->next = newelement;) N
+(                        ) S
+(else) K
+( ) p n
+(                        { ) N
+(                           ref[n_part-1][l-1] = newelement; ) N
+(                           existence = 1; ) N
+(                        }) N
+(                        oldelement = newelement; ) N
+(                     } ) N
+(                     equalcond = el1 == el2 ? 1 : 0; ) N
+(                     el1 = el1->next; ) N
+(                  }  ) S
+(while) K
+( \(!\(el1 == ) p
+(NULL) K
+( || equalcond\)\); ) p n
+(                  equalcond = el3 == el2 ? 1 : 0; ) N
+(                  el2 = el2->next; ) N
+(               }  ) S
+(while) K
+( \(!\(el2 == ) p
+(NULL) K
+( || equalcond\)\); ) p n
+(                  ) S
+(if) K
+( \(i3 != 0\) el3 = el3->next; ) p n
+(            }  ) S
+(while) K
+( \(el3 != ) p
+(NULL) K
+(\); ) p n
+(/*  memory optimisation ?=>) c 32 T (if \(l == ndecay && maxavail\(\) < 20000\) clearref\() N
+(\); */) N
+(            label_101: ; ) p n
+(         }  ) S
+(/* I2 FOR circl  */) c
+( ) p n
+(      }  ) S
+(/*  I3 FOR circl  */) c
+( ) p n
+(      label_100:   ) S
+(/*  UNTIL pp=Nil; */) c
+( ) p n
+(      pp=pp->next; ) N
+(   }                  ) S
+(/*  while pp<>NULL */) c
+( ) p n
+(   label_102: ) N
+(   ) S
+(if) K
+( \(existence\) oldelement->next = ) p
+(NULL) K
+(; ) p n
+(   ) S
+(else) K
+( ) p n
+(   ) S
+(if) K
+( \(l < ndecay\) ref[n_part-1][l-1] = zero;) p n
+(} ) N
+() N
+(static) K
+( ) p
+(void) k
+( doindex\() p
+(void) k
+(\)) p n
+({ ) N
+(    ) S
+(int) k
+(         i, j, k, c; ) p n
+(    ) S
+(unsigned) k
+(         recno; ) p n
+(    decayDiagram     res; ) N
+(    indexlink    next, old; ) N
+(    ) S
+(int) k
+(      switch_; ) p n
+(    whohow       p_list; ) N
+(/*    int         nout; */) c n
+() p n
+(   recno = 0; ) N
+(/*   nout = hadr2.how == 0 ? ndecay : ndecay - 1;  */) c n
+(   old = head;  ) p n
+(   ) S
+(while) K
+(\(FREAD1\(res,bufres\)==1\)   ) p n
+(   {  ) N
+(constr.c) (Page 8/15) (Oct 14, 03 14:19) title
+border
+grestore
+(Printed by Alexander PUKHOV) rhead
+(constr.c) (4/8) (Thursday October 16, 2003) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (9-10) 5
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(      switch_ =\(nin==1\); ) p
+(/*  hadr2.how == 0 ? 1 : 0; */) c n
+(      next = \(indexlink\)m_alloc\() p
+(sizeof) K
+(\(indexStruct\)\);) p n
+(      old->ilink = next; ) N
+(      old = next; ) N
+(      ) N
+(      nilprtcl\(p_list\); ) N
+(      i = 2; j = 1; ) N
+(      ) S
+(do) K
+( ) p n
+(      {   ) N
+(         ) S
+(if) K
+( \(res[i-1] > 0\) ) p n
+(         ) S
+(if) K
+( \(switch_\) ) p n
+(         { ) N
+(            addprtcl\(p_list,res[i-1]\); ) N
+(            j++; ) N
+(         } ) N
+(         ) S
+(else) K
+( ) p n
+(            switch_ = 1; ) N
+(         i++; ) N
+(      }  ) S
+(while) K
+( \(j <= nout\); ) p n
+() N
+(      j = 1; ) N
+(      ) S
+(while) K
+( \(inclp[j-1].who != 0\)) p n
+(      {  ) S
+(for) K
+( \(i = 1; i <= inclp[j-1].how; i++\)) p n
+(            delprtcl\(p_list,inclp[j-1].who\);) N
+(         j++;) N
+(      }) N
+(      j = 1; i = 1;) N
+(      ) S
+(while) K
+( \(p_list[j-1].who != 0\)) p n
+(      {) N
+(         ) S
+(for) K
+( \(k = 1; k <= p_list[j-1].how; k++\)) p n
+(            next->outlist[\(i++\)-1] = p_list[j-1].who;) N
+(         j++;) N
+(      }) N
+(      ) S
+(if) K
+( \(n_x > 1\)) p n
+(      {) N
+(         i = 1;) N
+(         ) S
+(do) K n
+(         {  ) p
+(/*  until i=N_X  */) c n
+(            c = next->outlist[i-1];) p n
+(            ) S
+(if) K
+( \(c < next->outlist[i]\)) p n
+(            {) N
+(               next->outlist[i-1] = next->outlist[i];) N
+(               next->outlist[i] = c;) N
+(               ) S
+(if) K
+( \(i > 1\) i--; ) p
+(else) K
+( i = 2;) p n
+(            }) N
+(            ) S
+(else) K
+(  i++;) p n
+(         }  ) S
+(while) K
+( \(i != n_x\);) p n
+(      }) N
+(      next->num = recno++;) N
+(   } ) N
+(   next->ilink = ) S
+(NULL) K
+(;) p n
+(}) N
+() N
+() N
+(static) K
+( indexlink  mark1, mark2, mark3; ) p
+(/* From sortindex */) c n
+() p n
+(static) K
+( ) p
+(void) k
+( sorttwoblocks\() p
+(void) k
+(\)) p n
+({ indexlink    mark_1, mark_2;) N
+(  ) S
+(int) k
+(      i, diff;) p n
+() N
+(   mark_2 = mark2->ilink;) N
+(   ) S
+(do) K n
+(constr.c) (Page 9/15) (Oct 14, 03 14:19) title
+border
+/v 1 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(   {) p n
+(      mark_1 = mark1->ilink;) N
+(      i = 1;) N
+(      ) S
+(do) K n
+(         diff = mark_1->outlist[i-1] - mark_2->outlist[i-1];) p n
+(      ) S
+(while) K
+( \(!\(++i > n_x || diff != 0\)\);) p n
+(      ) S
+(if) K
+( \(diff < 0\)) p n
+(      {) N
+(         ) S
+(/*  Reoder  */) c n
+(         mark2->ilink = mark3->ilink;) p n
+(         mark3->ilink = mark_1;) N
+(         mark1->ilink = mark_2;) N
+(         ) S
+(/*  Rename  */) c n
+(         mark_2 = mark2;   ) p
+(/* Temporary */) c n
+(         mark2 = mark3;) p n
+(         mark3 = mark_2;) N
+(         mark_2 = mark_1;) N
+(      } ) N
+(      mark1 = mark1->ilink; ) N
+(   }  ) S
+(while) K
+( \(mark1 != mark2\); ) p n
+(} ) N
+() N
+(static) K
+( ) p
+(void) k
+( sortindex\() p
+(int) k
+( ndiagram\)) p n
+({) S
+(int) k
+(  lblock, i, di, iend; ) p n
+(   ) S
+(if) K
+( \(n_x == 0\) ) p
+(return) K
+(;) p n
+(   lblock = 1; ) N
+(   ) S
+(while) K
+( \(lblock < ndiagram\) ) p n
+(   { ) N
+(      mark3 = head; ) N
+(      iend = 0; ) N
+(      ) S
+(while) K
+( \(iend + lblock < ndiagram\) ) p n
+(      { ) N
+(         mark1 = mark3; ) N
+(         mark2 = mark1; ) N
+(         ) S
+(for) K
+( \(i = 1; i <= lblock; i++\) mark2 = mark2->ilink; ) p n
+(         iend += lblock; ) N
+(         di = ndiagram - iend; ) N
+(         ) S
+(if) K
+( \(di > lblock\) di = lblock; ) p n
+(         mark3 = mark2; ) N
+(         ) S
+(for) K
+( \(i = 1; i <= di; i++\) mark3 = mark3->ilink; ) p n
+(         sorttwoblocks\(\); ) N
+(         iend += di; ) N
+(      } ) N
+(      lblock *= 2; ) N
+(   } ) N
+(} ) N
+() N
+() N
+(static) K
+( shortstr   recor_;         ) p
+(/* From addbuf */) c n
+(static) K
+( ) p
+(long) k
+(       firstrec, nsubc; ) p
+(/* From addbuf */) c n
+(static) K
+( whohow     outprtcls;      ) p
+(/* From addbuf */) c n
+() p n
+(static) K
+( ) p
+(void) k
+(  addrecordtomenu\() p
+(void) k
+(\)) p n
+({ shortstr     recor; ) N
+(  ) S
+(int) k
+(         i, j, wh, hw, len; ) p n
+() N
+(   ) S
+(/*  Sorting , Will be removed    */) c
+( ) p n
+(   i = 1; ) N
+(   ) S
+(while) K
+( \(outprtcls[i].who != 0\) ) p n
+(   { ) N
+(      ) S
+(if) K
+( \(outprtcls[i-1].who <= outprtcls[i].who\) ++\(i\); ) p n
+(      ) S
+(else) K
+( ) p n
+(constr.c) (Page 10/15) (Oct 14, 03 14:19) title
+border
+grestore
+(Printed by Alexander PUKHOV) rhead
+(constr.c) (5/8) (Thursday October 16, 2003) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (11-12) 6
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(      { ) p n
+(         wh = outprtcls[i-1].who; hw = outprtcls[i-1].how; ) N
+(         outprtcls[i-1] = outprtcls[i]; ) N
+(         outprtcls[i].who = wh; ) N
+(         outprtcls[i].how = hw; ) N
+(         ) S
+(if) K
+( \(i > 1\) --\(i\); ) p
+(else) K
+( ++\(i\); ) p n
+(      } ) N
+(   }    ) N
+(   ) S
+(/*  End Sorting      */) c
+( ) p n
+(   strcpy\(recor,recor_\); ) N
+(   i = 1; ) N
+(   ) S
+(while) K
+( \(outprtcls[i-1].who != 0\) ) p n
+(   { ) N
+(      ) S
+(for) K
+( \(j = 1; j <= outprtcls[i-1].how; j++\)) p n
+(      { ) N
+(        strcat\(recor,prtclbase[outprtcls[i-1].who-1].name\); ) N
+(        strcat\(recor,") S
+(,) str
+("\);) p n
+(      }) N
+(      ++\(i\); ) N
+(   } ) N
+() N
+(   len = strlen\(recor\); ) N
+(   recor[len-1] = ') S
+( ) str
+('; ) p n
+(   ) N
+(   wrt_menu\(1,++kmenu,recor,0,0,nsubc,firstrec\);) N
+(   firstrec += nsubc;) N
+(}   ) S
+(/*  AddRecordToMenu  */) c n
+() p n
+() N
+(static) K
+( ) p
+(void) k
+( addbuf\() p
+(void) k
+(\)) p n
+({) N
+(    ) S
+(int) k
+(         i, j;) p n
+(    ) S
+(int) k
+(         mem[MAXINOUT];) p n
+(    indexlink    old, next;) N
+(    decayDiagram     res;) N
+(    ) S
+(int) k
+( wrtcode;) p n
+() N
+(   strcpy\(recor_,prtclbase[nprimary-1].name\);) N
+(   ) S
+(if) K
+( \(nin==2\)) p n
+(   {) N
+(      strcat\(recor_,") S
+(,) str
+("\);) p n
+(      strcat\(recor_,prtclbase[prtclbase[n_two-1].anti-1].name\);) N
+(   }) N
+(   strcat\(recor_,") S
+( -> ) str
+("\);) p n
+(   next = head->ilink;) N
+(   ) S
+(for) K
+( \(i = 1; i <= n_x; i++\) mem[i-1] = next->outlist[i-1];) p n
+(   nsubc = 0;) N
+(   wrtcode=checkGenList\(next->outlist\); ) N
+(   ) S
+(while) K
+( \(next\)) p n
+(   {) N
+(      ) S
+(for) K
+( \(i = 0; i < n_x; i++\)) p n
+(      ) S
+(if) K
+(\(next->outlist[i] != mem[i]\)  ) p n
+(      {  ) S
+(if) K
+(\(wrtcode\)) p n
+(         {  memcpy\(outprtcls,inclp,) S
+(sizeof) K
+(\(outprtcls\)\); ) p n
+(            ) S
+(for) K
+( \(j = 0; j < n_x; j++\) addprtcl\(outprtcls,mem[j]\); ) p n
+(            addrecordtomenu\(\);) N
+(         } ) N
+(         nsubc = 0; ) N
+(         ) S
+(for) K
+( \(j = 0; j < n_x; j++\) mem[j] = next->outlist[j]; ) p n
+(         wrtcode=checkGenList\(next->outlist\);) N
+(         ) S
+(break) K
+(;) p n
+(      }) N
+(constr.c) (Page 11/15) (Oct 14, 03 14:19) title
+border
+/v 1 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(       ) p n
+(      ) S
+(if) K
+(\(wrtcode\)) p n
+(      {  nsubc++;      ) N
+(         fseek\(bufres,) S
+(sizeof) K
+(\(decayDiagram\)*next->num,SEEK_SET\);       ) p n
+(         FREAD1\(res,bufres\);) N
+(         {  adiagram result;) N
+(            memcpy\(\() S
+(void) k
+(*\)result.dgrm0,\() p
+(void) k
+(*\)res,) p
+(sizeof) K
+(\(decayDiagram\)\);) p n
+(            result.delMark=0;) N
+(            result.nsub=kmenu+1; ) N
+(            FWRITE1\(result,diagrp\);) N
+(         }) N
+(      }    ) N
+(      old = next; ) N
+(      next = next->ilink; ) N
+(      free\(old\); ) N
+(   }) N
+(   ) S
+(if) K
+(\(wrtcode\)  ) p n
+(   { memcpy\(outprtcls,inclp,) S
+(sizeof) K
+(\(outprtcls\)\); ) p n
+(     ) S
+(for) K
+( \(j = 0; j < n_x; j++\) addprtcl\(outprtcls,mem[j]\); ) p n
+(     addrecordtomenu\(\);) N
+(   } ) N
+(} ) N
+() N
+(static) K
+( ) p
+(int) k
+(* prclist\() p
+(long) k
+( * power \)) p n
+({) N
+(  ) S
+(int) k
+( i;) p n
+(  ) S
+(int) k
+( num[MAXINOUT];) p n
+( ) N
+(  ) S
+(long) k
+( N=1,m;) p n
+(  ) S
+(int) k
+( l=nin+nout-n_x;) p n
+(  ) S
+(int) k
+( * list;) p n
+() N
+(  ) S
+(for) K
+(\(i=0;i<l;i++\) N*=hadrons[i].pow;) p n
+() N
+(  list=malloc\(l*N*) S
+(sizeof) K
+(\() p
+(int) k
+(\)\);) p n
+(   ) N
+(  ) S
+(for) K
+(\(i=0;i<l;i++\) num[i]=0;) p n
+() N
+(/* fill */) c n
+(  ) p
+(for) K
+(\(m=0;m<N;m++\)) p n
+(  {  ) S
+(int) k
+( c;) p n
+(     ) S
+(for) K
+(\(i=0;i<l;i++\) list[m*l+i]=hadrons[i].parton[num[i]]; ) p n
+(     ) S
+(for) K
+(\(c=l-1;c>=0;c--\)) p n
+(     {   num[c]++;  ) N
+(         ) S
+(if) K
+(\(num[c]==hadrons[c].pow\)num[c]=0; ) p
+(else) K
+( ) p
+(break) K
+(;) p n
+(     }) N
+(  }) N
+() N
+(  ) S
+(if) K
+(\(nin==2\) ) p
+(/* energy test */) c n
+(#ifdef) K
+( QQQ) p n
+(  ) S
+(for) K
+(\(m=0;m<N;m++\)) p n
+(  { ) S
+(double) k
+( min=0, mout=0;) p n
+(    ) S
+(for) K
+(\(i=0;i<nin;i++\) min+=prtclbase[list[m*l+i]-1].mass;) p n
+(    ) S
+(for) K
+(\(i=nin;i<l;i++\) mout+=prtclbase[list[m*l+i] -1].mass;) p n
+(    ) S
+(if) K
+(\(nin==1\) {) p
+(if) K
+(\(min<=mout\) list[m*l]=0;} ) p
+(else) K n
+(    { ) p
+(if) K
+(\(sqrts<=min || sqrts<=mout\) list[m*l]=0;}) p n
+(  }) N
+(#endif) K
+( ) p n
+(;) N
+(  ) S
+(else) K
+( ) p
+(/* forbid A->A+X */) c n
+(  ) p
+(for) K
+(\(m=0;m<N;m++\)) p n
+(  ) S
+(for) K
+(\(i=nin;i<l;i++\) ) p
+(if) K
+(\(list[m*l]==list[m*l+i]\) {list[m*l]=0; ) p
+(break) K
+(;}) p n
+(constr.c) (Page 12/15) (Oct 14, 03 14:19) title
+border
+grestore
+(Printed by Alexander PUKHOV) rhead
+(constr.c) (6/8) (Thursday October 16, 2003) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (13-14) 7
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+( ) p n
+() N
+(/*internal reorder*/) c n
+() p n
+(  ) S
+(for) K
+(\(m=0;m<N;m++\)) p n
+(  ) S
+(if) K
+(\(list[m*l]\)) p n
+(  { ) S
+(int) k
+( *  arr=list+m*l+nin;) p n
+(    ) S
+(int) k
+( len = l-nin;) p n
+(    SORTARR\(arr,len\);) N
+(  }) N
+() N
+(/*delete copies */) c n
+(  { ) p
+(long) k
+(  n0=1,m1,k;) p n
+() N
+(    ) S
+(for) K
+(\(i=0;i<nin;i++\)n0*=hadrons[i].pow;) p n
+(    m1=N/n0;) N
+(    ) S
+(for) K
+(\(k=0; k<n0;k++\)) p n
+(    ) S
+(for) K
+(\(m=0; m<m1;m++\) ) p
+(if) K
+(\(list[\(k*m1+m\)*l]\)) p n
+(    { ) S
+(int) k
+( * a=list+\(k*m1+m\)*l;) p n
+(      ) S
+(int) k
+( * b=list+\(k+1\)*m1*l-l;) p n
+(      ) S
+(for) K
+(\(;b>a;b-=l\)) p n
+(      {  ) S
+(for) K
+(\(i=nin;i<l;i++\) ) p
+(if) K
+(\(a[i]!=b[i]\) ) p
+(break) K
+(;) p n
+(         ) S
+(if) K
+(\(i==l\) b[0]=0;) p n
+(      }) N
+(    }) N
+(  }) N
+() N
+(/*) c n
+(  printf\("PRINT4\\n"\);) N
+(  for\(m=0;m<N;m++\) if\(list[m*l]\) ) N
+(  {) N
+(    printf\("%s ",prtclbase[list[l*m]-1].name\);) N
+(    if\(nin==2\) printf\("%s ",prtclbase[list[l*m+1]-1].name\);) N
+(    printf\("->"\);) N
+(    for\(i=nin;i<l;i++\) printf\("%s ",prtclbase[list[l*m+i]-1].name\);) N
+(    if\(n_x\) printf\("%d*x",n_x\);) N
+(    printf\("\\n"\);) N
+(  }) N
+(*/) S
+( ) p n
+(  *power=N;) N
+(  ) S
+(return) K
+( list;) p n
+(}) N
+() N
+() N
+() N
+(int) k
+( construct\() p
+(void) k
+(\)) p n
+({) N
+(   ) S
+(int) k
+(          i,j,ndiagram;) p n
+(   ) S
+(char) k
+( buf_name[STRSIZ];) p n
+(   ) S
+(int) k
+( *list;) p n
+(   ) S
+(long) k
+( N,m;) p n
+(   ) S
+(int) k
+( l;) p n
+() N
+(   errorcode=0;   ) N
+(   firstrec=0;) N
+(   ref=m_alloc\() S
+(sizeof) K
+(\(ref_arr\)*nparticles\);    ) p n
+(   diagrp=fopen\(DIAGRP_NAME,") S
+(wb) str
+("\);) p n
+(   sprintf\(buf_name,") S
+(%stmp%cbuf.res) str
+(",pathtouser,f_slash\);) p n
+(   menup=fopen\(MENUP_NAME,") S
+(wb) str
+("\);) p n
+(   m_diagram = 500;) N
+(   kmenu = 0;) N
+(   f_write\(") S
+(\\055\\066) str
+(",2,1,menup\);) p n
+(constr.c) (Page 13/15) (Oct 14, 03 14:19) title
+border
+/v 1 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(   head = \(indexlink\)m_alloc\() p
+(sizeof) K
+(\(indexStruct\)\);) p n
+(   first = \(elementlink\)m_alloc\() S
+(sizeof) K
+(\(element\)\); first->next = ) p
+(NULL) K
+(;) p n
+(   zero = \(elementlink\)m_alloc\() S
+(sizeof) K
+(\(element\)\);  zero->next = ) p
+(NULL) K
+(;) p n
+() N
+(   ) S
+(for) K
+(\(i=0; i<nparticles; i++\) ) p
+(for) K
+(\(j=0; j<maxref; j++\) ref[i][j]=) p
+(NULL) K
+(;) p n
+(   ndecay = nin + nout - 1;) N
+(   n_diagram = 0;) N
+(   list=prclist\(&N\);) N
+(   l=nin+nout-n_x;) N
+(   ) S
+(for) K
+(\(m=0;m<N;m++\) ) p
+(if) K
+(\(list[m*l]\)) p n
+(   { ) N
+(      nprimary = list[m*l];) N
+(      nilprtcl\(inclp\);) N
+(      ) S
+(for) K
+(\(i=nin;i<l;i++\)  addprtcl\(inclp,list[m*l+i]\);) p n
+(      ) N
+(      ) S
+(if) K
+(\(nin==2\) ) p n
+(      {  n_two=prtclbase[list[m*l+1] -1].anti;) N
+(         addprtcl\(inclp, n_two\);) N
+(      }        ) N
+() N
+(      bufres=fopen\(buf_name,") S
+(wb) str
+("\);) p n
+(      decay\(nprimary,ndecay\);) N
+(      ) S
+(if) K
+( \(nin == 2\) delprtcl\(inclp,n_two\);) p n
+(      clearref\(\);) N
+(      ndiagram=\(ftell\(bufres\)\)/) S
+(sizeof) K
+(\(decayDiagram\);) p n
+(         ) N
+() N
+(      ) S
+(if) K
+( \(ndiagram > 0\)) p n
+(      {) N
+(         fclose\(bufres\); bufres=fopen\(buf_name,") S
+(rb) str
+("\);) p n
+(         doindex\(\);) N
+(         sortindex\(ndiagram\);) N
+(         addbuf\(\);) N
+(      }) N
+(      fclose\(bufres\);) N
+(      ) S
+(if) K
+( \(errorcode\) ) p
+(break) K
+(;) p n
+(   }) N
+(   free\(list\);) N
+(   cleanProcList\(\);) N
+(   fclose\(diagrp\);) N
+() N
+(   ) N
+(   unlink\(buf_name\);) N
+(   subproc_f = kmenu;) N
+(   fclose\(menup\);) N
+(   free\(head\);) N
+(   free\(first\);) N
+(   free\(zero\);) N
+(   free\(ref\);) N
+(   ) S
+(if) K
+( \(n_diagram == 0\)) p n
+(   {  ) N
+(      messanykey\(5,22,") S
+(Processes of this type are absent) str
+("\);) p n
+(      ) S
+(if) K
+(\(blind\){ printf\(") p
+(Processes of this type are absent) str
+("\); sortie\(111\);}) p n
+(      errorcode = -1;) N
+(   }) N
+(   ) S
+(else) K n
+(   {) p n
+(/*      be_be\(\); */) c n
+(      errorcode = 0;) p n
+(   }) N
+(   ) S
+(for) K
+( \(i = 18; i <= 24; i++\) { goto_xy\(1,i\); clr_eol\(\); }   ) p n
+(   ) S
+(return) K
+( errorcode;) p n
+(constr.c) (Page 14/15) (Oct 14, 03 14:19) title
+border
+grestore
+(Printed by Alexander PUKHOV) rhead
+(constr.c) (7/8) (Thursday October 16, 2003) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (15) 8
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(}) p n
+(constr.c) (Page 15/15) (Oct 14, 03 14:19) title
+border
+grestore
+(Printed by Alexander PUKHOV) rhead
+(constr.c) (8/8) (Thursday October 16, 2003) footer
+end % of iso1dict
+pagesave restore
+showpage
+
+%%Trailer
+end
+%%EOF

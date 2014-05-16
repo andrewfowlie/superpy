@@ -1,0 +1,4 @@
+for FILE in *.F 
+do
+   mv $FILE gz$FILE
+done

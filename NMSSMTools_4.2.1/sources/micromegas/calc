@@ -1,0 +1,1 @@
+../CalcHEP_src/bin/calc "$*"

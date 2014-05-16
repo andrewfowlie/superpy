@@ -1,0 +1,225 @@
+=============== num =============
+cut.c:100:         case 3: strcpy(fieldName,"Too long cut identifier");goto errorExit; 
+drandXX.c:11:static unsigned long Xlong=0x1234ABCD;
+drandXX.c:12:static unsigned long Xshort=0x330E;
+drandXX.c:13:#define Along   0x5DEEC
+drandXX.c:15:#define Along16 0xDEEC0000
+drandXX.c:16:#define  Clong  0
+drandXX.c:23:  unsigned  long  bot=Xshort*Ashort; 
+drandXX.c:24:  unsigned  long  top= Clong+ (bot>>16);
+drandXX.c:28:  Xlong=top + (bot>>16)+Along*Xshort+Ashort*Xlong+((Along16*Xlong));
+drandXX.c:31:  return ( (double)Xshort + (Xlong&0xFFFFFFFF)*(double)0x10000 )*float48; 
+drandXX.c:36:  unsigned long Xlong_,Xshort_;
+drandXX.c:39:  sprintf(cbuff,"%08X%04X",Xlong,Xshort);
+drandXX.c:42:  { if(2==sscanf(init,"%8lX%4lX",&Xlong_,&Xshort_))
+drandXX.c:43:     { Xlong=Xlong_;
+drandXX.c:54:  unsigned long i,j;
+events.c:23:static void writeEvent(long cCub,  int n, char * rand_state)
+events.c:68:static long n_cube=1000;
+events.c:71:static long nRandom=100;
+events.c:72:static long nSimplex1=50;
+events.c:73:static long nSimplex2=50;
+events.c:74:static long nEvents=10000;
+events.c:105:  { long pcode;
+events.c:218:       { long  nGenerated=0; 
+events.c:222:         long fileEnd;
+events.c:245:               long  nEvPos=0;
+histogram.c:25:  long  nPoints;
+interface.c:16:char * (*pinf_int)(int nsub, int nprtcl, double* pmass,long * num);
+interface.c:17:long (*pinfAux_int)(int nsub, int nprtcl, int*spin2,int*color,int*neutral);
+pdt.c:337:    {  long fpos=ftell(f);
+pdt.c:364:    {  long fpos=ftell(f);
+pdt.c:469:long  makePdtList(char * file, long Nparton, pdtList ** list)
+pdt.c:473:  long N;
+pdt.c:478:  { long mother;
+phys_val.c:252:    { long pNum;
+runVegas.c:87:     { long l;
+runVegas.c:109:    { long l;
+usrfun.c:42:extern char * (*pinf_int)(int nsub, int nprtcl, double * pmass, long*pnum);
+vegas.c:111:static int nroot(long N, int n)
+vegas.c:113:   long N_;
+vegas.c:125:static void  generateVegasCubs(vegasGrid * vegPtr,long * nCubs) 
+vegas.c:215:int vegas_int(vegasGrid * vegPtr, long ncall0, double alph, 
+vegas.c:230:   long nCubs=ncall0/npg;
+vegas.c:231:   long cCub;
+vegas.c:386:int vegas_max(vegasGrid * vegPtr, long  nCubs, long nRandom, long nSimplex,
+vegas.c:400:   long  cCub;
+vegas.c:413:      long k; 
+vegas.c:453:int vegas_events(vegasGrid * vegPtr,  long  nEvents, double gmax, double milk,
+vegas.c:455:   void (*out)(long,int,char*),
+vegas.c:462:   long  cEvent;
+vegas.c:463:   long  cCub;
+vegas.c:465:   long L0;     
+vegas.c:466:   long nCubs=vegPtr->nCubs;
+vegas.c:505:   {  long L;
+vegas.c:513:        long L0=0;
+vegas.c:514:        long L1=nCubs-1;
+vegas.c:590:int unpak_events(vegasGrid * vegPtr, long  nCubs, long  nEvents)
+vegas.c:596:   long  cEvent;
+vegas.c:603:   {  long L;
+width_12.c:84: long N1,N2,N3;
+width_12.c:90: long  *codes=(long *) malloc(3*sizeof(long)*nprc_int);
+width_12.c:107:     long N; 
+width_12.c:209: long N1;
+=============== num/strfun =============
+sf_epa.c:22:int p_epa__(long pNum){ if(pNum==22) return 1; else return 0; } 
+sf_epp.c:21:int  p_epp__ (long pNum){ if(pNum==22) return 1; else return 0; }
+sf_isr.c:40:{ long N;
+sf_isr.c:86:int p_isr__(long pNum) { if(abs(pNum)==11) return 1; else return 0; }
+sf_lsr.c:9:int p_lsr__(long pNum) { if(pNum==22) return 1; else return 0;}
+sf_pdf.c:69:int p_pdf(long pNum) 
+sf_pdf.c:115:   long N,N1,N2;
+sf_pdt.c:29:static void comphepPdtList(long pNum,  pdtList **list)
+sf_pdt.c:33:   long pNum1,pNum2;
+sf_pdt.c:93:int p_pdt(long pNum) 
+sf_pdt.c:123:   long pNum, N1, N2;
+sf_pdt.c:173:   long pNum;
+strfun.c:26:{  int (*myParticle)(long);
+strfun.c:58:  {  long N;
+strfun.c:86:    long N;
+strfun.c:138:  { long N; 
+=============== symb =============
+colorf.c:46:  fct->nc=malloc(MAX_POW*sizeof(long));
+colorf.c:49:static void add_fct(factor *f, long sgn, long pow2,int powN,int powNN_1)
+colorf.c:50:{ long dd;
+colorf.c:63:    if(f->len>MAX_POW) {MAX_POW=2*f->len; f->nc=realloc(f->nc,MAX_POW*sizeof(long));}
+colorf.c:72:     if(f->len>MAX_POW){MAX_POW=2*f->len; f->nc=realloc(f->nc,MAX_POW*sizeof(long));}
+colorf.c:92:  for(i=0;i<f->len && dd;i++)  while(f->nc[i]&(long)dd) dd/=2;
+colorf.c:534:static void rednd(long * n,long * d,int b)
+colorf.c:545:void fct_num_calc(factor * fct2,int Nc, long * n, long *d)
+colorf.c:548:	long p=1;
+cweight.c:109:static void getLeadingTerm(factor * f, int  maxP, long *num, long *den)
+cweight.c:122:void c_basis_coef(vampl * g,int pow,int nc,int * chains,long * num,long * den)
+cweight.c:158:static void  lreduce(long * l1, long  * l2)
+cweight.c:159:{  long    c, i1, i2;
+cweight.c:172:     long * cCoefN,long * cCoefD)
+cweight.c:185:      long n=1,d=1;
+cweight.c:186:      long * cCoefNr=malloc(cBasisPower*sizeof(long));
+cweight.c:187:      long * cCoefDr=malloc(cBasisPower*sizeof(long));
+m_utils.c:197: long recpos;
+pre_read.c:62: long    li;
+pre_read.c:78:      if (strlen(s) > 6)  rderrcode = toolongidentifier;
+process.c:410:      if(strlen(name)>7) {errTxt="Too long name"; break;}
+r_code.c:602:   long         nrecord, naxu;
+rfactor.c:379:         rderrcode = toolongidentifier;
+s_calchep.c:257:                   long recpos; 
+screen.c:39:  long nn;
+s_files.c:20:void wrt_menu(int menutype,int k,char*txt,int ndel,int ncalc,int nrest,long recpos)
+s_files.c:35:int rd_menu(int menutype,int k,char*txt,int*ndel,int*ncalc,int*nrest,long*recpos)
+sos.c:11:#include "prepdiag.h"   /* longDouble */
+symbolic.c:74:        unsigned long z_d=vardef->vars[i].zerodeg;
+symbolic.c:75:        unsigned long m_d=vardef->vars[i].maxdeg;
+symbolic.c:177:/*   spinLength =1+ (spinLength +1)/sizeof(long);*/
+symbolic.c:495:static void  del_pp(poly* p, poly * fact, long * del)
+symbolic.c:498:   unsigned long  z_d, m_d;
+symbolic.c:500:   long dmax;   
+symbolic.c:553:static void  transformfactor(rmptr* t_fact,poly mon,long del)
+symbolic.c:559:   long    factnum, factdenum;
+symbolic.c:823:   long         del;
+symbolic.c:1023:   long       nrecord;
+symbolic.c:1052:   { long pos=fseek(catalog,0, SEEK_END);
+=============== symb/out =============
+c_out.c:73:      long           p_code[MAXINOUT];
+c_out.c:92:static long  *cCoefN, *cCoefD;
+c_out.c:161: long recpos;
+c_out.c:329:static void calcColor(long diag)
+c_out.c:354:   long pos_c;
+c_out.c:440:   long       pos_c1,pos_c2; int deg1,deg2,tmpn1,tmpn2, nC;
+c_out.c:519:static void  writesubprocess(int nsub,long firstDiag,long totDiag,int* breaker)
+c_out.c:521:   long      i;
+c_out.c:642:   writeF("char * pinf_ext(int nsub,int nprtcl,double* pmass,long * num)\n{\n");
+c_out.c:671:   writeF("long const pcode[%d][%d]={\n",subproc_sq,nin + nout);
+c_out.c:706:   writeF("long pinfAux_ext(int nsub,int nprtcl,int*spin2,int*color,int*neutral)\n{\n");
+c_out.c:709:   writeF("long const pcode[%d][%d]={\n",subproc_sq,nin + nout);
+c_out.c:873:   long dfirst;
+c_out.c:973:            cCoefN=malloc(cBasisPower*sizeof(long));
+c_out.c:974:            cCoefD=malloc(cBasisPower*sizeof(long));
+l_string.c:17:typedef struct longstr
+l_string.c:21:   }  longstr;
+l_string.c:23:typedef longstr *longstrptr;
+l_string.c:67:static void  writelongstr(char* name,longstrptr longs)
+l_string.c:70:   if (longs == NULL || longs->len == 0) writeF("0;\n");
+l_string.c:71:   else writeF("%.*s;\n",longs->len,longs->txt);
+l_string.c:75:static void   addstring(longstrptr longs,char* s)
+l_string.c:79:   ll = longs->len;
+l_string.c:84:      writelongstr(name,longs);
+l_string.c:85:      longs->len = 0;
+l_string.c:86:      addstring(longs,name);
+l_string.c:87:      ll = longs->len;
+l_string.c:90:   for (i = 0; i < l; i++) longs->txt[ll + i] = s[i];
+l_string.c:91:   longs->len += l;
+l_string.c:95:static void*  gorner(char* s,longstrptr pmult,longstrptr psum)
+l_string.c:98: longstrptr   ans;
+l_string.c:102:   ans = (longstrptr)m_alloc(sizeof(longstr));
+l_string.c:109:      writelongstr(name,pmult);
+l_string.c:135:         psum = (longstrptr)pchange;
+l_string.c:137:      writelongstr(name,psum);
+l_string.c:141:         writelongstr(name2,ans);
+l_string.c:184:{longstrptr   ans;
+l_string.c:209:   ans = (longstrptr)m_alloc(sizeof(longstr));
+l_string.c:254:{longstrptr   tmp;
+l_string.c:256:   tmp = (longstrptr)emitexpr(fortformula,smpl_emit,v_gorner,c_gorner);
+l_string.c:257:   writelongstr(name,tmp);
+out_serv.c:35:void seekArchiv(long n)
+out_serv.c:245:   long recpos;
+out_serv.c:246:   long   count, ntot;
+=============== symb/diagram =============
+constr.c:606:static long       firstrec, nsubc; /* From addbuf */
+constr.c:704:static int* prclist(long * power )
+constr.c:709:  long N=1,m;
+constr.c:755:  { long  n0=1,m1,k;
+constr.c:793:   long N,m;
+drawdiag.c:161:static int  elong(int m)
+drawdiag.c:168:      el = elong(-with1->e1) + elong(-with1->e2);
+drawdiag.c:173:static int     elongl(int m)
+drawdiag.c:183:         k = MIN(elongl(-with1->e1),elongl(-with1->e2));
+drawdiag.c:184:         if ((with1->e3 < 0)) k = MIN(k,elongl(-with1->e3));
+drawdiag.c:194:          elong(-(*e1)) > elong(-(*e2))))
+drawdiag.c:355:   kl = elong(0) + 1;
+drawdiag.c:390:         if ((tpc == 3) && (elongl(-m3) > elongl(-m)))
+drawdiag.c:461:      if ((m1 < 0) && (m2 < 0) && (elongl(-m1) < elongl(-m2))) 
+drawdiag.c:512:   if (((tpc == 3) && (kl == elongl(0) + 3))) yl = y[8];
+drawdiag.c:547:       (kl != elongl(0) + 3)) || (tpc == 1) && 
+showgrph.c:23:static   long   nn, nm;
+squar.c:327:   long fpos;
+squar.c:451: long      constrdiagr, maxdiagr;
+squar.c:452: long      firstpos, nsdiagram;
+=============== chep_crt =============
+crt_util.c:141:int informline(long curent, long total)
+crt_util.c:223:   long	  lastpage;
+crt_util.c:728:   long * L;
+crt_util.c:808:int  correctLong (int x,int y,char* txt,long * var,int clear)
+edittab.c:1080:            if(k>size) {messanykey(10,5,"Too long record"); break;}
+=============== polynom =============
+polynom.c:102:      unsigned long *pw1=m1->power, *pw2=m2->power, *pw_end=pw1+monomLength;
+polynom.c:146:void  multpolyint(poly* p,long i)
+polynom.c:337:void  multtensint(tensor * t,long i)
+polynom.c:429:  unsigned long  z;
+polynom.c:462:   tensLength=(maxIndex+ sizeof(long) -1)/sizeof(long);
+ps_tensor.c:116:void multEtensInt(Etens *t , long l)
+spinor.c:170:void multSpinInt(SpinTensor *t , long l)
+symb_reader.c:27:   long L=0;   
+symb_tot.c:112:  { long L=S2.expr.p->num;
+symb_wrt.c:18:   unsigned long   wpower;
+=============== service2 =============
+f_c.c:8:double pow_dl(double ap, long bp)
+f_c.c:11:long n;
+f_c.c:12:unsigned long u;
+parser.c:90:   if(len>ILEN) {rderrcode=toolongidentifier; return NULL;} 
+parser.c:208:    case toolongidentifier:   return "Too long identifier/number";
+=============== getmem =============
+getmem.c:9:long  usedmemory = 0;
+=============== tab =============
+e_tools.c:16:static  long   p_codes[MAXNP];
+e_tools.c:20:static char* pinf_ext(int nsub,int num , double * mass,long * N) 
+events2tab.c:28:static long nEvents=0;
+events2tab.c:49:  long nPoints;  
+show_distr.c:22:static char* pinf_ext(int nsub,int num , double * mass, long *N ){ return NULL;}
+sum_distr.c:15:static char* pinf_ext(int nsub,int num , double * mass, long * N)
+=============== plot =============
+plot.c:74:static long  chpround(double  x)
+plot.c:76:   return (long)x;
+=============== model_aux =============
+SLHAreader.c:103:         printf("Line %d is too long\n",nLine);  
+SLHAreader.c:176:         printf("Too long name of BLOCK  at line %d\n",nLine);
+SLHAreader.c:256:               printf("Too long key sequence at line %d\n",nLine);

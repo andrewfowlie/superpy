@@ -1,0 +1,12 @@
+:
+
+INCL_DIR="num num/strfun symb symb/out symb/diagram chep_crt polynom service2 getmem tab plot model_aux"
+curd=`pwd`
+for dir in $INCL_DIR 
+do
+
+echo =============== $dir =============
+  cd $dir
+   grep -n  $1 *.c *.inc
+   cd $curd
+done

@@ -1,0 +1,16 @@
+parameter MSeL=sqrt(-1/2*C2W/CW**2*MW**2+1*C2W/CW**2*MW**2*sb**2+1*Ml1**2).
+parameter MSeR=sqrt(-1/CW**2*MW**2*SW**2+2/CW**2*MW**2*SW**2*sb**2+1*Mr1**2).
+parameter MSne=sqrt(-1/CW**2*MW**2*sb**2+1/2/CW**2*MW**2+1*Ml1**2).
+parameter MSmL=sqrt(-1/2*C2W/CW**2*MW**2+1*C2W/CW**2*MW**2*sb**2+1*Ml2**2).
+parameter MSmR=sqrt(-1/CW**2*MW**2*SW**2+2/CW**2*MW**2*SW**2*sb**2+1*Mr2**2).
+parameter MSnm=sqrt(-1/CW**2*MW**2*sb**2+1/2/CW**2*MW**2+1*Ml2**2).
+parameter MSnl=sqrt(-1/CW**2*MW**2*sb**2+1/2/CW**2*MW**2+1*Ml3**2).
+
+parameter SlMM11 = (-1/2*C2W/CW**2*MW**2+1*C2W/CW**2*MW**2*sb**2+1*Ml**2+1*Ml3**2).
+parameter SlMM12 = (-1*Lambda*Ml/cb*sb*xvev+1*Al*Ml).
+parameter SlMM22 = (-1/CW**2*MW**2*SW**2+2/CW**2*MW**2*SW**2*sb**2+1*Ml**2+1*Mr3**2).
+parameter idl=rDiagonal(2,SlMM11,SlMM12,SlMM22).
+
+parameter MSl1=sqrt(MassArray(idl,1)).
+parameter MSl2=sqrt(MassArray(idl,2)).
+_i=1-2 in _j=1-2 in parameter Zl_i_j= MixMatrix(idl,_i,_j).

@@ -1,0 +1,46 @@
+
+
+if(test -r lock) then
+   echo \"lock\" file in the current directory tells us that CalcHEP
+   echo already was launched in this directory. See details about
+   echo the process in  \"lock\" file. If the process indeed was
+   echo  finished remove \"lock\" file to continue.
+   exit 1
+fi
+
+echo host `uname -n` ,  process $$  >lock
+WORK=`pwd`
+export WORK
+
+trap "rm -f lock"  0 1 2 3 9
+
+. $CALCHEP/FlagsForSh
+
+while :
+do 
+  if(test $# -ge 2 -a "$1" = "-blind" )  then 
+    $CALCHEP/bin/s_calchep -blind "$2"
+  else 
+    $CALCHEP/bin/s_calchep $*
+  fi
+  err=$?
+  case $err in 
+     0) exit;; 
+    20) ;;
+    22)  
+         $CALCHEP/bin/s_calchep -blind "[{{0" 
+         cd results 
+         . ./EXTLIBsh
+         $CALCHEP/sbin/nCompil 1>/dev/null 2>/dev/null; $CALCHEP/sbin/ld_n
+         err=$?
+         cd ..
+         if(test $err -eq 0) then
+           echo n_calchep is created
+         else 
+           echo n_calchep is not created. 
+         fi 
+         break;;
+     *) echo CalcHEP has finished with error code $err
+      break 
+  esac 
+done 

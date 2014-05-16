@@ -1,0 +1,19 @@
+2 2 50
+  The setting 'Gauge invariance ON' leads to the
+standard implementation of the Breit-Wigner 
+formula for  S-channel propagators.  Generally it
+breaks  gauge invariance.
+   For the case 'Gauge invariance ON' the 
+contribution of diagram which does not contain 
+Breit-Wigner propagator is multiplied on the 
+factor
+ (Zero width propagator)/(Breit-Wigner propagator)
+This trick corresponds to symbolic summation of
+all diagram to common denominator expression and 
+the subsequent substitution of the Breit-Wigner 
+formula into the denominators. This trick 
+preserves all mutual cancellations between 
+diagrams  caused by gauge  invariance.  As a defect
+of this trick it must be mentioned that the factor
+above kills the contribution of non-resonance 
+diagrams in the resonance point.

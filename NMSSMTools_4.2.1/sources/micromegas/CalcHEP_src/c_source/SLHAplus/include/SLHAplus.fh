@@ -1,0 +1,5 @@
+           integer slhaRead, slhaWrite,slhaSTRFormat
+           external slhaRead, slhaWrite,slhaSTRFormat
+
+           real*8 slhaVal0,slhaVal1,slhaVal2,slhaVal3,slhaValFormat
+           external slhaVal0,slhaVal1,slhaVal2,slhaVal3,slhaValFormat     

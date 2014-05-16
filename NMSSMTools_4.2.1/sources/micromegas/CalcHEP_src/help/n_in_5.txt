@@ -1,0 +1,7 @@
+3 15 70
+ The enter of value of helicity of the first incoming particle.
+ This option is available if process in symbolic session was 
+ specified in the corresponding manner with the % symbol after 
+ particle name. Note that helicity is defined as a projection 
+ of spin on the direction of motion. So,the input value is 
+ restricted by +/- particle spin. 

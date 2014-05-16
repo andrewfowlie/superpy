@@ -1,0 +1,83 @@
+
+% Higgs gauge interaction (higgsino-gauge terms are in susy_ggi.mdl file)
+
+lterm -(g*taupm*W/2+Yl*g1*B0/2)*( i*(S*deriv*s-deriv*S*s) )
+       + (i*Sqrt2*( (g*taump*f_W/2 +Yl*g1*f_B0/2 )*f*S -
+                    (g*taump*f_Wb/2+Yl*g1*f_B0b/2)*F*s ))
+      +  S*(g*taupm*W/2+Yl*g1*B0/2)**2*s 
+
+   where
+	f=f_h1, F=f_h1b, s=s_h1, S=s_H1, Yl=-1;
+	f=f_h2, F=f_h2b, s=s_h2, S=s_H2, Yl= 1.
+
+
+
+% Left leptons gauge interaction
+
+lterm  - (g*taupm*W/2-g1*B0/2)*( F*sigma*f +
+                                           i*(S*deriv*s-deriv*S*s))
+       + (i*Sqrt2*( (g*taump*f_W/2 -g1*f_B0/2 )*f*S -
+                   (g*taump*f_Wb/2-g1*f_B0b/2)*F*s ) )
+       +  S*(g*taupm*W/2-g1*B0/2)**2*s 
+
+   where
+
+	f=f_l1, F=f_l1b, s=s_l1, S=s_L1;
+	f=f_l2, F=f_l2b, s=s_l2, S=s_L2;
+	f=f_l3, F=f_l3b, s=s_l3, S=s_L3.
+
+
+% Right lepton gauge interaction
+
+lterm  -( g1*B0)*( F*sigma*f + i*(S*deriv*s-deriv*S*s))
+         + i*Sqrt2*( ( g1*f_B0 )*f*S - 
+	             ( g1*f_B0b)*F*s  )
+                                     + S*( g1*B0)**2*s 
+
+   where
+
+	f=f_r1, F=f_r1b, s=s_r1, S=s_R1;
+	f=f_r2, F=f_r2b, s=s_r2, S=s_R2;
+	f=f_r3, F=f_r3b, s=s_r3, S=s_R3.
+
+
+
+% Left (s)quarks gauge interaction
+
+
+lterm  -(-GG*lambda*G+g*taupm*W/2+g1*B0/6)*( F*sigma*f+i*(S*deriv*s-deriv*S*s)  )
+    + i*Sqrt2*( ( GG*lambda*f_G + g*taump*f_W/2 +g1*f_B0/ 6)*f*S -
+                ( GG*lambda*f_Gb+ g*taump*f_Wb/2+g1*f_B0b/6)*F*s )
+	+S*(g*taupm*W/2+g1*B0/6-GG*lambda*G)**2*s
+   where
+
+	f=f_q1, F=f_q1b, s=s_q1, S=s_Q1;
+	f=f_q2, F=f_q2b, s=s_q2, S=s_Q2;
+	f=f_q3, F=f_q3b, s=s_q3, S=s_Q3.
+
+% Right up (s)q
+
+lterm  -( GG*lambda*G-2*g1*B0/3)*( F*sigma*f + i*(S*deriv*s-deriv*S*s)  )
+      +  i*Sqrt2*( (-GG*lambda*f_G  - 2*g1*f_B0/3 )*f*S
+               -   (-GG*lambda*f_Gb - 2*g1*f_B0b/3)*F*s )
+      + S*(-2*g1*B0/3+GG*lambda*G)**2*s
+
+   where
+
+	f=f_u1, F=f_u1b, s=s_u1, S=s_U1;
+	f=f_u2, F=f_u2b, s=s_u2, S=s_U2;
+	f=f_u3, F=f_u3b, s=s_u3, S=s_U3.
+
+% Right down (s)q
+
+lterm  -( GG*lambda*G + g1*B0/3)*( F*sigma*f + i*(S*deriv*s-deriv*S*s) )
+    + i*Sqrt2*( (-GG*lambda*f_G + g1*f_B0/3 )*f*S
+               -(-GG*lambda*f_Gb+ g1*f_B0b/3)*F*s )
+    + S*( g1*B0/3+GG*lambda*G)**2*s
+  
+   where
+
+	f=f_d1, F=f_d1b, s=s_d1, S=s_D1;
+	f=f_d2, F=f_d2b, s=s_d2, S=s_D2;
+	f=f_d3, F=f_d3b, s=s_d3, S=s_D3.
+

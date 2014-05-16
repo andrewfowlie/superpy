@@ -1,0 +1,8 @@
+1 5 51  C-compiler
+  One can change any parameter or read parameters
+from  file. To read parameters from the file  one 
+has to specify the file name. Note that current
+directory for path specification is 'results/'.
+User can start path from $<environment_variable>,
+in particular $CALCHEP, or  ~<user_name> ,
+as well as  '~/'.

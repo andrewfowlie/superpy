@@ -1,0 +1,23 @@
+# --- variables defined by configure ---
+
+all:test.exe
+
+ifneq ($(MAKECMDGOALS),clean)
+include ../../../sources/micromegas/CalcHEP_src/FlagsForMake
+endif 
+
+FFLAGS += -g -ffixed-line-length-none
+
+
+
+LIBTOOLS=$(CURDIR)/../LoopTools-2.1
+
+
+$(LIBTOOLS)/libooptools.a:
+	$(MAKE) -C $(LIBTOOLS)
+
+test.exe : test.f  DgetNEWv0.F   CgetNEWv0.F $(LIBTOOLS)/libooptools.a 
+	$(FC) $(FFLAGS) -o test.exe $^ 
+
+clean:	
+	rm -f  test.exe

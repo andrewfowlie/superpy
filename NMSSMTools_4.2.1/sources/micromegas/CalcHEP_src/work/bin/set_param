@@ -1,0 +1,38 @@
+:
+
+if(test $# -eq 0) then
+echo "
+This program is designed to change parameters of CalcHEP session 
+in the batch mode. There are two forms of its usage
+   set_param <file name>
+and 
+   set_param <name> <value> [... <name> <value>] 
+The file have to contain two  columns,namely,  <name> and  <value> .
+Here <name> is a name of parameter and <value> is a value to be 
+assigned.
+"
+exit 1
+
+fi
+
+
+if(test $# -ne 1) then LIST=$*
+elif(test -r $1) then LIST=`cat $1`;
+else      echo Can not read the file $1; exit 2
+fi
+
+command=
+odd=1
+  
+for DATE in $LIST
+do
+  if(test $odd -eq 1) then
+     command="$command\\06 $DATE {"
+     odd=0
+  else 
+     command="$command{$DATE{"
+     odd=1
+  fi
+done
+./n_calchep -blind "[[{$command"}0
+exit $?

@@ -1,0 +1,7 @@
+1 8 50 
+  This menu function provides the user a
+possibility to change the numerical value of any
+parameter involved in squared matrix element
+evaluation as well  as momentum in CM frame 
+and incoming particle helicities  if they are
+available.

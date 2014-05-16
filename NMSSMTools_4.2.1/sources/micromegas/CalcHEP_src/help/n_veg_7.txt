@@ -1,0 +1,16 @@
+ 1 10 51 
+   Position ON/OFF  forbids/permits  Vegas to 
+improve integration  grid. Grid improving is a one
+of two Vegas tools for optimization of integration.
+This position of switch should be used until 
+precision obtained in one Vegas session decreases.
+   In position "ON" Vegas does not improve 
+integration grid but calculate function maximums 
+for subsequent event generation. The power of event
+grid is defined by "Event Cubes" menu function. 
+During calculation  Vegas writes information about
+expected generator efficiency which decreases after
+each Vegas session until the minimum which present
+true efficiency will be reached.
+
+     

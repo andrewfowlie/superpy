@@ -1,0 +1,11 @@
+:
+
+if(test $# -ne 2) then
+   echo ERROR!. $0 need 2 parameters:
+   echo "     1.  p1"
+   echo "     2.  p2"
+      exit 200
+else
+   ./n_calchep -blind "[{[[{$1{[{$2{}0"
+   err=$?; if(test $err -ne 0) then exit $err; fi
+fi 

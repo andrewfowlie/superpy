@@ -1,0 +1,28 @@
+
+% Gauge-gaugino interaction
+
+lterm GG*f_SU3*f_Gb*sigma*f_G*G.
+
+lterm  (-g*eps*f_Wc*sigma*f_W*W)/2+ AddHermConj.
+
+
+% Higgsino-gauge term --- also here.
+
+lterm -(g*taupm*W/2+Yl*g1*B0/2)*F*sigma*f/2 +AddHermConj
+
+   where
+	f=f_h1, F=f_h1b,  Yl=-1;
+	f=f_h2, F=f_h2b,  Yl=1.
+
+
+% Self-interaction of gauge bosons
+
+lterm -F**2/4   where
+	F=deriv^mu*B0^nu-deriv^nu*B0^mu.
+
+lterm -F**2/4  where
+	F=deriv^mu*G^nu^a-deriv^nu*G^mu^a+i*GG*f_SU3^a^b^c*G^mu^b*G^nu^c.
+
+lterm -F*f/4  where
+        f=deriv^mu*W^nu^a-deriv^nu*W^mu^a +i*g*eps^a^b^c*Wc^mu^b*Wc^nu^c,
+        F=deriv^mu*Wc^nu^a-deriv^nu*Wc^mu^a -i*g*eps^a^b^c*W^mu^b*W^nu^c.

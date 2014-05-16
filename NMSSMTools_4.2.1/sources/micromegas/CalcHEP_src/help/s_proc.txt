@@ -1,0 +1,14 @@
+10 10 50 PROCESSES
+This is a menu of generated subprocesses
+
+Any menu record consists of four parts
+1. a subprocess number,
+2. a subprocess name,
+3. the number of deleted diagrams,
+4. the number of undeleted diagrams.
+
+If you  activate a menu function, the graphic 
+image of Feynman diagrams for a highlighted 
+subprocess will be displayed.
+  The F7 key may be used to remove all diagrams
+in the highlighted subprocess. 

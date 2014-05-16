@@ -1,0 +1,86 @@
+2 3 75
+      Distributions
+   Here you can specify distributions, which will be filled during the
+ Monte Carlo sessions. For one-dimensional distributions only the first
+ 3 columns need be specified.  For two-dimensional distributions, all
+ 6 columns should be specified.  The syntax is similar to the cuts
+ syntax.
+ 
+    The first and fourth columns are where the user specifies the 
+  phase space functions that they would like to histogram.  In general 
+  it is defined with a key name followed by a list of the  OUTGOING 
+  particles. For example, "M(u,D)" would give the invariant mass of the
+  quark pair.  
+    There are 3 special parameters   which allow to test incoming particle
+  distribution: 'E1', 'E2' - energies of first and second incoming 
+  particles and   M12   - total  CMS energy.
+
+
+  For outgoing particles the available key names are:
+
+  A  - Angle in degree unit
+  C  - Cosine of angle 
+  D  - Jet separation min(pT1^2,pT2^2)*(cosh(d_Rapidity)-cos(d_AzimuthAngle))  
+  J  - Jet cone angle    
+  E  - Energy of the particle set
+  M  - Mass of the particle set 
+  P  - Cosine of the angle between the first particle in the list and 
+       the direction of boosting of the particle set into the rest 
+       frame of the particles set
+  T  - Transverse momentum (P_t) of the particle set 
+  S  - Squared mass
+  Y  - Rapidity of the particle set
+  N  - Pseudo-rapidity of the particle set
+  Z  - Transverse energy
+  U  - User defined function 
+
+ In general 'A' and 'C' take 2 arguments. But, in the case of a
+ collision, these functions with one argument designate the angle
+ between the given particle and the first (in the list) incoming
+ particle.
+   One can use the names of particles which are involved in others 
+ subprocesses. But for a given Monte Carlo session CalcHEP fills only 
+ the distributions related to the current subprocess.
+ 
+   Sometimes the list of outgoing particles contains identical particles
+ such as in the case of the process "e,E->A,A,A". For such a process,
+ the histogram sums the observable for all combinations.  For example the
+ "E(A)" would histogram  the energies of all photons.  
+ Similarly, "M(A,A)" would histogram   invariant masses of              
+ all photon pairs. 
+   This behavior can be modified with the '^'/'_' symbols.  The result
+ of adding these to the function name is to only histogram the observable
+ with the maximum/minimum value of the phase space function. For example,
+ "E_(A)" would only histogram the photon with the smallest energy.
+ Similarly, "E^(A)" would only histogram the photon with the highest 
+ energy.
+
+   One can also use the composite name 'Jet' which is interpreted as the
+ 5 light quarks and the gluon.  All possible combinations are summed 
+ over and binned as in the case of identical particles.
+ 
+   User defined distributions can also be applied. They are specified by
+ a string beginning with the letter 'U' as in 'U<character_set>' where 
+ <character_set> is any set of ascii characters.  In this case, CalcHEP
+ will call the function usrfun("abc").  It is up to the user to write 
+ (or modify) the function "double usrfun(char * name)" and link it to 
+ their model using the "Libraries" section of the model definition.  
+ An example of this function is located at $CALCHEP/utile/usrfun.c 
+ which can be modified by the user to fit their needs.  Further details
+ can be found in the CalcHEP manual.
+ 
+   The 'Min' and 'Max' columns define the range of the distribution. The
+ limits can be specified with numbers or formulas which contain 
+ numbers, model parameters and standard operations such as 
+ "(,),+,-,/,*,**,sqrt()".
+
+   To view the plots use the "Display Distributions" menu function.
+ After the end of each Monte Carlo session CalcHEP saves the generated 
+ distributions in the 'result/distr_#' file where # designates the 
+ session number.  They can be viewed later by running  
+       $CALCHEP/bin/show_distr  result/distr_# 
+ Distributions from various subprocesses can be summed using the
+ command  
+        $CALCHEP/bin/sum_distr   distr_1 distr_2 ... >sum
+ 
+ 

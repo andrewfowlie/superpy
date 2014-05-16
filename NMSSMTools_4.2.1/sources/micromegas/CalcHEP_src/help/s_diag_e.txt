@@ -1,0 +1,16 @@
+17 4  62     Diagram Editor
+  The graphical image of Feynman diagrams is presented.
+  Diagrams with ghost particles  and 4-gluon vertices are not
+displayed. They are hidden under the physical ones. 
+  The momenta of the outgoing particles are not labeled; in
+the case of identical outgoing particles the subsequent
+symmetrization is performed automatically.
+  In addition to the standard options of the Diagram Viewer
+the following commands are available:
+'D'  deletes all diagrams. The deleted diagrams are marked
+     by 'DEL' in the bottom r.h. corner of the diagram box;
+'R'  restores all deleted diagrams;
+'O'  toggles the 'DEL' mark for the selected diagram;
+'L'  writes the Latex image of all undeleted diagrams to a 
+     file. This Latex output uses the axodraw package. 
+     CalcHEP informs you about the file name by a message.

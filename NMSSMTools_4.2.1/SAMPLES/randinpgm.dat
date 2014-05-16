@@ -1,0 +1,59 @@
+# Input file for NMSSMTools
+# Based on SUSY LES HOUCHES ACCORD II
+#
+BLOCK MODSEL
+	3	1		# NMSSM particle content
+	1	2		# IMOD (0=general NMSSM, 1=mSUGRA, 2=GMSB)
+	10	2		# ISCAN (0=no scan, 1=grid scan, 2=random scan)
+	8       0               # Precision for Higgs masses (default 0: as before,
+#                                 1: full 1 loop + full 2 loop from top/bot Yukawas
+#				  2: as 1 + pole masses - 1&2 by courtesy of P. Slavich)
+	12      0               # scenario 2 of ArXiv:0803.2962 (1=yes, 0=no, default=0)
+	11      0               # Constraints on (g-2)_muon (1=yes, 0=no, default=1)
+	14      0               # 0: H-> VV,VV* (default); 1: H->VV,VV*,V*V*
+#
+BLOCK SMINPUTS
+	1	127.92d0	# ALPHA_EM^-1(MZ)
+	2	1.16639d-5	# GF
+	3	.1172d0		# ALPHA_S(MZ)
+	4	91.187d0	# MZ
+	5	4.214d0		# MB(MB) (running mass)
+	6	171.4d0		# MTOP (pole mass)
+	7	1.777d0		# MTAU
+#
+BLOCK MINPAR
+#	0	1000d0		# MSUSY (If =/= SQRT(2*MQ1+MU1+MD1)/2)
+	17	3d4		# MSUSYEFF_min = m^2/M_mess
+	18	3d5		# MSUSYEFF_max = m^2/M_mess (If =/= min)
+	27	1d7		# MMESS_min
+	28	3d9		# MMESS_max (If =/= min)
+	37	1d0		# TANB_min at MZ
+	38	2d0		# TANB_max at MZ (If =/= min)
+	4	1d0		# SIGMU
+	5	2d0		# N5 = number of messenger 5-plets
+#
+BLOCK EXTPAR
+	617	.6d0		# LAMBDA_min at MSUSY
+#	618	.6d0		# LAMBDA_max at MSUSY (If =/= min)
+#	627	0d0		# KAPPA_min at MSUSY (If XIF is not an input)
+#	628	0d0		# KAPPA_max at MSUSY (If =/= min and XIF is not an input)
+#	637	0d0		# ALAMBDA_min at MMESS (If =/= 0)
+#	638	0d0		# ALAMBDA_max at MMESS (If =/= min)
+#	667	0d0		# XIF_min at MMESS in GeV^2 (If =/= 0 and KAPPA is not an input)
+#	668	0d0		# XIF_max at MMESS in GeV^2 (If =/= min and KAPPA is not an input)
+#				  If KAPPA+XIF are not inputs: XIF=0 and KAPPA is computed
+#	677	0d0		# XIS_min at MMESS in GeV^3 (If =/= 0 and MS^2 is not an input)
+#	678	0d0		# XIS_max at MMESS in GeV^3 (If =/= min and MS^2 is not an input)
+#				  If MS^2+XIS are not inputs: XIS=0 and MS^2 is computed
+#	687	0d0		# MU'_min at MMESS in GeV (If =/= 0)
+#	688	0d0		# MU'_max at MMESS in GeV (If =/= min)
+#	697	0d0		# MS'^2_min at MMESS in GeV^2 (If =/= 0)
+#	698	0d0		# MS'^2_max at MMESS in GeV^2 (If =/= min)
+#	707	0d0		# MS^2_min at MMESS in GeV^2 (If XIS is not an input)
+#	708	0d0		# MS^2_max at MMESS in GeV^2 (If =/= min and XIS is not an input)
+#	717	0d0		# DH_min, Shift in mH at MMESS, |DH|<1
+#	718     0d0		# DH_max, Shift in mH at MMESS, |DH|<1 (If =/= min)
+#
+BLOCK STEPS
+	0	100		# NTOT
+	1	1		# ISEED

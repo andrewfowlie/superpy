@@ -1,0 +1,9 @@
+6 6 51 5  Composite particle 
+ The name of the particle  is absent in the 
+table of particles. You  are  prompted to describe 
+this particle as a composite one.
+  The generic form of  input is a list of partons 
+(known to CalcHEP), separated by commas.
+  Example: 'proton' consist of: u,U,d,D,G
+           In this case all subprocesses for the
+           constituents will be generated.

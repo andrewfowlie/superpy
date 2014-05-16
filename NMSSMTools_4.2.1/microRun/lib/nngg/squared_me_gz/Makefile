@@ -1,0 +1,61 @@
+LIB = ../nngg.a
+
+OBJS = \
+  gzabbr_s.o \
+  gzabbr_angle.o \
+  gzabbr_hel.o \
+  gzvert_neu1.o \
+  gzvert_neu1_quu1.o \
+  gzvert_neu1_qud1.o \
+  gzvert_lpd1_neu1.o \
+  gzvert_cha1_neu11.o \
+  gzvert_cha1_neu12.o \
+  gzvert.o \
+  gzvert_quu1.o \
+  gzvert_qud1.o \
+  gzvert_lpd1.o \
+  gzvert_cha11.o \
+  gzvert_cha12.o \
+  gzvert_his1.o \
+  gzvert_his1_sqv1.o \
+  gzvert_his1_squ1.o \
+  gzvert_his1_sqe1.o \
+  gzvert_his1_sqd1.o \
+  gzvert_his1_sle1.o \
+  gzvert_his1_sld1.o \
+  gzvert_his1_quu1.o \
+  gzvert_his1_qud1.o \
+  gzvert_his1_lpd1.o \
+  gzvert_cha1_cha2_his1.o \
+  gzvert_hia1_quu1.o \
+  gzvert_hia1_qud1.o \
+  gzvert_hia1_lpd1.o \
+  gzvert_cha1_cha2_hia1.o \
+  gzvert_sqv1.o \
+  gzvert_squ1.o \
+  gzvert_sqe1.o \
+  gzvert_sqd1.o \
+  gzvert_sle1.o \
+  gzvert_sld1.o \
+  gzvert_cha1_cha2.o \
+  gzbox_quu11.o \
+  gzbox_quu12.o \
+  gzbox_qud11.o \
+  gzbox_qud12.o \
+  gzbox_lpd11.o \
+  gzbox_lpd12.o \
+  gzbox_cha11.o \
+  gzbox_cha12.o \
+  gzbox_cha1_cha21.o \
+  gzbox_cha1_cha22.o \
+  gzbox_cha1_cha23.o \
+  gzbox_cha1_cha24.o \
+  gzSquaredME.o
+
+$(LIB): $(LIB)($(OBJS))
+
+$(LIB)($(OBJS)): vars.h renconst.h model.h util.h looptools.h
+
+clean distclean:
+	$(RM) $(OBJS) $(LIB)
+

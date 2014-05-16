@@ -1,0 +1,6 @@
+Standard Model(CKM=1)
+Libraries
+External libraries                                                             |
+%%%%  For LHAPDF
+%  -L/home/pukhov/Packages/lhapdf-5.8.4/install/lib -lLHAPDF
+================================================================================

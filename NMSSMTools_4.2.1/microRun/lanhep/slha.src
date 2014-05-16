@@ -1,0 +1,251 @@
+
+external_func(aPrintF,*).
+external_func(openAppend,1).
+external_func(System,1).
+external_func(slhaRead,2).
+external_func(slhaVal,*).
+external_func(rDiagonal,*).
+external_func(MixMatrix,3).
+external_func(MassArray,2).
+external_func(MtRun,1).
+external_func(slhaValFormat,3).
+
+let muP=0.
+
+do_if for_calchep==on.
+
+parameter open=openAppend(str("inp")). 
+parameter input1=aPrintF(str("Block MODSEL # Select model\\n 3 1 # NMSSM particle content\\n 1 0 # General NMSSM\\n 10 0 # No scan \\n 9 0 #No micrOMEGAs\\n")).
+parameter input2=aPrintF(str("Block SMINPUTS \\n 5 %E # mb(mb)SM MSbar \\n 6 %E # mtop(pole)\\n"),
+                                                    MbMb,                          Mtp).
+
+parameter input3=aPrintF(str("BLOCK MINPAR\\n 3 %E # tb\\n"),tb).
+parameter input4=aPrintF(str("Block EXTPAR\\n 0 -1 # EWSB scale\\n 1  %E # MG1\\n 2  %E # MG2\\n 3  %E # MG3\\n 11 %E # At\\n 12 %E # Ab\\n 13 %E # AL\\n"),
+                          
+                                           MG1,            MG2,           MG3,            At,          Ab,           Al).
+parameter input5=aPrintF(str(" 31 %E # Ml1\\n 32 %E #Ml2 \\n 33 %E # Ml3\\n 34 %E # Mr1\\n 35 %E # Mr2\\n 36 %E # Mr3\\n"),
+                                       Ml2,          Ml2,            Ml3,           Mr2,           Mr2,           Mr3).
+
+parameter input6=aPrintF(str(" 41 %E # Mq1\\n 42 %E # Mq2\\n 43 %E # Mq3\\n 44 %E # Mu1\\n 45 %E #Mu2 \\n 46 %E # Mu3\\n 47 %E # Md1\\n 48 %E # Md2\\n 49 %E # Md3\\n"),
+                                  Mq2,           Mq2,           Mq3,           Mu2,           Mu2,          Mu3,            Md2,          Md2,           Md3).
+
+parameter input7=aPrintF( str(" 61 %E  #LAMBDA\\n 62 %E #KAPPA\\n 63 %E #ALAMBDA\\n 64 %E #AKAPPA\\n 65 %E #MUEFF\\n"),
+                               Lambda,           Kappa,           aLambda,             aKappa,              mu).    
+
+
+parameter sysCall=System(str("NMSSM=../../..; export EXPCON_PATH=$NMSSM/EXPCON; $NMSSM/main/nmhdecay")).
+
+
+
+parameter  rd=slhaRead(str("spectr"),0).
+
+
+slhaRead('./spectr.dat').
+
+
+parameter tB=slhaVal(str("HMIX"),MZ,1,2).
+
+
+% ==== SUSY MASSES ======
+
+parameter  Mx=slhaVal(str(MASS),MZ,1,PDGx) where 
+Mx=Mh1  , PDGx=       25;
+Mx=Mh2  , PDGx=       35;
+Mx=Mh3  , PDGx=       45;
+Mx=Mha  , PDGx=       36;
+Mx=Mhb  , PDGx=       46;
+Mx=MHc  , PDGx=       37;
+Mx=MNE1 , PDGx=  1000022;
+Mx=MNE2 , PDGx=  1000023;
+Mx=MNE3 , PDGx=  1000025;
+Mx=MNE4 , PDGx=  1000035;
+Mx=MNE5 , PDGx=  1000045;
+Mx=MC1  , PDGx=  1000024;
+Mx=MC2  , PDGx=  1000037;
+Mx=MSG  , PDGx=  1000021;
+Mx=MSuL , PDGx=  1000002;
+Mx=MSuR , PDGx=  2000002;
+Mx=MSdL , PDGx=  1000001;
+Mx=MSdR , PDGx=  2000001;
+Mx=MScL , PDGx=  1000004;
+Mx=MScR , PDGx=  2000004;
+Mx=MSsL , PDGx=  1000003;
+Mx=MSsR , PDGx=  2000003;
+Mx=MSt1 , PDGx=  1000006;
+Mx=MSt2 , PDGx=  2000006;
+Mx=MSb1 , PDGx=  1000005;
+Mx=MSb2 , PDGx=  2000005.
+
+
+
+
+parameter QSUSY=sqrt(MSt1*MSt2).
+
+
+do_if tree_sleptons==off.
+parameter  Mx=slhaVal(str(MASS),MZ,1,PDGx) where 
+ Mx=MSeL , PDGx=  1000011;
+ Mx=MSeR , PDGx=  2000011;
+ Mx=MSmL , PDGx=  1000013;
+ Mx=MSmR , PDGx=  2000013;
+ Mx=MSl1 , PDGx=  1000015;
+ Mx=MSl2 , PDGx=  2000015;
+ Mx=MSne , PDGx=  1000012;
+ Mx=MSnm , PDGx=  1000014;
+ Mx=MSnl , PDGx=  1000016.
+ _i=1-2 in _j=1-2 in parameter Zl_i_j= slhaVal(str(STAUMIX),QSUSY,2,_i,_j).
+
+
+end_if.
+
+
+
+
+% ================ SUSY MIXING ==========
+
+% _i=1-3 in _j=1-3 in parameter Zh_i_j= slhaVal(str(NMHMIX),QSUSY,2,_i,_j).
+ _i=1-5 in _j=1-5 in parameter Zn_i_j= slhaVal(str(NMNMIX),QSUSY,2,_i,_j).
+% _i=1-3 in _j=1-3 in parameter Pb_i_j= slhaVal(str(NMAMIX),QSUSY,2,_i,_j).
+ _i=1-2 in _j=1-2 in parameter Zu_i_j= slhaVal(str(UMIX),   QSUSY,2,_i,_j).
+ _i=1-2 in _j=1-2 in parameter Zv_i_j= slhaVal(str(VMIX),   QSUSY,2,_i,_j).
+ _i=1-2 in _j=1-2 in parameter Zt_i_j= slhaVal(str(STOPMIX),QSUSY,2,_i,_j).
+ _i=1-2 in _j=1-2 in parameter Zb_i_j= slhaVal(str(SBOTMIX),QSUSY,2,_i,_j).
+
+%parameter Paa11=Pb12/cb, Paa12=Pb13,Paa21=Pb22/cb,Paa22=Pb23.
+
+
+parameter  XX=slhaValFormat(str(EFFECTIVE_COUPLINGS),QSUSY,str(NX)) where
+XX=la1   , NX="L1 %lf" ;
+XX=la2   , NX="L2 %lf";
+XX=la3   , NX="L3 %lf" ;
+XX=la4   , NX="L4 %lf" ;
+XX=la5   , NX="L5 %lf" ;
+XX=la6   , NX="L6 %lf" ;
+XX=la7   , NX="L7 %lf" ;
+XX=la1s  , NX="K1 %lf" ;
+XX=la2s  , NX="K2 %lf" ;
+XX=la3s  , NX="K3 %lf" ;
+XX=la4s  , NX="K4 %lf" ;
+XX=la5s  , NX="K5 %lf" ;
+XX=la6s  , NX="K6 %lf" ;
+XX=la7s  , NX="K7 %lf" ;
+XX=la8s  , NX="K8 %lf" ;
+XX=aa1   , NX="A1 %lf" ;
+XX=aa2   , NX="A2 %lf" ;
+XX=aa3   , NX="A3 %lf" ;
+XX=aa4   , NX="A4 %lf" ;
+XX=aa5   , NX="A5 %lf" ;
+XX=aa6   , NX="A6 %lf" ;
+XX=B1    , NX="B1 %lf" ;
+XX=B2    , NX="B2 %lf" ;
+XX=X     , NX="X %lf" ; 
+XX=dMb   , NX="DELMB %lf".
+
+
+do_else.
+
+parameter tB=0.
+
+parameter  Mx=0 where 
+Mx=Mh1 ;
+Mx=Mh2 ;
+Mx=Mh3 ;
+Mx=Mha ;
+Mx=Mhb ;
+Mx=MHc ;
+Mx=MNE1;
+Mx=MNE2;
+Mx=MNE3;
+Mx=MNE4;
+Mx=MNE5;
+Mx=MC1 ;
+Mx=MC2 ;
+Mx=MSG ;
+Mx=MSuL;
+Mx=MSuR;
+Mx=MSdL;
+Mx=MSdR;
+Mx=MScL;
+Mx=MScR;
+Mx=MSsL;
+Mx=MSsR;
+Mx=MSt1;
+Mx=MSt2;
+Mx=MSb1;
+Mx=MSb2.
+
+
+do_if tree_sleptons==off.
+parameter  Mx=0 where 
+ Mx=MSeL ;
+ Mx=MSeR ;
+ Mx=MSmL ;
+ Mx=MSmR ;
+ Mx=MSl1 ;
+ Mx=MSl2 ;
+ Mx=MSne ;
+ Mx=MSnm ;
+ Mx=MSnl .
+ _i=1-2 in _j=1-2 in parameter Zl_i_j= 0.
+
+end_if.
+
+
+
+
+% ================ SUSY MIXING ==========
+
+% _i=1-3 in _j=1-3 in parameter Zh_i_j=0.
+ _i=1-5 in _j=1-5 in parameter Zn_i_j= 0.
+% _i=1-3 in _j=1-3 in parameter Pb_i_j=0.
+ _i=1-2 in _j=1-2 in parameter Zu_i_j= 0.
+ _i=1-2 in _j=1-2 in parameter Zv_i_j= 0.
+ _i=1-2 in _j=1-2 in parameter Zt_i_j= 0.
+ _i=1-2 in _j=1-2 in parameter Zb_i_j= 0.
+
+%parameter Paa11=Pb12/cb, Paa12=Pb13,Paa21=Pb22/cb,Paa22=Pb23.
+
+
+parameter  XX=0 where
+XX=la1  ;
+XX=la2  ;
+XX=la3  ;
+XX=la4  ;
+XX=la5  ;
+XX=la6  ;
+XX=la7  ;
+XX=la1s ;
+XX=la2s ;
+XX=la3s ;
+XX=la4s ;
+XX=la5s ;
+XX=la6s ;
+XX=la7s ;
+XX=la8s ;
+XX=aa1  ;
+XX=aa2  ;
+XX=aa3  ;
+XX=aa4  ;
+XX=aa5  ;
+XX=aa6  ;
+XX=B1   ;
+XX=B2   ;
+XX=X    ; 
+XX=dMb  .
+
+end_if.
+
+% ============= tb constraints =========
+parameter sb=tB/sqrt(1+tB**2):'Sinus beta', cb=sqrt(1-sb**2):'Cosine beta'.
+parameter t2b=2*tB/(1-tB**2).
+
+parameter xvev=mu/Lambda.
+angle     sin=sb, cos=cb, tan=tB, texname='\\beta'.
+
+let  s2b=2*sb*cb.
+
+
+parameter Td3=dMb/(1+dMb).
+
+
+

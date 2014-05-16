@@ -1,0 +1,4 @@
+1 10 51 4  Squaring
+ Squaring the amplitude diagrams of the process.
+ The result will be presented as a set of diagrams
+ for cross-sections (squared diagrams).

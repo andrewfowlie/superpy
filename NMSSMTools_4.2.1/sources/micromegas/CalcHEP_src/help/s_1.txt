@@ -1,0 +1,12 @@
+ 1 4 52   Model menu  
+   This is a list of available physical models.
+Select a model for the further work. CalcHEP is 
+distributed with 2 built-in models. They are SM
+with full CKM matrix and version (CKM=1) with 
+diagonal CKM.   
+   Other  models are distributed separately and 
+can be added to the list by means of the 
+"IMPORT OF MODELS" menu function. Original 
+versions of built-in models are disposed in 
+$CALCHEP/moedls and can be restored  via 
+"IMPORT OF MODELS". 

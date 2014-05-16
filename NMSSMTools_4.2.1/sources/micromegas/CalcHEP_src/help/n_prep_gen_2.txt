@@ -1,0 +1,4 @@
+1 12 51 3
+  This menu function defines the number of 
+integrand calls for random search of local maximum
+for each sub-cubes.

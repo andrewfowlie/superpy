@@ -1,0 +1,7 @@
+2 2 60 
+ By default CalcHEP does  include   width term in
+ propagators of  t-channel particles. This menu item
+ provides user with option to include such term. 
+ This switch has to be confirmed in numerical session
+ via  "Breit-Wigner" menu setting. 
+ 

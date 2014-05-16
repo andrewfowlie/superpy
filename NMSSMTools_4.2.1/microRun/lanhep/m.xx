@@ -1,0 +1,76 @@
+
+?la1    [m11/cb^2]
+ la2    [m22]
+?la3    [m12/cb]
+ la4    m11     [mhc]
+ la5    m12/cb  [ma11]  mhc
+-la6    m11/cb  m12/cb^2 m22/cb^3 ma11/cb  mhc/cb
+-la7    m11*cb m12  m22/cb  ma11*cb  mhc*cb
+?la1s   [m13/cb]
+ la2s   [m23] 
+ la3s   [m33] 
+-la6s   m11*cb  m12   m13  m22/cb m23/cb  ma11*cb ma22  mhc
+ aa4    m33  [ma22]
+ aa5    m11/cb m12 m13  m33/cb ma11*cb  ma12 ma22/cb mhc*cb
+ xvev   [ma12]
+
+la1,la3,la1s => la7,la4,la6s,
+
+
+Alamda =>mhc la4=> m11
+
+
+
+la7=> mhc  
+la4=> m11
+la6s=>m12
+aa5=>m13
+
+
+
+2: m11
+
+(aa5*ee**2*sb*xvev + 4*cb**3*la1*mw**2*sw**2 - 6*cb**2*la6*mw**2*sb*sw**2 + ee**2*la4s*sb*xvev**2 + ee**2*la5s*sb*xvev**2 + ee**2*la6s*sb*xvev**2 
++ 2*la7*mw**2*sb**3*sw**2)/(cb*ee**2)$
+
+3: m12;
+
+( - aa5*ee**2*xvev - 6*cb**2*la6*mw**2*sw**2 + 4*cb*la3*mw**2*sb*sw**2 + 4*cb*la4*mw**2*sb*sw**2 + 4*cb*la5*mw**2*sb*sw**2 - ee**2*la4s*xvev**2 
+- ee**2*la5s*xvev**2 - ee**2*la6s*xvev**2 - 6*la7*mw**2*sb**2*sw**2)/ee**2$
+
+4: m13;
+
+(mw*sqrt2*sw*( - aa5*sb + 2*cb*la1s*xvev - 2*la4s*sb*xvev - 2*la5s*sb*xvev - 2*la6s*sb*xvev))/ee$
+
+5: m22;
+
+(aa5*cb*ee**2*xvev + 2*cb**3*la6*mw**2*sw**2 + cb*ee**2*la4s*xvev**2 + cb*ee**2*la5s*xvev**2 + cb*ee**2*la6s*xvev**2 - 6*cb*la7*mw**2*sb**2*sw**2 
++ 4*la2*mw**2*sb**3*sw**2)/(ee**2*sb)$
+
+6: m23;
+
+(mw*sqrt2*sw*( - aa5*cb - 2*cb*la4s*xvev - 2*cb*la5s*xvev - 2*cb*la6s*xvev + 2*la2s*sb*xvev))/ee$
+
+7: m33;
+
+(3*aa4*ee**2*xvev**2 + 2*aa5*cb*mw**2*sb*sw**2 + 4*ee**2*la3s*xvev**3 + 8*ee**2*la7s*xvev**3 + 8*ee**2*la8s*xvev**3)/(ee**2*xvev)$
+
+8: ma11;
+
+(aa5*ee**2*xvev + 2*cb**2*la6*mw**2*sw**2 - 4*cb*la5*mw**2*sb*sw**2 + ee**2*la4s*xvev**2 + ee**2*la5s*xvev**2 + ee**2*la6s*xvev**2 + 2*la7*mw**2*sb**2*sw**2)
+/(cb*ee**2*sb)$
+
+9: ma12;
+
+(mw*sqrt2*sw*(aa5 + 2*la5s*xvev - 2*la6s*xvev))/ee$
+
+10: ma22 
+
+( - 9*aa4*ee**2*xvev**2 + 2*aa5*cb*mw**2*sb*sw**2 - 4*b2*ee**2*xvev + 8*cb*la5s*mw**2*sb*sw**2*xvev + 8*cb*la6s*mw**2*sb*sw**2*xvev - 16*ee**2*la7s*xvev**3 
+- 4*ee**2*la8s*xvev**3)/(ee**2*xvev)$
+
+11: mhc
+
+(aa5*ee**2*xvev + 2*cb**2*la6*mw**2*sw**2 - 2*cb*la4*mw**2*sb*sw**2 - 2*cb*la5*mw**2*sb*sw**2 + ee**2*la4s*xvev**2 + ee**2*la5s*xvev**2 + ee**2*la6s*xvev**2 
++ 2*la7*mw**2*sb**2*sw**2)/(cb*ee**2*sb)$
+

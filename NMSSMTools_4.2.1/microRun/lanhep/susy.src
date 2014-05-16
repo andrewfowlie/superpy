@@ -1,0 +1,84 @@
+%                         micro    calchep(nmhdecay)  calchep(nmspec) calchep(file)
+keys  mix2g  =   off  . %  on      off              off                off
+keys  slha   =   on   . %  off     on               on                 on
+keys  tools  =   slha . %  off     nmhdecay         nmspec             slha 
+
+
+keys gi_Nmass=on.
+
+keys tree_sleptons=off.
+keys Check3SQmass=on.
+
+/*   Gauge fixing  ('unitary' or 'Feynman') */ 
+keys gauge_fixing=Feynman.
+
+/*  Dimension of sfermion mixing matrices (one of 0, 2, 6) */
+%keys sel_mix=2, usq_mix=2, dsq_mix=2.
+
+/*  Additional supersymmetry breaking terms (by Rosiek) (on/off) */
+%keys  extra_sbt=off.
+
+/*  Mass & mixing matrices calculated from initial parameters */
+keys AutoNeuMass=on, AutoChMass=on, AutoSlq12Mass=on, AutoSlq3Mass=on.
+
+
+
+% =============== Model name and number setup.
+
+do_if tools==nmhdecay.
+   model 'NMSSM(nmhdecay)'/1.
+end_if.
+
+do_if tools==nmspec.
+   model 'NMSSM(nmspec)'/2.
+end_if.
+
+do_if tools==slha.
+   model 'NMSSM(slha=../spectr)'/3.
+end_if.
+
+
+
+do_if tools==off.
+   model 'NMSSM(micro)'/1.
+end_if.
+
+
+%option chepCFWidth=50.
+%option chepLPWidth=5000.
+option chepPDWidth=800.
+
+let g5=gamma5.
+let eps2 = {{0, 1},{-1,0}}.
+special sigma:(spinor2, spinor2, vector).
+
+read "susy_var.src".
+read "treeHmix.src".          
+read "rq_mass.src".
+read "2genDDmix.src". 
+do_if tree_sleptons==on.
+read "treeSlepton.src".
+end_if.
+read "susy_prt.src".
+read "susy_let.src".
+read "improve_squarks.src".
+read "higgsPot.src".      % Higgs potential
+read "susy_tex.src".
+read "susy_ggi.src".     % gauge fields interaction
+read "susy_gmi.src".     % gauge-matter interaction
+read "susy_dd.src".      % DD terms
+read "susy_w.src".       % Terms going from super-potential (FF & Yukawa)
+read "Yukawa.src".       % improve Yukawa: dMb,dMd, Mc without mixiing
+read "gi_Nmass.src".     % neutralino mass matrix is reproduced by Lagrangian.
+read "susy_sbt.src".     % Soft SUSY-breaking terms
+read "susy_fpg.src".     % Faddeev-Popov ghosts
+read "susy_end.src".
+
+%read "susy_tex.src".
+%read "susy_sel.src".     % Vertices selection
+
+read 'gg+.src'.
+
+SetEM(A,EE). 
+CheckHerm.
+CheckMasses.

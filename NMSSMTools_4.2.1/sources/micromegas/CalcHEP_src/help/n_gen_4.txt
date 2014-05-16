@@ -1,0 +1,13 @@
+1 12 52 3
+  Option of event generation.
+If during event generation CalcHEP detects a point
+where integrand exceeds maximum value detected
+before for this cube, it increases the maximum for
+further generation. In case 
+    "Allow weighted events ON", 
+the point is accepted with a weight. If switch 
+"OFF" (default) is used, then CalcHEP samples more
+points in the same cube to get a number of MC tries
+for this cube corresponding to new maximum. In the 
+last case we  have subsequent (correlated)  events 
+from one cube.

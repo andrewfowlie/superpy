@@ -1,0 +1,8 @@
+:
+
+INCL_DIR=" num symb chep_crt polynom service2 getmem tab plot"
+
+for FILE in $INCL_DIR 
+do
+   grep -n  $1 $FILE/include/*.*
+done

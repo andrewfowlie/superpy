@@ -1,0 +1,33 @@
+
+
+for file in  sqme.c service.c   VandP.c
+do
+   if(test -r $file) then 
+     $CC -c  $CFLAGS  -I$CALCHEP/include $file
+     if(test $? -ne 0) then exit 1; else rm  $file 
+     fi
+   fi
+done
+
+oo=
+for file in  sqme.o service.o  VandP.o
+do
+  if(test -r $file) then  oo="$oo $file";fi
+done
+
+if(test  -n "$oo" ) then
+   ar r proclib_0.a $oo; if(test $? -ne 0) then exit 1; else rm $oo; fi
+fi
+
+$CALCHEP/sbin/100 "$CC $CFLAGS  -I$CALCHEP/include" d 
+if(test $? -ne 0) then exit 1; fi
+
+$CALCHEP/sbin/100 "$CC $CFLAGS  -I$CALCHEP/include" f
+if(test $? -ne 0) then exit 1; fi
+for FILE in proclib_*.a 
+do    
+ $RANLIB $FILE
+done
+
+
+exit 0

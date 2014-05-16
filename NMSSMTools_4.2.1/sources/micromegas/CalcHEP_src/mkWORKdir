@@ -1,0 +1,45 @@
+: 
+  CALCHEP=  
+#--------------------
+
+if(test $# -ne 1) then 
+  echo " 
+The program needs one parameter, the name of directory which 
+should be created for user files 
+" 
+exit 1   
+fi
+
+
+mkdir $1
+if(test $? -ne 0) then
+echo can\'t create directory $1
+exit 1
+fi
+
+
+cd $1
+USR=`pwd`
+
+mkdir  results
+mkdir  tmp
+mkdir models
+cp  $CALCHEP/models/*.mdl  models
+
+ln -s  $CALCHEP/bin  $USR/bin
+
+echo ":
+CALCHEP=$CALCHEP
+export CALCHEP
+"> $USR/calchep     
+cat $CALCHEP/calchep  >> $USR/calchep
+chmod 744 $USR/calchep    
+
+echo ":
+CALCHEP=$CALCHEP
+export CALCHEP
+"> $USR/calchep_batch     
+cat $CALCHEP/calchep_batch  >> $USR/calchep_batch
+chmod 744 $USR/calchep_batch
+
+cp $CALCHEP/calchep.ini  $USR

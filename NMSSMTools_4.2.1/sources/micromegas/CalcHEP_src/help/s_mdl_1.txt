@@ -1,0 +1,15 @@
+2 9 76   Parameters
+       This table consists of three fields:
+1. "Name" for an identifier of the parameter. It may contain up to 6
+characters. The first character must be a letter, others may be either
+letters or digits;
+   CalcHEP identifiers are sensitive to the case of characters. But any two
+identifiers must be different after rewriting them in low case.
+   There are reserved names, which cannot be used here: 
+  "i" is used for imaginary unit;
+  "Sqrt2" is used for sqrt(2)
+  "p1","p2","p3",.. are used for particle momenta. 
+  "m1","m2","m3",.. are reserved for Lorentz indexes of particles.
+   G5 is used for the gamma-five Dirac matrix;
+2. "Value" for numerical value of the parameter in  GeV units;
+3. "Comment" for brief description of  parameters.

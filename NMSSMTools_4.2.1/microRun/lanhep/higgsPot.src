@@ -1,0 +1,44 @@
+lterm  - (la1-g1**2/4-g**2/4)*(s_h1*s_H1)**2/2
+       - (la2-g1**2/4-g**2/4)*(s_h2*s_H2)**2/2
+       - (la3+g1**2/4-g**2/4)*(s_h1*s_H1)*(s_h2*s_H2)
+       - (la4+g**2/2-hL*hL)*(eps2*s_h1*s_h2)*(eps2*s_H1*s_H2) 
+       - la5*((eps2*s_h1*s_h2)**2+(eps2*s_H1*s_H2)**2)/2
+       - la6*(s_h1*s_H1)*(eps2*s_h1*s_h2+eps2*s_H1*s_H2)
+       - la7*(s_h2*s_H2)*(eps2*s_h1*s_h2+eps2*s_H1*s_H2) .
+
+% g=EE/SW, g1=EE/CW.
+%parameter Xla1=(EE/CW)**2/4+(EE/SW)**2/4 .
+%EvalParameter(la1).
+%EvalParameter(Xla1).
+%EvalParameter(la2).
+%parameter Xla4=-(EE/SW)**2/2+Lambda**2.
+%EvalParameter(Xla4).
+%EvalParameter(la4).
+
+
+%parameter Xla1s=Lambda*Lambda.
+%EvalParameter(Xla1s).
+%EvalParameter(la1s).
+%EvalParameter(la2s).
+
+lterm  - (la1s-hL*hL)*(s_h1*s_H1)*s_n*s_N
+       - (la2s-hL*hL)*(s_h2*s_H2)*s_n*s_N
+       - (la3s-hK*hK)*(s_n*s_N)**2
+       - la4s*(eps2*s_h1*s_h2 + eps2*s_H1*s_H2)*s_n*s_N
+       - la5s*((eps2*s_h1*s_h2)*s_n**2+(eps2*s_H1*s_H2)*s_N**2)
+       - (la6s-hL*hK)*((eps2*s_h1*s_h2)*s_N**2+(eps2*s_H1*s_H2)*s_n**2)
+       - la7s*(s_n**4+s_N**4)
+       - la8s*(s_n*s_N)*(s_n**2+s_N**2) .
+
+lterm  - aa1*(s_h1*s_H1)*(s_n+s_N)
+       - aa2*(s_h2*s_H2)*(s_n+s_N)
+       - (aa3-hK*muP)*(s_n*s_N)*(s_n+s_N)
+       - (aa4-hK*hKs/3)*(s_n**3+s_N**3)
+       - (aa5-hL*hLs)*(eps2*s_h1*s_h2*s_n + eps2*s_H1*s_H2*s_N)
+       - (aa6-hL*muP)*(eps2*s_h1*s_h2*s_N + eps2*s_H1*s_H2*s_n)  .
+
+lterm   -(B1-MM3-hL*xif)*(eps2*s_h1*s_h2) + AddHermConj.
+lterm   -(B2-MSP/2-hK*xif)*(s_n*s_n) + AddHermConj.
+lterm   -(X-muP*xif-xis)*(s_n+s_N).
+lterm    muP**2*s_n*s_N.
+lterm    muP/(2*xvev)*(s_n*f_N*f_N + AddHermConj).

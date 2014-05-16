@@ -1,0 +1,5 @@
+cLib=$CALCHEP/lib
+
+$CC   $CFLAGS  -o n_calchep $cLib/n_calchep.o $cLib/num_c.a $cLib/sqme_aux.$SO \
+ proclib_*.a  $CALCHEP/include/VandPgate.c  $EXTLIB $cLib/dynamic_me.a $cLib/serv.a  $cLib/libSLHAplus.a  \
+$cLib/dummy.a  $cLib/ntools.a  $LX11 -lm  $lDL 

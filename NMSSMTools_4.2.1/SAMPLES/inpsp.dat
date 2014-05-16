@@ -1,0 +1,72 @@
+# Input file for NMSSMTools
+# Based on SUSY LES HOUCHES ACCORD II
+#
+BLOCK MODSEL
+	3	1		# NMSSM particle content
+	1	1		# IMOD (0=general NMSSM, 1=mSUGRA, 2=GMSB)
+	10	0		# ISCAN (0=no scan, 1=grid scan, 2=random scan)
+	9	4		# |OMGFLAG|=0: no (default), =1: relic density only,
+#				  =2: dir. det. rate, =3: indir. det. rate, =4: both,
+#				  OMGFLAG>0: 0.107<OMG<0.131, <0: OMG<0.131
+	8       0               # Precision for Higgs masses (default 0: as before,
+#                                 1: full 1 loop + full 2 loop from top/bot Yukawas
+#				  2: as 1 + pole masses - 1&2 by courtesy of P. Slavich)
+	13      1               # 1: Sparticle decays via NMSDECAY (default 0)
+	14      0               # 0: H-> VV,VV* (default); 1: H->VV,VV*,V*V*
+#
+BLOCK SMINPUTS
+	1	127.92d0	# ALPHA_EM^-1(MZ)
+	2	1.16639d-5	# GF
+	3	.1172d0		# ALPHA_S(MZ)
+	4	91.187d0	# MZ
+	5	4.214d0		# MB(MB) (running mass)
+	6	171.4d0		# MTOP (pole mass)
+	7	1.777d0		# MTAU
+#
+BLOCK MINPAR
+#	0	1000d0		# MSUSY (If =/= SQRT(2*MQ1+MU1+MD1)/2)
+	1	1000d0		# M0
+	2	500d0		# M12
+	3	5d0		# TANB at MZ
+	4	1d0		# SIGMU (If MUEFF is not an input)
+	5	-900d0		# A0
+#
+BLOCK EXTPAR
+#	1	250d0		# M1 at MGUT (If =/= M12)
+#	2	250d0		# M2 at MGUT (If =/= M12)
+#	3	250d0		# M3 at MGUT (If =/= M12)
+#	21	6.25d4		# MHD^2 at MGUT (If =/= M0^2 and MUEFF is not an input)
+#	22	6.25d4		# MHU^2 at MGUT (If =/= M0^2 and MUEFF is not an input)
+	61	.25d0		# LAMBDA at MSUSY
+#	62      2.71040398d-1	# KAPPA at MSUSY
+#				  If MUEFF is input: KAPPA default value is 0
+#				  Else either KAPPA or XIF are inputs:
+#                                      if only KAPPA is input: XIF computed
+#				       if only XIF is input: KAPPA computed
+#				       if KAPPA+XIF are not inputs: XIF=0 and KAPPA computed
+#	63	-900d0		# ALAMBDA at MGUT (If =/= A0)
+	64	-140d0		# AKAPPA at MGUT (If =/= A0)
+#	65      8.45392570d2	# MUEFF at MSUSY
+#                                 Then MHU, MHD, MS are computed and cannot be inputs
+#                                 If MUEFF is not an input it is computed
+#	66      0d0		# XIF at MGUT in GeV^2
+#				  If MUEFF is input: XIF default value is 0
+#				  Else either KAPPA or XIF are inputs:
+#                                      if only KAPPA is input: XIF  computed
+#				       if only XIF is input: KAPPA computed
+#				       if KAPPA+XIF are not inputs: XIF=0 and KAPPA computed
+#	67	0d0	 	# XIS at MGUT in GeV^3
+#				  If MUEFF is input: XIS default value is 0
+#				  Else either MS or XIS are inputs:
+#                                      if only MS is input: XIS computed
+#				       if only XIS is input: MS computed
+#				       if MS+XIS are not inputs: XIS=0 and MS computed
+#	68	0d0		# MU' at MGUT (If =/= 0)
+#	69	0d0		# MS'^2 at MGUT (If =/= 0)
+#	70	-2.05027911d6	# MS^2 at MGUT
+#				  Only if MUEFF is not an input
+#				  Either MS or XIS are inputs:
+#                                      if only MS is input: XIS computed
+#				       if only XIS is input: MS computed
+#				       if MS+XIS are not inputs: XIS=0 and MS computed
+#	72	0d0		# M3H^2 at MGUT (If =/= 0)

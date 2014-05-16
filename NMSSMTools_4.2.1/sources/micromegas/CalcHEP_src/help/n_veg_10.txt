@@ -1,0 +1,15 @@
+2 5 50
+  This function launches Event Generator. 
+The  generated  events will be stored in the 
+results/event_N.txt file, where N is a session 
+number. 
+  The efficiency of generator should be much 
+better if before launching of generator the user
+starts Vegas integration with "Freeze grid  OFF"
+flags to decrease function variance. Preparing 
+of generator is doing   automatically during
+Vegas integration with "Freeze grid  OFF".
+Alternatively preparing of generator can be done
+late on after activation of "Generate Events"
+menu function.
+   

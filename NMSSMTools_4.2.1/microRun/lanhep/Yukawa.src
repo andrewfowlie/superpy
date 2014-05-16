@@ -1,0 +1,44 @@
+
+
+%cancelation of Yukawa term for b-quark:
+
+lterm  eps2*( md3*s_h1*f_q3*f_d3) + AddHermConj.
+
+
+%improved Yukawa term for b-quark:
+
+
+lterm   -eps2*(  -Mb*vvev1/cb*(1-Td3)*s_h1*f_q3*f_d3
+                  ) + AddHermConj.
+
+                                                                                
+lterm   -(  
+            Mb*vvev1/sb*Td3*s_H2*f_q3*f_d3 ) + AddHermConj.
+
+
+%cancelation of Yukawa term for t-quark:
+lterm  eps2*( mu3*        s_h2*f_q3*f_u3)+AddHermConj.
+
+%improved Yukawa term for t-quark:
+
+ lterm -eps2*( Mt*vvev1/sb*s_h2*f_q3*f_u3)+AddHermConj.
+
+
+do_if mix2g==on.
+
+% improve Yukawa term for  d,s
+lterm    eps2*( md1*s_h1*f_q1*f_d1) + AddHermConj.
+lterm   -eps2*Mq*(  -(1-Td2)*vvev1/cb*s_h1*f_q1*f_d1)  - Mq*vvev1/sb*Td2*s_H2*f_q1*f_d1  + AddHermConj.  % d 
+
+lterm    eps2*( md2*s_h1*f_q2*f_d2) + AddHermConj.
+lterm   -eps2*Mq*(  -(1-Td2)*vvev1/cb*s_h1*f_q2*f_d2)  - Mq*vvev1/sb*Td2*s_H2*f_q2*f_d2  + AddHermConj.  % s
+
+do_else.
+
+%Yukawa term for c-quark:
+
+lterm -eps2*( Mc*vvev1/sb*s_h2*f_q2*f_u2)+AddHermConj.
+
+
+end_if.
+

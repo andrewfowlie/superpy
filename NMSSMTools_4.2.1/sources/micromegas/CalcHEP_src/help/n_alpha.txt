@@ -1,0 +1,54 @@
+1 1 51
+
+1. The parton distribution tables used in CalcHEP
+can contain description of alphaQCD(Q). The first
+menu position gives to the user a possibility to
+accept/refuse the alphaQCD stored in the tables.
+ If this switch is ON, but  in the current moment
+the parton distribution table is not specified or
+doesn't contain alphaQCD, then you should see the
+symbol "?" attached to  "ON". In this case the
+alphaQCD defined by next menu items is used 
+ignoring this menu item.
+
+2-6. These menu items define built-in alphaQCD
+function. Here 'nf' is maximal number of flavors. 
+The actual number of flavors will decrease with 
+decreasing the scale.
+  
+7.The 'Qfact= ..' menu item defines the dependence 
+of factorization scale Q from the phase-space point.
+In time of numerical calculations this scale is 
+passed to parton distributions. Qfact is
+specified by an algebraic formula which depends on 
+primitive phase space functions. The last ones are 
+  Sij = (p_i+p_j)^2    for  i,j <=nIn+nOut 
+  Mij = sqrt(Sij)      for nIn< i,j<=nIn+nOut
+                        or      i,j<=nIn
+  Ti = (p_i^1)^2+(p_i^2)2 - transverse momentum
+  Mi = particle mass
+  Zi  = sqrt(Ti^2+Mi^2)   - transverse energy
+For example, a popular choice of scale based on
+Mandelstam variables 
+  Q^2= 2*s*t*u/(s^2+t^2+u^2) can be realized by 
+
+QCD scale: sqrt(2*S12*S13*S14/(S12^2+S13^2+S14^2)) 
+
+One can use 'min' and 'max' functions with 
+arbitrary number of arguments. For instance
+
+   QCD scale: max(Z3,Z4,Z5,Z6)
+
+Names of free and constrained variables can be 
+used in 'QCD scale' formula can contains any free
+or constrained variables involved in calculations.
+The scale smaller then 1 GeV is replaced 
+automatically on 1 GeV.
+
+8. "Qren = ..." The same as Qfact, but defines 
+renormalization scale user for calculation of 
+strong coupling GG. Qren can cepends on Qfact 
+
+9. The "Alpha(Q) plot" menu function displays the
+alpha(Q) plots for the region of Q defined by the
+user.

@@ -1,0 +1,18 @@
+SM(CKM=1 with hGG/AA)
+ Parameters 
+  Name   <| Value          <|> Comment                                                                <|
+alphaEMZ  |0.0078180608     |MS-BAR electromagnetic alpha(MZ)
+alphaSMZ  |0.1184           |Srtong alpha(MZ) for running mass calculation
+EE        |0.3123           |
+ GG       |1.238            |Strong coupling. Value will be changed automaticaly in numerical session.
+ SW       |0.481            |Sine of electro-weak mixing angle (MS_bar)
+ Mm       |0.1057           |muon mass
+ Ml       |1.777            |tau-lepton mass
+ Q        |100              | QCD scale
+ McMc     |1.23             | Mc(Mc)  MS-BAR
+ MbMb     |4.25             | Mb(Mb)  MS-BAR
+ Mtp      |172.5            |t-quark pole mass
+ Mh       |125              |higgs mass
+ wt       |1.59             |t-quark width        (tree level 1->2x)
+ MZ       |91.187           |Z-boson mass
+========================================================================================================

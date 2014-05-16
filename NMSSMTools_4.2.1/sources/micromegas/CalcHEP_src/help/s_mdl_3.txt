@@ -1,0 +1,25 @@
+1 5 78   
+  Each  row in the table describes a  particle - antiparticle pair. The rows
+consist of 10 fields:
+ 1. "Full name" - full name of particle. Just for clear orientation, not
+processed  anywhere. 
+ 2,3. "A", "A+"  - These fields contain designations of the particle and
+antiparticle, respectively. Any character is allowed. The name may contain
+one symbol, two symbols or three symbols (?) started from '~'.  For a
+completely neutral particle the "A" and "a" fields must be identical.
+4. "2*Spin" - doubled particle spin: 0 for scalar, 1 for spinor and 2 for
+vector particles. Spin 1/2 particle (2*Spin = 1) identical with its
+antiparticle is treated as a Majorana particle.
+5. "Mass" -  mass identifier or symbol '0'. Its value must be defined in the
+"Parameters" or "Constraints" table.  If this field contains zero, then
+CalcHEP considers the particle as massless.
+6. "Width" - particle decay width. Must be '0' or a defined identifier.
+7. "Color" - the color SU(3) group representation dimension.  You have to
+choose among 1,3,8. Unity corresponds to colorless particle. Three
+corresponds to color triplet (fundamental representation). In this case the
+anti-particle "A+" is transformed by conjugated 3-bar representation. Eight
+corresponds to color octet (adjoint representation).
+8. "Aux" -  auxiliary  field, which allows to change a particle propagator
+and add ghost (unphysical) fields. See manual for details.
+9.10 "LaTeX(A)" and "LaTeX(A+)" - Latex names for the corresponding 
+particles.

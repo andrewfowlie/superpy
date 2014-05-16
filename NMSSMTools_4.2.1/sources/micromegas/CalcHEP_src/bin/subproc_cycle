@@ -1,0 +1,38 @@
+: 
+  CALCHEP=  
+#---------------
+#======================================
+bin=$CALCHEP/bin
+sbin=$CALCHEP/sbin 
+#======================================
+
+if(test -x ./n_calchep) then 
+   ./n_calchep -blind "0" 1>/dev/null 2>/dev/null
+   if(test $? -ne 0) then 
+     echo ./n_calchep get error at start
+     exit 2 
+   fi
+   Sep=`grep \#Subprocess  session.dat |cut -f5 -d" "`
+   if(test "$Sep" = "->" ) then
+     if(test $# -ne 1) then
+       echo Error, subproc_cycle in case of decays needs 1  parameter:
+       echo  number of events for each particle
+       exit 200
+     fi
+     $sbin/_subproc_cycle_1 $bin $*
+   else
+     if(test $# -ne 1 -a $# -ne 2 ) then
+       echo Error, subproc_cycle in case of collision needs 1 obligatory parameter:
+       echo 1: Integral luminosity  in [1/fb] units
+       echo And one auxilary parameter 
+       echo 2: a limit for number of events for each channel.
+       exit 200
+     fi
+ 
+     $sbin/_subproc_cycle_2 $bin $*
+   fi
+else 
+
+   echo can not find ./n_calchep
+   exit 1
+fi

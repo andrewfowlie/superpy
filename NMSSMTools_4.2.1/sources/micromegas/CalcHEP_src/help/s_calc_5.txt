@@ -1,0 +1,8 @@
+10 7 45 7  Reduce program
+  Generates REDUCE program for the
+calculation of squared diagrams. A separate
+file  is generated for each squared
+diagram.
+  This function is not needed for the further
+operation. It can be used for checking of the
+built-in symbolic calculator. 

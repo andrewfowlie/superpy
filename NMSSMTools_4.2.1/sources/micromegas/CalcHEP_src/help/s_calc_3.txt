@@ -1,0 +1,11 @@
+5 5 45   Make n_comphep
+ This menu function jumps over   
+several menu steps:
+ a) symbolic calculations;
+ b) writing results in the C format;
+ c) compilation of produced code and 
+generation of  file 'n_comphep'.
+ d) launch n_calchep
+  It's  recommended for for simple tasks
+like  2->2.
+ 

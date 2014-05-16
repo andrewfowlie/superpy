@@ -1,0 +1,4 @@
+2 2 51 4   Enter Process
+       Enter a process you wish to compute. 
+  Use the F1-key after the 'Enter process' prompt
+  to get information about the input format.

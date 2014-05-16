@@ -1,0 +1,56 @@
+
+  double pvec[16], *p1=pvec, *p2=pvec+4, *p3=pvec+8, *p4=pvec+12;
+  double m1,m2,m3,m4,m[4],Pin,Pout,totcoef, sqrt_S, S, lambda12, lambda34,ms,md;
+  double GG,sigmaTot,DsigmaDcos,sinFi,cosFi;
+  char mess[20];
+  double M_PI=3.1415;
+  int i, nint=10,err=0;
+  
+  gSystem.Load("../lib/ch_root.so");
+  ch_class eemm;
+  if(eemm.SetModel("models",2))  { cout << "Can not load model" << endl;            exit(1);} 
+  if(eemm.CalcMainFunc())        { cout << "Can not calculate constraints" << endl; exit(2);}
+  cout << "GF="<<eemm.FindValW("GF")<<endl; 
+  eemm.SlhaDecayPrint("W+",stdout);
+
+  if(eemm.NewProcess("e,E->m,M")){ cout << "Can not compile process" << endl;       exit(3);}
+  if(eemm.PassParameters()      ){ cout << "Can not calculate parameter" << endl;   exit(3);}
+  
+  Pin=100;
+  eemm.ProcInfo2(1,NULL,m);
+  m1=m[0];m2=m[1];m3=m[2];m4=m[3];
+
+/* 2-2 kinematics */
+
+  sqrt_S=sqrt(m1*m1+Pin*Pin) +sqrt(m2*m2+Pin*Pin);
+  S=sqrt_S*sqrt_S;  
+  lambda12=2*sqrt_S*Pin;
+  ms = m3+m4; if (ms >= sqrt_S) return 1;
+  md = m3 -m4;
+  lambda34 = sqrt((S - ms*ms) * (S - md*md));
+  totcoef = 3.8937966E8 * lambda34 /(32.0 * M_PI * lambda12 * S);        
+  Pout=lambda34/(2*sqrt_S);
+
+/* fill momenta of particles */
+  
+  for(i=0;i<16;i++) pvec[i]=0;
+  p1[0]=  sqrt(Pin*Pin + m1*m1);  
+  p1[3]=  Pin;
+  p2[0]=  sqrt(Pin*Pin + m2*m2);
+  p2[3]= -Pin;
+  p3[0]=  sqrt(Pout*Pout + m3*m3);
+  p4[0]=  sqrt(Pout*Pout + m4*m4);
+
+  GG=1.238;
+  
+  sigmaTot=0.;  // total cross section 
+  for(i=0 ; i < nint; i++ ){
+    cosFi=-1.+ 2.*(0.5+i)/nint;
+    sinFi=sqrt((1.-cosFi)*(1.+cosFi)); 
+    p3[3]=Pout*cosFi; p4[3]=-p3[3];
+    p3[2]=Pout*sinFi; p4[2]=-p3[2];
+    DsigmaDcos=totcoef*eemm.Sqme(1,GG,pvec,&err); 
+    sigmaTot += DsigmaDcos*2./(double)nint;
+  }
+  printf("sigmaTot(Pcm=%E)= %E\n",Pin,sigmaTot);
+.q  

@@ -1,0 +1,81 @@
+:
+
+if(test -z "$COMPHEP") then
+   COMPHEP=../
+   export COMPHEP
+fi
+
+if(test $# -lt 1) then
+  echo " This command needs at least one parameter, 
+           which indicates the number of model"
+  exit 1
+fi
+
+modeln=$1
+model=""
+while(test $modeln  -ne 1  ) 
+do 
+  modeln=`expr $modeln  - 1`
+  model=$model"]"
+done 
+
+
+#Exclude to exlcude diagrams with virtual particles from the $Exclude list
+
+if(test $# -lt 2) then
+  Exclude=""
+else
+  Exclude="e3,n3,t,b"
+fi
+
+
+SqrtS="1000"
+
+Prg="]}["    # ""/"]}["  (do not create)/(create) Reduce code
+             # "]}9"  make the  Reduce code and finish.
+
+Output=""    # "" - Reduce; "]"- Mathematica; "]]" - Form; "]]]" - C; ...
+             # "}]]]" - Reduce plus C, ....
+
+read Process
+
+#read Process #It is expected to read a process  string like "e1,E1->e2,E2"
+
+while( test  "$Process" )
+do
+
+  rm results/* tmp/*   # to start from the beginning
+
+  $COMPHEP/s_comphep -blind \
+     $model"}}"$Process"}$SqrtS}$Exclude}]]}]$Prg}}"$Output"}9"
+
+
+#  YOUR CHECK BEGIN
+#
+     echo =========================
+     echo $Process
+
+   if(test -f r-session) then 
+      rm r-session
+   fi 
+   
+   if(test -f message) then 
+      rm message
+   fi
+
+   cat  check.red | reduce >r-session
+   grep  -i heap r-session
+   if (test ! -f message) then
+        echo  REDUCE can not calculate $Process 
+   else 
+        cat message 
+   fi
+
+#
+# YOUR CHECK END
+
+
+  read Process
+done
+
+rm  r-session  message

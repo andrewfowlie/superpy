@@ -1,0 +1,5 @@
+3 5 40   Particle properties:
+   Press enter to get quantum numbers, 
+   mass, width, and decay channels of 
+   highlighted particle.
+

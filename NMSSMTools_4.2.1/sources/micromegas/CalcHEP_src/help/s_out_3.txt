@@ -1,0 +1,16 @@
+5 5 60  C-compiler
+  It allows to change the list of auxiliary libraries
+which are passed to  the linker. For instance, it could
+be the libraries which support the work of model. Other
+example is the attaching of LHAPDF to the code.
+In this case you have to add a record  like 
+   -L<path to LHAPDF> -lLHAPDF  
+Your improvements will be saved on the disk. 
+If you are going to use shared libraries then you have 
+separately define 
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:<path to lhapdf>
+This command should  be launched before you start work with
+CalcHEP or added to ./calchep and ./calchep_batch scripts.
+In case of ./calchep one can use LD_RUN_PATH instead. It 
+allows to launch generated ./n_calchep independently without
+correction of environment. 

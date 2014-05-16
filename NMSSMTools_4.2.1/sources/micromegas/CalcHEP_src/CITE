@@ -1,0 +1,62 @@
+CalcHEP on WWW http://theory.sinp.msu.ru/~pukhov/calchep.html
+
+                References and Contributions. 
+A.Belyaev, N.Christensen, A.Pukhov. "CalcHEP 3.4 for collider physics
+within and beyond the Standard Model". arXiv:1207.6082v1 [hep-ph]
+
+* The package contains  some codes written by CompHEP group people, whose
+  names are included in hep-ph/9908288:
+  V.Ilyin    : num/4_vector.c,num/strfun/sf_epa.c,num/strfun/sf_lsr.c;
+  D.Kovalenko: num/kininpt.c,num/regfunal.c;
+  A.Kryukov  : symb/colorf.c,chep_crt/edittab.c;
+  V.Edneral  : symb/diagram/diaprins.c,symb/diagram/drawdiag.c,chep_crt/crt.c;
+  A.Semenov  : chep_crt/xwin/X11_crt0.c;
+  Corresponding code is  included in the CalcHEP package with permission 
+  of the authors.
+
+* Monte Carlo integration program  Vegas written by G.Lepage.
+
+* "Photons is proton" structure function implemented by M.Vander Donckt.
+
+* The BS models were created in collaboration with 
+  G.Belanger, F.Boudjema, A.Semenov
+
+Ackowledgements: 
+
+AB would like to thank the NExT Institute and SEPnet for partial financial 
+support.  The work of  AB and AP was strongly supported by the Royal Society
+grant JP090598. The work of NC was supported in part by the US National
+Science Foundation under grant PHY-0354226, the LHC-TI initiative of the US 
+National Science Foundation under grant PHY-0705682, the PITTsburgh Particle
+physics, Astrophysics, and Cosmology Center, and the US Department of Energy
+under grant DE- FG02-12ER41832.
+
+A large part of the recent developments in CalcHEP were motivated by requests
+for the micrOMEGAs package which uses CalcHEP as a generator of matrix 
+elements. We thank Genevieve Belanger and  Fawzi Boudjema for helpful comments
+and suggestions in the development of CalcHEP.
+
+CalcHEP  is also know for its succesful usage of various SM extensions  mainly
+due to the pioneering work of Andrey Semenov in the development of the LanHEP
+package which allows to realize rather complicated models in CalcHEP notation.
+We are grateful to  Andrey Semenov for this job. 
+
+NC would like to thank Fabio Maltoni and Claude Duhr for their support
+in writing a CalcHEP output for the FeynRules package.
+
+In 2009 AB and   AP  worked together at the Galileo Galilei Institute for 
+Theoretical Physics where part of the CalcHEP development  was performed. 
+We are grateful to GGI for  this opportunity. We are especially thankful to 
+Maksym Bondarenko, the main author of the HEPMDB project
+which has turned out to be very important for various web applications of 
+CalcHEP.
+  
+We are grateful for many people who have tested CalcHEP, especially to 
+Lorenzo Basso, Alexandra Carvalho, Joydeep Chakrabortty, Qing-Hong Cao, 
+Mikhail Chizhov, Asesh Datta, Mads Frandsen, Renato Guedes, K.C.  Kong, 
+Tomas Lastovicka,  Orlando Panella, Rui Santos, Chloe Papineau,  Marco Pruna, 
+Patrik Svantesson,  Florian Staub,  Daniel Stolarski, Riccardo Torre,  
+Izmail Turan and Alfonso Zerwekh.
+ 
+       This text is stored in the file  $CALCHEP/CITE
+              Press the 'Esc' key to continue.

@@ -1,0 +1,10 @@
+1 10 55   Reduce output
+  This menu function saves results of symbolic
+calculation into the files. For each subprocess the
+file sum#.red is created, where # is the subprocess
+number. So, for the more typical case of one
+subprocess, the result will be written in the file
+sum1.red.
+  The output  file contains algebraic expression for
+all diagrams of subprocess, written in the notation of
+symbolic manipulation system 'REDUCE'.

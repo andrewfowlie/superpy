@@ -1,0 +1,3 @@
+5 5 40 5
+  The program can display decay
+branching or partial widths. 

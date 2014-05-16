@@ -1,0 +1,5 @@
+5 5 40 5
+  It is possible to change  values of 
+parameters (particle masses, coupling 
+constants etc.) for  subsequent 
+numerical  processing.

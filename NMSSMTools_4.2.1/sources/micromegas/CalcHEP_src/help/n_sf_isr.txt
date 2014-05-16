@@ -1,0 +1,21 @@
+2 3 42
+Initial State Radiation is a process of
+lose of energy by the incoming electron
+due to the emission of photons in the
+electromagnetic field of other electron.  
+Resulting electron spectrum depends on 
+the SCALE parameter. For the direct 
+e^+ e^- annihilation this parameter is 
+equal to the total energy of collision.
+
+Beamstrahlung is a  a process of lose
+of energy by the incoming electron due to
+its interaction with electron (positron)
+bunch, which moves in the opposite
+direction.  It depends on bunch sizes,
+total charge of the bunch, and energy of
+collision. Bunch size is defined via 
+Gauss widths sigma_y,sigma_y,sigma_z. 
+Longitudinal size sigma_z should be 
+presented in millimeters. Units for 
+transverse  sizes  are nanometers. 

@@ -1,0 +1,18 @@
+:
+
+NoDel="*.c *.cpp *.F *.f *.h"
+for FILE in * 
+do  
+  if(test -x $FILE -a ! -d $FILE) then 
+     del=1
+     for file in $NoDel 
+     do
+       if( test $FILE = $file) then 
+          del=0
+       fi
+     done
+     if(test $del = 1) then    
+         rm $FILE
+     fi 
+  fi
+done

@@ -1,0 +1,5 @@
+2 2 50
+See comments to 
+  t-channels widths 
+and 
+  GI in s-channels

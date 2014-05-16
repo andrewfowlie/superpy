@@ -1,0 +1,68 @@
+# Input file for NMSSMTools
+# Based on SUSY LES HOUCHES ACCORD II
+#
+BLOCK MODSEL
+	3	1		# NMSSM particle content
+	1	0		# IMOD (0=general NMSSM, 1=mSUGRA, 2=GMSB)
+	10	0		# ISCAN (0=no scan, 1=grid scan, 2=random scan)
+	9	4		# |OMGFLAG|=0: no (default), =1: relic density only,
+#				  =2: dir. det. rate, =3: indir. det. rate, =4: both,
+#				  OMGFLAG>0: 0.107<OMG<0.131, <0: OMG<0.131
+	8       0               # Precision for Higgs masses (default 0: as before,
+#                                 1: full 1 loop + full 2 loop from top/bot Yukawas
+#				  2: as 1 + pole masses - 1&2 by courtesy of P. Slavich)
+	13      0               # 1: Sparticle decays via NMSDECAY (default 0)
+	14      0               # 0: H-> VV,VV* (default); 1: H->VV,VV*,V*V*
+#
+BLOCK SMINPUTS
+	1	127.92d0	# ALPHA_EM^-1(MZ)
+	2	1.16639d-5	# GF
+	3	.1172d0		# ALPHA_S(MZ)
+	4	91.187d0	# MZ
+	5	4.214d0		# MB(MB) (running mass)
+	6	171.4d0		# MTOP (pole mass)
+	7	1.777d0		# MTAU
+#
+BLOCK MINPAR
+#	0	1000d0		# MSUSY (If =/= SQRT(2*MQ1+MU1+MD1)/2)
+	3	2d0		# TANB at MZ
+#
+BLOCK EXTPAR
+#	1	100d0		# M1 (If =/= M2/2)
+	2	200d0		# M2
+#	3	600d0		# M3 (If =/= 3*M2)
+	11	-2500d0		# AU3
+	12	-2500d0		# AD3
+	13	-2500d0		# AE3
+#	16	-2500d0		# AE2 = AE1 (If =/= AE3)
+	33	200d0		# ML3
+#	32	200d0		# ML2 = ML1 (If =/= ML3)
+	36	200d0		# ME3
+#	35	200d0		# ME2 = ME1 (If =/= ME3)
+	43	1000d0		# MQ3
+#	42	1000d0		# MQ2 = MQ1 (If =/= MQ3)
+	46	1000d0		# MU3
+#	45	1000d0		# MU2 = MU1 (If =/= MU3)
+	49	1000d0		# MD3
+#	48	1000d0		# MD2 = MD1 (If =/= MD3)
+	61	.7d0		# LAMBDA
+	62	.05d0		# KAPPA (If =/= 0)
+	63	1280d0		# ALAMBDA (If =/= 0 and XIF+MA are not inputs)
+#	64	0d0		# AKAPPA (If =/= 0, KAPPA =/=0 and XIS+MP are not inputs)
+#				  If KAPPA = 0: AKAPPA must be 0, either XIS or MP is input
+	65	530d0		# MUEFF
+#	66	0d0		# XIF in GeV^2 (If =/= 0 and ALAMBDA+MA are not inputs)
+#	67	0d0	 	# XIS in GeV^3 (If =/= 0 and AKAPPA+MP are not inputs)
+#	68	0d0		# MU' (If =/= 0)
+#	69	0d0		# MS'^2 (If =/= 0)
+#	72	0d0		# M3H^2 (If =/= 0)
+#	124	1321d0		# MA (If ALAMBDA+XIF are not inputs)
+#				  If ALAMBDA+MA+XIF are not inputs: ALAMBDA=XIF=0, MA is computed
+#				  If only XIF is input: ALAMBDA=0, MA is computed
+#				  If only MA is input: XIF=0, ALAMBDA is computed
+#				  If only ALAMBDA is input: XIF=0, MA is computed
+#	125	125d0		# MP (If AKAPPA+XIS is not an input)
+#				  If AKAPPA+MP+XIS are not inputs: AKAPPA=XIS=0, MP is computed
+#				  If only XIS is input: AKAPPA=0, MP is computed
+#				  If only MP is input: XIS=0, AKAPPA is computed
+#				  If only AKAPPA is input: XIS=0, MP is computed

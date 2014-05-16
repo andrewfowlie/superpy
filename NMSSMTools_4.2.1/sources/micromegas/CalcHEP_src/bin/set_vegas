@@ -1,0 +1,30 @@
+if(test $# -ne 5) then
+   echo  Error! 4 parameters expected
+   echo 1 - number Vegas iterations at firts loop
+   echo 2 - number of integral calls for earch iteration of the first loop
+   echo 3 - number Vegas iterations at second  loop
+   echo 4 - number of integral calls for earch iteration of the second loop
+   echo 5 - number of sub-cubes to prepare event generator
+   exit 1
+fi
+
+if(test ! -x n_calchep) then
+    echo n_calchep is absent
+    exit 2
+fi 
+  
+if(test ! -r session.dat) then
+    ./n_calchep -blind "0"
+fi
+
+line=`grep  Vegas_calls session.dat`
+
+ll=`echo $line |sed s/\#//` 
+
+sed s/"$ll"/"Vegas_calls $2x$1 $4x$3"/ < session.dat >ses.tmp
+mv ses.tmp session.dat
+./n_calchep -blind "[[[[[[[[[{[[[[[[[[{$5{0"
+
+
+exit 0
+

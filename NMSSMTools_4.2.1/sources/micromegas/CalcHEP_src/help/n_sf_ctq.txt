@@ -1,0 +1,20 @@
+10 10 65
+  I. CTEQ4m - structure functions.
+
+  CTEQ4M is a set of  parton distribution functions. This set
+describes the density of quarks and gluons in proton/anti-proton.
+
+  The available applied range is 
+       10^-5 < x < 1  
+       1.6 < Q < 10000 (GeV) 
+where x is the Feynman variable and Q is the QCD-scale parameters.
+For the point out of this range an extrapolation is used and the
+corresponding warning  will  be written in the stdout file.
+
+  The CTEQ4m set of function is produced in the framework of the
+next-to-leading calculations in the  standard MSbar scheme 
+with Alpha_s(Mz)=0.116
+
+  See further explanations in 
+ H.L. Lai, J. Huston, S. Kuhlmann, F. Olness, J. Owens, D. Soper
+ W.K. Tung, H. Weerts, Phys.Rev.D55:1280-1296,1997 

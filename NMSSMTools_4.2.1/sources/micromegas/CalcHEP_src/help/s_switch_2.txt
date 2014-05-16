@@ -1,0 +1,7 @@
+2 2 50 diagram in C-code
+ CalcHEP attaches to the C-codes the  
+ pseudo-graphic images of diagrams. In order
+ to decrease the size of the code the user may 
+ switch off this option. Usually the size of 
+ diagram image is small in comparing with the 
+ size of codes.

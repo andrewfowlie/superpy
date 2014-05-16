@@ -1,0 +1,13 @@
+2 7 50
+   This is an entry to the next menu level which 
+allows to the user to set parameters of Monte 
+Carlo program VEGAS and launch it.
+   After a VEGAS run the information about
+cross-section is displayed on the screen and 
+is written in the file. 
+ The user also has a posibility  to fill various
+distributions during the integral evaluation.
+ During Vegas sessions user can prepare Monte
+Carlo event generatoe and start it.
+
+

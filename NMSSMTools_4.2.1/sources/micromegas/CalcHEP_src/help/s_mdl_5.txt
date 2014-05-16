@@ -1,0 +1,44 @@
+2 5 76    External functions.
+I) The lines of this table which start with the word 'extern' are
+   treated as declaration of prototypes of external functions which
+   are included in the "Constraints" table. If missing, CalcHEP will
+   create a default prototype which returns a 'double' value and 
+   takes 'double' type for numerical parameters and 'char *' type for
+   textual arguments.  If the 'Constraints' contains only functions of
+   such type, then prototyping is not necessary.
+
+II) The lines of this table which do not start with 'extern' are 
+   concatenated and  passed to the linker during the compilation of
+   n_calchep.  We recommend to use the full path of all files.
+   Additional libraries are useful in the following situations:
+   
+   1) When the model uses a function defined in an external library.
+   
+   2) When using the LHAPDF package 
+            http://projects.hepforge.org/lhapdf/
+      to extend the list of available patron distribution functions.
+      In this case the following lines should be present:
+      i) <Path To library>/libLHAPDF.a 
+         If LHAPDF was installed under root, the typical destination
+         is /usr/local/lib.  If not, open the file 
+         lhapdf-5.x.y/config.status and check the S["prefix"] variable.
+         The library destination is S["prefix"]/lib.            
+      ii) <Fortran libraries> 
+         If you have gfortran installed then LHAPDF will use it and the 
+         needed library is "-lgfortran".
+         In general, check postdeps_FC in config.status for the 
+         libraries and compiler_lib_search_path_FC for the path.
+
+   3) The user has an option to implement their own cuts and histograms
+      in CalcHEP. $CALCHEP/utile/usrfunc.c contains examples and further
+      explanations.  We recommend that the user copies this file to a 
+      new location before modification.  Once the file is compiled
+      (with the -c option), it can be linked with the line:
+      <Path to usrfunc>/usrfun.o
+      
+      
+III)   The '%' symbol begins a comment and is ignored during compilation.
+   We encourage the user to use commented lines to specify papers where
+   the model is described and that should be used for citation.  In
+   addition, a url for the model can be entered here.
+

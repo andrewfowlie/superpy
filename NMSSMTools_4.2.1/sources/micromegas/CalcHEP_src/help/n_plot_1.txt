@@ -1,0 +1,4 @@
+3 5 50 Plot
+ It sets a maximum limit for the Y axis.
+  Use 'Redraw plot' menu function to get a new 
+function image.

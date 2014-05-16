@@ -1,0 +1,36 @@
+:
+
+#======================================
+USR=`pwd`
+bin=`echo $0_A_E_P |sed s/par_scan_A_E_P//`; cd $bin; bin=`pwd`
+export bin
+cd $USR
+#======================================
+
+read NAMES
+echo $NAMES
+
+read VALUES
+while (test -n "$VALUES") 
+do 
+  n=1
+  SUM=  
+  for name in $NAMES 
+  do 
+     val=`echo $VALUES |cut -f$n -d" "` 
+     SUM="$SUM $name $val "
+     n=`expr $n + 1` 
+  done 
+  err=`$bin/set_param  $SUM`
+  if(test $? -eq 0) then 
+    Res=`$bin/run_vegas`
+    if(test $? -eq 0) then
+     echo  $VALUES   $Res
+    else 
+      echo $VALUES  Can not calculate 
+    fi
+  else 
+    echo $VALUES   Wrong parameter set: $err
+  fi 
+    read VALUES 
+done

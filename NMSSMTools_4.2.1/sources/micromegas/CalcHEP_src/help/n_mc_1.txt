@@ -1,0 +1,7 @@
+3 10 45 6
+  Symbolic part of CalcHEP allows you to 
+prepare symbolic answers for a set  of 
+processes. For example: e1,E1 -> 2*x. 
+This menu item gives you a possibility to 
+select one subprocess you need for the 
+subsequent  numerical processing.

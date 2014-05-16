@@ -1,0 +1,6 @@
+ 1 12 51 
+   It forces  the program to forget results of 
+ cross section(width) evaluation and all histogram
+ statistics.  Usually the results obtained at 
+ first iterations are bad because Vegas grid 
+ is not yet adapted to the integrand.  

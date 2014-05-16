@@ -1,0 +1,77 @@
+%
+% Terms going from superpotential (FF and Yukawa)
+%
+
+
+keep_lets superW.
+
+do_if mix2g==on.
+  let  Mc_=Mc.
+do_else.
+  let  Mc_=0.
+end_if.
+
+let ml1 = 0,                md1 =-Mq*vvev1/cb,       mu1 = Mq*vvev1/sb,
+    ml2 = 0 ,               md2 =-Mq*vvev1/cb,       mu2 = Mc_*vvev1/sb,
+    ml3 = -Ml*vvev1/cb,     md3 =-MbMM*vvev1/cb,     mu3 = MtMM*vvev1/sb.
+                          
+let ls1=0,                  ds1= Mq*vvev1*(Ad)/cb,   us1=-Mq*vvev1*(Au)/sb,  
+    ls2=0,                  ds2= Mq*vvev1*(Ad)/cb,   us2=-Mc_*vvev1*(Au)/sb,
+    ls3=  Ml*vvev1*(Al)/cb, ds3= MbMM*vvev1*(AB)/cb, us3=-MtMM*vvev1*(AT)/sb.
+
+		
+let superW = eps2*(
+  
+		 ml1*s_h1*s_l1*s_r1
+		+ml2*s_h1*s_l2*s_r2
+		+ml3*s_h1*s_l3*s_r3
+
+		+md1*s_h1*(Vud*s_q1+Vcd*s_q2+Vtd*s_q3)*s_d1
+		+md2*s_h1*(Vus*s_q1+Vcs*s_q2+Vts*s_q3)*s_d2
+		+md3*s_h1*(Vub*s_q1+Vcb*s_q2+Vtb*s_q3)*s_d3
+
+		+mu1*s_h2*s_q1*s_u1
+		+mu2*s_h2*s_q2*s_u2
+		+mu3*s_h2*s_q3*s_u3
+		)
+		
+		+eps2*hL*s_n*s_h1*s_h2
+		+hK*s_n**3/3
+
+% New terms   
+                +1/2*muP*(s_n)**2
+                + xif*s_n    
+.
+
+% FF terms
+
+
+
+
+lterm -dfdfc(superW,Ai) where
+	Ai=s_h1; Ai=s_h2; Ai=s_n;
+	Ai=s_l1; Ai=s_l2; Ai=s_l3;
+	Ai=s_r1; Ai=s_r2; Ai=s_r3;
+	Ai=s_q1; Ai=s_q2; Ai=s_q3;
+	Ai=s_u1; Ai=s_u2; Ai=s_u3;
+	Ai=s_d1; Ai=s_d2; Ai=s_d3. 
+
+% Yukawa terms
+
+lterm ( -df(superW,Ai,Aj)*Fi*Fj/2 + AddHermConj            
+							   where
+	Ai=s_h1,Fi=f_h1; Ai=s_h2,Fi=f_h2; Ai=s_n, Fi=f_N;
+	Ai=s_l1,Fi=f_l1; Ai=s_l2,Fi=f_l2; Ai=s_l3,Fi=f_l3;
+	Ai=s_r1,Fi=f_r1; Ai=s_r2,Fi=f_r2; Ai=s_r3,Fi=f_r3;
+	Ai=s_q1,Fi=f_q1; Ai=s_q2,Fi=f_q2; Ai=s_q3,Fi=f_q3;
+	Ai=s_u1,Fi=f_u1; Ai=s_u2,Fi=f_u2; Ai=s_u3,Fi=f_u3;
+	Ai=s_d1,Fi=f_d1; Ai=s_d2,Fi=f_d2; Ai=s_d3,Fi=f_d3) 
+							   where 
+	Aj=s_h1,Fj=f_h1; Aj=s_h2,Fj=f_h2; Aj=s_n, Fj=f_N;
+	Aj=s_l1,Fj=f_l1; Aj=s_l2,Fj=f_l2; Aj=s_l3,Fj=f_l3;
+	Aj=s_r1,Fj=f_r1; Aj=s_r2,Fj=f_r2; Aj=s_r3,Fj=f_r3;
+	Aj=s_q1,Fj=f_q1; Aj=s_q2,Fj=f_q2; Aj=s_q3,Fj=f_q3;
+	Aj=s_u1,Fj=f_u1; Aj=s_u2,Fj=f_u2; Aj=s_u3,Fj=f_u3;
+	Aj=s_d1,Fj=f_d1; Aj=s_d2,Fj=f_d2; Aj=s_d3,Fj=f_d3.
+
+

@@ -1,0 +1,79 @@
+  prtcformat fullname:
+  'Full   Name     ', name:' P ', aname:' aP', pdg:'  number  ',
+  spin2,mass,width, color, aux, texname: '> LaTeX(A)       <',
+  atexname:'>  LateX(A+)           <' .
+
+
+% Choise of gauge fixing: default is t'Hooft-Feynman.
+
+
+vector
+	A/A: (photon, pdg 22,  gauge),
+      	Z/Z:('Z boson',pdg 23, mass MZ , width wZ=auto, gauge),
+	'W+'/'W-': ('W boson',pdg 24,  mass MW, width wW=auto, gauge).
+
+vector  G/G:(gluon, pdg 21, color c8, gauge).
+
+spinor 	ne/Ne:(neutrino, pdg 12, left),       e:(electron, pdg 11),
+	nm/Nm:('mu-neutrino',pdg 14, left),   m:(muon, pdg 13), %mass Mm
+	nl/Nl:('tau-neutrino',pdg 16, left),  l:('tau-lepton', pdg 15,mass Ml).
+
+do_if mix2g==on.
+spinor	u:('u-quark',pdg 2, color c3, mass Mq),
+	d:('d-quark',pdg 1, color c3, mass Mq),
+	s:('s-quark',pdg 3, color c3, mass Mq).
+do_else.
+spinor  u:('u-quark',pdg 2, color c3),
+	d:('d-quark',pdg 1, color c3),
+	s:('s-quark',pdg 3, color c3 ). 
+end_if.
+
+spinor	c:('c-quark',pdg 4, color c3, mass Mc),
+	t:('t-quark',pdg 6, color c3, mass Mt, width wt),
+	b:('b-quark',pdg 5, color c3, mass Mb). 
+
+
+scalar h1/h1:('CP-ev Higgs1',pdg 25, mass Mh1, width wh1=auto),
+       h2/h2:('CP-ev Higgs2',pdg 35, mass Mh2, width wh2=auto),
+       h3/h3:('CP-ev Higgs3',pdg 45, mass Mh3, width wh3=auto),
+       ha/ha:('CP-od Higgs1',pdg 36, mass Mha, width wha=auto),
+       hb/hb:('CP-od Higgs2',pdg 46, mass Mhb, width whb=auto),
+       'H+'/'H-':('Charged Higgs',pdg 37, mass MHc, width wHc=auto).
+
+
+
+spinor '~1+'/'~1-':('chargino 1',pdg 1000024, mass MC1,  width wC1=auto),
+       '~2+'/'~2-':('chargino 2',pdg 1000037, mass MC2, width wC2=auto).
+
+spinor ~o1 / ~o1:('neutralino 1',pdg 1000022, mass MNE1),
+       ~o2 / ~o2:('neutralino 2',pdg 1000023, mass MNE2, width wNE2=auto),
+       ~o3 / ~o3:('neutralino 3',pdg 1000025, mass MNE3, width wNE3=auto),
+       ~o4 / ~o4:('neutralino 4',pdg 1000035, mass MNE4, width wNE4=auto),
+       ~o5 / ~o5:('neutralino 5',pdg 1000045, mass MNE5, width wNE5=auto).
+
+spinor ~g / ~g:(gluino, color c8,pdg 1000021, mass  MSG, width wSG=auto).
+
+scalar ~eL / ~EL:('L-selectron', pdg 1000011,  mass MSeL, width wSeL=auto),
+       ~eR / ~ER:('R-selectron', pdg 2000011,  mass MSeR, width wSeR=auto),
+       ~mL / ~ML:('left smuon',  pdg 1000013,  mass MSmL, width wSmL=auto),
+       ~mR / ~MR:('right smuon', pdg 2000013,  mass MSmR, width wSmR=auto),
+       ~l1 / ~L1:('1st stau',    pdg 1000015,  mass MSl1, width wSl1=auto),
+       ~l2 / ~L2:('2nd stau',    pdg 2000015,  mass MSl2, width wSl2=auto),
+       ~ne / ~Ne:('e-sneutrino', pdg 1000012,  mass MSne, width wSne=auto),
+       ~nm / ~Nm:('m-sneutrino', pdg 1000014,  mass MSnm, width wSnm=auto),
+
+       ~nl / ~Nl:('l-sneutrino', pdg 1000016,  mass MSnl, width wSnl=auto).
+
+
+scalar ~uL / ~UL : ('u-squark L', color c3, pdg 1000002, mass  MSuL,  width wSuL=auto),
+       ~uR / ~UR : ('u-squark R', color c3, pdg 2000002, mass  MSuR,  width wSuR=auto),
+       ~dL / ~DL : ('d-squark L', color c3, pdg 1000001, mass  MSdL,  width wSdL=auto),
+       ~dR / ~DR : ('d-squark R', color c3, pdg 2000001, mass  MSdR,  width wSdR=auto),
+       ~cL / ~CL : ('c-squark L', color c3, pdg 1000004, mass  MScL,  width wScL=auto),
+       ~cR / ~CR : ('c-squark R', color c3, pdg 2000004, mass  MScR,  width wScR=auto),
+       ~sL / ~SL : ('s-squark L', color c3, pdg 1000003, mass  MSsL,  width wSsL=auto),
+       ~sR / ~SR : ('s-squark R', color c3, pdg 2000003, mass  MSsR,  width wSsR=auto),
+       ~t1 / ~T1 : ('t-squark 1', color c3, pdg 1000006, mass  MSt1, width wSt1=auto),
+       ~t2 / ~T2 : ('t-squark 2', color c3, pdg 2000006, mass  MSt2, width wSt2=auto),
+       ~b1 / ~B1 : ('b-squark 1', color c3, pdg 1000005, mass  MSb1, width wSb1=auto),
+       ~b2 / ~B2 : ('b-squark 2', color c3, pdg 2000005, mass  MSb2, width wSb2=auto).

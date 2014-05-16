@@ -1,0 +1,10 @@
+2 2 50 Results
+  The subdirectory 'results' is used for CalcHEP 
+output. 
+  Function 'View' creates and displays the contents
+of this subdirectory and gives you the possibility
+to view a file.
+  'Clear' removes all output files.
+  'Rename' assigns a new name to 'results' and 
+creates a new empty directory 'results' for the
+output. 

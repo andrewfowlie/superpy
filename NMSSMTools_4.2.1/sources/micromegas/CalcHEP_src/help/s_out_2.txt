@@ -1,0 +1,8 @@
+5 5 55  C-compiler
+  This function is used to compile the 'n_comphep'
+program for numerical calculation and start it.
+The program n_comphep is started in a separate window
+after completion of the C compilation. 
+   The functions "Write results" & "C-code" must be
+used before in order to generate the source code for 
+the current process.

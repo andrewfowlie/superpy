@@ -1,0 +1,8 @@
+5 12 70
+  This menu item provides the user with a possibility  to chose 
+a momentum distribution for the first/second incoming particle. 
+The name of activated distribution is displayed in the corresponding 
+menu record. The "OFF" record  means that the convolution of matrix
+element with a distribution function does not performed.
+  The user has a possibility to display a plot for the highlighted
+distribution  by pressing the F7 functional key.

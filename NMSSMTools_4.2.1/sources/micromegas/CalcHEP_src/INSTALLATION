@@ -1,0 +1,78 @@
+
+1. To compile the package launch
+
+    gmake  or make
+
+The Makefiles of CalcHEP uses gmake facilities. If you have not 
+'gmake' command, it means that your 'make' works like 'gmake'      
+
+In case of success you should get a messahe 
+
+# CalcHEP has compiled successfuly and can be started.
+  ..............
+
+2. If in result of compilation you get a warning
+  # CalcHEP has compiled without X11.   
+    .......
+it means that X11 header files are  not detected on your computer and 
+CalcHEP interactive mode will not work. The problem can be solved by
+installation on your computer  one of additional packages:
+
+   libX11-devel     for  Fedora/Scientific, Darwin(MAC)                          
+   libX11-dev       for  Ubuntu/Debian                                           
+   xorg-x11-devel   for  SUSE        
+
+3. To create a directory for CalcHEP working sessions call
+
+   ./mkWORKDir < directory name> 
+   
+It is possible to create several working directories. 
+We don't recommend to create working directories inside CalcHEP.
+
+4. To start  CalcHEP session  go to the working directory 
+and call 
+     ./calchep
+
+5. By default CalcHEP   contains  only two versions of SM, one with complete 
+CKM matrix and another (CKM=1) with diagonal CKM.
+   The realizations of  Beyond the  Standard  Models have to be 
+download independently. To install such models the user has to 
+a) download the corresponding <model>.tgz file. 
+b) unpack it; In result directory <model> with CalcHEP model files and 
+   codes for external functions will be generated. 
+c) If you don't dispose  <model> in CalcHEP directory, improve
+   definition of CALCHEP variable in <model>/Makefile. It has to
+   show the path to CalcHEP directory  which is used to dowload the file 
+   with compiler flags.   
+d) read README file attached to the model and make the corresponding changes 
+   in Makefile if it needs. 
+e) launch  'gmake' inside <model>. If 'gmake' is absent try 'make'. 
+   The Makefile is written for 'gmake', but in modern platforms sometimes 
+   'make' presents the 'gmake' command.  In results of compilation you 
+    should get the mLib.a library.  
+f) To add a new model to the list of models for your working sessions use the 
+   "IMPORT OF MODELS" menu function. It asks you to define the directory 
+    where model is disposed:
+        Dir= <path to model>/<model>/models
+    For expample, in case of MSSM disposed directly inside CalcHEP
+        Dir= $CALCHEP/MSSM/models
+
+6. To cite CalcHEP use the references written in the file 
+      Reference.txt
+    or get the same information by pressing the F9 key during 
+    the CalcHEP interactive session.
+
+7.  You can get a help during the session by pressing the F1 and 
+    F2 keys. Read CalcHEP manual to get more information about the package.
+    You can find it at
+      http://theory.sinp.msu.ru/~pukhov/calchep.html 
+
+In case of problem send a mail to 
+     	
+    calchep@googlegroups.com
+
+8. To de-install the package call
+    [g]make clean
+and 
+    [g]make clean 
+    separately in each additionally installed  model directory.

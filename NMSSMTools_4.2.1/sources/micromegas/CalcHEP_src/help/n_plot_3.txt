@@ -1,0 +1,6 @@
+3 5 50 Plot
+  It allows to choose linear or logarithmic scale
+of Y axis. The logarithmic scale is permitted
+only if Y_min>0 and Y_max/Y_min >10.
+  Use 'Redraw plot' menu function to get a new 
+function image.

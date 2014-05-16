@@ -1,0 +1,48 @@
+     This directory contains  source files  of  some auxiliary  routines.
+===========================================================================
+1. axodraw.sty  - axodraw style file for LaTeX output produced by CalcHEP
+==========================================================================
+2. cteq2pdt.c  - transforms CTEQ *.tbl tables in CalcHEP *.pdt format. 
+It has to be compiled by 
+    cc -o cteq2pdt cteq2pdt.c alpha.c -lm 
+the alpha.h file is used at compilation.
+The usage:
+   ./cteq2pdt <cteq_file.tbl >calchep_file.pdt
+Can be applied to CTEQ4,CTEQ5,CTEQ6 files.
+==========================================================================
+3. mrst2pdt.c -transforms MRST *.dat tables in CalcHEP *.pdt format.
+It has to be compiled by 
+    cc -o mrst2pdt mrst2pdt.c alpha.c -lm 
+the alpha.h file is used at compilation.
+The usage:
+   ./mrts2pdt name [nf Odr alMZ] <mrst_file.dat >calchep_file.pdt
+Can be applied to mrst2002 files. 
+MRST '.dat' file doesn't contains information about running alpha. 
+It can  be passed via addition parameters: nf,Odr,alMZ. See MRST documentation.
+(Indeed nf=5, Ord has to  be 'lo', 'nlo','nnlo' is included in filename) 
+========================================================================== 
+4. checkpdt.c  is a simple program for testing *pdt files.
+It can be compiled by 
+ cc  -o checkpdt checkpdt.c pdt.c -lm
+where pdt.c has to be copied from c_sources/num together with 
+c_sources/num/include/pdt.h  
+The usage:
+   ./checkpdt file.pdt parton x q 
+where parton has to be presented by PDG numerical code.  
+It writes on the screen parton density  dN/dx and alpha(q)
+==========================================================================
+5. main_22.c - is an example of 'main' program that generates and uses  CalcHEP 
+c-code output. Use $CALCHEP/main/make_main to compile it. 
+==========================================================================
+6.  
+sum_22.m sum_22.red sum_cd.m sum_cd.red sum_int.m sum_int.red sum_num.red -
+
+Mathematica and Reduce programs to work with symbolic formulae for diagrams.
+See manual.   
+==========================================================================
+7.
+ check.red cmp.red cycle_check cycle_cmp -
+ Auxiliary programs which allow to check symbolic calculator of CalcHEP.
+==========================================================================
+
+batch_file

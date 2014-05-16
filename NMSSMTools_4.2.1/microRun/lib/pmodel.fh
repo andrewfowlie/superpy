@@ -1,0 +1,8 @@
+
+C to declare  types  of Fortran routines
+
+      integer nmhWarn, nmssmEWSB, nmssmSUGRA, readVarNMSSM, readSLHA, HBblocks
+      real*8 bsgnlo, deltamd, deltams, bsmumu, btaunu, gmuon  
+      
+      integer loopGamma
+      external loopGamma
