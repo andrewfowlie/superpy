@@ -1186,13 +1186,16 @@
 !      . WRITE(*,900) 3,"# Selectron/smuon too light"
 !       IF(PROB(25).NE.0d0)
 !      . WRITE(*,900) 3,"# Stau too light"
-!       IF(PROB(26).GT.0d0)
+      IF(PROB(26).GT.0d0)
+     . WRITE(*,*) "# ERROR: Lightest neutralino is not the LSP"
 !      . WRITE(*,900) 3,"# Lightest neutralino is not the LSP"
 !       IF(PROB(26).LT.0d0)
 !      . WRITE(*,900) 3,"# Mass of the lightest neutralino < 511 keV"
-!       IF(PROB(27).NE.0d0)
+      IF(PROB(27).NE.0d0)
+     . WRITE(*,*) "# ERROR: Landau Pole below MGUT"
 !      . WRITE(*,900) 3,"# Landau Pole below MGUT"
-!       IF(PROB(28).NE.0d0)
+      IF(PROB(28).NE.0d0)
+     . WRITE(*,*) "# ERROR: Unphysical global minimum"
 !      . WRITE(*,900) 3,"# Unphysical global minimum"
 !       IF(PROB(29).NE.0d0)
 !      . WRITE(*,900) 3,"# Higgs soft masses >> Msusy"
@@ -1267,6 +1270,9 @@
 !      . WRITE(*,900) 4,"# Convergence Problem"
 !       IF(IFAIL.EQ.17)
 !      . WRITE(*,900) 4,"# No electroweak symmetry breaking"
+      IF ( .NOT. (IFAIL <= 7 .OR. IFAIL == 10 )) THEN
+        WRITE(*,*) "# ERROR: UNPHYSICAL:", IFAIL
+      END IF
 
       WRITE(*,899) "# Input parameters"
       WRITE(*,899) "BLOCK MODSEL"

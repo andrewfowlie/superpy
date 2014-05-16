@@ -1,7 +1,7 @@
 c ==================================================================== c
 c                        OUTPUT (SLHA) for DECAYS                      c
 c                                                                      c
-c ==================================================================== c     
+c ==================================================================== c
       SUBROUTINE NS_output
 
       IMPLICIT DOUBLE PRECISION (a-h,m,o-z)
@@ -116,7 +116,7 @@ c ==================================================================== c
      .         brneutzneut,brneutHneut,brneutAneut,brnraddec
       COMMON/NEUTRALINO_BR_3BD/brneutup,brneutdow,brneutch,brneutst,
      .         brneutbot,brneuttop,brneutel,brneutmu,brneuttau,
-     .         brneutnue,brneutnumu,brneutnutau,brchubd,brchcbs, 
+     .         brneutnue,brneutnumu,brneutnutau,brchubd,brchcbs,
      .         brchtbb,brchelne,brchmunmu,brchtauntau,brglup,brgldo,
      .         brglch,brglst,brgltop,brglbot
 **
@@ -170,7 +170,7 @@ c ==================================================================== c
      .          brsb2sb1bb,brsb2sb1starbb,brsb2sb1tt,
      .          brsb2sb1uu,brsb2sb1dd,brsb2sb1ee,brsb2sb1nunu,
      .          brsb2sb1tautau
-        
+
 c ==================================================================== c
 c                          The output file                             c
 c ==================================================================== c
@@ -199,9 +199,9 @@ c ------------------ output a la Les Houches accord ------------------ c
 
       ihH1=25
       ihH2=35
-      ihH3=45  
+      ihH3=45
       ihA1=36
-      ihA2=46  
+      ihA2=46
       ihc=37
       igl=21
       iga=22
@@ -226,17 +226,17 @@ c ------------------ output a la Les Houches accord ------------------ c
       in2 =1000023
       in3 =1000025
       in4 =1000035
-      in5 =1000045  
+      in5 =1000045
       ic1 =1000024
       ic2 =1000037
 
-      intau1=1000016 
-      intau2=2000016 
+      intau1=1000016
+      intau2=2000016
       inel  =1000012
       iner  =2000012
       inmul =1000014
       inmur =2000014
-      
+
       isell =1000011
       iselr =2000011
       ismul =1000013
@@ -246,37 +246,39 @@ c ------------------ output a la Les Houches accord ------------------ c
 
       igrav =1000039
       if1 = 3000001
-      if2 = 4000001 
+      if2 = 4000001
       idrbar          = 1
 c -- opening the output file
-       nout=18
+c     SuperPy - redirect output to the screen.
+      !nout=18
+      nout=6
 c --------- c
 c W+ decays c
 c --------- c
          write(nout,99)
          write(nout,100) iwc,2.085D0,'W+ (measured)'
-            write(nout,102) 0.1165D0,2,-ie,ine,  
+            write(nout,102) 0.1165D0,2,-ie,ine,
      .'BR(W+ -> e+ nu_e)'
-            write(nout,102) 0.1165D0,2,-imu,inmu,  
+            write(nout,102) 0.1165D0,2,-imu,inmu,
      .'BR(W+ -> mu+ nu_mu)'
-            write(nout,102) 0.112D0,2,-itau,intau,  
+            write(nout,102) 0.112D0,2,-itau,intau,
      .'BR(W+ -> tau+ nu_tau)'
-            write(nout,102) 0.365D0,2,iu,idb,  
+            write(nout,102) 0.365D0,2,iu,idb,
      .'BR(W+ -> u db)'
-            write(nout,102) 0.31D0,2,ic,isb,  
+            write(nout,102) 0.31D0,2,ic,isb,
      .'BR(W+ -> c sb)'
 c --------- c
 c Z decays c
 c --------- c
          write(nout,99)
          write(nout,100) iz,2.4952D0,'Z (measured)'
-            write(nout,102) 0.200D0,2,-ine,ine,  
+            write(nout,102) 0.200D0,2,-ine,ine,
      .'BR(Z -> invisible)'
-            write(nout,102) 0.03365D0,2,-ie,ie,  
+            write(nout,102) 0.03365D0,2,-ie,ie,
      .'BR(Z -> e+ e-)'
-            write(nout,102) 0.03365D0,2,-imu,imu,  
+            write(nout,102) 0.03365D0,2,-imu,imu,
      .'BR(Z -> mu+ mu-)'
-            write(nout,102) 0.0337D0,2,-itau,itau,  
+            write(nout,102) 0.0337D0,2,-itau,itau,
      .'BR(Z -> tau+ tau-)'
             write(nout,102) 0.111D0,2,iu,-iu,
      .'BR(Z -> u ub)'
@@ -297,57 +299,57 @@ c ---------------- c
       write(nout,49) 'chargino1 2-body decays'
          write(nout,101)
       if(brcharsupl(1).ne.0.D0) then
-            write(nout,102) brcharsupl(1),2,isul,idb,  
+            write(nout,102) brcharsupl(1),2,isul,idb,
      .'BR(~chi_1+ -> ~u_L  db)'
          endif
       if(brcharsupr(1).ne.0.D0) then
-      write(nout,102) brcharsupr(1),2,isur,idb,  'BR(~chi_1+ -> ~u_R  
+      write(nout,102) brcharsupr(1),2,isur,idb,  'BR(~chi_1+ -> ~u_R
      . db)'
       endif
       if(brcharsdownl(1).ne.0.D0) then
-      write(nout,102) brcharsdownl(1),2,-isdl,iu,'BR(~chi_1+ -> ~d_L* 
+      write(nout,102) brcharsdownl(1),2,-isdl,iu,'BR(~chi_1+ -> ~d_L*
      . u )'
       endif
       if(brcharsdownr(1).ne.0.D0) then
-      write(nout,102) brcharsdownr(1),2,-isdr,iu,'BR(~chi_1+ -> ~d_R* 
+      write(nout,102) brcharsdownr(1),2,-isdr,iu,'BR(~chi_1+ -> ~d_R*
      . u )'
       endif
       if(brcharsupl(1).ne.0.D0) then
-      write(nout,102) brcharsupl(1),2,iscl,isb,  'BR(~chi_1+ -> ~c_L  
+      write(nout,102) brcharsupl(1),2,iscl,isb,  'BR(~chi_1+ -> ~c_L
      . sb)'
       endif
       if(brcharsupr(1).ne.0.D0) then
-      write(nout,102) brcharsupr(1),2,iscr,isb,  'BR(~chi_1+ -> ~c_R  
+      write(nout,102) brcharsupr(1),2,iscr,isb,  'BR(~chi_1+ -> ~c_R
      . sb)'
       endif
       if(brcharsdownl(1).ne.0.D0) then
-      write(nout,102) brcharsdownl(1),2,-issl,ic,'BR(~chi_1+ -> ~s_L* 
+      write(nout,102) brcharsdownl(1),2,-issl,ic,'BR(~chi_1+ -> ~s_L*
      . c )'
       endif
       if(brcharsdownr(1).ne.0.D0) then
-      write(nout,102) brcharsdownr(1),2,-issr,ic,'BR(~chi_1+ -> ~s_R* 
+      write(nout,102) brcharsdownr(1),2,-issr,ic,'BR(~chi_1+ -> ~s_R*
      . c )'
       endif
       if(brcharst1(1).ne.0.D0) then
-      write(nout,102) brcharst1(1),2,ist1,ibb,   'BR(~chi_1+ -> ~t_1  
+      write(nout,102) brcharst1(1),2,ist1,ibb,   'BR(~chi_1+ -> ~t_1
      . bb)'
       endif
       if(brcharst2(1).ne.0.D0) then
-      write(nout,102) brcharst2(1),2,ist2,ibb,   'BR(~chi_1+ -> ~t_2  
+      write(nout,102) brcharst2(1),2,ist2,ibb,   'BR(~chi_1+ -> ~t_2
      . bb)'
       endif
       if(brcharsb1(1).ne.0.D0) then
-      write(nout,102) brcharsb1(1),2,-isb1,it,   'BR(~chi_1+ -> ~b_1* 
+      write(nout,102) brcharsb1(1),2,-isb1,it,   'BR(~chi_1+ -> ~b_1*
      . t )'
       endif
       if(brcharsb2(1).ne.0.D0) then
-      write(nout,102) brcharsb2(1),2,-isb2,it,   'BR(~chi_1+ -> ~b_2* 
+      write(nout,102) brcharsb2(1),2,-isb2,it,   'BR(~chi_1+ -> ~b_2*
      . t )'
       endif
       if(brcharsnel(1).ne.0.D0) then
-      write(nout,102) brcharsnel(1),2,inel,-ie,  'BR(~chi_1+ -> ~nu_eL 
+      write(nout,102) brcharsnel(1),2,inel,-ie,  'BR(~chi_1+ -> ~nu_eL
      . e+  )'
-      write(nout,102) brcharsnel(1),2,inmul,-imu,'BR(~chi_1+ -> ~nu_muL 
+      write(nout,102) brcharsnel(1),2,inmul,-imu,'BR(~chi_1+ -> ~nu_muL
      . mu+ )'
       endif
       if(brcharsn1(1).ne.0.D0) then
@@ -355,19 +357,19 @@ c ---------------- c
      .1 tau+)'
       endif
       if(brcharsell(1).ne.0.D0) then
-      write(nout,102) brcharsell(1),2,-isell,ine,'BR(~chi_1+ -> ~e_L+   
+      write(nout,102) brcharsell(1),2,-isell,ine,'BR(~chi_1+ -> ~e_L+
      . nu_e)'
       endif
       if(brcharselr(1).ne.0.D0) then
-      write(nout,102) brcharselr(1),2,-iselr,ine,'BR(~chi_1+ -> ~e_R+   
+      write(nout,102) brcharselr(1),2,-iselr,ine,'BR(~chi_1+ -> ~e_R+
      . nu_e)'
       endif
       if(brcharsell(1).ne.0.D0) then
-      write(nout,102) brcharsell(1),2,-ismul,inmu,'BR(~chi_1+ -> ~mu_L+ 
+      write(nout,102) brcharsell(1),2,-ismul,inmu,'BR(~chi_1+ -> ~mu_L+
      .  nu_mu)'
       endif
       if(brcharselr(1).ne.0.D0) then
-      write(nout,102) brcharselr(1),2,-ismur,inmu,'BR(~chi_1+ -> ~mu_R+ 
+      write(nout,102) brcharselr(1),2,-ismur,inmu,'BR(~chi_1+ -> ~mu_R+
      .  nu_mu)'
       endif
       if(brcharstau1(1).ne.0.D0) then
@@ -423,7 +425,7 @@ C   ========================
 *   ---CHARGINO1 : Three body
 C   ========================
 
-      if(chartot3(1).ne.0.D0) then 
+      if(chartot3(1).ne.0.D0) then
       write(nout,49) 'chargino1 3-body decays'
       write(nout,103)
       if(brnupdb(1,1).ne.0.D0) then
@@ -559,7 +561,7 @@ C   ========================
      .      t    bb)'
       endif
       endif
- 
+
 c ---------------- c
 c chargino2 decays c
 c ---------------- c
@@ -569,57 +571,57 @@ c ---------------- c
       write(nout,49) 'chargino2 2-body decays'
       write(nout,101)
       if(brcharsupl(2).ne.0.D0) then
-      write(nout,102) brcharsupl(2),2,isul,idb,  'BR(~chi_2+ -> ~u_L  
+      write(nout,102) brcharsupl(2),2,isul,idb,  'BR(~chi_2+ -> ~u_L
      . db)'
       endif
       if(brcharsupr(2).ne.0.D0) then
-      write(nout,102) brcharsupr(2),2,isur,idb,  'BR(~chi_2+ -> ~u_R  
+      write(nout,102) brcharsupr(2),2,isur,idb,  'BR(~chi_2+ -> ~u_R
      . db)'
       endif
       if(brcharsdownl(2).ne.0.D0) then
-      write(nout,102) brcharsdownl(2),2,-isdl,iu,'BR(~chi_2+ -> ~d_L* 
+      write(nout,102) brcharsdownl(2),2,-isdl,iu,'BR(~chi_2+ -> ~d_L*
      . u )'
       endif
       if(brcharsdownr(2).ne.0.D0) then
-      write(nout,102) brcharsdownr(2),2,-isdr,iu,'BR(~chi_2+ -> ~d_R* 
+      write(nout,102) brcharsdownr(2),2,-isdr,iu,'BR(~chi_2+ -> ~d_R*
      . u )'
       endif
       if(brcharsupl(2).ne.0.D0) then
-      write(nout,102) brcharsupl(2),2,iscl,isb,  'BR(~chi_2+ -> ~c_L  
+      write(nout,102) brcharsupl(2),2,iscl,isb,  'BR(~chi_2+ -> ~c_L
      . sb)'
       endif
       if(brcharsupr(2).ne.0.D0) then
-      write(nout,102) brcharsupr(2),2,iscr,isb,  'BR(~chi_2+ -> ~c_R  
+      write(nout,102) brcharsupr(2),2,iscr,isb,  'BR(~chi_2+ -> ~c_R
      . sb)'
       endif
       if(brcharsdownl(2).ne.0.D0) then
-      write(nout,102) brcharsdownl(2),2,-issl,ic,'BR(~chi_2+ -> ~s_L* 
+      write(nout,102) brcharsdownl(2),2,-issl,ic,'BR(~chi_2+ -> ~s_L*
      . c )'
       endif
       if(brcharsdownr(2).ne.0.D0) then
-      write(nout,102) brcharsdownr(2),2,-issr,ic,'BR(~chi_2+ -> ~s_R* 
+      write(nout,102) brcharsdownr(2),2,-issr,ic,'BR(~chi_2+ -> ~s_R*
      . c )'
       endif
       if(brcharst1(2).ne.0.D0) then
-      write(nout,102) brcharst1(2),2,ist1,ibb,   'BR(~chi_2+ -> ~t_1  
+      write(nout,102) brcharst1(2),2,ist1,ibb,   'BR(~chi_2+ -> ~t_1
      . bb)'
       endif
       if(brcharst2(2).ne.0.D0) then
-      write(nout,102) brcharst2(2),2,ist2,ibb,   'BR(~chi_2+ -> ~t_2  
+      write(nout,102) brcharst2(2),2,ist2,ibb,   'BR(~chi_2+ -> ~t_2
      . bb)'
       endif
       if(brcharsb1(2).ne.0.D0) then
-      write(nout,102) brcharsb1(2),2,-isb1,it,   'BR(~chi_2+ -> ~b_1* 
+      write(nout,102) brcharsb1(2),2,-isb1,it,   'BR(~chi_2+ -> ~b_1*
      . t )'
       endif
       if(brcharsb2(2).ne.0.D0) then
-      write(nout,102) brcharsb2(2),2,-isb2,it,   'BR(~chi_2+ -> ~b_2* 
+      write(nout,102) brcharsb2(2),2,-isb2,it,   'BR(~chi_2+ -> ~b_2*
      . t )'
       endif
       if(brcharsnel(2).ne.0.D0) then
-      write(nout,102) brcharsnel(2),2,inel,-ie,  'BR(~chi_2+ -> ~nu_eL 
+      write(nout,102) brcharsnel(2),2,inel,-ie,  'BR(~chi_2+ -> ~nu_eL
      . e+  )'
-      write(nout,102) brcharsnel(2),2,inmul,-imu,'BR(~chi_2+ -> ~nu_muL 
+      write(nout,102) brcharsnel(2),2,inmul,-imu,'BR(~chi_2+ -> ~nu_muL
      . mu+ )'
       endif
       if(brcharsn1(2).ne.0.D0) then
@@ -627,19 +629,19 @@ c ---------------- c
      .1 tau+)'
       endif
       if(brcharsell(2).ne.0.D0) then
-      write(nout,102) brcharsell(2),2,-isell,ine,'BR(~chi_2+ -> ~e_L+   
+      write(nout,102) brcharsell(2),2,-isell,ine,'BR(~chi_2+ -> ~e_L+
      . nu_e)'
       endif
       if(brcharselr(2).ne.0.D0) then
-      write(nout,102) brcharselr(2),2,-iselr,ine,'BR(~chi_2+ -> ~e_R+   
+      write(nout,102) brcharselr(2),2,-iselr,ine,'BR(~chi_2+ -> ~e_R+
      . nu_e)'
       endif
       if(brcharsell(2).ne.0.D0) then
-      write(nout,102) brcharsell(2),2,-ismul,inmu,'BR(~chi_2+ -> ~mu_L+ 
+      write(nout,102) brcharsell(2),2,-ismul,inmu,'BR(~chi_2+ -> ~mu_L+
      .  nu_mu)'
       endif
       if(brcharselr(2).ne.0.D0) then
-      write(nout,102) brcharselr(2),2,-ismur,inmu,'BR(~chi_2+ -> ~mu_R+ 
+      write(nout,102) brcharselr(2),2,-ismur,inmu,'BR(~chi_2+ -> ~mu_R+
      .  nu_mu)'
       endif
       if(brcharstau1(2).ne.0.D0) then
@@ -652,7 +654,7 @@ c ---------------- c
       endif
       if(brcharzchic.ne.0.D0) then
       write(nout,102) brcharzchic,2,ic1,iz          ,'BR(~chi_2+ -> ~chi
-     ._1+  Z )' 
+     ._1+  Z )'
       endif
       if(brcharwneut(2,1).ne.0.D0) then
       write(nout,102) brcharwneut(2,1),2,in1,iwc,    'BR(~chi_2+ -> ~chi
@@ -998,13 +1000,13 @@ c ------------------ c
       endif
       if(brneutsell(1).ne.0.D0) then
       write(nout,102) brneutsell(1),2,ismul,-imu,      'BR(~chi_10 -> ~m
-     .u_L-    mu+)' 
+     .u_L-    mu+)'
       write(nout,102) brneutsell(1),2,-ismul,imu,      'BR(~chi_10 -> ~m
-     .u_L+    mu-)' 
+     .u_L+    mu-)'
       endif
       if(brneutselr(1).ne.0.D0) then
       write(nout,102) brneutselr(1),2,ismur,-imu,      'BR(~chi_10 -> ~m
-     .u_R-    mu+)' 
+     .u_R-    mu+)'
       write(nout,102) brneutselr(1),2,-ismur,imu,      'BR(~chi_10 -> ~m
      .u_R+    mu-)'
       endif
@@ -1042,7 +1044,7 @@ C     ========================
 *     NEUTRALINO1 : Three body
 C     ========================
 
-      if(neuttot3(1).ne.0.D0) then 
+      if(neuttot3(1).ne.0.D0) then
       write(nout,49) 'neutralino1 3-body decays'
       write(nout,103)
       if(brchubd(1,1).ne.0.D0) then
@@ -1051,7 +1053,7 @@ C     ========================
       write(nout,104) brchubd(1,1),3,-ic1,idb,iu,      'BR(~chi_10 -> ~c
      .hi_1- db      u)'
       endif
-      if(brchubd(1,2).ne.0.D0) then      
+      if(brchubd(1,2).ne.0.D0) then
       write(nout,104) brchubd(1,2),3,ic2,iub,id,       'BR(~chi_10 -> ~c
      .hi_2+ ub      d)'
       write(nout,104) brchubd(1,2),3,-ic2,idb,iu,      'BR(~chi_10 -> ~c
@@ -1285,13 +1287,13 @@ c ------------------ c
       endif
       if(brneutsell(2).ne.0.D0) then
       write(nout,102) brneutsell(2),2,ismul,-imu,      'BR(~chi_20 -> ~m
-     .u_L-    mu+)' 
+     .u_L-    mu+)'
       write(nout,102) brneutsell(2),2,-ismul,imu,      'BR(~chi_20 -> ~m
-     .u_L+    mu-)' 
+     .u_L+    mu-)'
       endif
       if(brneutselr(2).ne.0.D0) then
       write(nout,102) brneutselr(2),2,ismur,-imu,      'BR(~chi_20 -> ~m
-     .u_R-    mu+)' 
+     .u_R-    mu+)'
       write(nout,102) brneutselr(2),2,-ismur,imu,      'BR(~chi_20 -> ~m
      .u_R+    mu-)'
       endif
@@ -1329,7 +1331,7 @@ C     =============================
 C     =============================
             if(flagloop.eq.1.D0) then
        if(brnraddec(2,1).ne.0.D0) then
-         write(nout,102) brnraddec(2,1),2,in1,iga,  
+         write(nout,102) brnraddec(2,1),2,in1,iga,
      .   'BR(~chi_20 -> ~chi_10 gam)'
        endif
             endif
@@ -1341,7 +1343,7 @@ C     ========================
       write(nout,49) 'neutralino2 3-body decays'
       write(nout,103)
       if(brneutup(2,1).ne.0.D0) then
-      write(nout,104) brneutup(2,1),3,in1,iub,iu,      
+      write(nout,104) brneutup(2,1),3,in1,iub,iu,
      .'BR(~chi_20 -> ~chi_10 ub      u)'
       endif
       if(brneutdow(2,1).ne.0.D0) then
@@ -1654,13 +1656,13 @@ c
       endif
       if(brneutsell(3).ne.0.D0) then
       write(nout,102) brneutsell(3),2,ismul,-imu,      'BR(~chi_30 -> ~m
-     .u_L-    mu+)' 
+     .u_L-    mu+)'
       write(nout,102) brneutsell(3),2,-ismul,imu,      'BR(~chi_30 -> ~m
-     .u_L+    mu-)' 
+     .u_L+    mu-)'
       endif
       if(brneutselr(3).ne.0.D0) then
       write(nout,102) brneutselr(3),2,ismur,-imu,      'BR(~chi_30 -> ~m
-     .u_R-    mu+)' 
+     .u_R-    mu+)'
       write(nout,102) brneutselr(3),2,-ismur,imu,      'BR(~chi_30 -> ~m
      .u_R+    mu-)'
       endif
@@ -1710,7 +1712,7 @@ C     =============================
 *     NEUTRALINO3 : Three body
 C     =============================
 
-      if(neuttot3(3).ne.0.D0) then 
+      if(neuttot3(3).ne.0.D0) then
       write(nout,49) 'neutralino3 3-body decays'
       write(nout,103)
       if(brneutup(3,1).ne.0.D0) then
@@ -2100,13 +2102,13 @@ c
       endif
       if(brneutsell(4).ne.0.D0) then
       write(nout,102) brneutsell(4),2,ismul,-imu,      'BR(~chi_40 -> ~m
-     .u_L-    mu+)' 
+     .u_L-    mu+)'
       write(nout,102) brneutsell(4),2,-ismul,imu,      'BR(~chi_40 -> ~m
-     .u_L+    mu-)' 
+     .u_L+    mu-)'
       endif
-      if(brneutselr(4).ne.0.D0) then      
+      if(brneutselr(4).ne.0.D0) then
       write(nout,102) brneutselr(4),2,ismur,-imu,      'BR(~chi_40 -> ~m
-     .u_R-    mu+)' 
+     .u_R-    mu+)'
       write(nout,102) brneutselr(4),2,-ismur,imu,      'BR(~chi_40 -> ~m
      .u_R+    mu-)'
       endif
@@ -2161,7 +2163,7 @@ C     =============================
 *     NEUTRALINO4 : Three body
 C     =============================
 
-      if(neuttot3(4).ne.0.D0) then 
+      if(neuttot3(4).ne.0.D0) then
       write(nout,49) 'neutralino4 3-body decays'
       write(nout,103)
       if(brneutup(4,1).ne.0.D0) then
@@ -2405,7 +2407,7 @@ C     =============================
      . ~g      bb      b)'
       endif
       endif
-     
+
 c ------------------ c
 c neutralino5 decays c
 c ------------------ c
@@ -2626,13 +2628,13 @@ c
       endif
       if(brneutsell(5).ne.0.D0) then
       write(nout,102) brneutsell(5),2,ismul,-imu,      'BR(~chi_50 -> ~m
-     .u_L-    mu+)' 
+     .u_L-    mu+)'
       write(nout,102) brneutsell(5),2,-ismul,imu,      'BR(~chi_50 -> ~m
-     .u_L+    mu-)' 
+     .u_L+    mu-)'
       endif
-      if(brneutselr(5).ne.0.D0) then      
+      if(brneutselr(5).ne.0.D0) then
       write(nout,102) brneutselr(5),2,ismur,-imu,      'BR(~chi_50 -> ~m
-     .u_R-    mu+)' 
+     .u_R-    mu+)'
       write(nout,102) brneutselr(5),2,-ismur,imu,      'BR(~chi_50 -> ~m
      .u_R+    mu-)'
       endif
@@ -2691,7 +2693,7 @@ C     =============================
 *     NEUTRALINO5 : Three body
 C     =============================
 
-      if(neuttot3(5).ne.0.D0) then 
+      if(neuttot3(5).ne.0.D0) then
       write(nout,49) 'neutralino5 3-body decays'
       write(nout,103)
       if(brneutup(5,1).ne.0.D0) then
@@ -2887,7 +2889,7 @@ C     =============================
       write(nout,104) brneutnutau(5,4),3,in4,-intau,intau,'BR(~chi_50 ->
      . ~chi_40 nu_taub nu_tau)'
       endif
-*    
+*
       if(brchubd(5,1).ne.0.D0) then
       write(nout,104) brchubd(5,1),3,ic1,iub,id,       'BR(~chi_50 -> ~c
      .hi_1+ ub      d)'
@@ -2985,7 +2987,7 @@ C     =============================
      . ~g      bb      b)'
       endif
       endif
-C 
+C
 c ------------- c
 c Gluino decays c
 c ------------- c
@@ -3243,22 +3245,22 @@ c ------------------ c
       endif
       endif
 C-----------
-* THREE BODY 
+* THREE BODY
 C-----------
       if(selltot3.ne.0.D0) then
       write(nout,49) 'selectron_L 3-body decays'
        write(nout,103)
       if(brsellstau1star.ne.0.D0) then
       write(nout,104) brsellstau1star,3,-istau1,ie,itau,
-     .'BR(~e_L -> ~tau_1* e- tau)' 
+     .'BR(~e_L -> ~tau_1* e- tau)'
       endif
       if(brsellstau1.ne.0.D0) then
       write(nout,104) brsellstau1,3,istau1,ie,-itau,
-     .'BR(~e_L -> ~tau_1 e- taub)' 
+     .'BR(~e_L -> ~tau_1 e- taub)'
       endif
       if(brsellstau1nutau.ne.0.D0) then
       write(nout,104)brsellstau1nutau,3,istau1,ine,-intau,
-     . 'BR(~e_L -> ~tau_1 nu_e nu_taub)' 
+     . 'BR(~e_L -> ~tau_1 nu_e nu_taub)'
       endif
       endif
 
@@ -3300,7 +3302,7 @@ c ------------------ c
       endif
       endif
 C-----------
-* THREE BODY 
+* THREE BODY
 C-----------
 
       if(selrtot3.ne.0.D0) then
@@ -3308,14 +3310,14 @@ C-----------
        write(nout,103)
       if(brselrstaustar.ne.0.D0) then
       write(nout,104) brselrstaustar,3,-istau1,ie,-itau,
-     .'BR(~e_R -> ~tau_1* e- taub)' 
+     .'BR(~e_R -> ~tau_1* e- taub)'
       endif
       if(brselrstau.ne.0.D0) then
       write(nout,104) brselrstau,3,istau1,ie,itau,
-     .'BR(~e_R -> ~tau_1 e- tau-)' 
+     .'BR(~e_R -> ~tau_1 e- tau-)'
       endif
       endif
-      
+
 c -------------- c
 c Smuon_L decays c
 c -------------- c
@@ -3345,16 +3347,16 @@ c -------------- c
      .'
       endif
       if(brsellcharnue(1).ne.0.D0) then
-      write(nout,102) brsellcharnue(1),2,-ic1,inmu,'BR(~mu_L -> ~chi_1- 
+      write(nout,102) brsellcharnue(1),2,-ic1,inmu,'BR(~mu_L -> ~chi_1-
      .nu_mu)'
       endif
       if(brsellcharnue(2).ne.0.D0) then
-      write(nout,102) brsellcharnue(2),2,-ic2,inmu,'BR(~mu_L -> ~chi_2- 
+      write(nout,102) brsellcharnue(2),2,-ic2,inmu,'BR(~mu_L -> ~chi_2-
      .nu_mu)'
       endif
       endif
 C-----------
-* THREE BODY 
+* THREE BODY
 C-----------
 
             if(selltot3.ne.0.D0) then
@@ -3362,15 +3364,15 @@ C-----------
        write(nout,103)
       if(brsellstau1star.ne.0.D0) then
       write(nout,104) brsellstau1star,3,-istau1,imu,itau,
-     .'BR(~e_L -> ~tau_1* mu- tau)' 
+     .'BR(~e_L -> ~tau_1* mu- tau)'
       endif
       if(brsellstau1.ne.0.D0) then
       write(nout,104) brsellstau1,3,istau1,imu,-itau,
-     .'BR(~e_L -> ~tau_1 mu- taub)' 
+     .'BR(~e_L -> ~tau_1 mu- taub)'
       endif
       if(brsellstau1nutau.ne.0.D0) then
       write(nout,104)brsellstau1nutau,3,istau1,inmu,-intau,
-     . 'BR(~e_L -> ~tau_1 nu_mu nu_taub)' 
+     . 'BR(~e_L -> ~tau_1 nu_mu nu_taub)'
       endif
       endif
 
@@ -3403,27 +3405,27 @@ c ------------------ c
      .'
       endif
       if(brselrcharnue(1).ne.0.D0) then
-      write(nout,102) brselrcharnue(1),2,-ic1,inmu,'BR(~mu_R -> ~chi_1- 
+      write(nout,102) brselrcharnue(1),2,-ic1,inmu,'BR(~mu_R -> ~chi_1-
      .nu_mu)'
       endif
       if(brselrcharnue(2).ne.0.D0) then
-      write(nout,102) brselrcharnue(2),2,-ic2,inmu,'BR(~mu_R -> ~chi_2- 
+      write(nout,102) brselrcharnue(2),2,-ic2,inmu,'BR(~mu_R -> ~chi_2-
      .nu_mu)'
       endif
       endif
 C-----------
-* THREE BODY 
+* THREE BODY
 C-----------
       if(selrtot3.ne.0.D0) then
           write(nout,103)
       write(nout,49) 'smuon_R 3-body decays'
       if(brselrstaustar.ne.0.D0) then
       write(nout,104) brselrstaustar,3,-istau1,imu,-itau,
-     .'BR(~mu_R -> ~tau_1* mu- taub)' 
+     .'BR(~mu_R -> ~tau_1* mu- taub)'
       endif
       if(brselrstau.ne.0.D0) then
       write(nout,104) brselrstau,3,istau1,imu,itau,
-     .'BR(~mu_R -> ~tau_1 mu- tau-)' 
+     .'BR(~mu_R -> ~tau_1 mu- tau-)'
       endif
       endif
 
@@ -3436,31 +3438,31 @@ c ------------- c
         write(nout,49) 'stau1 2-body decays'
         write(nout,101)
       if(brstau1neut(1).ne.0.D0) then
-      write(nout,102) brstau1neut(1),2,in1,itau,  'BR(~tau_1 -> ~chi_10 
+      write(nout,102) brstau1neut(1),2,in1,itau,  'BR(~tau_1 -> ~chi_10
      . tau-)'
       endif
       if(brstau1neut(2).ne.0.D0) then
-      write(nout,102) brstau1neut(2),2,in2,itau,  'BR(~tau_1 -> ~chi_20 
+      write(nout,102) brstau1neut(2),2,in2,itau,  'BR(~tau_1 -> ~chi_20
      . tau-)'
       endif
       if(brstau1neut(3).ne.0.D0) then
-      write(nout,102) brstau1neut(3),2,in3,itau,  'BR(~tau_1 -> ~chi_30 
+      write(nout,102) brstau1neut(3),2,in3,itau,  'BR(~tau_1 -> ~chi_30
      . tau-)'
       endif
       if(brstau1neut(4).ne.0.D0) then
-      write(nout,102) brstau1neut(4),2,in4,itau,  'BR(~tau_1 -> ~chi_40 
+      write(nout,102) brstau1neut(4),2,in4,itau,  'BR(~tau_1 -> ~chi_40
      . tau-)'
       endif
       if(brstau1neut(5).ne.0.D0) then
-      write(nout,102) brstau1neut(5),2,in5,itau,  'BR(~tau_1 -> ~chi_50 
+      write(nout,102) brstau1neut(5),2,in5,itau,  'BR(~tau_1 -> ~chi_50
      . tau-)'
       endif
       if(brstau1char(1).ne.0.D0) then
-      write(nout,102) brstau1char(1),2,-ic1,intau,'BR(~tau_1 -> ~chi_1- 
+      write(nout,102) brstau1char(1),2,-ic1,intau,'BR(~tau_1 -> ~chi_1-
      . nu_tau)'
       endif
       if(brstau1char(2).ne.0.D0) then
-      write(nout,102) brstau1char(2),2,-ic2,intau,'BR(~tau_1 -> ~chi_2- 
+      write(nout,102) brstau1char(2),2,-ic2,intau,'BR(~tau_1 -> ~chi_2-
      . nu_tau)'
       endif
       if(brstau1hcsn(1).ne.0.D0) then
@@ -3482,31 +3484,31 @@ c ------------- c
         write(nout,49) 'stau_2 2-body decays'
         write(nout,101)
       if(brstau2neut(1).ne.0.D0) then
-      write(nout,102) brstau2neut(1),2,in1,itau,  'BR(~tau_2 -> ~chi_10 
+      write(nout,102) brstau2neut(1),2,in1,itau,  'BR(~tau_2 -> ~chi_10
      . tau-)'
       endif
       if(brstau2neut(2).ne.0.D0) then
-      write(nout,102) brstau2neut(2),2,in2,itau,  'BR(~tau_2 -> ~chi_20 
+      write(nout,102) brstau2neut(2),2,in2,itau,  'BR(~tau_2 -> ~chi_20
      . tau-)'
       endif
       if(brstau2neut(3).ne.0.D0) then
-      write(nout,102) brstau2neut(3),2,in3,itau,  'BR(~tau_2 -> ~chi_30 
+      write(nout,102) brstau2neut(3),2,in3,itau,  'BR(~tau_2 -> ~chi_30
      . tau-)'
       endif
       if(brstau2neut(4).ne.0.D0) then
-      write(nout,102) brstau2neut(4),2,in4,itau,  'BR(~tau_2 -> ~chi_40 
+      write(nout,102) brstau2neut(4),2,in4,itau,  'BR(~tau_2 -> ~chi_40
      . tau-)'
       endif
       if(brstau2neut(5).ne.0.D0) then
-      write(nout,102) brstau2neut(5),2,in5,itau,  'BR(~tau_2 -> ~chi_50 
+      write(nout,102) brstau2neut(5),2,in5,itau,  'BR(~tau_2 -> ~chi_50
      . tau-)'
       endif
       if(brstau2char(1).ne.0.D0) then
-      write(nout,102) brstau2char(1),2,-ic1,intau,'BR(~tau_2 -> ~chi_1- 
+      write(nout,102) brstau2char(1),2,-ic1,intau,'BR(~tau_2 -> ~chi_1-
      . nu_tau)'
       endif
       if(brstau2char(2).ne.0.D0) then
-      write(nout,102) brstau2char(2),2,-ic2,intau,'BR(~tau_2 -> ~chi_2- 
+      write(nout,102) brstau2char(2),2,-ic2,intau,'BR(~tau_2 -> ~chi_2-
      . nu_tau)'
       endif
       if(brstau2hcsn(1).ne.0.D0) then
@@ -3543,21 +3545,21 @@ c ------------- c
       endif
       endif
 C-----------
-* THREE BODY 
+* THREE BODY
 C-----------
       if(stau2tot3.ne.0.D0) then
       write(nout,49) 'stau_2 3-body decays'
       write(nout,103)
       if( brstau2stau1star.ne.0.D0) then
-      write(nout,104) brstau2stau1star,3,-istau1,itau,-itau,    
+      write(nout,104) brstau2stau1star,3,-istau1,itau,-itau,
      .'BR(~tau_2 -> ~tau_1* tau taub)'
       endif
       if( brstau2stau1.ne.0.D0) then
-      write(nout,104) brstau2stau1,3,istau1,itau,itau,    
+      write(nout,104) brstau2stau1,3,istau1,itau,itau,
      .'BR(~tau_2 -> ~tau_1 tau tau)'
       endif
       if(brstau2stau1nn.ne.0.D0) then
-      write(nout,104) brstau2stau1nn,3,istau1,intau,intau,    
+      write(nout,104) brstau2stau1nn,3,istau1,intau,intau,
      .'BR(~tau_2 -> ~tau_1 nu_tau nu_tau)'
       endif
       endif
@@ -3600,22 +3602,22 @@ c -------------------- c
       endif
       endif
 C-----------
-* THREE BODY 
+* THREE BODY
 C-----------
       if(sneltot3.ne.0.D0) then
        write(nout,49) 'snu_eL 3-body decays'
        write(nout,103)
       if(brsnestau1star.ne.0.D0) then
       write(nout,104) brsnestau1star,3,ine,-istau1,-itau,
-     .'BR(~nu_eL -> nu_e ~tau_1* taub)' 
+     .'BR(~nu_eL -> nu_e ~tau_1* taub)'
       endif
       if(brsnestau1.ne.0.D0) then
       write(nout,104) brsnestau1,3,ine,istau1,itau,
-     .'BR(~nu_eL -> nu_e ~tau_1 tau)' 
+     .'BR(~nu_eL -> nu_e ~tau_1 tau)'
       endif
       if(brsnestau1nutau.ne.0.D0) then
       write(nout,104) brsnestau1nutau,3,ie,istau1,intau,
-     .'BR(~nu_eL -> e- ~tau_1 nu_tau)' 
+     .'BR(~nu_eL -> e- ~tau_1 nu_tau)'
       endif
       endif
 
@@ -3628,51 +3630,51 @@ c ---------------- c
         write(nout,49) 'snu_muL 2-body decays'
         write(nout,101)
       if(brsnellneut(1).ne.0.D0) then
-      write(nout,102) brsnellneut(1),2,in1,inmu, 'BR(~nu_muL -> ~chi_10 
+      write(nout,102) brsnellneut(1),2,in1,inmu, 'BR(~nu_muL -> ~chi_10
      .nu_mu)'
       endif
       if(brsnellneut(2).ne.0.D0) then
-      write(nout,102) brsnellneut(2),2,in2,inmu, 'BR(~nu_muL -> ~chi_20 
+      write(nout,102) brsnellneut(2),2,in2,inmu, 'BR(~nu_muL -> ~chi_20
      .nu_mu)'
       endif
       if(brsnellneut(3).ne.0.D0) then
-      write(nout,102) brsnellneut(3),2,in3,inmu, 'BR(~nu_muL -> ~chi_30 
+      write(nout,102) brsnellneut(3),2,in3,inmu, 'BR(~nu_muL -> ~chi_30
      .nu_mu)'
       endif
       if(brsnellneut(4).ne.0.D0) then
-      write(nout,102) brsnellneut(4),2,in4,inmu, 'BR(~nu_muL -> ~chi_40 
+      write(nout,102) brsnellneut(4),2,in4,inmu, 'BR(~nu_muL -> ~chi_40
      .nu_mu)'
       endif
       if(brsnellneut(5).ne.0.D0) then
-      write(nout,102) brsnellneut(5),2,in5,inmu, 'BR(~nu_muL -> ~chi_50 
+      write(nout,102) brsnellneut(5),2,in5,inmu, 'BR(~nu_muL -> ~chi_50
      .nu_mu)'
       endif
       if(brsnellchar(1).ne.0.D0) then
-      write(nout,102) brsnellchar(1),2,ic1,imu,  'BR(~nu_muL -> ~chi_1+ 
+      write(nout,102) brsnellchar(1),2,ic1,imu,  'BR(~nu_muL -> ~chi_1+
      .mu-)'
       endif
       if(brsnellchar(2).ne.0.D0) then
-      write(nout,102) brsnellchar(2),2,ic2,imu,  'BR(~nu_muL -> ~chi_2+ 
+      write(nout,102) brsnellchar(2),2,ic2,imu,  'BR(~nu_muL -> ~chi_2+
      .mu-)'
       endif
       endif
 C-----------
-* THREE BODY 
+* THREE BODY
 C-----------
       if(sneltot3.ne.0.D0) then
       write(nout,49) 'snu_muL 3-body decays'
       write(nout,103)
       if(brsnestau1star.ne.0.D0) then
       write(nout,104) brsnestau1star,3,inmu,-istau1,-itau,
-     .'BR(~nu_muL -> nu_mu ~tau_1* taub)' 
+     .'BR(~nu_muL -> nu_mu ~tau_1* taub)'
       endif
       if(brsnestau1.ne.0.D0) then
       write(nout,104) brsnestau1,3,inmu,istau1,itau,
-     .'BR(~nu_muL -> nu_mu ~tau_1 tau)' 
+     .'BR(~nu_muL -> nu_mu ~tau_1 tau)'
       endif
       if(brsnestau1nutau.ne.0.D0) then
       write(nout,104) brsnestau1nutau,3,imu,istau1,intau,
-     .'BR(~nu_muL -> mu- ~tau_1 nu_tau)' 
+     .'BR(~nu_muL -> mu- ~tau_1 nu_tau)'
       endif
       endif
 
@@ -3731,21 +3733,21 @@ c --------------- c
       endif
 
 C-----------
-* THREE BODY 
+* THREE BODY
 C-----------
       if(sntautot3.ne.0.D0) then
         write(nout,49) 'snu_tauL 3-body decays'
         write(nout,103)
       if(brsntaustau1star.ne.0.D0) then
-      write(nout,104) brsntaustau1star,3,intau,-istau1,-itau, 
+      write(nout,104) brsntaustau1star,3,intau,-istau1,-itau,
      .'BR(~nu_tauL -> nu_tau ~tau_1* taub)'
       endif
       if(brsntaustau1.ne.0.D0) then
-      write(nout,104) brsntaustau1,3,intau,istau1,itau, 
+      write(nout,104) brsntaustau1,3,intau,istau1,itau,
      .'BR(~nu_tauL -> nu_tau ~tau_1 tau)'
       endif
       if(brsntaustau1nutau.ne.0.D0) then
-      write(nout,104) brsntaustau1nutau,3,itau,istau1,intau, 
+      write(nout,104) brsntaustau1nutau,3,itau,istau1,intau,
      .'BR(~nu_tauL -> tau ~tau_1 nu_tau)'
       endif
       endif
@@ -3933,7 +3935,7 @@ c --------------- c
       if(brsuprnup(2).ne.0.D0) then
       write(nout,102) brsuprnup(2),2,in2,ic   ,'BR(~c_R -> ~chi_20 c)'
       endif
-      if(brsuprnup(3).ne.0.D0) then      
+      if(brsuprnup(3).ne.0.D0) then
       write(nout,102) brsuprnup(3),2,in3,ic   ,'BR(~c_R -> ~chi_30 c)'
       endif
       if(brsuprnup(4).ne.0.D0) then
@@ -4086,7 +4088,7 @@ C   ========================
 *   STOP1: Three body
 C   ========================
       if(stoptot3(1).ne.0.D0) then
-         write(nout,49) 'stop1 3-body decays'   
+         write(nout,49) 'stop1 3-body decays'
          write(nout,103)
       if(brstopw(1,1).ne.0.D0) then
       write(nout,104) brstopw(1,1),3,in1,ib,iwc,       'BR(~t_1 -> ~chi_
@@ -4203,19 +4205,19 @@ C   ========================
      ._2     tau+ nu_tau)'
       endif
       if(brstelsbnu(1,1).ne.0.D0) then
-      write(nout,104) brstelsbnu(1,1),3,isb1,-ie,ine,  'BR(~t_1 -> ~b_1 
+      write(nout,104) brstelsbnu(1,1),3,isb1,-ie,ine,  'BR(~t_1 -> ~b_1
      .    e+   nu_e)'
       endif
       if(brstelsbnu(1,2).ne.0.D0) then
-      write(nout,104) brstelsbnu(1,2),3,isb2,-ie,ine,  'BR(~t_1 -> ~b_2 
+      write(nout,104) brstelsbnu(1,2),3,isb2,-ie,ine,  'BR(~t_1 -> ~b_2
      .    e+   nu_e)'
       endif
       if(brstelsbnu(1,1).ne.0.D0) then
-      write(nout,104) brstelsbnu(1,1),3,isb1,-imu,inmu,'BR(~t_1 -> ~b_1 
+      write(nout,104) brstelsbnu(1,1),3,isb1,-imu,inmu,'BR(~t_1 -> ~b_1
      .    mu+  nu_mu)'
       endif
       if(brstelsbnu(1,2).ne.0.D0) then
-      write(nout,104) brstelsbnu(1,2),3,isb2,-imu,inmu,'BR(~t_1 -> ~b_2 
+      write(nout,104) brstelsbnu(1,2),3,isb2,-imu,inmu,'BR(~t_1 -> ~b_2
      .    mu+  nu_mu)'
       endif
       endif
@@ -4356,7 +4358,7 @@ C   ========================
       write(nout,104) brstsel(2,2),3,-iselr,ib,ine,    'BR(~t_2 -> ~e_R+
      .    b  nu_e)'
       endif
-      if(brstsel(2,1).ne.0.D0) then      
+      if(brstsel(2,1).ne.0.D0) then
       write(nout,104) brstsel(2,1),3,-ismul,ib,inmu,   'BR(~t_2 -> ~mu_L
      .+   b  nu_mu)'
       endif
@@ -4405,19 +4407,19 @@ C   ========================
      ._2     tau+ nu_tau)'
       endif
       if(brstelsbnu(2,1).ne.0.D0) then
-      write(nout,104) brstelsbnu(2,1),3,isb1,-ie,ine,  'BR(~t_2 -> ~b_1 
+      write(nout,104) brstelsbnu(2,1),3,isb1,-ie,ine,  'BR(~t_2 -> ~b_1
      .    e+   nu_e)'
       endif
       if(brstelsbnu(2,2).ne.0.D0) then
-      write(nout,104) brstelsbnu(2,2),3,isb2,-ie,ine,  'BR(~t_2 -> ~b_2 
+      write(nout,104) brstelsbnu(2,2),3,isb2,-ie,ine,  'BR(~t_2 -> ~b_2
      .    e+   nu_e)'
       endif
       if(brstelsbnu(2,1).ne.0.D0) then
-      write(nout,104) brstelsbnu(2,1),3,isb1,-imu,inmu,'BR(~t_2 -> ~b_1 
+      write(nout,104) brstelsbnu(2,1),3,isb1,-imu,inmu,'BR(~t_2 -> ~b_1
      .    mu+  nu_mu)'
       endif
       if(brstelsbnu(2,2).ne.0.D0) then
-      write(nout,104) brstelsbnu(2,2),3,isb2,-imu,inmu,'BR(~t_2 -> ~b_2 
+      write(nout,104) brstelsbnu(2,2),3,isb2,-imu,inmu,'BR(~t_2 -> ~b_2
      .    mu+  nu_mu)'
       endif
       if(brst2st1tt.ne.0.D0) then
@@ -4469,7 +4471,7 @@ c --------------- c
 c Sbottom1 decays c
 c --------------- c
       write(nout,99)
-      write(nout,100) 1000005,sbottot(1),'sbottom1'   
+      write(nout,100) 1000005,sbottot(1),'sbottom1'
       if(sbottot2(1).ne.0.D0) then
         write(nout,49) 'sbottom1 2-body decays'
         write(nout,101)
@@ -4567,19 +4569,19 @@ C   ========================
      .     tb   b)'
       endif
       if(brsbupstdow(1,1).ne.0.D0) then
-      write(nout,104) brsbupstdow(1,1),3,ist1,iub,id,  'BR(~b_1 -> ~t_1 
+      write(nout,104) brsbupstdow(1,1),3,ist1,iub,id,  'BR(~b_1 -> ~t_1
      .     ub   d)'
       endif
       if(brsbupstdow(1,2).ne.0.D0) then
-      write(nout,104) brsbupstdow(1,2),3,ist2,iub,id,  'BR(~b_1 -> ~t_2 
+      write(nout,104) brsbupstdow(1,2),3,ist2,iub,id,  'BR(~b_1 -> ~t_2
      .     ub   d)'
       endif
       if(brsbupstdow(1,1).ne.0.D0) then
-      write(nout,104) brsbupstdow(1,1),3,ist1,icb,is,  'BR(~b_1 -> ~t_1 
+      write(nout,104) brsbupstdow(1,1),3,ist1,icb,is,  'BR(~b_1 -> ~t_1
      .     cb   s)'
       endif
       if(brsbupstdow(1,2).ne.0.D0) then
-      write(nout,104) brsbupstdow(1,2),3,ist2,icb,is,  'BR(~b_1 -> ~t_2 
+      write(nout,104) brsbupstdow(1,2),3,ist2,icb,is,  'BR(~b_1 -> ~t_2
      .     cb   s)'
       endif
       if(brsbtaustnu(1,1).ne.0.D0) then
@@ -4728,19 +4730,19 @@ C   ========================
      .     tb     b)'
       endif
       if(brsbupstdow(2,1).ne.0.D0) then
-      write(nout,104) brsbupstdow(2,1),3,ist1,iub,id,  'BR(~b_2 -> ~t_1 
+      write(nout,104) brsbupstdow(2,1),3,ist1,iub,id,  'BR(~b_2 -> ~t_1
      .     ub     d)'
       endif
       if(brsbupstdow(2,2).ne.0.D0) then
-      write(nout,104) brsbupstdow(2,2),3,ist2,iub,id,  'BR(~b_2 -> ~t_2 
+      write(nout,104) brsbupstdow(2,2),3,ist2,iub,id,  'BR(~b_2 -> ~t_2
      .     ub     d)'
       endif
       if(brsbupstdow(2,1).ne.0.D0) then
-      write(nout,104) brsbupstdow(2,1),3,ist1,icb,is,  'BR(~b_2 -> ~t_1 
+      write(nout,104) brsbupstdow(2,1),3,ist1,icb,is,  'BR(~b_2 -> ~t_1
      .     cb     s)'
       endif
       if(brsbupstdow(2,2).ne.0.D0) then
-      write(nout,104) brsbupstdow(2,2),3,ist2,icb,is,  'BR(~b_2 -> ~t_2 
+      write(nout,104) brsbupstdow(2,2),3,ist2,icb,is,  'BR(~b_2 -> ~t_2
      .     cb     s)'
       endif
       if(brsbtaustnu(2,1).ne.0.D0) then
@@ -4765,10 +4767,10 @@ C   ========================
       endif
       if(brsbelstnu(2,2).ne.0.D0) then
       write(nout,104) brsbelstnu(2,2),3,ist1,imu,-inmu,'BR(~b_2 -> ~t_2
-     .     mu-    nu_mub)' 
+     .     mu-    nu_mub)'
       endif
       if(brsb2sb1bb.ne.0.D0) then
-      write(nout,104) brsb2sb1bb,3,isb1,ib,ibb,        'BR(~b_2 -> ~b_1 
+      write(nout,104) brsb2sb1bb,3,isb1,ib,ibb,        'BR(~b_2 -> ~b_1
      .     b      bb)'
       endif
       if(brsb2sb1starbb.ne.0.D0) then
@@ -4776,46 +4778,46 @@ C   ========================
      .     b      b)'
       endif
       if(brsb2sb1tt.ne.0.D0) then
-      write(nout,104) brsb2sb1tt,3,isb1,it,itb,        'BR(~b_2 -> ~b_1 
+      write(nout,104) brsb2sb1tt,3,isb1,it,itb,        'BR(~b_2 -> ~b_1
      .     t      tb)'
       endif
       if(brsb2sb1uu.ne.0.D0) then
-      write(nout,104) brsb2sb1uu,3,isb1,iu,iub,        'BR(~b_2 -> ~b_1 
+      write(nout,104) brsb2sb1uu,3,isb1,iu,iub,        'BR(~b_2 -> ~b_1
      .     u      ub)'
       endif
       if(brsb2sb1dd.ne.0.D0) then
-      write(nout,104) brsb2sb1dd,3,isb1,id,idb,        'BR(~b_2 -> ~b_1 
+      write(nout,104) brsb2sb1dd,3,isb1,id,idb,        'BR(~b_2 -> ~b_1
      .     d      db)'
       endif
       if(brsb2sb1uu.ne.0.D0) then
-      write(nout,104) brsb2sb1uu,3,isb1,ic,icb,        'BR(~b_2 -> ~b_1 
+      write(nout,104) brsb2sb1uu,3,isb1,ic,icb,        'BR(~b_2 -> ~b_1
      .     c      cb)'
       endif
       if(brsb2sb1dd.ne.0.D0) then
-      write(nout,104) brsb2sb1dd,3,isb1,is,isb,        'BR(~b_2 -> ~b_1 
+      write(nout,104) brsb2sb1dd,3,isb1,is,isb,        'BR(~b_2 -> ~b_1
      .     s      sb)'
       endif
       if(brsb2sb1ee.ne.0.D0) then
-      write(nout,104) brsb2sb1ee,3,isb1,ie,-ie,        'BR(~b_2 -> ~b_1 
+      write(nout,104) brsb2sb1ee,3,isb1,ie,-ie,        'BR(~b_2 -> ~b_1
      .     e-     e+)'
-      write(nout,104) brsb2sb1ee,3,isb1,imu,-imu,      'BR(~b_2 -> ~b_1 
+      write(nout,104) brsb2sb1ee,3,isb1,imu,-imu,      'BR(~b_2 -> ~b_1
      .     mu-    mu+)'
       endif
       if(brsb2sb1tautau.ne.0.D0) then
-      write(nout,104) brsb2sb1tautau,3,isb1,itau,-itau,'BR(~b_2 -> ~b_1 
+      write(nout,104) brsb2sb1tautau,3,isb1,itau,-itau,'BR(~b_2 -> ~b_1
      .     tau-   tau+)'
       endif
       if(brsb2sb1nunu.ne.0.D0) then
-      write(nout,104) brsb2sb1nunu,3,isb1,ine,-ine,    'BR(~b_2 -> ~b_1 
+      write(nout,104) brsb2sb1nunu,3,isb1,ine,-ine,    'BR(~b_2 -> ~b_1
      .     nu_e   nu_eb)'
-      write(nout,104) brsb2sb1nunu,3,isb1,inmu,-inmu,  'BR(~b_2 -> ~b_1 
+      write(nout,104) brsb2sb1nunu,3,isb1,inmu,-inmu,  'BR(~b_2 -> ~b_1
      .     nu_mu  nu_mub)'
-      write(nout,104) brsb2sb1nunu,3,isb1,intau,-intau,'BR(~b_2 -> ~b_1 
+      write(nout,104) brsb2sb1nunu,3,isb1,intau,-intau,'BR(~b_2 -> ~b_1
      .     nu_tau nu_taub)'
       endif
       endif
 c ==================================================================== c
-c                       end of the output file                          
+c                       end of the output file
 c ==================================================================== c
 
  49   format('#',20x,A,E16.8)
