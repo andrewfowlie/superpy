@@ -1,100 +1,92 @@
 # SuperPy info file, with cube indicies.
 # This info file can be used for plot labels.
-lab1=a0
-lab2=alphas
-lab3=invalpha
-lab4=lambda
-lab5=m0
-lab6=m12
-lab7=mb
-lab8=mt
-lab9=signmu
-lab10=tanbeta
-lab11=bsg
-lab12=bsmumu
-lab13=btaunu
-lab14=deltaMb
-lab15=gm2
-lab16=Higgs
-lab17=LHC
-lab18=mw
-lab19=Natural
-lab20=oh2
-lab21=sigsip
-lab22=sineff
-lab23=chi2:bsg
-lab24=chi2:bsmumu
-lab25=chi2:btaunu
-lab26=chi2:deltaMb
-lab27=chi2:gm2
-lab28=chi2:Higgs
-lab29=chi2:LHC
-lab30=chi2:mw
-lab31=chi2:Natural
-lab32=chi2:oh2
-lab33=chi2:sigsip
-lab34=chi2:sineff
-lab35=Mass:25
-lab36=Mass:35
-lab37=Mass:45
-lab38=Mass:36
-lab39=Mass:46
-lab40=Mass:37
-lab41=Mass:1000001
-lab42=Mass:2000001
-lab43=Mass:1000002
-lab44=Mass:2000002
-lab45=Mass:1000003
-lab46=Mass:2000003
-lab47=Mass:1000004
-lab48=Mass:2000004
-lab49=Mass:1000005
-lab50=Mass:2000005
-lab51=Mass:1000006
-lab52=Mass:2000006
-lab53=Mass:1000011
-lab54=Mass:2000011
-lab55=Mass:1000012
-lab56=Mass:1000013
-lab57=Mass:2000013
-lab58=Mass:1000014
-lab59=Mass:1000015
-lab60=Mass:2000015
-lab61=Mass:1000016
-lab62=Mass:1000021
-lab63=Mass:1000022
-lab64=Mass:1000023
-lab65=Mass:1000025
-lab66=Mass:1000035
-lab67=Mass:1000045
-lab68=Mass:1000024
-lab69=Mass:1000037
-lab70=mu
-lab71=NMNMIX:(1, 1)
-lab72=NMNMIX:(1, 2)
-lab73=NMNMIX:(1, 3)
-lab74=NMNMIX:(1, 4)
-lab75=NMNMIX:(1, 5)
-lab76=NMNMIX:(2, 1)
-lab77=NMNMIX:(2, 2)
-lab78=NMNMIX:(2, 3)
-lab79=NMNMIX:(2, 4)
-lab80=NMNMIX:(2, 5)
-lab81=NMNMIX:(3, 1)
-lab82=NMNMIX:(3, 2)
-lab83=NMNMIX:(3, 3)
-lab84=NMNMIX:(3, 4)
-lab85=NMNMIX:(3, 5)
-lab86=NMNMIX:(4, 1)
-lab87=NMNMIX:(4, 2)
-lab88=NMNMIX:(4, 3)
-lab89=NMNMIX:(4, 4)
-lab90=NMNMIX:(4, 5)
-lab91=NMNMIX:(5, 1)
-lab92=NMNMIX:(5, 2)
-lab93=NMNMIX:(5, 3)
-lab94=NMNMIX:(5, 4)
-lab95=NMNMIX:(5, 5)
+lab1=bsg
+lab2=bsmumu
+lab3=btaunu
+lab4=deltaMb
+lab5=gm2
+lab6=Higgs
+lab7=LHC
+lab8=LHC_interp
+lab9=mw
+lab10=Natural
+lab11=oh2
+lab12=sigsip
+lab13=sineff
+lab14=chi2:bsg
+lab15=chi2:bsmumu
+lab16=chi2:btaunu
+lab17=chi2:deltaMb
+lab18=chi2:gm2
+lab19=chi2:Higgs
+lab20=chi2:LHC
+lab21=chi2:LHC_interp
+lab22=chi2:mw
+lab23=chi2:Natural
+lab24=chi2:oh2
+lab25=chi2:sigsip
+lab26=chi2:sineff
+lab27=Mass:25
+lab28=Mass:35
+lab29=Mass:45
+lab30=Mass:36
+lab31=Mass:46
+lab32=Mass:37
+lab33=Mass:1000001
+lab34=Mass:2000001
+lab35=Mass:1000002
+lab36=Mass:2000002
+lab37=Mass:1000003
+lab38=Mass:2000003
+lab39=Mass:1000004
+lab40=Mass:2000004
+lab41=Mass:1000005
+lab42=Mass:2000005
+lab43=Mass:1000006
+lab44=Mass:2000006
+lab45=Mass:1000011
+lab46=Mass:2000011
+lab47=Mass:1000012
+lab48=Mass:1000013
+lab49=Mass:2000013
+lab50=Mass:1000014
+lab51=Mass:1000015
+lab52=Mass:2000015
+lab53=Mass:1000016
+lab54=Mass:1000021
+lab55=Mass:1000022
+lab56=Mass:1000023
+lab57=Mass:1000025
+lab58=Mass:1000035
+lab59=Mass:1000045
+lab60=Mass:1000024
+lab61=Mass:1000037
+lab62=mu
+lab63=NMNMIX:(1, 1)
+lab64=NMNMIX:(1, 2)
+lab65=NMNMIX:(1, 3)
+lab66=NMNMIX:(1, 4)
+lab67=NMNMIX:(1, 5)
+lab68=NMNMIX:(2, 1)
+lab69=NMNMIX:(2, 2)
+lab70=NMNMIX:(2, 3)
+lab71=NMNMIX:(2, 4)
+lab72=NMNMIX:(2, 5)
+lab73=NMNMIX:(3, 1)
+lab74=NMNMIX:(3, 2)
+lab75=NMNMIX:(3, 3)
+lab76=NMNMIX:(3, 4)
+lab77=NMNMIX:(3, 5)
+lab78=NMNMIX:(4, 1)
+lab79=NMNMIX:(4, 2)
+lab80=NMNMIX:(4, 3)
+lab81=NMNMIX:(4, 4)
+lab82=NMNMIX:(4, 5)
+lab83=NMNMIX:(5, 1)
+lab84=NMNMIX:(5, 2)
+lab85=NMNMIX:(5, 3)
+lab86=NMNMIX:(5, 4)
+lab87=NMNMIX:(5, 5)
 # Priors.
 alphas Priors.GaussParameter (0.1184, 0.0007)
 mb Priors.GaussParameter (4.18, 0.03)
@@ -110,6 +102,7 @@ lambda Priors.LinearParameter (0.1, 0.4)
 LHC Likelihood.ExternalConstraint ()
 Higgs Likelihood.ExternalConstraint ()
 btaunu Likelihood.GaussConstraint (1.66, 0.33, 0.38)
+LHC_interp Likelihood.InterpolateLowerConstraint ('atlas_m0m12.dat', 0.01)
 Natural Likelihood.ExternalConstraint ()
 sineff Likelihood.GaussConstraint (0.23146, 0.00012, 0.00015)
 mw Likelihood.GaussConstraint (80.385, 0.015, 0.015)
@@ -121,9 +114,9 @@ oh2 Likelihood.GaussConstraintFractionalTau (0.1199, 0.0027, 0.1)
 bsmumu Likelihood.GaussConstraintFractionalTau (3.2e-09, 1.5e-09, 0.14)
 # MultiNest options.
 IS True
-Likelihood <module 'Likelihood' from '/home/andrew/WORKING/git-superpy/superpy/NMSSM/Likelihood.pyc'>
-LogLikelihood <function myloglike at 0x4034140>
-Prior <function myprior at 0x3eec050>
+Likelihood <module 'Likelihood' from '/home/andrew/WORKING/git-superpy/superpy/NMSSM/Likelihood.py'>
+LogLikelihood <function myloglike at 0x193a938>
+Prior <function myprior at 0x1438140>
 Priors <module 'Priors' from '/home/andrew/WORKING/git-superpy/superpy/NMSSM/Priors.pyc'>
 const_efficiency_mode False
 context 0
@@ -134,7 +127,7 @@ n_clustering_params 2
 n_dims 10
 n_iter_before_update 1
 n_live_points 10
-n_params 95
+n_params 97
 null_log_evidence -1e+90
 os <module 'os' from '/usr/lib/python2.7/os.pyc'>
 outputfiles_basename /home/andrew/WORKING/git-superpy/superpy/NMSSM/chains/CNMSSM

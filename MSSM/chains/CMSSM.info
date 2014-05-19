@@ -1,79 +1,88 @@
 # SuperPy info file, with cube indicies.
 # This info file can be used for plot labels.
-lab1=bsg
-lab2=bsmumu
-lab3=btaunu
-lab4=deltaMb
-lab5=gm2
-lab6=Higgs
-lab7=LHC
-lab8=mw
-lab9=Natural
-lab10=oh2
-lab11=sigsip
-lab12=sineff
-lab13=chi2:bsg
-lab14=chi2:bsmumu
-lab15=chi2:btaunu
-lab16=chi2:deltaMb
-lab17=chi2:gm2
-lab18=chi2:Higgs
-lab19=chi2:LHC
-lab20=chi2:mw
-lab21=chi2:Natural
-lab22=chi2:oh2
-lab23=chi2:sigsip
-lab24=chi2:sineff
-lab25=Mass:24
-lab26=Mass:25
-lab27=Mass:35
-lab28=Mass:36
-lab29=Mass:37
-lab30=Mass:1000021
-lab31=Mass:1000022
-lab32=Mass:1000023
-lab33=Mass:1000024
-lab34=Mass:1000025
-lab35=Mass:1000035
-lab36=Mass:1000037
-lab37=Mass:1000001
-lab38=Mass:1000002
-lab39=Mass:1000003
-lab40=Mass:1000004
-lab41=Mass:1000005
-lab42=Mass:1000006
-lab43=Mass:1000011
-lab44=Mass:1000012
-lab45=Mass:1000013
-lab46=Mass:1000014
-lab47=Mass:1000015
-lab48=Mass:1000016
-lab49=Mass:2000001
-lab50=Mass:2000002
-lab51=Mass:2000003
-lab52=Mass:2000004
-lab53=Mass:2000005
-lab54=Mass:2000006
-lab55=Mass:2000011
-lab56=Mass:2000013
-lab57=Mass:2000015
-lab58=mu
-lab59=NMIX:(1, 1)
-lab60=NMIX:(1, 2)
-lab61=NMIX:(1, 3)
-lab62=NMIX:(1, 4)
-lab63=NMIX:(2, 1)
-lab64=NMIX:(2, 2)
-lab65=NMIX:(2, 3)
-lab66=NMIX:(2, 4)
-lab67=NMIX:(3, 1)
-lab68=NMIX:(3, 2)
-lab69=NMIX:(3, 3)
-lab70=NMIX:(3, 4)
-lab71=NMIX:(4, 1)
-lab72=NMIX:(4, 2)
-lab73=NMIX:(4, 3)
-lab74=NMIX:(4, 4)
+lab1=a0
+lab2=alphas
+lab3=invalpha
+lab4=m0
+lab5=m12
+lab6=mb
+lab7=mt
+lab8=signmu
+lab9=tanbeta
+lab10=bsg
+lab11=bsmumu
+lab12=btaunu
+lab13=deltaMb
+lab14=gm2
+lab15=Higgs
+lab16=LHC
+lab17=mw
+lab18=Natural
+lab19=oh2
+lab20=sigsip
+lab21=sineff
+lab22=chi2:bsg
+lab23=chi2:bsmumu
+lab24=chi2:btaunu
+lab25=chi2:deltaMb
+lab26=chi2:gm2
+lab27=chi2:Higgs
+lab28=chi2:LHC
+lab29=chi2:mw
+lab30=chi2:Natural
+lab31=chi2:oh2
+lab32=chi2:sigsip
+lab33=chi2:sineff
+lab34=Mass:24
+lab35=Mass:25
+lab36=Mass:35
+lab37=Mass:36
+lab38=Mass:37
+lab39=Mass:1000021
+lab40=Mass:1000022
+lab41=Mass:1000023
+lab42=Mass:1000024
+lab43=Mass:1000025
+lab44=Mass:1000035
+lab45=Mass:1000037
+lab46=Mass:1000001
+lab47=Mass:1000002
+lab48=Mass:1000003
+lab49=Mass:1000004
+lab50=Mass:1000005
+lab51=Mass:1000006
+lab52=Mass:1000011
+lab53=Mass:1000012
+lab54=Mass:1000013
+lab55=Mass:1000014
+lab56=Mass:1000015
+lab57=Mass:1000016
+lab58=Mass:2000001
+lab59=Mass:2000002
+lab60=Mass:2000003
+lab61=Mass:2000004
+lab62=Mass:2000005
+lab63=Mass:2000006
+lab64=Mass:2000011
+lab65=Mass:2000013
+lab66=Mass:2000015
+lab67=mu
+lab68=NMIX:(1, 1)
+lab69=NMIX:(1, 2)
+lab70=NMIX:(1, 3)
+lab71=NMIX:(1, 4)
+lab72=NMIX:(2, 1)
+lab73=NMIX:(2, 2)
+lab74=NMIX:(2, 3)
+lab75=NMIX:(2, 4)
+lab76=NMIX:(3, 1)
+lab77=NMIX:(3, 2)
+lab78=NMIX:(3, 3)
+lab79=NMIX:(3, 4)
+lab80=NMIX:(4, 1)
+lab81=NMIX:(4, 2)
+lab82=NMIX:(4, 3)
+lab83=NMIX:(4, 4)
 # Priors.
 alphas Priors.GaussParameter (0.1184, 0.0007)
 mb Priors.GaussParameter (4.18, 0.03)
@@ -99,10 +108,10 @@ oh2 Likelihood.GaussConstraintFractionalTau (0.1199, 0.0027, 0.1)
 bsmumu Likelihood.GaussConstraintFractionalTau (3.2e-09, 1.5e-09, 0.14)
 # MultiNest options.
 IS True
-Likelihood <module 'Likelihood' from '/home/andrew/WORKING/git-superpy/superpy/MSSM/Likelihood.pyc'>
-LogLikelihood <function myloglike at 0x2ebf848>
-Prior <function myprior at 0x2a0c050>
-Priors <module 'Priors' from '/home/andrew/WORKING/git-superpy/superpy/MSSM/Priors.pyc'>
+Likelihood <module 'Likelihood' from '/home/andrew/WORKING/git-superpy/superpy/MSSM/Likelihood.py'>
+LogLikelihood <function myloglike at 0x21690c8>
+Prior <function myprior at 0x20b5050>
+Priors <module 'Priors' from '/home/andrew/WORKING/git-superpy/superpy/MSSM/Priors.py'>
 const_efficiency_mode False
 context 0
 evidence_tolerance 1.0

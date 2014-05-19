@@ -143,6 +143,11 @@ class CMSSMConstraintTracker:
         # http://fastlim.web.cern.ch/fastlim/
         self.constraint['LHC'] = ExternalConstraint()
 
+        # Interpolate lower bound on (m0,m12) plane.
+        # https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/CombinedSummaryPlots/SUSY/ATLAS_SUSY_MSUGRA/ATLAS_SUSY_MSUGRA.png
+        # ATLAS-CONF-2013-047
+        self.constraint['LHC_interp'] = InterpolateLowerConstraint('atlas_m0m12.dat',0.01)
+
         # Relic density of neutralinos.
         # Planck.
         # http://arxiv.org/pdf/1303.5076v2.pdf
@@ -207,6 +212,10 @@ class CMSSMConstraintTracker:
         print "Calling SOFTSUSY..."
         self.softsusy()
         self.readslha()
+
+        # Set LHC interpolation parameters.
+        self.constraint['LHC_interp'].theory = self.param['m0']
+        self.constraint['LHC_interp'].theory = self.param['m12']
 
         # Call auxillary programs if physical.
         if self.physical:
@@ -800,6 +809,66 @@ class InterpolateUpperConstraint:
 
         return self.loglike
 
+@Cube.memoize
+class InterpolateLowerConstraint:
+
+    """ Interpolate a lower 2D limit from a data file. """
+
+    def __init__(self, file, tau, apply=True):
+        """ Initializes a 2D lower bound constraint.
+        The constraint is on the y-co-ordinate, and is calculated as
+        a function of x.
+
+        Arguments:
+        file -- Name of the data file.
+        tau -- Fractional theoretical error in calculation.
+        apply -- Whether to apply this constraint.
+
+        Returns:
+
+        """
+        self.file = os.path.abspath(file)
+        self.tau = tau
+        self.apply = apply
+
+        # The x and y theory values.
+        self.theoryx = 0.
+        self.theory = 999.
+
+        # The derived limit on the y-parameter, which is a function of x.
+        self.limit = 0.
+
+        self.loglike = -1e101
+        self.arg = self.args
+
+        # Import the data from file. Do this here so
+        # we only do it once.
+        # The data should be x, y.
+        self.data = NP.loadtxt(self.file)
+
+    def SetLogLike(self):
+        """ Calcualte lower bound with interpolation
+        function, then apply an error function.
+        Arguments:
+
+        Returns: The loglike from this constraint.
+
+        """
+        # Interpolate the y-value of the limit
+        # corresponding to the theory x-value.
+        self.limit = NP.interp(self.theoryx, self.data[0],
+                               self.data[1], left=None, right=None)
+
+        # Now calcualte likelihood with Gaussian error function - erf.
+        like = 0.5 - 0.5 * \
+            scipy.special.erf((self.theory - self.limit) / (2. ** 0.5 * self.tau * self.theory))
+        try:
+            self.loglike = math.log(like)
+        # Sometimes we are trying to take log zero.
+        except ValueError:
+            self.loglike = -1e101
+
+        return self.loglike
 
 @Cube.memoize
 class LikeMapConstraint:
