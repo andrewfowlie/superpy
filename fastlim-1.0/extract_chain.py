@@ -21,7 +21,7 @@ def soft_removal(procs, Ejet_thres = 20., Elep_thres = 10.):
     procs_org = procs
     #i = 0
     new_procs = {}
-    for proc, data_org in procs_org.iteritems():        
+    for proc, data_org in procs_org.iteritems():
         #if i > 10: break
         #i += 1
         dlist = data_org.plist
@@ -30,26 +30,26 @@ def soft_removal(procs, Ejet_thres = 20., Elep_thres = 10.):
         visible = False
         for pData in dlist:
             if pData.pname == "-":
-                if dstr in all_particles() and is_SUSY(get_pid(dstr)): # dstr = LSP 
-                    pstr += dstr   
+                if dstr in all_particles() and is_SUSY(get_pid(dstr)): # dstr = LSP
+                    pstr += dstr
                     newplist0 += declist
                     newplist0.append(pData)
                     newplists.append(newplist0)
                     newplist0 = []
-                if visible:                    
+                if visible:
                     pstr += dstr   # case for RPV
                     newplist0 += declist
                     newplist0.append(pData)
                     newplists.append(newplist0)
-                    newplist0 = []         
+                    newplist0 = []
                 chains.append(pstr)
                 pstr = ""
             elif is_SUSY(pData.pid):
-                if visible: 
+                if visible:
                     pstr += dstr
-                    newplist0 += declist 
+                    newplist0 += declist
                 dstr = pData.pname
-                declist = [pData]            
+                declist = [pData]
                 visible = False
             elif not is_SUSY(pData.pid):
                 cut = 0
@@ -58,13 +58,13 @@ def soft_removal(procs, Ejet_thres = 20., Elep_thres = 10.):
                 if is_e_or_mu(pData.pid)    and e < Elep_thres: cut = 1
                 if is_neutrino(pData.pid)   and e < Elep_thres: cut = 1
                 if is_jet_or_tau(pData.pid) and e < Ejet_thres: cut = 1
-                if cut == 0:  # visible particle is found                
+                if cut == 0:  # visible particle is found
                     visible = True
                     dstr += pData.pname
                     declist.append(pData)
-            #print str(pData.pid).rjust(15), str(pData.pname).rjust(5), str(visible).rjust(7), 
+            #print str(pData.pid).rjust(15), str(pData.pname).rjust(5), str(visible).rjust(7),
             #print str(pData.p).rjust(15), dstr.rjust(10), pstr, "|",
-            #if len(newplist0) > 0: 
+            #if len(newplist0) > 0:
             #    for qData in newplist0: print qData.pname,
             #print ""
         if chains[0] < chains[1]: icmin, icmax = 0, 1
@@ -94,13 +94,13 @@ def Replace(procs, target, replace):
         proc_old = proc
         proc_new = proc
         found = False
-        string_list = ("0" + proc_old + "0").split( target )        
+        string_list = ("0" + proc_old + "0").split( target )
         if len(string_list) < 2: continue
         found = True
         #print string_list, len(string_list)
         if len(string_list) == 2: proc_new = string_list[0] + replace + string_list[1]
         if len(string_list) == 3: proc_new = string_list[0] + replace + string_list[1] + replace + string_list[2]
-        if len(string_list) > 3: 
+        if len(string_list) > 3:
             print "ERROR in sms_reassign: too many targets are found"
             exit()
         proc_new = proc_new[1:-1]
@@ -126,7 +126,7 @@ class TheProdMode(object):
         self.xsec_tot = 0
 
     def scale(self, prod, prod_xsec):
-        for proc, sig in self.modes[prod].iteritems(): 
+        for proc, sig in self.modes[prod].iteritems():
             self.modes[prod][proc].xsec *= prod_xsec
         self.processes.update(self.modes[prod])
 
@@ -142,7 +142,7 @@ class TheProdMode(object):
         #----------------------------
         for ch1, Data1 in Part1.chain.iteritems():
             for ch2, Data2 in Part2.chain.iteritems():
-                proc = min(ch1, ch2) + "_" + max(ch1, ch2) 
+                proc = min(ch1, ch2) + "_" + max(ch1, ch2)
                 sig = Data1.Br * Data2.Br
                 if proc in proc_dict:
                     proc_dict[proc].xsec += sig
@@ -151,7 +151,7 @@ class TheProdMode(object):
                     Data.xsec = sig
                     Data.plist = Data1.plist + get_plist_empty() + Data2.plist + get_plist_empty()
                     proc_dict[proc] = Data
-                
+
         #----------------------------
         self.modes[prod] = proc_dict
         self.scale(prod, prod_xsec)
@@ -166,7 +166,7 @@ class TheProdMode(object):
 def set_rates(procs, ignore = []):
     xvis = 0
     for proc in procs:
-        if proc not in ignore: 
+        if proc not in ignore:
             xvis += procs[proc].xsec
     for proc in procs:
         procs[proc].rate = 0
@@ -187,7 +187,7 @@ def get_lsp(decays):
     n_stables = 0
     ip_stables = []
     worn = ""
-    mmin = 1000000000000000000000.        
+    mmin = 1000000000000000000000.
     for spar in decays:
         if not is_SUSY(spar): continue
         if abs(decays[spar].mass) < mmin:
@@ -207,8 +207,8 @@ def get_lsp_old(decays):
         if is_SUSY(spar) and len(decays[spar].decays) == 0:
             n_stables += 1
             ip_stables.append(spar)
-            lsp_id = spar            
-    if n_stables > 1: 
+            lsp_id = spar
+    if n_stables > 1:
         worn = "There are " + str(n_stables) + " stable SUSY particles !!"
         print worn
         for ip in ip_stables: print ip
@@ -222,7 +222,7 @@ def extract_chain(initial_part_list, Input, charge_flag = False):
     decays = full_decays(decays)
 
     if charge_flag:
-        get_name = get_name_charge        
+        get_name = get_name_charge
     else:
         get_name = get_name_simple
 
@@ -246,8 +246,8 @@ def extract_chain(initial_part_list, Input, charge_flag = False):
         msq = msq/8.
 
         for ipart in range(1000001, 1000005) + range(2000001, 2000005):
-    
-            #print ipart 
+
+            #print ipart
             Sq = TheParticle(ipart, lsp_id, msq, cf)
             Sq_Data = Sq.chain.pop(get_name(ipart))
             sigtot = Sq_Data.Br
@@ -258,13 +258,13 @@ def extract_chain(initial_part_list, Input, charge_flag = False):
                 psusy = 0
                 newname = oldname
                 dlist = [["Q", msq]]
-                for dauid in sorted(dec.ids): 
+                for dauid in sorted(dec.ids):
                     if not is_SUSY(dauid):
                         newname += get_name(dauid)
                         dlist.append([get_name(dauid), get_mass(blocks, get_name(dauid)), dauid])
                     else:
-                        psusy = abs(dauid)                        
-                if not psusy == 0: 
+                        psusy = abs(dauid)
+                if not psusy == 0:
                     newname += get_name(psusy)
                     dlist.append([get_name(psusy), get_mass(blocks, get_name(psusy)), psusy])
                 oldsig = 0
@@ -273,33 +273,33 @@ def extract_chain(initial_part_list, Input, charge_flag = False):
                 newData = Structure()
                 newData.lastid = psusy
                 newData.Br = newsig
-                newData.plist = Sq_Data.plist + get_plist(dlist)                  
+                newData.plist = Sq_Data.plist + get_plist(dlist)
                 Sq.chain[newname] = newData
             #############
             sq_list.append(Sq)
 
-        #==============================================         
+        #==============================================
         #  Now we have a list of light flavour squarks
         #-------------------------------------------
         #for sq_dm in part_sq:
         #    for dm_mode, dm_sig in sq_dm.chain.iteritems(): print dm_mode, dm_sig
         #-------------------------------------------
         #  Add the squarks and normalise
-        #==============================================         
+        #==============================================
         Squark = reduce(add_particles, sq_list)
         #Squark.output()
         #print Squark.get_sig()
         Squark.scale_to_one()
         #Squark.output()
         #print Squark.get_sig()
-    
+
         #######################################
         ##  get the particle list
         #######################################
         #---  for the light flovour squarks
         part_dict["Q"] = Squark
-    
-    #"---  Now all the other particles" 
+
+    #"---  Now all the other particles"
 
     for npart in initial_part_list:
         ipart = get_pid(npart)
@@ -310,28 +310,28 @@ def extract_chain(initial_part_list, Input, charge_flag = False):
     ##   get all processes
     #########################################
     dummy_list = part_dict.copy()
-    for npart, Part in dummy_list.iteritems():     
+    for npart, Part in dummy_list.iteritems():
         #print npart, Part.chain.keys()
 
         #======================================
         while Part.can_decay():
             Part.get_status()
-            #print "" 
+            #print ""
             #inpdm = raw_input(' press return ')
             #print "---    ", Part.status, "   ---"
             Part.get_status()
-            dummy_dict = Part.chain.copy()            
+            dummy_dict = Part.chain.copy()
             #=========================
             for proc, chain_Data in dummy_dict.iteritems():
                 idecpart = chain_Data.lastid
                 sigtot = chain_Data.Br
                 old_plist = chain_Data.plist
-                #print proc, idecpart, sigtot                
+                #print proc, idecpart, sigtot
                 if idecpart == lsp_id or not is_SUSY(idecpart): continue
                 Part.chain.pop(proc)
-                oldname = proc                
+                oldname = proc
                 #===========
-                for dec in decays[idecpart].decays:                    
+                for dec in decays[idecpart].decays:
                     psusy = 0
                     br = dec.br
                     newname = oldname
@@ -344,9 +344,9 @@ def extract_chain(initial_part_list, Input, charge_flag = False):
                         else:
                             psusy = abs(dauid)
                     newname_list.sort()
-                    for dauname in newname_list: newname += dauname                            
-                    if not psusy == 0: 
-                        newname += get_name(psusy)                    
+                    for dauname in newname_list: newname += dauname
+                    if not psusy == 0:
+                        newname += get_name(psusy)
                         dlist.append([get_name(psusy), get_mass(blocks, get_name(psusy)), psusy])
                     if br < 0:
                         mess = "Br<0 for " + str(idecpart) + "->" + str(dec.ids) \
@@ -355,7 +355,7 @@ def extract_chain(initial_part_list, Input, charge_flag = False):
                         br = abs(br)
                     oldsig = 0
                     if newname in Part.chain: oldsig = Part.chain[newname].Br
-                    newsig = oldsig + sigtot * br    
+                    newsig = oldsig + sigtot * br
                     newData = Structure()
                     #print newname, psusy
                     newData.lastid = psusy
@@ -363,7 +363,7 @@ def extract_chain(initial_part_list, Input, charge_flag = False):
                     newData.plist = old_plist + get_plist(dlist)
                     if newsig < 10**-6 or isnan(newsig):
                         #print 'skip', newname, newsig
-                        continue 
+                        continue
                     Part.chain[newname] = newData
                 #===========
             #===========================
@@ -389,7 +389,7 @@ def get_plist(dlist):
         pData = Structure()
         pData.pname = pname
         pData.mass = dlist[i][1]
-        pData.pid = dlist[i][2]        
+        pData.pid = dlist[i][2]
         nbody = len(dlist) - 1
         pData.p, pData.v = get_p_and_v(dlist, i)
         plist.append(pData)
@@ -422,7 +422,7 @@ def get_p_2body(mass):
     m0 = mass[0]
     m1 = mass[1]
     m2 = mass[2]
-    if m0 == m2: return 0 
+    if m0 == m2: return 0
     aa = (m0**2 - (m1 + m2)**2) * (m0**2 - (m1 - m2)**2)
     try:
         p = sqrt( aa ) / (2 * m0)
@@ -439,13 +439,13 @@ def get_p_3body(mass):
         aa = m0**2 * (m0**2 + 3*m1**2 - 3*m2**2)
         try:
             bb = 5*m0**2 + 3*m1**2 - 12*m2**2 - 4*sqrt(aa)
-        except: 
+        except:
             bb = -1.
         try:
             p = (1./3) * sqrt( bb )
         except:
             p = (mass[0] - mass[1] - mass[2] - mass[3]) / 3
-        return p        
+        return p
     elif min(mass[1], mass[2])/mass[0] < 0.0001:
         m0 = mass[0]
         m1 = max(mass[1], mass[2])
@@ -484,7 +484,7 @@ class TheParticle(object):
         pData.mass = mass
         pData.p = 0.
         pData.v = 0.
-        Data.plist = [pData] 
+        Data.plist = [pData]
         #self.chain = {get_name(ipd):[abs(ipd), 1]}
         self.chain = {self.name : Data}
         self.lsp_id = lsp
@@ -506,11 +506,11 @@ class TheParticle(object):
         self.scale(1/sigtot)
 
     def get_status(self):
-        self.status = "done"   
+        self.status = "done"
         for proc, Data in self.chain.iteritems():
-            spart = Data.lastid            
+            spart = Data.lastid
             #print proc, spart, self.lsp_id
-            if is_SUSY(spart) and not spart == self.lsp_id: 
+            if is_SUSY(spart) and not spart == self.lsp_id:
                 self.status = "can decay"
 
     def decayed(self):
@@ -530,12 +530,12 @@ class TheParticle(object):
 
 #########################################################
 def add_particles(Par1, Par2):
-    Added = Par1 
+    Added = Par1
     for name2, Data2 in Par2.chain.iteritems():
         if name2 in Added.chain:
             Added.chain[name2].Br += Data2.Br
         else:
-            Added.chain[name2] = Data2    
+            Added.chain[name2] = Data2
     return Added
 
 

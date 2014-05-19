@@ -116,7 +116,7 @@ def get_name_simple(pid):
     if pid == 1000023: name = "N2"
     if pid == 1000025: name = "N3"
     if pid == 1000035: name = "N4"
-    # Superpy - for fifth neutralino.
+    # Superpy - added for fifth neutralino.
     if pid == 1000045: name = "N5"
     if abs(pid) in range(1000001, 1000005): name = "Q"
     if abs(pid) in range(2000001, 2000005): name = "Q"
@@ -136,6 +136,8 @@ def get_name_simple(pid):
     if pid == 25: name = "h"
     if pid == 35: name = "h2"
     if pid == 36: name = "h3"
+    # SuperPy - added for extra NMSSM scalar.
+    if pid == 45: name = "h_nmssm"
     if pid == 23: name = "z"
     if pid == 22: name = "gam"
     if pid == 21: name = "g"
@@ -182,6 +184,8 @@ def get_pid(name):
     if name == "N2": pid = 1000023
     if name == "N3": pid = 1000025
     if name == "N4": pid = 1000035
+    # SuperPy - added for fifth neutralino.
+    if name == "N5": pid = 1000045
     if name == "Q":  pid = 1000001
     if name == "B1": pid = 1000005
     if name == "B2": pid = 2000005
@@ -203,6 +207,8 @@ def get_pid(name):
     if name == "n": pid = 12
     if name == "b": pid = 5
     if name == "q": pid = 1
+    # SuperPy - added for extra NMSSM scalar.
+    if name == "h_nmssm": pid = 45
 
     if name == "C1": pid = 1000024
     if name == "C2": pid = 1000037
