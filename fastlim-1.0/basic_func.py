@@ -15,33 +15,33 @@ class Paths_and_Data:
 
         self.xsec_table = {}
         self.xsec_table[("GG", 7)]  = "xsection_tables/7TeV/NLO+NLL/gg_7TeV_NLONLL.xsec"
-        self.xsec_table[("GG", 8)]  = "xsection_tables/8TeV/NLO+NLL/gg_8TeV_NLONLL.xsec"      
-        self.xsec_table[("GG", 14)] = "xsection_tables/Prospino_NLO/gg_pros_14.xsec" 
+        self.xsec_table[("GG", 8)]  = "xsection_tables/8TeV/NLO+NLL/gg_8TeV_NLONLL.xsec"
+        self.xsec_table[("GG", 14)] = "xsection_tables/Prospino_NLO/gg_pros_14.xsec"
 
         self.xsec_table[("QG", 7)]  = "xsection_tables/7TeV/NLO+NLL/sg_7TeV_NLONLL.xsec"
-        self.xsec_table[("QG", 8)]  = "xsection_tables/8TeV/NLO+NLL/sg_8TeV_NLONLL.xsec"      
-        self.xsec_table[("QG", 14)] = "xsection_tables/Prospino_NLO/sg_pros_14.xsec"  
+        self.xsec_table[("QG", 8)]  = "xsection_tables/8TeV/NLO+NLL/sg_8TeV_NLONLL.xsec"
+        self.xsec_table[("QG", 14)] = "xsection_tables/Prospino_NLO/sg_pros_14.xsec"
 
-        self.xsec_table[("QQ", 7)]  = "xsection_tables/7TeV/NLO+NLL/ss_7TeV_NLONLL.xsec"  
-        self.xsec_table[("QQ", 8)]  = "xsection_tables/8TeV/NLO+NLL/ss_8TeV_NLONLL.xsec"  
-        self.xsec_table[("QQ", 14)] = "xsection_tables/Prospino_NLO/ss_pros_14.xsec"  
+        self.xsec_table[("QQ", 7)]  = "xsection_tables/7TeV/NLO+NLL/ss_7TeV_NLONLL.xsec"
+        self.xsec_table[("QQ", 8)]  = "xsection_tables/8TeV/NLO+NLL/ss_8TeV_NLONLL.xsec"
+        self.xsec_table[("QQ", 14)] = "xsection_tables/Prospino_NLO/ss_pros_14.xsec"
 
-        self.xsec_table[("QQbar", 7)]  = "xsection_tables/7TeV/NLO+NLL/sb_7TeV_NLONLL.xsec"  
-        self.xsec_table[("QQbar", 8)]  = "xsection_tables/8TeV/NLO+NLL/sb_8TeV_NLONLL.xsec"  
-        self.xsec_table[("QQbar", 14)] = "xsection_tables/Prospino_NLO/sb_pros_14.xsec"  
+        self.xsec_table[("QQbar", 7)]  = "xsection_tables/7TeV/NLO+NLL/sb_7TeV_NLONLL.xsec"
+        self.xsec_table[("QQbar", 8)]  = "xsection_tables/8TeV/NLO+NLL/sb_8TeV_NLONLL.xsec"
+        self.xsec_table[("QQbar", 14)] = "xsection_tables/Prospino_NLO/sb_pros_14.xsec"
 
-        self.xsec_table[("Q3Q3", 7)]  = "xsection_tables/7TeV/SUSYxsecWG/Q3Q3bar7.xsec"  
-        self.xsec_table[("Q3Q3", 8)]  = "xsection_tables/8TeV/SUSYxsecWG/Q3Q3bar8.xsec"  
-        self.xsec_table[("Q3Q3", 13)] = "xsection_tables/13TeV/LHCxsecWG/Q3Q3bar13.xsec"  
-        self.xsec_table[("Q3Q3", 14)] = "xsection_tables/Prospino_NLO/tb_pros_14.xsec"  
+        self.xsec_table[("Q3Q3", 7)]  = "xsection_tables/7TeV/SUSYxsecWG/Q3Q3bar7.xsec"
+        self.xsec_table[("Q3Q3", 8)]  = "xsection_tables/8TeV/SUSYxsecWG/Q3Q3bar8.xsec"
+        self.xsec_table[("Q3Q3", 13)] = "xsection_tables/13TeV/LHCxsecWG/Q3Q3bar13.xsec"
+        self.xsec_table[("Q3Q3", 14)] = "xsection_tables/Prospino_NLO/tb_pros_14.xsec"
 
-        self.xsec_table_dcpl = {} 
-        self.xsec_table_dcpl[("GG", 7)]     = "xsection_tables/7TeV/NLO+NLL/gdcpl_7TeV_NLONLL.xsec"  
-        self.xsec_table_dcpl[("GG", 8)]     = "xsection_tables/8TeV/NLO+NLL/gdcpl_8TeV_NLONLL.xsec"  
-        self.xsec_table_dcpl[("GG", 13)]    = "xsection_tables/LHCxsecWG/GG_Qdcpl13.xsec"  
-        self.xsec_table_dcpl[("QQ", 7)]     = "xsection_tables/7TeV/NLO+NLL/sdcpl_7TeV_NLONLL.xsec"  
-        self.xsec_table_dcpl[("QQ", 8)]     = "xsection_tables/8TeV/NLO+NLL/sdcpl_8TeV_NLONLL.xsec"  
-        self.xsec_table_dcpl[("QQbar", 13)] = "xsection_tables/LHCxsecWG/QQbar_Gdcpl13.xsec"  
+        self.xsec_table_dcpl = {}
+        self.xsec_table_dcpl[("GG", 7)]     = "xsection_tables/7TeV/NLO+NLL/gdcpl_7TeV_NLONLL.xsec"
+        self.xsec_table_dcpl[("GG", 8)]     = "xsection_tables/8TeV/NLO+NLL/gdcpl_8TeV_NLONLL.xsec"
+        self.xsec_table_dcpl[("GG", 13)]    = "xsection_tables/LHCxsecWG/GG_Qdcpl13.xsec"
+        self.xsec_table_dcpl[("QQ", 7)]     = "xsection_tables/7TeV/NLO+NLL/sdcpl_7TeV_NLONLL.xsec"
+        self.xsec_table_dcpl[("QQ", 8)]     = "xsection_tables/8TeV/NLO+NLL/sdcpl_8TeV_NLONLL.xsec"
+        self.xsec_table_dcpl[("QQbar", 13)] = "xsection_tables/LHCxsecWG/QQbar_Gdcpl13.xsec"
 
 
 def get_mass(blocks, pname):
@@ -116,6 +116,8 @@ def get_name_simple(pid):
     if pid == 1000023: name = "N2"
     if pid == 1000025: name = "N3"
     if pid == 1000035: name = "N4"
+    # Superpy - for fifth neutralino.
+    if pid == 1000045: name = "N5"
     if abs(pid) in range(1000001, 1000005): name = "Q"
     if abs(pid) in range(2000001, 2000005): name = "Q"
     if abs(pid) == 1000005: name = "B1"
@@ -123,7 +125,7 @@ def get_name_simple(pid):
     if abs(pid) == 1000006: name = "T1"
     if abs(pid) == 2000006: name = "T2"
     if abs(pid) in [1000011, 2000011]: name = "E"
-    if abs(pid) in [1000013, 2000013]: name = "M"    
+    if abs(pid) in [1000013, 2000013]: name = "M"
     if abs(pid) == 1000015: name = "TAU1"
     if abs(pid) == 2000015: name = "TAU2"
     if abs(pid) == 1000016: name = "NUT"
@@ -144,10 +146,10 @@ def get_name_simple(pid):
     if abs(pid) == 24: name = "w"
     if abs(pid) == 6:  name = "t"
     if abs(pid) in [11]: name = "e"
-    if abs(pid) in [13]: name = "m"    
+    if abs(pid) in [13]: name = "m"
     if abs(pid) == 15: name = "ta"
 
-    if name == "X": 
+    if name == "X":
         print "ERROR: unknown particle: ", pid
         exit()
     return name
@@ -155,7 +157,7 @@ def get_name_simple(pid):
 def get_name_charge(pid):
     name = get_name_simple(pid)
     if pid == 37: name = "hp"
-    if pid == -37: name = "hm"  
+    if pid == -37: name = "hm"
     if pid == 24: name = "wp"
     if pid == -24: name = "wm"
     if pid == 6:  name = "tp"
@@ -187,7 +189,7 @@ def get_pid(name):
     if name == "T2": pid = 2000006
     if name == "R32": pid = 1000039
     if name == "E": pid = 1000011
-    if name == "M": pid = 1000013    
+    if name == "M": pid = 1000013
     if name == "TAU1": pid = 1000015
     if name == "TAU2": pid = 2000015
     if name == "NUT": pid = 1000016
@@ -198,17 +200,17 @@ def get_pid(name):
     if name == "h3": pid = 36
     if name == "h2": pid = 35
     if name == "h": pid = 25
-    if name == "n": pid = 12 
-    if name == "b": pid = 5 
-    if name == "q": pid = 1 
+    if name == "n": pid = 12
+    if name == "b": pid = 5
+    if name == "q": pid = 1
 
     if name == "C1": pid = 1000024
     if name == "C2": pid = 1000037
     if name == "w": pid = 24
-    if name == "hp": pid = 37 
+    if name == "hp": pid = 37
     if name == "ta": pid = 15
-    if name == "e": pid = 11 
-    if name == "m": pid = 13     
+    if name == "e": pid = 11
+    if name == "m": pid = 13
     if name == "t": pid = 6
 
     if name == "C1p": pid = 1000024
@@ -218,13 +220,13 @@ def get_pid(name):
     if name == "wp": pid = 24
     if name == "wm": pid = -24
     if name == "hm": pid = -37
-    if name == "hp": pid = 37 
-    if name == "tap": pid = -15 
+    if name == "hp": pid = 37
+    if name == "tap": pid = -15
     if name == "tam": pid = 15
-    if name == "ep": pid = -11  
-    if name == "em": pid = 11 
-    if name == "mp": pid = -13  
-    if name == "mm": pid = 13    
+    if name == "ep": pid = -11
+    if name == "em": pid = 11
+    if name == "mp": pid = -13
+    if name == "mm": pid = 13
     if name == "tm": pid = -6
     if name == "tp": pid = 6
 
@@ -233,7 +235,7 @@ def get_pid(name):
 
 
 def full_decays(decays):
-    dummy_dec = decays.copy() 
+    dummy_dec = decays.copy()
     for pid in dummy_dec:
         pneut = [1000021, 1000022, 1000023, 1000025, 1000035, 1000039]
         pneut += [1000012, 1000014, 1000016]
@@ -243,10 +245,10 @@ def full_decays(decays):
             for mode in dummy_dec[pid].decays:
                 ids_conj = []
                 for ids in mode.ids:
-                    if ids in pneut: 
+                    if ids in pneut:
                         ids_conj.append(ids)
                     else:
-                        ids_conj.append(-ids) 
+                        ids_conj.append(-ids)
                 decays[-pid].add_decay(mode.br, mode.nda, ids_conj)
     return decays
 
@@ -261,10 +263,10 @@ def extract_numbers(line):
 def output_warning(err_set):
     worn_list = []
     for mess, var in err_set.iteritems():
-        if var == 0: worn_list.append(mess) 
+        if var == 0: worn_list.append(mess)
     if len(worn_list) == 0: return
     print "#--------------  Warnings  ----------------#"
-    for mess in worn_list: 
+    for mess in worn_list:
         print mess
     print ""
     #print "#--------------------------#"

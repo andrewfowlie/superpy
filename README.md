@@ -47,6 +47,7 @@ A GUI window will appear, to select a chain. Select e.g. the *.txt* file in the 
 # Altered programs
 My changes are marked "SuperPy". I made minor modifications to:
 * ./fastlim-1.0/read_data.py
+* ./fastlim-1.0/basic_func.py
 * ./HiggsSignals-1.2.0/configure
 * ./HiggsSignals-1.2.0/makefile.in
 * ./micromegas_3.6.9.2/MSSM/main.c
@@ -57,6 +58,7 @@ My changes are marked "SuperPy". I made minor modifications to:
 * ./softsusy-3.4.0/src/softsusy.cpp (to print derivatives for naturalness priors)
 * ./NMSSMTools_4.2.1/main/makefile
 * ./NMSSMTools_4.2.1/sources/ftpar.f
+* ./NMSSMTools_4.2.1/sources/NS_output.f
 I added:
 * ./FeynHiggs-2.10.0/example/SuperPy.F
 * ./HiggsSignals-1.2.0/example_programs/SuperPy.f90
