@@ -100,7 +100,7 @@ class CMSSMModelTracker:
         # Strong coupling.
         # PDG
         # http://pdg.lbl.gov/2013/reviews/rpp2013-rev-standard-model.pdf
-        self.param['alphas'] = GaussParameter(0.1184, 0.0007)
+        self.param['alphas'] = GaussParameter(0.1196, 0.0017)
 
         # Reciprocal of EM coupling at MZ.
         # PDG.
