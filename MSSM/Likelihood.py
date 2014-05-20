@@ -159,11 +159,11 @@ class CMSSMConstraintTracker:
         # Anomalous magnetic moment of muon.
         # PDG.
         # http://pdg.lbl.gov/2013/reviews/rpp2013-rev-g-2-muon-anom-mag-moment.pdf
-        self.constraint['gm2'] = GaussConstraint(28.8e-10, 7.9e-10, 1e-10)
+        self.constraint['gm2'] = GaussConstraint(28.8e-10, 8.0e-10, 1e-10)
 
         # BR(b -> s gamma).
         # HFAG.
-        # http://www.slac.stanford.edu/xorg/hfag2/rare/2013/radll/index.html
+        # http://www.slac.stanford.edu/xorg/hfag2/rare/2013/radll/OUTPUT/HTML/radll_table3.html
         self.constraint['bsg'] = GaussConstraint(3.43e-4, 0.22e-4, 0.21e-4)
 
         # BR(Bs -> mu mu).
@@ -176,8 +176,8 @@ class CMSSMConstraintTracker:
 
         # BR(b -> tau nu).
         # HFAG.
-        # arxiv.org/pdf/1207.1158v2
-        self.constraint['btaunu'] = GaussConstraint(1.66, 0.33, 0.38)
+        # http://www.slac.stanford.edu/xorg/hfag2/rare/2013/radll/OUTPUT/HTML/radll_table7.html
+        self.constraint['btaunu'] = GaussConstraint(1.14e-4, 0.22e-4, 0.38e-4)
 
         # Spin-indenpendent WIMP-nucleon scattering cross section.
         # LUX.
@@ -196,8 +196,8 @@ class CMSSMConstraintTracker:
 
         # delta MBs.
         # HFAG.
-        # http://www.slac.stanford.edu/xorg/hfag/osc/PDG_2013/#DMS
-        self.constraint['deltaMb'] = GaussConstraint(17.69, 0.08, 2.4)
+        # http://www.slac.stanford.edu/xorg/hfag/osc/PDG_2014/#DMS
+        self.constraint['deltaMb'] = GaussConstraint(17.761, 0.022, 2.4)
 
     def SetPredictions(self):
         """ Run the auxilliary programs for a particular model
