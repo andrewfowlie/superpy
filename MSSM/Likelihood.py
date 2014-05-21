@@ -379,9 +379,12 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
         # Set the "likelihood" associated with naturalness.
         # Of course, this is NOT a true chi-squared/likelihood from an experiment.
         # But it is convenient to treat it as such.
-        self.constraint['Natural'].loglike = NP.log10(
+        try:
+            self.constraint['Natural'].loglike = NP.log10(
             abs(mu_MZ) / mu *
             abs(b_TanBeta) / b)
+        except:
+            self.constraint['Natural'].loglike = -1e101
 
     def fastlim(self):
         """ Call Fast-Lim and note whether point rejected.

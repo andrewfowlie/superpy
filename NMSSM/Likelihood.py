@@ -398,7 +398,10 @@ Block QEXTPAR
         # Of course, this is NOT a true chi-squared/likelihood from an experiment.
         # But it is convenient to treat it as such.
         # It is NOT dimensionless.
-        self.constraint['Natural'].loglike = NP.log10(abs(J / mS2 / kappa))
+        try:
+            self.constraint['Natural'].loglike = NP.log10(abs(J / mS2 / kappa))
+        except:
+            self.constraint['Natural'].loglike = -1e101
 
     def SLHADerive(self, name, block, key, epsilon=1E-2):
         """ Find the derivative of an input parameter wrt
