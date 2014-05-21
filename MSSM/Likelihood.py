@@ -221,6 +221,11 @@ class CMSSMConstraintTracker:
 
         # Call auxillary programs if physical.
         if self.physical:
+            # Find naturalness priors first, as FeynHiggs overwrites
+            # SLHA file removing comments with relevant derivatives.
+            print "Finding naturalness priors..."
+            self.naturalness()
+        if self.physical:
             print "Calling SUSY-HIT..."
             self.susyhit()
         if self.physical:
@@ -230,6 +235,13 @@ class CMSSMConstraintTracker:
             print "Calling FeynHiggs..."
             self.feynhiggs()
         if self.physical:
+            # Save the SOFTSUSY Higgs mass for reference.
+            # This is a hack.
+            self.constraint['Higgs'].theory = self.blocks['MASS'].entries[25]
+            # Re-read SLHA file - FeynHiggs rewrites the SLHA file with
+            # improved Higgs masses.
+            self.readslha()
+        if self.physical:
             print "Calling micrOMEGAs..."
             self.micromegas()
         if self.physical:
@@ -238,9 +250,6 @@ class CMSSMConstraintTracker:
         if self.physical:
             print "Calling HiggsSignals..."
             self.higgssignals()
-        if self.physical:
-            print "Finding naturalness priors..."
-            self.naturalness()
 
     def softsusy(self):
         """Call SoftSUSY to obtain predictions for model.
