@@ -146,7 +146,9 @@ class CMSSMConstraintTracker:
         # Interpolate lower bound on (m0,m12) plane.
         # https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/CombinedSummaryPlots/SUSY/ATLAS_SUSY_MSUGRA/ATLAS_SUSY_MSUGRA.png
         # ATLAS-CONF-2013-047
-        self.constraint['LHC_interp'] = InterpolateLowerConstraint('atlas_m0m12.dat',0.01)
+        self.constraint['LHC_interp'] = InterpolateLowerConstraint(
+            'atlas_m0m12.dat',
+            0.01)
 
         # Relic density of neutralinos.
         # Planck.
@@ -381,8 +383,8 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
         # But it is convenient to treat it as such.
         try:
             self.constraint['Natural'].loglike = NP.log10(
-            abs(mu_MZ) / mu *
-            abs(b_TanBeta) / b)
+                abs(mu_MZ / mu *
+                    b_TanBeta / b))
         except:
             self.constraint['Natural'].loglike = -1e101
 
@@ -422,7 +424,10 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
         Returns:
 
         """
-        filename = RunProgram('./main', '../micromegas_3.6.9.2/MSSM', self.SLHA)
+        filename = RunProgram(
+            './main',
+            '../micromegas_3.6.9.2/MSSM',
+            self.SLHA)
         self.physical = CheckProgram(filename, ["error"])
         if self.physical:
             self.constraint['oh2'].theory = ReadParameter(
@@ -812,6 +817,7 @@ class InterpolateUpperConstraint:
 
         return self.loglike
 
+
 @Cube.memoize
 class InterpolateLowerConstraint:
 
@@ -872,6 +878,7 @@ class InterpolateLowerConstraint:
             self.loglike = -1e101
 
         return self.loglike
+
 
 @Cube.memoize
 class LikeMapConstraint:
@@ -1013,6 +1020,7 @@ def ReadParameter(filename, start, split=None):
         return 999.
     else:
         return 999.
+
 
 def CheckProgram(filename, errors):
     """ Check whether a program contained errors.
