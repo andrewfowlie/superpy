@@ -2,6 +2,7 @@ c This file is based on demo.F.
 c SuperPy changes:
 c Made program read name of SLHA file from command line.
 c Made program calculate low-energy and flavour constraints only.
+c Made program rewrite SLHA file with new Higgs masses.
 
 * demo.F
 * demonstration program for calling FeynHiggs from Fortran
@@ -31,6 +32,9 @@ c	Added by SuperPy.
 	call couple
 c	Added by SuperPy.
 	call constraints
+	call higgsCorr
+c	Re-write SLHA file with new Higgs masses.
+	call writeSLHA(file)
 	end
 
 
@@ -270,3 +274,48 @@ c NB that this uses a clever pre-processor macro - see manual.
 
 ************************************************************************
 
+	subroutine higgsCorr
+	implicit none
+
+	integer error
+	double precision MHiggs(4)
+	double complex SAeff, UHiggs(3,3), ZHiggs(3,3)
+
+	call FHHiggsCorr(error, MHiggs, SAeff, UHiggs, ZHiggs)
+	if( error .ne. 0 ) stop
+
+* print some sample output:
+	print *, "Mh1 =", MHiggs(1)
+	print *, "Mh2 =", MHiggs(2)
+	print *, "Mh3 =", MHiggs(3)
+	print *, "MHp =", MHiggs(4)
+	print *, "sin alpha_eff =", SAeff
+	end
+
+************************************************************************
+
+	subroutine writeSLHA(filename)
+	implicit none
+
+#include "SLHA.h"
+
+	integer error
+	double complex slhadata(nslhadata)
+	integer key
+	character*(*) filename
+
+	call SLHARead(error, slhadata, filename, 1)
+	if( error .ne. 0 ) stop
+
+	call FHSetSLHA(error, slhadata)
+	if( error .ne. 0 ) stop
+
+c   Add Higgs masses to SLHA file - key = 4.
+	key = 4
+	call FHOutputSLHA(error, slhadata, key)
+	if( error .ne. 0 ) stop
+
+	call SLHAWrite(error, slhadata, filename)
+	if( error .ne. 0 ) stop
+
+	end
