@@ -232,7 +232,15 @@ class CMSSMConstraintTracker:
             print "Calling Fast-Lim..."
             self.fastlim()
         if self.physical:
+            print "Calling micrOMEGAs..."
+            self.micromegas()
+        if self.physical:
+            print "Calling SuperISO..."
+            self.superiso()
+        if self.physical:
             print "Calling FeynHiggs..."
+            # FeynHiggs rewrites the SLHA file with
+            # improved Higgs masses.
             self.feynhiggs()
         if self.physical:
             # Save the SOFTSUSY Higgs mass for reference.
@@ -240,13 +248,7 @@ class CMSSMConstraintTracker:
             self.constraint['Higgs'].theory = self.blocks['MASS'].entries[25]
             # Re-read SLHA file - FeynHiggs rewrites the SLHA file with
             # improved Higgs masses.
-            self.readslha()
-        if self.physical:
-            print "Calling micrOMEGAs..."
-            self.micromegas()
-        if self.physical:
-            print "Calling SuperISO..."
-            self.superiso()
+            self.readhiggs()
         if self.physical:
             print "Calling HiggsSignals..."
             self.higgssignals()
@@ -339,7 +341,6 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
         Returns:
 
         """
-        blocks = {}
         try:
             # Read the blocks in the SLHA file.
             self.blocks, self.decays = pyslha.readSLHAFile(self.SLHA)
@@ -361,6 +362,36 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
             self.mu = self.blocks['HMIX'].entries[1]
             # Pick out neutralino mixing.
             self.neutralino = self.blocks['NMIX'].entries
+
+    def readhiggs(self):
+        """ Read an SLHA file with PySLHA, if the SLHA file has changed
+        since the last time it was read, reload the Higgs mass from it.
+        This is useful for FeynHiggs, which corrects Higgs, but
+        breaks other things, especially in the NMSSM.
+
+        Arguments:
+
+        Returns:
+
+        """
+        try:
+            # Read the blocks in the SLHA file.
+            blocks, decays = pyslha.readSLHAFile(self.SLHA)
+        except:
+            # With expected running, shouldn't get any problems. But best
+            # to be defensive. A missing mass block would cause an
+            # exception, but e.g. stau LSP would not.
+            self.physical = False
+            print 'Caught trouble in the SLHA file.'
+
+            # Still need to return data of correct length.
+            self.masses = [0] * 33
+            self.mu = 0.
+            # NB neutralino mixing matrix is 5 by 5.
+            self.neutralino = [0] * 25
+        else:
+            # Save the Higgs mass.
+            self.masses[25] = blocks['MASS'].entries[25]
 
     def naturalness(self, MZ=9.11876000e+01):
         """ Calculate the naturalness priors.
