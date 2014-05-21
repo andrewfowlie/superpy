@@ -387,8 +387,8 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
             # Still need to return data of correct length.
             self.masses = [0] * 33
             self.mu = 0.
-            # NB neutralino mixing matrix is 5 by 5.
-            self.neutralino = [0] * 25
+            # NB neutralino mixing matrix is 4 by 4.
+            self.neutralino = [0] * 16
         else:
             # Save the Higgs mass.
             self.masses[25] = blocks['MASS'].entries[25]

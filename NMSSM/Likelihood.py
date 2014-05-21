@@ -355,7 +355,7 @@ Block QEXTPAR
             print 'Caught trouble in the SLHA file.'
 
             # Still need to return data of correct length.
-            self.masses = [0] * 33
+            self.masses = [0] * 34
             self.mu = 0.
             # NB neutralino mixing matrix is 5 by 5.
             self.neutralino = [0] * 25
@@ -389,7 +389,7 @@ Block QEXTPAR
             print 'Caught trouble in the SLHA file.'
 
             # Still need to return data of correct length.
-            self.masses = [0] * 33
+            self.masses = [0] * 34
             self.mu = 0.
             # NB neutralino mixing matrix is 5 by 5.
             self.neutralino = [0] * 25
