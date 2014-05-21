@@ -871,7 +871,7 @@ class InterpolateUpperConstraint:
                                self.data[1], left=None, right=None)
 
         # Now calcualte likelihood with Gaussian error function - erf.
-        like = 0.5 + 0.5 * \
+        like = 0.5 - 0.5 * \
             scipy.special.erf((self.theory - self.limit) / (2. ** 0.5 * self.tau * self.theory))
         try:
             self.loglike = math.log(like)
@@ -930,9 +930,8 @@ class InterpolateLowerConstraint:
         # corresponding to the theory x-value.
         self.limit = NP.interp(self.theoryx, self.data[0],
                                self.data[1], left=None, right=None)
-
         # Now calcualte likelihood with Gaussian error function - erf.
-        like = 0.5 - 0.5 * \
+        like = 0.5 + 0.5 * \
             scipy.special.erf((self.theory - self.limit) / (2. ** 0.5 * self.tau * self.theory))
         try:
             self.loglike = math.log(like)
