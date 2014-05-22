@@ -59,6 +59,8 @@ My changes are marked "SuperPy". I made minor modifications to:
 * ./NMSSMTools_4.2.1/main/makefile
 * ./NMSSMTools_4.2.1/sources/ftpar.f
 * ./NMSSMTools_4.2.1/sources/NS_output.f
+* ./FeynHiggs-2.10.0/src/SLHA/SLHAWrite.f
+
 I added:
 * ./FeynHiggs-2.10.0/example/SuperPy.F
 * ./HiggsSignals-1.2.0/example_programs/SuperPy.f90
