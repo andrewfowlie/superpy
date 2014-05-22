@@ -11,22 +11,22 @@ subroutine initialize_HiggsSignals_latestresults(nHiggsneut,nHiggsplus)
  integer,intent(in) :: nHiggsneut
  integer,intent(in) :: nHiggsplus
  character(LEN=13) :: Expt_string
- 
+
  Expt_string = "latestresults"
 
  call initialize_HiggsSignals(nHiggsneut,nHiggsplus,Expt_string)
- 
+
 end subroutine initialize_HiggsSignals_latestresults
 !------------------------------------------------------------
 subroutine initialize_HiggsSignals(nHiggsneut,nHiggsplus,Expt_string)
 !------------------------------------------------------------
 ! This the first HiggsSignals subroutine that should be called
 ! by the user.
-! It calls subroutines to read in the tables of Standard Model 
-! decay and production rates from HiggsBounds, sets up the 
+! It calls subroutines to read in the tables of Standard Model
+! decay and production rates from HiggsBounds, sets up the
 ! experimental data from Tevatron and LHC, allocate arrays, etc.
 ! Arguments (input):
-!   * nHiggs = number of neutral Higgs in the model 
+!   * nHiggs = number of neutral Higgs in the model
 !   * nHiggsplus = number of singly, positively charged Higgs in the model
 !   * Expt_string = name of experimental dataset to be used
 !------------------------------------------------------------
@@ -55,12 +55,12 @@ subroutine initialize_HiggsSignals(nHiggsneut,nHiggsplus,Expt_string)
  np(Hneut)=nHiggsneut
 
  np(Hplus)=nHiggsplus
- 
+
  Exptdir = Expt_string
- 
+
  np(Chineut)=0! not considering bounds on neutralinos here
  np(Chiplus)=0! not considering bounds on charginos here
-        
+
  debug=.False.
 
  select case(whichanalyses)
@@ -69,10 +69,10 @@ subroutine initialize_HiggsSignals(nHiggsneut,nHiggsplus,Expt_string)
   case('onlyH','onlyP','list ','LandH')
   case default
    whichanalyses='onlyH'
- end select 
+ end select
 
- call HiggsSignals_info 
- if(inputmethod=='subrout') then 
+ call HiggsSignals_info
+ if(inputmethod=='subrout') then
   if(allocated(theo))then
    if(debug) write(*,*) "HiggsBounds/HiggsSignals internal structure already initialized!"
   else
@@ -82,17 +82,17 @@ subroutine initialize_HiggsSignals(nHiggsneut,nHiggsplus,Expt_string)
    allocate(inputsub( 2 )) !(1)np(Hneut)>0 (2)np(Hplus)>0
    inputsub(1)%desc='HiggsBounds_neutral_input_*'    ; inputsub(1)%req=req(   0,   1)
    inputsub(2)%desc='HiggsBounds_charged_input'      ; inputsub(2)%req=req(   1,   0)
- 
+
    do i=1,ubound(inputsub,dim=1)
     inputsub(i)%stat=0
    enddo
   endif
- endif 
- 
- if(debug)write(*,*)'reading in Standard Model tables...'   ; call flush(6) 
- if(.not.allocated(BRSM)) call setup_BRSM 
+ endif
+
+ if(debug)write(*,*)'reading in Standard Model tables...'   ; call flush(6)
+ if(.not.allocated(BRSM)) call setup_BRSM
  call setup_uncertainties
-             
+
  if(debug)write(*,*)'reading in experimental data...'       ; call flush(6)
  call setup_observables
 
@@ -105,20 +105,20 @@ subroutine initialize_HiggsSignals(nHiggsneut,nHiggsplus,Expt_string)
  if(debug)write(*,*)'HiggsSignals has been initialized...'  ; call flush(6)
 
  just_after_run=.False.
-  
- contains 
+
+ contains
    !         |   np
-   !         |Hneu Hcha 
-   !         | ==0  ==0 
+   !         |Hneu Hcha
+   !         | ==0  ==0
  function req(Hneu,Hcha)
   integer, intent(in) ::Hneu,Hcha
   integer :: req
-  
+
   req=1
   if(np(Hneut)==0)  req= Hneu  * req
   if(np(Hplus)==0)  req= Hcha  * req
 
- end function req 
+ end function req
 
 end subroutine initialize_HiggsSignals
 !------------------------------------------------------------
@@ -126,7 +126,7 @@ subroutine HiggsSignals_neutral_input_MassUncertainty(dMh)
 ! Sets the theoretical mass uncertainty of the Higgs bosons.
 !------------------------------------------------------------
  use usefulbits, only: theo,np,Hneut
- 
+
  implicit none
  double precision,intent(in) :: dMh(np(Hneut))
 
@@ -138,9 +138,9 @@ subroutine HiggsSignals_neutral_input_MassUncertainty(dMh)
   write(*,*)'only be called if np(Hneut)>0'
   stop 'error in subroutine HiggsSignal_neutral_input_MassUncertainty'
  endif
- 
+
  theo(1)%particle(Hneut)%dM = dMh
- 
+
 end subroutine HiggsSignals_neutral_input_MassUncertainty
 !------------------------------------------------------------
 subroutine setup_uncertainties
@@ -149,7 +149,7 @@ subroutine setup_uncertainties
  use store_pathname_hs, only : pathname_HS
  use usefulbits_hs, only : delta_rate
  use io, only : read_matrix_from_file
- 
+
  logical :: BRmodel, BRSM, XSmodel, XSSM
 
  call read_matrix_from_file(9,pathname_HS//"BRcov.in",delta_rate%BRcov, BRmodel)
@@ -169,7 +169,7 @@ subroutine setup_uncertainties
  else
   write(*,*) "Covariance matrix for relative cross section uncertainties not provided. Using default values."
  endif
-    
+
 end subroutine setup_uncertainties
 !------------------------------------------------------------
 subroutine setup_rate_uncertainties( dCS, dBR )
@@ -183,17 +183,17 @@ subroutine setup_rate_uncertainties( dCS, dBR )
 !------------------------------------------------------------
  use usefulbits_hs, only : delta_rate
  implicit none
- 
+
  double precision, intent(in) :: dCS(5)
  double precision, intent(in) :: dBR(5)
  integer :: i
-   
+
  delta_rate%dCS = dCS
 
- do i=lbound(dBR,dim=1),ubound(dBR,dim=1) 
+ do i=lbound(dBR,dim=1),ubound(dBR,dim=1)
   call setup_dbr(i,dBR(i))
  enddo
- 
+
 end subroutine setup_rate_uncertainties
 !------------------------------------------------------------
 subroutine setup_dbr(BRid, value)
@@ -208,7 +208,7 @@ subroutine setup_dbr(BRid, value)
  else
   write(*,*) "Warning in setup_dbr: Unknown decay mode."
  endif
-   
+
 end subroutine setup_dbr
 !------------------------------------------------------------
 subroutine setup_correlations(corr_mu, corr_mh)
@@ -218,7 +218,7 @@ subroutine setup_correlations(corr_mu, corr_mh)
 !------------------------------------------------------------
  use usefulbits_hs, only : correlations_mu, correlations_mh
  implicit none
- 
+
  integer, intent(in) :: corr_mu, corr_mh
  if(corr_mu.eq.0) then
   correlations_mu = .False.
@@ -226,7 +226,7 @@ subroutine setup_correlations(corr_mu, corr_mh)
  elseif(corr_mu.eq.1) then
   correlations_mu = .True.
  else
-  stop 'Error: Correlations must be switched on/off by an integer value of 0 or 1.' 
+  stop 'Error: Correlations must be switched on/off by an integer value of 0 or 1.'
  endif
  if(corr_mh.eq.0) then
   correlations_mh = .False.
@@ -234,13 +234,13 @@ subroutine setup_correlations(corr_mu, corr_mh)
  elseif(corr_mh.eq.1) then
   correlations_mh = .True.
  else
-  stop 'Error: Correlations must be switched on/off by an integer value of 0 or 1.' 
+  stop 'Error: Correlations must be switched on/off by an integer value of 0 or 1.'
  endif
 end subroutine setup_correlations
 !------------------------------------------------------------
 subroutine setup_symmetricerrors(symm)
 ! Sets the measured rate uncertainties to either a symmetrical average
-! of the upper and lower cyan band widths (symm==1) or else uses the 
+! of the upper and lower cyan band widths (symm==1) or else uses the
 ! original (asymmetrical) errors.
 !------------------------------------------------------------
  use usefulbits_hs, only : symmetricerrors
@@ -254,7 +254,7 @@ subroutine setup_symmetricerrors(symm)
   write(*,*) "Using original (asymmetrical) experimental rate uncertainties."
   symmetricerrors = .False.
  endif
-  
+
 end subroutine setup_symmetricerrors
 !------------------------------------------------------------
 subroutine setup_absolute_errors(absol)
@@ -273,7 +273,7 @@ subroutine setup_absolute_errors(absol)
   write(*,*) "Using relative experimental rate uncertainties."
   absolute_errors = .False.
  endif
-  
+
 end subroutine setup_absolute_errors
 !------------------------------------------------------------
 subroutine setup_correlated_rate_uncertainties(corr)
@@ -308,7 +308,7 @@ subroutine setup_SMweights(useweight)
   write(*,*) "Using true model weights for theoretical rate uncertainties of the model."
   useSMweights = .False.
  endif
-  
+
 end subroutine setup_SMweights
 !------------------------------------------------------------
 subroutine setup_anticorrelations_in_mu(acorr)
@@ -328,7 +328,7 @@ subroutine setup_anticorrelations_in_mu(acorr)
   write(*,*) "Prohibit anti-correlated signal strength measurements."
   anticorrmu = .False.
  endif
-  
+
 end subroutine setup_anticorrelations_in_mu
 !------------------------------------------------------------
 subroutine setup_anticorrelations_in_mh(acorr)
@@ -348,7 +348,7 @@ subroutine setup_anticorrelations_in_mh(acorr)
   write(*,*) "Prohibit anti-correlated mass measurements."
   anticorrmh = .False.
  endif
-  
+
 end subroutine setup_anticorrelations_in_mh
 !------------------------------------------------------------
 subroutine setup_assignmentrange(range)
@@ -358,21 +358,21 @@ subroutine setup_assignmentrange(range)
 !------------------------------------------------------------
  use usefulbits_hs, only : assignmentrange,assignmentrange_massobs, pdf
  implicit none
- 
+
  double precision, intent(in) :: range
- 
+
  if(range.le.0.0D0) then
   write(*,*) "Error: Bad assignment range ",range
-  write(*,*) "Keeping the value ",assignmentrange  
+  write(*,*) "Keeping the value ",assignmentrange
  else
   assignmentrange = range
   assignmentrange_massobs = range
- endif 
+ endif
 
  if(assignmentrange.ne.1.0D0.and.pdf.eq.1) then
   write(*,*) "Note: For a box pdf, only 1s mass range is used to force the Higgs-to-peak assignment."
  endif
- 
+
 end subroutine setup_assignmentrange
 !------------------------------------------------------------
 subroutine setup_assignmentrange_massobservables(range)
@@ -382,26 +382,26 @@ subroutine setup_assignmentrange_massobservables(range)
 !------------------------------------------------------------
  use usefulbits_hs, only : assignmentrange_massobs, pdf
  implicit none
- 
+
  double precision, intent(in) :: range
- 
+
  if(range.le.0.0D0) then
   write(*,*) "Error: Bad assignment range ",range
   write(*,*) "Keeping the value ",assignmentrange_massobs
  else
   assignmentrange_massobs = range
- endif 
+ endif
 
  if(assignmentrange_massobs.ne.1.0D0.and.pdf.eq.1) then
   write(*,*) "Note: For a box pdf, only 1s mass range is used to force the Higgs-to-peak assignment."
  endif
- 
+
 end subroutine setup_assignmentrange_massobservables
 !------------------------------------------------------------
 subroutine setup_nparam(Np)
 !------------------------------------------------------------
  use usefulbits_hs, only : Nparam
- implicit none 
+ implicit none
  integer, intent(in) :: Np
  Nparam = Np
 end subroutine setup_nparam
@@ -411,9 +411,9 @@ subroutine setup_Higgs_to_peaks_assignment_iterations(iter)
 !------------------------------------------------------------
  use usefulbits_hs, only : iterations
  implicit none
- integer, intent(in) :: iter 
- iterations = iter 
- 
+ integer, intent(in) :: iter
+ iterations = iter
+
 end subroutine setup_Higgs_to_peaks_assignment_iterations
 !------------------------------------------------------------
 subroutine setup_mcmethod_dm_theory(mode)
@@ -428,7 +428,7 @@ subroutine setup_mcmethod_dm_theory(mode)
 & ' boson mass theory uncertainty by '//trim(mode_desc(mode))//'.'
  else
   stop 'Error in subroutine setup_mcmethod_dm_theory: Unknown mode (1 or 2 possible)!'
- endif 
+ endif
 end subroutine setup_mcmethod_dm_theory
 !------------------------------------------------------------
 subroutine setup_sm_test(int_SMtest,epsilon)
@@ -437,18 +437,18 @@ subroutine setup_sm_test(int_SMtest,epsilon)
 !------------------------------------------------------------
  use usefulbits_hs, only : useSMtest, eps
  implicit none
- 
+
  integer, intent(in) :: int_SMtest
  double precision, intent(in) :: epsilon
- 
+
  if(int_SMtest.eq.0) then
   useSMtest = .False.
   write(*,*) 'SM likeness test has been switched off.'
  elseif(int_SMtest.eq.1) then
   useSMtest = .True.
-  write(*,*) 'SM likeness test has been switched on.'  
+  write(*,*) 'SM likeness test has been switched on.'
  else
-  stop 'Error: SM test must be switched on/off by an integer value of 0 or 1.' 
+  stop 'Error: SM test must be switched on/off by an integer value of 0 or 1.'
  endif
  eps = epsilon
 end subroutine setup_sm_test
@@ -462,9 +462,9 @@ subroutine setup_thu_observables(thuobs)
   write(*,*) 'Observables are assumed to NOT include theory errors.'
  else
   THU_included = .True.
-  write(*,*) 'Observables are assumed to include theory errors.'  
+  write(*,*) 'Observables are assumed to include theory errors.'
  endif
-  
+
 end subroutine setup_thu_observables
 !------------------------------------------------------------
 subroutine setup_output_level(level)
@@ -472,7 +472,7 @@ subroutine setup_output_level(level)
 ! 0 : silent mode
 ! 1 : screen output for each analysis with its peak/mass-centered observables and
 !     their respective values predicted by the model
-! 2 : screen output of detailed information on each analysis with its 
+! 2 : screen output of detailed information on each analysis with its
 !     peak/mass-centered observables
 ! 3 : creates the files peak_information.txt and peak_massesandrates.txt
 !------------------------------------------------------------
@@ -483,11 +483,11 @@ subroutine setup_output_level(level)
  if(level.eq.0.or.level.eq.1.or.level.eq.2.or.level.eq.3) then
   output_level = level
  else
-  stop 'Error in subroutine setup_output_level: level not equal to 0,1,2 or 3.' 
+  stop 'Error in subroutine setup_output_level: level not equal to 0,1,2 or 3.'
  endif
  if(level.eq.3) additional_output = .True.
- 
-end subroutine setup_output_level 
+
+end subroutine setup_output_level
 !------------------------------------------------------------
 subroutine setup_pdf(pdf_in)
 ! Sets the probability density function for the Higgs mass uncertainty parametrization:
@@ -500,17 +500,17 @@ subroutine setup_pdf(pdf_in)
  implicit none
  integer, intent(in) :: pdf_in
  character(LEN=13) :: pdf_desc(3) = (/'box         ','Gaussian    ','box+Gaussian'/)
- 
+
  pdf=pdf_in
  if((pdf.eq.1).or.(pdf.eq.2).or.(pdf.eq.3)) then
   write(*,'(1X,A,A,1I1,A)') 'Use a '//trim(pdf_desc(pdf))//' probability density function ',&
 &  'for the Higgs mass(es) (pdf=',pdf,')'
  endif
-   
+
  if(assignmentrange.ne.1.0D0.and.pdf.eq.1) then
   write(*,*) "Note: For a box pdf, only 1s mass range is used to force the Higgs-to-peak assignment."
  endif
-   
+
 end subroutine setup_pdf
 !------------------------------------------------------------
 !subroutine assign_toyvalues_to_observables(ii, peakindex, npeaks, mu_obs, mh_obs)
@@ -522,23 +522,23 @@ end subroutine setup_pdf
 !! mh_obs       :: toy value for mh to be given to the peak with peakindex
 !------------------------------------------------------------
 ! use usefulbits_hs, only: obs, usetoys
-! 
+!
 ! integer, intent(in) :: ii, peakindex, npeaks
 ! double precision, intent(in) :: mh_obs, mu_obs
-!  
+!
 ! if(peakindex.gt.npeaks) then
 !  stop 'Error in subroutine assign_toyvalues_to_observables: Observable does not exist!'
 ! endif
-!   
+!
 ! obs(ii)%table%npeaks = npeaks
 ! if(.not.allocated(obs(ii)%table%Toys_muobs)) allocate(obs(ii)%table%Toys_muobs(npeaks))
-! if(.not.allocated(obs(ii)%table%Toys_mhobs)) allocate(obs(ii)%table%Toys_mhobs(npeaks)) 
+! if(.not.allocated(obs(ii)%table%Toys_mhobs)) allocate(obs(ii)%table%Toys_mhobs(npeaks))
 !
 ! obs(ii)%table%Toys_muobs(peakindex) = mu_obs
 ! obs(ii)%table%Toys_mhobs(peakindex) = mh_obs
-! 
+!
 ! usetoys = .True.
-! 
+!
 !end subroutine assign_toyvalues_to_observables
 !------------------------------------------------------------
 subroutine assign_toyvalues_to_peak(ID, mu_obs, mh_obs)
@@ -555,29 +555,29 @@ subroutine assign_toyvalues_to_peak(ID, mu_obs, mh_obs)
  integer, intent(in) :: ID
  double precision, intent(in) :: mh_obs, mu_obs
  integer :: pos, ii
- 
+
  pos = -1
  do ii=lbound(obs,dim=1),ubound(obs,dim=1)
   if(obs(ii)%id.eq.ID) then
    pos = ii
-   exit   	
+   exit
   endif
  enddo
-  
- if(pos.ne.-1) then    
+
+ if(pos.ne.-1) then
   obs(pos)%peak%mpeak = mh_obs
   obs(pos)%peak%mu = mu_obs
   usetoys = .True.
  else
   write(*,*) "WARNING in assign_toyvalues_to_peak: ID unknown."
  endif
-  
+
 end subroutine assign_toyvalues_to_peak
 !------------------------------------------------------------
 subroutine assign_modelefficiencies_to_peak(ID, Nc, eff_ratios)
-! Assigns to each channel of the observable the efficiency in the model 
+! Assigns to each channel of the observable the efficiency in the model
 ! w.r.t the SM efficiency (as a ratio!)
-! 
+!
 ! ID           :: observable ID
 ! Nc			:: number of channels
 ! eff_ratios    :: array of length (Number of channels) giving the efficiency ratios
@@ -591,26 +591,26 @@ subroutine assign_modelefficiencies_to_peak(ID, Nc, eff_ratios)
  integer, intent(in) :: ID, Nc
  double precision, dimension(Nc), intent(in) :: eff_ratios
  integer :: pos, ii
- 
+
  pos = -1
  do ii=lbound(obs,dim=1),ubound(obs,dim=1)
   if(obs(ii)%id.eq.ID) then
    pos = ii
-   exit   	
+   exit
   endif
  enddo
-  
- if(pos.ne.-1) then    
+
+ if(pos.ne.-1) then
   if(size(eff_ratios,dim=1).ne.obs(pos)%table%Nc) then
    write(*,*) "WARNING in assign modelefficiencies_to_peak: Number of channels (",&
 &  size(eff_ratios,dim=1),"!=",obs(pos)%table%Nc,"does not match for observable ID = ",ID
   else
    obs(pos)%table%channel_eff_ratios = eff_ratios
-  endif 
+  endif
  else
   write(*,*) "WARNING in assign_modelefficiencies_to_peak: ID unknown."
  endif
-  
+
 end subroutine assign_modelefficiencies_to_peak
 !------------------------------------------------------------
 subroutine assign_rate_uncertainty_scalefactor_to_peak(ID, scale_mu)
@@ -623,37 +623,37 @@ subroutine assign_rate_uncertainty_scalefactor_to_peak(ID, scale_mu)
 !------------------------------------------------------------
  use usefulbits_hs, only: obs, usescalefactor
  implicit none
- 
+
  integer, intent(in) :: ID
  double precision, intent(in) :: scale_mu
  integer :: pos, ii
- 
+
  pos = -1
  do ii=lbound(obs,dim=1),ubound(obs,dim=1)
   if(obs(ii)%id.eq.ID) then
    pos = ii
-   exit   	
+   exit
   endif
  enddo
-  
+
  if(pos.ne.-1) then
   obs(pos)%peak%scale_mu = scale_mu
  else
   write(*,*) "WARNING in assign_uncertainty_scalefactors_to_peak: ID unknown."
  endif
  usescalefactor = .True.
- 
+
 end subroutine assign_rate_uncertainty_scalefactor_to_peak
 !------------------------------------------------------------
 subroutine run_HiggsSignals(mode, Chisq_mu, Chisq_mh, Chisq, nobs, Pvalue)
 !------------------------------------------------------------
 ! This subroutine can be called by the user after HiggsSignals_initialize has been called.
 ! The input routines, where required, should be called before calling run_HiggsSignals.
-! It takes theoretical predictions for a particular parameter point 
-! in the model and calls subroutines which compare these predictions 
+! It takes theoretical predictions for a particular parameter point
+! in the model and calls subroutines which compare these predictions
 ! to the experimental results.
 ! Arguments (output):
-!   * mode = 1,2 or 3 for peak-centered, mass-centered chi^2 method or both, respectively. 
+!   * mode = 1,2 or 3 for peak-centered, mass-centered chi^2 method or both, respectively.
 !   * Chisq_mu = total chi^2 contribution from signal strength measurements
 !   * Chisq_mh = total chi^2 contribution from Higgs mass measurements
 !   * Chisq = total chi^2 value for the combination of the considered Higgs signals
@@ -671,8 +671,8 @@ subroutine run_HiggsSignals(mode, Chisq_mu, Chisq_mh, Chisq, nobs, Pvalue)
  use F90_UNIX_IO, only : flush
 #endif
 
- implicit none               
- integer,intent(in) :: mode 
+ implicit none
+ integer,intent(in) :: mode
  !----------------------------------------output
  integer,intent(out) ::           nobs
  double precision,intent(out) ::  Pvalue, Chisq, Chisq_mu, Chisq_mh
@@ -680,14 +680,14 @@ subroutine run_HiggsSignals(mode, Chisq_mu, Chisq_mh, Chisq, nobs, Pvalue)
  integer :: n,i
  logical :: debug=.False.
  !---------------------------------------------
- 
+
 if(mode.eq.1) then
  runmode="peak"
 else if(mode.eq.2) then
  runmode="mass"
 else if(mode.eq.3) then
  runmode="both"
-else 
+else
  stop'Error in subroutine run_HiggsSignals: mode unknown'
 endif
 
@@ -704,32 +704,32 @@ endif
 !    stop'error in subroutine run_HiggsSignals'
    endif
 ! TS: Have to work on this bit to make it run simultaneously with HiggsBounds. Now,
-!     commented out the =0 statement. HS thus has to be run before HB.   
-  inputsub(i)%stat=0!now we have used this input, set back to zero   
+!     commented out the =0 statement. HS thus has to be run before HB.
+  inputsub(i)%stat=0!now we have used this input, set back to zero
   enddo
- endif 
+ endif
 
  if(debug)write(*,*)'manipulating input...'                 ; call flush(6)
 
- call complete_theo       
+ call complete_theo
 
- if(debug)write(*,*)'compare each model to the experimental data...' ; call flush(6)                  
+ if(debug)write(*,*)'compare each model to the experimental data...' ; call flush(6)
 
  do n=1,ndat
 
-  call evaluate_model(theo(n),HSres(n))       
-      
+  call evaluate_model(theo(n),HSres(n))
+
   Pvalue  = HSres(n)%Pvalue
-  Chisq   = HSres(n)%Chisq       
-  Chisq_mu   = HSres(n)%Chisq_mu       
-  Chisq_mh   = HSres(n)%Chisq_mh         
+  Chisq   = HSres(n)%Chisq
+  Chisq_mu   = HSres(n)%Chisq_mu
+  Chisq_mh   = HSres(n)%Chisq_mh
   nobs = HSres(n)%nobs
 
- if(output_level.ne.0) then    
+ if(output_level.ne.0) then
   write(*,*)
-  write(*,*) '#*************************************************************************#' 
+  write(*,*) '#*************************************************************************#'
   write(*,*) '#                         HIGGSSIGNALS RESULTS                            #'
-  write(*,*) '#*************************************************************************#' 
+  write(*,*) '#*************************************************************************#'
   write(*,'(A55,F21.8)') 'chi^2 from signal strength peak observables = ',&
  &  HSres(n)%Chisq_peak_mu
   write(*,'(A55,F21.8)') 'chi^2 from Higgs mass peak observables = ',HSres(n)%Chisq_mh
@@ -742,7 +742,7 @@ endif
   write(*,'(A55,I21)') 'Number of mass-centered observables = ',HSres(n)%nobs_mpred
   write(*,'(A55,I21)') 'Number of observables (total) = ',HSres(n)%nobs
   write(*,'(A48,I3,A4,F21.8)') 'Probability (ndf =',HSres(n)%nobs-Nparam,') = ',HSres(n)%Pvalue
-  write(*,*) '#*************************************************************************#' 
+  write(*,*) '#*************************************************************************#'
   write(*,*)
  endif
 
@@ -750,7 +750,7 @@ endif
 
  just_after_run=.True.
  usescalefactor=.False.
- 
+
 
 end subroutine run_HiggsSignals
 !------------------------------------------------------------
@@ -770,13 +770,13 @@ subroutine evaluate_model( t , r )
  use all_chisq
  use numerics
  implicit none
- !--------------------------------------input      
- type(dataset), intent(in) :: t      
+ !--------------------------------------input
+ type(dataset), intent(in) :: t
  !-------------------------------------output
  type(HSresults), intent(out) :: r
 
  integer :: ii, jj, iii, jjj
- 
+
  double precision :: totchisq, muchisq, mhchisq, mpchisq, mpredchisq
  integer :: nobs, Nmu, Nmh, Nmpred
  character(LEN=100), allocatable :: assignmentgroups(:)
@@ -784,25 +784,25 @@ subroutine evaluate_model( t , r )
  integer, allocatable :: assignmentgroups_Higgs_comb(:,:)
 
  allocate(assignmentgroups(nanalys),assignmentgroups_domH(nanalys))
- allocate(assignmentgroups_Higgs_comb(nanalys,np(Hneut))) 
+ allocate(assignmentgroups_Higgs_comb(nanalys,np(Hneut)))
 
 !---Initialize assignmentgroups arrays with default values
 do ii=lbound(assignmentgroups_domH,dim=1),ubound(assignmentgroups_domH,dim=1)
  assignmentgroups_domH(ii) = 0
  assignmentgroups_Higgs_comb(ii,:) = 0
-enddo    
-  
-!---First, evaluate the model predictions  
+enddo
+
+!---First, evaluate the model predictions
  allocate(neutHiggses(nanalys,np(Hneut)))
-!-Loop over considered analyses  
+!-Loop over considered analyses
  do ii=lbound(neutHiggses,dim=1),ubound(neutHiggses,dim=1)
-!-Loop over the neutral Higgs bosons of the model 
+!-Loop over the neutral Higgs bosons of the model
   do jj=lbound(neutHiggses,dim=2),ubound(neutHiggses,dim=2)
 !!   write(*,*) "hello evaluate model:", ii, jj
    call calc_mupred(jj, t, obs(ii)%table, neutHiggses(ii,jj))
   enddo
   if(.not.allocated(obs(ii)%Higgses)) allocate(obs(ii)%Higgses(np(Hneut)))
-  obs(ii)%Higgses(:) = neutHiggses(ii,:)  
+  obs(ii)%Higgses(:) = neutHiggses(ii,:)
  enddo
 
 !-Pass the observables and their predicted Higgs properties (obs%Higgses)
@@ -810,29 +810,29 @@ enddo
  call setup_tablelist
 
  select case(runmode)
- 
+
  case('peak')
-!-Peak-centered chisq method 
+!-Peak-centered chisq method
   jjj=0
   do ii=lbound(analyses,dim=1),ubound(analyses,dim=1)
    call deallocate_covariance_matrices
    call assign_Higgs_to_peaks(analyses(ii)%table, analyses(ii)%peaks,0)
-   do iii=lbound(analyses(ii)%peaks,dim=1),ubound(analyses(ii)%peaks,dim=1)  
+   do iii=lbound(analyses(ii)%peaks,dim=1),ubound(analyses(ii)%peaks,dim=1)
     if(analyses(ii)%table%mhchisq.eq.1.and.&
 &      len(trim(adjustl(analyses(ii)%peaks(iii)%assignmentgroup))).ne.0) then
      jjj=jjj+1
      assignmentgroups(jjj)=analyses(ii)%peaks(iii)%assignmentgroup
      assignmentgroups_Higgs_comb(jjj,:)=analyses(ii)%peaks(iii)%Higgs_comb
-     assignmentgroups_domH(jjj)=analyses(ii)%peaks(iii)%domH     
+     assignmentgroups_domH(jjj)=analyses(ii)%peaks(iii)%domH
 !!     write(*,*) "Found leader of group ",assignmentgroups(jjj)
 !!     write(*,*) "ID ",analyses(ii)%peaks(iii)%id
-!!     write(*,*) "with Higgs combination ",assignmentgroups_Higgs_comb(jjj,:)  
-!!     write(*,*) "and dominant Higgs boson ",assignmentgroups_domH(jjj)          
-    endif   
-   enddo 
+!!     write(*,*) "with Higgs combination ",assignmentgroups_Higgs_comb(jjj,:)
+!!     write(*,*) "and dominant Higgs boson ",assignmentgroups_domH(jjj)
+    endif
+   enddo
   enddo
   do ii=lbound(analyses,dim=1),ubound(analyses,dim=1)
-   do iii=lbound(analyses(ii)%peaks,dim=1),ubound(analyses(ii)%peaks,dim=1)  
+   do iii=lbound(analyses(ii)%peaks,dim=1),ubound(analyses(ii)%peaks,dim=1)
     if(analyses(ii)%table%mhchisq.eq.0.and.&
 &     len(trim(adjustl(analyses(ii)%peaks(iii)%assignmentgroup))).ne.0) then
       !SELECT ASSIGNMENT GROUP FOLLOWERS
@@ -843,13 +843,13 @@ enddo
         analyses(ii)%peaks(iii)%domH=assignmentgroups_domH(jjj)
         if(assignmentgroups_domH(jjj).ne.0) then
          analyses(ii)%peaks(iii)%Higgs_assignment_forced=1
-        endif 
+        endif
         call evaluate_peak(analyses(ii)%peaks(iii),analyses(ii)%table)
        endif
       enddo
     endif
    enddo
-  enddo     
+  enddo
 
 ! Do the iterative Higgs-to-peak-assignment here:
   call assign_Higgs_to_peaks_with_correlations(iterations)
@@ -860,15 +860,15 @@ enddo
   if(output_level.eq.3) then
    call print_peaks_to_file
    call print_peaks_signal_rates_to_file
-  endif 
+  endif
 
   call add_peaks_to_HSresults(r)
-    
+
   r%Chisq=totchisq
   r%Chisq_peak_mu = muchisq
   r%Chisq_mpred = 0.0D0
   r%Chisq_mu=muchisq
-  r%Chisq_mh=mhchisq  
+  r%Chisq_mh=mhchisq
   r%nobs_mpred=0
   r%nobs_peak_mu=Nmu
   r%nobs_peak_mh=Nmh
@@ -877,8 +877,8 @@ enddo
   if(r%Chisq.gt.vsmall.and.(r%nobs-Nparam).gt.0) then
    r%Pvalue=1 - gammp(dble(r%nobs-Nparam)/2,r%Chisq/2)
   endif
-  
- case('mass')  
+
+ case('mass')
   do ii=lbound(analyses,dim=1),ubound(analyses,dim=1)
    call fill_mp_obs(ii)
   enddo
@@ -890,19 +890,19 @@ enddo
   if(output_level.eq.2) call print_mc_observables_essentials
   if(output_level.eq.3) then
    call print_mc_tables_to_file
-   call print_mc_observables_to_file   
+   call print_mc_observables_to_file
   endif
-  
+
   r%Chisq=mpchisq
   r%Chisq_peak_mu = 0.0D0
-  r%Chisq_mpred = mpchisq 
+  r%Chisq_mpred = mpchisq
   r%Chisq_mu=mpchisq
   r%Chisq_mh=0.0D0
   r%nobs_mpred=nobs
   r%nobs_peak_mu=0
   r%nobs_peak_mh=0
-  r%nanalysis=size(analyses)  
-  r%nobs=nobs    
+  r%nanalysis=size(analyses)
+  r%nobs=nobs
   if(r%Chisq.gt.vsmall.and.(r%nobs-Nparam).gt.0) then
    r%Pvalue=1 - gammp(dble(r%nobs-Nparam)/2,r%Chisq/2)
   endif
@@ -912,18 +912,18 @@ enddo
   do ii=lbound(analyses,dim=1),ubound(analyses,dim=1)
    call deallocate_covariance_matrices
    call assign_Higgs_to_peaks(analyses(ii)%table, analyses(ii)%peaks,0)
-   do iii=lbound(analyses(ii)%peaks,dim=1),ubound(analyses(ii)%peaks,dim=1)  
+   do iii=lbound(analyses(ii)%peaks,dim=1),ubound(analyses(ii)%peaks,dim=1)
     if(analyses(ii)%table%mhchisq.eq.1.and.&
 &      len(trim(analyses(ii)%peaks(iii)%assignmentgroup)).ne.0) then
      jjj=jjj+1
      assignmentgroups(jjj)=analyses(ii)%peaks(iii)%assignmentgroup
      assignmentgroups_Higgs_comb(jjj,:)=analyses(ii)%peaks(iii)%Higgs_comb
-     assignmentgroups_domH(jjj)=analyses(ii)%peaks(iii)%domH     
-    endif   
-   enddo    
+     assignmentgroups_domH(jjj)=analyses(ii)%peaks(iii)%domH
+    endif
+   enddo
   enddo
   do ii=lbound(analyses,dim=1),ubound(analyses,dim=1)
-   do iii=lbound(analyses(ii)%peaks,dim=1),ubound(analyses(ii)%peaks,dim=1)  
+   do iii=lbound(analyses(ii)%peaks,dim=1),ubound(analyses(ii)%peaks,dim=1)
     if(analyses(ii)%table%mhchisq.eq.0.and.&
 &     len(trim(analyses(ii)%peaks(iii)%assignmentgroup)).ne.0) then
       do jjj=lbound(assignmentgroups,dim=1),ubound(assignmentgroups,dim=1)
@@ -933,40 +933,40 @@ enddo
         analyses(ii)%peaks(iii)%domH=assignmentgroups_domH(jjj)
         if(assignmentgroups_domH(jjj).ne.0) then
          analyses(ii)%peaks(iii)%Higgs_assignment_forced=1
-        endif 
+        endif
         ! TODO: Need to evaluate everything else here!
         call evaluate_peak(analyses(ii)%peaks(iii),analyses(ii)%table)
        endif
       enddo
     endif
    enddo
-  enddo     
-  
-  call assign_Higgs_to_peaks_with_correlations(iterations) 
-  
+  enddo
+
+  call assign_Higgs_to_peaks_with_correlations(iterations)
+
   do ii=lbound(analyses,dim=1),ubound(analyses,dim=1)
    call check_available_Higgses(ii)
    call fill_mp_obs(ii)
-  enddo  
+  enddo
   if(mc_mode.eq.1) call mass_variation_by_theory_uncertainty
- 
+
   call calculate_total_chisq(totchisq, muchisq, mhchisq, mpredchisq, nobs, Nmu, Nmh, Nmpred)
- 
+
  !Have to write a new print method
   if(output_level.eq.1)  call print_all_observables
   if(output_level.eq.2) call print_peakinformation_essentials
   if(output_level.eq.3) then
    call print_peaks_to_file
    call print_peaks_signal_rates_to_file
-  endif 
+  endif
 
   call add_peaks_to_HSresults(r)
- 
+
   r%Chisq=totchisq
   r%Chisq_peak_mu = muchisq
-  r%Chisq_mpred = mpredchisq 
+  r%Chisq_mpred = mpredchisq
   r%Chisq_mu=muchisq + mpredchisq
-  r%Chisq_mh=mhchisq  
+  r%Chisq_mh=mhchisq
   r%nobs_mpred=Nmpred
   r%nobs_peak_mu=Nmu
   r%nobs_peak_mh=Nmh
@@ -975,14 +975,14 @@ enddo
   if(r%Chisq.gt.vsmall.and.(r%nobs-Nparam).gt.0) then
    r%Pvalue=1 - gammp(dble(r%nobs-Nparam)/2,r%Chisq/2)
   endif
-  
+
  case default
   stop "Error in subroutine evaluate_model: Please specify runmode!"
-  
+
  end select
 
  deallocate(neutHiggses)
- deallocate(assignmentgroups, assignmentgroups_domH, assignmentgroups_Higgs_comb)   
+ deallocate(assignmentgroups, assignmentgroups_domH, assignmentgroups_Higgs_comb)
 end subroutine evaluate_model
 !------------------------------------------------------------
 subroutine calc_mupred( j, t, mutab, Higgs )
@@ -991,7 +991,7 @@ subroutine calc_mupred( j, t, mutab, Higgs )
  use usefulbits, only : dataset, div, vsmall
  use usefulbits_HS, only : neutHiggs, mutable, useSMtest, eps
  implicit none
- 
+
  integer, intent(in) :: j					! Higgs index
  type(dataset), intent(in) :: t
  type(mutable), intent(inout) :: mutab
@@ -999,43 +999,43 @@ subroutine calc_mupred( j, t, mutab, Higgs )
 
  integer :: i
  double precision :: c, dcbyc
- integer :: testSMratios 
+ integer :: testSMratios
  logical :: correct_properties
 
  Higgs%m = t%particle(mutab%particle_x)%M(j)
  Higgs%dm = t%particle(mutab%particle_x)%dM(j)
  Higgs%id = j
-  
+
  call get_channelrates( j, t, mutab )
 
  correct_properties=.True.
 
 !--Evaluate the predicted signal strength modifier c of the model
- c=0. 
+ c=0.
  do i=1,mutab%Nc
-!----use a weighted average of the channel rate ratios     
+!----use a weighted average of the channel rate ratios
   c=c+mutab%channel_w(i,j)*mutab%channel_mu(i,j)
  enddo
 
 !--Evaluate the deviation of each channel rate ratio to the signal
 !--strength modifier c and test SM likeness criterium, if this is
 !--activated.
- testSMratios= 1  !passes the SM-like ratios test 
+ testSMratios= 1  !passes the SM-like ratios test
  do i=1,mutab%Nc
   dcbyc=div((mutab%channel_mu(i,j)-c),c,0.0D0,1.0D9)
   if(dcbyc*mutab%channel_w(i,j).gt.eps.and.useSMtest) then
    testSMratios= -1  !fails the SM-like ratios test
-  endif     
+  endif
  enddo
 
  if(testSMratios.lt.0) correct_properties=.False.
-  
+
  if(correct_properties) then
   Higgs%mu=c
  else
   Higgs%mu=0.0D0
  endif
-  
+
 end subroutine calc_mupred
 !------------------------------------------------------------
 subroutine get_channelrates( j, t, mutab )
@@ -1051,7 +1051,7 @@ subroutine get_channelrates( j, t, mutab )
  use usefulbits_HS, only : neutHiggs, mutable, delta_rate, normalize_rates_to_reference_position
  use theory_XS_SM_functions
  use theory_BRfunctions
- 
+
  integer, intent(in) :: j
  type(dataset), intent(in) :: t
  type(mutable), intent(inout) :: mutab
@@ -1060,7 +1060,7 @@ subroutine get_channelrates( j, t, mutab )
  integer :: i, id, p, d
  integer :: ii, id1, id2, p1, p2, d1, d2
  double precision :: rate, SMrate, modelrate, drsq_SM, drsq, dBR, dBRSM
- 
+
 !!NEW:
  double precision :: rate_SMref,refmass
 
@@ -1079,10 +1079,10 @@ subroutine get_channelrates( j, t, mutab )
   p = int((id-modulo(id,10))/dble(10))
   d = modulo(id,10)
 
-!--Do the production rate for the relevant experiment and cms-energy 
+!--Do the production rate for the relevant experiment and cms-energy
   if(mutab%collider.eq.'LHC') then
    if(abs(mutab%energy-7.0D0).le.small) then
-    if(p.eq.1) then 
+    if(p.eq.1) then
      rate=t%lhc7%XS_hj_ratio(j)
      SMrate=t%lhc7%XS_H_SM(j)
      rate_SMref=XS_lhc7_gg_H_SM(refmass)
@@ -1091,93 +1091,93 @@ subroutine get_channelrates( j, t, mutab )
      rate=t%lhc7%XS_vbf_ratio(j)
      SMrate=t%lhc7%XS_vbf_SM(j)
      rate_SMref=XS_lhc7_vbf_SM(refmass)
-     mutab%channel_description(i,1)='VBF'     
+     mutab%channel_description(i,1)='VBF'
     else if(p.eq.3) then
      rate=t%lhc7%XS_hjW_ratio(j)
-     SMrate=t%lhc7%XS_HW_SM(j) 
+     SMrate=t%lhc7%XS_HW_SM(j)
      rate_SMref=XS_lhc7_HW_SM(refmass)
-     mutab%channel_description(i,1)='HW'     
+     mutab%channel_description(i,1)='HW'
     else if(p.eq.4) then
-     rate=t%lhc7%XS_hjZ_ratio(j)  
+     rate=t%lhc7%XS_hjZ_ratio(j)
      SMrate=t%lhc7%XS_HZ_SM(j)
      rate_SMref=XS_lhc7_HZ_SM(refmass)
-     mutab%channel_description(i,1)='HZ'       
+     mutab%channel_description(i,1)='HZ'
     else if(p.eq.5) then
      rate=t%lhc7%XS_tthj_ratio(j)
      SMrate=t%lhc7%XS_ttH_SM(j)
      rate_SMref=XS_lhc7_ttH_SM(refmass)
-     mutab%channel_description(i,1)='ttH'     
+     mutab%channel_description(i,1)='ttH'
     else if(p.eq.0) then
      rate=1.0D0
      SMrate=1.0D0
      rate_SMref=1.0D0
      mutab%channel_description(i,1)='none'
-    endif 
+    endif
    else if(abs(mutab%energy-8.0D0).le.small) then
-    if(p.eq.1) then 
+    if(p.eq.1) then
      rate=t%lhc8%XS_hj_ratio(j)
      SMrate=t%lhc8%XS_H_SM(j)
-     rate_SMref=XS_lhc8_gg_H_SM(refmass)     
+     rate_SMref=XS_lhc8_gg_H_SM(refmass)
      mutab%channel_description(i,1)='singleH'
     else if(p.eq.2) then
      rate=t%lhc8%XS_vbf_ratio(j)
      SMrate=t%lhc8%XS_vbf_SM(j)
-     rate_SMref=XS_lhc8_vbf_SM(refmass)     
-     mutab%channel_description(i,1)='VBF'     
+     rate_SMref=XS_lhc8_vbf_SM(refmass)
+     mutab%channel_description(i,1)='VBF'
     else if(p.eq.3) then
      rate=t%lhc8%XS_hjW_ratio(j)
-     SMrate=t%lhc8%XS_HW_SM(j) 
-     rate_SMref=XS_lhc8_HW_SM(refmass)     
-     mutab%channel_description(i,1)='HW'     
+     SMrate=t%lhc8%XS_HW_SM(j)
+     rate_SMref=XS_lhc8_HW_SM(refmass)
+     mutab%channel_description(i,1)='HW'
     else if(p.eq.4) then
-     rate=t%lhc8%XS_hjZ_ratio(j)  
+     rate=t%lhc8%XS_hjZ_ratio(j)
      SMrate=t%lhc8%XS_HZ_SM(j)
-     rate_SMref=XS_lhc8_HZ_SM(refmass)     
-     mutab%channel_description(i,1)='HZ'       
+     rate_SMref=XS_lhc8_HZ_SM(refmass)
+     mutab%channel_description(i,1)='HZ'
     else if(p.eq.5) then
      rate=t%lhc8%XS_tthj_ratio(j)
      SMrate=t%lhc8%XS_ttH_SM(j)
-     rate_SMref=XS_lhc8_ttH_SM(refmass)     
-     mutab%channel_description(i,1)='ttH' 
+     rate_SMref=XS_lhc8_ttH_SM(refmass)
+     mutab%channel_description(i,1)='ttH'
     else if(p.eq.0) then
      rate=1.0D0
      SMrate=1.0D0
-     rate_SMref=1.0D0     
-     mutab%channel_description(i,1)='none'         
-    endif  
-   endif 
+     rate_SMref=1.0D0
+     mutab%channel_description(i,1)='none'
+    endif
+   endif
   else if(mutab%collider.eq.'TEV') then
-    if(p.eq.1) then 
+    if(p.eq.1) then
      rate=t%tev%XS_hj_ratio(j)
      SMrate=t%tev%XS_H_SM(j)
-     rate_SMref=XS_tev_gg_H_SM(refmass)     
+     rate_SMref=XS_tev_gg_H_SM(refmass)
      mutab%channel_description(i,1)='singleH'
     else if(p.eq.2) then
      rate=t%tev%XS_vbf_ratio(j)
      SMrate=t%tev%XS_vbf_SM(j)
-     rate_SMref=XS_tev_vbf_SM(refmass)     
-     mutab%channel_description(i,1)='VBF'     
+     rate_SMref=XS_tev_vbf_SM(refmass)
+     mutab%channel_description(i,1)='VBF'
     else if(p.eq.3) then
      rate=t%tev%XS_hjW_ratio(j)
-     SMrate=t%tev%XS_HW_SM(j) 
+     SMrate=t%tev%XS_HW_SM(j)
      rate_SMref=XS_tev_HW_SM(refmass)
-     mutab%channel_description(i,1)='HW'     
+     mutab%channel_description(i,1)='HW'
     else if(p.eq.4) then
-     rate=t%tev%XS_hjZ_ratio(j)  
+     rate=t%tev%XS_hjZ_ratio(j)
      SMrate=t%tev%XS_HZ_SM(j)
      rate_SMref=XS_tev_HZ_SM(refmass)
-     mutab%channel_description(i,1)='HZ'       
+     mutab%channel_description(i,1)='HZ'
     else if(p.eq.5) then
      rate=t%tev%XS_tthj_ratio(j)
      SMrate=t%tev%XS_ttH_SM(j)
      rate_SMref=XS_tev_ttH_SM(refmass)
-     mutab%channel_description(i,1)='ttH' 
+     mutab%channel_description(i,1)='ttH'
     else if(p.eq.0) then
      rate=1.0D0
      SMrate=1.0D0
-     rate_SMref=1.0D0     
-     mutab%channel_description(i,1)='none'         
-    endif       
+     rate_SMref=1.0D0
+     mutab%channel_description(i,1)='none'
+    endif
   else if(mutab%collider.eq.'ILC') then
 !--n.B.: As a first attempt, we use the LHC8 normalized cross sections for ZH, VBF, ttH.
 !        In order to do this properly, a separate input for the ILC cross sections
@@ -1186,49 +1186,49 @@ subroutine get_channelrates( j, t, mutab )
 !        approximation, there is no difference to a full implementation.
 !        The theoretical uncertainty of the ILC production modes will are defined in
 !        usefulbits_HS.f90.
-    if(p.eq.1.or.p.eq.2) then 
+    if(p.eq.1.or.p.eq.2) then
      write(*,*) 'Warning: Unknown ILC production mode (',p,') in table ',mutab%id
      rate=0.0D0
      SMrate=1.0D0
-     rate_SMref=1.0D0     
+     rate_SMref=1.0D0
      mutab%channel_description(i,1)='unknown'
     else if(p.eq.3) then
      rate=t%lhc8%XS_hjW_ratio(j)
      SMrate=t%lhc8%XS_HW_SM(j)
-     rate_SMref=XS_lhc8_HW_SM(refmass)          
-     mutab%channel_description(i,1)='WBF'     
+     rate_SMref=XS_lhc8_HW_SM(refmass)
+     mutab%channel_description(i,1)='WBF'
     else if(p.eq.4) then
-     rate=t%lhc8%XS_hjZ_ratio(j)  
+     rate=t%lhc8%XS_hjZ_ratio(j)
      SMrate=t%lhc8%XS_HZ_SM(j)
-     rate_SMref=XS_lhc8_HZ_SM(refmass)     
-     mutab%channel_description(i,1)='HZ'       
+     rate_SMref=XS_lhc8_HZ_SM(refmass)
+     mutab%channel_description(i,1)='HZ'
     else if(p.eq.5) then
      rate=t%lhc8%XS_tthj_ratio(j)
      SMrate=t%lhc8%XS_ttH_SM(j)
      rate_SMref=XS_lhc8_ttH_SM(refmass)
-     mutab%channel_description(i,1)='ttH' 
+     mutab%channel_description(i,1)='ttH'
     else if(p.eq.0) then
      rate=1.0D0
      SMrate=1.0D0
-     rate_SMref=1.0D0     
-     mutab%channel_description(i,1)='none'         
-    endif           
+     rate_SMref=1.0D0
+     mutab%channel_description(i,1)='none'
+    endif
    endif
 !--Multiply now by the decay rate
   if(d.eq.1) then
    rate=rate*div(t%BR_hjgaga(j),t%BR_Hgaga_SM(j),0.0D0,1.0D0)
    SMrate=SMrate*t%BR_Hgaga_SM(j)
    rate_SMref = rate_SMref*BRSM_Hgaga(refmass)
-   mutab%channel_description(i,2)='gammagamma'   
+   mutab%channel_description(i,2)='gammagamma'
   else if(d.eq.2) then
-   rate=rate*div(t%BR_hjWW(j),t%BR_HWW_SM(j),0.0D0,1.0D0)   
+   rate=rate*div(t%BR_hjWW(j),t%BR_HWW_SM(j),0.0D0,1.0D0)
    SMrate=SMrate*t%BR_HWW_SM(j)
    rate_SMref = rate_SMref*BRSM_HWW(refmass)
-   mutab%channel_description(i,2)='WW'   
+   mutab%channel_description(i,2)='WW'
   else if(d.eq.3) then
    rate=rate*div(t%BR_hjZZ(j),t%BR_HZZ_SM(j),0.0D0,1.0D0)
    SMrate=SMrate*t%BR_HZZ_SM(j)
-   rate_SMref = rate_SMref*BRSM_HZZ(refmass)   
+   rate_SMref = rate_SMref*BRSM_HZZ(refmass)
    mutab%channel_description(i,2)='ZZ'
   else if(d.eq.4) then
    rate=rate*div(t%BR_hjtautau(j),t%BR_Htautau_SM(j),0.0D0,1.0D0)
@@ -1239,11 +1239,11 @@ subroutine get_channelrates( j, t, mutab )
    rate=rate*div(t%BR_hjbb(j),t%BR_Hbb_SM(j),0.0D0,1.0D0)
    SMrate=SMrate*t%BR_Hbb_SM(j)
    rate_SMref = rate_SMref*BRSM_Hbb(refmass)
-   mutab%channel_description(i,2)='bb'  
+   mutab%channel_description(i,2)='bb'
   else if(d.eq.6) then
    rate=rate*div(t%BR_hjZga(j),t%BR_HZga_SM(j),0.0D0,1.0D0)
    SMrate=SMrate*t%BR_HZga_SM(j)
-   rate_SMref = rate_SMref*BRSM_HZga(refmass)   
+   rate_SMref = rate_SMref*BRSM_HZga(refmass)
    mutab%channel_description(i,2)='Zgamma'
   else if(d.eq.7) then
    rate=rate*div(t%BR_hjcc(j),t%BR_Hcc_SM(j),0.0D0,1.0D0)
@@ -1266,28 +1266,28 @@ subroutine get_channelrates( j, t, mutab )
    rate_SMref = rate_SMref*1.0D0
    mutab%channel_description(i,2)='none'
   endif
-  
- if(normalize_rates_to_reference_position) then 
-!! THIS IS STILL IN TESTING PHASE !!  
+
+ if(normalize_rates_to_reference_position) then
+!! THIS IS STILL IN TESTING PHASE !!
   mutab%channel_mu(i,j)=rate*SMrate/(rate_SMref)
  else
-  mutab%channel_mu(i,j)=rate  !! OLD WAY 
+  mutab%channel_mu(i,j)=rate  !! OLD WAY
  endif
-  
-  mutab%channel_w(i,j)=mutab%channel_eff(i)*SMrate 
-!  mutab%channel_w_corrected_eff(i,j)=mutab%channel_eff_ratios(i)*mutab%channel_eff(i)*SMrate   
+
+  mutab%channel_w(i,j)=mutab%channel_eff(i)*SMrate
+!  mutab%channel_w_corrected_eff(i,j)=mutab%channel_eff_ratios(i)*mutab%channel_eff(i)*SMrate
  enddo
 
  SMrate=sum(mutab%channel_w(:,j))
 ! modelrate=sum(mutab%channel_w_corrected_eff(:,j))
- 
+
  do i=1,mutab%Nc
   mutab%channel_w(i,j)=div(mutab%channel_w(i,j),SMrate,0.0D0,1.0D9)
 !  mutab%channel_w_corrected_eff(i,j)=div(mutab%channel_w_corrected_eff(i,j),modelrate,0.0D0,1.0D9)
  enddo
- 
+
 ! (TS 30/10/2013):
-! write(*,*) "get_channelrates (mu, w, weff):" 
+! write(*,*) "get_channelrates (mu, w, weff):"
 ! write(*,*) mutab%channel_mu
 ! write(*,*)  mutab%channel_w
 ! write(*,*) mutab%channel_eff_ratios
@@ -1295,10 +1295,10 @@ subroutine get_channelrates( j, t, mutab )
   mutab%channel_w_corrected_eff(i,j)=mutab%channel_eff_ratios(i)*mutab%channel_w(i,j)
 ! n.b.: model weights are not normalized to 1!
  enddo
- 
+
 ! write(*,*) j,mutab%id, "SM         = ", mutab%channel_w(:,j)
-! write(*,*) j,mutab%id, "SM effcorr = ",mutab%channel_w_corrected_eff(:,j) 
- 
+! write(*,*) j,mutab%id, "SM effcorr = ",mutab%channel_w_corrected_eff(:,j)
+
  do i=1,mutab%Nc
   drsq_SM = 0.0D0
   drsq = 0.0D0
@@ -1307,19 +1307,19 @@ subroutine get_channelrates( j, t, mutab )
   p1 = int((id1-modulo(id1,10))/dble(10))
   d1 = modulo(id1,10)
   if(mutab%collider.ne.'ILC') then
-   do ii=1,mutab%Nc 
+   do ii=1,mutab%Nc
     id2 = mutab%channel_id(ii)
     p2 = int((id2-modulo(id2,10))/dble(10))
     d2 = modulo(id2,10)
     if(p1.eq.p2.and.p1.ne.0) then
      if(delta_rate%CScov_ok.and.delta_rate%usecov) then
       drsq=drsq+delta_rate%CScov(p1,p1)*mutab%channel_w_corrected_eff(i,j)*mutab%channel_w_corrected_eff(ii,j)
-      drsq_SM=drsq_SM+delta_rate%CScovSM(p1,p1)*mutab%channel_w(i,j)*mutab%channel_w(ii,j)     
+      drsq_SM=drsq_SM+delta_rate%CScovSM(p1,p1)*mutab%channel_w(i,j)*mutab%channel_w(ii,j)
      else
       drsq=drsq+delta_rate%dCS(p1)**2*mutab%channel_w_corrected_eff(i,j)*mutab%channel_w_corrected_eff(ii,j)
       drsq_SM=drsq_SM+delta_rate%dCS_SM(p1)**2*mutab%channel_w(i,j)*mutab%channel_w(ii,j)
      endif
-    endif 
+    endif
     if(d1.eq.d2.and.d1.ne.0) then
      if(delta_rate%BRcov_ok.and.delta_rate%usecov) then
       dBRSM = delta_rate%BRcovSM(d1,d1)
@@ -1327,20 +1327,20 @@ subroutine get_channelrates( j, t, mutab )
      else
       dBRSM = delta_rate%dBR_SM(d1)**2
       dBR = delta_rate%dBR(d1)**2
-     endif 
+     endif
      drsq=drsq+dBR*mutab%channel_w_corrected_eff(i,j)*mutab%channel_w_corrected_eff(ii,j)
-     drsq_SM=drsq_SM+dBRSM*mutab%channel_w(i,j)*mutab%channel_w(ii,j)   
-    endif 
-   enddo 
-  endif 
+     drsq_SM=drsq_SM+dBRSM*mutab%channel_w(i,j)*mutab%channel_w(ii,j)
+    endif
+   enddo
+  endif
   mutab%channel_syst(i,j)=sqrt(drsq)
   mutab%channel_systSM(i,j)=sqrt(drsq_SM)
  enddo
-   
+
 end subroutine get_channelrates
 !------------------------------------------------------------
 subroutine get_Rvalues(ii,collider,R_H_WW, R_H_ZZ, R_H_gaga, R_H_tautau, R_H_bb, R_VH_bb)
-! Returns SM normalized signal rates of some relevant channels (w/o efficiencies) 
+! Returns SM normalized signal rates of some relevant channels (w/o efficiencies)
 ! for Higgs boson "ii" for a specific collider (see subroutine get_rates).
 !------------------------------------------------------------
 ! use usefulbits, only : theo, np,Hneut
@@ -1350,7 +1350,7 @@ subroutine get_Rvalues(ii,collider,R_H_WW, R_H_ZZ, R_H_gaga, R_H_tautau, R_H_bb,
  double precision, intent(out) :: R_H_WW, R_H_ZZ, R_H_gaga, R_H_tautau, R_H_bb, R_VH_bb
 ! type(mutable) :: dummytable
 ! integer :: i
- 
+
  call get_rates(ii,collider,5,(/ 12, 22, 32, 42, 52 /),R_H_WW)
  call get_rates(ii,collider,5,(/ 13, 23, 33, 43, 53 /),R_H_ZZ)
  call get_rates(ii,collider,5,(/ 11, 21, 31, 41, 51 /),R_H_gaga)
@@ -1372,11 +1372,11 @@ subroutine get_rates(ii,collider,Nchannels,IDchannels,rate)
  integer, intent(in) :: ii, collider, Nchannels
  integer, dimension(Nchannels), intent(in) :: IDchannels
  double precision, intent(out) :: rate
-!-Internal 
+!-Internal
  type(mutable) :: dummytable
  integer :: i
- 
-!-Initialize a dummy mutable in order to run get_channelrates for the channels we want.  
+
+!-Initialize a dummy mutable in order to run get_channelrates for the channels we want.
  if(collider.eq.1) then
   dummytable%collider = 'TEV'
  else if(collider.eq.2) then
@@ -1388,7 +1388,7 @@ subroutine get_rates(ii,collider,Nchannels,IDchannels,rate)
  else
   write(*,*) 'WARNING: collider experiment for get_rates unknown.'
   continue
- endif 
+ endif
 
  dummytable%id = 999999
  dummytable%particle_x = 1
@@ -1397,14 +1397,14 @@ subroutine get_rates(ii,collider,Nchannels,IDchannels,rate)
  allocate(dummytable%channel_id(Nchannels))
  allocate(dummytable%channel_eff(Nchannels))
  allocate(dummytable%channel_eff_ratios(Nchannels))
-!-Set all efficiencies equal: 
+!-Set all efficiencies equal:
  dummytable%channel_eff = 1.0D0
  dummytable%channel_eff_ratios = 1.0D0
  allocate(dummytable%channel_description(Nchannels,2))
  allocate(dummytable%channel_w(Nchannels,np(Hneut)))
  allocate(dummytable%channel_w_corrected_eff(Nchannels,np(Hneut)))
- allocate(dummytable%channel_systSM(Nchannels,np(Hneut))) 
- allocate(dummytable%channel_syst(Nchannels,np(Hneut))) 
+ allocate(dummytable%channel_systSM(Nchannels,np(Hneut)))
+ allocate(dummytable%channel_syst(Nchannels,np(Hneut)))
  allocate(dummytable%channel_mu(Nchannels,np(Hneut)))
  dummytable%channel_id = IDchannels
 
@@ -1428,19 +1428,19 @@ subroutine get_Pvalue(nparam, Pvalue)
 !------------------------------------------------------------
  use usefulbits, only : vsmall
  use usefulbits_hs, only: HSres
- use numerics 
+ use numerics
  implicit none
  integer, intent(in) :: nparam
  double precision, intent(out) :: Pvalue
- 
+
  if(allocated(HSres)) then
   if(HSres(1)%Chisq.gt.vsmall.and.(HSres(1)%nobs-nparam).gt.0) then
    HSres(1)%Pvalue = 1 - gammp(dble(HSres(1)%nobs-nparam)/2,HSres(1)%Chisq/2)
   endif
  else
-  write(*,*) "Warning: subroutine get_Pvalue should be called after run_HiggsSignals." 
+  write(*,*) "Warning: subroutine get_Pvalue should be called after run_HiggsSignals."
  endif
- 
+
  Pvalue = HSres(1)%Pvalue
 
 end subroutine get_Pvalue
@@ -1449,7 +1449,7 @@ subroutine get_neutral_Higgs_masses(Mh, dMh)
 ! Sets the theoretical mass uncertainty of the Higgs bosons.
 !------------------------------------------------------------
  use usefulbits, only: theo,np,Hneut
- 
+
  implicit none
  double precision,intent(out) :: Mh(np(Hneut)), dMh(np(Hneut))
 
@@ -1462,9 +1462,9 @@ subroutine get_neutral_Higgs_masses(Mh, dMh)
   stop 'error in subroutine get_neutral_Higgs_masses'
  endif
 
- Mh = theo(1)%particle(Hneut)%M 
+ Mh = theo(1)%particle(Hneut)%M
  dMh = theo(1)%particle(Hneut)%dM
- 
+
 end subroutine get_neutral_Higgs_masses
 !------------------------------------------------------------
 subroutine finish_HiggsSignals
@@ -1479,11 +1479,11 @@ subroutine finish_HiggsSignals
  use usefulbits_HS, only : deallocate_usefulbits_HS, analyses
  use mc_chisq, only : deallocate_mc_observables
  use store_pathname_HS
- 
+
 !#if defined(NAGf90Fortran)
 ! use F90_UNIX_IO, only : flush
 !#endif
-      
+
  if(debug)then
   close(file_id_debug2)
   close(file_id_debug1)
@@ -1498,16 +1498,19 @@ subroutine finish_HiggsSignals
   call deallocate_Exptranges
   call deallocate_usefulbits
   if (allocated(inputsub)) deallocate(inputsub)
- endif 
+ endif
  call deallocate_mc_observables
  call deallocate_observables
  if(allocated(analyses)) deallocate(analyses)
  call deallocate_usefulbits_HS
 ! call system('rm -f '//trim(adjustl(pathname_HS))//'Expt_tables/analyses.txt')
- call system('rm -f HS_analyses.txt')
-  
+
+! SuperPy - removed. No need to be doing these file operations in a Fortran code.
+! Write the file once and only once at build.
+! call system('rm -f HS_analyses.txt')
+
  if(debug) write(*,*)'finished'                              ; call flush(6)
- 
+
 end subroutine finish_HiggsSignals
 !------------------------------------------------------------
 ! SOME HANDY WRAPPER SUBROUTINES
@@ -1522,27 +1525,27 @@ subroutine initialize_HiggsSignals_for_Fittino(nHiggsneut,nHiggsplus)
  integer,intent(in) :: nHiggsneut
  integer,intent(in) :: nHiggsplus
 ! character(LEN=19) :: Expt_string
- character(LEN=33) :: Expt_string 
+ character(LEN=33) :: Expt_string
 ! Expt_string = "Moriond2013_Fittino"
  Expt_string = "latestresults_April2013_inclusive"
- 
+
  call initialize_HiggsSignals(nHiggsneut,nHiggsplus,Expt_string)
- 
+
 end subroutine initialize_HiggsSignals_for_Fittino
 !------------------------------------------------------------
 subroutine get_number_of_observables_wrapper(ntotal, npeakmu, npeakmh, nmpred, nanalyses)
 !------------------------------------------------------------
  use io, only : get_number_of_observables
- 
+
  implicit none
  integer, intent(out) :: ntotal, npeakmu, npeakmh, nmpred, nanalyses
- 
- call get_number_of_observables(ntotal, npeakmu, npeakmh, nmpred, nanalyses) 
+
+ call get_number_of_observables(ntotal, npeakmu, npeakmh, nmpred, nanalyses)
 end subroutine get_number_of_observables_wrapper
 !------------------------------------------------------------
 subroutine get_ID_of_peakobservable_wrapper(ii, ID)
 !------------------------------------------------------------
- use io, only : get_ID_of_peakobservable 
+ use io, only : get_ID_of_peakobservable
  implicit none
  integer, intent(in) :: ii
  integer, intent(out) :: ID
@@ -1553,7 +1556,7 @@ end subroutine get_ID_of_peakobservable_wrapper
 subroutine get_peakinfo_from_HSresults_wrapper(obsID, mupred, domH, nHcomb)
 !--------------------------------------------------------------------
  use io, only : get_peakinfo_from_HSresults
- 
+
  implicit none
  integer, intent(in) :: obsID
  double precision, intent(out) :: mupred
@@ -1568,7 +1571,7 @@ subroutine print_cov_mh_to_file_wrapper(Hindex)
 
  implicit none
  integer, intent(in) :: Hindex
- 
+
  call print_cov_mh_to_file(Hindex)
 end subroutine print_cov_mh_to_file_wrapper
 !------------------------------------------------------------
