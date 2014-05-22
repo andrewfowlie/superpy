@@ -45,6 +45,7 @@ higgssignals:
 	# You may have to alter FHINCLUDE AND FHLIBS by hand in HiggsSignals-*/configure.
 	# Paths for HiggsBounds *should* be picked up automatically.
 	cd ./HiggsSignals-*; make superpy
+	ls -1 -p ./HiggsSignals-*/Expt_tables/latestresults/*.txt > ./HiggsSignals-*/example_programs/HS_analyses.txt
 
 susyh:
 	make -C susyhit

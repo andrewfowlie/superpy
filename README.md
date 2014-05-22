@@ -51,6 +51,7 @@ My changes are marked "SuperPy". I made minor modifications to:
 * ./HiggsSignals-1.2.0/configure
 * ./HiggsSignals-1.2.0/makefile.in
 * ./micromegas_3.6.9.2/MSSM/main.c
+* ./micromegas_3.6.9.2/NMSSM/main.c
 * ./susyhit/makefile
 * ./susyhit/*f (made gfortran compliant)
 * ./susyhit/sdcay.f  (read SLHA filename from comand line)
@@ -60,6 +61,7 @@ My changes are marked "SuperPy". I made minor modifications to:
 * ./NMSSMTools_4.2.1/sources/ftpar.f
 * ./NMSSMTools_4.2.1/sources/NS_output.f
 * ./FeynHiggs-2.10.0/src/SLHA/SLHAWrite.f
+* ./HiggsSignals-1.2.0/datatable.f90
 
 I added:
 * ./FeynHiggs-2.10.0/example/SuperPy.F
