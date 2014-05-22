@@ -227,28 +227,20 @@ class CNMSSMConstraintTracker:
             # FeynHiggs writes the SLHA with
             # improved Higgs masses.
             self.feynhiggs(self.SLHA)
-
-        if self.physical:
-            # Save the SOFTSUSY Higgs mass for reference.
-            # This is a hack.
-            self.constraint['Higgs'].theory = self.blocks['MASS'].entries[25]
-            # Re-read SLHA file - FeynHiggs writes SLHA with
-            # improved Higgs masses.
-            self.readslha(self.SLHA_FH)
-
+            
         # Call auxillary programs if physical.
         if self.physical:
             print "Calling Fast-Lim..."
-            self.fastlim(self.SLHA_FH)
+            self.fastlim(self.SLHA)
         if self.physical:
             print "Calling micrOMEGAs..."
-            self.micromegas(self.SLHA_FH)
+            self.micromegas(self.SLHA)
         if self.physical:
             print "Calling SuperISO..."
             self.superiso(self.SLHA)
         if self.physical:
             print "Calling HiggsSignals..."
-            self.higgssignals(self.SLHA_FH)
+            self.higgssignals(self.SLHA)
 
         # Set LHC interpolation parameters.
         self.constraint['LHC_interp'].theory = self.param['m0']
