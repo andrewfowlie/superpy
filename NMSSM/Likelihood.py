@@ -245,7 +245,7 @@ class CNMSSMConstraintTracker:
             self.micromegas(self.SLHA_FH)
         if self.physical:
             print "Calling SuperISO..."
-            self.superiso(self.SLHA_FH)
+            self.superiso(self.SLHA)
         if self.physical:
             print "Calling HiggsSignals..."
             self.higgssignals(self.SLHA_FH)
