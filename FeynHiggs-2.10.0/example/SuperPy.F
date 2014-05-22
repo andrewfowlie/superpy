@@ -33,7 +33,7 @@ c	Added by SuperPy.
 c	Added by SuperPy.
 	call constraints
 	call higgsCorr
-c	Re-write SLHA file with new Higgs masses.
+c	Write SLHA file with new Higgs masses.
 	call writeSLHA(file)
 	end
 
@@ -304,6 +304,9 @@ c NB that this uses a clever pre-processor macro - see manual.
 	integer key
 	character*(*) filename
 
+* Direct file to stdout.
+
+
 	call SLHARead(error, slhadata, filename, 1)
 	if( error .ne. 0 ) stop
 
@@ -315,6 +318,7 @@ c   Add Higgs masses to SLHA file - key = 4.
 	call FHOutputSLHA(error, slhadata, key)
 	if( error .ne. 0 ) stop
 
+	filename = "-"
 	call SLHAWrite(error, slhadata, filename)
 	if( error .ne. 0 ) stop
 
