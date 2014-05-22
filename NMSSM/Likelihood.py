@@ -81,7 +81,7 @@ def myloglike(cube, ndim, nparams):
             cube,
             Constraints.neutralino[key],
             Cube.label,
-            'NMNMIX:' +
+            'NMIX:' +
             str(key))
 
     # Print-out cube for debugging.
@@ -146,7 +146,9 @@ class CNMSSMConstraintTracker:
         # Interpolate lower bound on (m0,m12) plane.
         # https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/CombinedSummaryPlots/SUSY/ATLAS_SUSY_MSUGRA/ATLAS_SUSY_MSUGRA.png
         # ATLAS-CONF-2013-047
-        self.constraint['LHC_interp'] = InterpolateLowerConstraint('atlas_m0m12.dat',0.01)
+        self.constraint['LHC_interp'] = InterpolateLowerConstraint(
+            'atlas_m0m12.dat',
+            0.01)
 
         # Relic density of neutralinos.
         # Planck.
@@ -211,42 +213,46 @@ class CNMSSMConstraintTracker:
         # Call SOFTSUSY and read the mass spectrum.
         print "Calling NMSSMTools..."
         self.nmssm()
-        self.readslha()
+        self.readslha(self.SLHA)
 
-        # Set LHC interpolation parameters.
-        self.constraint['LHC_interp'].theory = self.param['m0']
-        self.constraint['LHC_interp'].theory = self.param['m12']
-
-        # Call auxillary programs if physical.
+        # Find priors before re-reading the SLHA data.
+        # FeynHiggs SLHA data won't contain
+        # fine-tuning blocks from NMSSMTools.
         if self.physical:
-            # Find naturalness priors first, as FeynHiggs overwrites
-            # SLHA file removing comments with relevant derivatives.
             print "Finding naturalness priors..."
             self.naturalness()
-        if self.physical:
-            print "Calling Fast-Lim..."
-            self.fastlim()
-        if self.physical:
-            print "Calling micrOMEGAs..."
-            self.micromegas()
-        if self.physical:
-            print "Calling SuperISO..."
-            self.superiso()
+
         if self.physical:
             print "Calling FeynHiggs..."
-            # FeynHiggs rewrites the SLHA file with
+            # FeynHiggs writes the SLHA with
             # improved Higgs masses.
-            self.feynhiggs()
+            self.feynhiggs(self.SLHA)
+
         if self.physical:
             # Save the SOFTSUSY Higgs mass for reference.
             # This is a hack.
             self.constraint['Higgs'].theory = self.blocks['MASS'].entries[25]
-            # Re-read SLHA file - FeynHiggs rewrites the SLHA file with
+            # Re-read SLHA file - FeynHiggs writes SLHA with
             # improved Higgs masses.
-            self.readhiggs()
+            self.readslha(self.SLHA_FH)
+
+        # Call auxillary programs if physical.
+        if self.physical:
+            print "Calling Fast-Lim..."
+            self.fastlim(self.SLHA_FH)
+        if self.physical:
+            print "Calling micrOMEGAs..."
+            self.micromegas(self.SLHA_FH)
+        if self.physical:
+            print "Calling SuperISO..."
+            self.superiso(self.SLHA_FH)
         if self.physical:
             print "Calling HiggsSignals..."
-            self.higgssignals()
+            self.higgssignals(self.SLHA_FH)
+
+        # Set LHC interpolation parameters.
+        self.constraint['LHC_interp'].theory = self.param['m0']
+        self.constraint['LHC_interp'].theory = self.param['m12']
 
     def softsusy(self):
         """Call SoftSUSY to obtain predictions for model.
@@ -267,8 +273,26 @@ class CNMSSMConstraintTracker:
             './',
             '',
             shell=True)
-        self.physical = CheckProgram(
+        self.CheckProgram(
             self.SLHA, ["problem", "invalid", "warning", "Incorrect"])
+
+    def nmssm(self):
+        """Call NMSSM to calculate spectrum and decay tables for the NMSSM.
+        Arguments:
+
+        Returns:
+
+        """
+        # Create SLHA input file.
+        self.SLHAIN = self.writeslha(self.param)
+
+        filename = RunProgram(
+            './pyspec',
+            '../NMSSMTools_4.2.1/main',
+            self.SLHAIN)
+        self.CheckProgram(filename, ["ERROR"])
+        if self.physical:
+            self.SLHA = filename
 
     def writeslha(self, param, MZ=9.11876000e+01):
         """ Write an SLHA input file, SLHAIN, for a given
@@ -334,19 +358,21 @@ Block QEXTPAR
         print "SLHA input file:", SLHAIN.name
         return SLHAIN.name
 
-    def readslha(self):
+    def readslha(self, input_file):
         """ Read an SLHA file with PySLHA.
         Populates masses, mu and neutralino mixings.
         If the point is unphysical,
         populate the mass blocks with zeros.
+
         Arguments:
+                input_file -- Name of input file.
 
         Returns:
 
         """
         try:
             # Read the blocks in the SLHA file.
-            self.blocks, self.decays = pyslha.readSLHAFile(self.SLHA)
+            self.blocks, self.decays = pyslha.readSLHAFile(input_file)
         except:
             # With expected running, shouldn't get any problems. But best
             # to be defensive. A missing mass block would cause an
@@ -366,36 +392,6 @@ Block QEXTPAR
             self.mu = self.blocks['HMIX'].entries[1]
             # Pick out neutralino mixing.
             self.neutralino = self.blocks['NMNMIX'].entries
-
-    def readhiggs(self):
-        """ Read an SLHA file with PySLHA, if the SLHA file has changed
-        since the last time it was read, reload the Higgs mass from it.
-        This is useful for FeynHiggs, which corrects Higgs, but
-        breaks other things, especially in the NMSSM.
-
-        Arguments:
-
-        Returns:
-
-        """
-        try:
-            # Read the blocks in the SLHA file.
-            blocks, decays = pyslha.readSLHAFile(self.SLHA)
-        except:
-            # With expected running, shouldn't get any problems. But best
-            # to be defensive. A missing mass block would cause an
-            # exception, but e.g. stau LSP would not.
-            self.physical = False
-            print 'Caught trouble in the SLHA file.'
-
-            # Still need to return data of correct length.
-            self.masses = [0] * 34
-            self.mu = 0.
-            # NB neutralino mixing matrix is 5 by 5.
-            self.neutralino = [0] * 25
-        else:
-            # Save the Higgs mass.
-            self.masses[25] = blocks['MASS'].entries[25]
 
     def naturalness(self, MZ=9.11876000e+01, epsilon=1E-1):
         """ Calculate the naturalness priors.
@@ -422,13 +418,8 @@ Block QEXTPAR
 
         # Tan beta derivatives - not in NMSSMTools.
         # Calculate the derivatives numerically.
-        kappa_physical, kappa_tanb = self.SLHADerive(
-            'tanbeta', 'GUTNMSSMRUN', 2)
-        mS2_physical, mS2_tanb = self.SLHADerive('tanbeta', 'GUTNMSSMRUN', 10)
-
-        # If either derivative was problematic, make the
-        # point unphysical.
-        self.physical = kappa_physical and mS2_physical
+        kappa_tanb = self.SLHADerive('tanbeta', 'GUTNMSSMRUN', 2)
+        mS2_tanb = self.SLHADerive('tanbeta', 'GUTNMSSMRUN', 10)
 
         # Jacobian of transformation (kappa, m_S^2) -> (tan beta, MZ).
         # d(kappa) d (m_S^2) = J d(tan beta) d(MZ).
@@ -454,7 +445,7 @@ Block QEXTPAR
         epsilon -- Numerical infinitesiam for numerical derivative.
 
         Return:
-        Whether succesful, numerical derivative, d(input)/d(output).
+        Numerical derivative, d(input)/d(output).
 
         """
         try:
@@ -471,16 +462,19 @@ Block QEXTPAR
                 blocks, decays = pyslha.readSLHAFile(SLHA)
                 output[i] = blocks[block][key]
         except:
-            # This ought to make the effective prior small.
-            return False, 999.
+            # Unphysical point.
+            self.physical = False
+            return 999.
         else:
             # Return the numerical derivative.
-            return True, 2. * epsilon / (output[1] - output[0])
+            return 2. * epsilon / (output[1] - output[0])
 
-    def fastlim(self):
+    def fastlim(self, input_file):
         """ Call Fast-Lim and note whether point rejected.
         Fast-lim requires decay tables from SUSY HIT.
+
         Arguments:
+        input_file -- Name of input file.
 
         Returns:
 
@@ -490,7 +484,7 @@ Block QEXTPAR
         stdout = sys.stdout
         sys.stdout = StringIO.StringIO()
         # Find whether rejected, and if so by which analysis.
-        reject, name = fastlim_superpy.excluded(self.SLHA)
+        reject, name = fastlim_superpy.excluded(input_file)
         saved = sys.stdout.getvalue()
         sys.stdout = stdout
 
@@ -505,10 +499,12 @@ Block QEXTPAR
             print "Point rejected by Fast-Lim analysis:", name
             self.constraint['LHC'].loglike = -1e101
 
-    def micromegas(self):
+    def micromegas(self, input_file):
         """Call micrOMEGAs to obtain DM predictions
         for model.
+
         Arguments:
+        input_file -- Name of input file.
 
         Returns:
 
@@ -516,64 +512,77 @@ Block QEXTPAR
         filename = RunProgram(
             './main',
             '../micromegas_3.6.9.2/NMSSM',
-            self.SLHA)
-        self.physical = CheckProgram(filename, ["error"])
+            input_file)
+        self.CheckProgram(filename, ["error"])
         if self.physical:
-            self.constraint['oh2'].theory = ReadParameter(
+            self.constraint['oh2'].theory = self.ReadParameter(
                 filename,
                 'Xf=',
                 split='Omega=')
             # NB converted from pb to cm2.
-            self.constraint['sigsip'].theory = ReadParameter(
+            self.constraint['sigsip'].theory = self.ReadParameter(
                 filename,
                 'proton  SI',
                 split='SD') * 1E-36
-            self.constraint['sigsip'].theoryx = self.blocks['MASS'][1000022]
+            self.constraint['sigsip'].theoryx = self.masses[1000022]
 
-    def superiso(self):
+    def superiso(self, input_file):
         """Call SuperIso to obtain B-physics and g-2 predictions for model.
+
         Arguments:
+        input_file -- Name of input file.
 
         Returns:
 
         """
-        filename = RunProgram('./slha.x', '../superiso_v3.3', self.SLHA)
-        self.physical = CheckProgram(filename, ["error"])
+        filename = RunProgram('./slha.x', '../superiso_v3.3', input_file)
+        self.CheckProgram(filename, ["error"])
         if self.physical:
-            self.constraint['bsg'].theory = ReadParameter(
+            self.constraint['bsg'].theory = self.ReadParameter(
                 filename,
                 'BR(b->s gamma)')
-            self.constraint['btaunu'].theory = ReadParameter(
+            self.constraint['btaunu'].theory = self.ReadParameter(
                 filename,
                 'BR(B->tau nu)')
-            self.constraint['bsmumu'].theory = ReadParameter(
+            self.constraint['bsmumu'].theory = self.ReadParameter(
                 filename,
                 'BR(Bs->mu mu)')
-            self.constraint['gm2'].theory = ReadParameter(filename, 'a_muon')
+            self.constraint['gm2'].theory = self.ReadParameter(
+                filename,
+                'a_muon')
 
-    def feynhiggs(self):
-        """Call FeynHiggs to obtain EWPO predictions
+    def feynhiggs(self, input_file):
+        """Call FeynHiggs to obtain EWPO predictions and Higgs sector
         for model.
+
         Arguments:
+        input_file -- Name of input file.
 
         Returns:
 
         """
-        filename = RunProgram('./SuperPyFH', '../FeynHiggs-2.10.0', self.SLHA)
-        self.physical = CheckProgram(filename, ["error"])
+        self.SLHA_FH = RunProgram(
+            './SuperPyFH',
+            '../FeynHiggs-2.10.0',
+            input_file)
+        self.CheckProgram(self.SLHA_FH, ["error"])
         if self.physical:
-            self.constraint['mw'].theory = ReadParameter(filename, 'MWMSSM=')
-            self.constraint['sineff'].theory = ReadParameter(
-                filename,
+            self.constraint['mw'].theory = self.ReadParameter(
+                self.SLHA_FH,
+                'MWMSSM=')
+            self.constraint['sineff'].theory = self.ReadParameter(
+                self.SLHA_FH,
                 'SW2MSSM=')
-            self.constraint['deltaMb'].theory = ReadParameter(
-                filename,
+            self.constraint['deltaMb'].theory = self.ReadParameter(
+                self.SLHA_FH,
                 'deltaMsMSSM=')
 
-    def higgssignals(self):
+    def higgssignals(self, input_file):
         """Call HiggsSignals to find whether points is excluded by
         LEP, Tevatron, LHC Higgs searches.
+
         Arguments:
+        input_file -- Name of input file.
 
         Returns:
 
@@ -581,41 +590,25 @@ Block QEXTPAR
         filename = RunProgram(
             './SuperPy',
             '../HiggsSignals-1.2.0/example_programs',
-            self.SLHA)
-        self.physical = CheckProgram(filename, ["error"])
+            input_file)
+        self.CheckProgram(filename, ["error"])
         if self.physical:
             self.constraint['Higgs'].loglike = -0.5 * \
-                ReadParameter(filename, 'chi^2 (total) =')
+                self.ReadParameter(filename, 'chi^2 (total) =')
 
-    def susyhit(self):
+    def susyhit(self, input_file):
         """Call SUSY-HIT to calculate decay tables.
+
         Arguments:
+        input_file -- Name of input file.
 
         Returns:
 
         """
-        filename = RunProgram('./run', '../susyhit', self.SLHA)
-        self.physical = CheckProgram(filename, ["error"])
+        filename = RunProgram('./run', '../susyhit', input_file)
+        self.CheckProgram(filename, ["error"])
         if self.physical:
             self.SLHA_DECAY = filename
-
-    def nmssm(self):
-        """Call NMSSM to calculate spectrum and decay tables for the NMSSM.
-        Arguments:
-
-        Returns:
-
-        """
-        # Create SLHA input file.
-        self.SLHAIN = self.writeslha(self.param)
-
-        filename = RunProgram(
-            './pyspec',
-            '../NMSSMTools_4.2.1/main',
-            self.SLHAIN)
-        self.physical = CheckProgram(filename, ["ERROR"])
-        if self.physical:
-            self.SLHA = filename
 
     def SetLogLike(self):
         """ Loops over the constraints, calculates each log likelihood
@@ -639,6 +632,59 @@ Block QEXTPAR
             for name in self.constraint.keys():
                 self.constraint[name].loglike = -1e101
             self.loglike = -1e101
+
+    def ReadParameter(self, filename, start, split=None):
+        """ Read a parameter from a file.
+
+        Arguments:
+        filename -- File to be read from.
+        start -- String of beginning of line to read.
+        split -- string on which to split the line.
+
+        Returns:
+        Parameter retrieved from the file.
+
+        """
+        if split is None:
+            split = start[-1]
+
+        start = start.strip()
+        try:
+            for line in open(filename, 'r'):
+                if line.lstrip().startswith(start):
+                    parameter = float(line.split(split)[-1])
+                    if math.isnan(parameter):
+                        self.physical = False
+                        return 999.
+                    else:
+                        return parameter
+        except:
+            self.physical = False
+            return 999.
+
+        else:
+            self.physical = False
+            return 999.
+
+    def CheckProgram(self, filename, errors):
+        """ Check whether a program contained errors.
+
+        Arguments:
+        filename -- File to be read from.
+        errors -- Keywords that indicate an error.
+
+        """
+        if filename is None:
+            self.physical = False
+            return
+
+        for line in open(filename, 'r'):
+            for word in errors:
+                if word in line:
+                    print "Error in program output."
+                    print line
+                    self.physical = False
+                    return
 
 #########################################################################
 
@@ -921,6 +967,7 @@ class InterpolateUpperConstraint:
 
         return self.loglike
 
+
 @Cube.memoize
 class InterpolateLowerConstraint:
 
@@ -970,6 +1017,7 @@ class InterpolateLowerConstraint:
         # corresponding to the theory x-value.
         self.limit = NP.interp(self.theoryx, self.data[0],
                                self.data[1], left=None, right=None)
+
         # Now calcualte likelihood with Gaussian error function - erf.
         like = 0.5 + 0.5 * \
             scipy.special.erf((self.theory - self.limit) / (2. ** 0.5 * self.tau * self.theory))
@@ -980,6 +1028,7 @@ class InterpolateLowerConstraint:
             self.loglike = -1e101
 
         return self.loglike
+
 
 @Cube.memoize
 class LikeMapConstraint:
@@ -1096,50 +1145,3 @@ def RunProgram(executable, path, arguments, shell=False):
         import sys
         print 'Error running program.', sys.exc_info()[0]
         return None
-
-
-def ReadParameter(filename, start, split=None):
-    """ Read a parameter from a file.
-    Arguments:
-    filename -- File to be read from.
-    start -- String of beginning of line to read.
-    split -- string on which to split the line.
-
-    Returns:
-    Parameter retrieved from the file.
-
-    """
-    if split is None:
-        split = start[-1]
-
-    start = start.strip()
-    try:
-        for line in open(filename, 'r'):
-            if line.lstrip().startswith(start):
-                return float(line.split(split)[-1])
-    except:
-        return 999.
-    else:
-        return 999.
-
-
-def CheckProgram(filename, errors):
-    """ Check whether a program contained errors.
-    Arguments:
-    filename -- File to be read from.
-    errors -- Keywords that indicate an error.
-
-    Returns:
-    Logical, whether program indicates point is physical.
-
-    """
-    if filename is None:
-        return False
-
-    for line in open(filename, 'r'):
-        for word in errors:
-            if word in line:
-                print "Error in program output."
-                print line
-                return False
-    return True

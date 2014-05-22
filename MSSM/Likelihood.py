@@ -213,45 +213,45 @@ class CMSSMConstraintTracker:
         # Call SOFTSUSY and read the mass spectrum.
         print "Calling SOFTSUSY..."
         self.softsusy()
-        self.readslha()
+        self.readslha(self.SLHA)
 
-        # Set LHC interpolation parameters.
-        self.constraint['LHC_interp'].theory = self.param['m0']
-        self.constraint['LHC_interp'].theory = self.param['m12']
-
-        # Call auxillary programs if physical.
-        if self.physical:
-            # Find naturalness priors first, as FeynHiggs overwrites
-            # SLHA file removing comments with relevant derivatives.
-            print "Finding naturalness priors..."
-            self.naturalness()
-        if self.physical:
-            print "Calling SUSY-HIT..."
-            self.susyhit()
-        if self.physical:
-            print "Calling Fast-Lim..."
-            self.fastlim()
-        if self.physical:
-            print "Calling micrOMEGAs..."
-            self.micromegas()
-        if self.physical:
-            print "Calling SuperISO..."
-            self.superiso()
         if self.physical:
             print "Calling FeynHiggs..."
-            # FeynHiggs rewrites the SLHA file with
+            # FeynHiggs writes the SLHA with
             # improved Higgs masses.
-            self.feynhiggs()
+            self.feynhiggs(self.SLHA)
+
         if self.physical:
             # Save the SOFTSUSY Higgs mass for reference.
             # This is a hack.
             self.constraint['Higgs'].theory = self.blocks['MASS'].entries[25]
-            # Re-read SLHA file - FeynHiggs rewrites the SLHA file with
+            # Re-read SLHA file - FeynHiggs writes SLHA with
             # improved Higgs masses.
-            self.readhiggs()
+            self.readslha(self.SLHA_FH)
+
+        # Call auxillary programs if physical.
+        if self.physical:
+            print "Finding naturalness priors..."
+            self.naturalness(self.SLHA)
+        if self.physical:
+            print "Calling SUSY-HIT..."
+            self.susyhit(self.SLHA_FH)
+        if self.physical:
+            print "Calling Fast-Lim..."
+            self.fastlim(self.SLHA_DECAY)
+        if self.physical:
+            print "Calling micrOMEGAs..."
+            self.micromegas(self.SLHA_FH)
+        if self.physical:
+            print "Calling SuperISO..."
+            self.superiso(self.SLHA_FH)
         if self.physical:
             print "Calling HiggsSignals..."
-            self.higgssignals()
+            self.higgssignals(self.SLHA_FH)
+
+        # Set LHC interpolation parameters.
+        self.constraint['LHC_interp'].theory = self.param['m0']
+        self.constraint['LHC_interp'].theory = self.param['m12']
 
     def softsusy(self):
         """Call SoftSUSY to obtain predictions for model.
@@ -272,8 +272,9 @@ class CMSSMConstraintTracker:
             './',
             '',
             shell=True)
-        self.physical = CheckProgram(
-            self.SLHA, ["problem", "invalid", "warning", "Incorrect"])
+        self.CheckProgram(
+            self.SLHA, [
+                "problem", "invalid", "warning", "Incorrect"])
 
     def writeslha(self, param, MZ=9.11876000e+01):
         """ Write an SLHA input file, SLHAIN, for a given
@@ -331,19 +332,21 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
         print "SLHA input file:", SLHAIN.name
         return SLHAIN.name
 
-    def readslha(self):
+    def readslha(self, input_file):
         """ Read an SLHA file with PySLHA.
         Populates masses, mu and neutralino mixings.
         If the point is unphysical,
         populate the mass blocks with zeros.
+
         Arguments:
+        input_file -- Name of input file.
 
         Returns:
 
         """
         try:
             # Read the blocks in the SLHA file.
-            self.blocks, self.decays = pyslha.readSLHAFile(self.SLHA)
+            self.blocks, self.decays = pyslha.readSLHAFile(input_file)
         except:
             # With expected running, shouldn't get any problems. But best
             # to be defensive. A missing mass block would cause an
@@ -363,37 +366,7 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
             # Pick out neutralino mixing.
             self.neutralino = self.blocks['NMIX'].entries
 
-    def readhiggs(self):
-        """ Read an SLHA file with PySLHA, if the SLHA file has changed
-        since the last time it was read, reload the Higgs mass from it.
-        This is useful for FeynHiggs, which corrects Higgs, but
-        breaks other things, especially in the NMSSM.
-
-        Arguments:
-
-        Returns:
-
-        """
-        try:
-            # Read the blocks in the SLHA file.
-            blocks, decays = pyslha.readSLHAFile(self.SLHA)
-        except:
-            # With expected running, shouldn't get any problems. But best
-            # to be defensive. A missing mass block would cause an
-            # exception, but e.g. stau LSP would not.
-            self.physical = False
-            print 'Caught trouble in the SLHA file.'
-
-            # Still need to return data of correct length.
-            self.masses = [0] * 33
-            self.mu = 0.
-            # NB neutralino mixing matrix is 4 by 4.
-            self.neutralino = [0] * 16
-        else:
-            # Save the Higgs mass.
-            self.masses[25] = blocks['MASS'].entries[25]
-
-    def naturalness(self, MZ=9.11876000e+01):
+    def naturalness(self, input_file, MZ=9.11876000e+01):
         """ Calculate the naturalness priors.
         We have modifed SOFTSUSY to return the
         relevant derivatives and parameters to the SLHA file.
@@ -407,16 +380,17 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
         Effective prior = J * 1/mu * 1/b
 
         Arguments:
+        input_file -- Name of input file.
         MZ -- Value of the Z-boson mass.
 
         """
 
         # Read relevant derivatives and parameters.
         # Multiply by 2*MZ - we have dMZ^2, want dMZ.
-        mu_MZ = 2. * MZ / ReadParameter(self.SLHA, '# dMZ^2/dmu=')
-        b_TanBeta = 1. / ReadParameter(self.SLHA, '# dtanbeta/dm3sq=')
-        mu = ReadParameter(self.SLHA, '# mu=')
-        b = ReadParameter(self.SLHA, '# m3sq=')
+        mu_MZ = 2. * MZ / self.ReadParameter(input_file, '# dMZ^2/dmu=')
+        b_TanBeta = 1. / self.ReadParameter(input_file, '# dtanbeta/dm3sq=')
+        mu = self.ReadParameter(input_file, '# mu=')
+        b = self.ReadParameter(input_file, '# m3sq=')
 
         # Set the "likelihood" associated with naturalness.
         # Of course, this is NOT a true chi-squared/likelihood from an experiment.
@@ -428,10 +402,12 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
         except:
             self.constraint['Natural'].loglike = -1e101
 
-    def fastlim(self):
+    def fastlim(self, input_file):
         """ Call Fast-Lim and note whether point rejected.
         Fast-lim requires decay tables from SUSY HIT.
+
         Arguments:
+        input_file -- Default input file
 
         Returns:
 
@@ -441,7 +417,7 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
         stdout = sys.stdout
         sys.stdout = StringIO.StringIO()
         # Find whether rejected, and if so by which analysis.
-        reject, name = fastlim_superpy.excluded(self.SLHA_DECAY)
+        reject, name = fastlim_superpy.excluded(input_file)
         saved = sys.stdout.getvalue()
         sys.stdout = stdout
 
@@ -456,10 +432,12 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
             print "Point rejected by Fast-Lim analysis:", name
             self.constraint['LHC'].loglike = -1e101
 
-    def micromegas(self):
+    def micromegas(self, input_file):
         """Call micrOMEGAs to obtain DM predictions
         for model.
+
         Arguments:
+        input_file -- Default input file
 
         Returns:
 
@@ -467,67 +445,80 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
         filename = RunProgram(
             './main',
             '../micromegas_3.6.9.2/MSSM',
-            self.SLHA)
-        self.physical = CheckProgram(filename, ["error"])
+            input_file)
+        self.CheckProgram(filename, ["error"])
         if self.physical:
-            self.constraint['oh2'].theory = ReadParameter(
+            self.constraint['oh2'].theory = self.ReadParameter(
                 filename,
                 'Xf=',
                 split='Omega=')
             # NB converted from pb to cm2.
-            self.constraint['sigsip'].theory = ReadParameter(
+            self.constraint['sigsip'].theory = self.ReadParameter(
                 filename,
                 'proton  SI',
                 split='SD') * 1E-36
-            self.constraint['sigsip'].theoryx = ReadParameter(
+            self.constraint['sigsip'].theoryx = self.ReadParameter(
                 filename,
                 'Dark matter candidate',
                 split='mass=')
 
-    def superiso(self):
+    def superiso(self, input_file):
         """Call SuperIso to obtain B-physics and g-2 predictions for model.
+
         Arguments:
+        input_file -- Default input file
 
         Returns:
 
         """
-        filename = RunProgram('./slha.x', '../superiso_v3.3', self.SLHA)
-        self.physical = CheckProgram(filename, ["error"])
+        filename = RunProgram('./slha.x', '../superiso_v3.3', input_file)
+        self.CheckProgram(filename, ["error"])
         if self.physical:
-            self.constraint['bsg'].theory = ReadParameter(
+            self.constraint['bsg'].theory = self.ReadParameter(
                 filename,
                 'BR(b->s gamma)')
-            self.constraint['btaunu'].theory = ReadParameter(
+            self.constraint['btaunu'].theory = self.ReadParameter(
                 filename,
                 'BR(B->tau nu)')
-            self.constraint['bsmumu'].theory = ReadParameter(
+            self.constraint['bsmumu'].theory = self.ReadParameter(
                 filename,
                 'BR(Bs->mu mu)')
-            self.constraint['gm2'].theory = ReadParameter(filename, 'a_muon')
+            self.constraint['gm2'].theory = self.ReadParameter(
+                filename,
+                'a_muon')
 
-    def feynhiggs(self):
-        """Call FeynHiggs to obtain EWPO predictions
+    def feynhiggs(self, input_file):
+        """Call FeynHiggs to obtain EWPO predictions and Higgs sector
         for model.
+
         Arguments:
+        input_file -- Default input file
 
         Returns:
 
         """
-        filename = RunProgram('./SuperPyFH', '../FeynHiggs-2.10.0', self.SLHA)
-        self.physical = CheckProgram(filename, ["error"])
+        self.SLHA_FH = RunProgram(
+            './SuperPyFH',
+            '../FeynHiggs-2.10.0',
+            input_file)
+        self.CheckProgram(self.SLHA_FH, ["error"])
         if self.physical:
-            self.constraint['mw'].theory = ReadParameter(filename, 'MWMSSM=')
-            self.constraint['sineff'].theory = ReadParameter(
-                filename,
+            self.constraint['mw'].theory = self.ReadParameter(
+                self.SLHA_FH,
+                'MWMSSM=')
+            self.constraint['sineff'].theory = self.ReadParameter(
+                self.SLHA_FH,
                 'SW2MSSM=')
-            self.constraint['deltaMb'].theory = ReadParameter(
-                filename,
+            self.constraint['deltaMb'].theory = self.ReadParameter(
+                self.SLHA_FH,
                 'deltaMsMSSM=')
 
-    def higgssignals(self):
+    def higgssignals(self, input_file):
         """Call HiggsSignals to find whether points is excluded by
         LEP, Tevatron, LHC Higgs searches.
+
         Arguments:
+        input_file -- Default input file
 
         Returns:
 
@@ -535,21 +526,23 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
         filename = RunProgram(
             './SuperPy',
             '../HiggsSignals-1.2.0/example_programs',
-            self.SLHA)
-        self.physical = CheckProgram(filename, ["error"])
+            input_file)
+        self.CheckProgram(filename, ["error"])
         if self.physical:
             self.constraint['Higgs'].loglike = -0.5 * \
-                ReadParameter(filename, 'chi^2 (total) =')
+                self.ReadParameter(filename, 'chi^2 (total) =')
 
-    def susyhit(self):
+    def susyhit(self, input_file):
         """Call SUSY-HIT to calculate decay tables.
+
         Arguments:
+        input_file -- Default input file
 
         Returns:
 
         """
-        filename = RunProgram('./run', '../susyhit', self.SLHA)
-        self.physical = CheckProgram(filename, ["error"])
+        filename = RunProgram('./run', '../susyhit', input_file)
+        self.CheckProgram(filename, ["error"])
         if self.physical:
             self.SLHA_DECAY = filename
 
@@ -575,6 +568,59 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
             for name in self.constraint.keys():
                 self.constraint[name].loglike = -1e101
             self.loglike = -1e101
+
+    def ReadParameter(self, filename, start, split=None):
+        """ Read a parameter from a file.
+
+        Arguments:
+        filename -- File to be read from.
+        start -- String of beginning of line to read.
+        split -- string on which to split the line.
+
+        Returns:
+        Parameter retrieved from the file.
+
+        """
+        if split is None:
+            split = start[-1]
+
+        start = start.strip()
+        try:
+            for line in open(filename, 'r'):
+                if line.lstrip().startswith(start):
+                    parameter = float(line.split(split)[-1])
+                    if math.isnan(parameter):
+                        self.physical = False
+                        return 999.
+                    else:
+                        return parameter
+        except:
+            self.physical = False
+            return 999.
+
+        else:
+            self.physical = False
+            return 999.
+
+    def CheckProgram(self, filename, errors):
+        """ Check whether a program contained errors.
+
+        Arguments:
+        filename -- File to be read from.
+        errors -- Keywords that indicate an error.
+
+        """
+        if filename is None:
+            self.physical = False
+            return
+
+        for line in open(filename, 'r'):
+            for word in errors:
+                if word in line:
+                    print "Error in program output."
+                    print line
+                    self.physical = False
+                    return
 
 #########################################################################
 
@@ -1035,50 +1081,3 @@ def RunProgram(executable, path, arguments, shell=False):
         import sys
         print 'Error running program.', sys.exc_info()[0]
         return None
-
-
-def ReadParameter(filename, start, split=None):
-    """ Read a parameter from a file.
-    Arguments:
-    filename -- File to be read from.
-    start -- String of beginning of line to read.
-    split -- string on which to split the line.
-
-    Returns:
-    Parameter retrieved from the file.
-
-    """
-    if split is None:
-        split = start[-1]
-
-    start = start.strip()
-    try:
-        for line in open(filename, 'r'):
-            if line.lstrip().startswith(start):
-                return float(line.split(split)[-1])
-    except:
-        return 999.
-    else:
-        return 999.
-
-
-def CheckProgram(filename, errors):
-    """ Check whether a program contained errors.
-    Arguments:
-    filename -- File to be read from.
-    errors -- Keywords that indicate an error.
-
-    Returns:
-    Logical, whether program indicates point is physical.
-
-    """
-    if filename is None:
-        return False
-
-    for line in open(filename, 'r'):
-        for word in errors:
-            if word in line:
-                print "Error in program output."
-                print line
-                return False
-    return True
