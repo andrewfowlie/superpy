@@ -257,6 +257,8 @@ if( val .ne. invalid ) write(unit,206) val, name
 	  Var(PDG_HH, Mass_MHH, "MHH")
 	  Var(PDG_A0, Mass_MA0, "MA0")
 	  Var(PDG_Hp, Mass_MHp, "MHp")
+	  ! SuperPy - fixed added A2 scalar in NMSSM.
+	  Var(PDG_A2, Mass_MA2, "MA2")
 	  Var(PDG_neutralino1, Mass_MNeu(1), "MNeu(1)")
 	  Var(PDG_neutralino2, Mass_MNeu(2), "MNeu(2)")
 	  Var(PDG_neutralino3, Mass_MNeu(3), "MNeu(3)")
@@ -921,8 +923,9 @@ if( val .ne. invalid ) write(unit,206) val, name
 
 	do im = 1, SLHAExist(BlockNMNMix(1), LengthNMNMix)
 	  Block(nnmix)
-	  do i = 1, 3
-	    do j = 1, 3
+	  ! SuperPy - fixed. Should be 1 to 5 not 1 to 3.
+	  do i = 1, 5
+	    do j = 1, 5
 	      Matrix(i,j, NMNMix_ZNeu, "ZNeu")
 	    enddo
 	  enddo
