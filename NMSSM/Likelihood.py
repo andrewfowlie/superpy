@@ -290,7 +290,7 @@ class CNMSSMConstraintTracker:
             './pyspec',
             '../NMSSMTools_4.2.1/main',
             self.SLHAIN)
-        self.CheckProgram(filename, ["ERROR"])
+        self.CheckProgram(self.SLHA, ["ERROR"])
 
     def writeslha(self, param, MZ=9.11876000e+01):
         """ Write an SLHA input file, SLHAIN, for a given
