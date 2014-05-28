@@ -407,36 +407,29 @@ def PlotLabels(xlabel, ylabel, plottitle=''):
     plt.title(plottitle)
 
 
-def PlotImage(xdata, ydata, data, Scheme, zlabel='', bin_limits=None):
+def PlotImage(xdata, ydata, data, bin_limits, plot_limits, Scheme, zlabel=''):
     """ Plot data as an image.
 
     Arguments:
     xdata -- x-axis data.
     ydata -- y-axis data.
     data -- Image data, i.e., z-axis data.
+    bin_limits -- Bin limits.
+    plot_limits -- Plot limits.
     Scheme -- Object containing appearance options, colours etc.
     zlabel -- Label for colour bar.
-    bin_limits -- Bin limits.
 
     """
 
-    # Set the aspect so that resulting figure is a square.
-    extent = NP.zeros((4))
-    extent[0] = min(xdata)
-    extent[1] = max(xdata)
-    extent[2] = min(ydata)
-    extent[3] = max(ydata)
-
-    if bin_limits is None:
-        bin_limits = extent
-    else:
-        bin_limits = NP.array(
+    # Flatten bin limits.
+    bin_limits = NP.array(
             (bin_limits[0][0],
              bin_limits[0][1],
              bin_limits[1][0],
              bin_limits[1][1]))
 
-    aspect = (bin_limits[1] - bin_limits[0]) / (bin_limits[3] - bin_limits[2])
+    # Set the aspect so that resulting figure is a square.
+    aspect = (plot_limits[1] - plot_limits[0]) / (plot_limits[3] - plot_limits[2])
 
     # Interpolating perhaps misleads, if you don't want it set
     # interpolation='nearest'. NB that imshow is annoying - it reads y,x
@@ -446,11 +439,14 @@ def PlotImage(xdata, ydata, data, Scheme, zlabel='', bin_limits=None):
                         origin='lower', aspect=aspect)
     # Plot a colour bar.
     cb = plt.colorbar(plt.im, orientation='horizontal', shrink=0.5)
+    # Set reasonable number of ticks.
+    cb.locator = MaxNLocator(4)
+    cb.update_ticks()
     # Colour bar label.
     cb.ax.set_xlabel(zlabel)
 
 
-def PlotContour(xdata, ydata, data, levels, names, Scheme, bin_limits=None):
+def PlotContour(xdata, ydata, data, levels, names, Scheme, bin_limits):
     """ Make unfilled contours for a plot.
     Arguments:
     xdata -- x-axis data.
@@ -462,17 +458,8 @@ def PlotContour(xdata, ydata, data, levels, names, Scheme, bin_limits=None):
     bin_limits -- Bin limits.
     """
 
-    # Set the bin limits correctly.
-    extent = NP.zeros((4))
-    extent[0] = min(xdata)
-    extent[1] = max(xdata)
-    extent[2] = min(ydata)
-    extent[3] = max(ydata)
-
-    if bin_limits is None:
-        bin_limits = extent
-    else:
-        bin_limits = NP.array(
+    # Flatten bin limits.
+    bin_limits = NP.array(
             (bin_limits[0][0],
              bin_limits[0][1],
              bin_limits[1][0],
@@ -506,7 +493,7 @@ def PlotFilledContour(
         levels,
         names,
         Scheme,
-        bin_limits=None):
+        bin_limits):
     """ Make filled contours for a plot.
 
     Arguments:
@@ -519,18 +506,9 @@ def PlotFilledContour(
     bin_limits -- Bin limits.
 
     """
-    # Set the aspect so that resulting figure is a square.
-    extent = NP.zeros((4))
-    extent[0] = min(xdata)
-    extent[1] = max(xdata)
-    extent[2] = min(ydata)
-    extent[3] = max(ydata)
 
-    # Find the bin limits, and if neccessary change the format.
-    if bin_limits is None:
-        bin_limits = extent
-    else:
-        bin_limits = NP.array(
+    # Flatten bin limits.
+    bin_limits = NP.array(
             (bin_limits[0][0],
              bin_limits[0][1],
              bin_limits[1][0],

@@ -13,6 +13,7 @@ import Appearance as AP
 # External modules.
 import matplotlib.pyplot as plt
 import numpy as NP
+from matplotlib.ticker import MaxNLocator
 
 
 def TwoDimPlotFilledPDF(
@@ -252,9 +253,10 @@ def TwoDimPlotPDF(
         xdata,
         ydata,
         pdf,
+        bin_limits,
+        plot_limits,
         AP.Posterior,
-        AP.PDFTitle,
-        bin_limits=bin_limits)
+        AP.PDFTitle)
 
     levels = TwoDim.CredibleRegions(pdf, epsilon=AP.epsilon).crediblelevel
     # Make sure pdf is correctly normalised.
@@ -343,9 +345,10 @@ def TwoDimPlotPL(
         xdata,
         ydata,
         proflike,
+        bin_limits,
+        plot_limits,
         AP.ProfLike,
-        AP.PLTitle,
-        bin_limits=bin_limits)
+        AP.PLTitle)
 
     levels = TwoDim.ConfidenceIntervals(epsilon=AP.epsilon).deltaPL
     PM.PlotContour(
@@ -446,6 +449,9 @@ def Scatter(
     cb = plt.colorbar(sc, orientation='horizontal', shrink=0.5)
     # Colour bar label.
     cb.ax.set_xlabel(zlabel)
+    # Set reasonable number of ticks.
+    cb.locator = MaxNLocator(4)
+    cb.update_ticks()
 
     # Confidence intervals and credible regions.
     proflike = TwoDim.ProfileLike(
