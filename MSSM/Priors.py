@@ -288,3 +288,88 @@ class GaussParameter:
         # complementary Gaussian error function.
         self.value = self.mu + self.sigma * math.sqrt(2) *\
             scipy.special.erfcinv(2 * (1 - x))
+
+@Cube.memoize
+class Update:
+
+    """ Use one-dimensional  PDF from previous scan as prior for
+    a new scan! """
+
+    def __init__(self, filename, column, weight=2, nbins=50):
+        """ Load a *.txt file, import the data, and draw samples.
+
+        Arguments:
+        filename -- Name of PDF file.
+        weight -- Column of PDF weight.
+        column -- Column to generate point for.
+        nbins -- Number of bins for histogram.
+
+        """
+        self.nbins = nbins
+        import sys
+        sys.path.append("../SuperPlot")
+        import OneDim
+        import PlotMod
+        from scipy.interpolate import interp1d
+
+        # Make one-dimensional histogram. First open chain.
+        data = PlotMod.OpenChain(filename)
+        # Make one-dimensional histogram of relevant data, i.e.
+        # one-dimensional PDF.
+        self.hist = OneDim.PosteriorPDF(
+            data[column],
+            data[weight],
+            nbins=self.nbins)
+        # Normalize PDF to that sum is one.
+        self.hist.pdf = self.hist.pdf / sum(self.hist.pdf)
+
+        # Find CDF of PDF.
+        self.cdf = {}
+        # Set zeroth bin.
+        self.cdf[0] = self.hist.pdf[0]
+        # Ignore zeroth bin. Recursively find CDF.
+        for bin in range(1,self.nbins):
+            self.cdf[bin] = self.cdf[bin - 1] + self.hist.pdf[bin]
+
+        # Find inverse CDF.
+        # Make grid of inverse CDF data.
+        probability = NP.linspace(0, 1, 100)
+        inverse_CDF = NP.zeros(len(probability))
+        for i, p in enumerate(probability):
+            inverse_CDF[i] = self.inverse_CDF(p)
+
+        # Make interpolation function for inverse CDF.
+        bin_width = self.hist.bins[1] - self.hist.bins[0]
+        self.inverse_CDF_interp = interp1d(probability, inverse_CDF, kind='cubic')
+
+    def inverse_CDF(self, x):
+        """ Find inverse CDF.
+
+        Arguments:
+        x -- Cumulative probablity value, from 0 to 1.
+
+        Returns:
+        bin -- Bin center.
+
+        """
+        # Once specified probability exceeded, stop and
+        # return center of bin.
+        for bin in range(self.nbins):
+            if self.cdf[bin] >= x:
+                # Return bin center.
+                return self.hist.bins[bin]
+
+        # Return final bin, if no other option.
+        return self.hist.bins[self.nbins - 1]
+
+    def SetValue(self, x):
+        """ Sample point from one-dimensional PDF.
+
+        Arguments:
+        x -- One element of unit hypercube.
+
+        Returns:
+
+        """
+        # Interpolate bin number from CDF.
+        self.value = self.inverse_CDF_interp(x)
