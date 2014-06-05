@@ -26,6 +26,8 @@ pygtk.require('2.0')
 import gtk
 import sys
 import numpy as NP
+import copy
+import warnings
 # Uncomment to select /GTK/GTKAgg/GTKCairo
 #from matplotlib.backends.backend_gtk import FigureCanvasGTK as FigureCanvas
 from matplotlib.backends.backend_gtkagg import FigureCanvasGTKAgg as FigureCanvas
@@ -186,6 +188,17 @@ class GUIControl:
         # Check-box to indicate that chain ought to be relabelled.
         self.checklabel = gtk.CheckButton('Relabel chain.')
         self.gridbox.attach(self.checklabel, 1, 2, 7, 8, xoptions=gtk.FILL)
+
+        #######################################################################
+
+        # Check-boxes to indicate whether data should be logged.
+
+        self.logx = gtk.CheckButton('Log x-data.')
+        self.gridbox.attach(self.logx, 0, 1, 2, 3, xoptions=gtk.FILL)
+        self.logy = gtk.CheckButton('Log y-data.')
+        self.gridbox.attach(self.logy, 0, 1, 4, 5, xoptions=gtk.FILL)
+        self.logz = gtk.CheckButton('Log z-data.')
+        self.gridbox.attach(self.logz, 0, 1, 6, 7, xoptions=gtk.FILL)
 
         #######################################################################
 
@@ -388,6 +401,36 @@ class GUIControl:
         if self.checklabel.get_active():
             self.relabel()
 
+        # Log data if requested. First copy data to plot_data,
+        # to keep a copy of orginal data.
+        self.plot_data = copy.deepcopy(self.data)
+        # Catch log negative number warnings.
+        warnings.filterwarnings('error')
+        if self.logx.get_active():
+            try:
+                self.plot_data[
+                    self.xindex] = NP.log10(
+                    self.plot_data[
+                        self.xindex])
+            except RuntimeWarning:
+                print "x-data not logged: probably logging a negative."
+        if self.logy.get_active():
+            try:
+                self.plot_data[
+                    self.yindex] = NP.log10(
+                    self.plot_data[
+                        self.yindex])
+            except RuntimeWarning:
+                print "y-data not logged: probably logging a negative."
+        if self.logz.get_active():
+            try:
+                self.plot_data[
+                    self.zindex] = NP.log10(
+                    self.plot_data[
+                        self.zindex])
+            except RuntimeWarning:
+                print "z-data not logged: probably logging a negative."
+
         # Reload modules, in case of changes.
         self.reload()
 
@@ -396,10 +439,10 @@ class GUIControl:
         # Labels is a dictionary, indexed identically to the  self.data.
         if self.type == 0:
             self.fig = OneDimPlot.OneDimPlot(
-                self.data[
+                self.plot_data[
                     self.xindex],
-                self.data[0],
-                self.data[1],
+                self.plot_data[0],
+                self.plot_data[1],
                 labels[
                     self.xindex],
                 plottitle=self.plottitle.get_text(),
@@ -409,12 +452,12 @@ class GUIControl:
                 bin_limits=self.bin_limits)
         elif self.type == 1:
             self.fig = TwoDimPlot.TwoDimPlotPDF(
-                self.data[
+                self.plot_data[
                     self.xindex],
-                self.data[
+                self.plot_data[
                     self.yindex],
-                self.data[0],
-                self.data[1],
+                self.plot_data[0],
+                self.plot_data[1],
                 self.labels[
                     self.xindex],
                 self.labels[
@@ -427,12 +470,12 @@ class GUIControl:
 
         elif self.type == 2:
             self.fig = TwoDimPlot.TwoDimPlotFilledPDF(
-                self.data[
+                self.plot_data[
                     self.xindex],
-                self.data[
+                self.plot_data[
                     self.yindex],
-                self.data[0],
-                self.data[1],
+                self.plot_data[0],
+                self.plot_data[1],
                 self.labels[
                     self.xindex],
                 self.labels[
@@ -445,12 +488,12 @@ class GUIControl:
 
         elif self.type == 3:
             self.fig = TwoDimPlot.TwoDimPlotPL(
-                self.data[
+                self.plot_data[
                     self.xindex],
-                self.data[
+                self.plot_data[
                     self.yindex],
-                self.data[0],
-                self.data[1],
+                self.plot_data[0],
+                self.plot_data[1],
                 self.labels[
                     self.xindex],
                 self.labels[
@@ -462,12 +505,12 @@ class GUIControl:
                 bin_limits=self.bin_limits)
         elif self.type == 4:
             self.fig = TwoDimPlot.TwoDimPlotFilledPL(
-                self.data[
+                self.plot_data[
                     self.xindex],
-                self.data[
+                self.plot_data[
                     self.yindex],
-                self.data[0],
-                self.data[1],
+                self.plot_data[0],
+                self.plot_data[1],
                 self.labels[
                     self.xindex],
                 self.labels[
@@ -480,14 +523,14 @@ class GUIControl:
 
         elif self.type == 5:
             self.fig = TwoDimPlot.Scatter(
-                self.data[
+                self.plot_data[
                     self.xindex],
-                self.data[
+                self.plot_data[
                     self.yindex],
-                self.data[
+                self.plot_data[
                     self.zindex],
-                self.data[0],
-                self.data[1],
+                self.plot_data[0],
+                self.plot_data[1],
                 self.labels[
                     self.xindex],
                 self.labels[
@@ -501,9 +544,9 @@ class GUIControl:
                 bin_limits=self.bin_limits)
         elif self.type == 6:
             self.fig = OneDimPlot.OneDimChiSq(
-                self.data[
+                self.plot_data[
                     self.xindex],
-                self.data[1],
+                self.plot_data[1],
                 self.labels[
                     self.xindex],
                 plottitle=self.plottitle.get_text(),
