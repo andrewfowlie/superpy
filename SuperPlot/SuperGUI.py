@@ -447,7 +447,7 @@ class GUIControl:
                     self.xindex],
                 plottitle=self.plottitle.get_text(),
                 legtitle=self.legtitle.get_text(),
-                number_bins=self.bins.get_value(),
+                number_bins=self.bins.get_value_as_int(),
                 plot_limits=self.plot_limits,
                 bin_limits=self.bin_limits)
         elif self.type == 1:
@@ -464,7 +464,7 @@ class GUIControl:
                     self.yindex],
                 plottitle=self.plottitle.get_text(),
                 legtitle=self.legtitle.get_text(),
-                number_bins=self.bins.get_value(),
+                number_bins=self.bins.get_value_as_int(),
                 plot_limits=self.plot_limits,
                 bin_limits=self.bin_limits)
 
@@ -482,7 +482,7 @@ class GUIControl:
                     self.yindex],
                 plottitle=self.plottitle.get_text(),
                 legtitle=self.legtitle.get_text(),
-                number_bins=self.bins.get_value(),
+                number_bins=self.bins.get_value_as_int(),
                 plot_limits=self.plot_limits,
                 bin_limits=self.bin_limits)
 
@@ -500,7 +500,7 @@ class GUIControl:
                     self.yindex],
                 plottitle=self.plottitle.get_text(),
                 legtitle=self.legtitle.get_text(),
-                number_bins=self.bins.get_value(),
+                number_bins=self.bins.get_value_as_int(),
                 plot_limits=self.plot_limits,
                 bin_limits=self.bin_limits)
         elif self.type == 4:
@@ -517,7 +517,7 @@ class GUIControl:
                     self.yindex],
                 plottitle=self.plottitle.get_text(),
                 legtitle=self.legtitle.get_text(),
-                number_bins=self.bins.get_value(),
+                number_bins=self.bins.get_value_as_int(),
                 plot_limits=self.plot_limits,
                 bin_limits=self.bin_limits)
 
@@ -539,7 +539,7 @@ class GUIControl:
                     self.zindex],
                 plottitle=self.plottitle.get_text(),
                 legtitle=self.legtitle.get_text(),
-                number_bins=self.bins.get_value(),
+                number_bins=self.bins.get_value_as_int(),
                 plot_limits=self.plot_limits,
                 bin_limits=self.bin_limits)
         elif self.type == 6:
@@ -551,7 +551,7 @@ class GUIControl:
                     self.xindex],
                 plottitle=self.plottitle.get_text(),
                 legtitle=self.legtitle.get_text(),
-                number_bins=self.bins.get_value(),
+                number_bins=self.bins.get_value_as_int(),
                 plot_limits=self.plot_limits,
                 bin_limits=self.bin_limits)
 

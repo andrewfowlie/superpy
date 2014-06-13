@@ -457,14 +457,14 @@ def PlotContour(xdata, ydata, data, levels, names, Scheme, bin_limits):
     Scheme -- Object containing appearance options, colours etc.
     bin_limits -- Bin limits.
     """
-
+    
     # Flatten bin limits.
     bin_limits = NP.array(
             (bin_limits[0][0],
              bin_limits[0][1],
              bin_limits[1][0],
              bin_limits[1][1]))
-
+	    
     # Make the contours of the levels.
     cset = plt.contour(
         data.T,
@@ -474,7 +474,7 @@ def PlotContour(xdata, ydata, data, levels, names, Scheme, bin_limits):
         hold='on',
         extent=bin_limits,
         interpolation='bilinear',
-        origin='lower',
+        origin=None,
         linestyles=[
             '--',
             '-'])
@@ -483,7 +483,9 @@ def PlotContour(xdata, ydata, data, levels, names, Scheme, bin_limits):
     fmt = {}
     for i, s in zip(cset.levels, names):
         fmt[i] = s
-    plt.clabel(cset, inline=True, fmt=fmt, fontsize=12, hold='on')
+    
+    # Removed temporarily - causes error.
+    # plt.clabel(cset, inline=True, fmt=fmt, fontsize=12, hold='on')
 
 
 def PlotFilledContour(
