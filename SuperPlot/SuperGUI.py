@@ -404,8 +404,11 @@ class GUIControl:
         # Log data if requested. First copy data to plot_data,
         # to keep a copy of orginal data.
         self.plot_data = copy.deepcopy(self.data)
+
         # Catch log negative number warnings.
+        # Treat warnings as exceptions.
         warnings.filterwarnings('error')
+
         if self.logx.get_active():
             try:
                 self.plot_data[
@@ -430,6 +433,10 @@ class GUIControl:
                         self.zindex])
             except RuntimeWarning:
                 print "z-data not logged: probably logging a negative."
+
+        # Reset warnings, else future warnings will be treated as exceptions.
+        # Omitting this line was the source of annoying bugs!
+        warnings.resetwarnings()
 
         # Reload modules, in case of changes.
         self.reload()
