@@ -423,13 +423,14 @@ def PlotImage(xdata, ydata, data, bin_limits, plot_limits, Scheme, zlabel=''):
 
     # Flatten bin limits.
     bin_limits = NP.array(
-            (bin_limits[0][0],
-             bin_limits[0][1],
-             bin_limits[1][0],
-             bin_limits[1][1]))
+        (bin_limits[0][0],
+         bin_limits[0][1],
+         bin_limits[1][0],
+         bin_limits[1][1]))
 
     # Set the aspect so that resulting figure is a square.
-    aspect = (plot_limits[1] - plot_limits[0]) / (plot_limits[3] - plot_limits[2])
+    aspect = (plot_limits[1] - plot_limits[0]) / \
+        (plot_limits[3] - plot_limits[2])
 
     # Interpolating perhaps misleads, if you don't want it set
     # interpolation='nearest'. NB that imshow is annoying - it reads y,x
@@ -457,14 +458,14 @@ def PlotContour(xdata, ydata, data, levels, names, Scheme, bin_limits):
     Scheme -- Object containing appearance options, colours etc.
     bin_limits -- Bin limits.
     """
-    
+
     # Flatten bin limits.
     bin_limits = NP.array(
-            (bin_limits[0][0],
-             bin_limits[0][1],
-             bin_limits[1][0],
-             bin_limits[1][1]))
-	    
+        (bin_limits[0][0],
+         bin_limits[0][1],
+         bin_limits[1][0],
+         bin_limits[1][1]))
+
     # Make the contours of the levels.
     cset = plt.contour(
         data.T,
@@ -483,9 +484,9 @@ def PlotContour(xdata, ydata, data, levels, names, Scheme, bin_limits):
     fmt = {}
     for i, s in zip(cset.levels, names):
         fmt[i] = s
-    
-    # Removed temporarily - causes error.
-    # plt.clabel(cset, inline=True, fmt=fmt, fontsize=12, hold='on')
+
+    # Plot inline labels on contours.
+    plt.clabel(cset, inline=True, fmt=fmt, fontsize=12, hold='on')
 
 
 def PlotFilledContour(
@@ -511,10 +512,10 @@ def PlotFilledContour(
 
     # Flatten bin limits.
     bin_limits = NP.array(
-            (bin_limits[0][0],
-             bin_limits[0][1],
-             bin_limits[1][0],
-             bin_limits[1][1]))
+        (bin_limits[0][0],
+         bin_limits[0][1],
+         bin_limits[1][0],
+         bin_limits[1][1]))
 
     # We need to ensure levels are in ascending order, and append the list with one.
     # This makes 2 intervals (between 3 values) that will be shown with
@@ -525,7 +526,7 @@ def PlotFilledContour(
     cset = plt.contourf(data.T, levels,
                         colors=Scheme.Colours,
                         hold='on', extent=bin_limits,
-                        interpolation='bilinear', origin='lower',
+                        interpolation='bilinear', origin=None,
                         alpha=0.7)
 
     # Plot a proxy for the legend - plot spurious data outside plot limits,
