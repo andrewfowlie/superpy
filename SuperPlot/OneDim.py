@@ -121,25 +121,23 @@ class CredibleRegions:
         self.uppercredibleregion = NP.zeros((epsilon.size))
 
         for j in range(epsilon.size):
+	  
             # Find lower credible region.
             for i in range(pdf.size):
                 # If the cumualtive pdf is greater than
                 # epsilon/2, we've found lower edge.
-                if sum(pdf[range(i + 1)]) > epsilon[j] / 2:
+                if sum(pdf[:i]) > epsilon[j] * 0.5:
                     self.lowercredibleregion[j] = param[i]
                     break
-                    # Find upper credible region.
+		  
+	    # Find upper credible region.
             for i in range(pdf.size):
                 # If the cumualtive pdf is greater than
-                # 1- epsilon/2, we've found upper edge.
-                if sum(pdf[range(i + 1)]) > 1 - epsilon[j] / 2:
+                # 1 - epsilon/2, we've found upper edge.
+                if sum(pdf[:i]) > 1 - epsilon[j] * 0.5:
                     self.uppercredibleregion[j] = param[i]
                     break
-
-        # NB the + 1 in the sums is necessary because range(0) = [],
-        # whereas we would want to sum the first bin i.e. [0] = range(1).
-        # So we + 1.
-
+		  
 
 class ConfidenceIntervals:
 
