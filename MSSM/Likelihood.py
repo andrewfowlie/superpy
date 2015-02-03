@@ -395,7 +395,7 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
         Fast-lim requires decay tables from SUSY HIT.
 
         Arguments:
-        input_file -- Default input file
+        input_file -- Name of input file
 
         Returns:
 
@@ -425,7 +425,7 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
         for model.
 
         Arguments:
-        input_file -- Default input file
+        input_file -- Name of input file
 
         Returns:
 
@@ -454,7 +454,7 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
         """Call SuperIso to obtain B-physics and g-2 predictions for model.
 
         Arguments:
-        input_file -- Default input file
+        input_file -- Name of input file
 
         Returns:
 
@@ -480,7 +480,7 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
         for model.
 
         Arguments:
-        input_file -- Default input file
+        input_file -- Name of input file
 
         Returns:
 
@@ -507,7 +507,7 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
         LEP, Tevatron, LHC Higgs searches.
 
         Arguments:
-        input_file -- Default input file
+        input_file -- Name of input file
 
         Returns:
 
@@ -525,7 +525,7 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
         """Call SUSY-HIT to calculate decay tables.
 
         Arguments:
-        input_file -- Default input file
+        input_file -- Name of input file
 
         Returns:
 

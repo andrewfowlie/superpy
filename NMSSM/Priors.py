@@ -93,25 +93,25 @@ class CNMSSMModelTracker:
 
         # Bottom MS-bar mass.
         # PDG.
-        # http://pdg8.lbl.gov/rpp2013v2/pdgLive/Particle.action?node=Q005
+        # http://pdg8.lbl.gov/rpp2014v1/pdgLive/DataBlock.action?node=Q005M
         self.param['mb'] = GaussParameter(4.18, 0.03)
 
         # Top pole mass.
         # PDG.
-        # http://pdg8.lbl.gov/rpp2013v2/pdgLive/Particle.action?node=Q007
+        # http://pdg8.lbl.gov/rpp2014v1/pdgLive/DataBlock.action?node=Q007T7
         self.param['mt'] = GaussParameter(
-            173.07,
-            (0.52 ** 2 + 0.72 ** 2) ** 0.5)
+            173.21,
+            (0.51 ** 2 + 0.71 ** 2) ** 0.5)
 
         # Strong coupling.
         # PDG
-        # http://pdg.lbl.gov/2013/reviews/rpp2013-rev-standard-model.pdf
-        self.param['alphas'] = GaussParameter(0.1196, 0.0017)
+        # http://pdg.lbl.gov/2014/reviews/rpp2014-rev-qcd.pdf
+        self.param['alphas'] = GaussParameter(0.1185, 0.0006)
 
         # Reciprocal of EM coupling at MZ.
         # PDG.
-        # http://pdg.lbl.gov/2013/reviews/rpp2013-rev-standard-model.pdf
-        self.param['invalpha'] = GaussParameter(127.944, 0.014)
+        # http://pdg.lbl.gov/2014/reviews/rpp2014-rev-standard-model.pd
+        self.param['invalpha'] = GaussParameter(127.940, 0.014)
 
     def SetParams(self, x):
         """ Sets the parameters from the unit hypercube.

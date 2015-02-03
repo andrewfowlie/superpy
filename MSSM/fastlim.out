@@ -4,60 +4,67 @@
 ##################################################
 --------------------------------------------------
 Production:   Xsec/fb       Rate
-     Total:  6543.753    100.00%
-     T1_T1:   904.608     13.82%
-     B1_B1:     1.305      0.02%
-       G_G:  5636.882     86.14%
-     B2_B2:     0.079      0.00%
-     T2_T2:     0.880      0.01%
+     Total:  3153.960    100.00%
+     T1_T1:     0.595      0.02%
+     B1_B1:     0.019      0.00%
+       G_G:  3153.328     99.98%
+     T2_T2:     0.017      0.00%
 --------------------------------------------------
 Output processes upto 0.5%
-                    Process:  Br*Xsec/fb     Rate    Accum
-         GbwT1bC1qqN1_GttN1:   509.80003    7.79%    7.79%
-                GttN1_GttN1:   345.11157    5.27%   13.06%  <== Implemented
-             GbwT1tN1_GttN1:   291.25055    4.45%   17.52%
-            GbtC1qqN1_GttN1:   262.85451    4.02%   21.53%
-      GbwT1bC1qqN1_GbwT1tN1:   215.11817    3.29%   24.82%
-            T1bC1qqN1_T1tN1:   199.65163    3.05%   27.87%
-     GbtC1qqN1_GbwT1bC1qqN1:   194.14480    2.97%   30.84%
-  GbwT1bC1qqN1_GbwT1bC1qqN1:   188.26960    2.88%   33.71%
-        T1bC1qqN1_T1bC1qqN1:   174.73341    2.67%   36.38%
-            GqqC1qqN1_GttN1:   124.28735    1.90%   38.28%
-            GbbN2qqN1_GttN1:   116.37786    1.78%   40.06%
-         GbtC1qqN1_GbwT1tN1:   110.91561    1.69%   41.76%
-     GbwT1bC1qqN1_GqqC1qqN1:    91.79886    1.40%   43.16%
-     GbbN2qqN1_GbwT1bC1qqN1:    85.95689    1.31%   44.47%
-         GbwT1bC1mnN1_GttN1:    79.90842    1.22%   45.70%
-         GbwT1bC1enN1_GttN1:    79.90842    1.22%   46.92%
-        GbwT1bC1ntaN1_GttN1:    79.08946    1.21%   48.12%
-         GbwT1tN2qqN1_GttN1:    73.89427    1.13%   49.25%
-          GbwT1tN1_GbwT1tN1:    61.44888    0.94%   50.19%
-  GbwT1bC1mnN1_GbwT1bC1qqN1:    59.02050    0.90%   51.10%
-  GbwT1bC1enN1_GbwT1bC1qqN1:    59.02050    0.90%   52.00%
- GbwT1bC1ntaN1_GbwT1bC1qqN1:    58.41561    0.89%   52.89%
-                T1tN1_T1tN1:    57.03084    0.87%   53.76%  <== Implemented
-            GqqN2qqN1_GttN1:    56.25909    0.86%   54.62%
-        T1bC1enN1_T1bC1qqN1:    54.77705    0.84%   55.46%
-        T1bC1mnN1_T1bC1qqN1:    54.77705    0.84%   56.30%
-  GbwT1bC1qqN1_GbwT1tN2qqN1:    54.57844    0.83%   57.13%
-       T1bC1ntaN1_T1bC1qqN1:    54.21565    0.83%   57.96%
-         GbwT1tN1_GqqC1qqN1:    52.44501    0.80%   58.76%
-        T1bC1qqN1_T1tN2qqN1:    50.65436    0.77%   59.53%
-                GqqN1_GttN1:    50.49942    0.77%   60.31%  <== Implemented
-        GbtC1qqN1_GbtC1qqN1:    50.05084    0.76%   61.07%
-         GbbN2qqN1_GbwT1tN1:    49.10748    0.75%   61.82%
-        GbtC1qqN1_GqqC1qqN1:    47.33178    0.72%   62.54%
-        GbbN2qqN1_GbtC1qqN1:    44.31965    0.68%   63.22%
-            GbbN2bbN1_GttN1:    43.91322    0.67%   63.89%
-     GbwT1bC1qqN1_GqqN2qqN1:    41.55306    0.64%   64.53%
-            GbtC1mnN1_GttN1:    41.20103    0.63%   65.16%
-            GbtC1enN1_GttN1:    41.20103    0.63%   65.79%
-           GbtC1ntaN1_GttN1:    40.77877    0.62%   66.41%
-         GbwT1bC1qqN1_GqqN1:    37.29896    0.57%   66.98%
-      GbwT1bC1mnN1_GbwT1tN1:    33.71862    0.52%   67.49%
-      GbwT1bC1enN1_GbwT1tN1:    33.71862    0.52%   68.01%
-     GbwT1bC1ntaN1_GbwT1tN1:    33.37304    0.51%   68.52%
-     GbbN2bbN1_GbwT1bC1qqN1:    32.43438    0.50%   69.02%
+              Process:  Br*Xsec/fb     Rate    Accum
+  GqqC1qqN1_GqqC1qqN1:   192.28290    6.10%    6.10%
+  GqqC1qqN1_GqqN2qqN1:   161.46874    5.12%   11.22%
+      GqqC1qqN1_GqqN1:   159.67518    5.06%   16.28%
+  GbtC1qqN1_GqqC1qqN1:   150.57137    4.77%   21.05%
+  GbbN2qqN1_GqqC1qqN1:   131.56510    4.17%   25.22%
+      GqqN1_GqqN2qqN1:    67.04327    2.13%   27.35%
+  GbtC1qqN1_GqqN2qqN1:    63.22083    2.00%   29.35%
+      GbtC1qqN1_GqqN1:    62.51858    1.98%   31.34%
+  GqqC1mnN1_GqqC1qqN1:    62.51655    1.98%   33.32%
+  GqqC1enN1_GqqC1qqN1:    62.51655    1.98%   35.30%
+ GqqC1ntaN1_GqqC1qqN1:    62.29590    1.98%   37.28%
+  GbbN2qqN1_GqqN2qqN1:    55.24062    1.75%   39.03%
+      GbbN2qqN1_GqqN1:    54.62701    1.73%   40.76%
+  GqqC1qqN1_GqqN2nnN1:    52.30146    1.66%   42.42%
+  GbbN2qqN1_GbtC1qqN1:    51.51248    1.63%   44.05%
+  GqqC1qqN1_GqqN2bbN1:    45.82657    1.45%   45.50%
+      GqqC1qqN1_GttN1:    44.30527    1.40%   46.91%
+  GbbN2nnN1_GqqC1qqN1:    42.61535    1.35%   48.26%
+  GbbN2bbN1_GqqC1qqN1:    37.33959    1.18%   49.44%
+      GbbN1_GqqC1qqN1:    35.55293    1.13%   50.57%
+  GqqN2qqN1_GqqN2qqN1:    33.89817    1.07%   51.65%
+          GqqN1_GqqN1:    33.14928    1.05%   52.70%  <== Implemented
+  GbtC1qqN1_GbtC1qqN1:    29.47706    0.93%   53.63%
+  GqqC1enN1_GqqN2qqN1:    26.24900    0.83%   54.46%
+  GqqC1mnN1_GqqN2qqN1:    26.24900    0.83%   55.30%
+ GqqC1ntaN1_GqqN2qqN1:    26.15636    0.83%   56.13%
+      GqqC1enN1_GqqN1:    25.95743    0.82%   56.95%
+      GqqC1mnN1_GqqN1:    25.95743    0.82%   57.77%
+     GqqC1ntaN1_GqqN1:    25.86582    0.82%   58.59%
+  GbtC1qqN1_GqqC1enN1:    24.47748    0.78%   59.37%
+  GbtC1mnN1_GqqC1qqN1:    24.47748    0.78%   60.14%
+  GbtC1qqN1_GqqC1mnN1:    24.47748    0.78%   60.92%
+  GbtC1enN1_GqqC1qqN1:    24.47748    0.78%   61.70%
+ GbtC1qqN1_GqqC1ntaN1:    24.39109    0.77%   62.47%
+ GbtC1ntaN1_GqqC1qqN1:    24.39109    0.77%   63.24%
+  GbbN2qqN1_GbbN2qqN1:    22.50509    0.71%   63.96%
+  GqqN2nnN1_GqqN2qqN1:    21.95996    0.70%   64.65%
+      GqqN1_GqqN2nnN1:    21.71604    0.69%   65.34%
+  GbbN2qqN1_GqqC1mnN1:    21.38775    0.68%   66.02%
+  GbbN2qqN1_GqqC1enN1:    21.38775    0.68%   66.70%
+ GbbN2qqN1_GqqC1ntaN1:    21.31226    0.68%   67.37%
+  GbtC1qqN1_GqqN2nnN1:    20.47791    0.65%   68.02%
+  GqqN2bbN1_GqqN2qqN1:    19.24133    0.61%   68.63%
+      GqqN1_GqqN2bbN1:    19.02760    0.60%   69.24%
+      GqqN2qqN1_GttN1:    18.60258    0.59%   69.83%
+          GqqN1_GttN1:    18.39595    0.58%   70.41%  <== Implemented
+  GbtC1qqN1_GqqN2bbN1:    17.94275    0.57%   70.98%
+  GbbN2qqN1_GqqN2nnN1:    17.89303    0.57%   71.54%
+  GbbN2nnN1_GqqN2qqN1:    17.89303    0.57%   72.11%
+      GbbN2nnN1_GqqN1:    17.69428    0.56%   72.67%
+      GbtC1qqN1_GttN1:    17.34711    0.55%   73.22%
+  GbbN2nnN1_GbtC1qqN1:    16.68544    0.53%   73.75%
+  GbbN2qqN1_GqqN2bbN1:    15.67788    0.50%   74.25%
 ...
 
 
@@ -75,19 +82,18 @@ lumi*fb = 20.1
    Nbg:               94.0(13.0)
    Nvis_UL[observed]: 38.0
        Process       Nev    R[obs]
-         Total    0.3494    0.0091
-   T1tN1_T1tN1    0.1943    0.0051          
-   B2bN1_B2bN1       nan       nan          
-   GbbN1_GttN1    0.0901    0.0024          
-   GqqN1_GttN1    0.0399    0.0010          
-   GbbN1_GqqN1    0.0127    0.0003          
-   GbbN1_GbbN1    0.0110    0.0003          
-    GgN1_GttN1    0.0012    0.0000          
-    GbbN1_GgN1    0.0003    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
-   GttN1_GttN1    0.0000    0.0000          
+         Total    0.1975    0.0052
+   GbbN1_GqqN1    0.1154    0.0030          
+   GttN1_GttN1    0.0006    0.0000          
+    GgN1_GttN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   GbbN1_GbbN1    0.0485    0.0013          
+    GbbN1_GgN1    0.0001    0.0000          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.0171    0.0004          
+   GbbN1_GttN1    0.0157    0.0004          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
    #----  SRA mCT200  ----#
@@ -95,19 +101,18 @@ lumi*fb = 20.1
    Nbg:               39.0(6.0)
    Nvis_UL[observed]: 26.0
        Process       Nev    R[obs]
-         Total    0.1106    0.0042
-   T1tN1_T1tN1    0.0455    0.0017          
-   GbbN1_GqqN1    0.0073    0.0003          
-    GbbN1_GgN1    0.0002    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   GbbN1_GttN1    0.0502    0.0019          
-   GbbN1_GbbN1    0.0075    0.0003          
-   B1bN1_B1bN1    0.0000    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
+         Total    0.1277    0.0049
+   GbbN1_GqqN1    0.0720    0.0028          
     GgN1_GttN1    0.0000    0.0000          
    GttN1_GttN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   GqqN1_GttN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   GbbN1_GbbN1    0.0354    0.0014          
+    GbbN1_GgN1    0.0001    0.0000          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.0108    0.0004          
+   GbbN1_GttN1    0.0093    0.0004          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
    #----  SRA mCT250  ----#
@@ -115,15 +120,14 @@ lumi*fb = 20.1
    Nbg:               15.8(2.8)
    Nvis_UL[observed]: 9.0
        Process       Nev    R[obs]
-         Total    0.0297    0.0033
-   T1tN1_T1tN1    0.0162    0.0018          
-   GbbN1_GqqN1    0.0034    0.0004          
+         Total    0.0601    0.0066
+   GbbN1_GqqN1    0.0354    0.0039          
+   B1bN1_B1bN1       nan       nan          
+   GbbN1_GbbN1    0.0218    0.0024          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GbbN1_GttN1    0.0029    0.0003          
     GbbN1_GgN1    0.0001    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   GbbN1_GttN1    0.0059    0.0007          
-   GbbN1_GbbN1    0.0042    0.0005          
-   B1bN1_B1bN1    0.0000    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
     GgN1_GttN1    0.0000    0.0000          
    GttN1_GttN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
@@ -135,17 +139,16 @@ lumi*fb = 20.1
    Nbg:               5.9(1.1)
    Nvis_UL[observed]: 7.5
        Process       Nev    R[obs]
-         Total    0.0033    0.0004
-   GbbN1_GbbN1    0.0021    0.0003          
-   GbbN1_GqqN1    0.0012    0.0002          
-    GbbN1_GgN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+         Total    0.0271    0.0036
+   GbbN1_GqqN1    0.0155    0.0021          
     GgN1_GttN1    0.0000    0.0000          
    GttN1_GttN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   GbbN1_GbbN1    0.0115    0.0015          
+    GbbN1_GgN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   T2tN1_T2tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
    GqqN1_GttN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -155,17 +158,16 @@ lumi*fb = 20.1
    Nbg:               2.5(0.6)
    Nvis_UL[observed]: 5.2
        Process       Nev    R[obs]
-         Total    0.0007    0.0001
-   GbbN1_GbbN1    0.0007    0.0001          
-   B1bN1_B1bN1    0.0000    0.0000          
+         Total    0.0046    0.0009
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GttN1    0.0000    0.0000          
    GttN1_GttN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   GbbN1_GbbN1    0.0046    0.0009          
     GbbN1_GgN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   T2tN1_T2tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
    GqqN1_GttN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -175,19 +177,18 @@ lumi*fb = 20.1
    Nbg:               64.0(10.0)
    Nvis_UL[observed]: 27.0
        Process       Nev    R[obs]
-         Total    0.3242    0.0124
-   T1tN1_T1tN1    0.1881    0.0072          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.0663    0.0025          
-   GbbN1_GttN1    0.0369    0.0014          
-   GbbN1_GqqN1    0.0227    0.0009          
-   GbbN1_GbbN1    0.0085    0.0003          
-    GgN1_GttN1    0.0011    0.0000          
-    GbbN1_GgN1    0.0006    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+         Total    0.3097    0.0119
+   GbbN1_GqqN1    0.2241    0.0086          
+    GgN1_GttN1    0.0000    0.0000          
    GttN1_GttN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   GbbN1_GbbN1    0.0429    0.0016          
+    GbbN1_GgN1    0.0004    0.0000          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.0346    0.0013          
+   GbbN1_GttN1    0.0077    0.0003          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
 
@@ -202,19 +203,18 @@ lumi*fb = 20.7
    Nbg:               13.0(3.0)
    Nvis_UL[observed]: 10.7
        Process       Nev    R[obs]
-         Total    4.8695    0.4705
-   GttN1_GttN1    1.3701    0.1324          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    2.2954    0.2218          
-   GbbN1_GttN1    1.1769    0.1137          
-    GgN1_GttN1    0.0272    0.0026          
-   T2tN1_T2tN1    0.0000    0.0000          
+         Total    1.3231    0.1278
+   B1bN1_B1bN1       nan       nan          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.9841    0.0951          
+   GbbN1_GttN1    0.3126    0.0302          
+   GttN1_GttN1    0.0258    0.0025          
+    GgN1_GttN1    0.0006    0.0001          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T1tN1_T1tN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
    #----  SRtN3  ----#
@@ -222,19 +222,18 @@ lumi*fb = 20.7
    Nbg:               5.0(2.0)
    Nvis_UL[observed]: 8.5
        Process       Nev    R[obs]
-         Total    2.1835    0.2637
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    1.0562    0.1276          
-   GbbN1_GttN1    0.6656    0.0804          
-   GttN1_GttN1    0.4458    0.0538          
-    GgN1_GttN1    0.0159    0.0019          
-   T2tN1_T2tN1    0.0000    0.0000          
+         Total    0.7423    0.0896
+   B1bN1_B1bN1       nan       nan          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.5490    0.0663          
+   GbbN1_GttN1    0.1823    0.0220          
+   GttN1_GttN1    0.0105    0.0013          
+    GgN1_GttN1    0.0004    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T1tN1_T1tN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
    #----  SRbC1  ----#
@@ -242,18 +241,17 @@ lumi*fb = 20.7
    Nbg:               482.0(76.0)
    Nvis_UL[observed]: 83.2
        Process       Nev    R[obs]
-         Total   71.8374    0.8676
-   GttN1_GttN1   34.6906    0.4190          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1   19.9335    0.2407          
-   GbbN1_GttN1   10.7684    0.1301          
-   T1tN1_T1tN1    6.2835    0.0759          
-    GgN1_GttN1    0.1594    0.0019          
-   GbbN1_GqqN1    0.0013    0.0000          
-   GbbN1_GbbN1    0.0007    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
+         Total   11.1298    0.1344
+   B1bN1_B1bN1       nan       nan          
+   T1tN1_T1tN1    0.0001    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    8.3137    0.1004          
+   GbbN1_GttN1    2.3525    0.0284          
+   GttN1_GttN1    0.4407    0.0053          
+   GbbN1_GqqN1    0.0152    0.0002          
+   GbbN1_GbbN1    0.0043    0.0001          
+    GgN1_GttN1    0.0034    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
@@ -262,19 +260,18 @@ lumi*fb = 20.7
    Nbg:               25.0(18.0)
    Nvis_UL[observed]: 19.5
        Process       Nev    R[obs]
-         Total   15.4782    0.8308
-   GttN1_GttN1    7.9165    0.4249          
-   B2bN1_B2bN1       nan       nan          
-   GbbN1_GttN1    4.3497    0.2335          
-   GqqN1_GttN1    3.1875    0.1711          
-    GgN1_GttN1    0.0245    0.0013          
-   T2tN1_T2tN1    0.0000    0.0000          
+         Total    2.5862    0.1388
+   B1bN1_B1bN1       nan       nan          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    1.4034    0.0753          
+   GbbN1_GttN1    1.0682    0.0573          
+   GttN1_GttN1    0.1140    0.0061          
+    GgN1_GttN1    0.0006    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T1tN1_T1tN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
    #----  SRbC3  ----#
@@ -282,19 +279,18 @@ lumi*fb = 20.7
    Nbg:               7.0(3.0)
    Nvis_UL[observed]: 7.6
        Process       Nev    R[obs]
-         Total    5.2253    0.6311
-   GttN1_GttN1    2.3761    0.2870          
-   B2bN1_B2bN1       nan       nan          
-   GbbN1_GttN1    1.7658    0.2133          
-   GqqN1_GttN1    1.0771    0.1301          
-    GgN1_GttN1    0.0062    0.0008          
-   T2tN1_T2tN1    0.0000    0.0000          
+         Total    0.9770    0.1180
+   GttN1_GttN1    0.0407    0.0049          
+    GgN1_GttN1    0.0002    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GbbN1_GttN1    0.4716    0.0570          
+   GqqN1_GttN1    0.4645    0.0561          
+   T1tN1_T1tN1    0.0000    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T1tN1_T1tN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
 
@@ -309,39 +305,37 @@ lumi*fb = 20.3
    Nbg:               17.0(6.0)
    Nvis_UL[observed]: 16.0
        Process       Nev    R[obs]
-         Total    3.4758    0.2140
-   GttN1_GttN1    2.5940    0.1597          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.6216    0.0383          
-   GbbN1_GttN1    0.1957    0.0120          
-   T1tN1_T1tN1    0.0554    0.0034          
-   GbbN1_GqqN1    0.0061    0.0004          
-    GgN1_GttN1    0.0016    0.0001          
-   GbbN1_GbbN1    0.0013    0.0001          
+         Total    0.5449    0.0336
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.3459    0.0213          
+   GbbN1_GqqN1    0.0707    0.0044          
+   GqqN1_GqqN1    0.0489    0.0030          
+   GbbN1_GttN1    0.0416    0.0026          
+   GttN1_GttN1    0.0284    0.0017          
+   GbbN1_GbbN1    0.0094    0.0006          
+    GgN1_GttN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+   T1tN1_T1tN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
-   GqqN1_GqqN1    0.0000    0.0000          
    #----  7j80 flavor >=2 b-jets  ----#
    Nobs:              13
    Nbg:               25.0(10.0)
    Nvis_UL[observed]: 12.0
        Process       Nev    R[obs]
-         Total    5.6752    0.4659
-   GttN1_GttN1    5.0044    0.4109          
-   B2bN1_B2bN1       nan       nan          
-   GbbN1_GttN1    0.3472    0.0285          
-   GqqN1_GttN1    0.3127    0.0257          
-   GbbN1_GqqN1    0.0061    0.0005          
-   GbbN1_GbbN1    0.0039    0.0003          
-    GgN1_GttN1    0.0009    0.0001          
-    GbbN1_GgN1    0.0000    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+         Total    0.4847    0.0398
+   GbbN1_GqqN1    0.0831    0.0068          
+   GttN1_GttN1    0.0630    0.0052          
+    GgN1_GttN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   GbbN1_GbbN1    0.0229    0.0019          
+    GbbN1_GgN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.2117    0.0174          
+   GbbN1_GttN1    0.1039    0.0085          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
    #----  8j50 flavor 0 b-jets  ----#
@@ -349,59 +343,56 @@ lumi*fb = 20.3
    Nbg:               35.0(4.0)
    Nvis_UL[observed]: 20.0
        Process       Nev    R[obs]
-         Total    5.4060    0.2745
-   GttN1_GttN1    3.3273    0.1690          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    1.6411    0.0833          
-   GbbN1_GttN1    0.1869    0.0095          
-   T1tN1_T1tN1    0.1629    0.0083          
-   GqqN1_GqqN1    0.0703    0.0036          
-   GbbN1_GqqN1    0.0119    0.0006          
-    GgN1_GttN1    0.0044    0.0002          
-   GbbN1_GbbN1    0.0009    0.0000          
-    GgN1_GqqN1    0.0003    0.0000          
-     GgN1_GgN1    0.0000    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+         Total    2.6484    0.1345
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GqqN1    1.5587    0.0792          
+   GqqN1_GttN1    0.8281    0.0421          
+   GbbN1_GqqN1    0.1531    0.0078          
+   GbbN1_GttN1    0.0558    0.0028          
+   GttN1_GttN1    0.0452    0.0023          
+   GbbN1_GbbN1    0.0069    0.0003          
+    GgN1_GqqN1    0.0004    0.0000          
+    GgN1_GttN1    0.0001    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
+   T1tN1_T1tN1    0.0000    0.0000          
+     GgN1_GgN1    0.0000    0.0000          
    #----  8j50 flavor 1 b-jets  ----#
    Nobs:              44
    Nbg:               40.0(10.0)
    Nvis_UL[observed]: 23.0
        Process       Nev    R[obs]
-         Total   16.6311    0.7448
-   GttN1_GttN1   12.3317    0.5522          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    3.3272    0.1490          
-   GbbN1_GttN1    0.7556    0.0338          
-   T1tN1_T1tN1    0.1769    0.0079          
-   GbbN1_GqqN1    0.0221    0.0010          
-    GgN1_GttN1    0.0079    0.0004          
-   GqqN1_GqqN1    0.0072    0.0003          
-   GbbN1_GbbN1    0.0025    0.0001          
+         Total    2.2165    0.0993
+   GbbN1_GqqN1    0.2483    0.0111          
+   GttN1_GttN1    0.1578    0.0071          
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    1.4639    0.0656          
+   GbbN1_GttN1    0.1818    0.0081          
+   GqqN1_GqqN1    0.1478    0.0066          
+   GbbN1_GbbN1    0.0167    0.0007          
+    GgN1_GttN1    0.0002    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
-    GgN1_GqqN1    0.0000    0.0000          
+   T1tN1_T1tN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
+    GgN1_GqqN1    0.0000    0.0000          
    #----  8j50 flavor >=2 b-jets  ----#
    Nobs:              44
    Nbg:               50.0(10.0)
    Nvis_UL[observed]: 22.0
        Process       Nev    R[obs]
-         Total   31.8327    1.4256 <== Exclude
-   GttN1_GttN1   28.5562    1.2788          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    1.7748    0.0795          
-   GbbN1_GttN1    1.4767    0.0661          
-   GbbN1_GqqN1    0.0121    0.0005          
-   GbbN1_GbbN1    0.0082    0.0004          
-    GgN1_GttN1    0.0046    0.0002          
-    GbbN1_GgN1    0.0000    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+         Total    1.7884    0.0801
+   GttN1_GttN1    0.3364    0.0151          
+   GbbN1_GqqN1    0.1515    0.0068          
+    GgN1_GttN1    0.0001    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   GbbN1_GbbN1    0.0439    0.0020          
+    GbbN1_GgN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.8528    0.0382          
+   GbbN1_GttN1    0.4037    0.0181          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
    #----  9j50 flavor 0 b-jets  ----#
@@ -409,59 +400,56 @@ lumi*fb = 20.3
    Nbg:               3.3(0.7)
    Nvis_UL[observed]: 7.0
        Process       Nev    R[obs]
-         Total    0.4293    0.0622
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.3431    0.0497          
-   GbbN1_GttN1    0.0699    0.0101          
-   GqqN1_GqqN1    0.0145    0.0021          
-    GgN1_GttN1    0.0017    0.0002          
-    GgN1_GqqN1    0.0000    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
+         Total    0.5077    0.0736
+   GttN1_GttN1    0.0100    0.0015          
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GqqN1    0.3159    0.0458          
+   GqqN1_GttN1    0.1721    0.0249          
+   GbbN1_GttN1    0.0097    0.0014          
+    GgN1_GqqN1    0.0001    0.0000          
+    GgN1_GttN1    0.0000    0.0000          
+   T1tN1_T1tN1    0.0000    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
-   GttN1_GttN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T1tN1_T1tN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    #----  9j50 flavor 1 b-jets  ----#
    Nobs:              8
    Nbg:               6.1(1.7)
    Nvis_UL[observed]: 9.0
        Process       Nev    R[obs]
-         Total    5.3785    0.6162
-   GttN1_GttN1    4.4835    0.5136          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.7946    0.0910          
-   GbbN1_GttN1    0.0949    0.0109          
-   GbbN1_GqqN1    0.0035    0.0004          
-    GgN1_GttN1    0.0020    0.0002          
+         Total    0.5217    0.0598
+   GttN1_GttN1    0.0576    0.0066          
+   GbbN1_GqqN1    0.0372    0.0043          
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.3632    0.0416          
+   GbbN1_GttN1    0.0327    0.0037          
+   GqqN1_GqqN1    0.0282    0.0032          
+   GbbN1_GbbN1    0.0028    0.0003          
+    GgN1_GttN1    0.0001    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
-    GgN1_GqqN1    0.0000    0.0000          
-   GbbN1_GbbN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
+    GgN1_GqqN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
-   GqqN1_GqqN1    0.0000    0.0000          
    #----  9j50 flavor >=2 b-jets  ----#
    Nobs:              7
    Nbg:               8.0(2.7)
    Nvis_UL[observed]: 7.0
        Process       Nev    R[obs]
-         Total   10.5740    1.4078 <== Exclude
-   GttN1_GttN1    9.8200    1.3074          
-   B2bN1_B2bN1       nan       nan          
-   GbbN1_GttN1    0.4103    0.0546          
-   GqqN1_GttN1    0.3379    0.0450          
-   GbbN1_GqqN1    0.0033    0.0004          
-   GbbN1_GbbN1    0.0017    0.0002          
-    GgN1_GttN1    0.0009    0.0001          
-    GbbN1_GgN1    0.0000    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
+         Total    0.4817    0.0641
+   GttN1_GttN1    0.1238    0.0165          
+   GbbN1_GqqN1    0.0376    0.0050          
+    GgN1_GttN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   GbbN1_GbbN1    0.0080    0.0011          
+    GbbN1_GgN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.2129    0.0284          
+   GbbN1_GttN1    0.0993    0.0132          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
    #----  10j50 flavor  ----#
@@ -469,19 +457,18 @@ lumi*fb = 20.3
    Nbg:               1.37(0.35)
    Nvis_UL[observed]: 6.0
        Process       Nev    R[obs]
-         Total    5.3719    0.9125
-   GttN1_GttN1    4.9703    0.8443          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.2623    0.0446          
-   GbbN1_GttN1    0.1382    0.0235          
-    GgN1_GttN1    0.0011    0.0002          
-   T2tN1_T2tN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+         Total    0.2558    0.0435
+   GttN1_GttN1    0.0594    0.0101          
+   B1bN1_B1bN1       nan       nan          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.1563    0.0266          
+   GbbN1_GttN1    0.0382    0.0065          
+   GbbN1_GbbN1    0.0019    0.0003          
+    GgN1_GttN1    0.0000    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T1tN1_T1tN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
    #----  7j80 flavor 0 b-jets  ----#
@@ -489,39 +476,37 @@ lumi*fb = 20.3
    Nbg:               11.0(2.2)
    Nvis_UL[observed]: 10.0
        Process       Nev    R[obs]
-         Total    0.3908    0.0385
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.3039    0.0299          
-   GbbN1_GttN1    0.0481    0.0047          
-   GqqN1_GqqN1    0.0328    0.0032          
-   GbbN1_GqqN1    0.0051    0.0005          
-    GgN1_GttN1    0.0008    0.0001          
-    GgN1_GqqN1    0.0001    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
-     GgN1_GgN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
-   GttN1_GttN1    0.0000    0.0000          
-   GbbN1_GbbN1    0.0000    0.0000          
+         Total    1.1263    0.1110
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GqqN1    0.8372    0.0825          
+   GqqN1_GttN1    0.2038    0.0201          
+   GbbN1_GqqN1    0.0680    0.0067          
+   GbbN1_GttN1    0.0150    0.0015          
+   GbbN1_GbbN1    0.0020    0.0002          
+    GgN1_GqqN1    0.0002    0.0000          
+    GgN1_GttN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
+     GgN1_GgN1    0.0000    0.0000          
+   GttN1_GttN1    0.0000    0.0000          
    #----  8j80 flavor >=2 b-jets  ----#
    Nobs:              3
    Nbg:               3.3(2.2)
    Nvis_UL[observed]: 6.0
        Process       Nev    R[obs]
-         Total    1.0383    0.1650
-   GttN1_GttN1    0.9448    0.1501          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.0710    0.0113          
-   GbbN1_GttN1    0.0225    0.0036          
-   T2tN1_T2tN1    0.0000    0.0000          
+         Total    0.0765    0.0122
+   GttN1_GttN1    0.0175    0.0028          
+   B1bN1_B1bN1       nan       nan          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.0442    0.0070          
+   GbbN1_GttN1    0.0131    0.0021          
+   GbbN1_GbbN1    0.0017    0.0003          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GttN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
-   GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T1tN1_T1tN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
    #----  8j50 MJ 340  ----#
@@ -529,59 +514,56 @@ lumi*fb = 20.3
    Nbg:               75.0(19.0)
    Nvis_UL[observed]: 35.0
        Process       Nev    R[obs]
-         Total   19.4675    0.5641
-   GttN1_GttN1   16.5398    0.4793          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    1.9801    0.0574          
-   GbbN1_GttN1    0.7966    0.0231          
-   T1tN1_T1tN1    0.1056    0.0031          
-   GqqN1_GqqN1    0.0197    0.0006          
-   GbbN1_GqqN1    0.0154    0.0004          
-    GgN1_GttN1    0.0064    0.0002          
-   GbbN1_GbbN1    0.0037    0.0001          
+         Total    2.2432    0.0650
+   GttN1_GttN1    0.2243    0.0065          
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    1.0714    0.0310          
+   GqqN1_GqqN1    0.5022    0.0146          
+   GbbN1_GttN1    0.2184    0.0063          
+   GbbN1_GqqN1    0.2047    0.0059          
+   GbbN1_GbbN1    0.0217    0.0006          
+    GgN1_GttN1    0.0002    0.0000          
     GgN1_GqqN1    0.0001    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
+   T1tN1_T1tN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    #----  8j80 flavor 0 b-jets  ----#
    Nobs:              2
    Nbg:               0.9(0.6)
    Nvis_UL[observed]: 5.0
        Process       Nev    R[obs]
-         Total    0.0822    0.0169
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.0822    0.0169          
-   T2tN1_T2tN1    0.0000    0.0000          
+         Total    0.1467    0.0301
+    GgN1_GqqN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GqqN1    0.1084    0.0223          
+   GqqN1_GttN1    0.0382    0.0078          
+   T1tN1_T1tN1    0.0000    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GttN1    0.0000    0.0000          
    GttN1_GttN1    0.0000    0.0000          
-    GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T1tN1_T1tN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
-   GqqN1_GqqN1    0.0000    0.0000          
    #----  8j80 flavor 1 b-jets  ----#
    Nobs:              1
    Nbg:               1.5(0.9)
    Nvis_UL[observed]: 3.5
        Process       Nev    R[obs]
-         Total    0.0019    0.0006
-   GbbN1_GqqN1    0.0017    0.0005          
-    GgN1_GttN1    0.0002    0.0001          
-   GttN1_GttN1    0.0000    0.0000          
-    GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
-   GbbN1_GbbN1    0.0000    0.0000          
-    GbbN1_GgN1    0.0000    0.0000          
+         Total    0.0359    0.0104
+   GbbN1_GqqN1    0.0204    0.0059          
+   B1bN1_B1bN1       nan       nan          
+   GbbN1_GbbN1    0.0021    0.0006          
    T1tN1_T1tN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   T2tN1_T2tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GbbN1_GttN1    0.0070    0.0020          
+   GttN1_GttN1    0.0064    0.0018          
+    GgN1_GttN1    0.0000    0.0000          
+    GgN1_GqqN1    0.0000    0.0000          
+    GbbN1_GgN1    0.0000    0.0000          
    GqqN1_GttN1    0.0000    0.0000          
-   GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
    #----  9j50 MJ 420  ----#
@@ -589,98 +571,93 @@ lumi*fb = 20.3
    Nbg:               11.0(5.0)
    Nvis_UL[observed]: 10.0
        Process       Nev    R[obs]
-         Total    4.1257    0.4065
-   GttN1_GttN1    3.9714    0.3913          
-   B2bN1_B2bN1       nan       nan          
-   GbbN1_GttN1    0.1512    0.0149          
-   GbbN1_GqqN1    0.0019    0.0002          
-    GgN1_GttN1    0.0011    0.0001          
-   T2tN1_T2tN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+         Total    0.1649    0.0162
+   GttN1_GttN1    0.0566    0.0056          
+   GbbN1_GqqN1    0.0254    0.0025          
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GqqN1    0.0409    0.0040          
+   GbbN1_GttN1    0.0395    0.0039          
+   GbbN1_GbbN1    0.0025    0.0002          
+    GgN1_GttN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
    GqqN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
-   GqqN1_GqqN1    0.0000    0.0000          
    #----  10j50 MJ 340  ----#
    Nobs:              1
    Nbg:               3.2(3.45)
    Nvis_UL[observed]: 4.0
        Process       Nev    R[obs]
-         Total    2.6241    0.6463
-   GttN1_GttN1    2.3402    0.5764          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.1949    0.0480          
-   GbbN1_GttN1    0.0882    0.0217          
-    GgN1_GttN1    0.0006    0.0002          
-   GbbN1_GbbN1    0.0002    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
-     GgN1_GgN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+         Total    0.1724    0.0425
+   GttN1_GttN1    0.0323    0.0080          
+   B1bN1_B1bN1       nan       nan          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.1146    0.0282          
+   GbbN1_GttN1    0.0238    0.0059          
+   GbbN1_GbbN1    0.0016    0.0004          
+    GgN1_GttN1    0.0000    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T1tN1_T1tN1    0.0000    0.0000          
+     GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
    #----  8j50 MJ 420  ----#
    Nobs:              37
    Nbg:               45.0(14.0)
    Nvis_UL[observed]: 20.0
        Process       Nev    R[obs]
-         Total    9.0363    0.4451
-   GttN1_GttN1    7.9238    0.3903          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.7900    0.0389          
-   GbbN1_GttN1    0.3069    0.0151          
-   GqqN1_GqqN1    0.0064    0.0003          
-   GbbN1_GqqN1    0.0050    0.0002          
-    GgN1_GttN1    0.0024    0.0001          
-   GbbN1_GbbN1    0.0018    0.0001          
-    GgN1_GqqN1    0.0000    0.0000          
+         Total    0.8507    0.0419
+   GttN1_GttN1    0.1053    0.0052          
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.3839    0.0189          
+   GqqN1_GqqN1    0.1896    0.0093          
+   GbbN1_GttN1    0.0872    0.0043          
+   GbbN1_GqqN1    0.0748    0.0037          
+   GbbN1_GbbN1    0.0097    0.0005          
+    GgN1_GttN1    0.0001    0.0000          
+    GgN1_GqqN1    0.0001    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
-     GgN1_GgN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
+     GgN1_GgN1    0.0000    0.0000          
    #----  9j50 MJ 340  ----#
    Nobs:              13
    Nbg:               17.0(7.0)
    Nvis_UL[observed]: 11.0
        Process       Nev    R[obs]
-         Total    8.6212    0.8494
-   GttN1_GttN1    7.6341    0.7521          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.6761    0.0666          
-   GbbN1_GttN1    0.3024    0.0298          
-   GbbN1_GqqN1    0.0053    0.0005          
-    GgN1_GttN1    0.0025    0.0002          
-   GbbN1_GbbN1    0.0009    0.0001          
-    GbbN1_GgN1    0.0000    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
-     GgN1_GgN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+         Total    0.7616    0.0750
+   GttN1_GttN1    0.1062    0.0105          
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.3898    0.0384          
+   GqqN1_GqqN1    0.1160    0.0114          
+   GbbN1_GttN1    0.0784    0.0077          
+   GbbN1_GqqN1    0.0655    0.0065          
+   GbbN1_GbbN1    0.0056    0.0006          
+    GgN1_GttN1    0.0001    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
+    GbbN1_GgN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
-   GqqN1_GqqN1    0.0000    0.0000          
+     GgN1_GgN1    0.0000    0.0000          
    #----  10j50 MJ 420  ----#
    Nobs:              1
    Nbg:               2.2(2.0)
    Nvis_UL[observed]: 4.0
        Process       Nev    R[obs]
-         Total    1.2582    0.3099
-   GttN1_GttN1    1.2064    0.2972          
-   B2bN1_B2bN1       nan       nan          
-   GbbN1_GttN1    0.0517    0.0127          
-   T2tN1_T2tN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+         Total    0.0358    0.0088
+   GttN1_GttN1    0.0204    0.0050          
+   B1bN1_B1bN1       nan       nan          
+   GbbN1_GbbN1    0.0014    0.0003          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GbbN1_GttN1    0.0140    0.0034          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GttN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T1tN1_T1tN1    0.0000    0.0000          
    GqqN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
@@ -701,12 +678,11 @@ lumi*fb = 20.7
     GgN1_GttN1    0.0000    0.0000          
    GttN1_GttN1       nan       nan          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   T2tN1_T2tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
    GqqN1_GttN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -721,12 +697,11 @@ lumi*fb = 20.7
     GgN1_GttN1    0.0000    0.0000          
    GttN1_GttN1       nan       nan          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   T2tN1_T2tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
    GqqN1_GttN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -741,12 +716,11 @@ lumi*fb = 20.7
     GgN1_GttN1    0.0000    0.0000          
    GttN1_GttN1       nan       nan          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   T2tN1_T2tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
    GqqN1_GttN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -761,12 +735,11 @@ lumi*fb = 20.7
     GgN1_GttN1    0.0000    0.0000          
    GttN1_GttN1       nan       nan          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   T2tN1_T2tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
    GqqN1_GttN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -781,12 +754,11 @@ lumi*fb = 20.7
     GgN1_GttN1    0.0000    0.0000          
    GttN1_GttN1       nan       nan          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   T2tN1_T2tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
    GqqN1_GttN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -801,12 +773,11 @@ lumi*fb = 20.7
     GgN1_GttN1    0.0000    0.0000          
    GttN1_GttN1       nan       nan          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   T2tN1_T2tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
    GqqN1_GttN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -823,19 +794,18 @@ lumi*fb = 20.5
    Nbg:               17.5(3.2)
    Nvis_UL[observed]: 10.0
        Process       Nev    R[obs]
-         Total   18.7670    1.8683 <== Exclude
-   GttN1_GttN1    5.9007    0.5874          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    7.0568    0.7025          
-   GbbN1_GttN1    4.0626    0.4044          
-   T1tN1_T1tN1    1.6036    0.1596          
-   GbbN1_GqqN1    0.0681    0.0068          
-    GgN1_GttN1    0.0432    0.0043          
-   GbbN1_GbbN1    0.0317    0.0032          
-    GbbN1_GgN1    0.0004    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+         Total    5.0778    0.5055
+   GbbN1_GqqN1    0.7048    0.0702          
+   GttN1_GttN1    0.1100    0.0110          
+    GgN1_GttN1    0.0010    0.0001          
     GgN1_GqqN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   GbbN1_GbbN1    0.1748    0.0174          
+    GbbN1_GgN1    0.0002    0.0000          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    3.0322    0.3019          
+   GbbN1_GttN1    1.0549    0.1050          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
    #----  SR2: MET > 300  ----#
@@ -843,19 +813,18 @@ lumi*fb = 20.5
    Nbg:               4.7(1.5)
    Nvis_UL[observed]: 3.6
        Process       Nev    R[obs]
-         Total    3.6406    1.0446 <== Exclude
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    2.0849    0.5982          
-   GbbN1_GttN1    1.3175    0.3781          
-   T1tN1_T1tN1    0.1775    0.0509          
-   GbbN1_GqqN1    0.0254    0.0073          
-    GgN1_GttN1    0.0202    0.0058          
-   GbbN1_GbbN1    0.0149    0.0043          
-    GbbN1_GgN1    0.0002    0.0001          
-   T2tN1_T2tN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
-   GttN1_GttN1    0.0000    0.0000          
+         Total    1.8849    0.5409
+   GbbN1_GqqN1    0.2982    0.0856          
+   GttN1_GttN1    0.0128    0.0037          
+    GgN1_GttN1    0.0005    0.0002          
     GgN1_GqqN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   GbbN1_GbbN1    0.0882    0.0253          
+    GbbN1_GgN1    0.0001    0.0000          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    1.1082    0.3180          
+   GbbN1_GttN1    0.3768    0.1081          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
    #----  SR3: MET > 350  ----#
@@ -863,19 +832,18 @@ lumi*fb = 20.5
    Nbg:               2.7(1.2)
    Nvis_UL[observed]: 3.9
        Process       Nev    R[obs]
-         Total    1.8579    0.4770
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    1.1823    0.3035          
-   GbbN1_GttN1    0.5864    0.1506          
-   T1tN1_T1tN1    0.0561    0.0144          
-   GbbN1_GqqN1    0.0139    0.0036          
-    GgN1_GttN1    0.0107    0.0028          
-   GbbN1_GbbN1    0.0083    0.0021          
-    GbbN1_GgN1    0.0001    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+         Total    0.9718    0.2495
+   GbbN1_GqqN1    0.1756    0.0451          
+    GgN1_GttN1    0.0003    0.0001          
    GttN1_GttN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   GbbN1_GbbN1    0.0463    0.0119          
+    GbbN1_GgN1    0.0001    0.0000          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.5786    0.1486          
+   GbbN1_GttN1    0.1709    0.0439          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
 
@@ -895,12 +863,11 @@ lumi*fb = 20.3
     GgN1_GttN1    0.0000    0.0000          
    GttN1_GttN1       nan       nan          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   T2tN1_T2tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
    GqqN1_GttN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -915,12 +882,11 @@ lumi*fb = 20.3
     GgN1_GttN1    0.0000    0.0000          
    GttN1_GttN1       nan       nan          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   T2tN1_T2tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
    GqqN1_GttN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -931,16 +897,15 @@ lumi*fb = 20.3
    Nvis_UL[observed]: 10.353
        Process       Nev    R[obs]
          Total    0.0000    0.0000
+   GttN1_GttN1       nan       nan          
+   B1bN1_B1bN1       nan       nan          
+   T1tN1_T1tN1    0.0000    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GttN1    0.0000    0.0000          
-   GttN1_GttN1       nan       nan          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T1tN1_T1tN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   T2tN1_T2tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
    GqqN1_GttN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -955,12 +920,11 @@ lumi*fb = 20.3
     GgN1_GttN1    0.0000    0.0000          
    GttN1_GttN1       nan       nan          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   T2tN1_T2tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
    GqqN1_GttN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -975,12 +939,11 @@ lumi*fb = 20.3
     GgN1_GttN1    0.0000    0.0000          
    GttN1_GttN1       nan       nan          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   T2tN1_T2tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
    GqqN1_GttN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -991,16 +954,15 @@ lumi*fb = 20.3
    Nvis_UL[observed]: 7.105
        Process       Nev    R[obs]
          Total    0.0000    0.0000
+   GttN1_GttN1       nan       nan          
+   B1bN1_B1bN1       nan       nan          
+   T1tN1_T1tN1    0.0000    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GttN1    0.0000    0.0000          
-   GttN1_GttN1       nan       nan          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T1tN1_T1tN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   T2tN1_T2tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
    GqqN1_GttN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -1015,12 +977,11 @@ lumi*fb = 20.3
     GgN1_GttN1    0.0000    0.0000          
    GttN1_GttN1       nan       nan          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   T2tN1_T2tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
    GqqN1_GttN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -1035,12 +996,11 @@ lumi*fb = 20.3
     GgN1_GttN1    0.0000    0.0000          
    GttN1_GttN1       nan       nan          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   T2tN1_T2tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
    GqqN1_GttN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -1055,12 +1015,11 @@ lumi*fb = 20.3
     GgN1_GttN1    0.0000    0.0000          
    GttN1_GttN1       nan       nan          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   T2tN1_T2tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
    GqqN1_GttN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -1077,17 +1036,16 @@ lumi*fb = 20.3
    Nbg:               300.0(40.0)
    Nvis_UL[observed]: 50.75
        Process       Nev    R[obs]
-         Total    3.4060    0.0671
-    GgN1_GttN1    0.0105    0.0002          
+         Total    0.4979    0.0098
    GttN1_GttN1       nan       nan          
-   T1tN1_T1tN1    2.1191    0.0418          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.8730    0.0172          
-   GbbN1_GttN1    0.4033    0.0079          
-   T2tN1_T2tN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.4076    0.0080          
+   GbbN1_GttN1    0.0901    0.0018          
+    GgN1_GttN1    0.0002    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -1097,17 +1055,16 @@ lumi*fb = 20.3
    Nbg:               4.8(2.2)
    Nvis_UL[observed]: 5.481
        Process       Nev    R[obs]
-         Total    1.3617    0.2484
-    GgN1_GttN1    0.0068    0.0012          
+         Total    0.3169    0.0578
    GttN1_GttN1       nan       nan          
-   T1tN1_T1tN1    0.5880    0.1073          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.5103    0.0931          
-   GbbN1_GttN1    0.2567    0.0468          
-   T2tN1_T2tN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.2588    0.0472          
+   GbbN1_GttN1    0.0579    0.0106          
+    GgN1_GttN1    0.0001    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -1117,17 +1074,16 @@ lumi*fb = 20.3
    Nbg:               11.0(4.0)
    Nvis_UL[observed]: 8.12
        Process       Nev    R[obs]
-         Total    1.7952    0.2211
-    GgN1_GttN1    0.0069    0.0009          
+         Total    0.3164    0.0390
    GttN1_GttN1       nan       nan          
-   T1tN1_T1tN1    1.0233    0.1260          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.5577    0.0687          
-   GbbN1_GttN1    0.2074    0.0255          
-   T2tN1_T2tN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.2627    0.0324          
+   GbbN1_GttN1    0.0536    0.0066          
+    GgN1_GttN1    0.0001    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -1137,17 +1093,16 @@ lumi*fb = 20.3
    Nbg:               4.3(1.3)
    Nvis_UL[observed]: 4.669
        Process       Nev    R[obs]
-         Total    1.2411    0.2658
-    GgN1_GttN1    0.0059    0.0013          
+         Total    0.2385    0.0511
    GttN1_GttN1       nan       nan          
-   T1tN1_T1tN1    0.6730    0.1441          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.3736    0.0800          
-   GbbN1_GttN1    0.1886    0.0404          
-   T2tN1_T2tN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.1948    0.0417          
+   GbbN1_GttN1    0.0435    0.0093          
+    GgN1_GttN1    0.0001    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -1164,18 +1119,17 @@ lumi*fb = 20.3
    Nbg:               2.7(0.9)
    Nvis_UL[observed]: 7.7
        Process       Nev    R[obs]
-         Total    0.0488    0.0063
+         Total    0.0285    0.0037
    GttN1_GttN1       nan       nan          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.0487    0.0063          
-   T2tN1_T2tN1    0.0000    0.0000          
-   GbbN1_GqqN1    0.0000    0.0000          
-    GgN1_GttN1    0.0000    0.0000          
-    GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
-   GbbN1_GbbN1    0.0000    0.0000          
-    GbbN1_GgN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
    T1tN1_T1tN1    0.0000    0.0000          
+   GbbN1_GbbN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.0285    0.0037          
+    GgN1_GttN1    0.0000    0.0000          
+   GbbN1_GqqN1    0.0000    0.0000          
+    GgN1_GqqN1    0.0000    0.0000          
+    GbbN1_GgN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
@@ -1184,19 +1138,18 @@ lumi*fb = 20.3
    Nbg:               3.6(1.0)
    Nvis_UL[observed]: 6.0
        Process       Nev    R[obs]
-         Total    0.0683    0.0112
+         Total    0.1334    0.0219
    GttN1_GttN1       nan       nan          
-   B2bN1_B2bN1       nan       nan          
-   GbbN1_GttN1    0.0673    0.0111          
-    GgN1_GttN1    0.0010    0.0002          
-   T2tN1_T2tN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.1113    0.0183          
+   GbbN1_GttN1    0.0221    0.0036          
+    GgN1_GttN1    0.0000    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T1tN1_T1tN1    0.0000    0.0000          
-   GqqN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
    #----  SL1b_low  ----#
@@ -1204,19 +1157,18 @@ lumi*fb = 20.3
    Nbg:               6.1(1.4)
    Nvis_UL[observed]: 8.8
        Process       Nev    R[obs]
-         Total    0.3525    0.0404
+         Total    0.1316    0.0151
    GttN1_GttN1       nan       nan          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.2747    0.0315          
-   GbbN1_GttN1    0.0747    0.0086          
-    GgN1_GttN1    0.0031    0.0004          
-   T2tN1_T2tN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.1165    0.0134          
+   GbbN1_GttN1    0.0150    0.0017          
+    GgN1_GttN1    0.0001    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T1tN1_T1tN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
    #----  SL1b_high  ----#
@@ -1224,19 +1176,18 @@ lumi*fb = 20.3
    Nbg:               4.0(1.1)
    Nvis_UL[observed]: 7.9
        Process       Nev    R[obs]
-         Total    0.2342    0.0296
-    GgN1_GttN1    0.0022    0.0003          
+         Total    0.0855    0.0108
    GttN1_GttN1       nan       nan          
-   T1tN1_T1tN1    0.1127    0.0142          
-   B1bN1_B1bN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.1193    0.0151          
-   T2tN1_T2tN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.0731    0.0092          
+   GbbN1_GttN1    0.0123    0.0016          
+    GgN1_GttN1    0.0001    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
    #----  SL2b_low  ----#
@@ -1244,18 +1195,17 @@ lumi*fb = 20.3
    Nbg:               24.1(4.1)
    Nvis_UL[observed]: 13.4
        Process       Nev    R[obs]
-         Total    0.0199    0.0015
+         Total    0.0060    0.0004
    GttN1_GttN1       nan       nan          
-   B2bN1_B2bN1       nan       nan          
-   GbbN1_GttN1    0.0194    0.0014          
-    GgN1_GttN1    0.0003    0.0000          
-   GbbN1_GbbN1    0.0002    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
-   GbbN1_GqqN1    0.0000    0.0000          
-    GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
-    GbbN1_GgN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   GbbN1_GbbN1    0.0009    0.0001          
    T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GbbN1_GttN1    0.0051    0.0004          
+   GbbN1_GqqN1    0.0000    0.0000          
+    GgN1_GttN1    0.0000    0.0000          
+    GgN1_GqqN1    0.0000    0.0000          
+    GbbN1_GgN1    0.0000    0.0000          
    GqqN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
@@ -1265,16 +1215,15 @@ lumi*fb = 20.3
    Nvis_UL[observed]: 5.3
        Process       Nev    R[obs]
          Total    0.0000    0.0000
+   GttN1_GttN1       nan       nan          
+   B1bN1_B1bN1       nan       nan          
+   T1tN1_T1tN1    0.0000    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GttN1    0.0000    0.0000          
-   GttN1_GttN1       nan       nan          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T1tN1_T1tN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   T2tN1_T2tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
    GqqN1_GttN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -1284,18 +1233,17 @@ lumi*fb = 20.3
    Nbg:               5.6(1.6)
    Nvis_UL[observed]: 8.1
        Process       Nev    R[obs]
-         Total    0.0004    0.0001
-    GgN1_GttN1    0.0004    0.0001          
+         Total    0.0135    0.0017
    GttN1_GttN1       nan       nan          
-   B1bN1_B1bN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   GbbN1_GbbN1    0.0008    0.0001          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.0127    0.0016          
+    GgN1_GttN1    0.0000    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T1tN1_T1tN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   T2tN1_T2tN1    0.0000    0.0000          
-   GqqN1_GttN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
@@ -1304,18 +1252,17 @@ lumi*fb = 20.3
    Nbg:               14.8(3.7)
    Nvis_UL[observed]: 7.1
        Process       Nev    R[obs]
-         Total    1.0479    0.1475
-    GgN1_GttN1    0.0075    0.0010          
+         Total    0.4629    0.0651
    GttN1_GttN1       nan       nan          
-   T1tN1_T1tN1    0.2576    0.0363          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.5610    0.0790          
-   GbbN1_GttN1    0.2218    0.0312          
-   T2tN1_T2tN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.3956    0.0557          
+   GbbN1_GttN1    0.0662    0.0093          
+   GbbN1_GbbN1    0.0010    0.0001          
+    GgN1_GttN1    0.0002    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
-   GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
@@ -1329,12 +1276,11 @@ lumi*fb = 20.3
     GgN1_GttN1    0.0000    0.0000          
    GttN1_GttN1       nan       nan          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   T2tN1_T2tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
    GqqN1_GttN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -1344,18 +1290,17 @@ lumi*fb = 20.3
    Nbg:               3.9(1.0)
    Nvis_UL[observed]: 6.0
        Process       Nev    R[obs]
-         Total    0.0485    0.0080
-    GgN1_GttN1    0.0005    0.0001          
+         Total    0.0252    0.0041
    GttN1_GttN1       nan       nan          
-   T1tN1_T1tN1    0.0480    0.0079          
-   B1bN1_B1bN1    0.0000    0.0000          
-    GbbN1_GgN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   T2tN1_T2tN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T1tN1_T1tN1    0.0000    0.0000          
+   GbbN1_GbbN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.0252    0.0041          
+    GgN1_GttN1    0.0000    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   GbbN1_GbbN1    0.0000    0.0000          
-   GqqN1_GttN1    0.0000    0.0000          
+    GbbN1_GgN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
@@ -1364,19 +1309,18 @@ lumi*fb = 20.3
    Nbg:               1.7(0.6)
    Nvis_UL[observed]: 3.0
        Process       Nev    R[obs]
-         Total    0.5685    0.1867
+         Total    0.2784    0.0914
    GttN1_GttN1       nan       nan          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.4416    0.1450          
-   GbbN1_GttN1    0.1250    0.0410          
-    GgN1_GttN1    0.0018    0.0006          
-   T2tN1_T2tN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.2396    0.0787          
+   GbbN1_GttN1    0.0387    0.0127          
+    GgN1_GttN1    0.0001    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T1tN1_T1tN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
    #----  incHL5j_m  ----#
@@ -1384,19 +1328,18 @@ lumi*fb = 20.3
    Nbg:               2.5(0.8)
    Nvis_UL[observed]: 4.6
        Process       Nev    R[obs]
-         Total    0.2317    0.0519
+         Total    0.1515    0.0339
    GttN1_GttN1       nan       nan          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.1828    0.0409          
-   GbbN1_GttN1    0.0476    0.0107          
-    GgN1_GttN1    0.0012    0.0003          
-   T2tN1_T2tN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.1328    0.0297          
+   GbbN1_GttN1    0.0186    0.0042          
+    GgN1_GttN1    0.0000    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T1tN1_T1tN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
    #----  incHL6j_e  ----#
@@ -1404,17 +1347,16 @@ lumi*fb = 20.3
    Nbg:               2.0(0.7)
    Nvis_UL[observed]: 4.6
        Process       Nev    R[obs]
-         Total    0.3823    0.0819
+         Total    0.2126    0.0455
    GttN1_GttN1       nan       nan          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.1890    0.0405          
-   GbbN1_GttN1    0.1393    0.0298          
-   T1tN1_T1tN1    0.0508    0.0109          
-    GgN1_GttN1    0.0032    0.0007          
-   T2tN1_T2tN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.1591    0.0341          
+   GbbN1_GttN1    0.0534    0.0114          
+    GgN1_GttN1    0.0001    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -1431,99 +1373,94 @@ lumi*fb = 20.3
    Nbg:               30.0(8.0)
    Nvis_UL[observed]: 28.6
        Process       Nev    R[obs]
-         Total    4.2036    0.1469
+         Total    8.2754    0.2891
+   GbbN1_GqqN1    1.7552    0.0613          
    GttN1_GttN1       nan       nan          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    2.3789    0.0831          
-   GbbN1_GttN1    1.0599    0.0370          
-   T1tN1_T1tN1    0.4699    0.0164          
-   GqqN1_GqqN1    0.1418    0.0050          
-   GbbN1_GqqN1    0.1067    0.0037          
-   GbbN1_GbbN1    0.0235    0.0008          
-    GgN1_GttN1    0.0214    0.0007          
-    GgN1_GqqN1    0.0011    0.0000          
-    GbbN1_GgN1    0.0004    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GqqN1    4.1796    0.1460          
+   GqqN1_GttN1    1.7733    0.0620          
+   GbbN1_GttN1    0.3848    0.0134          
+   GbbN1_GbbN1    0.1798    0.0063          
+    GgN1_GqqN1    0.0016    0.0001          
+    GgN1_GttN1    0.0006    0.0000          
+    GbbN1_GgN1    0.0003    0.0000          
+   T1tN1_T1tN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    #----  E Tight  ----#
    Nobs:              5
    Nbg:               2.9(1.8)
    Nvis_UL[observed]: 8.3
        Process       Nev    R[obs]
-         Total    0.4864    0.0584
+         Total    1.0519    0.1264
+   GbbN1_GqqN1    0.2723    0.0327          
    GttN1_GttN1       nan       nan          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.3042    0.0365          
-   GbbN1_GttN1    0.1019    0.0122          
-   T1tN1_T1tN1    0.0389    0.0047          
-   GbbN1_GqqN1    0.0186    0.0022          
-   GqqN1_GqqN1    0.0176    0.0021          
-    GgN1_GttN1    0.0025    0.0003          
-   GbbN1_GbbN1    0.0025    0.0003          
-    GgN1_GqqN1    0.0002    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GqqN1    0.5221    0.0627          
+   GqqN1_GttN1    0.1927    0.0232          
+   GbbN1_GttN1    0.0406    0.0049          
+   GbbN1_GbbN1    0.0236    0.0028          
+    GgN1_GqqN1    0.0003    0.0000          
+    GgN1_GttN1    0.0001    0.0000          
     GbbN1_GgN1    0.0001    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
+   T1tN1_T1tN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    #----  A Loose  ----#
    Nobs:              5333
    Nbg:               4700.0(500.0)
    Nvis_UL[observed]: 1341.2
        Process       Nev    R[obs]
-         Total   62.9751    0.0470
-   GbbN1_GqqN1    3.3472    0.0025          
+         Total  154.1176    0.1149
+   GbbN1_GqqN1   46.8352    0.0349          
    GttN1_GttN1       nan       nan          
-   T1tN1_T1tN1   13.0126    0.0097          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1   30.3696    0.0226          
-   GbbN1_GttN1   12.4453    0.0093          
-   GqqN1_GqqN1    2.8733    0.0021          
-   GbbN1_GbbN1    0.5326    0.0004          
-    GgN1_GttN1    0.3316    0.0002          
-    GgN1_GqqN1    0.0451    0.0000          
-    GbbN1_GgN1    0.0175    0.0000          
-   T2tN1_T2tN1    0.0001    0.0000          
-     GgN1_GgN1    0.0001    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GqqN1   80.7727    0.0602          
+   GqqN1_GttN1   17.7455    0.0132          
+   GbbN1_GttN1    4.6213    0.0034          
+   GbbN1_GbbN1    4.0565    0.0030          
+    GgN1_GqqN1    0.0639    0.0000          
+    GbbN1_GgN1    0.0127    0.0000          
+    GgN1_GttN1    0.0092    0.0000          
+   T1tN1_T1tN1    0.0006    0.0000          
+     GgN1_GgN1    0.0000    0.0000          
    #----  A Medium  ----#
    Nobs:              135
    Nbg:               122.0(18.0)
    Nvis_UL[observed]: 51.3
        Process       Nev    R[obs]
-         Total    0.5087    0.0099
+         Total    1.8036    0.0353
+   GbbN1_GqqN1    0.4668    0.0091          
    GttN1_GttN1       nan       nan          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.2966    0.0058          
-   GbbN1_GttN1    0.1374    0.0027          
-   GqqN1_GqqN1    0.0336    0.0007          
-   GbbN1_GqqN1    0.0298    0.0006          
-   GbbN1_GbbN1    0.0061    0.0001          
-    GgN1_GttN1    0.0042    0.0001          
-    GgN1_GqqN1    0.0006    0.0000          
-    GbbN1_GgN1    0.0003    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GqqN1    1.0576    0.0207          
+   GqqN1_GttN1    0.1854    0.0036          
+   GbbN1_GbbN1    0.0528    0.0010          
+   GbbN1_GttN1    0.0394    0.0008          
+    GgN1_GqqN1    0.0010    0.0000          
+    GbbN1_GgN1    0.0002    0.0000          
+   T1tN1_T1tN1    0.0002    0.0000          
+    GgN1_GttN1    0.0001    0.0000          
      GgN1_GgN1    0.0000    0.0000          
-   T1tN1_T1tN1    0.0000    0.0000          
    #----  B Medium  ----#
    Nobs:              29
    Nbg:               33.0(7.0)
    Nvis_UL[observed]: 14.9
        Process       Nev    R[obs]
-         Total    0.1389    0.0094
-   GbbN1_GqqN1    0.0156    0.0011          
+         Total    0.8123    0.0548
+   GbbN1_GqqN1    0.2677    0.0181          
    GttN1_GttN1       nan       nan          
-   T1tN1_T1tN1    0.0357    0.0024          
-   B2bN1_B2bN1       nan       nan          
-   GbbN1_GttN1    0.0679    0.0046          
-   GqqN1_GqqN1    0.0143    0.0010          
-   GbbN1_GbbN1    0.0031    0.0002          
-    GgN1_GttN1    0.0019    0.0001          
-    GgN1_GqqN1    0.0002    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GqqN1    0.4953    0.0334          
+   GbbN1_GttN1    0.0244    0.0016          
+   GbbN1_GbbN1    0.0242    0.0016          
+    GgN1_GqqN1    0.0004    0.0000          
+   T1tN1_T1tN1    0.0001    0.0000          
     GbbN1_GgN1    0.0001    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+    GgN1_GttN1    0.0001    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GttN1    0.0000    0.0000          
    #----  B Tight  ----#
@@ -1532,100 +1469,95 @@ lumi*fb = 20.3
    Nvis_UL[observed]: 6.7
        Process       Nev    R[obs]
          Total    0.0000    0.0000
-    GgN1_GttN1    0.0000    0.0000          
    GttN1_GttN1       nan       nan          
-   B1bN1_B1bN1    0.0000    0.0000          
-   GbbN1_GqqN1    0.0000    0.0000          
-    GgN1_GqqN1    0.0000    0.0000          
-   GbbN1_GbbN1    0.0000    0.0000          
-    GbbN1_GgN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
    T1tN1_T1tN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   T2tN1_T2tN1    0.0000    0.0000          
+   GbbN1_GbbN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+     GgN1_GgN1    0.0000    0.0000          
+   GbbN1_GqqN1    0.0000    0.0000          
+    GgN1_GttN1    0.0000    0.0000          
+    GgN1_GqqN1    0.0000    0.0000          
+    GbbN1_GgN1    0.0000    0.0000          
    GqqN1_GttN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
-     GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
    #----  C Medium  ----#
    Nobs:              228
    Nbg:               210.0(40.0)
    Nvis_UL[observed]: 81.2
        Process       Nev    R[obs]
-         Total    8.2260    0.1013
+         Total   25.5124    0.3142
+   GbbN1_GqqN1    6.1321    0.0755          
    GttN1_GttN1       nan       nan          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    4.1925    0.0516          
-   GbbN1_GttN1    1.8154    0.0224          
-   T1tN1_T1tN1    1.2004    0.0148          
-   GqqN1_GqqN1    0.5093    0.0063          
-   GbbN1_GqqN1    0.3839    0.0047          
-   GbbN1_GbbN1    0.0696    0.0009          
-    GgN1_GttN1    0.0471    0.0006          
-    GgN1_GqqN1    0.0054    0.0001          
-    GbbN1_GgN1    0.0022    0.0000          
-   T2tN1_T2tN1    0.0001    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GqqN1   15.2734    0.1881          
+   GqqN1_GttN1    2.9096    0.0358          
+   GbbN1_GttN1    0.6008    0.0074          
+   GbbN1_GbbN1    0.5841    0.0072          
+    GgN1_GqqN1    0.0089    0.0001          
+    GbbN1_GgN1    0.0017    0.0000          
+    GgN1_GttN1    0.0014    0.0000          
+   T1tN1_T1tN1    0.0003    0.0000          
      GgN1_GgN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    #----  C Tight  ----#
    Nobs:              0
    Nbg:               1.6(1.4)
    Nvis_UL[observed]: 2.4
        Process       Nev    R[obs]
-         Total    0.0055    0.0023
-   GbbN1_GqqN1    0.0029    0.0012          
+         Total    0.0975    0.0400
+   GbbN1_GqqN1    0.0405    0.0166          
    GttN1_GttN1       nan       nan          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GqqN1    0.0021    0.0008          
-    GgN1_GttN1    0.0005    0.0002          
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GqqN1    0.0517    0.0212          
+   GbbN1_GbbN1    0.0031    0.0013          
+   GbbN1_GttN1    0.0022    0.0009          
     GgN1_GqqN1    0.0000    0.0000          
-    GbbN1_GgN1    0.0000    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
-   GbbN1_GbbN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
-   GqqN1_GttN1    0.0000    0.0000          
-   GbbN1_GttN1    0.0000    0.0000          
+    GbbN1_GgN1    0.0000    0.0000          
+    GgN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
+   GqqN1_GttN1    0.0000    0.0000          
    #----  D  ----#
    Nobs:              18
    Nbg:               15.0(5.0)
    Nvis_UL[observed]: 15.5
        Process       Nev    R[obs]
-         Total    0.9082    0.0581
+         Total    2.6081    0.1669
+   GbbN1_GqqN1    0.6000    0.0384          
    GttN1_GttN1       nan       nan          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1    0.5102    0.0326          
-   GbbN1_GttN1    0.2324    0.0149          
-   T1tN1_T1tN1    0.0744    0.0048          
-   GqqN1_GqqN1    0.0428    0.0027          
-   GbbN1_GqqN1    0.0348    0.0022          
-   GbbN1_GbbN1    0.0081    0.0005          
-    GgN1_GttN1    0.0049    0.0003          
-    GgN1_GqqN1    0.0004    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GqqN1    1.4904    0.0953          
+   GqqN1_GttN1    0.3718    0.0238          
+   GbbN1_GttN1    0.0770    0.0049          
+   GbbN1_GbbN1    0.0677    0.0043          
+    GgN1_GqqN1    0.0008    0.0001          
+    GgN1_GttN1    0.0002    0.0000          
     GbbN1_GgN1    0.0002    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
+   T1tN1_T1tN1    0.0001    0.0000          
      GgN1_GgN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    #----  E Loose  ----#
    Nobs:              166
    Nbg:               113.0(21.0)
    Nvis_UL[observed]: 92.4
        Process       Nev    R[obs]
-         Total   18.9536    0.2052
+         Total   24.9931    0.2706
+   GbbN1_GqqN1    4.7977    0.0519          
    GttN1_GttN1       nan       nan          
-   B2bN1_B2bN1       nan       nan          
-   GqqN1_GttN1   11.4644    0.1241          
-   GbbN1_GttN1    4.7394    0.0513          
-   T1tN1_T1tN1    1.8099    0.0196          
-   GqqN1_GqqN1    0.4551    0.0049          
-   GbbN1_GqqN1    0.3494    0.0038          
-   GbbN1_GbbN1    0.0718    0.0008          
-    GgN1_GttN1    0.0599    0.0006          
-    GgN1_GqqN1    0.0027    0.0000          
-    GbbN1_GgN1    0.0011    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GqqN1   11.5791    0.1254          
+   GqqN1_GttN1    6.6924    0.0725          
+   GbbN1_GttN1    1.4115    0.0153          
+   GbbN1_GbbN1    0.5065    0.0055          
+    GgN1_GqqN1    0.0036    0.0000          
+    GgN1_GttN1    0.0017    0.0000          
+    GbbN1_GgN1    0.0007    0.0000          
+   T1tN1_T1tN1    0.0001    0.0000          
      GgN1_GgN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
 
 ------------------------------------------------------------
 [ATLAS_CONF_2013_061]
@@ -1638,19 +1570,18 @@ lumi*fb = 20.1
    Nbg:               3.0(2.8)
    Nvis_UL[observed]: 3.0
        Process       Nev    R[obs]
-         Total    3.8260    1.2690 <== Exclude
-   GttN1_GttN1    3.3460    1.1098          
-   B2bN1_B2bN1       nan       nan          
-   GbbN1_GttN1    0.4795    0.1590          
-    GgN1_GttN1    0.0005    0.0002          
-   T2tN1_T2tN1    0.0000    0.0000          
+         Total    0.2998    0.0994
+   GttN1_GttN1    0.0509    0.0169          
+    GgN1_GttN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GbbN1_GttN1    0.1556    0.0516          
+   GqqN1_GttN1    0.0933    0.0309          
+   T1tN1_T1tN1    0.0000    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T1tN1_T1tN1    0.0000    0.0000          
-   GqqN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
    #----  SR-0l-4j-A  ----#
@@ -1658,19 +1589,18 @@ lumi*fb = 20.1
    Nbg:               3.0(1.3)
    Nvis_UL[observed]: 4.6
        Process       Nev    R[obs]
-         Total    0.3838    0.0830
-   B2bN1_B2bN1       nan       nan          
-   GbbN1_GttN1    0.2940    0.0636          
-   GqqN1_GttN1    0.0660    0.0143          
-   GbbN1_GbbN1    0.0156    0.0034          
-   GbbN1_GqqN1    0.0060    0.0013          
-    GgN1_GttN1    0.0021    0.0005          
+         Total    0.3990    0.0863
+   GbbN1_GqqN1    0.1020    0.0221          
+   B1bN1_B1bN1       nan       nan          
+   GbbN1_GbbN1    0.1503    0.0325          
+   T2tN1_T2tN1       nan       nan          
+   GbbN1_GttN1    0.0942    0.0204          
+   GqqN1_GttN1    0.0479    0.0104          
+   GttN1_GttN1    0.0045    0.0010          
     GbbN1_GgN1    0.0001    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
-   GttN1_GttN1    0.0000    0.0000          
-    GgN1_GqqN1    0.0000    0.0000          
+    GgN1_GttN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
+    GgN1_GqqN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
    #----  SR-0l-4j-B  ----#
@@ -1678,18 +1608,17 @@ lumi*fb = 20.1
    Nbg:               1.3(1.0)
    Nvis_UL[observed]: 6.7
        Process       Nev    R[obs]
-         Total    0.4596    0.0693
-   GttN1_GttN1    0.1835    0.0277          
-   B2bN1_B2bN1       nan       nan          
-   GbbN1_GttN1    0.2552    0.0385          
-   GbbN1_GbbN1    0.0147    0.0022          
-   GbbN1_GqqN1    0.0048    0.0007          
-    GgN1_GttN1    0.0012    0.0002          
-    GbbN1_GgN1    0.0000    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
-    GgN1_GqqN1    0.0000    0.0000          
+         Total    0.3236    0.0488
+   GbbN1_GqqN1    0.0912    0.0138          
+   B1bN1_B1bN1       nan       nan          
+   GbbN1_GbbN1    0.1453    0.0219          
    T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GbbN1_GttN1    0.0810    0.0122          
+   GttN1_GttN1    0.0060    0.0009          
+    GbbN1_GgN1    0.0000    0.0000          
+    GgN1_GttN1    0.0000    0.0000          
+    GgN1_GqqN1    0.0000    0.0000          
    GqqN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
@@ -1698,18 +1627,17 @@ lumi*fb = 20.1
    Nbg:               1.8(1.0)
    Nvis_UL[observed]: 4.8
        Process       Nev    R[obs]
-         Total    0.1487    0.0308
-   B2bN1_B2bN1       nan       nan          
-   GbbN1_GttN1    0.1399    0.0290          
-   GbbN1_GbbN1    0.0082    0.0017          
-    GgN1_GttN1    0.0006    0.0001          
-    GbbN1_GgN1    0.0000    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
-   GbbN1_GqqN1    0.0000    0.0000          
-   GttN1_GttN1    0.0000    0.0000          
-    GgN1_GqqN1    0.0000    0.0000          
+         Total    0.1329    0.0276
+   B1bN1_B1bN1       nan       nan          
+   GbbN1_GbbN1    0.0786    0.0163          
    T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GbbN1_GttN1    0.0478    0.0099          
+   GttN1_GttN1    0.0065    0.0013          
+    GgN1_GttN1    0.0000    0.0000          
+    GbbN1_GgN1    0.0000    0.0000          
+   GbbN1_GqqN1    0.0000    0.0000          
+    GgN1_GqqN1    0.0000    0.0000          
    GqqN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
@@ -1718,18 +1646,17 @@ lumi*fb = 20.1
    Nbg:               22.5(6.9)
    Nvis_UL[observed]: 15.3
        Process       Nev    R[obs]
-         Total   12.8190    0.8392
-   GttN1_GttN1    8.1322    0.5324          
-   B2bN1_B2bN1       nan       nan          
-   GbbN1_GttN1    3.2547    0.2131          
-   GqqN1_GttN1    1.2729    0.0833          
-   T1tN1_T1tN1    0.0890    0.0058          
-   GbbN1_GbbN1    0.0421    0.0028          
-   GbbN1_GqqN1    0.0189    0.0012          
-    GgN1_GttN1    0.0092    0.0006          
+         Total    2.4461    0.1601
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GbbN1_GttN1    0.9615    0.0629          
+   GqqN1_GttN1    0.7362    0.0482          
+   GbbN1_GbbN1    0.2991    0.0196          
+   GbbN1_GqqN1    0.2779    0.0182          
+   GttN1_GttN1    0.1711    0.0112          
+    GgN1_GttN1    0.0002    0.0000          
     GbbN1_GgN1    0.0001    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+   T1tN1_T1tN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
@@ -1738,19 +1665,18 @@ lumi*fb = 20.1
    Nbg:               3.6(2.5)
    Nvis_UL[observed]: 6.1
        Process       Nev    R[obs]
-         Total    1.1336    0.1880
-   B2bN1_B2bN1       nan       nan          
-   GbbN1_GttN1    0.6120    0.1015          
-   GqqN1_GttN1    0.3075    0.0510          
-   GttN1_GttN1    0.1922    0.0319          
-   GbbN1_GbbN1    0.0117    0.0019          
-   GbbN1_GqqN1    0.0067    0.0011          
-    GgN1_GttN1    0.0034    0.0006          
+         Total    0.5952    0.0987
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GbbN1_GttN1    0.1957    0.0324          
+   GqqN1_GttN1    0.1882    0.0312          
+   GbbN1_GqqN1    0.1063    0.0176          
+   GbbN1_GbbN1    0.0930    0.0154          
+   GttN1_GttN1    0.0120    0.0020          
+    GgN1_GttN1    0.0001    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T2tN1_T2tN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
-    GgN1_GqqN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
+    GgN1_GqqN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
    #----  SR-0l-7j-C  ----#
@@ -1758,19 +1684,18 @@ lumi*fb = 20.1
    Nbg:               0.8(0.85)
    Nvis_UL[observed]: 3.9
        Process       Nev    R[obs]
-         Total    0.3091    0.0809
-   B2bN1_B2bN1       nan       nan          
-   GbbN1_GttN1    0.1883    0.0493          
-   GqqN1_GttN1    0.1162    0.0304          
-   GbbN1_GbbN1    0.0040    0.0011          
-    GgN1_GttN1    0.0006    0.0002          
-   T2tN1_T2tN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+         Total    0.2044    0.0535
+   B1bN1_B1bN1       nan       nan          
+   T1tN1_T1tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GqqN1_GttN1    0.0770    0.0202          
+   GbbN1_GttN1    0.0757    0.0198          
+   GbbN1_GbbN1    0.0367    0.0096          
+   GttN1_GttN1    0.0151    0.0039          
+    GgN1_GttN1    0.0000    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
-   GttN1_GttN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
-   T1tN1_T1tN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
    GqqN1_GqqN1    0.0000    0.0000          
    #----  SR-1l-6j-A  ----#
@@ -1778,17 +1703,16 @@ lumi*fb = 20.1
    Nbg:               15.5(8.4)
    Nvis_UL[observed]: 6.6
        Process       Nev    R[obs]
-         Total   28.8568    4.3505 <== Exclude
-   GttN1_GttN1   25.3473    3.8214          
-   B2bN1_B2bN1       nan       nan          
-   GbbN1_GttN1    2.6055    0.3928          
-   GqqN1_GttN1    0.8543    0.1288          
-   T1tN1_T1tN1    0.0467    0.0070          
-    GgN1_GttN1    0.0029    0.0004          
-   T2tN1_T2tN1    0.0000    0.0000          
+         Total    1.3774    0.2077
+   GttN1_GttN1    0.3548    0.0535          
+    GgN1_GttN1    0.0001    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GbbN1_GttN1    0.6399    0.0965          
+   GqqN1_GttN1    0.3826    0.0577          
+   T1tN1_T1tN1    0.0000    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -1798,17 +1722,16 @@ lumi*fb = 20.1
    Nbg:               7.4(5.7)
    Nvis_UL[observed]: 3.0
        Process       Nev    R[obs]
-         Total   11.1709    3.7051 <== Exclude
-   GttN1_GttN1    9.4486    3.1339          
-   B2bN1_B2bN1       nan       nan          
-   GbbN1_GttN1    1.2873    0.4270          
-   GqqN1_GttN1    0.3966    0.1315          
-   T1tN1_T1tN1    0.0364    0.0121          
-    GgN1_GttN1    0.0021    0.0007          
-   T2tN1_T2tN1    0.0000    0.0000          
+         Total    0.7191    0.2385
+   GttN1_GttN1    0.1457    0.0483          
+    GgN1_GttN1    0.0001    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T2tN1_T2tN1       nan       nan          
+   GbbN1_GttN1    0.3605    0.1196          
+   GqqN1_GttN1    0.2129    0.0706          
+   T1tN1_T1tN1    0.0000    0.0000          
    GbbN1_GqqN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -1830,12 +1753,11 @@ lumi*fb = 20.3
     GgN1_GttN1    0.0000    0.0000          
    GttN1_GttN1    0.0000    0.0000          
     GgN1_GqqN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
    GbbN1_GbbN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
    T1tN1_T1tN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   T2tN1_T2tN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
    GqqN1_GttN1    0.0000    0.0000          
    GbbN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          
@@ -1845,17 +1767,16 @@ lumi*fb = 20.3
    Nbg:               2.1(0.7)
    Nvis_UL[observed]: 4.4
        Process       Nev    R[obs]
-         Total    0.2099    0.0492
-   T1tN1_T1tN1    0.1904    0.0447          
-    GgN1_GttN1    0.0002    0.0001          
-   GttN1_GttN1    0.0000    0.0000          
-   B1bN1_B1bN1    0.0000    0.0000          
-   B2bN1_B2bN1       nan       nan          
-   GbbN1_GttN1    0.0193    0.0045          
-   T2tN1_T2tN1    0.0000    0.0000          
-   GbbN1_GqqN1    0.0000    0.0000          
-    GgN1_GqqN1    0.0000    0.0000          
+         Total    0.0024    0.0006
+    GgN1_GttN1    0.0000    0.0000          
+   B1bN1_B1bN1       nan       nan          
+   T1tN1_T1tN1    0.0000    0.0000          
    GbbN1_GbbN1    0.0000    0.0000          
+   T2tN1_T2tN1       nan       nan          
+   GbbN1_GttN1    0.0024    0.0006          
+   GbbN1_GqqN1    0.0000    0.0000          
+   GttN1_GttN1    0.0000    0.0000          
+    GgN1_GqqN1    0.0000    0.0000          
     GbbN1_GgN1    0.0000    0.0000          
    GqqN1_GttN1    0.0000    0.0000          
      GgN1_GgN1    0.0000    0.0000          

@@ -16,79 +16,81 @@ lab13=deltaMb
 lab14=gm2
 lab15=Higgs
 lab16=LHC
-lab17=mw
-lab18=Natural
-lab19=oh2
-lab20=sigsip
-lab21=sineff
-lab22=chi2:bsg
-lab23=chi2:bsmumu
-lab24=chi2:btaunu
-lab25=chi2:deltaMb
-lab26=chi2:gm2
-lab27=chi2:Higgs
-lab28=chi2:LHC
-lab29=chi2:mw
-lab30=chi2:Natural
-lab31=chi2:oh2
-lab32=chi2:sigsip
-lab33=chi2:sineff
-lab34=Mass:24
-lab35=Mass:25
-lab36=Mass:35
-lab37=Mass:36
-lab38=Mass:37
-lab39=Mass:1000021
-lab40=Mass:1000022
-lab41=Mass:1000023
-lab42=Mass:1000024
-lab43=Mass:1000025
-lab44=Mass:1000035
-lab45=Mass:1000037
-lab46=Mass:1000001
-lab47=Mass:1000002
-lab48=Mass:1000003
-lab49=Mass:1000004
-lab50=Mass:1000005
-lab51=Mass:1000006
-lab52=Mass:1000011
-lab53=Mass:1000012
-lab54=Mass:1000013
-lab55=Mass:1000014
-lab56=Mass:1000015
-lab57=Mass:1000016
-lab58=Mass:2000001
-lab59=Mass:2000002
-lab60=Mass:2000003
-lab61=Mass:2000004
-lab62=Mass:2000005
-lab63=Mass:2000006
-lab64=Mass:2000011
-lab65=Mass:2000013
-lab66=Mass:2000015
-lab67=mu
-lab68=NMIX:(1, 1)
-lab69=NMIX:(1, 2)
-lab70=NMIX:(1, 3)
-lab71=NMIX:(1, 4)
-lab72=NMIX:(2, 1)
-lab73=NMIX:(2, 2)
-lab74=NMIX:(2, 3)
-lab75=NMIX:(2, 4)
-lab76=NMIX:(3, 1)
-lab77=NMIX:(3, 2)
-lab78=NMIX:(3, 3)
-lab79=NMIX:(3, 4)
-lab80=NMIX:(4, 1)
-lab81=NMIX:(4, 2)
-lab82=NMIX:(4, 3)
-lab83=NMIX:(4, 4)
+lab17=LHC_interp
+lab18=mw
+lab19=Natural
+lab20=oh2
+lab21=sigsip
+lab22=sineff
+lab23=chi2:bsg
+lab24=chi2:bsmumu
+lab25=chi2:btaunu
+lab26=chi2:deltaMb
+lab27=chi2:gm2
+lab28=chi2:Higgs
+lab29=chi2:LHC
+lab30=chi2:LHC_interp
+lab31=chi2:mw
+lab32=chi2:Natural
+lab33=chi2:oh2
+lab34=chi2:sigsip
+lab35=chi2:sineff
+lab36=Mass:24
+lab37=Mass:25
+lab38=Mass:35
+lab39=Mass:36
+lab40=Mass:37
+lab41=Mass:1000021
+lab42=Mass:1000022
+lab43=Mass:1000023
+lab44=Mass:1000024
+lab45=Mass:1000025
+lab46=Mass:1000035
+lab47=Mass:1000037
+lab48=Mass:1000001
+lab49=Mass:1000002
+lab50=Mass:1000003
+lab51=Mass:1000004
+lab52=Mass:1000005
+lab53=Mass:1000006
+lab54=Mass:1000011
+lab55=Mass:1000012
+lab56=Mass:1000013
+lab57=Mass:1000014
+lab58=Mass:1000015
+lab59=Mass:1000016
+lab60=Mass:2000001
+lab61=Mass:2000002
+lab62=Mass:2000003
+lab63=Mass:2000004
+lab64=Mass:2000005
+lab65=Mass:2000006
+lab66=Mass:2000011
+lab67=Mass:2000013
+lab68=Mass:2000015
+lab69=mu
+lab70=NMIX:(1, 1)
+lab71=NMIX:(1, 2)
+lab72=NMIX:(1, 3)
+lab73=NMIX:(1, 4)
+lab74=NMIX:(2, 1)
+lab75=NMIX:(2, 2)
+lab76=NMIX:(2, 3)
+lab77=NMIX:(2, 4)
+lab78=NMIX:(3, 1)
+lab79=NMIX:(3, 2)
+lab80=NMIX:(3, 3)
+lab81=NMIX:(3, 4)
+lab82=NMIX:(4, 1)
+lab83=NMIX:(4, 2)
+lab84=NMIX:(4, 3)
+lab85=NMIX:(4, 4)
 # Priors.
-alphas Priors.GaussParameter (0.1184, 0.0007)
+alphas Priors.GaussParameter (0.1185, 0.0006)
 mb Priors.GaussParameter (4.18, 0.03)
-invalpha Priors.GaussParameter (127.944, 0.014)
+invalpha Priors.GaussParameter (127.94, 0.014)
 tanbeta Priors.LinearParameter (3, 62)
-mt Priors.GaussParameter (173.07, 0.8881441324469806)
+mt Priors.GaussParameter (173.21, 0.8741853350405736)
 a0 Priors.LinearParameter (-4000, 4000)
 m12 Priors.LogParameter (100, 2000)
 m0 Priors.LogParameter (100, 4000)
@@ -96,22 +98,23 @@ signmu Priors.FixedParameter (1,)
 # Likelihoods.
 LHC Likelihood.ExternalConstraint ()
 Higgs Likelihood.ExternalConstraint ()
-btaunu Likelihood.GaussConstraint (1.66, 0.33, 0.38)
+btaunu Likelihood.GaussConstraint (0.000114, 2.7e-05, 3.8e-05)
+LHC_interp Likelihood.InterpolateLowerConstraint ('atlas_m0m12.dat',)
 Natural Likelihood.ExternalConstraint ()
-sineff Likelihood.GaussConstraint (0.23146, 0.00012, 0.00015)
+sineff Likelihood.GaussConstraint (0.23126, 5e-05, 0.00015)
 mw Likelihood.GaussConstraint (80.385, 0.015, 0.015)
-deltaMb Likelihood.GaussConstraint (17.69, 0.08, 2.4)
-sigsip Likelihood.InterpolateUpperConstraint ('lux.dat', 10)
-gm2 Likelihood.GaussConstraint (2.88e-09, 7.9e-10, 1e-10)
+deltaMb Likelihood.GaussConstraint (17.761, 0.022, 2.4)
+sigsip Likelihood.InterpolateUpperConstraint ('lux.dat',)
+gm2 Likelihood.GaussConstraint (2.88e-09, 8e-10, 1e-10)
 bsg Likelihood.GaussConstraint (0.000343, 2.2e-05, 2.1e-05)
 oh2 Likelihood.GaussConstraintFractionalTau (0.1199, 0.0027, 0.1)
-bsmumu Likelihood.GaussConstraintFractionalTau (3.2e-09, 1.5e-09, 0.14)
+bsmumu Likelihood.GaussConstraintFractionalTau (3.1e-09, 7e-10, 0.14)
 # MultiNest options.
 IS True
-Likelihood <module 'Likelihood' from '/home/andrew/WORKING/git-superpy/superpy/MSSM/Likelihood.py'>
-LogLikelihood <function myloglike at 0x21690c8>
-Prior <function myprior at 0x20b5050>
-Priors <module 'Priors' from '/home/andrew/WORKING/git-superpy/superpy/MSSM/Priors.py'>
+Likelihood <module 'Likelihood' from '/home/andrew/Codes/superpy/MSSM/Likelihood.py'>
+LogLikelihood <function myloglike at 0x7f86f12b5398>
+Prior <function myprior at 0x7f86f1c192a8>
+Priors <module 'Priors' from '/home/andrew/Codes/superpy/MSSM/Priors.pyc'>
 const_efficiency_mode False
 context 0
 evidence_tolerance 1.0
@@ -121,10 +124,10 @@ n_clustering_params 2
 n_dims 9
 n_iter_before_update 1
 n_live_points 10
-n_params 83
+n_params 85
 null_log_evidence -1e+90
 os <module 'os' from '/usr/lib/python2.7/os.pyc'>
-outputfiles_basename /home/andrew/WORKING/git-superpy/superpy/MSSM/chains/CMSSM
+outputfiles_basename /home/andrew/Codes/superpy/MSSM/chains/CMSSM
 resume False
 sampling_efficiency 2.0
 seed -1

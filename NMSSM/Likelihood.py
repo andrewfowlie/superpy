@@ -147,8 +147,7 @@ class CNMSSMConstraintTracker:
         # https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/CombinedSummaryPlots/SUSY/ATLAS_SUSY_MSUGRA/ATLAS_SUSY_MSUGRA.png
         # ATLAS-CONF-2013-047
         self.constraint['LHC_interp'] = InterpolateLowerConstraint(
-            'atlas_m0m12.dat',
-            0.01)
+            'atlas_m0m12.dat')
 
         # Relic density of neutralinos.
         # Planck.
@@ -160,45 +159,45 @@ class CNMSSMConstraintTracker:
 
         # Anomalous magnetic moment of muon.
         # PDG.
-        # http://pdg.lbl.gov/2013/reviews/rpp2013-rev-g-2-muon-anom-mag-moment.pdf
+        # http://pdg.lbl.gov/2014/reviews/rpp2014-rev-g-2-muon-anom-mag-moment.pdf
         self.constraint['gm2'] = GaussConstraint(28.8e-10, 8.0e-10, 1e-10)
 
         # BR(b -> s gamma).
-        # HFAG.
-        # http://www.slac.stanford.edu/xorg/hfag2/rare/2013/radll/OUTPUT/HTML/radll_table3.html
+        # PDG.
+        # http://pdg.lbl.gov/2014/reviews/rpp2014-rev-b-meson-prod-decay.pdf
         self.constraint['bsg'] = GaussConstraint(3.43e-4, 0.22e-4, 0.21e-4)
 
         # BR(Bs -> mu mu).
         # PDG.
-        # http://pdg8.lbl.gov/rpp2013v2/pdgLive/Particle.action?node=S086#decays
+        # http://pdg8.lbl.gov/rpp2014v1/pdgLive/BranchingRatio.action?parCode=S086&desig=15
         self.constraint['bsmumu'] = GaussConstraintFractionalTau(
-            3.2e-9,
-            1.5e-9,
+            3.1e-9,
+            0.7e-9,
             0.14)
 
         # BR(b -> tau nu).
-        # HFAG.
-        # http://www.slac.stanford.edu/xorg/hfag2/rare/2013/radll/OUTPUT/HTML/radll_table7.html
-        self.constraint['btaunu'] = GaussConstraint(1.14e-4, 0.22e-4, 0.38e-4)
+        # PDG.
+        # http://pdg8.lbl.gov/rpp2014v1/pdgLive/BranchingRatio.action?parCode=S041&desig=18
+        self.constraint['btaunu'] = GaussConstraint(1.14e-4, 0.27e-4, 0.38e-4)
 
         # Spin-indenpendent WIMP-nucleon scattering cross section.
         # LUX.
         # http://arxiv.org/abs/1310.8214
-        self.constraint['sigsip'] = InterpolateUpperConstraint('lux.dat', 10)
+        self.constraint['sigsip'] = InterpolateUpperConstraint('lux.dat')
 
         # W-boson mass.
         # PDG.
-        # http://pdg8.lbl.gov/rpp2013v2/pdgLive/Particle.action?node=S043
+        # http://pdg8.lbl.gov/rpp2014v1/pdgLive/DataBlock.action?node=S043
         self.constraint['mw'] = GaussConstraint(80.385, 0.015, 0.015)
 
         # Leptonic sin eff theta, effective weak-mixing angle.
         # PDG.
-        # http://pdg.lbl.gov/2013/reviews/rpp2013-rev-standard-model.pdf
-        self.constraint['sineff'] = GaussConstraint(0.23146, 0.00012, 15e-5)
+        # http://pdg.lbl.gov/2014/reviews/rpp2014-rev-standard-model.pdf
+        self.constraint['sineff'] = GaussConstraint(0.23126, 0.00005, 15e-5)
 
         # delta MBs.
-        # HFAG.
-        # http://www.slac.stanford.edu/xorg/hfag/osc/PDG_2014/#DMS
+        # PDG.
+        # http://pdg.lbl.gov/2014/reviews/rpp2014-rev-b-bar-mixing.pdf
         self.constraint['deltaMb'] = GaussConstraint(17.761, 0.022, 2.4)
 
     def SetPredictions(self):
@@ -215,20 +214,13 @@ class CNMSSMConstraintTracker:
         self.nmssm()
         self.readslha(self.SLHA)
 
-        # Find priors before re-reading the SLHA data.
-        # FeynHiggs SLHA data won't contain
-        # fine-tuning blocks from NMSSMTools.
+        # Call auxillary programs if physical.
+        if self.physical:
+            print "Calling FeynHiggs..."
+            self.feynhiggs(self.SLHA)
         if self.physical:
             print "Finding naturalness priors..."
             self.naturalness()
-
-        if self.physical:
-            print "Calling FeynHiggs..."
-            # FeynHiggs writes the SLHA with
-            # improved Higgs masses.
-            self.feynhiggs(self.SLHA)
-            
-        # Call auxillary programs if physical.
         if self.physical:
             print "Calling Fast-Lim..."
             self.fastlim(self.SLHA)
@@ -355,7 +347,7 @@ Block QEXTPAR
         populate the mass blocks with zeros.
 
         Arguments:
-                input_file -- Name of input file.
+        input_file -- Name of input file.
 
         Returns:
 
@@ -363,12 +355,12 @@ Block QEXTPAR
         try:
             # Read the blocks in the SLHA file.
             self.blocks, self.decays = pyslha.readSLHAFile(input_file)
-        except:
+        except Exception, e:
             # With expected running, shouldn't get any problems. But best
             # to be defensive. A missing mass block would cause an
             # exception, but e.g. stau LSP would not.
             self.physical = False
-            print 'Caught trouble in the SLHA file.'
+            print 'Caught trouble in the SLHA file:', e
 
             # Still need to return data of correct length.
             self.masses = [0] * 34
@@ -514,7 +506,10 @@ Block QEXTPAR
                 filename,
                 'proton  SI',
                 split='SD') * 1E-36
-            self.constraint['sigsip'].theoryx = self.masses[1000022]
+            self.constraint['sigsip'].theoryx = self.ReadParameter(
+                filename,
+                'Dark matter candidate',
+                split='mass=')
 
     def superiso(self, input_file):
         """Call SuperIso to obtain B-physics and g-2 predictions for model.
@@ -551,20 +546,21 @@ Block QEXTPAR
         Returns:
 
         """
-        self.SLHA_FH = RunProgram(
+        filename = RunProgram(
             './SuperPyFH',
             '../FeynHiggs-2.10.0',
             input_file)
-        self.CheckProgram(self.SLHA_FH, ["error"])
+        self.CheckProgram(filename, ["error"])
+
         if self.physical:
             self.constraint['mw'].theory = self.ReadParameter(
-                self.SLHA_FH,
+                filename,
                 'MWMSSM=')
             self.constraint['sineff'].theory = self.ReadParameter(
-                self.SLHA_FH,
+                filename,
                 'SW2MSSM=')
             self.constraint['deltaMb'].theory = self.ReadParameter(
-                self.SLHA_FH,
+                filename,
                 'deltaMsMSSM=')
 
     def higgssignals(self, input_file):
@@ -665,6 +661,7 @@ Block QEXTPAR
 
         """
         if filename is None:
+            print "Error - no output returned.", filename
             self.physical = False
             return
 
@@ -770,7 +767,7 @@ class UpperConstraint:
 
     """ Upper bound, Gaussian error function constraint. """
 
-    def __init__(self, limit, tau, apply=True):
+    def __init__(self, limit, tau=None, apply=True):
         """ Initializes an upper bound constraint .
         Arguments:
         limit -- Upper bound of measurement.
@@ -796,13 +793,19 @@ class UpperConstraint:
         Returns: The loglike from this constraint.
 
         """
-        # NB that erfc is a complementary error function.
-        try:
-            self.loglike = math.log(
-                0.5 * scipy.special.erfc((self.theory - self.limit) / (math.sqrt(2) * self.tau)))
-        # Sometimes we are trying to take log zero.
-        except ValueError:
-            self.loglike = -1e101
+
+        if self.tau:
+          # NB that erfc is a complementary error function.
+          try:
+              self.loglike = math.log(
+                  0.5 * scipy.special.erfc((self.theory - self.limit) / (math.sqrt(2) * self.tau)))
+          # Sometimes we are trying to take log zero.
+          except ValueError:
+              self.loglike = -1e101
+
+        else:
+          self.loglike = (self.theory > self.limit) * -1e101
+
         return self.loglike
 
 
@@ -859,7 +862,7 @@ class LowerConstraint:
 
     """ Lower bound, Gaussian error function constraint. """
 
-    def __init__(self, limit, tau, apply=True):
+    def __init__(self, limit, tau=None, apply=True):
         """ Initializes a lower bound constraint.
         Arguments:
         limit -- Lower bound of measurement.
@@ -885,14 +888,18 @@ class LowerConstraint:
         Returns: The loglike from this constraint.
 
         """
-        # NB that erf is an error function.
-        try:
-            self.loglike = math.log(0.5 * (1 + scipy.special.erf((
-                self.theory - self.limit) /
-                (math.sqrt(2) * self.tau))))
-        # Sometimes we are trying to take log zero.
-        except ValueError:
-            self.loglike = -1e101
+        if self.tau:
+          # NB that erf is an error function.
+          try:
+              self.loglike = math.log(0.5 * (1 + scipy.special.erf((
+                  self.theory - self.limit) /
+                  (math.sqrt(2) * self.tau))))
+          # Sometimes we are trying to take log zero.
+          except ValueError:
+              self.loglike = -1e101
+        else:
+          self.loglike = (self.theory < self.limit) * -1e101
+
         return self.loglike
 
 
@@ -901,7 +908,7 @@ class InterpolateUpperConstraint:
 
     """ Interpolate am upper 2D limit from a data file. """
 
-    def __init__(self, file, tau, apply=True):
+    def __init__(self, file, tau=None, apply=True):
         """ Initializes a 2D upper bound constraint.
         The constraint is on the y-co-ordinate, and is calculated as
         a function of x.
@@ -946,14 +953,21 @@ class InterpolateUpperConstraint:
         self.limit = NP.interp(self.theoryx, self.data[0],
                                self.data[1], left=None, right=None)
 
-        # Now calcualte likelihood with Gaussian error function - erf.
-        like = 0.5 - 0.5 * \
-            scipy.special.erf((self.theory - self.limit) / (2. ** 0.5 * self.tau * self.theory))
-        try:
-            self.loglike = math.log(like)
-        # Sometimes we are trying to take log zero.
-        except ValueError:
-            self.loglike = -1e101
+
+        if self.tau:
+
+          # Now calcualte likelihood with Gaussian error function - erf.
+          like = 0.5 - 0.5 * \
+              scipy.special.erf((self.theory - self.limit) / (2. ** 0.5 * self.tau * self.theory))
+          try:
+              self.loglike = math.log(like)
+          # Sometimes we are trying to take log zero.
+          except ValueError:
+              self.loglike = -1e101
+
+        else:
+
+          self.loglike = (self.theory > self.limit) * -1e101
 
         return self.loglike
 
@@ -963,7 +977,7 @@ class InterpolateLowerConstraint:
 
     """ Interpolate a lower 2D limit from a data file. """
 
-    def __init__(self, file, tau, apply=True):
+    def __init__(self, file, tau=None, apply=True):
         """ Initializes a 2D lower bound constraint.
         The constraint is on the y-co-ordinate, and is calculated as
         a function of x.
@@ -1008,14 +1022,20 @@ class InterpolateLowerConstraint:
         self.limit = NP.interp(self.theoryx, self.data[0],
                                self.data[1], left=None, right=None)
 
-        # Now calcualte likelihood with Gaussian error function - erf.
-        like = 0.5 + 0.5 * \
-            scipy.special.erf((self.theory - self.limit) / (2. ** 0.5 * self.tau * self.theory))
-        try:
-            self.loglike = math.log(like)
-        # Sometimes we are trying to take log zero.
-        except ValueError:
-            self.loglike = -1e101
+        if self.tau:
+
+          # Now calcualte likelihood with Gaussian error function - erf.
+          like = 0.5 + 0.5 * \
+              scipy.special.erf((self.theory - self.limit) / (2. ** 0.5 * self.tau * self.theory))
+          try:
+              self.loglike = math.log(like)
+          # Sometimes we are trying to take log zero.
+          except ValueError:
+              self.loglike = -1e101
+
+        else:
+
+          self.loglike = (self.theory > self.limit) * -1e101
 
         return self.loglike
 
@@ -1098,6 +1118,7 @@ class ExternalConstraint:
         return self.loglike
 
 #########################################################################
+
 # These are functions for manipulating programs and datafiles.
 
 
