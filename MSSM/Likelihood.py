@@ -175,13 +175,6 @@ class CMSSMConstraintTracker:
             0.7e-9,
             0.14)
 
-        # BR(Bd -> mu mu).
-        # PDG.
-        # http://pdg8.lbl.gov/rpp2014v1/pdgLive/BranchingRatio.action?parCode=S042&desig=75
-        self.constraint['bdmumu'] = UpperConstraintFractionalTau(
-            6.3e-10,
-            0.14)
-
         # BR(b -> tau nu).
         # PDG.
         # http://pdg8.lbl.gov/rpp2014v1/pdgLive/BranchingRatio.action?parCode=S041&desig=18
@@ -207,56 +200,6 @@ class CMSSMConstraintTracker:
         # http://pdg.lbl.gov/2014/reviews/rpp2014-rev-b-bar-mixing.pdf
         self.constraint['deltaMb'] = GaussConstraint(17.761, 0.022, 2.4)
 
-        # delta MBd.
-        # PDG.
-        # http://pdg.lbl.gov/2014/reviews/rpp2014-rev-b-bar-mixing.pdf
-        self.constraint['deltaMb'] = GaussConstraint(0.510, 0.003)
-
-        # mu -> e gamma.
-        # PDG.
-        # http://pdg8.lbl.gov/rpp2014v1/pdgLive/BranchingRatio.action?parCode=S004&desig=4
-        self.constraint['deltaMb'] = UpperConstraint(5.7e-13)
-
-        # Delta M_D
-        # PDG.
-        # http://pdg8.lbl.gov/rpp2014v1/pdgLive/DataBlock.action?node=S032D
-        self.constraint['deltaMD'] = GaussConstraint(1e10, 0.8e10)
-
-        # Delta M_K / M_K
-        # PDG.
-        # http://pdg8.lbl.gov/rpp2014v1/pdgLive/DataBlock.action?node=S011DMM
-        self.constraint['deltaMK/MK'] = UpperConstraint(6e-19)
-
-        # M_K
-        # PDG.
-        # http://pdg8.lbl.gov/rpp2014v1/pdgLive/DataBlock.action?node=S011M
-        self.constraint['MK'] = GaussConstraint(497.614, 0.024)
-
-        # e_K
-        # PDG.
-        # http://pdg8.lbl.gov/rpp2014v1/pdgLive/DataBlock.action?node=S011REP
-        self.constraint['eK'] = GaussConstraint(1.596e-3, 0.013e-3)
-
-        # t -> Z q
-        # PDG.
-        # http://pdg8.lbl.gov/rpp2014v1/pdgLive/BranchingRatio.action?parCode=Q007&desig=2
-        self.constraint['tZq'] = UpperConstraint(0.002)
-
-        # t -> gamma q
-        # PDG.
-        # http://pdg8.lbl.gov/rpp2014v1/pdgLive/BranchingRatio.action?parCode=Q007&desig=3
-        self.constraint['tgq'] = UpperConstraint(0.0059)
-
-        # k^+ -> pi^+ \nu \nu
-        # PDG.
-        # http://pdg.lbl.gov/2014/reviews/rpp2014-rev-rare-kaon-decays.pdf
-        self.constraint['eK'] = GaussConstraint(1.73e-10, 1.15e-10)
-
-        # k -> pi \nu \nu
-        # PDG.
-        # http://pdg.lbl.gov/2014/reviews/rpp2014-rev-rare-kaon-decays.pdf
-        self.constraint['eK'] = UpperConstraint(2.6)
-
     def SetPredictions(self):
         """ Run the auxilliary programs for a particular model
         point to find the model's preddictions.
@@ -271,39 +214,28 @@ class CMSSMConstraintTracker:
         self.softsusy()
         self.readslha(self.SLHA)
 
+        # Call auxillary programs if physical.
         if self.physical:
             print "Calling FeynHiggs..."
-            # FeynHiggs writes the SLHA with
-            # improved Higgs masses.
             self.feynhiggs(self.SLHA)
-
-        if self.physical:
-            # Save the SOFTSUSY Higgs mass for reference.
-            # This is a hack.
-            self.constraint['Higgs'].theory = self.blocks['MASS'].entries[25]
-            # Re-read SLHA file - FeynHiggs writes SLHA with
-            # improved Higgs masses.
-            self.readslha(self.SLHA_FH)
-
-        # Call auxillary programs if physical.
         if self.physical:
             print "Finding naturalness priors..."
             self.naturalness(self.SLHA)
         if self.physical:
             print "Calling SUSY-HIT..."
-            self.susyhit(self.SLHA_FH)
+            self.susyhit(self.SLHA)
         if self.physical:
             print "Calling Fast-Lim..."
             self.fastlim(self.SLHA_DECAY)
         if self.physical:
             print "Calling micrOMEGAs..."
-            self.micromegas(self.SLHA_FH)
+            self.micromegas(self.SLHA)
         if self.physical:
             print "Calling SuperISO..."
-            self.superiso(self.SLHA_FH)
+            self.superiso(self.SLHA)
         if self.physical:
             print "Calling HiggsSignals..."
-            self.higgssignals(self.SLHA_FH)
+            self.higgssignals(self.SLHA)
 
         # Set LHC interpolation parameters.
         self.constraint['LHC_interp'].theory = self.param['m0']
@@ -403,12 +335,12 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
         try:
             # Read the blocks in the SLHA file.
             self.blocks, self.decays = pyslha.readSLHAFile(input_file)
-        except:
+        except Exception, e:
             # With expected running, shouldn't get any problems. But best
             # to be defensive. A missing mass block would cause an
             # exception, but e.g. stau LSP would not.
             self.physical = False
-            print 'Caught trouble in the SLHA file.'
+            print 'Caught trouble in the SLHA file:', e
 
             # Still need to return data of correct length.
             self.masses = [0] * 33
@@ -553,20 +485,21 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
         Returns:
 
         """
-        self.SLHA_FH = RunProgram(
+        filename = RunProgram(
             './SuperPyFH',
             '../FeynHiggs-2.10.0',
             input_file)
-        self.CheckProgram(self.SLHA_FH, ["error"])
+        self.CheckProgram(filename, ["error"])
+
         if self.physical:
             self.constraint['mw'].theory = self.ReadParameter(
-                self.SLHA_FH,
+                filename,
                 'MWMSSM=')
             self.constraint['sineff'].theory = self.ReadParameter(
-                self.SLHA_FH,
+                filename,
                 'SW2MSSM=')
             self.constraint['deltaMb'].theory = self.ReadParameter(
-                self.SLHA_FH,
+                filename,
                 'deltaMsMSSM=')
 
     def higgssignals(self, input_file):
@@ -667,6 +600,7 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
 
         """
         if filename is None:
+            print "Error - no output returned.", filename
             self.physical = False
             return
 
@@ -809,7 +743,7 @@ class UpperConstraint:
               self.loglike = -1e101
 
         else:
-          self.loglike = (self.theory > self.lmit) * -1e101
+          self.loglike = (self.theory > self.limit) * -1e101
 
         return self.loglike
 
@@ -903,7 +837,7 @@ class LowerConstraint:
           except ValueError:
               self.loglike = -1e101
         else:
-          self.loglike = (self.theory < self.lmit) * -1e101
+          self.loglike = (self.theory < self.limit) * -1e101
 
         return self.loglike
 
@@ -972,7 +906,7 @@ class InterpolateUpperConstraint:
 
         else:
 
-          self.loglike = (self.theory > self.lmit) * -1e101
+          self.loglike = (self.theory > self.limit) * -1e101
 
         return self.loglike
 
@@ -1040,7 +974,7 @@ class InterpolateLowerConstraint:
 
         else:
 
-          self.loglike = (self.theory > self.lmit) * -1e101
+          self.loglike = (self.theory > self.limit) * -1e101
 
         return self.loglike
 
