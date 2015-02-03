@@ -1,0 +1,115 @@
+ #
+ #         ***************************
+ #         * SUSY_FLAVOR 2.50 output *
+ #         ***************************
+ #
+ BLOCK SFLAV_CONTROL
+    1    2                      # resummation level of chiral corrections
+    2    0                      # error code (0 if all calculations were correct)
+ BLOCK SFLAV_MASS        # Mass Spectrum
+ #     code          mass          # particle
+       24      8.039800000E+01    # W+
+       25      9.700320730E+01    # h (simple 2-loop approximation only)
+       35      2.061912241E+02    # H (simple 2-loop approximation only)
+       36      2.000000000E+02    # A
+       37      2.155547225E+02    # H+
+       41      5.109989000E-04    # e (pole)
+       42      1.056580000E-01    # mu (pole)
+       43      1.776840000E+00    # tau (pole)
+       44      2.622593279E-03    # md(mt) (running)
+       45      5.211706644E-02    # ms(mt) (running)
+       46      2.744774368E+00    # mb(mt) (running)
+       47      1.171796997E-03    # mu(mt) (running)
+       48      6.156456367E-01    # mc(mt) (running)
+       49      1.630900100E+02    # mt(mt) (running)
+  1000021      6.000000000E+02    # ~g
+  1000022      1.609162276E+02    # ~chi_10
+  1000023      2.232344115E+02    # ~chi_20
+  1000025      2.283407379E+02    # ~chi_30
+  1000035      3.446204135E+02    # ~chi_40
+  1000024      1.879079878E+02    # ~chi_1+
+  1000037      3.427487004E+02    # ~chi_2+
+ # sfermion mass eigenstates
+      101      3.006758868E+02    # ~d(1)
+      102      4.038884197E+02    # ~d(2)
+      103      4.536071029E+02    # ~d(3)
+      104      5.030960409E+02    # ~d(4)
+      105      5.505085915E+02    # ~d(5)
+      106      5.505109533E+02    # ~d(6)
+      111      2.322283844E+02    # ~u(1)
+      112      4.406133595E+02    # ~u(2)
+      113      4.486875011E+02    # ~u(3)
+      114      4.487396867E+02    # ~u(4)
+      115      4.498529611E+02    # ~u(5)
+      116      4.974625555E+02    # ~u(6)
+      121      2.978728202E+02    # ~l(1)
+      122      3.017183129E+02    # ~l(2)
+      123      3.028111419E+02    # ~l(3)
+      124      3.028119935E+02    # ~l(4)
+      125      3.043692532E+02    # ~l(5)
+      126      3.085762706E+02    # ~l(6)
+      131      2.882497056E+02    # ~nu(1)
+      132      2.938268860E+02    # ~nu(2)
+      133      2.992956484E+02    # ~nu(3)
+ BLOCK SFLAV_CHIRAL_YUKAWA     # Chiral corrections size to Yukawa couplings
+        1      9.250781508E-03    # correction to Y_e
+        2      7.871358686E-03    # correction to Y_mu
+        3      7.355398855E-03    # correction to Y_tau
+        4      2.816774317E-02    # correction to Y_d
+        5      2.866343538E-02    # correction to Y_s
+        6      4.067166001E-02    # correction to Y_b
+        7      1.470465840E-02    # correction to Y_u
+        8      1.103708422E-02    # correction to Y_c
+        9      8.435083992E-03    # correction to Y_t
+ BLOCK SFLAV_CHIRAL_CKM     # Chiral corrections size to CKM matrix
+    1   1      3.612010970E-05    # correction to V_11
+    1   2      6.702942112E-04    # correction to V_12
+    1   3      3.058719990E-03    # correction to V_13
+    2   1      6.781747282E-04    # correction to V_21
+    2   2      3.368265597E-05    # correction to V_22
+    2   3      5.959892091E-03    # correction to V_23
+    3   1      5.998271465E-03    # correction to V_31
+    3   2      5.942783063E-03    # correction to V_32
+    3   3      7.836818739E-06    # correction to V_33
+ BLOCK SFLAV_DELTA_F0     # Delta F = 0 processes
+        1     -1.496831513E-25    # EDM_e
+        2     -3.083776497E-23    # EDM_mu
+        3     -5.176903910E-22    # EDM_tau
+        4      2.774724592E-25    # neutron EDM
+        5      9.398319525E-15    # (g-2)_e/2, SUSY contribution
+        6      4.843853089E-10    # (g-2)_mu/2, SUSY contribution
+        7      1.458383883E-07    # (g-2)_tau/2, SUSY contribution
+ BLOCK SFLAV_DELTA_F1     # Delta F = 1 processes
+        1      2.343751393E-08    # Br(mu-> e gamma)
+        2      3.014685213E-20    # Br(tau-> e gamma)
+        3      3.472210147E-09    # Br(tau-> mu gamma)
+        4      2.797221645E-11    # Br(K0 -> pi0 nu nu)
+        5      7.705241425E-11    # Br(K+ -> pi+ nu nu)
+        6      8.768756802E-05    # BR(B -> tau nu)
+        7      2.962480267E-01    # BR(B -> D tau nu)/BR(B -> D l nu)
+        8      2.519503536E-01    # BR(B -> D* tau nu)/BR(B -> D* l nu)
+        9      6.933463024E-04    # BR(B -> X_s gamma)
+       10      6.246693508E-12    # BR(t -> u h)
+       11      1.945258389E-10    # BR(t -> c h)
+       12      2.686076008E-15    # BR(B_d -> e e)
+       13      1.147458169E-10    # BR(B_d -> mu mu)
+       14      2.402132050E-08    # BR(B_d -> tau tau)
+       15      8.309645997E-22    # BR(B_d -> mu e)
+       16      6.028112152E-34    # BR(B_d -> tau e)
+       17      6.588386796E-24    # BR(B_d -> tau mu)
+       18      9.268482060E-14    # BR(B_s -> e e)
+       19      3.959482540E-09    # BR(B_s -> mu mu)
+       20      8.398705434E-07    # BR(B_s -> tau tau)
+       21      6.035171186E-20    # BR(B_s -> mu e)
+       22      2.372626938E-28    # BR(B_s -> tau e)
+       23      4.643783391E-23    # BR(B_s -> tau mu)
+ BLOCK SFLAV_DELTA_F2     # Delta F = 2 processes
+        1      2.246745225E-03    # epsilon_K
+        2      3.006544370E-15    # Delta m_K (GeV)
+        3      1.800830437E-15    # Delta m_D (GeV)
+        4      3.520029341E-13    # Delta m_Bd (GeV)
+        5      1.195395498E-13    # Re(H_eff_Bd)
+        6     -1.291774456E-13    # Im(H_eff_Bd)
+        7      1.214297193E-11    # Delta m_Bs (GeV)
+        8      6.067745883E-12    # Re(H_eff_Bs)
+        9      2.130767411E-13    # Im(H_eff_Bs)
