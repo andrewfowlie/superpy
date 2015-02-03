@@ -147,8 +147,7 @@ class CMSSMConstraintTracker:
         # https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/CombinedSummaryPlots/SUSY/ATLAS_SUSY_MSUGRA/ATLAS_SUSY_MSUGRA.png
         # ATLAS-CONF-2013-047
         self.constraint['LHC_interp'] = InterpolateLowerConstraint(
-            'atlas_m0m12.dat',
-            0.01)
+            'atlas_m0m12.dat')
 
         # Relic density of neutralinos.
         # Planck.
@@ -160,46 +159,103 @@ class CMSSMConstraintTracker:
 
         # Anomalous magnetic moment of muon.
         # PDG.
-        # http://pdg.lbl.gov/2013/reviews/rpp2013-rev-g-2-muon-anom-mag-moment.pdf
+        # http://pdg.lbl.gov/2014/reviews/rpp2014-rev-g-2-muon-anom-mag-moment.pdf
         self.constraint['gm2'] = GaussConstraint(28.8e-10, 8.0e-10, 1e-10)
 
         # BR(b -> s gamma).
-        # HFAG.
-        # http://www.slac.stanford.edu/xorg/hfag2/rare/2013/radll/OUTPUT/HTML/radll_table3.html
+        # PDG.
+        # http://pdg.lbl.gov/2014/reviews/rpp2014-rev-b-meson-prod-decay.pdf
         self.constraint['bsg'] = GaussConstraint(3.43e-4, 0.22e-4, 0.21e-4)
 
         # BR(Bs -> mu mu).
         # PDG.
-        # http://pdg8.lbl.gov/rpp2013v2/pdgLive/Particle.action?node=S086#decays
+        # http://pdg8.lbl.gov/rpp2014v1/pdgLive/BranchingRatio.action?parCode=S086&desig=15
         self.constraint['bsmumu'] = GaussConstraintFractionalTau(
-            3.2e-9,
-            1.5e-9,
+            3.1e-9,
+            0.7e-9,
+            0.14)
+
+        # BR(Bd -> mu mu).
+        # PDG.
+        # http://pdg8.lbl.gov/rpp2014v1/pdgLive/BranchingRatio.action?parCode=S042&desig=75
+        self.constraint['bdmumu'] = UpperConstraintFractionalTau(
+            6.3e-10,
             0.14)
 
         # BR(b -> tau nu).
-        # HFAG.
-        # http://www.slac.stanford.edu/xorg/hfag2/rare/2013/radll/OUTPUT/HTML/radll_table7.html
-        self.constraint['btaunu'] = GaussConstraint(1.14e-4, 0.22e-4, 0.38e-4)
+        # PDG.
+        # http://pdg8.lbl.gov/rpp2014v1/pdgLive/BranchingRatio.action?parCode=S041&desig=18
+        self.constraint['btaunu'] = GaussConstraint(1.14e-4, 0.27e-4, 0.38e-4)
 
         # Spin-indenpendent WIMP-nucleon scattering cross section.
         # LUX.
         # http://arxiv.org/abs/1310.8214
-        self.constraint['sigsip'] = InterpolateUpperConstraint('lux.dat', 10)
+        self.constraint['sigsip'] = InterpolateUpperConstraint('lux.dat')
 
         # W-boson mass.
         # PDG.
-        # http://pdg8.lbl.gov/rpp2013v2/pdgLive/Particle.action?node=S043
+        # http://pdg8.lbl.gov/rpp2014v1/pdgLive/DataBlock.action?node=S043
         self.constraint['mw'] = GaussConstraint(80.385, 0.015, 0.015)
 
         # Leptonic sin eff theta, effective weak-mixing angle.
         # PDG.
-        # http://pdg.lbl.gov/2013/reviews/rpp2013-rev-standard-model.pdf
-        self.constraint['sineff'] = GaussConstraint(0.23146, 0.00012, 15e-5)
+        # http://pdg.lbl.gov/2014/reviews/rpp2014-rev-standard-model.pdf
+        self.constraint['sineff'] = GaussConstraint(0.23126, 0.00005, 15e-5)
 
         # delta MBs.
-        # HFAG.
-        # http://www.slac.stanford.edu/xorg/hfag/osc/PDG_2014/#DMS
+        # PDG.
+        # http://pdg.lbl.gov/2014/reviews/rpp2014-rev-b-bar-mixing.pdf
         self.constraint['deltaMb'] = GaussConstraint(17.761, 0.022, 2.4)
+
+        # delta MBd.
+        # PDG.
+        # http://pdg.lbl.gov/2014/reviews/rpp2014-rev-b-bar-mixing.pdf
+        self.constraint['deltaMb'] = GaussConstraint(0.510, 0.003)
+
+        # mu -> e gamma.
+        # PDG.
+        # http://pdg8.lbl.gov/rpp2014v1/pdgLive/BranchingRatio.action?parCode=S004&desig=4
+        self.constraint['deltaMb'] = UpperConstraint(5.7e-13)
+
+        # Delta M_D
+        # PDG.
+        # http://pdg8.lbl.gov/rpp2014v1/pdgLive/DataBlock.action?node=S032D
+        self.constraint['deltaMD'] = GaussConstraint(1e10, 0.8e10)
+
+        # Delta M_K / M_K
+        # PDG.
+        # http://pdg8.lbl.gov/rpp2014v1/pdgLive/DataBlock.action?node=S011DMM
+        self.constraint['deltaMK/MK'] = UpperConstraint(6e-19)
+
+        # M_K
+        # PDG.
+        # http://pdg8.lbl.gov/rpp2014v1/pdgLive/DataBlock.action?node=S011M
+        self.constraint['MK'] = GaussConstraint(497.614, 0.024)
+
+        # e_K
+        # PDG.
+        # http://pdg8.lbl.gov/rpp2014v1/pdgLive/DataBlock.action?node=S011REP
+        self.constraint['eK'] = GaussConstraint(1.596e-3, 0.013e-3)
+
+        # t -> Z q
+        # PDG.
+        # http://pdg8.lbl.gov/rpp2014v1/pdgLive/BranchingRatio.action?parCode=Q007&desig=2
+        self.constraint['tZq'] = UpperConstraint(0.002)
+
+        # t -> gamma q
+        # PDG.
+        # http://pdg8.lbl.gov/rpp2014v1/pdgLive/BranchingRatio.action?parCode=Q007&desig=3
+        self.constraint['tgq'] = UpperConstraint(0.0059)
+
+        # k^+ -> pi^+ \nu \nu
+        # PDG.
+        # http://pdg.lbl.gov/2014/reviews/rpp2014-rev-rare-kaon-decays.pdf
+        self.constraint['eK'] = GaussConstraint(1.73e-10, 1.15e-10)
+
+        # k -> pi \nu \nu
+        # PDG.
+        # http://pdg.lbl.gov/2014/reviews/rpp2014-rev-rare-kaon-decays.pdf
+        self.constraint['eK'] = UpperConstraint(2.6)
 
     def SetPredictions(self):
         """ Run the auxilliary programs for a particular model
@@ -716,7 +772,7 @@ class UpperConstraint:
 
     """ Upper bound, Gaussian error function constraint. """
 
-    def __init__(self, limit, tau, apply=True):
+    def __init__(self, limit, tau=None, apply=True):
         """ Initializes an upper bound constraint .
         Arguments:
         limit -- Upper bound of measurement.
@@ -742,13 +798,19 @@ class UpperConstraint:
         Returns: The loglike from this constraint.
 
         """
-        # NB that erfc is a complementary error function.
-        try:
-            self.loglike = math.log(
-                0.5 * scipy.special.erfc((self.theory - self.limit) / (math.sqrt(2) * self.tau)))
-        # Sometimes we are trying to take log zero.
-        except ValueError:
-            self.loglike = -1e101
+
+        if self.tau:
+          # NB that erfc is a complementary error function.
+          try:
+              self.loglike = math.log(
+                  0.5 * scipy.special.erfc((self.theory - self.limit) / (math.sqrt(2) * self.tau)))
+          # Sometimes we are trying to take log zero.
+          except ValueError:
+              self.loglike = -1e101
+
+        else:
+          self.loglike = (self.theory > self.lmit) * -1e101
+
         return self.loglike
 
 
@@ -805,7 +867,7 @@ class LowerConstraint:
 
     """ Lower bound, Gaussian error function constraint. """
 
-    def __init__(self, limit, tau, apply=True):
+    def __init__(self, limit, tau=None, apply=True):
         """ Initializes a lower bound constraint.
         Arguments:
         limit -- Lower bound of measurement.
@@ -831,14 +893,18 @@ class LowerConstraint:
         Returns: The loglike from this constraint.
 
         """
-        # NB that erf is an error function.
-        try:
-            self.loglike = math.log(0.5 * (1 + scipy.special.erf((
-                self.theory - self.limit) /
-                (math.sqrt(2) * self.tau))))
-        # Sometimes we are trying to take log zero.
-        except ValueError:
-            self.loglike = -1e101
+        if self.tau:
+          # NB that erf is an error function.
+          try:
+              self.loglike = math.log(0.5 * (1 + scipy.special.erf((
+                  self.theory - self.limit) /
+                  (math.sqrt(2) * self.tau))))
+          # Sometimes we are trying to take log zero.
+          except ValueError:
+              self.loglike = -1e101
+        else:
+          self.loglike = (self.theory < self.lmit) * -1e101
+
         return self.loglike
 
 
@@ -847,7 +913,7 @@ class InterpolateUpperConstraint:
 
     """ Interpolate am upper 2D limit from a data file. """
 
-    def __init__(self, file, tau, apply=True):
+    def __init__(self, file, tau=None, apply=True):
         """ Initializes a 2D upper bound constraint.
         The constraint is on the y-co-ordinate, and is calculated as
         a function of x.
@@ -892,14 +958,21 @@ class InterpolateUpperConstraint:
         self.limit = NP.interp(self.theoryx, self.data[0],
                                self.data[1], left=None, right=None)
 
-        # Now calcualte likelihood with Gaussian error function - erf.
-        like = 0.5 - 0.5 * \
-            scipy.special.erf((self.theory - self.limit) / (2. ** 0.5 * self.tau * self.theory))
-        try:
-            self.loglike = math.log(like)
-        # Sometimes we are trying to take log zero.
-        except ValueError:
-            self.loglike = -1e101
+
+        if self.tau:
+
+          # Now calcualte likelihood with Gaussian error function - erf.
+          like = 0.5 - 0.5 * \
+              scipy.special.erf((self.theory - self.limit) / (2. ** 0.5 * self.tau * self.theory))
+          try:
+              self.loglike = math.log(like)
+          # Sometimes we are trying to take log zero.
+          except ValueError:
+              self.loglike = -1e101
+
+        else:
+
+          self.loglike = (self.theory > self.lmit) * -1e101
 
         return self.loglike
 
@@ -909,7 +982,7 @@ class InterpolateLowerConstraint:
 
     """ Interpolate a lower 2D limit from a data file. """
 
-    def __init__(self, file, tau, apply=True):
+    def __init__(self, file, tau=None, apply=True):
         """ Initializes a 2D lower bound constraint.
         The constraint is on the y-co-ordinate, and is calculated as
         a function of x.
@@ -954,14 +1027,20 @@ class InterpolateLowerConstraint:
         self.limit = NP.interp(self.theoryx, self.data[0],
                                self.data[1], left=None, right=None)
 
-        # Now calcualte likelihood with Gaussian error function - erf.
-        like = 0.5 + 0.5 * \
-            scipy.special.erf((self.theory - self.limit) / (2. ** 0.5 * self.tau * self.theory))
-        try:
-            self.loglike = math.log(like)
-        # Sometimes we are trying to take log zero.
-        except ValueError:
-            self.loglike = -1e101
+        if self.tau:
+
+          # Now calcualte likelihood with Gaussian error function - erf.
+          like = 0.5 + 0.5 * \
+              scipy.special.erf((self.theory - self.limit) / (2. ** 0.5 * self.tau * self.theory))
+          try:
+              self.loglike = math.log(like)
+          # Sometimes we are trying to take log zero.
+          except ValueError:
+              self.loglike = -1e101
+
+        else:
+
+          self.loglike = (self.theory > self.lmit) * -1e101
 
         return self.loglike
 
@@ -1044,6 +1123,7 @@ class ExternalConstraint:
         return self.loglike
 
 #########################################################################
+
 # These are functions for manipulating programs and datafiles.
 
 
