@@ -10,7 +10,7 @@
 
 default: all
 
-all: multinest softsusy python micromegas superiso feynhiggs higgsbounds higgssignals susyh nmssm
+all: multinest softsusy python micromegas superiso feynhiggs higgsbounds higgssignals susyh nmssm flavor
 
 multinest:
 	cd MultiNest-master/build/; cmake .. && make
@@ -25,6 +25,9 @@ feynhiggs:
 	make -C FeynHiggs-*
 	cd ./FeynHiggs-*; make install
 	cd ./FeynHiggs-*; gfortran -o SuperPyFH -Ibuild example/SuperPy.F -Lbuild -lFH
+
+flavor:
+	make -C susy_flavor_*
 
 micromegas:
 	make -C micromegas_*
