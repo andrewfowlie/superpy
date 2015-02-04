@@ -1,0 +1,6 @@
+<li> 14/01/15 Added file src/nmh_slhainp.f to distribution. Thanks to S AbdusSalam
+<li> 12/01/15 Fixed out of bounds vector element access for certain NMSSM inputs. Thanks to F Staub
+<li> 11/12/14 Tree-level tachyons at MZ now only induce tachyon warnings. Also, shouldn't have to compile latex files.
+<li> 10/11/14 Fixed bug that disabled QEWSB changes with SLHA pMSSM input. Thanks to L Nicoletta
+<li> 05/11/14 <pre>make programs</pre> will not make the documentation, only executables
+<li> 16/09/14 Corrected small x spectrum of GMSB. Thanks to M Hussain
