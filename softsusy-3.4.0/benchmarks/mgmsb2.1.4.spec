@@ -1,14 +1,7 @@
-# SuperPy. Derivatives for naturalness priors.
-# SuperPy. Derivatives for naturalness priors.
-# SuperPy. Derivatives for naturalness priors.
-# SuperPy. Derivatives for naturalness priors.
-# dMZ^2/dmu=-1.55525222e+03
-# dtanbeta/dmu=8.26399373e-02
-# mu=4.00453067e+02
-# SuperPy. Derivatives for naturalness priors.
-# dMZ^2/dm3sq=2.81014133e-01
-# dtanbeta/dm3sq=-7.34426556e-04
-# m3sq= 2.20260806e+04
+# SuperPy: Jacobian for naturalness priors.
+# J = inf
+# b = 2.48320542e+04
+# Mu = 9.11876000e+01
 # SOFTSUSY3.4.0 SLHA compliant output
 # B.C. Allanach, Comput. Phys. Commun. 143 (2002) 305-331, hep-ph/0104145
 Block SPINFO          # Program information
@@ -47,7 +40,7 @@ Block MASS                      # Mass spectrum
    1000025    -3.99213469e+02   # ~neutralino(3)
    1000035     4.31730535e+02   # ~neutralino(4)
    1000037     4.31702350e+02   # ~chargino(2)
-   1000039     2.56249479e-09   # ~gravitino
+   1000039     2.58093000e-09   # ~gravitino
    1000001     1.12450611e+03   # ~d_L
    1000002     1.12186567e+03   # ~u_L
    1000003     1.12450458e+03   # ~s_L

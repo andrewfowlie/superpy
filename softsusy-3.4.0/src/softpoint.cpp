@@ -1222,12 +1222,24 @@ int main(int argc, char *argv[]) {
 
       oneset.toMz();
 
+    double J; // Jacobian for SuperPy naturalness priors.
+    double Mu; // \mu at high scale
+    double b; // b at high scale
+
     switch (susy_model) {
     case MSSM:
       r->fixedPointIteration(boundaryCondition, mgutGuess, pars, sgnMu, tanb,
 			     oneset, gaugeUnification, ewsbBCscale);
-      // SuperPy - hacked to print fine-tuning measure.
-      r->fineTune(boundaryCondition, pars, mgutGuess, false);
+
+      // SuperPy - print Jacobian to screen.
+      J = r->Jacobian();
+      b = r->displayM3Squared();
+      Mu = r->displayMu();
+      cout << "# SuperPy: Jacobian for naturalness priors." << endl;
+      cout << "# J = " << J << endl;
+      cout << "# b = " << b << endl;
+      cout << "# Mu = " << Mu << endl;
+
       /// Fix to mh if additional operators are assumed
       if (desiredMh > 0.1) {
         sPhysical s(r->displayPhys()); s.mh0(1) = desiredMh; r->setPhys(s);

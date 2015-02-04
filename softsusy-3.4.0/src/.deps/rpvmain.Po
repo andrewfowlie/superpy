@@ -1,5 +1,4 @@
-rpvmain.o: rpvmain.cpp /usr/include/stdc-predef.h \
- /usr/include/x86_64-linux-gnu/bits/predefs.h rpvmain.h \
+rpvmain.o: rpvmain.cpp /usr/include/stdc-predef.h rpvmain.h \
  /usr/include/c++/4.8/iostream \
  /usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/4.8/bits/os_defines.h \
@@ -110,6 +109,7 @@ rpvmain.o: rpvmain.cpp /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/sigset.h \
  /usr/include/x86_64-linux-gnu/bits/select2.h \
  /usr/include/x86_64-linux-gnu/sys/sysmacros.h /usr/include/alloca.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib.h utils.h mycomplex.h \
  /usr/include/c++/4.8/complex /usr/include/c++/4.8/csignal \
@@ -148,8 +148,6 @@ rpvmain.o: rpvmain.cpp /usr/include/stdc-predef.h \
  softsusy.cpp rpvsusypars.h tensor.h rpvsoft.h flavoursoft.h
 
 /usr/include/stdc-predef.h:
-
-/usr/include/x86_64-linux-gnu/bits/predefs.h:
 
 rpvmain.h:
 
@@ -434,6 +432,8 @@ softsusy.h:
 /usr/include/x86_64-linux-gnu/sys/sysmacros.h:
 
 /usr/include/alloca.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 

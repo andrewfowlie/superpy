@@ -1,5 +1,4 @@
-softpoint.o: softpoint.cpp /usr/include/stdc-predef.h \
- /usr/include/x86_64-linux-gnu/bits/predefs.h softpoint.h \
+softpoint.o: softpoint.cpp /usr/include/stdc-predef.h softpoint.h \
  /usr/include/c++/4.8/iostream \
  /usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/4.8/bits/os_defines.h \
@@ -101,6 +100,7 @@ softpoint.o: softpoint.cpp /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/sigset.h \
  /usr/include/x86_64-linux-gnu/bits/select2.h \
  /usr/include/x86_64-linux-gnu/sys/sysmacros.h /usr/include/alloca.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib.h /usr/include/c++/4.8/fstream \
  /usr/include/c++/4.8/bits/codecvt.h /usr/include/c++/4.8/cstdio \
@@ -149,8 +149,6 @@ softpoint.o: softpoint.cpp /usr/include/stdc-predef.h \
  rpvsusypars.h tensor.h rpvsoft.h
 
 /usr/include/stdc-predef.h:
-
-/usr/include/x86_64-linux-gnu/bits/predefs.h:
 
 softpoint.h:
 
@@ -421,6 +419,8 @@ utils.h:
 /usr/include/x86_64-linux-gnu/sys/sysmacros.h:
 
 /usr/include/alloca.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 

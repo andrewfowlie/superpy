@@ -658,69 +658,159 @@ double Softsusy<SoftPars>::predMzsq(double & tanb, double muOld, double eps) {
   return MZsq;
 }
 
+
 /// Used to get useful information into ftCalc
 static MssmSoftsusy *tempSoft1;
 static int ftFunctionality;
 static DoubleVector ftPars(3);
 static void (*ftBoundaryCondition)(MssmSoftsusy &, const DoubleVector &);
 
+struct WeakScale {
+  /*
+  Low-scale parameters (M_Z, \tan\beta).
+  */
+  double MZ;
+  double TanBeta;
+};
 
-// SuperPy - hack. Added this function. It is identical to ftCalc
-// except that it returns tanbeta rather than MZ.
-inline double ftTanb(double x) {
-  /// Stores running parameters in a vector
-  DoubleVector storeObject(tempSoft1->display());
-  double initialMu = tempSoft1->displayMu();
-  drBarPars saveDrBar(tempSoft1->displayDrBarPars());
+struct HighScale {
+  /*
+  High-scale parameters (\mu, b).
+  */
+  double b;
+  double Mu;
+};
 
-  if (PRINTOUT > 1) cout << "#";
+inline WeakScale Trade(HighScale High) {
+  /*
+  Trade (\mu, b) for (M_Z, \tab\beta) at the weak scale (for SuperPy).
 
-  if (ftFunctionality <= ftPars.displayEnd()) {
-    ftPars(ftFunctionality) = x;
-    ftBoundaryCondition(*tempSoft1, ftPars);
-    if (PRINTOUT > 1) cout << "p" << ftFunctionality << "=";
-  }
-  else if (ftFunctionality == ftPars.displayEnd() + 1) {
-    tempSoft1->setSusyMu(x); if (PRINTOUT > 1) cout << "mu= ";
-  }
-  else if (ftFunctionality == ftPars.displayEnd() + 2) {
-    tempSoft1->setM3Squared(x); if (PRINTOUT > 1) cout << "m3sq= ";
-  }
-  else if (ftFunctionality == ftPars.displayEnd() + 3) {
-    tempSoft1->setYukawaElement(YU, 3, 3, x); if (PRINTOUT > 1) cout << "ht= ";
-  }
-  else {
-    ostringstream ii;
-    ii << "MssmSoftsusy:ftCalc called with incorrect functionality=" <<
-      ftFunctionality << endl;
-    throw ii.str();
-  }
+  Arguments:
+  High - (\mu, b) object.
 
-  double referenceMzsq, predTanb;
+  Returns:
+  Weak - (M_Z, \tab\beta) object.
+  */
+
+  WeakScale Weak; // Object containing (M_Z, \tab\beta)
+
+  // Save initial parameters - we will restore them at the end.
+  DoubleVector Initial_Object(tempSoft1->display());
+  double Initial_Mu = tempSoft1->displayMu();
+  drBarPars Initial_DRBar_Pars(tempSoft1->displayDrBarPars());
+
+  // Trade parameters from high-scale to weak-scale.
+
+  // Specify high-scale parameters.
+  tempSoft1->setSusyMu(High.Mu);
+  tempSoft1->setM3Squared(High.b);
 
   tempSoft1->runto(tempSoft1->calcMs());
   tempSoft1->calcDrBarPars();
   tempSoft1->runto(tempSoft1->calcMs());
-
   tempSoft1->setHvev(tempSoft1->getVev());
+
+  // We miss two-loop terms in our calculation of fine-tuning...
   double mt = tempSoft1->displayDrBarPars().mt;
   double sinthDRbar = tempSoft1->calcSinthdrbar();
-  /// We miss two-loop terms in our calculation of fine-tuning...
   tempSoft1->calcTadpole2Ms1loop(mt, sinthDRbar);
   tempSoft1->calcTadpole1Ms1loop(mt, sinthDRbar);
 
-  referenceMzsq = tempSoft1->predMzsq(predTanb);
+  // Calcuate weak-scale parameters.
+  Weak.MZ = sqrt(tempSoft1->predMzsq(Weak.TanBeta));
 
-  if (PRINTOUT > 1) cout << x << " MZ=" << sqrt(fabs(referenceMzsq))
-             << " tanb=" << predTanb << "\n";
+  // Restore parameters to their initial values.
+  tempSoft1->setMu(Initial_Mu);
+  tempSoft1->set(Initial_Object);
+  tempSoft1->setDrBarPars(Initial_DRBar_Pars);
 
-  /// Restore initial parameters at correct scale
-  tempSoft1->setMu(initialMu);
-  tempSoft1->set(storeObject);
-  tempSoft1->setDrBarPars(saveDrBar);
-
-  return predTanb;
+  return Weak;
 }
+
+inline double TanBeta(double b) {
+  /*
+  \tan\beta as a function of b.
+
+  Arguments:
+  b -- b at the high scale.
+
+  Returns:
+  TB -- \tan\beta at the weak scale.
+  */
+
+  HighScale High;
+  High.Mu = tempSoft1->displayMu();
+  High.b = b;
+  double TB = Trade(High).TanBeta;
+
+  return TB;
+
+}
+
+
+inline double M_Z(double Mu) {
+  /*
+  Z-boson mass a function of \mu.
+
+  Arguments:
+  Mu -- \mu at the high scale.
+
+  Returns:
+  MZ -- Z-boson mass.
+  */
+
+  HighScale High;
+  High.Mu = Mu;
+  High.b = tempSoft1->displayM3Squared();
+
+  return Trade(High).MZ;
+
+}
+
+inline double Derive(double x, double (*func)(double)){
+  /*
+  Wrapper for "calcDerivative" function that returns
+  reciprocal of derivative.
+  */
+
+  double delta = 0.01; // Fractional step.
+  double error;
+
+  double d = calcDerivative(*func, x, delta * x, &error);
+
+  return 1./d;
+}
+
+template<class SoftPars>
+double Softsusy<SoftPars>::Jacobian() {
+  /*
+  Find the Jacobian for (\mu, b) -> (M_Z, \tan\beta) parameter trade:
+
+  H = (\mu, b)
+  L = (M_Z, \tan\beta)
+  J = d H / d L
+
+  For use with SuperPy.
+
+  Arguments:
+
+  Returns:
+  det_J --  Absolute value of determinant of Jacobian.
+  */
+
+  tempSoft1 = this;
+
+  // High-scale point at which to calculate Jacobian.
+  double Mu = displayMu();
+  double b = displayM3Squared();
+
+  // Find Jacobian - NB reciprocal of derivatives required.
+  double J = Derive(b, TanBeta) * Derive(Mu, M_Z);
+  double abs_J = abs(J);
+
+  return abs_J;
+}
+
 
 inline double ftCalc(double x) {
   /// Stores running parameters in a vector
@@ -818,9 +908,6 @@ double Softsusy<SoftPars>::it1par(int numPar, const DoubleVector & bcPars) {
   ftPars.setEnd(bcPars.displayEnd()); ftPars = bcPars;
 
   /// Fine tuning is a / MZ^2 d MZ^2 / d a for any parameter a
-  // SuperPy - hacked to add different MZ^2 and tan beta derviatves.
-  double derivative_MZSQ;
-  double derivative_tanbeta;
   double derivative;
   if (fabs(x) < 1.0e-10) {
     ftParameter = 0.0; derivative = 0.0; err = 0.0;
@@ -828,24 +915,8 @@ double Softsusy<SoftPars>::it1par(int numPar, const DoubleVector & bcPars) {
   else {
     derivative = calcDerivative(ftCalc, x, h, &err);
     ftParameter = x * derivative / sqr(displayMz());
-    // SuperPy - hacked to derive MZ^2 and tan beta.
-    derivative_MZSQ = calcDerivative(ftCalc, x, h, &err);
-    derivative_tanbeta = calcDerivative(ftTanb, x, h, &err);
   }
 
-  // SuperPy - hacked to clarify output.
-  // Print derivatives of tan beta and MZ^2 and parameter values.
-  cout << "# SuperPy. Derivatives for naturalness priors." << endl;
-  if (numPar == bcPars.displayEnd() + 1) {//mu
-    cout << "# dMZ^2/dmu=" << derivative_MZSQ << endl;
-    cout << "# dtanbeta/dmu=" << derivative_tanbeta << endl;
-    cout << "# mu=" << x << endl;
-  }
-  else if (numPar == bcPars.displayEnd() + 2) {//m3sq
-    cout << "# dMZ^2/dm3sq=" << derivative_MZSQ << endl;
-    cout << "# dtanbeta/dm3sq=" << derivative_tanbeta << endl;
-    cout << "# m3sq= " << x << endl;
-  }
   if (PRINTOUT > 1)
     cout << "derivative=" << derivative << " error=" << err << "\n";
 

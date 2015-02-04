@@ -136,35 +136,35 @@ distuninstallcheck_listfiles = find . -type f -print
 am__distuninstallcheck_listfiles = $(distuninstallcheck_listfiles) \
   | sed 's|^\./|$(prefix)/|' | grep -v '$(infodir)/dir$$'
 distcleancheck_listfiles = find . -type f -print
-ACLOCAL = ${SHELL} /home/andrew/WORKING/git-superpy/superpy/softsusy-3.4.0/Config/missing --run aclocal-1.11
+ACLOCAL = ${SHELL} /home/andrew/Codes/superpy/softsusy-3.4.0/Config/missing --run aclocal-1.11
 AMTAR = $${TAR-tar}
 AR = ar
-AUTOCONF = ${SHELL} /home/andrew/WORKING/git-superpy/superpy/softsusy-3.4.0/Config/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/andrew/WORKING/git-superpy/superpy/softsusy-3.4.0/Config/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/andrew/WORKING/git-superpy/superpy/softsusy-3.4.0/Config/missing --run automake-1.11
+AUTOCONF = ${SHELL} /home/andrew/Codes/superpy/softsusy-3.4.0/Config/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/andrew/Codes/superpy/softsusy-3.4.0/Config/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/andrew/Codes/superpy/softsusy-3.4.0/Config/missing --run automake-1.11
 AWK = mawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -g -O2
+CFLAGS = -g -O2 -ggdb
 CPP = gcc -E
-CPPFLAGS = 
-CXX = g++
-CXXCPP = g++ -E
+CPPFLAGS = -ggdb
+CXX = g++ -ggdb
+CXXCPP = g++ -E  -ggdb
 CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -O2 -Wall
+CXXFLAGS = -O2 -Wall -ggdb
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
 DLLTOOL = false
-DSYMUTIL = 
-DUMPBIN = 
-ECHO_C = 
+DSYMUTIL =
+DUMPBIN =
+ECHO_C =
 ECHO_N = -n
-ECHO_T = 
+ECHO_T =
 EGREP = /bin/grep -E
-EXEEXT = 
+EXEEXT =
 F77 = gfortran
-FFLAGS = -O2 -Wall
+FFLAGS = -O2 -Wall -ggdb
 FGREP = /bin/grep -F
 FLIBS =  -L/usr/lib/gcc/x86_64-linux-gnu/4.8 -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../.. -lgfortran -lm -lquadmath
 GREP = /bin/grep
@@ -174,53 +174,53 @@ INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LD = /usr/bin/ld -m elf_x86_64
-LDFLAGS = 
-LIBOBJS = 
-LIBS = 
+LDFLAGS =
+LIBOBJS =
+LIBS =
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
-LIPO = 
+LIPO =
 LN_S = ln -s
-LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/andrew/WORKING/git-superpy/superpy/softsusy-3.4.0/Config/missing --run makeinfo
+LTLIBOBJS =
+MAKEINFO = ${SHELL} /home/andrew/Codes/superpy/softsusy-3.4.0/Config/missing --run makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /bin/mkdir -p
 NM = /usr/bin/nm -B
-NMEDIT = 
+NMEDIT =
 OBJDUMP = objdump
 OBJEXT = o
-OTOOL = 
-OTOOL64 = 
+OTOOL =
+OTOOL64 =
 PACKAGE = softsusy
 PACKAGE_BUGREPORT = softsusy@projects.hepforge.org
 PACKAGE_NAME = softsusy
 PACKAGE_STRING = softsusy 3.4.0
 PACKAGE_TARNAME = softsusy
-PACKAGE_URL = 
+PACKAGE_URL =
 PACKAGE_VERSION = 3.4.0
 PATH_SEPARATOR = :
 RANLIB = ranlib
 SED = /bin/sed
-SET_MAKE = 
+SET_MAKE =
 SHELL = /bin/bash
 STRIP = strip
 VERSION = 3.4.0
-abs_builddir = /home/andrew/WORKING/git-superpy/superpy/softsusy-3.4.0
-abs_srcdir = /home/andrew/WORKING/git-superpy/superpy/softsusy-3.4.0
-abs_top_builddir = /home/andrew/WORKING/git-superpy/superpy/softsusy-3.4.0
-abs_top_srcdir = /home/andrew/WORKING/git-superpy/superpy/softsusy-3.4.0
+abs_builddir = /home/andrew/Codes/superpy/softsusy-3.4.0
+abs_srcdir = /home/andrew/Codes/superpy/softsusy-3.4.0
+abs_top_builddir = /home/andrew/Codes/superpy/softsusy-3.4.0
+abs_top_srcdir = /home/andrew/Codes/superpy/softsusy-3.4.0
 ac_ct_AR = ar
 ac_ct_CC = gcc
 ac_ct_CXX = g++
-ac_ct_DUMPBIN = 
-ac_ct_F77 = 
+ac_ct_DUMPBIN =
+ac_ct_F77 =
 am__include = include
 am__leading_dot = .
-am__quote = 
+am__quote =
 am__tar = $${TAR-tar} chof - "$$tardir"
 am__untar = $${TAR-tar} xf -
 bindir = ${exec_prefix}/bin
 build = x86_64-unknown-linux-gnu
-build_alias = 
+build_alias =
 build_cpu = x86_64
 build_os = linux-gnu
 build_vendor = unknown
@@ -231,14 +231,14 @@ docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
 host = x86_64-unknown-linux-gnu
-host_alias = 
+host_alias =
 host_cpu = x86_64
 host_os = linux-gnu
 host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/andrew/WORKING/git-superpy/superpy/softsusy-3.4.0/Config/install-sh
+install_sh = ${SHELL} /home/andrew/Codes/superpy/softsusy-3.4.0/Config/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -254,8 +254,8 @@ sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
 srcdir = .
 sysconfdir = ${prefix}/etc
-target_alias = 
-top_build_prefix = 
+target_alias =
+top_build_prefix =
 top_builddir = .
 top_srcdir = .
 SUBDIRS = src doc
@@ -299,7 +299,7 @@ benchmarks/rpv1.4.spec benchmarks/rpv1.5.spec \
 benchmarks/rpv2.1.spec benchmarks/rpv2.2.spec benchmarks/rpv2.3.spec \
 benchmarks/rpv2.4.spec benchmarks/rpv2.5.spec \
 benchmarks/rpv3.1.spec benchmarks/rpv3.2.spec benchmarks/rpv3.3.spec \
-benchmarks/rpv3.4.spec benchmarks/rpv3.5.spec 
+benchmarks/rpv3.4.spec benchmarks/rpv3.5.spec
 
 INPUTFILES = inOutFiles/slha2Input inOutFiles/lesHouchesInput inOutFiles/rpvHouchesInput \
 inOutFiles/nmssmSLHAZ3Input inOutFiles/nmssmSLHAnoZ3Input \
@@ -340,7 +340,7 @@ benchmarks/rpv1.4.in benchmarks/rpv1.5.in \
 benchmarks/rpv2.1.in benchmarks/rpv2.2.in benchmarks/rpv2.3.in \
 benchmarks/rpv2.4.in benchmarks/rpv2.5.in \
 benchmarks/rpv3.1.in benchmarks/rpv3.2.in benchmarks/rpv3.3.in \
-benchmarks/rpv3.4.in benchmarks/rpv3.5.in 
+benchmarks/rpv3.4.in benchmarks/rpv3.5.in
 
 dist_pkgdata_DATA = softsusy_nmssmtools.x.in setup_nmssmtools.sh Makefile.nmssmtools $(INPUTFILES) $(OUTPUTFILES) CHANGES GUIDELINES COPYING $(DOCFILES)
 CLEANFILES = $(OUTPUTFILES) *.x
@@ -389,7 +389,7 @@ Config/config.h: Config/stamp-h1
 Config/stamp-h1: $(top_srcdir)/Config/config.h.in $(top_builddir)/config.status
 	@rm -f Config/stamp-h1
 	cd $(top_builddir) && $(SHELL) ./config.status Config/config.h
-$(top_srcdir)/Config/config.h.in:  $(am__configure_deps) 
+$(top_srcdir)/Config/config.h.in:  $(am__configure_deps)
 	($(am__cd) $(top_srcdir) && $(AUTOHEADER))
 	rm -f Config/stamp-h1
 	touch $@
@@ -880,7 +880,7 @@ uninstall-am: uninstall-dist_pkgdataDATA
 	uninstall-dist_pkgdataDATA
 
 
-inOutFiles/%Output : inOutFiles/%Input softpoint.x 
+inOutFiles/%Output : inOutFiles/%Input softpoint.x
 	./softpoint.x leshouches < $< > $@
 
 inOutFiles/outputTest: softsusy.x
@@ -911,8 +911,8 @@ doc:
 	@echo Making $@ in $(top_builddir)/doc
 	cd $(top_builddir)/doc && make $@
 
-updateWeb: dist 
-	scp softsusy-${VERSION}.tar.gz allanach@login.hepforge.org:~/softsusy/downloads; 
+updateWeb: dist
+	scp softsusy-${VERSION}.tar.gz allanach@login.hepforge.org:~/softsusy/downloads;
 	scp inOutFiles/*{Input,Output}* allanach@login.hepforge.org:~/softsusy/public_html/code
 	scp {src/def.h,inOutFiles/outputTest,README} allanach@login.hepforge.org:~/softsusy/public_html/code
 	scp Makefile.alt allanach@login.hepforge.org:~/softsusy/public_html/Makefile

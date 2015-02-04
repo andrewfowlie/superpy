@@ -1,6 +1,5 @@
 nmssmsoftsusy.lo: nmssmsoftsusy.cpp /usr/include/stdc-predef.h \
- /usr/include/x86_64-linux-gnu/bits/predefs.h nmssmsoftsusy.h \
- /usr/include/c++/4.8/iostream \
+ nmssmsoftsusy.h /usr/include/c++/4.8/iostream \
  /usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/4.8/bits/os_defines.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
@@ -95,6 +94,7 @@ nmssmsoftsusy.lo: nmssmsoftsusy.cpp /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/sigset.h \
  /usr/include/x86_64-linux-gnu/bits/select2.h \
  /usr/include/x86_64-linux-gnu/sys/sysmacros.h /usr/include/alloca.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib.h /usr/include/c++/4.8/cmath \
  /usr/include/math.h /usr/include/x86_64-linux-gnu/bits/huge_val.h \
@@ -148,8 +148,6 @@ nmssmsoftsusy.lo: nmssmsoftsusy.cpp /usr/include/stdc-predef.h \
  nmssmUtils.h /usr/include/c++/4.8/cassert /usr/include/assert.h
 
 /usr/include/stdc-predef.h:
-
-/usr/include/x86_64-linux-gnu/bits/predefs.h:
 
 nmssmsoftsusy.h:
 
@@ -394,6 +392,8 @@ nmssmsoftsusy.h:
 /usr/include/x86_64-linux-gnu/sys/sysmacros.h:
 
 /usr/include/alloca.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 

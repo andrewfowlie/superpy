@@ -1,5 +1,4 @@
-def.lo: def.cpp /usr/include/stdc-predef.h \
- /usr/include/x86_64-linux-gnu/bits/predefs.h def.h \
+def.lo: def.cpp /usr/include/stdc-predef.h def.h \
  /usr/include/c++/4.8/cmath \
  /usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/4.8/bits/os_defines.h \
@@ -20,8 +19,6 @@ def.lo: def.cpp /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/mathinline.h
 
 /usr/include/stdc-predef.h:
-
-/usr/include/x86_64-linux-gnu/bits/predefs.h:
 
 def.h:
 
