@@ -374,19 +374,17 @@ Block SOFTSUSY                  # SOFTSUSY specific inputs
         """
 
         # Read relevant derivatives and parameters.
-        # Multiply by 2*MZ - we have dMZ^2, want dMZ.
-        mu_MZ = 2. * MZ / self.ReadParameter(input_file, '# dMZ^2/dmu=')
-        b_TanBeta = 1. / self.ReadParameter(input_file, '# dtanbeta/dm3sq=')
-        mu = self.ReadParameter(input_file, '# mu=')
-        b = self.ReadParameter(input_file, '# m3sq=')
+        J = self.ReadParameter(input_file, '# J =')
+        Mu = self.ReadParameter(input_file, '# Mu =')
+        b = self.ReadParameter(input_file, '# b =')
 
         # Set the "likelihood" associated with naturalness.
         # Of course, this is NOT a true chi-squared/likelihood from an experiment.
         # But it is convenient to treat it as such.
         try:
-            self.constraint['Natural'].loglike = NP.log10(
-                abs(mu_MZ / mu *
-                    b_TanBeta / b))
+            self.constraint['Natural'].loglike = math.log(
+                J / ( Mu * b)
+                )
         except:
             self.constraint['Natural'].loglike = -1e101
 

@@ -412,7 +412,7 @@ Block QEXTPAR
         # But it is convenient to treat it as such.
         # It is NOT dimensionless.
         try:
-            self.constraint['Natural'].loglike = NP.log10(abs(J / mS2 / kappa))
+            self.constraint['Natural'].loglike = math.log(abs(J / mS2 / kappa))
         except:
             self.constraint['Natural'].loglike = -1e101
 
